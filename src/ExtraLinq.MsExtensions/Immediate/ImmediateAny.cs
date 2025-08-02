@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ExtendedLinq.MsExtensions.Deferred;
 using Microsoft.Extensions.Primitives;
 
 namespace ExtendedLinq.MsExtensions.Immediate;
