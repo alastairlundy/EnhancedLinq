@@ -5,18 +5,18 @@ using System.Linq;
 using AlastairLundy.DotPrimitives.Collections.Groupings;
 using Microsoft.Extensions.Primitives;
 
-namespace ExtendedLinq.MsExtensions.Deferred.Enumerators;
+namespace ExtraLinq.MsExtensions.Deferred.Enumerators;
 
-public class GroupStringSegmentEnumerator<TKey> : IEnumerator<IGrouping<IEnumerable<char>, TKey>>
+public class GroupStringSegmentEnumerator<TKey> : IEnumerator<IGrouping<TKey, char>>
 {
     private readonly StringSegment _source;
     private readonly Func<char, TKey> _selector;
 
     private int _state;
 
-    private GroupingCollection<char, TKey>  _groupingCollection;
+    private GroupingCollection<TKey, char>  _groupingCollection;
     
-    public GroupStringSegmentEnumerator(StringSegment source, Func<char, TKey> selector)
+    internal GroupStringSegmentEnumerator(StringSegment source, Func<char, TKey> selector)
     {
         _source = source;
         _selector = selector;
@@ -42,7 +42,7 @@ public class GroupStringSegmentEnumerator<TKey> : IEnumerator<IGrouping<IEnumera
         throw new NotSupportedException();
     }
 
-    public IGrouping<IEnumerable<char>, TKey> Current { get; }
+    public IGrouping<TKey, char> Current { get; }
 
     object? IEnumerator.Current => Current;
 

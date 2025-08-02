@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
-
 using Microsoft.Extensions.Primitives;
 
-namespace ExtendedLinq.MsExtensions.Deferred;
+namespace ExtraLinq.MsExtensions.Deferred;
 
 public static partial class MsExtensionsDeferred
 {
@@ -21,4 +20,5 @@ public static partial class MsExtensionsDeferred
                 yield return target[i];
         }
     }
+    
 }

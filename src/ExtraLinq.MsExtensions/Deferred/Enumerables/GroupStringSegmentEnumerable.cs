@@ -2,12 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using ExtendedLinq.MsExtensions.Deferred.Enumerators;
+using ExtraLinq.MsExtensions.Deferred.Enumerators;
 using Microsoft.Extensions.Primitives;
 
-namespace ExtendedLinq.MsExtensions.Deferred.Enumerables;
+namespace ExtraLinq.MsExtensions.Deferred.Enumerables;
 
-internal class GroupStringSegmentEnumerable<TKey> : IEnumerable<IGrouping<IEnumerable<char>, TKey>>
+internal class GroupStringSegmentEnumerable<TKey> : IEnumerable<IGrouping<TKey, char>>
 {
     private readonly StringSegment _source;
     private readonly Func<char, TKey> _selector;
@@ -18,10 +18,8 @@ internal class GroupStringSegmentEnumerable<TKey> : IEnumerable<IGrouping<IEnume
         _selector = selector;
     }
     
-    public IEnumerator<IGrouping<IEnumerable<char>, TKey>> GetEnumerator()
-    {
-        return new GroupStringSegmentEnumerator<TKey>(_source, _selector);
-    }
+    public IEnumerator<IGrouping<TKey, char>> GetEnumerator() => 
+        new GroupStringSegmentEnumerator<TKey>(_source, _selector);
 
     IEnumerator IEnumerable.GetEnumerator()
     {

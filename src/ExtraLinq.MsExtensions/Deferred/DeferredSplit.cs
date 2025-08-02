@@ -1,4 +1,4 @@
-namespace ExtendedLinq.MsExtensions.Deferred;
+namespace ExtraLinq.MsExtensions.Deferred;
 
 public class DeferredSplit
 {
