@@ -1,0 +1,33 @@
+using System;
+using System.Collections.Generic;
+
+using ExtraLinq.Deferred.Enumerables;
+
+namespace ExtraLinq.Deferred;
+
+public static partial class EnumerableLinqExtra
+{
+    /// <summary>
+    /// Returns a sequence of elements from the specified source, 
+    /// where the index of each element in the returned sequence corresponds to an index in the provided indices.
+    /// </summary>
+    /// <remarks>The order of the elements in the returned <see cref="IEnumerable{T}"/> is determined by their original position in the source,
+    /// but the order within the returned <see cref="IEnumerable{T}"/> is based on the provided indexes.</remarks>
+    /// <param name="source">The <see cref="IEnumerable{T}"/> from which to retrieve elements.</param>
+    /// <param name="indices">A sequence of indices, where each index corresponds to an element in the source.</param>
+    /// <typeparam name="TSource">The type of the elements in the source and returned <see cref="IEnumerable{T}"/>.</typeparam>
+    /// <returns>A new <see cref="IEnumerable{T}"/> containing the elements at the specified indexes from the original source.</returns>
+    public static IEnumerable<TSource> ElementsAt<TSource>(this IEnumerable<TSource> source, IEnumerable<int> indices)
+    {
+        #if NET8_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(source);
+        ArgumentNullException.ThrowIfNull(indices);
+        #endif
+        
+        return new ElementsAtEnumerable<TSource>(source, indices);
+    }
+    
+    
+    
+
+}

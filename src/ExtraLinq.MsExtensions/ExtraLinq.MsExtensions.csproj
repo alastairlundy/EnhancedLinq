@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+        <ImplicitUsings>disable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <AssemblyName>ExtraLinq.MsExtensions</AssemblyName>
+        <RootNamespace>ExtendedLinq.MsExtensions</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AlastairLundy.DotPrimitives.Collections" Version="3.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Primitives" Version="9.0.7" />
+    </ItemGroup>
+
+</Project>
