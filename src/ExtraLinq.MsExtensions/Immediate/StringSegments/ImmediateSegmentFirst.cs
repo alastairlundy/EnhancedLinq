@@ -30,7 +30,7 @@ public static class ImmediateSegmentFirst
             return result;
         }
         
-        throw new ArgumentException(Resources.Exceptions_StringSegment_NoPredicateMatches);
+        throw new ArgumentException(Resources.Exceptions_Segments_InvalidOperation_EmptySequence);
     }
 
 
@@ -52,6 +52,6 @@ public static class ImmediateSegmentFirst
             return result;
         }
         
-        return default;
+        return null;
     }
 }
