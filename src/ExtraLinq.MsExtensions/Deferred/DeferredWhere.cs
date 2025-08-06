@@ -1,5 +1,8 @@
 using System;
 using System.Collections.Generic;
+
+using ExtraLinq.MsExtensions.Deferred.Enumerables;
+
 using Microsoft.Extensions.Primitives;
 
 namespace ExtraLinq.MsExtensions.Deferred;
@@ -14,10 +17,9 @@ public static partial class MsExtensionsDeferred
     /// <returns>An IEnumerable of chars that matches the predicate.</returns>
     public static IEnumerable<char> Where(this StringSegment target, Func<char, bool> selector)
     {
-        for (int i = 0; i < target.Length; i++)
-        {
-            if(selector(target[i]))
-                yield return target[i];
-        }
+        if(StringSegment.IsNullOrEmpty(target)) 
+            throw new ArgumentNullException(nameof(target));
+
+        return new WhereSegmentEnumerable(target, selector);
     }
 }
