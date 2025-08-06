@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
-
+using ExtraLinq.MsExtensions.Internals.Localizations;
 using Microsoft.Extensions.Primitives;
 
 namespace ExtraLinq.MsExtensions.Immediate.StringSegments;
@@ -19,7 +19,7 @@ public static class ImmediateSegmentReverse
     public static StringSegment Reverse(this StringSegment target)
     {
         if (target.IsEmpty())
-            throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
+            throw new InvalidOperationException(Resources.Exceptions_Segments_InvalidOperation_EmptySequence);
         
         char[] array = target.ToCharArray();
         
