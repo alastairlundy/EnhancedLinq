@@ -13,4 +13,8 @@
       <PackageReference Include="Microsoft.Extensions.Primitives" Version="9.0.7" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Internals\Localizations\" />
+    </ItemGroup>
+
 </Project>
