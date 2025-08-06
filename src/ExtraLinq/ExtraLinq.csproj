@@ -22,4 +22,8 @@
       </Compile>
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="AlastairLundy.DotExtensions" Version="8.0.0-preview.1" />
+    </ItemGroup>
+
 </Project>
