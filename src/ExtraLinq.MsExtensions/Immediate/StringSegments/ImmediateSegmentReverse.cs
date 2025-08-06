@@ -27,7 +27,7 @@ public static class ImmediateSegmentReverse
         
         IEnumerable<char> reversedEnumerable = (from c in array
                 join i in indices
-                    on c equals array[i]
+                    on c equals target[i]
                 orderby i descending 
                 select c
             );
