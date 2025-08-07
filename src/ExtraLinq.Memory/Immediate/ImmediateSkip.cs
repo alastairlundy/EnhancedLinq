@@ -16,7 +16,7 @@ public static class ImmediateSkip
     {
         if (count > target.Length)
             throw new ArgumentOutOfRangeException(Resources
-                .Exceptions_Span_SkipCountTooLarge);
+                .Exceptions_SkipCount_TooLarge);
         
         return target.GetRange(start: count, end: target.Length - count);
     }
@@ -32,7 +32,7 @@ public static class ImmediateSkip
     {
         if (count > target.Length)
             throw new ArgumentOutOfRangeException(Resources
-                .Exceptions_Span_SkipCountTooLarge);
+                .Exceptions_SkipCount_TooLarge);
             
         return target.GetRange(start: 0, end: target.Length - count);
     }

@@ -21,4 +21,10 @@
     <data name="Exceptions.IndexOutOfRange" xml:space="preserve">
         <value>Index provided of {x} was out</value>
     </data>
+    <data name="Exceptions.SkipCount.TooLarge" xml:space="preserve">
+        <value>Cannot skip more elements than the target span contains.</value>
+    </data>
+    <data name="Exceptions.Count.LessThanZero" xml:space="preserve">
+        <value>Count cannot be 0 or less. Provided count was {x}.</value>
+    </data>
 </root>

@@ -50,5 +50,17 @@ namespace ExtraLinq.Memory.Internals.Localizations {
                 return ResourceManager.GetString("Exceptions.IndexOutOfRange", resourceCulture);
             }
         }
+        
+        internal static string Exceptions_SkipCount_TooLarge {
+            get {
+                return ResourceManager.GetString("Exceptions.SkipCount.TooLarge", resourceCulture);
+            }
+        }
+        
+        internal static string Exceptions_Count_LessThanZero {
+            get {
+                return ResourceManager.GetString("Exceptions.Count.LessThanZero", resourceCulture);
+            }
+        }
     }
 }

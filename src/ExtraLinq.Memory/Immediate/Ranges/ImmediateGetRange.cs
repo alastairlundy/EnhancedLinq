@@ -21,7 +21,7 @@ public static class ImmediateGetRange
     {
         if ((end - start) > target.Length)
             throw new ArgumentOutOfRangeException(
-                Resources.Exceptions_Span_SkipCountTooLarge);
+                Resources.Exceptions_SkipCount_TooLarge);
 
         if (start < 0 || start >= target.Length)
         {
