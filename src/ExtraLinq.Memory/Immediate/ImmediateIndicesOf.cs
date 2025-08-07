@@ -1,0 +1,56 @@
+﻿/*
+        MIT License
+
+       Copyright (c) 2025 Alastair Lundy
+
+       Permission is hereby granted, free of charge, to any person obtaining a copy
+       of this software and associated documentation files (the "Software"), to deal
+       in the Software without restriction, including without limitation the rights
+       to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+       copies of the Software, and to permit persons to whom the Software is
+       furnished to do so, subject to the following conditions:
+
+       The above copyright notice and this permission notice shall be included in all
+       copies or substantial portions of the Software.
+
+       THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+       IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+       FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+       AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+       LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+       OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+       SOFTWARE.
+   */
+
+namespace ExtraLinq.Memory.Immediate;
+
+/// <summary>
+/// 
+/// </summary>
+public static class ImmediateIndicesOf
+{
+    /// <summary>
+    /// Returns a collection of indices within the given span where the specified value occurs.
+    /// </summary>
+    /// <param name="span">The initial span to search.</param>
+    /// <param name="item">The value to find in the span.</param>
+    /// <typeparam name="T">The type of elements within the span.</typeparam>
+    /// <returns>A collection of indices that represent the occurrences of item in span.</returns>
+    public static ICollection<int> IndicesOf<T>(this Span<T> span, T item) where T : notnull
+    {
+        List<int> indices = new List<int>();
+
+        for (int index = 0; index < span.Length; index++)
+        {
+            if (item is not null && item.Equals(span[index]))
+            {
+                indices.Add(index);
+            }
+        }
+
+        if (indices.Any() == false)
+            return [-1];
+        
+        return indices;
+    }
+}

@@ -1,8 +1,6 @@
-using System;
+namespace ExtraLinq.Memory.Immediate;
 
-namespace ExtraLinq.Immediate.Spans;
-
-public static class SpanImmediateCount
+public static class ImmediateCount
 {
     /// <summary>
     /// Returns the number of elements in a given span that satisfy a condition.

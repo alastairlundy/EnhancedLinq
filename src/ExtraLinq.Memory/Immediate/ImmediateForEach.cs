@@ -1,8 +1,6 @@
-using System;
+namespace ExtraLinq.Memory.Immediate;
 
-namespace ExtraLinq.Immediate.Spans;
-
-public static class SpanImmediateForEach
+public static class ImmediateForEach
 {
     /// <summary>
     /// Applies the given action to each element of this Span.

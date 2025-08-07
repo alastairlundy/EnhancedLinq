@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtraLinq.Tests", "ExtraLin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtraLinq.MsExtensions", "ExtraLinq.MsExtensions\ExtraLinq.MsExtensions.csproj", "{0C763738-48CA-4ECA-81F6-9809C8842D0C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtraLinq.Memory", "ExtraLinq.Memory\ExtraLinq.Memory.csproj", "{C65241BC-94BE-4ACE-9373-CF6BC4917F6E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{0C763738-48CA-4ECA-81F6-9809C8842D0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C763738-48CA-4ECA-81F6-9809C8842D0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C763738-48CA-4ECA-81F6-9809C8842D0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C65241BC-94BE-4ACE-9373-CF6BC4917F6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C65241BC-94BE-4ACE-9373-CF6BC4917F6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C65241BC-94BE-4ACE-9373-CF6BC4917F6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C65241BC-94BE-4ACE-9373-CF6BC4917F6E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

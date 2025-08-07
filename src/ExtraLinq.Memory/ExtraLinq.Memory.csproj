@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>netstandard2.0;net8.0;net9.0;</TargetFrameworks>
+        <LangVersion>13</LangVersion>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AlastairLundy.DotExtensions" Version="8.0.0-preview.1" />
+        <PackageReference Include="AlastairLundy.DotPrimitives.Collections" Version="3.0.0" />
+        <PackageReference Include="System.Memory"
+                          Condition="'$(TargetFramework)' == 'netstandard2.0'"
+                          Version="4.6.3"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="Internals\Localizations\Resources.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Internals\Localizations\Resources.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Resources.resx</DependentUpon>
+      </Compile>
+    </ItemGroup>
+</Project>
