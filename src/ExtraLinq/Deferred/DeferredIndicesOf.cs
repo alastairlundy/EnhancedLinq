@@ -39,11 +39,13 @@ public static partial class EnumerableLinqExtra
     }
     
     /// <summary>
-    /// 
+    /// Finds all occurrences of a specified char within a string, starting from the beginning of the string.
     /// </summary>
-    /// <param name="str"></param>
-    /// <param name="c"></param>
-    /// <returns></returns>
+    /// <param name="str">The input string.</param>
+    /// <param name="c">The character to find in the string.</param>
+    /// <returns>
+    /// A sequence of indices where the character is found; an empty sequence if the character could not be found.
+    /// </returns>
     public static IEnumerable<int> IndicesOf(this string str, char c)
     {
 #if NET8_0_OR_GREATER
@@ -55,11 +57,11 @@ public static partial class EnumerableLinqExtra
 
     
     /// <summary>
-    /// 
+    /// Finds all occurrences of a specified substring within a string, starting from the beginning of the string.
     /// </summary>
-    /// <param name="str"></param>
-    /// <param name="value"></param>
-    /// <returns></returns>
+    /// <param name="str">The input string.</param>
+    /// <param name="value">The substring to look for.</param>
+    /// <returns>A sequence of indices where the character is found; an empty sequence if the character could not be found.</returns>
     public static IEnumerable<int> IndicesOf(this string str, string value)
     {
 #if NET8_0_OR_GREATER
