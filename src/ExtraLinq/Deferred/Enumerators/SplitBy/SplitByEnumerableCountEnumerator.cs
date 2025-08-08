@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -5,26 +6,73 @@ namespace ExtraLinq.Deferred.Enumerators;
 
 internal class SplitByEnumerableCountEnumerator<T> : IEnumerator<IEnumerable<T>>
 {
-    private readonly List<T> _source;
+    private readonly IEnumerable<T> _source;
     private readonly int _maxEnumerableCount;
     
     private IEnumerable<T> _current;
 
+    private IEnumerator<T> _enumerator;
+
+    private int _state;
+    
+    private List<T> _currentEnumerable;
+    
     public SplitByEnumerableCountEnumerator(IEnumerable<T> source, int maxEnumerableCount)
     {
         _source = new List<T>(source);
         _maxEnumerableCount = maxEnumerableCount;
+        _state = 1;
     }
-
-
+    
     public bool MoveNext()
     {
-        throw new System.NotImplementedException();
+        if (_state == 1)
+        {
+            _enumerator = _source.GetEnumerator();
+            _currentEnumerable = new();
+
+            _state = 2;
+        }
+
+        if (_state == 2)
+        {
+            while(_enumerator.MoveNext())
+            {
+                _current = 
+                return true;
+            }
+            
+            if (_currentEnumerable.Count <= _maxEnumerableCount)
+            {
+                try
+                {
+                   
+                }
+                catch
+                {
+                    Dispose();
+                    throw;
+                }
+
+                _state = -1;
+            }
+            else
+            {
+                List<T> list = new List<T>();
+                list.AddRange(_currentEnumerable);
+                
+                _current = list;
+                _currentEnumerable.Clear();
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public void Reset()
     {
-        throw new System.NotImplementedException();
+        throw new NotSupportedException();
     }
 
     IEnumerable<T> IEnumerator<IEnumerable<T>>.Current => _current;
@@ -33,6 +81,6 @@ internal class SplitByEnumerableCountEnumerator<T> : IEnumerator<IEnumerable<T>>
 
     public void Dispose()
     {
-        throw new System.NotImplementedException();
+       _enumerator?.Dispose();
     }
 }
