@@ -1,10 +1,36 @@
+using System;
 using System.Collections.Generic;
-using AlastairLundy.DotExtensions.Exceptions;
 
 namespace ExtraLinq.Immediate;
 
 public static class ImmediateIndexOf
 {
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="source">The IEnumerable to be searched.</param>
+    /// <param name="selector"></param>
+    /// <typeparam name="T">The type of object in the IEnumerable.</typeparam>
+    /// <returns></returns>
+    public static int IndexOf<T>(this IEnumerable<T> source, Func<T, bool> selector)
+    {
+        ArgumentNullException.ThrowIfNull(source, nameof(source));
+        ArgumentNullException.ThrowIfNull(selector, nameof(selector));
+     
+        int index = 0;
+
+        foreach (T item in source)
+        {
+            if (selector(item))
+                return index;
+
+            index++;
+        }
+
+        return -1;
+    }
+    
     /// <summary>
     /// Returns the index of an object in an IEnumerable.
     /// </summary>
