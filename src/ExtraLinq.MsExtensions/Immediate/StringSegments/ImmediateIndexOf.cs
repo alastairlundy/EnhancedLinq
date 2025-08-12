@@ -1,11 +1,17 @@
 using System.Collections.Generic;
+using System.Linq;
+
 using AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
+using ExtraLinq.Deferred;
+using ExtraLinq.MsExtensions.Deferred;
+
 using Microsoft.Extensions.Primitives;
 
 namespace ExtraLinq.MsExtensions.Immediate.StringSegments;
 
 public static class ImmediateIndexOf
 {
+    
     /// <summary>
     /// Finds the index of a specified StringSegment within another StringSegment.
     /// </summary>
