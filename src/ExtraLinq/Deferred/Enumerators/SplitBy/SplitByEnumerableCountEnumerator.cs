@@ -38,35 +38,32 @@ internal class SplitByEnumerableCountEnumerator<T> : IEnumerator<IEnumerable<T>>
         {
             while(_enumerator.MoveNext())
             {
-                _current = 
-                return true;
-            }
-            
-            if (_currentEnumerable.Count <= _maxEnumerableCount)
-            {
-                try
+                if (_currentEnumerable.Count <= _maxEnumerableCount)
                 {
-                   
+                    try
+                    {
+                        _currentEnumerable.Add(_enumerator.Current);
+                    }
+                    catch
+                    {
+                        Dispose();
+                        throw;
+                    }
                 }
-                catch
+                else
                 {
-                    Dispose();
-                    throw;
-                }
-
-                _state = -1;
-            }
-            else
-            {
-                List<T> list = new List<T>();
-                list.AddRange(_currentEnumerable);
+                    List<T> list = new List<T>();
+                    list.AddRange(_currentEnumerable);
                 
-                _current = list;
-                _currentEnumerable.Clear();
-                return true;
+                    _current = list;
+                    _currentEnumerable.Clear();
+                    return true;
+                }
             }
         }
 
+        Dispose();
+        _state = -1;
         return false;
     }
 
