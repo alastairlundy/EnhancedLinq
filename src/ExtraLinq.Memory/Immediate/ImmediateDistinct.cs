@@ -22,12 +22,8 @@ public static class ImmediateDistinct
     {
         comparer ??= EqualityComparer<T>.Default;
         
-#if NET5_0_OR_GREATER || NETSTANDARD2_1
         HashSet<T> set = new(capacity: source.Length, comparer: comparer);
-#else
-        HashSet<T> set = new(comparer: comparer);
-#endif
-        
+
         int currentIndex = 0;
         T[] output = new T[source.Length];
         

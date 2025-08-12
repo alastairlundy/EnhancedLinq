@@ -15,11 +15,10 @@ public static partial class EnumerableLinqExtra
     /// <typeparam name="TSource">The type of element in the sequence and elements being added.</typeparam>
     public static IEnumerable<TSource> AppendRange<TSource>(this IEnumerable<TSource> source,
         IEnumerable<TSource> toBeAppended)
-    {
-        #if NET8_0_OR_GREATER
+    { 
         ArgumentNullException.ThrowIfNull(source, nameof(source));
         ArgumentNullException.ThrowIfNull(toBeAppended, nameof(toBeAppended));
-        #endif
+        
         
         return new AppendRangeEnumerable<TSource>(source, toBeAppended);
     }

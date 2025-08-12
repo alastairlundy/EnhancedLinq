@@ -29,10 +29,10 @@ public static class ImmediateRemoveRange
     /// <returns></returns>
     public static Span<T> RemoveRange<T>(this Span<T> target, int startIndex, int count)
     {
-#if NET8_0_OR_GREATER
+
         if (target.IsEmpty)
             throw new ArgumentException();
-#endif
+
 
         if (startIndex < 0 || startIndex > target.Length)
             throw new IndexOutOfRangeException();

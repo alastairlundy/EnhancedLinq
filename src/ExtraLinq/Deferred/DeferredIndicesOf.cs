@@ -15,9 +15,9 @@ public static partial class EnumerableLinqExtra
     /// <returns>The indices if the object is found; an empty sequence otherwise.</returns>
     public static IEnumerable<int> IndicesOf<T>(this IEnumerable<T> source, T target) where T : notnull
     {
-        #if NET8_0_OR_GREATER
+        
         ArgumentNullException.ThrowIfNull(source);
-        #endif
+        
         
         return IndicesOf(source, x => x.Equals(target));
     }
@@ -31,9 +31,9 @@ public static partial class EnumerableLinqExtra
     /// <returns></returns>
     public static IEnumerable<int> IndicesOf<T>(this IEnumerable<T> source, Func<T, bool> predicate)
     {
-#if NET8_0_OR_GREATER
+
         ArgumentNullException.ThrowIfNull(source);
-#endif
+
         
         return new IndicesEnumerable<T>(source, predicate);
     }
@@ -48,13 +48,10 @@ public static partial class EnumerableLinqExtra
     /// </returns>
     public static IEnumerable<int> IndicesOf(this string str, char c)
     {
-#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(str);
-#endif
         
         return new IndicesEnumerable<char>(str, x => x.Equals(c));
     }
-
     
     /// <summary>
     /// Finds all occurrences of a specified substring within a string, starting from the beginning of the string.
@@ -64,10 +61,8 @@ public static partial class EnumerableLinqExtra
     /// <returns>A sequence of indices where the character is found; an empty sequence if the character could not be found.</returns>
     public static IEnumerable<int> IndicesOf(this string str, string value)
     {
-#if NET8_0_OR_GREATER
         ArgumentException.ThrowIfNullOrEmpty(str);
         ArgumentException.ThrowIfNullOrEmpty(value);
-#endif
         
         return new StringIndicesEnumerable(str, value.ToCharArray());
     }

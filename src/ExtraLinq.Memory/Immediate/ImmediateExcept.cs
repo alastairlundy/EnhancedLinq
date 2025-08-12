@@ -1,6 +1,5 @@
-#if NETSTANDARD2_0
 using AlastairLundy.DotExtensions.Memory.Spans;
-#endif
+
 
 namespace ExtraLinq.Memory.Immediate;
 
