@@ -5,7 +5,7 @@ using Microsoft.Extensions.Primitives;
 
 namespace ExtraLinq.MsExtensions.Deferred.Enumerators;
 
-internal class SegmentIndicesEnumerator : IEnumerator<int>
+internal class SegmentIndicesCharEnumerator : IEnumerator<int>
 {
     private readonly StringSegment _segment;
     private readonly char _c;
@@ -15,7 +15,7 @@ internal class SegmentIndicesEnumerator : IEnumerator<int>
     private int _state;
     private int _index;
     
-    public SegmentIndicesEnumerator(StringSegment segment, char c)
+    public SegmentIndicesCharEnumerator(StringSegment segment, char c)
     {
         _segment = segment;
         _c = c;

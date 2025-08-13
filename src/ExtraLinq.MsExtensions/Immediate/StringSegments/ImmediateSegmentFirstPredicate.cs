@@ -10,7 +10,7 @@ using ExtraLinq.MsExtensions.Internals.Localizations;
 
 namespace ExtraLinq.MsExtensions.Immediate.StringSegments;
 
-public static class ImmediateSegmentFirst
+public static class ImmediateSegmentFirstPredicate
 {
 
     /// <summary>
@@ -33,8 +33,6 @@ public static class ImmediateSegmentFirst
         
         throw new ArgumentException(Resources.Exceptions_Segments_InvalidOperation_EmptySequence);
     }
-
-
 
     /// <summary>
     /// Returns the first character of the specified <see cref="StringSegment"/> that meets the predicate condition or null if the segment is empty.

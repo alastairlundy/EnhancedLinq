@@ -5,7 +5,7 @@ using AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
 
 namespace ExtraLinq.MsExtensions.Immediate.StringSegments;
 
-public static class ImmediateSegmentLast
+public static class ImmediateSegmentLastPredicate
 {
 
 
