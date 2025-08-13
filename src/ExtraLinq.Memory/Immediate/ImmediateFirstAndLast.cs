@@ -1,99 +1,60 @@
+using ExtraLinq.Memory.Internals.Localizations;
+
 namespace ExtraLinq.Memory.Immediate;
 
 public static class ImmediateFirstAndLast
 {
-    
+      /// <summary>
+    /// Returns the first element in the Span.
+    /// </summary>
+    /// <param name="target">The span to be searched.</param>
+    /// <typeparam name="T">The type of items stored in the span.</typeparam>
+    /// <returns>The first item in the span if any items are in the Span.</returns>
+    /// <exception cref="InvalidOperationException">Thrown if the Span contains zero items.</exception>
+    public static T First<T>(this Span<T> target)
+    {
+        if (target.IsEmpty)
+            throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptySpan);
+        
+        return target[0];
+    }
+
     /// <summary>
-    /// Returns the first element of a span that satisfies a specified condition.
+    /// Returns the first element of a span that satisfies a specified condition, or null if the Span is empty.
     /// </summary>
     /// <param name="target">The span to search for the first element.</param>
-    /// <param name="predicate">A function that defines the condition to be met.</param>
     /// <typeparam name="T">The type of elements in the span.</typeparam>
-    /// <returns>The first element of the span that satisfies the condition.</returns>
-    /// <exception cref="ArgumentException">Thrown when no element satisfies the condition.</exception>
-    public static T First<T>(this Span<T> target, Func<T, bool> predicate)
-    {
-        for (int index = 0; index < target.Length; index++)
-        {
-            T item = target[index];
-            if (predicate.Invoke(item))
-            {
-                return item;
-            }
-        }
-
-        throw new ArgumentException();
-    }
+    /// <returns>The first element of the span that satisfies the condition, or null if the span is empty.</returns>
+    public static T? FirstOrDefault<T>(this Span<T> target) 
+        => target.IsEmpty == false ? target[0] : default;
 
     /// <summary>
-    /// Returns the first element of a span that satisfies a specified condition,
-    /// or a default value if no such element is found.
+    /// Returns the last element in the Span.
     /// </summary>
-    /// <param name="target">The span to search for the first element.</param>
-    /// <param name="predicate">A function that defines the condition to be met.</param>
-    /// <typeparam name="T">The type of elements in the span.</typeparam>
-    /// <returns>The first element of the span that satisfies the condition, or null if no such element is found.</returns>
-    /// <exception cref="ArgumentException">Thrown when the span is empty or no element satisfies the condition.</exception>
-    public static T? FirstOrDefault<T>(this Span<T> target, Func<T, bool> predicate)
+    /// <param name="target">The span to be searched.</param>
+    /// <typeparam name="T">The type of items stored in the span.</typeparam>
+    /// <returns>The last item in the span if any items are in the Span.</returns>
+    /// <exception cref="InvalidOperationException">Thrown if the Span contains zero items.</exception>
+    public static T Last<T>(this Span<T> target)
     {
-        for (int index = 0; index < target.Length; index++)
-        {
-            T item = target[index];
-            if (predicate.Invoke(item))
-            {
-                return item;
-            }
-        }
+        if (target.IsEmpty)
+            throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptySpan);
 
-        return default;
+        return target.Length > 1 ? target[^1] : target.First();
     }
-    
+
     /// <summary>
-    /// Returns the last element of a span that satisfies a specified condition.
+    /// Returns the last element of a span that satisfies a specified condition,
+    /// or null if the Span is empty.
     /// </summary>
     /// <param name="target">The span to search for the last element.</param>
-    /// <param name="predicate">A function that defines the condition to be met.</param>
     /// <typeparam name="T">The type of elements in the span.</typeparam>
-    /// <returns>The last element of the span that satisfies the condition.</returns>
-    /// <exception cref="ArgumentException">Thrown when no element satisfies the condition.</exception>
-    public static T Last<T>(this Span<T> target, Func<T, bool> predicate)
+    /// <returns>The last element of the span, or null if the span is empty.</returns>
+    public static T? LastOrDefault<T>(this Span<T> target)
     {
-        Span<T> newTarget = target;
-        newTarget.Reverse();
+        if (target.IsEmpty)
+            return default;
         
-        for (int index = 0; index < target.Length; index++)
-        {
-            T item = newTarget[index];
-            if (predicate.Invoke(item))
-            {
-                return item;
-            }
-        }
-
-        throw new ArgumentException();
-    }
-
-    /// <summary>
-    /// Returns the last element of a span that satisfies a specified condition, or a default value if no such element is found.
-    /// </summary>
-    /// <param name="target">The span to search for the last element.</param>
-    /// <param name="predicate">A function that defines the condition to be met.</param>
-    /// <typeparam name="T">The type of elements in the span.</typeparam>
-    /// <returns>The last element of the span that satisfies the condition, or null if no such element is found.</returns>
-    public static T? LastOrDefault<T>(this Span<T> target, Func<T,  bool> predicate)
-    {
-        Span<T> newTarget = target;
-        newTarget.Reverse();
-        
-        for (int index = 0; index < target.Length; index++)
-        {
-            T item = newTarget[index];
-            if (predicate.Invoke(item))
-            {
-                return item;
-            }
-        }
-
-        return default;
+        return target.Length > 1 ? target[^1] : target.FirstOrDefault();
     }
 }
