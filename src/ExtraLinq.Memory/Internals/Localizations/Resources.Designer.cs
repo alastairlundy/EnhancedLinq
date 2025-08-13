@@ -62,5 +62,11 @@ namespace ExtraLinq.Memory.Internals.Localizations {
                 return ResourceManager.GetString("Exceptions.Count.LessThanZero", resourceCulture);
             }
         }
+        
+        internal static string Exceptions_InvalidOperation_EmptySpan {
+            get {
+                return ResourceManager.GetString("Exceptions.InvalidOperation.EmptySpan", resourceCulture);
+            }
+        }
     }
 }
