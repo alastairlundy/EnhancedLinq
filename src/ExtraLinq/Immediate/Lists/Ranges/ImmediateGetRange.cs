@@ -19,21 +19,18 @@ public static class ImmediateGetRange
     /// <exception cref="IndexOutOfRangeException">Thrown if the start index is out of range for the original list.</exception>
     public static IList<T> GetRange<T>(this IList<T> list, int startIndex, int count)
     {
-        List<T> output = new List<T>();
-        int limit;
-            
-        if (list.Count < startIndex + count)
-        {
-            limit = startIndex + count;
-        }
-        else
+        if (list.Count >= startIndex + count)
         {
             throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
                 .Replace("{x}", $"{count}")
                 .Replace("{y}", "0")
                 .Replace("{z}", $"{list.Count}"));
         }
-                
+        
+        List<T> output = new List<T>();
+        
+        int limit = startIndex + count;
+
         for (int index = startIndex; index < limit; index++)
         {
             output.Add(list[index]);
