@@ -30,7 +30,7 @@ namespace ExtraLinq.Deferred.Pairs.KeyValuePairs;
 /// <summary>
 /// 
 /// </summary>
-public static class KeyValuePairEnumerableSplitExtensions
+public static class KeyValuePairSplitExtensions
 {
     /// <summary>
     /// Converts an IEnumerable of key-value pairs to a sequence of keys.
