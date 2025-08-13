@@ -40,11 +40,13 @@ public static class ImmediateIndexOf
     /// <returns>The index of an object in an IEnumerable, if the IEnumerable contains the object, returns -1 otherwise.</returns>
     public static int IndexOf<T>(this IEnumerable<T> source, T obj)
     {
+        ArgumentNullException.ThrowIfNull(source, nameof(source));
+
         if (source is IList<T> list)
         {
             return list.IndexOf(obj);
         }
-            
+        
         int index = 0;
                 
         foreach (T item in source)

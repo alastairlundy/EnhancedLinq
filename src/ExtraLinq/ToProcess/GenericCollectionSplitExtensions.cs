@@ -25,6 +25,7 @@
 using System;
 using System.Collections.Generic;
 using ExtraLinq.Internals.Localizations;
+using ExtraLinq.Internals.Localizations;
 
 namespace ExtraLinq.ToProcess;
 
@@ -40,7 +41,7 @@ public static class GenericCollectionSplitExtensions
     public static ICollection<ICollection<T>> SplitByProcessorCount<T>(this ICollection<T> source)
     {
         if (source.Count == 0)
-            throw new ArgumentException(Resources.Exceptions_EnumerablesSplit_Empty);
+            throw new ArgumentException(Resources.Exceptions_EnumerableSplit_Empty);
         
         double itemsPerThread = source.Count / Convert.ToDouble(Environment.ProcessorCount);
         
@@ -59,7 +60,7 @@ public static class GenericCollectionSplitExtensions
     public static IList<IList<T>> SplitByProcessorCount<T>(this IList<T> source)
     {
         if (source.Count == 0)
-            throw new ArgumentException(Resources.Exceptions_EnumerablesSplit_Empty);
+            throw new ArgumentException(Resources.Exceptions_EnumerableSplit_Empty);
         
         double itemsPerThread = source.Count / Convert.ToDouble(Environment.ProcessorCount);
         
@@ -79,7 +80,7 @@ public static class GenericCollectionSplitExtensions
     public static ICollection<ICollection<T>> SplitByCount<T>(this ICollection<T> source, int maxCount)
     {
         if (source.Count == 0)
-            throw new ArgumentException(Resources.Exceptions_EnumerablesSplit_Empty);
+            throw new ArgumentException(Resources.Exceptions_EnumerableSplit_Empty);
 
         if (source.Count <= maxCount)
             return [[..source]];
@@ -117,7 +118,7 @@ public static class GenericCollectionSplitExtensions
     public static IList<IList<T>> SplitByCount<T>(this IList<T> source, int maxCount)
     {
         if (source.Count == 0)
-            throw new ArgumentException(Resources.Exceptions_EnumerablesSplit_Empty);
+            throw new ArgumentException(Resources.Exceptions_EnumerableSplit_Empty);
 
         if (source.Count <= maxCount)
             return [[..source]];

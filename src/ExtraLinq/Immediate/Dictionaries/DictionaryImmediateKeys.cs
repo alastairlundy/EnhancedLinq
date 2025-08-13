@@ -16,9 +16,8 @@ public static class DictionaryImmediateKeys
     /// <typeparam name="TKey">The type of Key in the Dictionary.</typeparam>
     /// <typeparam name="TValue">The type of Value in the Dictionary.</typeparam>
     /// <returns>The key associated with the specified value in a Dictionary.</returns>
-    public static TKey GetKeyByValue<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TValue value) where TKey : notnull
-    {
-        return dictionary.First(x => x.Value is not null &&
-                                     x.Value.Equals(value)).Key;
-    }
+    public static TKey GetKeyByValue<TKey, TValue>(this IDictionary<TKey, TValue> dictionary,
+        TValue value) where TKey : notnull =>
+        dictionary.First(x => x.Value is not null &&
+                              x.Value.Equals(value)).Key;
 }

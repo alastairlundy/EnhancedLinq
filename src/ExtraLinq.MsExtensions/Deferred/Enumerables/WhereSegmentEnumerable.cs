@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using ExtraLinq.MsExtensions.Deferred.Enumerators;
 using Microsoft.Extensions.Primitives;
 
 namespace ExtraLinq.MsExtensions.Deferred.Enumerables;
@@ -16,10 +17,7 @@ internal class WhereSegmentEnumerable : IEnumerable<char>
         _selector = selector;
     }
     
-    public IEnumerator<char> GetEnumerator()
-    {
-        return new WhereSegmentEnumerator(_segment, _selector);
-    }
+    public IEnumerator<char> GetEnumerator() => new WhereSegmentEnumerator(_segment, _selector);
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }

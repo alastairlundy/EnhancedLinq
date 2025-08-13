@@ -1,12 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-
-using ExtraLinq.MsExtensions.Deferred.Enumerators;
-
 using Microsoft.Extensions.Primitives;
 
-namespace ExtraLinq.MsExtensions.Deferred.Enumerables;
+namespace ExtraLinq.MsExtensions.Deferred.Enumerators;
 
 internal class WhereSegmentEnumerator : IEnumerator<char>
 {
