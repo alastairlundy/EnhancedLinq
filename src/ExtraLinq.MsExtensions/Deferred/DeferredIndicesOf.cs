@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using ExtraLinq.MsExtensions.Deferred.Enumerables;
+using ExtraLinq.MsExtensions.Deferred.Enumerators;
 using Microsoft.Extensions.Primitives;
 
 namespace ExtraLinq.MsExtensions.Deferred;
