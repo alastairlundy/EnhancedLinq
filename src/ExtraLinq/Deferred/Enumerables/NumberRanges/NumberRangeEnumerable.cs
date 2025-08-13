@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 using ExtraLinq.Deferred.Enumerators.NumberRanges;
+
+namespace ExtraLinq.Deferred.Enumerables.NumberRanges;
+
+internal class NumberRangeEnumerable<TNumber> : IEnumerable<TNumber> where TNumber : INumber<TNumber>
 {
     private List<TNumber> _source;
     
