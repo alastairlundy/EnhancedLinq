@@ -27,4 +27,7 @@
     <data name="Exceptions.Count.LessThanZero" xml:space="preserve">
         <value>Count cannot be 0 or less. Provided count was {x}.</value>
     </data>
+    <data name="Exceptions.EnumerableSplit.Empty" xml:space="preserve">
+        <value>Cannot split an empty enumerable.</value>
+    </data>
 </root>

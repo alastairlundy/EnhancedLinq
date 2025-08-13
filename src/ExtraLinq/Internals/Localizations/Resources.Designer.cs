@@ -62,5 +62,11 @@ namespace ExtraLinq.Internals.Localizations {
                 return ResourceManager.GetString("Exceptions.Count.LessThanZero", resourceCulture);
             }
         }
+        
+        internal static string Exceptions_EnumerableSplit_Empty {
+            get {
+                return ResourceManager.GetString("Exceptions.EnumerableSplit.Empty", resourceCulture);
+            }
+        }
     }
 }
