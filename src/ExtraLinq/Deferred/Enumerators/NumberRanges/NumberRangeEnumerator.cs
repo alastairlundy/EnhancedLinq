@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 
-namespace ExtraLinq.Deferred.Enumerators.IntegerRanges;
+namespace ExtraLinq.Deferred.Enumerators.NumberRanges;
 
-internal class IntegerRangeEnumerator<TNumber> : IEnumerator<TNumber> where TNumber : INumber<TNumber>
+internal class NumberRangeEnumerator<TNumber> : IEnumerator<TNumber> where TNumber : INumber<TNumber>
 {
     private readonly IEnumerable<TNumber> _source;   
     private IEnumerator<TNumber> _enumerator;
@@ -14,7 +14,7 @@ internal class IntegerRangeEnumerator<TNumber> : IEnumerator<TNumber> where TNum
 
     private int _state;
 
-    internal IntegerRangeEnumerator(IEnumerable<TNumber> source)
+    internal NumberRangeEnumerator(IEnumerable<TNumber> source)
     {
         _source = source;
         _current = TNumber.Zero;

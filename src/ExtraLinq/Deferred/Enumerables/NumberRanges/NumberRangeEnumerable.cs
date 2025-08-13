@@ -1,15 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
-using ExtraLinq.Deferred.Enumerators.IntegerRanges;
-
-namespace ExtraLinq.Deferred.Enumerables.IntegerRanges;
-
-internal class IntegerRangeEnumerable<TNumber> : IEnumerable<TNumber> where TNumber : INumber<TNumber>
+using ExtraLinq.Deferred.Enumerators.NumberRanges;
 {
     private List<TNumber> _source;
     
-    internal IntegerRangeEnumerable(TNumber start, TNumber count)
+    internal NumberRangeEnumerable(TNumber start, TNumber count)
     {
         _source = new List<TNumber>();
         
@@ -26,7 +22,7 @@ internal class IntegerRangeEnumerable<TNumber> : IEnumerable<TNumber> where TNum
     
     public IEnumerator<TNumber> GetEnumerator()
     {
-        return new IntegerRangeEnumerator<TNumber>(_source);
+        return new NumberRangeEnumerator<TNumber>(_source);
     }
 
     IEnumerator IEnumerable.GetEnumerator()
