@@ -24,4 +24,18 @@ public static class DeferredIndicesOf
         return new SegmentIndicesEnumerable(source, c);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="source"></param>
+    /// <param name="segment"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
+    public static IEnumerable<int> IndicesOf(this StringSegment source, StringSegment segment)
+    {
+        if (StringSegment.IsNullOrEmpty(source))
+            throw new ArgumentException();
+
+        return new SegmentIndicesEnumerable(source, segment);
+    }
 }

@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 using AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
-
+using ExtraLinq.MsExtensions.Deferred;
 using Microsoft.Extensions.Primitives;
 
 namespace ExtraLinq.MsExtensions.Immediate.StringSegments;

@@ -28,7 +28,7 @@ public static class ImmediateIndexOf
 
         foreach (int index in indexes)
         {
-            StringSegment indexSegment = @this.Substring(index, segment.Length);
+            StringSegment indexSegment = @this.Subsegment(index, segment.Length);
 
             if (indexSegment.Equals(segment))
             {
