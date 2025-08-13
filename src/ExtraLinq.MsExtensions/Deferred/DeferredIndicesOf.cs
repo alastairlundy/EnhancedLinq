@@ -11,16 +11,16 @@ public static class DeferredIndicesOf
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="str"></param>
+    /// <param name="source"></param>
     /// <param name="c"></param>
     /// <returns></returns>
     /// <exception cref="ArgumentException"></exception>
-    public static IEnumerable<int> IndicesOf(this StringSegment str, char c)
+    public static IEnumerable<int> IndicesOf(this StringSegment source, char c)
     {
-        if (StringSegment.IsNullOrEmpty(str))
+        if (StringSegment.IsNullOrEmpty(source))
             throw new ArgumentException();
 
-        return new SegmentIndicesEnumerable(str, c);
+        return new SegmentIndicesEnumerable(source, c);
     }
 
 }
