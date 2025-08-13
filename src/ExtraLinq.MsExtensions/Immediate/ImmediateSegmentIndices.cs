@@ -11,7 +11,6 @@ namespace ExtraLinq.MsExtensions.Immediate;
 public static class ImmediateSegmentIndices
 {
     
-    
     /// <summary>
     /// Gets an <see cref="IEnumerable{T}"/> of Indices for all occurrences of the specified character within the provided StringSegment.
     /// </summary>

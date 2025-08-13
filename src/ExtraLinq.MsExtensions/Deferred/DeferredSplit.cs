@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 using AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
@@ -24,4 +25,21 @@ public static class DeferredSplit
         return new SegmentSplitCharEnumerable(source, separator);
     }
     
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="source"></param>
+    /// <param name="separator"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
+    public static IEnumerable<StringSegment> Split(this StringSegment source, StringSegment separator)
+    {
+        if (StringSegment.IsNullOrEmpty(separator) || StringSegment.IsNullOrEmpty(source))
+            throw new ArgumentException();
+            
+        if (source.Contains(separator) == false)
+            return [];
+        
+        return new SegmentSplitEnumerable(source, separator);
+    }
 }
