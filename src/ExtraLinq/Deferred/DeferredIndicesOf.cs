@@ -15,11 +15,9 @@ public static partial class EnumerableLinqExtra
     /// <returns>The indices if the object is found; an empty sequence otherwise.</returns>
     public static IEnumerable<int> IndicesOf<T>(this IEnumerable<T> source, T target) where T : notnull
     {
-        
         ArgumentNullException.ThrowIfNull(source);
         
-        
-        return IndicesOf(source, x => x.Equals(target));
+        return new IndicesEnumerable<T>(source, x => x.Equals(target));
     }
 
     /// <summary>
@@ -31,9 +29,7 @@ public static partial class EnumerableLinqExtra
     /// <returns></returns>
     public static IEnumerable<int> IndicesOf<T>(this IEnumerable<T> source, Func<T, bool> predicate)
     {
-
         ArgumentNullException.ThrowIfNull(source);
-
         
         return new IndicesEnumerable<T>(source, predicate);
     }
