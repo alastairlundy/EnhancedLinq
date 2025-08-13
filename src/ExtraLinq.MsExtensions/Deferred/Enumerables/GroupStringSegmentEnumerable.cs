@@ -21,8 +21,5 @@ internal class GroupStringSegmentEnumerable<TKey> : IEnumerable<IGrouping<TKey, 
     public IEnumerator<IGrouping<TKey, char>> GetEnumerator() => 
         new GroupStringSegmentEnumerator<TKey>(_source, _selector);
 
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
-    }
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }
