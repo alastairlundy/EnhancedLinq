@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 
-namespace ExtraLinq.ToProcess.ILists;
+namespace ExtraLinq.Immediate.Lists;
 
 /// <summary>
 /// 
 /// </summary>
-public static class DistinctListExtensions
+public static class ImmediateListDistinctExtensions
 {
     /// <summary>
     /// Creates a new <see cref="List{T}"/> non-distinct elements from the source list.
@@ -14,10 +14,10 @@ public static class DistinctListExtensions
     /// <param name="source">The list to de-duplicate.</param>
     /// <typeparam name="T">The type of elements in the list.</typeparam>
     /// <returns>The new list with distinct elements from the source list.</returns>
-    public static List<T> DistinctList<T>(this List<T> source)
+    public static List<T> Distinct<T>(this List<T> source)
     {
-        HashSet<T> hash = new();
-        List<T> output = new();
+        HashSet<T> hash = new(capacity: source.Count / 10);
+        List<T> output = new(capacity: source.Count / 10);
         
         for (int index = 0; index < source.Count; index++)
         {
@@ -37,9 +37,9 @@ public static class DistinctListExtensions
     /// <param name="source">The array to de-duplicate.</param>
     /// <typeparam name="T">The type of elements in the array.</typeparam>
     /// <returns>The new array with distinct elements from the source array.</returns>
-    public static T[] DistinctArray<T>(this T[] source)
+    public static T[] Distinct<T>(this T[] source)
     {
-        HashSet<T> hash = new();
+        HashSet<T> hash = new(capacity: source.Length / 10);
         T[] output = new T[source.Length];
 
         int count = 0;

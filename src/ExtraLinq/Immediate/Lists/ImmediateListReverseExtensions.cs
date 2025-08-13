@@ -24,9 +24,9 @@
 
 using System.Collections.Generic;
 
-namespace ExtraLinq.ToProcess.ILists;
+namespace ExtraLinq.Immediate.Lists;
 
-public static class IListReverseExtensions
+public static class ImmediateListReverseExtensions
 {
     /// <summary>
     /// Reverses an <see cref="IList{T}"/> and returns it.
@@ -34,7 +34,7 @@ public static class IListReverseExtensions
     /// <param name="list">The list to reverse.</param>
     /// <typeparam name="T">The type of elements in the array.</typeparam>
     /// <returns>The reversed IList.</returns>
-    public static IList<T> Reverse<T>(this IList<T> list)
+    public static List<T> Reverse<T>(this List<T> list)
     {
         List<T> output = new List<T>(list.Count);
 
