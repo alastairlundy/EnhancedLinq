@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
+using AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 using ExtraLinq.Deferred;
 using ExtraLinq.MsExtensions.Deferred;
 

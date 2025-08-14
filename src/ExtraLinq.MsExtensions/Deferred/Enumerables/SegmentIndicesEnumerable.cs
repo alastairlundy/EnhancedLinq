@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
+
+using AlastairLundy.DotExtensions.MsExtensions.StringSegments;
+
 using ExtraLinq.MsExtensions.Deferred.Enumerators;
 
 using Microsoft.Extensions.Primitives;

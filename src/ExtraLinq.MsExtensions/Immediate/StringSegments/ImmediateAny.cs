@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
-using ExtraLinq.MsExtensions.Deferred;
+
+using AlastairLundy.DotExtensions.MsExtensions.StringSegments;
+
 using Microsoft.Extensions.Primitives;
 
 namespace ExtraLinq.MsExtensions.Immediate.StringSegments;

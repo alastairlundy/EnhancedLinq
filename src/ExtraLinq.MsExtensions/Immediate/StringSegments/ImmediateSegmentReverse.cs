@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
+using AlastairLundy.DotExtensions.MsExtensions.StringSegments;
+
 using ExtraLinq.MsExtensions.Internals.Localizations;
+
 using Microsoft.Extensions.Primitives;
 
 namespace ExtraLinq.MsExtensions.Immediate.StringSegments;

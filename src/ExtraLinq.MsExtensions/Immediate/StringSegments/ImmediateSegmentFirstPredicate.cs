@@ -5,7 +5,6 @@ using ExtraLinq.MsExtensions.Deferred;
 
 using Microsoft.Extensions.Primitives;
 
-using AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
 using ExtraLinq.MsExtensions.Internals.Localizations;
 
 namespace ExtraLinq.MsExtensions.Immediate.StringSegments;

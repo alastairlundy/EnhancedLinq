@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AlastairLundy.DotExtensions" Version="8.0.0-preview.3" />
+        <PackageReference Include="AlastairLundy.DotExtensions" Version="8.0.0" />
         <PackageReference Include="AlastairLundy.DotPrimitives.Collections" Version="3.0.0" />
     </ItemGroup>
 
