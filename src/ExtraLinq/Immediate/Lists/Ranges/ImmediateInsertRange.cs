@@ -14,7 +14,7 @@ using ExtraLinq.Internals.Localizations;
 
 namespace ExtraLinq.Immediate.Ranges;
 
-public static class ImmediateInsertRange
+public static partial class ExtraLinqImmediateRange
 {
     /// <summary>
     /// Inserts a specified range of elements from another sequence into this list at a specified position.

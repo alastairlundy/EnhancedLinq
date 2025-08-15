@@ -12,7 +12,7 @@ using System.Linq;
 
 namespace ExtraLinq.Deferred.Ranges;
 
-public static class DeferredRemoveRange
+public static partial class ExtraLinqDeferredRange
 {
     /// <summary>
     /// Removes items from an IEnumerable.

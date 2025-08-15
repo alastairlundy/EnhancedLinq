@@ -9,7 +9,7 @@
 
 namespace ExtraLinq.Memory.Immediate;
 
-public static class ImmediateFirstAndLastPredicate
+public static partial class ExtraLinqMemoryImmediate
 {
     
     /// <summary>

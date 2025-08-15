@@ -14,7 +14,7 @@ using ExtraLinq.Internals.Localizations;
 
 namespace ExtraLinq.Immediate.Concurrent.Ranges;
 
-public static class ConcurrentGetRange
+public static partial class ExtraLinqImmediateConcurrentRange
 {
     /// <summary>
     /// Retrieves the specified range of elements from the collection.

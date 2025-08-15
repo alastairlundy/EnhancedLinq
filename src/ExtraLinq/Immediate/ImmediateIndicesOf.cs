@@ -13,7 +13,7 @@ using System.Collections.Generic;
 
 namespace ExtraLinq.Immediate;
 
-public static class ImmediateIndicesOf
+public static partial class ExtraLinqImmediate
 {
     /// <summary>
     /// Retrieves a collection of indices where the specified element can be found within the given collection.

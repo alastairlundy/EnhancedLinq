@@ -13,7 +13,7 @@ using ExtraLinq.Memory.Internals.Localizations;
 
 namespace ExtraLinq.Memory.Immediate.Ranges;
 
-public static class ImmediateGetRange
+public static partial class ExtraLinqMemoryImmediateRange
 {
         /// <summary>
     /// Returns a new Span with the specified range of elements,

@@ -14,7 +14,7 @@ using ExtraLinq.Internals.Localizations;
 
 namespace ExtraLinq.Immediate.Ranges;
 
-public static class ImmediateGetRange
+public static partial class ExtraLinqImmediateRange
 {
         /// <summary>
     /// Returns a new list containing elements from this list at the specified start index to a distance of 'count' elements.

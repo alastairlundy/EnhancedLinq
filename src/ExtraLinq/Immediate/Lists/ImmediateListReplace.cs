@@ -9,9 +9,9 @@
 
 using System.Collections.Generic;
 
-namespace ExtraLinq.Immediate.Lists;
+namespace ExtraLinq.Immediate;
 
-public static class ImmediateListReplace
+public static partial class ExtraLinqImmediate
 {
     /// <summary>
     /// Replaces all occurrences of an item in an IList with a replacement item.

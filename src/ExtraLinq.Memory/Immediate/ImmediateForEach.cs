@@ -9,7 +9,7 @@
 
 namespace ExtraLinq.Memory.Immediate;
 
-public static class ImmediateForEach
+public static partial class ExtraLinqMemoryImmediate
 {
     /// <summary>
     /// Applies the given action to each element of this Span.

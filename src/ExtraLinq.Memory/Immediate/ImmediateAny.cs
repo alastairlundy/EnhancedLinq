@@ -11,7 +11,7 @@ using AlastairLundy.DotExtensions.Memory.Spans;
 
 namespace ExtraLinq.Memory.Immediate;
 
-public static class ImmediateAny
+public static partial class ExtraLinqMemoryImmediate
 {
     
     /// <summary>

@@ -11,7 +11,7 @@ using System.Collections.Generic;
 
 namespace ExtraLinq.Immediate;
 
-public static class ImmediateDuplicates
+public static partial class ExtraLinqImmediate
 {
     /// <summary>
     /// Returns whether an <see cref="IEnumerable{T}"/> contains duplicate instances of an object.

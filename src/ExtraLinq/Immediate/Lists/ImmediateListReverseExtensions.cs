@@ -9,9 +9,9 @@
 
 using System.Collections.Generic;
 
-namespace ExtraLinq.Immediate.Lists;
+namespace ExtraLinq.Immediate;
 
-public static class ImmediateListReverseExtensions
+public static partial class ExtraLinqImmediate
 {
     /// <summary>
     /// Reverses an <see cref="IList{T}"/> and returns it.

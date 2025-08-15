@@ -15,7 +15,7 @@ using ExtraLinq.Internals.Localizations;
 
 namespace ExtraLinq.Immediate.Ranges;
 
-public static class ImmediateRemoveRange
+public static partial class ExtraLinqImmediateRange
 {
     
     /// <summary>

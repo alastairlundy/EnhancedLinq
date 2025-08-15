@@ -16,7 +16,7 @@ using ExtraLinq.Internals.Localizations;
 
 namespace ExtraLinq.Immediate.Ranges;
 
-public static class ImmediateListNumberRange
+public static partial class ExtraLinqImmediateRange
 {
     /// <summary>
     /// Generates a list of unsigned short (ushort) values starting from a specified value and continuing for a specified count,

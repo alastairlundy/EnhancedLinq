@@ -27,8 +27,4 @@
         <PackageReference Include="AlastairLundy.DotPrimitives.Collections" Version="3.0.0"/>
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Immediate\Dictionaries\Ranges\" />
-    </ItemGroup>
-
 </Project>

@@ -11,7 +11,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace ExtraLinq.Memory.Immediate;
 
-public static class ImmediateSelect
+public static partial class ExtraLinqMemoryImmediate
 {
     /// <summary>
     /// Transforms elements of a Span according to behaviour defined by the Selector.

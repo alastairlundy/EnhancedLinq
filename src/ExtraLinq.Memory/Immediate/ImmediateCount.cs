@@ -9,7 +9,7 @@
 
 namespace ExtraLinq.Memory.Immediate;
 
-public static class ImmediateCount
+public static partial class ExtraLinqMemoryImmediate
 {
     /// <summary>
     /// Returns the number of elements in a given span that satisfy a condition.

@@ -16,7 +16,7 @@ using ExtraLinq.Internals.Localizations;
 
 namespace ExtraLinq.Immediate.Concurrent.Ranges;
 
-public static class ConcurrentRemoveRange
+public static partial class ExtraLinqImmediateConcurrentRange
 {
         /// <summary>
     /// Removes multiple objects from a concurrent bag.

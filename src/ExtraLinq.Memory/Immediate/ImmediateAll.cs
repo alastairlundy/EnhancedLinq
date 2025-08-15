@@ -9,9 +9,9 @@
 
 namespace ExtraLinq.Memory.Immediate;
 
-public static class ImmediateAll
+public static partial class ExtraLinqMemoryImmediate
 {
-        
+    
     /// <summary>
     /// Returns whether all items in a Span match the predicate condition.
     /// </summary>

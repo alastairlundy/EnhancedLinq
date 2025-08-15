@@ -9,9 +9,9 @@
 
 using System.Collections.Generic;
 
-namespace ExtraLinq.Immediate.Lists;
+namespace ExtraLinq.Immediate;
 
-public static class ImmediateListElementsAt
+public static partial class ExtraLinqImmediate
 {
     /// <summary>
     /// Returns a List of elements from the specified source, 

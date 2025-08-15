@@ -12,7 +12,7 @@ using System.Linq;
 
 namespace ExtraLinq.Immediate;
 
-public static class ImmediateIsEmpty
+public static partial class ExtraLinqImmediate
 {
     /// <summary>
     /// Checks if a sequence is empty or not.

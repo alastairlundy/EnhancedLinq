@@ -9,7 +9,7 @@
 
 namespace ExtraLinq.Memory.Immediate;
 
-public static class ImmediateExcept
+public static partial class ExtraLinqMemoryImmediate
 {
     /// <summary>
     /// Returns a new Span with all the elements of two Spans that are only in one Span and not the other.

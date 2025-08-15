@@ -16,7 +16,7 @@ namespace ExtraLinq.Immediate.Concurrent;
 /// <summary>
 /// 
 /// </summary>
-public static class ConcurrentRemoveExtensions
+public static partial class ExtraLinqImmediateConcurrent
 {
     
     /// <summary>

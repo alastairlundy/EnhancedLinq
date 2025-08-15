@@ -14,7 +14,7 @@ using ExtraLinq.Internals.Localizations;
 
 namespace ExtraLinq.Immediate;
 
-public static class ImmediateElementAt
+public static partial class ExtraLinqImmediate
 {
     /// <summary>
     /// Retrieves the element at a specified index from the collection.

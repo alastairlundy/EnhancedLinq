@@ -13,7 +13,10 @@ using AlastairLundy.DotPrimitives.Collections.Groupings;
 
 namespace ExtraLinq.Memory.Immediate;
 
-public static class ImmediateGroupBy
+/// <summary>
+/// 
+/// </summary>
+public static partial class ExtraLinqMemoryImmediate
 {
     /// <summary>
     /// Groups the elements of the source span by a specified key selector function.

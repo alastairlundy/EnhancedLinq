@@ -9,7 +9,7 @@
 
 namespace ExtraLinq.Memory.Immediate.Ranges;
 
-public static class ImmediateRemoveRange
+public static partial class ExtraLinqMemoryImmediateRange
 {
     /// <summary>
     /// 

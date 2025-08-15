@@ -10,12 +10,12 @@
 using System;
 using System.Collections.Generic;
 
-namespace ExtraLinq.Immediate.Lists;
+namespace ExtraLinq.Immediate;
 
 /// <summary>
 /// 
 /// </summary>
-public static class ImmediateListDistinctExtensions
+public static partial class ExtraLinqImmediate
 {
     /// <summary>
     /// Creates a new <see cref="List{T}"/> non-distinct elements from the source list.

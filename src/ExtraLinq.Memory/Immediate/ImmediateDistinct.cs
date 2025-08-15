@@ -9,7 +9,7 @@
 
 namespace ExtraLinq.Memory.Immediate;
 
-public static class ImmediateDistinct
+public static partial class ExtraLinqMemoryImmediate
 {
     /// <summary>
     /// Returns a new span containing distinct elements from the source span, using the default equality comparer.

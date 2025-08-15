@@ -14,7 +14,7 @@ using ExtraLinq.Deferred.Enumerables;
 
 namespace ExtraLinq.Deferred;
 
-public static partial class EnumerableLinqExtra
+public static partial class ExtraLinqDeferred
 {
     
     /// <summary>

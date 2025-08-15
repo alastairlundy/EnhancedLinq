@@ -11,7 +11,7 @@ using AlastairLundy.DotExtensions.Memory.Spans;
 
 namespace ExtraLinq.Memory.Immediate.Ranges;
 
-public static class ImmediateInsertRange
+public static partial class ExtraLinqMemoryImmediateRange
 {
     /// <summary>
     /// Inserts a collection of elements at the specified start index into the span.

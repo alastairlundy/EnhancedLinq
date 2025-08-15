@@ -12,7 +12,7 @@ namespace ExtraLinq.Memory.Immediate;
 /// <summary>
 /// 
 /// </summary>
-public static class ImmediateIndicesOf
+public static partial class ExtraLinqMemoryImmediate
 {
     /// <summary>
     /// Returns a collection of indices within the given span where the specified value occurs.

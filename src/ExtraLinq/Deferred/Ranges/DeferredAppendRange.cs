@@ -14,7 +14,7 @@ using ExtraLinq.Deferred.Enumerables;
 
 namespace ExtraLinq.Deferred.Ranges;
 
-public static partial class EnumerableLinqExtra
+public static partial class ExtraLinqDeferredRange
 {
     
     /// <summary>

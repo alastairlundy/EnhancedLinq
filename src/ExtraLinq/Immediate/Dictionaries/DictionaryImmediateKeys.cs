@@ -12,7 +12,7 @@ using System.Linq;
 
 namespace ExtraLinq.Immediate.Dictionaries;
 
-public static class DictionaryImmediateKeys
+public static partial class ExtraLinqImmediateDictionary
 {
     /// <summary>
     /// Gets the Key associated with the specified value in the Dictionary.

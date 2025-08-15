@@ -12,7 +12,7 @@ using System.Linq;
 
 namespace ExtraLinq.Deferred.Dictionaries;
 
-public static class DictionaryDeferredKeys
+public static partial class ExtraLinqDeferredDictionary
 {
     /// <summary>
     /// Returns all keys associated with a specified value in a Dictionary.

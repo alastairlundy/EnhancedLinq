@@ -12,7 +12,7 @@ using ExtraLinq.Memory.Internals.Localizations;
 
 namespace ExtraLinq.Memory.Immediate;
 
-public static class ImmediateSkip
+public static partial class ExtraLinqMemoryImmediate
 {
         /// <summary>
     /// Returns a new Span with all the elements of the span except the specified first number of elements.

@@ -9,7 +9,7 @@
 
 namespace ExtraLinq.Memory.Immediate;
 
-public static class ImmediateWhere
+public static partial class ExtraLinqMemoryImmediate
 {
     /// <summary>
     /// Returns a new Span with all items in the Span that match the predicate condition.

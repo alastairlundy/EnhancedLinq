@@ -12,7 +12,7 @@ using System.Collections.Generic;
 
 namespace ExtraLinq.Immediate;
 
-public static class ImmediateIndexOf
+public static partial class ExtraLinqImmediate
 {
     
     /// <summary>
