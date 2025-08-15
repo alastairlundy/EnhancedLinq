@@ -15,7 +15,19 @@ namespace ExtraLinq.Memory.Immediate.Ranges;
 
 public static partial class ExtraLinqMemoryImmediateRange
 {
-        /// <summary>
+    
+    /// <summary>
+    /// Returns a new Span with the specified range of elements,
+    /// starting from the given start index and ending at the given end index.
+    /// </summary>
+    /// <param name="target">The original span to extract the range of items from.</param>
+    /// <param name="range">The <see cref="Range"/> containing the start and end indices.</param>
+    /// <typeparam name="T">The type of elements in the span.</typeparam>
+    /// <returns>A new span containing the specified range of elements.</returns>
+    public static Span<T> GetRange<T>(this Span<T> target, Range range)
+        => GetRange(target, range.Start.Value, range.End.Value);
+    
+    /// <summary>
     /// Returns a new Span with the specified range of elements,
     /// starting from the given start index and ending at the given end index.
     /// </summary>

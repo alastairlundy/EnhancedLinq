@@ -27,6 +27,16 @@ public static partial class ExtraLinqMemoryImmediateRange
             where elements.Contains(item) == false
             select item);
     }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="target"></param>
+    /// <param name="range"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static Span<T> RemoveRange<T>(this Span<T> target, Range range)
+        => RemoveRange(target, range.Start.Value, range.End.Value);
 
     /// <summary>
     /// 
@@ -38,7 +48,6 @@ public static partial class ExtraLinqMemoryImmediateRange
     /// <returns></returns>
     public static Span<T> RemoveRange<T>(this Span<T> target, int startIndex, int count)
     {
-
         if (target.IsEmpty)
             throw new ArgumentException();
 
