@@ -27,8 +27,7 @@ public static partial class ExtraLinqMemoryImmediate
                 group c by predicate.Invoke(c)
                 into g
                 where g.Key
-                select g.Any()
-            );
+                select g.Any());
 
         bool? result = groups.FirstOrDefault();
 
