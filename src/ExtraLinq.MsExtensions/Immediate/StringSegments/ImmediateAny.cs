@@ -25,8 +25,7 @@ public static class ImmediateSegmentAny
                 group c by predicate(c)
                 into g
                 where g.Key
-                select g.Any()
-            );
+                select g.Any());
 
         bool? result = groups.FirstOrDefault();
 

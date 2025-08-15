@@ -1,3 +1,12 @@
+/*
+    ExtraLinq 
+    Copyright (c) 2025 Alastair Lundy
+    
+    This Source Code Form is subject to the terms of the Mozilla Public
+    License, v. 2.0. If a copy of the MPL was not distributed with this
+    file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,8 +30,7 @@ public static class ImmediateSegmentAll
         IEnumerable<bool> groups = (from c in target.ToCharArray()
                 group c by predicate(c)
                 into g
-                select g.Any()
-            );
+                select g.Any());
 
         return groups.Distinct().Count() == 1;
     }

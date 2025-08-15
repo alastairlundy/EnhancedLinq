@@ -1,11 +1,20 @@
+/*
+    ExtraLinq 
+    Copyright (c) 2025 Alastair Lundy
+    
+    This Source Code Form is subject to the terms of the Mozilla Public
+    License, v. 2.0. If a copy of the MPL was not distributed with this
+    file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ */
+
 using System;
+
 using Microsoft.Extensions.Primitives;
 
 namespace ExtraLinq.MsExtensions.Immediate.StringSegments;
 
 public static class ImmediateSegmentLastPredicate
 {
-
 
     /// <summary>
     /// Returns the last character of the specified <see cref="StringSegment"/> that meets the predicate condition.
