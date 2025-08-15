@@ -5,6 +5,15 @@
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <AssemblyName>ExtraLinq.MsExtensions</AssemblyName>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>ExtraLinq.MsExtensions</Title>
+        <Authors>Alastair Lundy</Authors>
+        <Copyright>Copyright (c) 2025 Alastair Lundy</Copyright>
+        <RepositoryUrl>https://github.com/alastairlundy/extralinq</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
     </PropertyGroup>
 
     <ItemGroup>

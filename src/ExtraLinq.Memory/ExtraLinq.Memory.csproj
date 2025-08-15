@@ -5,6 +5,17 @@
         <LangVersion>13</LangVersion>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>ExtraLinq.Memory</Title>
+        <Authors>Alastair Lundy</Authors>
+        <Description>LINQ lambda style extension methods for Spans.</Description>
+        <Copyright>Copyright (c) 2025 Alastair Lundy</Copyright>
+        <RepositoryUrl>https://github.com/alastairlundy/ExtraLinq</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>linq, extralinq</PackageTags>
+        <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
     </PropertyGroup>
 
     <ItemGroup>
