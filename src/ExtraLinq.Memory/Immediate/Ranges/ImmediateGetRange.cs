@@ -7,8 +7,6 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-using AlastairLundy.DotExtensions.Memory.Spans;
-
 using ExtraLinq.Memory.Internals.Localizations;
 
 namespace ExtraLinq.Memory.Immediate.Ranges;
@@ -51,13 +49,8 @@ public static partial class ExtraLinqMemoryImmediateRange
                 .Replace("{y}", $"0")
                 .Replace("{z}", $"{target.Length}"));
         }
-
-        Span<T> output = new Span<T>();
-        output.Resize(end - start);
         
-        target.CopyTo(ref output, start, end);
-        
-        return output;
+        return target.Slice(start, end - start);
     }
 
         

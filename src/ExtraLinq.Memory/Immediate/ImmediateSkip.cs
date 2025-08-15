@@ -27,7 +27,7 @@ public static partial class ExtraLinqMemoryImmediate
             throw new ArgumentOutOfRangeException(Resources
                 .Exceptions_SkipCount_TooLarge);
         
-        return target.GetRange(start: count, end: target.Length - count);
+        return target.Slice(start: count, target.Length - count);
     }
 
     /// <summary>
@@ -43,7 +43,7 @@ public static partial class ExtraLinqMemoryImmediate
             throw new ArgumentOutOfRangeException(Resources
                 .Exceptions_SkipCount_TooLarge);
             
-        return target.GetRange(start: 0, end: target.Length - count);
+        return target.Slice(start: 0, target.Length - count);
     }
 
     /// <summary>
