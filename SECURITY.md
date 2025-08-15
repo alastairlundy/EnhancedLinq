@@ -2,11 +2,10 @@
 
 ## Supported Versions
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+These are the currently supported versions of ExtraLinq:
 
-| Version | Supported          |
-| ------- | ------------------ |
+| Version | Supported with Bug Fixes | Supported with Security Updates |
+| ------- | --------------------------|------------------------------- |
 
 ## Reporting a Vulnerability
 If you wish to report a potential security vulnerability please go to the security tab on this GitHub project and create a new Security Vulnerability report. 
