@@ -13,6 +13,8 @@
         <RepositoryType>git</RepositoryType>
         <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <Description>Additional LINQ style Deferred and Immediate enumeration mode extension methods for .NET . </Description>
+        <PackageTags>linq, extralinq, deferred-execution,</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>
