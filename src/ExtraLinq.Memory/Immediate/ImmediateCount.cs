@@ -44,7 +44,8 @@ public static partial class ExtraLinqMemoryImmediate
     /// <typeparam name="TNumber"></typeparam>
     /// <typeparam name="TSource"></typeparam>
     /// <returns></returns>
-    public static TNumber Count<TSource,TNumber>(this Span<TSource> source, Func<TSource, bool> predicate) where TNumber : INumber<TNumber>
+    public static TNumber Count<TSource,TNumber>(this Span<TSource> source, 
+        Func<TSource, bool> predicate) where TNumber : INumber<TNumber>
     {
         TNumber total = TNumber.Zero;
 
