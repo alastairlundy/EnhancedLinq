@@ -7,6 +7,7 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -14,21 +15,25 @@ namespace ExtraLinq.Deferred.Enumerators.Indices;
 
 internal class StringIndicesEnumerator : IEnumerator<int>
 {
+    private readonly string _str;
+    private readonly char[] _values;
+    
     private int _current;
 
     public StringIndicesEnumerator(string str, char[] values)
     {
-      
+        _str = str;
+        _values = values;
     }
 
     public bool MoveNext()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public void Reset()
     {
-        throw new System.NotImplementedException();
+        throw new NotSupportedException();
     }
 
     int IEnumerator<int>.Current => _current;
