@@ -7,6 +7,8 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+using AlastairLundy.DotExtensions.Memory.Spans;
+
 namespace ExtraLinq.Memory.Immediate.Ranges;
 
 public static partial class ExtraLinqMemoryImmediateRange
@@ -57,18 +59,14 @@ public static partial class ExtraLinqMemoryImmediateRange
         if(count < 0 || count > target.Length)
             throw new ArgumentOutOfRangeException(nameof(count));
         
-        T[] output = new T[target.Length - (startIndex + count)];
-        int index = 0;
+        int length = target.Length - (startIndex + count);
 
-        for (int i = 0; i < target.Length; i++)
-        {
-            if (i < startIndex && i > startIndex + count)
-            {
-                output[index] = target[i];
-                index++;
-            }
-        }
+        T[] output = new T[length];
         
-        return new Span<T>(output);
+        Span<T> outputSpan = new Span<T>(output);
+        
+        target.OptimisticCopy(ref outputSpan, startIndex, length);
+        
+        return outputSpan;
     }
 }
