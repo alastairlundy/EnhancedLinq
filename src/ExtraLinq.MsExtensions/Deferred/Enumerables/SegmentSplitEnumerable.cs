@@ -18,7 +18,7 @@ using Microsoft.Extensions.Primitives;
 
 namespace ExtraLinq.MsExtensions.Deferred.Enumerables;
 
-public class SegmentSplitEnumerable : IEnumerable<StringSegment>
+internal class SegmentSplitEnumerable : IEnumerable<StringSegment>
 {
     private readonly StringSegment _segment;
     private readonly StringSegment _separator;
