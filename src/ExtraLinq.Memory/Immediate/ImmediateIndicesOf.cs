@@ -32,9 +32,26 @@ public static partial class ExtraLinqMemoryImmediate
                 indices.Add(index);
             }
         }
+        
+        return indices;
+    }
 
-        if (indices.Any() == false)
-            return [-1];
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="source"></param>
+    /// <param name="predicate"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static ICollection<int> IndicesOf<T>(this Span<T> source, Func<T, bool> predicate) where T : notnull
+    {
+        List<int> indices = new List<int>();
+        
+        for (int index = 0; index < source.Length; index++)
+        {
+            if(predicate(source[index]))
+                indices.Add(index);
+        }
         
         return indices;
     }
