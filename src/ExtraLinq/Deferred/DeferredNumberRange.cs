@@ -46,8 +46,8 @@ public static partial class ExtraLinqDeferred
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="start"></param>
-    /// <param name="count"></param>
+    /// <param name="start">The starting value of the sequence.</param>
+    /// <param name="count">The number of values to generate in the sequence.</param>
     /// <param name="numbersToSkip"></param>
     /// <typeparam name="TNumber"></typeparam>
     /// <returns></returns>

@@ -17,17 +17,17 @@ public static partial class ExtraLinqMemoryImmediate
     /// Returns the number of elements in a given span that satisfy a condition.
     /// </summary>
     /// <param name="source">The span to search.</param>
-    /// <param name="predicate">A func that takes an element and returns a boolean indicating whether it should be counted.</param>
+    /// <param name="selector">A func that takes an element and returns a boolean indicating whether it should be counted.</param>
     /// <typeparam name="TSource">The type of elements in the span.</typeparam>
     /// <returns>The number of elements that satisfy the predicate.</returns>
     public static int Count<TSource>(this Span<TSource> source,
-        Func<TSource, bool> predicate)
+        Func<TSource, bool> selector)
     {
         int count = 0;
 
         foreach (TSource item in source)
         {
-            if (predicate.Invoke(item))
+            if (selector(item))
             {
                 count++;
             }
@@ -37,21 +37,21 @@ public static partial class ExtraLinqMemoryImmediate
     }
 
     /// <summary>
-    /// 
+    /// Returns the number of elements in a given span that satisfy a condition as a <see cref="TNumber"/>.
     /// </summary>
-    /// <param name="source"></param>
-    /// <param name="predicate"></param>
-    /// <typeparam name="TNumber"></typeparam>
-    /// <typeparam name="TSource"></typeparam>
-    /// <returns></returns>
+    /// <param name="source">The span to search.</param>
+    /// <param name="selector">A func that takes an element and returns a boolean indicating whether it should be counted.</param>
+    /// <typeparam name="TNumber">The numeric type that represents the type of numbers in the span.</typeparam>
+    /// <typeparam name="TSource">The type of elements in the span.</typeparam>
+    /// <returns>The number of elements that satisfy the predicate.</returns>
     public static TNumber Count<TSource,TNumber>(this Span<TSource> source, 
-        Func<TSource, bool> predicate) where TNumber : INumber<TNumber>
+        Func<TSource, bool> selector) where TNumber : INumber<TNumber>
     {
         TNumber total = TNumber.Zero;
 
         foreach (TSource item in source)
         {
-            if(predicate(item))
+            if(selector(item))
                 total += TNumber.One;
         }
         
