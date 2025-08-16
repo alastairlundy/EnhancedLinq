@@ -7,6 +7,8 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+using System.Numerics;
+
 namespace ExtraLinq.Memory.Immediate;
 
 public static partial class ExtraLinqMemoryImmediate
@@ -32,5 +34,38 @@ public static partial class ExtraLinqMemoryImmediate
         }
         
         return count;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="source"></param>
+    /// <param name="predicate"></param>
+    /// <typeparam name="TNumber"></typeparam>
+    /// <typeparam name="TSource"></typeparam>
+    /// <returns></returns>
+    public static TNumber Count<TSource,TNumber>(this Span<TSource> source, Func<TSource, bool> predicate) where TNumber : INumber<TNumber>
+    {
+        TNumber total = TNumber.Zero;
+
+        foreach (TSource item in source)
+        {
+            if(predicate(item))
+                total += TNumber.One;
+        }
+        
+        return total;
+    }
+
+    internal static TNumber InternalCount<TNumber>(this Span<TNumber> source) where TNumber : INumber<TNumber>
+    {
+        TNumber total = TNumber.Zero;
+
+        foreach (TNumber item in source)
+        {
+            total += TNumber.One;
+        }
+        
+        return total;
     }
 }
