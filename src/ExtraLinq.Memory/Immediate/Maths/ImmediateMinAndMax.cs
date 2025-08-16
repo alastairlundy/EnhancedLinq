@@ -1,15 +1,27 @@
+/*
+    ExtraLinq 
+    Copyright (c) 2025 Alastair Lundy
+    
+    This Source Code Form is subject to the terms of the Mozilla Public
+    License, v. 2.0. If a copy of the MPL was not distributed with this
+    file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ */
+
 using System.Numerics;
 
 namespace ExtraLinq.Memory.Immediate.Maths;
 
+/// <summary>
+/// 
+/// </summary>
 public static partial class ExtraLinqMemoryImmediateMaths
 {
     /// <summary>
-    /// 
+    /// Determines the minimum value of a span of numbers of type <see cref="TNumber"/>.
     /// </summary>
-    /// <param name="source"></param>
-    /// <typeparam name="TNumber"></typeparam>
-    /// <returns></returns>
+    /// <param name="source">The span of type <see cref="TNumber"/> to be searched.</param>
+    /// <typeparam name="TNumber">The numeric type that represents the type of numbers in the span.</typeparam>
+    /// <returns>The minimum value of the number in the span.</returns>
     public static TNumber Minimum<TNumber>(this Span<TNumber> source) where TNumber : INumber<TNumber>
     {
         TNumber total = source[0];
@@ -26,11 +38,11 @@ public static partial class ExtraLinqMemoryImmediateMaths
     }
     
     /// <summary>
-    /// 
+    /// Determines the maximum value of a span of numbers of type <see cref="TNumber"/>.
     /// </summary>
-    /// <param name="source"></param>
-    /// <typeparam name="TNumber"></typeparam>
-    /// <returns></returns>
+    /// <param name="source">The span of type <see cref="TNumber"/> to be searched.</param>
+    /// <typeparam name="TNumber">The numeric type that represents the type of numbers in the span.</typeparam>
+    /// <returns>The maximum value of the number in the span.</returns>
     public static TNumber Maximum<TNumber>(this Span<TNumber> source) where TNumber : INumber<TNumber>
     {
         TNumber total = TNumber.Zero;

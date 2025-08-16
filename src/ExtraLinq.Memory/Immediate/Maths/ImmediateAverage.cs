@@ -1,4 +1,12 @@
-using System.Globalization;
+/*
+    ExtraLinq 
+    Copyright (c) 2025 Alastair Lundy
+    
+    This Source Code Form is subject to the terms of the Mozilla Public
+    License, v. 2.0. If a copy of the MPL was not distributed with this
+    file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ */
+
 using System.Numerics;
 
 namespace ExtraLinq.Memory.Immediate.Maths;
@@ -6,11 +14,11 @@ namespace ExtraLinq.Memory.Immediate.Maths;
 public static partial class ExtraLinqMemoryImmediateMaths
 {
     /// <summary>
-    /// 
+    /// Calculates the arithmetic average of a span of numbers.
     /// </summary>
-    /// <param name="source"></param>
-    /// <typeparam name="TNumber"></typeparam>
-    /// <returns></returns>
+    /// <param name="source">The span of type <see cref="TNumber"/> to be averaged.</param>
+    /// <typeparam name="TNumber">The numeric type that represents the type of numbers in the span.</typeparam>
+    /// <returns>The arithmetic average of the specified numbers.</returns>
     public static TNumber Average<TNumber>(this Span<TNumber> source) where TNumber : INumber<TNumber>
     {
         TNumber sum = source.Sum();
@@ -19,11 +27,11 @@ public static partial class ExtraLinqMemoryImmediateMaths
     }
     
     /// <summary>
-    /// 
+    /// Calculates the arithmetic average of a Memory struct holding numbers of type <see cref="TNumber"/>.
     /// </summary>
-    /// <param name="source"></param>
-    /// <typeparam name="TNumber"></typeparam>
-    /// <returns></returns>
+    /// <param name="source">The Memory of type <see cref="TNumber"/> to be averaged.</param>
+    /// <typeparam name="TNumber">The numeric type that represents the type of numbers in the span.</typeparam>
+    /// <returns>The arithmetic average of the specified numbers.</returns>
     public static TNumber Average<TNumber>(this Memory<TNumber> source) where TNumber : INumber<TNumber>
         => Average(source.Span);
 }

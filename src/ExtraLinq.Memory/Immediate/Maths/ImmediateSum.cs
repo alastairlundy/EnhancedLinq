@@ -1,3 +1,12 @@
+/*
+    ExtraLinq 
+    Copyright (c) 2025 Alastair Lundy
+    
+    This Source Code Form is subject to the terms of the Mozilla Public
+    License, v. 2.0. If a copy of the MPL was not distributed with this
+    file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ */
+
 using System.Numerics;
 
 namespace ExtraLinq.Memory.Immediate.Maths;
@@ -5,11 +14,11 @@ namespace ExtraLinq.Memory.Immediate.Maths;
 public static partial class ExtraLinqMemoryImmediateMaths
 {
     /// <summary>
-    /// 
+    /// Calculates the sum of a span of numbers.
     /// </summary>
-    /// <param name="source"></param>
-    /// <typeparam name="TNumber"></typeparam>
-    /// <returns></returns>
+    /// <param name="source">The span of type <see cref="TNumber"/> to be summed.</param>
+    /// <typeparam name="TNumber">The numeric type that represents the type of numbers in the span.</typeparam>
+    /// <returns>The sum of all the number in the span.</returns>
     public static TNumber Sum<TNumber>(this Span<TNumber> source) where TNumber : INumber<TNumber>
     {
         TNumber total = TNumber.Zero;
@@ -23,11 +32,11 @@ public static partial class ExtraLinqMemoryImmediateMaths
     }
     
     /// <summary>
-    /// 
+    /// Calculates the sum of a memory of numbers.
     /// </summary>
-    /// <param name="source"></param>
-    /// <typeparam name="TNumber"></typeparam>
-    /// <returns></returns>
+    /// <param name="source">The memory of type <see cref="TNumber"/> to be summed.</param>
+    /// <typeparam name="TNumber">The numeric type that represents the type of numbers in the memory.</typeparam>
+    /// <returns>The sum of all the number in the memory.</returns>
     public static TNumber Sum<TNumber>(this Memory<TNumber> source) where TNumber : INumber<TNumber>
         => Sum<TNumber>(source.Span);
 }
