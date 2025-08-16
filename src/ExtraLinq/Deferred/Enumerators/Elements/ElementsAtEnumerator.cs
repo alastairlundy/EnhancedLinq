@@ -23,8 +23,6 @@ internal class ElementsAtEnumerator<TSource> : IEnumerator<TSource>
     private readonly IEnumerable<int> _indices;
 
     private int _state;
-
-    private int _index;
     
     private TSource _current;
     
@@ -33,7 +31,6 @@ internal class ElementsAtEnumerator<TSource> : IEnumerator<TSource>
         _source = source;
         _indices = indices;
         _state = 1;
-        _index = 0;
     }
 
     public bool MoveNext()
