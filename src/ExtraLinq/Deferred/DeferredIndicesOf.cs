@@ -34,14 +34,14 @@ public static partial class ExtraLinqDeferred
     /// 
     /// </summary>
     /// <param name="source"></param>
-    /// <param name="predicate"></param>
+    /// <param name="selector"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static IEnumerable<int> IndicesOf<T>(this IEnumerable<T> source, Func<T, bool> predicate)
+    public static IEnumerable<int> IndicesOf<T>(this IEnumerable<T> source, Func<T, bool> selector)
     {
         ArgumentNullException.ThrowIfNull(source);
         
-        return new IndicesEnumerable<T>(source, predicate);
+        return new IndicesEnumerable<T>(source, selector);
     }
     
     /// <summary>

@@ -43,6 +43,6 @@ public static partial class ExtraLinqMemoryImmediate
         
         Array.Resize(ref output, index);
 
-        return new  Span<T>(output);
+        return new Span<T>(output);
     }
 }
