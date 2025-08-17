@@ -29,6 +29,7 @@ public static partial class ExtraLinqDeferred
     /// <param name="count">The number of values to generate in the sequence.</param>
     /// <returns>An <see cref="IEnumerable{T}"/> containing the generated sequence of unsigned long values,
     /// incremented by 1 from the starting point.</returns>
+    /// <typeparam name="TNumber"></typeparam>
     /// <exception cref="ArgumentException">Thrown if the start number or count are NaN.</exception>
     /// <exception cref="NotFiniteNumberException">Thrown if the start number or count are infinity.</exception>
     public static IEnumerable<TNumber> NumberRange<TNumber>(this TNumber start, TNumber count)
