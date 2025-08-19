@@ -29,7 +29,7 @@ internal class SegmentSplitEnumerator : IEnumerator<StringSegment>
     private int _index;
     private int _state;
 
-    private IEnumerable<int> _separatorIndices;
+    private readonly IEnumerable<int> _separatorIndices;
     private IEnumerator<int> _separatorIndicesEnumerator;
     
     internal SegmentSplitEnumerator(StringSegment segment, StringSegment separator)
@@ -40,13 +40,14 @@ internal class SegmentSplitEnumerator : IEnumerator<StringSegment>
 
         _index = 0;
         _state = 1;
+        
+        _separatorIndices = _segment.IndicesOf(_separator);
     }
 
     public bool MoveNext()
     {
         if (_state == 1)
         {
-            _separatorIndices = _segment.IndicesOf(_separator);
             _separatorIndicesEnumerator = _separatorIndices.GetEnumerator();
             
             _state = 2;
@@ -57,18 +58,22 @@ internal class SegmentSplitEnumerator : IEnumerator<StringSegment>
             {
                 int currentSeparatorIndex = _separatorIndicesEnumerator.Current;
 
-                if (currentSeparatorIndex != -1 && _index != currentSeparatorIndex)
-                {
-                    _currentChars.Add(_segment[_index]);
-                }
+                if (currentSeparatorIndex == -1)
+                    break;
+                
+                StringSegment comparison = _segment.Subsegment(currentSeparatorIndex, _separator.Length);
 
-                if (_index == _separatorIndicesEnumerator.Current)
+                if (_index == _separatorIndicesEnumerator.Current && comparison.Equals(_segment))
                 {
                     _current = new StringSegment(string.Join("", _currentChars));
             
                     _currentChars.Clear();
                     ++_index;
                     return true;
+                }
+                else
+                {
+                    _currentChars.Add(_segment[_index]);
                 }
             }
             
@@ -91,6 +96,7 @@ internal class SegmentSplitEnumerator : IEnumerator<StringSegment>
 
     public void Dispose()
     {
+        _currentChars.Clear();
         _separatorIndicesEnumerator.Dispose();
     }
 }

@@ -45,6 +45,9 @@ public class GroupStringSegmentEnumerator<TKey> : IEnumerator<IGrouping<TKey, ch
         if (_state == 1)
         {
             _enumerator = new SegmentEnumerator(_source);
+            _currentKey = _selector(_enumerator.Current);
+            _currentGrouping = new GroupingCollection<TKey, char>(_currentKey, false);
+            _groupingCollection = new GroupingCollection<TKey, char>(_currentKey, false);
         }
 
         if (_state == 2)
@@ -94,12 +97,12 @@ public class GroupStringSegmentEnumerator<TKey> : IEnumerator<IGrouping<TKey, ch
         throw new NotSupportedException();
     }
 
-    public IGrouping<TKey, char> Current { get; }
+    public IGrouping<TKey, char> Current => _currentGrouping;
 
     object? IEnumerator.Current => Current;
 
     public void Dispose()
     {
-        throw new NotImplementedException();
+        _enumerator?.Dispose();
     }
 }

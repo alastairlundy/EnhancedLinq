@@ -65,6 +65,6 @@ internal class SegmentIndicesCharEnumerator : IEnumerator<int>
 
     public void Dispose()
     {
-       
+      
     }
 }
