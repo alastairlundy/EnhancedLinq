@@ -12,7 +12,6 @@ using System.Linq;
 
 using AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 
-using ExtraLinq.Deferred;
 using ExtraLinq.MsExtensions.Deferred;
 
 using Microsoft.Extensions.Primitives;
@@ -59,16 +58,19 @@ public static class ImmediateIndexOf
     {
         if (str.Length < segment.Length || segment.Length == 0)
             return -1;
+
+        int index = 0;
         
-        IEnumerable<int> indexes = str.IndicesOf(segment.First()).Where(x  => x != -1);
-
-        foreach (int index in indexes)
+        for (int i = 0; i < str.Length; i++)
         {
-            StringSegment indexSegment = str.Substring(index, segment.Length);
-
-            if (indexSegment.Equals(segment))
+            if (str[i] == segment[0])
             {
-                return index;
+                StringSegment indexSegment = str.Substring(i, segment.Length);
+
+                if (indexSegment.Equals(segment))
+                {
+                    return index;
+                }
             }
         }
 

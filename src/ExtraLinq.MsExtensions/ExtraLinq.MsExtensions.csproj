@@ -37,9 +37,4 @@
       </Compile>
       <Compile Remove="Immediate\StringSegments\SegmentIndicesOfExtensions.cs" />
     </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\ExtraLinq\ExtraLinq.csproj" />
-    </ItemGroup>
-
 </Project>
