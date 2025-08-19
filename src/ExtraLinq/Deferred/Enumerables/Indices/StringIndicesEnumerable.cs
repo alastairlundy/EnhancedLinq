@@ -17,17 +17,17 @@ namespace ExtraLinq.Deferred.Enumerables;
 internal class StringIndicesEnumerable : IEnumerable<int>
 {
     private readonly string _str;
-    private readonly char[] _charArray;
+    private readonly string _segment;
 
-    public StringIndicesEnumerable(string str, char[] charArray)
+    public StringIndicesEnumerable(string str, string segment)
     {
         _str = str;
-        _charArray = charArray;
+        _segment = segment;
     }
     
     public IEnumerator<int> GetEnumerator()
     {
-        return new StringIndicesEnumerator(_str, _charArray);
+        return new StringIndicesEnumerator(_str, _segment);
     }
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

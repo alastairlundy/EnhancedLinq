@@ -16,19 +16,61 @@ namespace ExtraLinq.Deferred.Enumerators.Indices;
 internal class StringIndicesEnumerator : IEnumerator<int>
 {
     private readonly string _str;
-    private readonly char[] _values;
+    private readonly string _segment;
     
+    private readonly IEnumerable<int> _indices;
+    
+    private IEnumerator<int> _indicesEnumerator;
+    
+    private int _index;
     private int _current;
 
-    public StringIndicesEnumerator(string str, char[] values)
+    private int _state;
+
+    internal StringIndicesEnumerator(string str, string segment)
     {
         _str = str;
-        _values = values;
+        _segment = segment;
+        _index = 0;
+
+        _indices = str.IndicesOf(segment[0]);
     }
 
     public bool MoveNext()
     {
+        if (_state == 1)
+        {
+            _indicesEnumerator = _indices.GetEnumerator();
+            _state = 2;
+        }
+
+        if (_state == 2)
+        {
+            try
+            {
+                while(_indicesEnumerator.MoveNext())
+                {
+                    string compare = _str.Substring(_indicesEnumerator.Current,
+                        _segment.Length);
+                    
+                    if (_segment.Equals(compare))
+                    {
+                        _current = _index;
+                        return true;
+                    }
+                    _index++;
+                }
+            }
+            catch
+            {
+                Dispose();
+                throw;
+            }
+        }
         
+        Dispose();
+        _state = -1;
+        return false;
     }
 
     public void Reset()
@@ -42,6 +84,6 @@ internal class StringIndicesEnumerator : IEnumerator<int>
 
     public void Dispose()
     {
-        throw new System.NotImplementedException();
+      _indicesEnumerator.Dispose();
     }
 }

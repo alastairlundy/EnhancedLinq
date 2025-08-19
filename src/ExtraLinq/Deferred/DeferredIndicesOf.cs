@@ -63,14 +63,14 @@ public static partial class ExtraLinqDeferred
     /// Finds all occurrences of a specified substring within a string, starting from the beginning of the string.
     /// </summary>
     /// <param name="str">The input string.</param>
-    /// <param name="value">The substring to look for.</param>
+    /// <param name="substring">The substring to look for.</param>
     /// <returns>A sequence of indices where the character is found; an empty sequence if the character could not be found.</returns>
-    public static IEnumerable<int> IndicesOf(this string str, string value)
+    public static IEnumerable<int> IndicesOf(this string str, string substring)
     {
         ArgumentException.ThrowIfNullOrEmpty(str);
-        ArgumentException.ThrowIfNullOrEmpty(value);
+        ArgumentException.ThrowIfNullOrEmpty(substring);
         
-        return new StringIndicesEnumerable(str, value.ToCharArray());
+        return new StringIndicesEnumerable(str, substring);
     }
 
 }
