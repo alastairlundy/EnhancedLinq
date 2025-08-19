@@ -75,6 +75,7 @@ internal class SegmentSplitCharEnumerator : IEnumerator<StringSegment>
 
     public void Dispose()
     {
+        _current = StringSegment.Empty;
         _currentChars.Clear();
     }
 }
