@@ -35,6 +35,7 @@
         <AutoGen>True</AutoGen>
         <DependentUpon>Resources.resx</DependentUpon>
       </Compile>
+      <Compile Remove="Immediate\StringSegments\SegmentIndicesOfExtensions.cs" />
     </ItemGroup>
 
     <ItemGroup>

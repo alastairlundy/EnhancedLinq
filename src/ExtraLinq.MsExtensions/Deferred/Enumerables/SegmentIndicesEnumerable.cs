@@ -26,7 +26,7 @@ internal class SegmentIndicesEnumerable : IEnumerable<int>
     internal SegmentIndicesEnumerable(StringSegment source, char c)
     {
         _source = source;
-        _segment = new  StringSegment("{c}");
+        _segment = new  StringSegment($"{c}");
     }
     
     internal SegmentIndicesEnumerable(StringSegment source, StringSegment segment)
