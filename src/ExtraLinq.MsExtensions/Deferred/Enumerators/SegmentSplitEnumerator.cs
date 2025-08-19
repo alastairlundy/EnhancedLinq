@@ -10,9 +10,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using ExtraLinq.MsExtensions.Immediate;
-using ExtraLinq.MsExtensions.Immediate.StringSegments;
-
 using Microsoft.Extensions.Primitives;
 
 namespace ExtraLinq.MsExtensions.Deferred.Enumerators;
@@ -41,7 +38,7 @@ internal class SegmentSplitEnumerator : IEnumerator<StringSegment>
         _index = 0;
         _state = 1;
         
-        _separatorIndices = _segment.IndicesOf(_separator);
+        _separatorIndices = _segment.IndicesOf(_separator[0]);
     }
 
     public bool MoveNext()
