@@ -114,4 +114,54 @@ public static partial class ExtraLinqImmediate
 
         return indices;
     }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="source"></param>
+    /// <param name="c"></param>
+    /// <returns></returns>
+    public static List<int> IndicesOf(this List<char> source, char c)
+    {
+        List<int> indices = new List<int>();
+        
+        int index = 0;
+
+        foreach (char obj in source)
+        {
+            if (obj == c)
+            {
+                indices.Add(index);
+            }
+        }
+
+        return indices;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="source"></param>
+    /// <param name="c"></param>
+    /// <returns></returns>
+    public static int[] IndicesOf(this string source, char c)
+    {
+        int[] indices = new int[source.Length];
+
+        int count = 0;
+        int index = 0;
+
+        foreach (char obj in source)
+        {
+            if (obj == c)
+            {
+                indices[count] = index;
+                count++;
+            }
+        }
+        
+        Array.Resize(ref indices, count);
+
+        return indices;
+    }
 }
