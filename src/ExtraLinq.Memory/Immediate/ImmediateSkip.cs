@@ -7,7 +7,6 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-using ExtraLinq.Memory.Immediate.Ranges;
 using ExtraLinq.Memory.Internals.Localizations;
 
 namespace ExtraLinq.Memory.Immediate;

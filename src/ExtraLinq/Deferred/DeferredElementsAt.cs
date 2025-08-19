@@ -35,6 +35,4 @@ public static partial class ExtraLinqDeferred
     }
     
     
-    
-
 }

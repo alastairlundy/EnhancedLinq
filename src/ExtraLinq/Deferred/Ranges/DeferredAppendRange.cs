@@ -31,6 +31,4 @@ public static partial class ExtraLinqDeferredRange
         
         return new AppendRangeEnumerable<TSource>(source, toBeAppended);
     }
-    
-    
 }

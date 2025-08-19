@@ -8,6 +8,7 @@
  */
 
 using System.Numerics;
+using AlastairLundy.DotExtensions.Numbers;
 
 namespace ExtraLinq.Memory.Immediate.Maths;
 
@@ -23,7 +24,7 @@ public static partial class ExtraLinqMemoryImmediateMaths
     {
         TNumber sum = source.Sum();
 
-        return sum / source.InternalCount();
+        return sum / source.Length.ToNumber<TNumber>();
     }
     
     /// <summary>

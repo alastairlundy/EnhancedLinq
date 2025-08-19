@@ -57,16 +57,4 @@ public static partial class ExtraLinqMemoryImmediate
         
         return total;
     }
-
-    internal static TNumber InternalCount<TNumber>(this Span<TNumber> source) where TNumber : INumber<TNumber>
-    {
-        TNumber total = TNumber.Zero;
-
-        foreach (TNumber item in source)
-        {
-            total += TNumber.One;
-        }
-        
-        return total;
-    }
 }
