@@ -24,7 +24,7 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem.
 
 **Device Information (please complete the following information):**
- - ExtraLinq Version [e.g. 1.0.0]
+ - EnhancedLinq Version [e.g. 1.0.0]
  - .NET Target Framework: [e.g. .NET 8, .NET 10]
  - OS [e.g. Windows 11, macOS, Ubuntu]
  - OS Version [e.g. 10.0.22000, 15.7, 25.10)

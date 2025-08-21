@@ -1,4 +1,4 @@
-# ExtraLinq
+# EnhancedLinq
 
 ## Nuget Packages
 
@@ -9,4 +9,4 @@
 ## Contributing
 
 ## License
-ExtraLinq is licensed under the Mozilla Public License 2.0 .
+EnhancedLinq is licensed under the Mozilla Public License 2.0 .

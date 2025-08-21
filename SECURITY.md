@@ -2,7 +2,7 @@
 
 ## Supported Versions
 
-These are the currently supported versions of ExtraLinq:
+These are the currently supported versions of EnhancedLinq:
 
 | Version | Supported with Bug Fixes | Supported with Security Updates |
 | ------- | --------------------------|------------------------------- |
