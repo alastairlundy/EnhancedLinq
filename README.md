@@ -3,7 +3,7 @@ Additional LINQ style Deferred and Immediate enumeration mode extension methods 
 
 **Notes**:
 
-Unlike [SuperLinq](https://github.com/viceroypenguin/SuperLinq), this isn't a fork of [MoreLinq[(https://github.com/morelinq/MoreLINQ). 
+Unlike [SuperLinq](https://github.com/viceroypenguin/SuperLinq), this isn't a fork of [MoreLinq](https://github.com/morelinq/MoreLINQ). 
 
 For a full list of supported methods included please see:
 * [EnhancedLinq Methods](./docs/Methods/EnhancedLinq.md)
