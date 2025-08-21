@@ -33,6 +33,4 @@ public static partial class EnhancedLinqDeferred
         
         return new ElementsAtEnumerable<TSource>(source, indices);
     }
-    
-    
 }
