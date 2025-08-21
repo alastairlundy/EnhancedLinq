@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections.Generic;
+
 using AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 
 using EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerables;
