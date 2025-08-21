@@ -24,7 +24,7 @@ EnhancedLinq's packages can be installed via the .NET SDK CLI, Nuget via your ID
 |--|--|--|
 | EnhancedLinq | [EnhancedLinq Nuget](https://nuget.org/packages/EnhancedLinq) | ``dotnet add package EnhancedLinq`` |
 | EnhancedLinq.Memory | [EnhancedLinq.Memory Nuget](https://nuget.org/packages/EnhancedLinq.Memory) | ``dotnet add package EnhancedLinq.Memory`` |
-| AlastairLundy.CliInvoke.Specializations | [EnhancedLinq.MsExtensions Nuget](https://nuget.org/packages/EnhancedLinq.MsExtensions) | ``dotnet add package EnhancedLinq.MsExtensions`` |
+| EnhancedLinq.MsExtensions | [EnhancedLinq.MsExtensions Nuget](https://nuget.org/packages/EnhancedLinq.MsExtensions) | ``dotnet add package EnhancedLinq.MsExtensions`` |
 
 
 ## Usage
