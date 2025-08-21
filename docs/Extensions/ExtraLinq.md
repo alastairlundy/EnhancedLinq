@@ -1,4 +1,4 @@
-# ExtraLinq's Extension Methods
+# ExtraLinq
 
 Method signatures shown below exclude the ``this`` static member parameter of the extension method but show all other parameters and the return type.
 
