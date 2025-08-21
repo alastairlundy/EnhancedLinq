@@ -20,7 +20,7 @@ Install-Package ExtraLinq.Memory
 Alternatively, you can add it to your project file:
 
 ```xml
-<PackageReference Include="ExtraLinq.Memory" Version="1.0.0" />
+<PackageReference Include="ExtraLinq.Memory" Version="0.1.0" />
 ```
 
 ## Usage
