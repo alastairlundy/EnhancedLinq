@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+        <LangVersion>13</LangVersion>
+        <ImplicitUsings>disable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>EnhancedLinq</Title>
+        <Authors>Alastair Lundy</Authors>
+        <Copyright>Copyright (c) 2025 Alastair Lundy</Copyright>
+        <RepositoryUrl>https://github.com/alastairlundy/Enhancedlinq</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <Description>Additional LINQ style Deferred and Immediate enumeration mode extension methods for .NET . </Description>
+        <PackageTags>linq, Enhancedlinq, deferred-execution,</PackageTags>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="Internals\Localizations\Resources.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Internals\Localizations\Resources.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Resources.resx</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AlastairLundy.DotExtensions" Version="8.1.0" />
+        <PackageReference Include="AlastairLundy.DotPrimitives.Collections" Version="3.1.0"/>
+    </ItemGroup>
+
+</Project>

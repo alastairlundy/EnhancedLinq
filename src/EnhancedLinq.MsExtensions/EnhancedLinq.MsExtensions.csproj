@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+        <ImplicitUsings>disable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>EnhancedLinq.MsExtensions</Title>
+        <Authors>Alastair Lundy</Authors>
+        <Copyright>Copyright (c) 2025 Alastair Lundy</Copyright>
+        <RepositoryUrl>https://github.com/alastairlundy/Enhancedlinq</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
+        <PackageId>EnhancedLinq.MsExtensions</PackageId>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AlastairLundy.DotExtensions.MsExtensions" Version="8.1.0" />
+      <PackageReference Include="AlastairLundy.DotPrimitives.Collections" Version="3.1.0" />
+      <PackageReference Include="Microsoft.Extensions.Primitives" Version="9.0.8" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="Internals\Localizations\Resources.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Internals\Localizations\Resources.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Resources.resx</DependentUpon>
+      </Compile>
+      <Compile Remove="Immediate\StringSegments\SegmentIndicesOfExtensions.cs" />
+    </ItemGroup>
+</Project>
