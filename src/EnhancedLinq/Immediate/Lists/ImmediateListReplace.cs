@@ -22,8 +22,11 @@ public static partial class EnhancedLinqImmediate
     /// <typeparam name="T">The type of value.</typeparam>
     public static void Replace<T>(this IList<T> source, T oldValue, T newValue)
     {
-        int index = source.IndexOf(oldValue);
-                
-        source[index] = newValue;
+        ICollection<int> indices = source.IndicesOf(oldValue);
+
+        foreach (int index in indices)
+        {
+            source[index] = newValue;
+        }
     }
 }
