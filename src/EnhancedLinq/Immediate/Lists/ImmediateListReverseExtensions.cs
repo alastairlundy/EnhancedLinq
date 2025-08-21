@@ -14,25 +14,29 @@ namespace EnhancedLinq.Immediate;
 public static partial class EnhancedLinqImmediate
 {
     /// <summary>
-    /// Reverses an <see cref="IList{T}"/> and returns it.
+    /// Reverses a <see cref="List{T}"/>.
     /// </summary>
     /// <param name="list">The list to reverse.</param>
     /// <typeparam name="T">The type of elements in the array.</typeparam>
     /// <returns>The reversed IList.</returns>
-    public static List<T> Reverse<T>(this List<T> list)
+    public static void Reverse<T>(this List<T> list)
     {
         List<T> output = new List<T>(list.Count);
 
         for (int i = 0; i < output.Count; i++)
         {
-            output.Add(list[list.Count - 1 - i]);
+            if(list.Count -1 - i >= 0)
+                output.Add(list[list.Count - 1 - i]);
+            else
+                break;
         }
         
-        return output;
+        list.Clear();
+        list.AddRange(output);
     }
 
     /// <summary>
-    /// Reverses an array and returns it.
+    /// Returns a reversed array.
     /// </summary>
     /// <param name="array">The array to reverse.</param>
     /// <typeparam name="T">The type of elements in the array.</typeparam>
