@@ -31,7 +31,7 @@ public static partial class EnhancedLinqDeferred
     /// <typeparam name="TNumber"></typeparam>
     /// <exception cref="ArgumentException">Thrown if the start number or count are NaN.</exception>
     /// <exception cref="NotFiniteNumberException">Thrown if the start number or count are infinity.</exception>
-    public static IEnumerable<TNumber> NumberRange<TNumber>(this TNumber start, TNumber count)
+    public static IEnumerable<TNumber> GenerateNumberRange<TNumber>(this TNumber start, TNumber count)
         where TNumber : INumber<TNumber>
     {
         if (TNumber.IsNaN(start) || TNumber.IsNaN(count))
@@ -51,8 +51,8 @@ public static partial class EnhancedLinqDeferred
     /// <param name="numbersToSkip"></param>
     /// <typeparam name="TNumber"></typeparam>
     /// <returns></returns>
-    public static IEnumerable<TNumber> NumberRange<TNumber>(this TNumber start, TNumber count,
+    public static IEnumerable<TNumber> GenerateNumberRange<TNumber>(this TNumber start, TNumber count,
         IEnumerable<TNumber> numbersToSkip) where TNumber : INumber<TNumber> 
-        => NumberRange(start, count)
+        => GenerateNumberRange(start, count)
             .SkipWhile(x => numbersToSkip.Contains(x));
 }
