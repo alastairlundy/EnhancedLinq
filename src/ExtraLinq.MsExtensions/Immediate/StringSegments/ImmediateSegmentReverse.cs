@@ -18,7 +18,7 @@ using Microsoft.Extensions.Primitives;
 
 namespace ExtraLinq.MsExtensions.Immediate.StringSegments;
 
-public static class ImmediateSegmentReverse
+internal static class ImmediateSegmentReverse
 {
     /// <summary>
     /// Reverses the contents of the StringSegment.
@@ -26,7 +26,7 @@ public static class ImmediateSegmentReverse
     /// <param name="target">The StringSegment to reverse.</param>
     /// <returns>The reversed StringSegment.</returns>
     /// <exception cref="InvalidOperationException">Thrown if the target StringSegment is Empty.</exception>
-    public static StringSegment Reverse(this StringSegment target)
+    internal static StringSegment Reverse(this StringSegment target)
     {
         if (target.IsEmpty())
             throw new InvalidOperationException(Resources.Exceptions_Segments_InvalidOperation_EmptySequence);
