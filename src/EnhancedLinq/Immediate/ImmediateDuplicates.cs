@@ -14,7 +14,7 @@ namespace EnhancedLinq.Immediate;
 public static partial class EnhancedLinqImmediate
 {
     /// <summary>
-    /// Returns whether an <see cref="IEnumerable{T}"/> contains duplicate instances of an object.
+    /// Determines whether an <see cref="IEnumerable{T}"/> contains duplicate instances of an object.
     /// </summary>
     /// <param name="source">The <see cref="IEnumerable{T}"/> to be searched.</param>
     /// <typeparam name="T">The type of objects in the <see cref="IEnumerable{T}"/>.</typeparam>

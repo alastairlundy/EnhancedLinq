@@ -15,7 +15,7 @@ namespace EnhancedLinq.Immediate;
 public static partial class EnhancedLinqImmediate
 {
     /// <summary>
-    /// Checks if a sequence is empty or not.
+    /// Determines if a sequence is empty or not.
     /// </summary>
     /// <param name="source">The sequence to check.</param>
     /// <typeparam name="T">The type of element stored in the sequence.</typeparam>

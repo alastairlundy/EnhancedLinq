@@ -16,11 +16,11 @@ namespace EnhancedLinq.Immediate;
 public static partial class EnhancedLinqImmediate
 {
     /// <summary>
-    /// Retrieves the element at a specified index from the collection.
+    /// Retrieves the element at a specified index from the sequence.
     /// </summary>
-    /// <param name="source">The collection to retrieve the element from.</param>
+    /// <param name="source">The sequence to retrieve the element from.</param>
     /// <param name="index">The zero-based index of the element to retrieve.</param>
-    /// <typeparam name="T">The type of elements in the collection.</typeparam>
+    /// <typeparam name="T">The type of elements in the sequence.</typeparam>
     /// <returns>The element at the specified index in the sequence, or throws an exception if no such element exists.</returns>
     /// <exception cref="ArgumentException">Thrown when no element is found at the specified index.</exception>
     public static T ElementAt<T>(this IEnumerable<T> source, int index)
