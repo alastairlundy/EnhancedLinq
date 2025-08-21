@@ -16,9 +16,9 @@ namespace EnhancedLinq.Deferred;
 public static partial class EnhancedLinqDeferred
 {
     /// <summary>
-    /// Gets the indices of the specified item within an IEnumerable.
+    /// Gets all the indices of the specified item within a sequence.
     /// </summary>
-    /// <param name="source">The IEnumerable to be searched.</param>
+    /// <param name="source">The sequence to be searched.</param>
     /// <param name="target">The item to search for.</param>
     /// <typeparam name="T"></typeparam>
     /// <returns>The indices if the object is found; an empty sequence otherwise.</returns>
@@ -30,12 +30,12 @@ public static partial class EnhancedLinqDeferred
     }
 
     /// <summary>
-    /// 
+    /// Gets all the indices of the elements that match the predicate within a sequence.
     /// </summary>
-    /// <param name="source"></param>
+    /// <param name="source">The sequence to be searched.</param>
     /// <param name="selector"></param>
     /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
+    /// <returns>The indices if one or more elements matching the predicate is found; an empty sequence otherwise.</returns>
     public static IEnumerable<int> IndicesOf<T>(this IEnumerable<T> source, Func<T, bool> selector)
     {
         ArgumentNullException.ThrowIfNull(source);
