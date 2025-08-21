@@ -33,11 +33,11 @@ public static class DeferredIndicesOf
     }
 
     /// <summary>
-    /// 
+    /// Finds all occurrences of a specified StringSegment within a string.
     /// </summary>
-    /// <param name="source"></param>
-    /// <param name="segment"></param>
-    /// <returns></returns>
+    /// <param name="str">The string to be searched.</param>
+    /// <param name="segment">The StringSegment to search for.</param>
+    /// <returns>An IEnumerable of Indices for all occurrences of the specified StringSegment within the string; empty if not found within the String Segment.</returns>
     /// <exception cref="ArgumentException"></exception>
     public static IEnumerable<int> IndicesOf(this StringSegment source, StringSegment segment)
     {

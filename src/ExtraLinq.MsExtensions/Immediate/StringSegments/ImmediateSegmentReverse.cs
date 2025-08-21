@@ -8,9 +8,8 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
+using System.Text;
 using AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 
 using ExtraLinq.MsExtensions.Internals.Localizations;
@@ -31,18 +30,15 @@ public static class ImmediateSegmentReverse
     {
         if (target.IsEmpty())
             throw new InvalidOperationException(Resources.Exceptions_Segments_InvalidOperation_EmptySequence);
+    
+        StringBuilder stringBuilder = new();
+
+        for (int i = 0; i < target.Length; i++)
+        {
+            if(target.Length - 1 - i >= 0)
+                stringBuilder.Append(target[target.Length - 1 - i]);
+        }
         
-        char[] array = target.ToCharArray();
-        
-        IEnumerable<int> indices = Enumerable.Range(0, target.Length);
-        
-        IEnumerable<char> reversedEnumerable = (from c in array
-                join i in indices
-                    on c equals target[i]
-                orderby i descending 
-                select c
-            );
-        
-        return new StringSegment(string.Join("", reversedEnumerable));
+        return new StringSegment(stringBuilder.ToString());
     }
 }
