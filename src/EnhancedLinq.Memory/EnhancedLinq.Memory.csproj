@@ -12,7 +12,7 @@
         <Copyright>Copyright (c) 2025 Alastair Lundy</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/EnhancedLinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageTags>linq, Enhancedlinq</PackageTags>
+        <PackageTags>linq, enhancedlinq, enhanced</PackageTags>
         <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
