@@ -1,10 +1,6 @@
 # EnhancedLinq
 Additional LINQ style Deferred and Immediate enumeration mode extension methods for .NET .
 
-**Notes**:
-
-Unlike [SuperLinq](https://github.com/viceroypenguin/SuperLinq), this isn't a fork of [MoreLinq](https://github.com/morelinq/MoreLINQ). 
-
 For a full list of supported methods included please see:
 * [EnhancedLinq Methods](./docs/Methods/EnhancedLinq.md)
 * [EnhancedLinq.Memory Methods](./docs/Methods/EnhancedLinq.Memory.md)
@@ -35,3 +31,9 @@ EnhancedLinq's packages can be installed via the .NET SDK CLI, Nuget via your ID
 
 ## License
 EnhancedLinq is licensed under the Mozilla Public License 2.0 .
+
+## Questions
+
+## Alternatives
+* [SuperLinq](https://github.com/viceroypenguin/SuperLinq)
+* [MoreLinq](https://github.com/morelinq/MoreLINQ). 
