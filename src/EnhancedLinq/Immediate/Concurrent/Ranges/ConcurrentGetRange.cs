@@ -69,4 +69,13 @@ public static partial class EnhancedLinqImmediateConcurrentRange
         return output;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="collection"></param>
+    /// <param name="range"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static IProducerConsumerCollection<T> GetRange<T>(this IProducerConsumerCollection<T> collection,
+        Range range) => GetRange(collection, range.Start.Value, range.End.Value);
 }
