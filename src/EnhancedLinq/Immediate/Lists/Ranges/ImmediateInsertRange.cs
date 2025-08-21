@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections.Generic;
+
 using EnhancedLinq.Internals.Localizations;
 
 namespace EnhancedLinq.Immediate.Ranges;

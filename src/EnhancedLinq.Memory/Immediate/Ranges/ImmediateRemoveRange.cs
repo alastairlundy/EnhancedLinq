@@ -66,6 +66,6 @@ public static partial class EnhancedLinqMemoryImmediateRange
         if(count < 0 || count > target.Length)
             throw new ArgumentOutOfRangeException(nameof(count));
         
-        return RemoveRange(target, startIndex.RangeAsArray(count));
+        return RemoveRange(target, startIndex.GenerateNumberRangeAsArray(count));
     }
 }
