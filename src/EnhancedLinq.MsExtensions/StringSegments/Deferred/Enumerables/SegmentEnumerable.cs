@@ -7,26 +7,26 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using EnhancedLinq.MsExtensions.Deferred.Enumerators;
+using EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerators;
 using Microsoft.Extensions.Primitives;
 
-namespace EnhancedLinq.MsExtensions.Deferred.Enumerables;
+namespace EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerables;
 
-internal class WhereSegmentEnumerable : IEnumerable<char>
+internal class SegmentEnumerable : IEnumerable<char>
 {
     private readonly StringSegment _segment;
-    private readonly Func<char, bool> _selector;
 
-    internal WhereSegmentEnumerable(StringSegment segment, Func<char, bool> selector)
+    internal SegmentEnumerable(StringSegment segment)
     {
         _segment = segment;
-        _selector = selector;
     }
     
-    public IEnumerator<char> GetEnumerator() => new WhereSegmentEnumerator(_segment, _selector);
+    public IEnumerator<char> GetEnumerator()
+    {
+        return new SegmentEnumerator(_segment);
+    }
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }

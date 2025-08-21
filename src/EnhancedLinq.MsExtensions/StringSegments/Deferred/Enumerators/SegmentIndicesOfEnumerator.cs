@@ -10,12 +10,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-
 using AlastairLundy.DotExtensions.MsExtensions.StringSegments;
-
 using Microsoft.Extensions.Primitives;
 
-namespace EnhancedLinq.MsExtensions.Deferred.Enumerators;
+namespace EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerators;
 
 internal class SegmentIndicesOfEnumerator : IEnumerator<int>
 {

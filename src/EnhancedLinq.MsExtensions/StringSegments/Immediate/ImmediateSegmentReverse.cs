@@ -8,13 +8,12 @@
  */
 
 using System;
-
 using System.Text;
 using AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 using EnhancedLinq.MsExtensions.Internals.Localizations;
 using Microsoft.Extensions.Primitives;
 
-namespace EnhancedLinq.MsExtensions.Immediate.StringSegments;
+namespace EnhancedLinq.MsExtensions.StringSegments.Immediate;
 
 internal static class ImmediateSegmentReverse
 {

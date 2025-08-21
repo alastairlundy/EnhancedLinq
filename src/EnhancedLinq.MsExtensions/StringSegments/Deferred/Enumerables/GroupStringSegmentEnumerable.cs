@@ -11,10 +11,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using EnhancedLinq.MsExtensions.Deferred.Enumerators;
+using EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerators;
 using Microsoft.Extensions.Primitives;
 
-namespace EnhancedLinq.MsExtensions.Deferred.Enumerables;
+namespace EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerables;
 
 internal class GroupStringSegmentEnumerable<TKey> : IEnumerable<IGrouping<TKey, char>>
 {

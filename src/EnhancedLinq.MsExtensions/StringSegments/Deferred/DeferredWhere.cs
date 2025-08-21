@@ -9,10 +9,10 @@
 
 using System;
 using System.Collections.Generic;
-using EnhancedLinq.MsExtensions.Deferred.Enumerables;
+using EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerables;
 using Microsoft.Extensions.Primitives;
 
-namespace EnhancedLinq.MsExtensions.Deferred;
+namespace EnhancedLinq.MsExtensions.StringSegments.Deferred;
 
 public static partial class MsExtensionsDeferred
 {

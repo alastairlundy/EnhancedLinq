@@ -12,45 +12,54 @@ using System.Collections;
 using System.Collections.Generic;
 using Microsoft.Extensions.Primitives;
 
-namespace EnhancedLinq.MsExtensions.Deferred.Enumerators;
+namespace EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerators;
 
-internal class SegmentIndicesCharEnumerator : IEnumerator<int>
+internal class SegmentSplitCharEnumerator : IEnumerator<StringSegment>
 {
     private readonly StringSegment _segment;
-    private readonly char _c;
-
-    private int _current;
-
-    private int _state;
-    private int _index;
+    private readonly char _separator;
     
-    public SegmentIndicesCharEnumerator(StringSegment segment, char c)
+    private int _index;
+    private int _state;
+
+    private readonly List<char> _currentChars;
+    private StringSegment _current;
+    
+    internal SegmentSplitCharEnumerator(StringSegment segment, char separator)
     {
         _segment = segment;
-        _c = c;
+        _separator = separator;
+
         _index = 0;
         _state = 1;
+        
+        _currentChars = new List<char>();
     }
-
+    
     public bool MoveNext()
     {
         if (_state == 1)
         {
             while (_index < _segment.Length)
             {
-                if (_segment[_index] == _c)
+                ++_index;
+                
+                if (_segment[_index] != _separator)
                 {
-                    _current = _index;
+                    _currentChars.Add(_segment[_index]);
+                }
+                else
+                {
+                    _current = new StringSegment(string.Join("",  _currentChars));
+                    _currentChars.Clear();
+
                     return true;
                 }
-
-                _index++;
             }
-
+            
             _state = -1;
         }
         
-        Dispose();
         return false;
     }
 
@@ -59,12 +68,13 @@ internal class SegmentIndicesCharEnumerator : IEnumerator<int>
         throw new NotSupportedException();
     }
 
-    public int Current => _current;
+    public StringSegment Current => _current;
 
     object? IEnumerator.Current => _current;
 
     public void Dispose()
     {
-      
+        _current = StringSegment.Empty;
+        _currentChars.Clear();
     }
 }

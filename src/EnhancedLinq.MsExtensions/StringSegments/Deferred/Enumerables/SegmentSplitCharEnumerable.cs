@@ -9,10 +9,10 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using EnhancedLinq.MsExtensions.Deferred.Enumerators;
+using EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerators;
 using Microsoft.Extensions.Primitives;
 
-namespace EnhancedLinq.MsExtensions.Deferred.Enumerables;
+namespace EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerables;
 
 internal class SegmentSplitCharEnumerable : IEnumerable<StringSegment>
 {

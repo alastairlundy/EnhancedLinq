@@ -10,11 +10,10 @@
 using System;
 using System.Collections.Generic;
 using EnhancedLinq.MsExtensions.Internals.Localizations;
-using EnhancedLinq.MsExtensions.Deferred;
-
+using EnhancedLinq.MsExtensions.StringSegments.Deferred;
 using Microsoft.Extensions.Primitives;
 
-namespace EnhancedLinq.MsExtensions.Immediate.StringSegments;
+namespace EnhancedLinq.MsExtensions.StringSegments.Immediate;
 
 public static class ImmediateSegmentFirstPredicate
 {
