@@ -8,11 +8,11 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>EnhancedLinq.Memory</Title>
         <Authors>Alastair Lundy</Authors>
-        <Description>LINQ lambda style extension methods for Spans.</Description>
+        <Description>LINQ style Immediate enumeration mode extension methods for Spans and Memory. </Description>
         <Copyright>Copyright (c) 2025 Alastair Lundy</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/EnhancedLinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageTags>linq, enhancedlinq, enhanced</PackageTags>
+        <PackageTags>linq, enhanced-linq, enhanced, extensions, memory</PackageTags>
         <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
@@ -21,6 +21,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <Version>0.1.0</Version>
     </PropertyGroup>
 
     <ItemGroup>

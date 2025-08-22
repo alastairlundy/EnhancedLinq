@@ -37,7 +37,12 @@ Span<int> numbers = new int[] { 1, 2, 3, 4, 5 };
 int sum = numbers.Sum(); // Returns 15
 
 // Using the Where extension
-var evenNumbers = numbers.Where(n => n % 2 == 0); // Returns { 2, 4 }
+Span<int> evenNumbers = numbers.Where(n => n % 2 == 0); // Returns { 2, 4 }
+
+// Using the Select extension
+Span<string> result = evenNumbers.Select(n => n.ToString());
+
+Console.WriteLine(string.Join(", ", result)); // Outputs: 2, 4
 ```
 
 ### Example 2: Working with Memory<T>
