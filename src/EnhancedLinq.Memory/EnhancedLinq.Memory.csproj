@@ -14,8 +14,8 @@
         <RepositoryType>git</RepositoryType>
         <PackageTags>linq, enhanced-linq, enhanced, extensions, memory</PackageTags>
         <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
-        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <IncludeSymbols>true</IncludeSymbols>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
