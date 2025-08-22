@@ -27,13 +27,10 @@ public static class ImmediateSegmentFirstPredicate
     /// <exception cref="ArgumentException">Thrown if no characters in the StringSegment meet the predicate condition.</exception>
     public static char First(this StringSegment target, Func<char, bool> predicate)
     {
-        IEnumerable<char> results = (from c in target
-            where predicate(c)
-            select c);
-
-        foreach (char result in results)
+        for (int index = 0; index < target.Length; index++)
         {
-            return result;
+            if(predicate(target[index]))
+                return target[index];
         }
         
         throw new ArgumentException(Resources.Exceptions_Segments_InvalidOperation_EmptySequence);
@@ -47,13 +44,10 @@ public static class ImmediateSegmentFirstPredicate
     /// <returns>The first character of the segment that meets the predicate condition if any match; otherwise, null.</returns>
     public static char? FirstOrDefault(this StringSegment target, Func<char, bool> predicate)
     {
-        IEnumerable<char> results = (from c in target
-            where predicate(c)
-            select c);
-
-        foreach (char result in results)
+        for (int index = 0; index < target.Length; index++)
         {
-            return result;
+            if(predicate(target[index]))
+                return target[index];
         }
         
         return null;
