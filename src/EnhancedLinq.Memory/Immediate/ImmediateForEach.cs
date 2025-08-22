@@ -38,4 +38,46 @@ public static partial class EnhancedLinqMemoryImmediate
             target[i] = action.Invoke(target[i]);
         }
     }
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="target"></param>
+    /// <param name="action"></param>
+    /// <typeparam name="T"></typeparam>
+    public static void ForEach<T>(this ref Memory<T> target, Action<T> action)
+    {
+        T[] array = new T[target.Length];
+
+        for (int index = 0; index < target.Length; index++)
+        {
+            T item = target.ElementAt(index);
+            
+            action.Invoke(item);
+            array[index] = item;
+        }
+
+        target = new Memory<T>(array);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="target"></param>
+    /// <param name="action"></param>
+    /// <typeparam name="T"></typeparam>
+    public static void ForEach<T>(this ref Memory<T> target, Func<T, T> action)
+    {
+        T[] array = new T[target.Length];
+        
+        for (int index = 0; index < target.Length; index++)
+        {
+            T item = target.ElementAt(index);
+
+            array[index] = action.Invoke(item);
+        }
+
+        target = new Memory<T>(array);
+    }
 }

@@ -39,4 +39,31 @@ public static partial class EnhancedLinqMemoryImmediate
 
         return new Span<TResult>(array);
     }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="source"></param>
+    /// <param name="selector"></param>
+    /// <typeparam name="TSource"></typeparam>
+    /// <typeparam name="TResult"></typeparam>
+    /// <returns></returns>
+    public static Memory<TResult> Select<TSource, TResult>(
+        [NotNull]
+        this Memory<TSource> source,
+        [NotNull]
+        Func<TSource, TResult> selector)
+    {
+        TResult[] array = new  TResult[source.Length];
+        
+        int index = 0;
+        
+        source.ForEach(x =>
+        {
+            array[index] = selector.Invoke(x);
+            index++;
+        });
+        
+        return new Memory<TResult>(array);
+    }
 }
