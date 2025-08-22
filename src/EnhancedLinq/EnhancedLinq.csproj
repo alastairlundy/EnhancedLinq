@@ -21,6 +21,8 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <Version>0.1.0</Version>
+        <AssemblyName>AlastairLundy.EnhancedLinq</AssemblyName>
+        <PackageId>AlastairLundy.EnhancedLinq</PackageId>
     </PropertyGroup>
 
     <ItemGroup>

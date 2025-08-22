@@ -13,7 +13,7 @@
         <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
-        <PackageId>EnhancedLinq.MsExtensions</PackageId>
+        <PackageId>AlastairLundy.EnhancedLinq.MsExtensions</PackageId>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <IncludeSymbols>true</IncludeSymbols>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -22,6 +22,7 @@
         <Version>0.1.0</Version>
         <PackageTags>linq, enhanced-linq, enhanced, stringsegment, extensions</PackageTags>
         <Description>LINQ style Deferred and Immediate enumeration mode extension methods for StringSegments and potentially other Microsoft.Extension.* packages in the future . </Description>
+        <AssemblyName>AlastairLundy.EnhancedLinq.MsExtensions</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>
