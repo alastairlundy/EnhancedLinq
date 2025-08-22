@@ -16,11 +16,11 @@
         <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
         <IncludeSymbols>true</IncludeSymbols>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
 
     <ItemGroup>
@@ -45,5 +45,12 @@
 
     <ItemGroup>
       <ProjectReference Include="..\EnhancedLinq\EnhancedLinq.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="README.md">
+            <Link>README.md</Link>
+            <PackagePath>README.md</PackagePath>
+        </Content>
     </ItemGroup>
 </Project>
