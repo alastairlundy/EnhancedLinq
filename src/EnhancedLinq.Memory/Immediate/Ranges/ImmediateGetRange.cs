@@ -7,6 +7,7 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+using AlastairLundy.DotExtensions.Numbers;
 using EnhancedLinq.Memory.Internals.Localizations;
 
 namespace EnhancedLinq.Memory.Immediate.Ranges;
@@ -64,6 +65,14 @@ public static partial class EnhancedLinqMemoryImmediateRange
     /// <exception cref="IndexOutOfRangeException">Thrown if any index in indices is out of range for the target span.</exception>
     public static Span<T> GetRange<T>(this Span<T> target, ICollection<int> indices)
     {
+        if (target == Span<T>.Empty)
+            throw new ArgumentException();
+        
+        ArgumentNullException.ThrowIfNull(indices);
+        
+        if(indices.IsIncrementedNumberRange(1))
+            return GetRange(target, indices.Min(), indices.Max());
+        
         T[] array = new T[indices.Count];
         
         int newIndex = 0;
