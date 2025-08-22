@@ -13,6 +13,10 @@ using EnhancedLinq.Deferred.Enumerables;
 
 namespace EnhancedLinq.Deferred.Ranges;
 
+/// <summary>
+/// This static partial class contains Deferred Execution Range related extension methods (such as <see cref="AppendRange{TSource}"/>
+/// or <see cref="RemoveRange{TSource}"/>)
+/// </summary>
 public static partial class EnhancedLinqDeferredRange
 {
     

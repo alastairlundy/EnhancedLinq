@@ -13,7 +13,7 @@ namespace EnhancedLinq.Memory.Immediate;
 
 public static partial class EnhancedLinqMemoryImmediate
 {
-        /// <summary>
+    /// <summary>
     /// Returns a new Span with all the elements of the span except the specified first number of elements.
     /// </summary>
     /// <param name="target">The span to make a new span from.</param>

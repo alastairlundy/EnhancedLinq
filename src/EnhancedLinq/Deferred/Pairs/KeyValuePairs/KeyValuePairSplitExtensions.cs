@@ -13,7 +13,7 @@ using System.Linq;
 namespace EnhancedLinq.Deferred.Pairs.KeyValuePairs;
 
 /// <summary>
-/// 
+/// This static class contains Deferred Execution extension methods for <see cref="IEnumerable{KeyValuePair{TKey, TValue}"/>.
 /// </summary>
 public static partial class EnhancedLinqDeferredPairs
 {

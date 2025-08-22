@@ -14,6 +14,9 @@ using EnhancedLinq.Deferred.Enumerables;
 
 namespace EnhancedLinq.Deferred;
 
+/// <summary>
+/// This static partial class contains Deferred Execution extension methods for the <see cref="IEnumerable{T}"/> interface.
+/// </summary>
 public static partial class EnhancedLinqDeferred
 {
     /// <summary>
