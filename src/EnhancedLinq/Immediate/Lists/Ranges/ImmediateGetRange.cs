@@ -9,9 +9,9 @@
 
 using System;
 using System.Collections.Generic;
-using EnhancedLinq.Internals.Localizations;
+using AlastairLundy.EnhancedLinq.Internals.Localizations;
 
-namespace EnhancedLinq.Immediate.Ranges;
+namespace AlastairLundy.EnhancedLinq.Immediate.Ranges;
 
 public static partial class EnhancedLinqImmediateRange
 {

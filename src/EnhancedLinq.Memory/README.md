@@ -29,7 +29,7 @@ Here are some examples of how to use the extensions provided by **EnhancedLinq.M
 ### Example 1: Using Immediate LINQ Extensions
 
 ```csharp
-using EnhancedLinq.Memory;
+using AlastairLundy.EnhancedLinq.Memory.Immediate;
 
 Span<int> numbers = new int[] { 1, 2, 3, 4, 5 };
 

@@ -10,7 +10,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace EnhancedLinq.Immediate.Dictionaries;
+namespace AlastairLundy.EnhancedLinq.Immediate.Dictionaries;
 
 public static partial class EnhancedLinqImmediateDictionary
 {

@@ -8,9 +8,9 @@
  */
 
 using AlastairLundy.DotExtensions.Numbers;
-using EnhancedLinq.Memory.Internals.Localizations;
+using AlastairLundy.EnhancedLinq.Memory.Internals.Localizations;
 
-namespace EnhancedLinq.Memory.Immediate.Ranges;
+namespace AlastairLundy.EnhancedLinq.Memory.Immediate.Ranges;
 
 public static partial class EnhancedLinqMemoryImmediateRange
 {

@@ -11,7 +11,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace EnhancedLinq.Deferred.Enumerators.Indices;
+namespace AlastairLundy.EnhancedLinq.Deferred.Enumerators.Indices;
 
 internal class IndicesEnumerator<T> : IEnumerator<int>
 {

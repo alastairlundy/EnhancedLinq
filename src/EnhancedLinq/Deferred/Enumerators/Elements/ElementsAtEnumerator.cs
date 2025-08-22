@@ -10,10 +10,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using AlastairLundy.EnhancedLinq.Immediate;
 
-using EnhancedLinq.Immediate;
-
-namespace EnhancedLinq.Deferred.Enumerators;
+namespace AlastairLundy.EnhancedLinq.Deferred.Enumerators;
 
 internal class ElementsAtEnumerator<TSource> : IEnumerator<TSource>
 {

@@ -10,7 +10,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace EnhancedLinq.Deferred.Enumerables;
+namespace AlastairLundy.EnhancedLinq.Deferred.Enumerables;
 
 internal class AppendRangeEnumerable<TSource> : IEnumerable<TSource>
 {

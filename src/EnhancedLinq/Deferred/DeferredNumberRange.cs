@@ -11,11 +11,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
-using EnhancedLinq.Deferred.Enumerables.NumberRanges;
+using AlastairLundy.EnhancedLinq.Deferred.Enumerables.NumberRanges;
 
 // ReSharper disable ConvertClosureToMethodGroup
 
-namespace EnhancedLinq.Deferred;
+namespace AlastairLundy.EnhancedLinq.Deferred;
 
 public static partial class EnhancedLinqDeferred
 {

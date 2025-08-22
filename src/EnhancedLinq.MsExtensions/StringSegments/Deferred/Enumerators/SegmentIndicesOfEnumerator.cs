@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 using Microsoft.Extensions.Primitives;
 
-namespace EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerators;
+namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerators;
 
 internal class SegmentIndicesOfEnumerator : IEnumerator<int>
 {

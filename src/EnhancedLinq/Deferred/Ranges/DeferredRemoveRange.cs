@@ -10,7 +10,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace EnhancedLinq.Deferred.Ranges;
+namespace AlastairLundy.EnhancedLinq.Deferred.Ranges;
 
 /// <summary>
 /// This static partial class contains Deferred Execution Range related extension methods (such as <see cref="AppendRange{TSource}"/> or <see cref="RemoveRange{TSource}"/>)

@@ -10,7 +10,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace EnhancedLinq.Deferred.Dictionaries;
+namespace AlastairLundy.EnhancedLinq.Deferred.Dictionaries;
 
 public static partial class EnhancedLinqDeferredDictionary
 {

@@ -24,6 +24,7 @@
         <Version>0.1.0</Version>
         <AssemblyName>AlastairLundy.EnhancedLinq</AssemblyName>
         <PackageId>AlastairLundy.EnhancedLinq</PackageId>
+        <RootNamespace>AlastairLundy.EnhancedLinq</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

@@ -10,10 +10,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerables;
+using AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerables;
 using Microsoft.Extensions.Primitives;
 
-namespace EnhancedLinq.MsExtensions.StringSegments.Deferred;
+namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred;
 
 public static class DeferredGroup
 {

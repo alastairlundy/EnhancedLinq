@@ -9,7 +9,7 @@
 
 using EnhancedLinq.Immediate.Ranges;
 
-namespace EnhancedLinq.Memory.Immediate.Ranges;
+namespace AlastairLundy.EnhancedLinq.Memory.Immediate.Ranges;
 
 public static partial class EnhancedLinqMemoryImmediateRange
 {

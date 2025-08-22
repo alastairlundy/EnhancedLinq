@@ -23,6 +23,7 @@
         <PackageTags>linq, enhanced-linq, enhanced, stringsegment, extensions</PackageTags>
         <Description>LINQ style Deferred and Immediate enumeration mode extension methods for StringSegments and potentially other Microsoft.Extension.* packages in the future . </Description>
         <AssemblyName>AlastairLundy.EnhancedLinq.MsExtensions</AssemblyName>
+        <RootNamespace>AlastairLundy.EnhancedLinq.MsExtensions</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

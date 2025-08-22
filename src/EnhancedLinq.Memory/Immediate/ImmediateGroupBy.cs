@@ -8,10 +8,9 @@
  */
 
 using System.Diagnostics.CodeAnalysis;
-
 using AlastairLundy.DotPrimitives.Collections.Groupings;
 
-namespace EnhancedLinq.Memory.Immediate;
+namespace AlastairLundy.EnhancedLinq.Memory.Immediate;
 
 /// <summary>
 /// 

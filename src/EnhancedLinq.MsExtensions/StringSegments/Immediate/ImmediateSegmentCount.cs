@@ -10,7 +10,7 @@
 using System;
 using Microsoft.Extensions.Primitives;
 
-namespace EnhancedLinq.MsExtensions.StringSegments.Immediate;
+namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
 
 public static class ImmediateSegmentCount
 {

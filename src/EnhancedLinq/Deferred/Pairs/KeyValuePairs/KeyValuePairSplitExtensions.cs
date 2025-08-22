@@ -10,7 +10,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace EnhancedLinq.Deferred.Pairs.KeyValuePairs;
+namespace AlastairLundy.EnhancedLinq.Deferred.Pairs.KeyValuePairs;
 
 /// <summary>
 /// This static class contains Deferred Execution extension methods for <see cref="IEnumerable{KeyValuePair{TKey, TValue}"/>.

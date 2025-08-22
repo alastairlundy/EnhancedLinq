@@ -10,7 +10,7 @@
 using System.Numerics;
 using AlastairLundy.DotExtensions.Numbers;
 
-namespace EnhancedLinq.Memory.Immediate.Maths;
+namespace AlastairLundy.EnhancedLinq.Memory.Immediate.Maths;
 
 public static partial class EnhancedLinqMemoryImmediateMaths
 {

@@ -9,7 +9,7 @@
 
 using AlastairLundy.DotExtensions.Memory.Spans;
 
-namespace EnhancedLinq.Memory.Immediate.Ranges;
+namespace AlastairLundy.EnhancedLinq.Memory.Immediate.Ranges;
 
 public static partial class EnhancedLinqMemoryImmediateRange
 {

@@ -9,14 +9,11 @@
 
 using System.Collections.Generic;
 using System.Linq;
-
 using AlastairLundy.DotExtensions.MsExtensions.StringSegments;
-
-using EnhancedLinq.MsExtensions.StringSegments.Deferred;
-
+using AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred;
 using Microsoft.Extensions.Primitives;
 
-namespace EnhancedLinq.MsExtensions.StringSegments.Immediate;
+namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
 
 public static class ImmediateIndexOf
 {

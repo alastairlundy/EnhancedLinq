@@ -8,12 +8,10 @@
  */
 
 using System;
-
-using EnhancedLinq.MsExtensions.Internals.Localizations;
-
+using AlastairLundy.EnhancedLinq.MsExtensions.Internals.Localizations;
 using Microsoft.Extensions.Primitives;
 
-namespace EnhancedLinq.MsExtensions.StringSegments.Immediate;
+namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
 
 public static class ImmediateSegmentLastPredicate
 {

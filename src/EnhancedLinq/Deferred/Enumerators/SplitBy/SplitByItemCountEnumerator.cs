@@ -11,7 +11,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace EnhancedLinq.Deferred.Enumerators;
+namespace AlastairLundy.EnhancedLinq.Deferred.Enumerators;
 
 internal class SplitByItemCountEnumerator<T> : IEnumerator<IEnumerable<T>>
 {

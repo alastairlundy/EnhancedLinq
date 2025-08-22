@@ -32,7 +32,7 @@ Here are some examples of how to use the extensions provided by **EnhancedLinq.M
 ### Example 1: Using Immediate Mode Extensions
 
 ```csharp
-using EnhancedLinq.MsExtensions.StringSegments.Immediate;
+using AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
 using Microsoft.Extensions.Primitives;
 
 StringSegment segment = new StringSegment("Hello, World!");

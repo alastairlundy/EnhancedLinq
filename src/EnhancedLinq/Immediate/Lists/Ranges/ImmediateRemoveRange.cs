@@ -9,7 +9,7 @@
 
 using System;
 using System.Collections.Generic;
-using EnhancedLinq.Internals.Localizations;
+using AlastairLundy.EnhancedLinq.Internals.Localizations;
 
 // ReSharper disable CheckNamespace
 

@@ -9,9 +9,9 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using EnhancedLinq.Deferred.Enumerators;
+using AlastairLundy.EnhancedLinq.Deferred.Enumerators;
 
-namespace EnhancedLinq.Deferred.Enumerables;
+namespace AlastairLundy.EnhancedLinq.Deferred.Enumerables;
 
 internal class SplitByEnumerableCountEnumerable<T> : IEnumerable<IEnumerable<T>>
 {

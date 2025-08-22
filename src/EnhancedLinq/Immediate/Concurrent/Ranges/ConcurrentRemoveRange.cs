@@ -11,9 +11,9 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using EnhancedLinq.Internals.Localizations;
+using AlastairLundy.EnhancedLinq.Internals.Localizations;
 
-namespace EnhancedLinq.Immediate.Concurrent.Ranges;
+namespace AlastairLundy.EnhancedLinq.Immediate.Concurrent.Ranges;
 
 public static partial class EnhancedLinqImmediateConcurrentRange
 {

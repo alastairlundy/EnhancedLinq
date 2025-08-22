@@ -24,6 +24,7 @@
         <Version>0.1.0</Version>
         <AssemblyName>AlastairLundy.EnhancedLinq.Memory</AssemblyName>
         <PackageId>AlastairLundy.EnhancedLinq.Memory</PackageId>
+        <RootNamespace>AlastairLundy.EnhancedLinq.Memory</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

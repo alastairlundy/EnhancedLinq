@@ -10,9 +10,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
-using EnhancedLinq.Deferred.Enumerators.NumberRanges;
+using AlastairLundy.EnhancedLinq.Deferred.Enumerators.NumberRanges;
 
-namespace EnhancedLinq.Deferred.Enumerables.NumberRanges;
+namespace AlastairLundy.EnhancedLinq.Deferred.Enumerables.NumberRanges;
 
 internal class NumberRangeEnumerable<TNumber> : IEnumerable<TNumber> where TNumber : INumber<TNumber>
 {
