@@ -31,7 +31,7 @@ public static partial class EnhancedLinqMemoryImmediate
     /// <param name="target">The span to apply the elements to.</param>
     /// <param name="action">The func to apply to each element in the span.</param>
     /// <typeparam name="T">The type of items in the Span.</typeparam>
-    public static void ForEach<T>(this Span<T> target, Func<T, T> action)
+    public static void ForEach<T>(this ref Span<T> target, Func<T, T> action)
     {
         for (int i = 0; i < target.Length; i++)
         {
