@@ -17,13 +17,13 @@ This project is licensed under the **Mozilla Public License 2.0**. See the [LICE
 You can install the **EnhancedLinq.MsExtensions** package via NuGet Package Manager with the following command:
 
 ```bash
-Install-Package EnhancedLinq.MsExtensions
+Install-Package AlastairLundy.EnhancedLinq.MsExtensions
 ```
 
 Alternatively, you can add it to your project file:
 
 ```xml
-<PackageReference Include="EnhancedLinq.MsExtensions" Version="0.1.0" />
+<PackageReference Include="AlastairLundy.EnhancedLinq.MsExtensions" Version="0.1.0" />
 ```
 
 ## Usage
@@ -45,7 +45,7 @@ int count = segment.Count(c => c == 'o'); // Returns 2
 ### Example 2: Using Deferred Execution Extensions
 
 ```csharp
-using EnhancedLinq.MsExtensions.StringSegments.Deferred;
+using AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred;
 using Microsoft.Extensions.Primitives;
 
 // Using the Where extension

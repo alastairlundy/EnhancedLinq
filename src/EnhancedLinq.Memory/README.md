@@ -14,13 +14,13 @@ This project is licensed under the **MPL 2.0** License. See the [LICENSE](../../
 You can install the **EnhancedLinq.Memory** package via NuGet Package Manager with the following command:
 
 ```bash
-Install-Package EnhancedLinq.Memory
+Install-Package AlastairLundy.EnhancedLinq.Memory
 ```
 
 Alternatively, you can add it to your project file:
 
 ```xml
-<PackageReference Include="EnhancedLinq.Memory" Version="0.1.0" />
+<PackageReference Include="AlastairLundy.EnhancedLinq.Memory" Version="0.1.0" />
 ```
 
 ## Usage
