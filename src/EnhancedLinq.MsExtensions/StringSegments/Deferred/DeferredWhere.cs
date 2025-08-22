@@ -9,7 +9,9 @@
 
 using System;
 using System.Collections.Generic;
-using EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerables;
+
+ using EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerables;
+
 using Microsoft.Extensions.Primitives;
 
 namespace EnhancedLinq.MsExtensions.StringSegments.Deferred;

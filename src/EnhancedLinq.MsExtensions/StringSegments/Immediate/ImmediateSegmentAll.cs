@@ -10,7 +10,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using AlastairLundy.DotExtensions.MsExtensions.StringSegments;
+
 using Microsoft.Extensions.Primitives;
 
 namespace EnhancedLinq.MsExtensions.StringSegments.Immediate;

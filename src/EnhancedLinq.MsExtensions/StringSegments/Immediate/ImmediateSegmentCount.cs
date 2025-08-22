@@ -32,5 +32,4 @@ public static class ImmediateSegmentCount
             
         return output;
     }
-
 }
