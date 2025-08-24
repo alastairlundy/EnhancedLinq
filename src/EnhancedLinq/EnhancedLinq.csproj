@@ -16,7 +16,7 @@
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <Description>Additional LINQ style Deferred and Immediate enumeration mode extension methods for .NET . </Description>
-        <PackageTags>linq, enhancedlinq, enhanced, deferred-execution,</PackageTags>
+        <PackageTags>linq, enhancedlinq, enhanced, deferred-execution,extensions</PackageTags>
         <IncludeSymbols>true</IncludeSymbols>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
