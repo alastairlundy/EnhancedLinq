@@ -22,19 +22,20 @@ public static partial class EnhancedLinqMemoryImmediateRange
     /// <returns>A new Span with all items of the original Span minus the items to be removed.</returns>
     public static Span<T> RemoveRange<T>(this Span<T> target, ICollection<int> indices) where T : IEquatable<T>?
     {
-        T[] array = new T[target.Length - indices.Count];
-        
-        Span<T> elements = target.GetRange(indices);
+        if (target.IsEmpty)
+            throw new ArgumentException(Resources.Exceptions_InvalidOperation_EmptySpan);
 
-        for (int i = 0; i < elements.Length; i++)
+        if (indices.IsIncrementedNumberRange(1))
         {
-            if (elements.Contains(target[i]) == false)
-            {
-                array[i] = target[i];
-            }
+            int min = indices.Min();
+            int max = indices.Max();
+            
+            return RemoveRange(target, min, max - min);
         }
-
-        return array;
+        
+        IEnumerable<int> newIndices = target.Index().SkipWhile(x => indices.Contains(x));
+        
+        return target.GetRange(newIndices);
     }
     
     /// <summary>
