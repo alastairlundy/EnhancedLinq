@@ -54,14 +54,54 @@ public static partial class EnhancedLinqMemoryImmediateRange
         return target.Slice(start, end - start);
     }
 
+    /// <summary>
+    /// Retrieves a range of elements within the specified span.
+    /// </summary>
+    /// <remarks>This method is more computationally expensive than the <see cref="ICollection{T}"/> overload for this method.
+    /// Please use that overload instead if using a Collection.
+    /// </remarks>
+    /// <param name="target">The span to search.</param>
+    /// <param name="indices">A sequence of indices specifying the positions of interest in the span.</param>
+    /// <typeparam name="T">The type of the elements within the span.</typeparam>
+    /// <returns>A new Span containing only the elements at the specified indices.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the span is empty.</exception>
+    /// <exception cref="IndexOutOfRangeException">Thrown if any index in indices is out of range for the target span.</exception>
+    public static Span<T> GetRange<T>(this Span<T> target, IEnumerable<int> indices)
+    {
+        if(indices is ICollection<int> collection)
+            return GetRange(target, collection);
+        
+        if (target == Span<T>.Empty)
+            throw new ArgumentException();
+        
+        ArgumentNullException.ThrowIfNull(indices);
+        
+        List<T> output = new();
+        
+        foreach (int index in indices)
+        {
+            if (index < 0 || index >= target.Length)
+            {
+                throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
+                    .Replace("{x}", $"{index}")
+                    .Replace("{y}", $"0")
+                    .Replace("{z}", $"{target.Length}"));
+            }
+                
+            output.Add(target[index]);
+        }
+            
+        return new Span<T>(output.ToArray());
+    }
         
     /// <summary>
     /// Retrieves a range of elements within the specified span.
     /// </summary>
-    /// <param name="target">The initial span to search.</param>
+    /// <param name="target">The span to search.</param>
     /// <param name="indices">A collection of indices specifying the positions of interest in the span.</param>
     /// <typeparam name="T">The type of the elements within the span.</typeparam>
     /// <returns>A new Span containing only the elements at the specified indices.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the span is empty.</exception>
     /// <exception cref="IndexOutOfRangeException">Thrown if any index in indices is out of range for the target span.</exception>
     public static Span<T> GetRange<T>(this Span<T> target, ICollection<int> indices)
     {
