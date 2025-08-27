@@ -29,12 +29,15 @@ public static partial class EnhancedLinqMemoryImmediateRange
         if (target.IsEmpty)
             throw new ArgumentException(Resources.Exceptions_InvalidOperation_EmptySpan);
 
-        if (indices.IsIncrementedNumberRange(1))
+        if (indices.Count < 100)
         {
-            int min = indices.Min();
-            int max = indices.Max();
+            if(indices.IsIncrementedNumberRange(1))
+            {
+                int min = indices.Min();
+                int max = indices.Max();
             
-            return RemoveRange(target, min, max - min);
+                return RemoveRange(target, min, max - min);
+            }
         }
         
         IEnumerable<int> newIndices = target.Index().SkipWhile(x => indices.Contains(x));
