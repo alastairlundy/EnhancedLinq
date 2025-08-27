@@ -13,7 +13,11 @@
         <RepositoryUrl>https://github.com/alastairlundy/EnhancedLinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>linq, enhanced-linq, enhanced, extensions, memory, extensions</PackageTags>
-        <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+        <PackageReleaseNotes>* Changed root namespace
+* Added Span ``Index``extension methods
+* Added  Span ``GetRange(IEnumerable&lt;T&gt;`` overload
+* Simplified Span ``RemoveRange`` code
+* Removed dependency on EnhancedLinq base package</PackageReleaseNotes>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -21,7 +25,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>0.1.0</Version>
+        <Version>0.2.0</Version>
         <AssemblyName>AlastairLundy.EnhancedLinq.Memory</AssemblyName>
         <PackageId>AlastairLundy.EnhancedLinq.Memory</PackageId>
         <RootNamespace>AlastairLundy.EnhancedLinq.Memory</RootNamespace>

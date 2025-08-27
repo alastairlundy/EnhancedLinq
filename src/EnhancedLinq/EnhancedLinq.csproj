@@ -12,7 +12,9 @@
         <RepositoryUrl>https://github.com/alastairlundy/Enhancedlinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+        <PackageReleaseNotes>### Changes since 0.1.0
+* Changed root namespace
+* Added ``LastIndexOf`` immediate mode extension methods</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <Description>Additional LINQ style Deferred and Immediate enumeration mode extension methods for .NET . </Description>
@@ -21,7 +23,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>0.1.0</Version>
+        <Version>0.2.0</Version>
         <AssemblyName>AlastairLundy.EnhancedLinq</AssemblyName>
         <PackageId>AlastairLundy.EnhancedLinq</PackageId>
         <RootNamespace>AlastairLundy.EnhancedLinq</RootNamespace>
