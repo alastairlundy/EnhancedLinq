@@ -8,6 +8,7 @@
  */
 
 using AlastairLundy.DotExtensions.Numbers;
+
 using AlastairLundy.EnhancedLinq.Memory.Internals.Localizations;
 
 namespace AlastairLundy.EnhancedLinq.Memory.Immediate.Ranges;
@@ -84,7 +85,7 @@ public static partial class EnhancedLinqMemoryImmediateRange
             {
                 throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
                     .Replace("{x}", $"{index}")
-                    .Replace("{y}", $"0")
+                    .Replace("{y}", "0")
                     .Replace("{z}", $"{target.Length}"));
             }
                 
