@@ -51,12 +51,13 @@ public static partial class EnhancedLinqDeferred
     /// </summary>
     /// <param name="start">The starting value of the sequence.</param>
     /// <param name="count">The number of values to generate in the sequence.</param>
-    public static IEnumerable<TNumber> GenerateNumberRange<TNumber>(this TNumber start, TNumber count,
     /// <param name="incrementor">The amount to increment each number by.</param>
     /// <param name="numbersToSkip">The numbers to skip when generating the range of numbers.</param>
     /// <typeparam name="TNumber">The numeric type used to represent the numbers.</typeparam>
     /// <returns>A sequence containing the generated numeric values,
     /// incremented by the incrementor amount from the starting point.</returns>
+    public static IEnumerable<TNumber> GenerateNumberRange<TNumber>(this TNumber start, TNumber count,
+
         IEnumerable<TNumber> numbersToSkip) where TNumber : INumber<TNumber> 
         => GenerateNumberRange(start, count)
             .SkipWhile(x => numbersToSkip.Contains(x));
