@@ -18,7 +18,7 @@ internal class NumberRangeEnumerable<TNumber> : IEnumerable<TNumber> where TNumb
 {
     private List<TNumber> _source;
     
-    internal NumberRangeEnumerable(TNumber start, TNumber count)
+    internal NumberRangeEnumerable(TNumber start, TNumber count, TNumber incrementor)
     {
         _source = new List<TNumber>();
         
@@ -29,7 +29,7 @@ internal class NumberRangeEnumerable<TNumber> : IEnumerable<TNumber> where TNumb
         {
             _source.Add(current);
             
-            current += TNumber.Zero;
+            current += incrementor;
         }
     }
     
