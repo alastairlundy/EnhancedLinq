@@ -33,16 +33,19 @@ public static partial class EnhancedLinqDeferred
     /// <typeparam name="TNumber">The numeric type used to represent the numbers.</typeparam>
     /// <exception cref="ArgumentException">Thrown if the start number or count are NaN.</exception>
     /// <exception cref="NotFiniteNumberException">Thrown if the start number or count are infinity.</exception>
-    public static IEnumerable<TNumber> GenerateNumberRange<TNumber>(this TNumber start, TNumber count)
+    public static IEnumerable<TNumber> GenerateNumberRange<TNumber>(this TNumber start, TNumber count, TNumber incrementor)
         where TNumber : INumber<TNumber>
     {
-        if (TNumber.IsNaN(start) || TNumber.IsNaN(count))
+        if (TNumber.IsNaN(start) || TNumber.IsNaN(count) || TNumber.IsNaN(incrementor))
             throw new ArgumentException();
 
         if (TNumber.IsInfinity(start) || TNumber.IsInfinity(count))
             throw new NotFiniteNumberException();
+
+        if (incrementor == TNumber.Zero)
+            throw new ArgumentOutOfRangeException("Incrementor cannot be zero");
         
-        return new NumberRangeEnumerable<TNumber>(start, count);
+        return new NumberRangeEnumerable<TNumber>(start, count, incrementor);
     }
 
     /// <summary>
@@ -57,8 +60,8 @@ public static partial class EnhancedLinqDeferred
     /// <returns>A sequence containing the generated numeric values,
     /// incremented by the incrementor amount from the starting point.</returns>
     public static IEnumerable<TNumber> GenerateNumberRange<TNumber>(this TNumber start, TNumber count,
-
+    public static IEnumerable<TNumber> GenerateNumberRange<TNumber>(this TNumber start, TNumber count, TNumber incrementor,
         IEnumerable<TNumber> numbersToSkip) where TNumber : INumber<TNumber> 
-        => GenerateNumberRange(start, count)
+        => GenerateNumberRange(start, count, incrementor)
             .SkipWhile(x => numbersToSkip.Contains(x));
 }
