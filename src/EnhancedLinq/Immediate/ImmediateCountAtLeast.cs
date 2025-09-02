@@ -40,9 +40,7 @@ public static partial class EnhancedLinqImmediate
         foreach (T obj in source)
         {
             if(currentCount >= countToLookFor)
-            {
                 return true;
-            }
             
             currentCount += TNumber.One;
         }
@@ -69,11 +67,11 @@ public static partial class EnhancedLinqImmediate
 
         foreach (T obj in source)
         {
-            if(currentCount >= countToLookFor)
-                return true;
-            
             if(selector(obj))
                 currentCount += TNumber.One;
+            
+            if(currentCount >= countToLookFor)
+                return true;
         }
 
         return false;
