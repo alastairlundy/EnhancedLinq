@@ -59,7 +59,6 @@ public static partial class EnhancedLinqDeferred
     /// <typeparam name="TNumber">The numeric type used to represent the numbers.</typeparam>
     /// <returns>A sequence containing the generated numeric values,
     /// incremented by the incrementor amount from the starting point.</returns>
-    public static IEnumerable<TNumber> GenerateNumberRange<TNumber>(this TNumber start, TNumber count,
     public static IEnumerable<TNumber> GenerateNumberRange<TNumber>(this TNumber start, TNumber count, TNumber incrementor,
         IEnumerable<TNumber> numbersToSkip) where TNumber : INumber<TNumber> 
         => GenerateNumberRange(start, count, incrementor)
