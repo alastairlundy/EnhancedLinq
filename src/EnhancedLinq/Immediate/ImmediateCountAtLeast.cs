@@ -17,15 +17,14 @@ namespace AlastairLundy.EnhancedLinq.Immediate;
 
 public static partial class EnhancedLinqImmediate
 {
-    
     /// <summary>
-    /// 
+    /// Determines whether there are at least a specified number of elements in the sequence.
     /// </summary>
-    /// <param name="source"></param>
-    /// <param name="countToLookFor"></param>
-    /// <typeparam name="TNumber"></typeparam>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
+    /// <param name="source">The source sequence.</param>
+    /// <param name="countToLookFor">The minimum count to look for.</param>
+    /// <typeparam name="TNumber">The type of numeric value used for counting.</typeparam>
+    /// <typeparam name="T">The element type in the source sequence.</typeparam>
+    /// <returns><c>true</c> if there are at least the specified number of elements in the sequence; otherwise, <c>false</c>.</returns>
     public static bool CountAtLeast<TNumber, T>(this IEnumerable<T> source, TNumber countToLookFor)
         where TNumber : INumber<TNumber>
     {
@@ -52,20 +51,20 @@ public static partial class EnhancedLinqImmediate
     }
 
     /// <summary>
-    /// 
+    /// Determines whether there are at least a specified number of elements in the sequence that meet a given condition.
     /// </summary>
-    /// <param name="source"></param>
-    /// <param name="selector"></param>
-    /// <param name="countToLookFor"></param>
-    /// <typeparam name="TNumber"></typeparam>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
+    /// <param name="source">The source sequence.</param>
+    /// <param name="selector">The predicate condition to check elements against.</param>
+    /// <param name="countToLookFor">The minimum count to look for.</param>
+    /// <typeparam name="TNumber">The type of numeric value used for counting.</typeparam>
+    /// <typeparam name="T">The element type in the source sequence.</typeparam>
+    /// <returns><c>true</c> if there are at least the specified number of elements that meet the condition; otherwise, <c>false</c>.</returns>
     public static bool CountAtLeast<TNumber, T>(this IEnumerable<T> source, Func<T, bool> selector,
         TNumber countToLookFor)
         where TNumber : INumber<TNumber>
     {
         ArgumentNullException.ThrowIfNull(source);
-        
+
         TNumber currentCount = TNumber.Zero;
 
         foreach (T obj in source)
