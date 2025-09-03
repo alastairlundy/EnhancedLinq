@@ -7,6 +7,8 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+using System;
+using System.Collections.Generic;
 using AlastairLundy.DotExtensions.Memory.Spans;
 
 namespace AlastairLundy.EnhancedLinq.Memory.Immediate.Ranges;
