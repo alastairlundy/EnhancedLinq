@@ -26,7 +26,7 @@ public static class ImmediateSegmentAll
     public static bool All(this StringSegment target, Func<char, bool> selector)
     {
         IEnumerable<bool> groups = (from c in target.ToCharArray()
-                group c by predicate(c)
+                group c by selector(c)
                 into g
                 select g.Any());
 

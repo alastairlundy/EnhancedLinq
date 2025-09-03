@@ -31,7 +31,7 @@ public static class ImmediateSegmentAny
             throw new ArgumentNullException(nameof(target));
         
         IEnumerable<bool> groups = (from c in target.ToCharArray()
-                group c by predicate(c)
+                group c by selector(c)
                 into g
                 where g.Key
                 select g.Any());
