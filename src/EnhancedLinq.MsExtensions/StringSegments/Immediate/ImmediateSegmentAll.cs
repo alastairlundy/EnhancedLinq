@@ -10,12 +10,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using AlastairLundy.DotExtensions.MsExtensions.StringSegments;
+
+using AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred;
+
 using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
 
-public static partial class EnhancedLinqSegmentImmediate
+public static class ImmediateSegmentAll
 {
     /// <summary>
     /// Returns whether all chars in a StringSegment match the predicate condition.
@@ -25,11 +27,12 @@ public static partial class EnhancedLinqSegmentImmediate
     /// <returns>True if all chars in the StringSegment match the predicate; false otherwise.</returns>
     public static bool All(this StringSegment target, Func<char, bool> selector)
     {
-        IEnumerable<bool> groups = (from c in target.ToCharArray()
-                group c by selector(c)
-                into g
-                select g.Any());
-
+        if(StringSegment.IsNullOrEmpty(target))
+            throw new ArgumentNullException(nameof(target));
+        
+        IEnumerable<bool> groups = target.GroupBy(selector)
+            .Select(g => g.Any());
+      
         return groups.Distinct().Count() == 1;
     }
 }

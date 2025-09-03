@@ -3,7 +3,7 @@
     <PropertyGroup>
         <TargetFrameworks>net8.0;net9.0;</TargetFrameworks>
         <LangVersion>13</LangVersion>
-        <ImplicitUsings>enable</ImplicitUsings>
+        <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>EnhancedLinq.Memory</Title>
@@ -33,7 +33,7 @@
 
     <ItemGroup>
         <PackageReference Include="AlastairLundy.DotExtensions" Version="8.2.0" />
-        <PackageReference Include="AlastairLundy.DotPrimitives.Collections" Version="3.1.0" />
+        <PackageReference Include="AlastairLundy.DotPrimitives.Collections" Version="3.2.0" />
     </ItemGroup>
 
     <ItemGroup>

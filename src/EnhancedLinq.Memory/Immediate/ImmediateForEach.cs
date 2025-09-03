@@ -7,12 +7,14 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+using System;
+
 namespace AlastairLundy.EnhancedLinq.Memory.Immediate;
 
 public static partial class EnhancedLinqMemoryImmediate
 {
     /// <summary>
-    /// Applies the given action to each element of this Span.
+    /// Applies the given action for each element of this Span.
     /// </summary>
     /// <param name="action">The action to apply to each element in the span.</param>
     /// <param name="target">The span to apply the elements to.</param>
