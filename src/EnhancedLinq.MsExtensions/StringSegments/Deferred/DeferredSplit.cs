@@ -18,7 +18,7 @@ using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred;
 
-public static class DeferredSplit
+public static partial class EnhancedLinqSegmentDeferred
 {
     /// <summary>
     /// Splits the given <see cref="StringSegment"/> into segments separated by the specified character.
