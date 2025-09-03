@@ -21,9 +21,9 @@ public static class ImmediateSegmentAll
     /// Returns whether all chars in a StringSegment match the predicate condition.
     /// </summary>
     /// <param name="target">The StringSegment to be searched.</param>
-    /// <param name="predicate">The predicate func to be invoked on each item in the StringSegment.</param>
+    /// <param name="selector">The predicate func to be invoked on each item in the StringSegment.</param>
     /// <returns>True if all chars in the StringSegment match the predicate; false otherwise.</returns>
-    public static bool All(this StringSegment target, Func<char, bool> predicate)
+    public static bool All(this StringSegment target, Func<char, bool> selector)
     {
         IEnumerable<bool> groups = (from c in target.ToCharArray()
                 group c by predicate(c)
