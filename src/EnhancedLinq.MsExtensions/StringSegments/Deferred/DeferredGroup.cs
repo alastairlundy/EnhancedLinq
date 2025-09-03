@@ -17,7 +17,10 @@ using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred;
 
-public static class DeferredGroup
+/// <summary>
+/// 
+/// </summary>
+public static partial class EnhancedLinqDeferredSegment
 {
 
     /// <summary>

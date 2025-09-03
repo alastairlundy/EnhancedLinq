@@ -15,7 +15,7 @@ using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
 
-internal static class ImmediateSegmentReverse
+public static partial class EnhancedLinqImmediateSegment
 {
     /// <summary>
     /// Reverses the contents of the StringSegment.

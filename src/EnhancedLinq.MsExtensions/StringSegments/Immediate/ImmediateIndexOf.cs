@@ -15,7 +15,7 @@ using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
 
-public static class ImmediateIndexOf
+public static partial class EnhancedLinqImmediateSegment
 {
     
     /// <summary>

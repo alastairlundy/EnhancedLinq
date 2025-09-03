@@ -16,7 +16,7 @@ using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred;
 
-public static class DeferredIndicesOf
+public static partial class EnhancedLinqDeferredSegment
 {
     
     /// <summary>

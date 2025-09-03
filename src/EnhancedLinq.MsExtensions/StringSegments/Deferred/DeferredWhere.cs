@@ -14,7 +14,7 @@ using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred;
 
-public static partial class MsExtensionsDeferred
+public static partial class EnhancedLinqDeferredSegment
 {
     /// <summary>
     /// Returns an IEnumerable of chars that match the predicate. 
