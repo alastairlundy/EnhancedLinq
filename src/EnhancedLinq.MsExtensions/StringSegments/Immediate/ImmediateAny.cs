@@ -10,26 +10,28 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using AlastairLundy.DotExtensions.MsExtensions.StringSegments;
+
 using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
 
-public static partial class EnhancedLinqImmediateSegment
+public static partial class EnhancedLinqSegmentImmediate
 {
     /// <summary>
     /// Returns whether any char in a StringSegment matches the predicate condition.
     /// </summary>
     /// <param name="target">The StringSegment to be searched.</param>
-    /// <param name="predicate">The predicate func to be invoked on each char in the StringSegment.</param>
+    /// <param name="selector">The predicate func to be invoked on each char in the StringSegment.</param>
     /// <returns>True if any char in the StringSegment matches the predicate; false otherwise.</returns>
-    public static bool Any(this StringSegment target, Func<char, bool> predicate)
+    public static bool Any(this StringSegment target, Func<char, bool> selector)
     {
         if(StringSegment.IsNullOrEmpty(target))
             throw new ArgumentNullException(nameof(target));
         
         IEnumerable<bool> groups = (from c in target.ToCharArray()
-                group c by predicate(c)
+                group c by selector(c)
                 into g
                 where g.Key
                 select g.Any());
