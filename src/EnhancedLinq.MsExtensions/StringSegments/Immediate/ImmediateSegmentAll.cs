@@ -27,9 +27,12 @@ public static class ImmediateSegmentAll
     /// <returns>True if all chars in the StringSegment match the predicate; false otherwise.</returns>
     public static bool All(this StringSegment target, Func<char, bool> selector)
     {
+        if(StringSegment.IsNullOrEmpty(target))
+            throw new ArgumentNullException(nameof(target));
+        
         IEnumerable<bool> groups = target.GroupBy(selector)
             .Select(g => g.Any());
-        
+      
         return groups.Distinct().Count() == 1;
     }
 }
