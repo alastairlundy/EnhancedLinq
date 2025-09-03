@@ -15,7 +15,7 @@ using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred;
 
-public static partial class EnhancedLinqDeferredSegment
+public static partial class EnhancedLinqSegmentDeferred
 {
     /// <summary>
     /// Enumerates the specified StringSegment.

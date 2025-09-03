@@ -20,7 +20,7 @@ namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred;
 /// <summary>
 /// 
 /// </summary>
-public static partial class EnhancedLinqDeferredSegment
+public static partial class EnhancedLinqSegmentDeferred
 {
 
     /// <summary>
@@ -29,7 +29,7 @@ public static partial class EnhancedLinqDeferredSegment
     /// <typeparam name="TKey">The type of the key returned by <paramref name="selector"/>.</typeparam>
     /// <param name="target">The <see cref="StringSegment"/> whose characters to group.</param>
     /// <param name="selector">A function to extract the key for each character.</param>
-    /// <returns>A sequence where each <see cref="T:System.Linq.IGrouping"/> contains a sequence of characters that share the same key.</returns>
+    /// <returns>A sequence where each <see cref="IGrouping{TKey,TElement}"/> contains a sequence of characters that share the same key.</returns>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="target"/> is null or empty.</exception>
     public static IEnumerable<IGrouping<TKey, char>> GroupBy<TKey>(this StringSegment target, 
         Func<char, TKey> selector)
