@@ -15,7 +15,7 @@ using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
 
-public static partial class EnhancedLinqMemoryImmediate
+public static partial class EnhancedLinqImmediateSegment
 {
     /// <summary>
     /// Determines whether there are at least a specified number of elements in the <see cref="StringSegment"/>./>.
