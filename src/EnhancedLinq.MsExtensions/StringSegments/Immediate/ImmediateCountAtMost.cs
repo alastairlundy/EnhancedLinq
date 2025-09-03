@@ -15,7 +15,7 @@ using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
 
-public static partial class EnhancedLinqImmediateSegment
+public static partial class EnhancedLinqSegmentImmediate
 {
     /// <summary>
     /// Determines whether there are at most a maximum number elements in the source <see cref="StringSegment"/>.

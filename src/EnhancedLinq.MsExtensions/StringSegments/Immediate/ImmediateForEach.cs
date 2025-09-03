@@ -15,7 +15,7 @@ namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
 /// <summary>
 /// 
 /// </summary>
-public static partial class EnhancedLinqImmediateSegment
+public static partial class EnhancedLinqSegmentImmediate
 {
     /// <summary>
     /// Applies the given action for each <see cref="char"/> in this <see cref="StringSegment"/>.

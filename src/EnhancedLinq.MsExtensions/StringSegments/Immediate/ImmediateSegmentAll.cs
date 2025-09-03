@@ -17,7 +17,7 @@ using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
 
-public static partial class EnhancedLinqImmediateSegment
+public static partial class EnhancedLinqSegmentImmediate
 {
     /// <summary>
     /// Returns whether all chars in a StringSegment match the predicate condition.
