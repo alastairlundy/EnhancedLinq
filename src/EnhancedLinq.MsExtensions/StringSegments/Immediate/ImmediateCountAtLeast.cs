@@ -20,7 +20,7 @@ public static partial class EnhancedLinqImmediateSegment
     /// <summary>
     /// Determines whether there are at least a specified number of elements in the <see cref="StringSegment"/>./>.
     /// </summary>
-    /// <param name="source">The source <see cref="StringSegment"/>..</param>
+    /// <param name="source">The source <see cref="StringSegment"/>.</param>
     /// <param name="countToLookFor">The minimum count to look for.</param>
     /// <returns><c>true</c> if there are at least the specified number of elements in the <see cref="StringSegment"/>; otherwise, <c>false</c>.</returns>
     public static bool CountAtLeast(this StringSegment source, int countToLookFor)

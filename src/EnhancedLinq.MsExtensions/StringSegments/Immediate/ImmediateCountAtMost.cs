@@ -18,9 +18,9 @@ namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
 public static partial class EnhancedLinqImmediateSegment
 {
     /// <summary>
-    /// Determines whether there are at most a maximum number elements in the source <see cref="Span{T}"/>.
+    /// Determines whether there are at most a maximum number elements in the source <see cref="StringSegment"/>.
     /// </summary>
-    /// <param name="source">The source <see cref="Span{T}"/> to search through.</param>
+    /// <param name="source">The source <see cref="StringSegment"/> to search through.</param>
     /// <param name="countToLookFor">The maximum number of elements that can meet the condition.</param>
     /// <returns>True if there are at most <paramref name="countToLookFor"/> number of elements, false otherwise.</returns>
     public static bool CountAtMost<TNumber>(this StringSegment source, int countToLookFor)
@@ -30,9 +30,9 @@ public static partial class EnhancedLinqImmediateSegment
 
 
     /// <summary>
-    /// Determines whether there are at most a maximum number elements in the source <see cref="Span{T}"/> that satisfy the given condition.
+    /// Determines whether there are at most a maximum number elements in the source <see cref="StringSegment"/> that satisfy the given condition.
     /// </summary>
-    /// <param name="source">The source <see cref="Span{T}"/> to search through.</param>
+    /// <param name="source">The source <see cref="StringSegment"/> to search through.</param>
     /// <param name="selector">The predicate condition to check elements against.</param>
     /// <param name="countToLookFor">The maximum number of elements that can meet the condition.</param>
     /// <returns>True if there are at most <paramref name="countToLookFor"/> number of elements that satisfy the condition, false otherwise.</returns>
