@@ -9,9 +9,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Numerics;
 
-using AlastairLundy.DotExtensions.Numbers;
+using AlastairLundy.EnhancedLinq.Internals.Localizations;
 
 namespace AlastairLundy.EnhancedLinq.Immediate;
 
@@ -22,27 +21,28 @@ public static partial class EnhancedLinqImmediate
     /// </summary>
     /// <param name="source">The source sequence.</param>
     /// <param name="countToLookFor">The minimum count to look for.</param>
-    /// <typeparam name="TNumber">The type of numeric value used for counting.</typeparam>
     /// <typeparam name="T">The element type in the source sequence.</typeparam>
     /// <returns><c>true</c> if there are at least the specified number of elements in the sequence; otherwise, <c>false</c>.</returns>
-    public static bool CountAtLeast<TNumber, T>(this IEnumerable<T> source, TNumber countToLookFor)
-        where TNumber : INumber<TNumber>
+    public static bool CountAtLeast<T>(this IEnumerable<T> source, int countToLookFor)
     {
-        if (source is ICollection<T> collection)
-        {
-            return collection.Count.ToNumber<TNumber>() >= countToLookFor;
-        }
-        
         ArgumentNullException.ThrowIfNull(source);
         
-        TNumber currentCount = TNumber.Zero;
+        if (source is ICollection<T> collection)
+        {
+            return collection.Count >= countToLookFor;
+        }
+        
+        if (countToLookFor < 0)
+            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero.Replace("{x}", countToLookFor.ToString()));
+
+        int currentCount = 0;
 
         foreach (T obj in source)
         {
             if(currentCount >= countToLookFor)
                 return true;
-            
-            currentCount += TNumber.One;
+
+            currentCount += 1;
         }
 
         return false;
@@ -54,21 +54,22 @@ public static partial class EnhancedLinqImmediate
     /// <param name="source">The source sequence.</param>
     /// <param name="selector">The predicate condition to check elements against.</param>
     /// <param name="countToLookFor">The minimum count to look for.</param>
-    /// <typeparam name="TNumber">The type of numeric value used for counting.</typeparam>
     /// <typeparam name="T">The element type in the source sequence.</typeparam>
     /// <returns><c>true</c> if there are at least the specified number of elements that meet the condition; otherwise, <c>false</c>.</returns>
-    public static bool CountAtLeast<TNumber, T>(this IEnumerable<T> source, Func<T, bool> selector,
-        TNumber countToLookFor)
-        where TNumber : INumber<TNumber>
+    public static bool CountAtLeast<T>(this IEnumerable<T> source, Func<T, bool> selector,
+        int countToLookFor)
     {
         ArgumentNullException.ThrowIfNull(source);
 
-        TNumber currentCount = TNumber.Zero;
+        if (countToLookFor < 0)
+            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero.Replace("{x}", countToLookFor.ToString()));
+        
+        int currentCount = 0;
 
         foreach (T obj in source)
         {
-            if(selector(obj))
-                currentCount += TNumber.One;
+            if (selector(obj))
+                currentCount += 1;
             
             if(currentCount >= countToLookFor)
                 return true;

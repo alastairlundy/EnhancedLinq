@@ -9,9 +9,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.Numerics;
-
-using AlastairLundy.DotExtensions.Numbers;
+using AlastairLundy.EnhancedLinq.Internals.Localizations;
 
 namespace AlastairLundy.EnhancedLinq.Immediate;
 
@@ -22,27 +20,28 @@ public static partial class EnhancedLinqImmediate
     /// </summary>
     /// <param name="source">The source sequence to search through.</param>
     /// <param name="countToLookFor">The maximum number of elements that can meet the condition.</param>
-    /// <typeparam name="TNumber">The numeric type for counting the elements in the sequence.</typeparam>
     /// <typeparam name="T">The element type of the source sequence.</typeparam>
     /// <returns>True if there are at most <paramref name="countToLookFor"/> number of elements, false otherwise.</returns>
-    public static bool CountAtMost<TNumber, T>(this IEnumerable<T> source, TNumber countToLookFor)
-        where TNumber : INumber<TNumber>
+    public static bool CountAtMost<T>(this IEnumerable<T> source, int countToLookFor)
     {
-        if (source is ICollection<T> collection)
-        {
-            return collection.Count.ToNumber<TNumber>() <= countToLookFor;
-        }
-        
         ArgumentNullException.ThrowIfNull(source);
         
-        TNumber currentCount = TNumber.Zero;
+        if (source is ICollection<T> collection)
+        {
+            return collection.Count <= countToLookFor;
+        }
+        
+        if (countToLookFor < 0)
+            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
+        
+        int currentCount = 0;
         
         foreach (T obj in source)
         {
             if(currentCount >= countToLookFor)
                 return false;
-            
-            currentCount += TNumber.One;
+
+            currentCount += 1;
         }
 
         return true;
@@ -55,21 +54,22 @@ public static partial class EnhancedLinqImmediate
     /// <param name="source">The source sequence to search through.</param>
     /// <param name="selector">The predicate condition to check elements against.</param>
     /// <param name="countToLookFor">The maximum number of elements that can meet the condition.</param>
-    /// <typeparam name="TNumber">The numeric type for counting the elements in the sequence.</typeparam>
     /// <typeparam name="T">The element type of the source sequence.</typeparam>
     /// <returns>True if there are at most <paramref name="countToLookFor"/> number of elements that satisfy the condition, false otherwise.</returns>
-    public static bool CountAtMost<TNumber, T>(this IEnumerable<T> source, Func<T, bool> selector,
-        TNumber countToLookFor)
-        where TNumber : INumber<TNumber>
+    public static bool CountAtMost<T>(this IEnumerable<T> source, Func<T, bool> selector,
+        int countToLookFor)
     {
         ArgumentNullException.ThrowIfNull(source);
 
-        TNumber currentCount = TNumber.Zero;
+        if (countToLookFor < 0)
+            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero.Replace("{x}", countToLookFor.ToString()));
+        
+        int currentCount = 0;
 
         foreach (T obj in source)
         {
-            if(selector(obj))
-                currentCount += TNumber.One;
+            if (selector(obj))
+                currentCount += 1;
             
             if(currentCount >= countToLookFor)
                 return false;
