@@ -47,7 +47,12 @@ public static partial class EnhancedLinqImmediate
 
         for (int i = 0; i < array.Length; i++)
         {
-            newArray[i] = array[array.Length - 1 - i];
+            if(array.Length - 1 - i >= 0)
+                newArray[i] = array[array.Length - 1 - i];
+        }
+        
+        return newArray;
+    }
         }
         
         return newArray;
