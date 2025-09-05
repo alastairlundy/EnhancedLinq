@@ -17,19 +17,18 @@ namespace AlastairLundy.EnhancedLinq.Immediate.Linq;
 
 public static partial class EnhancedLinqImmediateList
 {
-    
     /// <summary>
-    /// 
+    /// Takes the last 'count' elements from a source array and returns them as a new array.
     /// </summary>
-    /// <param name="source"></param>
-    /// <param name="count"></param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
-    /// <exception cref="ArgumentException"></exception>
+    /// <param name="source">The source array.</param>
+    /// <param name="count">The number of elements to take from the end of the source array.</param>
+    /// <typeparam name="T">The type of elements in the source array.</typeparam>
+    /// <returns>An array containing the last 'count' elements from the source array.</returns>
+    /// <exception cref="ArgumentException">Thrown when count is less than 0 or greater than the length of the source array.</exception>
     public static T[] TakeLast<T>(this T[] source, int count)
     {
         ArgumentNullException.ThrowIfNull(source);
-        
+
         if (count < 0 || count > source.Length)
             throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
         
@@ -42,7 +41,7 @@ public static partial class EnhancedLinqImmediateList
 
         return output;
     }
-    
+
     /// <summary>
     /// 
     /// </summary>
