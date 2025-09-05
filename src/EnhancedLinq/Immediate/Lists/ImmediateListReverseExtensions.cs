@@ -53,6 +53,44 @@ public static partial class EnhancedLinqImmediate
         
         return newArray;
     }
+
+    /// <summary>
+    /// Returns a reversed collection.
+    /// </summary>
+    /// <param name="source">The collection to reverse.</param>
+    /// <typeparam name="T">The type of elements in the collection.</typeparam>
+    /// <returns>The reversed collection.</returns>
+    public static ICollection<T> Reverse<T>(this ICollection<T> source)
+    {
+        T[] newArray = new T[source.Count];
+
+        int index = 0;
+        
+        foreach (T item in source)
+        {
+            if(source.Count - 1 - index >= 0)
+                newArray[source.Count - 1 - index] = item;
+        }
+        
+        return newArray;
+    }
+    
+    /// <summary>
+    /// Returns a reversed list.
+    /// </summary>
+    /// <param name="source">The list to reverse.</param>
+    /// <typeparam name="T">The type of elements in the list.</typeparam>
+    /// <returns>The reversed list.</returns>
+    public static IList<T> Reverse<T>(this IList<T> source)
+    {
+        T[] newArray = new T[source.Count];
+
+        int index = 0;
+        
+        foreach (T item in source)
+        {
+            if(source.Count - 1 - index >= 0)
+                newArray[source.Count - 1 - index] = item;
         }
         
         return newArray;
