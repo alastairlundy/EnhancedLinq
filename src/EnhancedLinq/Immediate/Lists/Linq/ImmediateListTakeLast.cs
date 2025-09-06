@@ -43,17 +43,17 @@ public static partial class EnhancedLinqImmediateList
     }
 
     /// <summary>
-    /// 
+    /// Takes the last 'count' elements from a source <see cref="IList{T}"/> and returns them as a new <see cref="IList{T}"/>.
     /// </summary>
-    /// <param name="source"></param>
-    /// <param name="count"></param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
-    /// <exception cref="ArgumentException"></exception>
+    /// <param name="source">The source <see cref="IList{T}"/>.</param>
+    /// <param name="count">The number of elements to take from the end of the source.</param>
+    /// <typeparam name="T">The type of elements in the source.</typeparam>
+    /// <returns>A <see cref="IList{T}"/> containing the last 'count' elements from the source.</returns>
+    /// <exception cref="ArgumentException">Thrown when count is less than 0 or greater than the length/count of the source <see cref="IList{T}"/>.</exception>
     public static IList<T> TakeLast<T>(this IList<T> source, int count)
     {
         ArgumentNullException.ThrowIfNull(source);
-        
+
         if (count < 0 || count > source.Count)
             throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
         
@@ -66,19 +66,20 @@ public static partial class EnhancedLinqImmediateList
 
         return output;
     }
-    
+
+
     /// <summary>
-    /// 
+    /// Takes the last 'count' elements from a source collection and returns them as a new collection.
     /// </summary>
-    /// <param name="source"></param>
-    /// <param name="count"></param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
-    /// <exception cref="ArgumentException"></exception>
+    /// <param name="source">The source collection.</param>
+    /// <param name="count">The number of elements to take from the end of the source collection.</param>
+    /// <typeparam name="T">The type of elements in the source collection.</typeparam>
+    /// <returns>A collection containing the last 'count' elements from the source collection.</returns>
+    /// <exception cref="ArgumentException">Thrown when count is less than 0 or greater than the length/count of the source collection.</exception>
     public static ICollection<T> TakeLast<T>(this ICollection<T> source, int count)
     {
         ArgumentNullException.ThrowIfNull(source);
-        
+
         if (count < 0 || count > source.Count)
             throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
         
