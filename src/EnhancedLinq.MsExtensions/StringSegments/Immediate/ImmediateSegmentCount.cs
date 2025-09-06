@@ -12,7 +12,7 @@ using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
 
-public static class ImmediateSegmentCount
+public static partial class EnhancedLinqSegmentImmediate
 {
     /// <summary>
     /// Counts the number of chars in the StringSegment that match the predicate.

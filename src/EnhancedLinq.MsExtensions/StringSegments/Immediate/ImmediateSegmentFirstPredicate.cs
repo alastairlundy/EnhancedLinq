@@ -13,7 +13,7 @@ using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
 
-public static class ImmediateSegmentFirstPredicate
+public static partial class EnhancedLinqSegmentImmediate
 {
 
     /// <summary>

@@ -22,7 +22,7 @@ Getting started with **EnhancedLinq** is easy! You can install the packages usin
 
 | Package Id                              | NuGet Link | .NET SDK CLI Command |
 |-----------------------------------------|-------------|----------------------|
-| AlastairLundy.EnhancedLinq.MsExtensions | [EnhancedLinq NuGet](https://nuget.org/packages/AlastairLundy.EnhancedLinq.) | `dotnet add package AlastairLundy.EnhancedLinq.` |
+| AlastairLundy.EnhancedLinq.MsExtensions | [EnhancedLinq NuGet](https://nuget.org/packages/AlastairLundy.EnhancedLinq) | `dotnet add package AlastairLundy.EnhancedLinq.` |
 | AlastairLundy.EnhancedLinq.EnhancedLinq.Memory                     | [EnhancedLinq.Memory NuGet](https://nuget.org/packages/AlastairLundy.EnhancedLinq.Memory) | `dotnet add package AlastairLundy.EnhancedLinq.Memory` |
 | AlastairLundy.EnhancedLinq.EnhancedLinq.MsExtensions               | [EnhancedLinq.MsExtensions NuGet](https://nuget.org/packages/AlastairLundy.EnhancedLinq.MsExtensions) | `dotnet add package AlastairLundy.EnhancedLinq.MsExtensions` |
 

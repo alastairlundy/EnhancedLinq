@@ -12,7 +12,10 @@
         <RepositoryUrl>https://github.com/alastairlundy/Enhancedlinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+        <PackageReleaseNotes>    Update DotPrimitives.Collections from 3.1.0 to 3.2.0 @alastairlundy (#15)
+    Add Immediate ForEach for Main package and MsExtensions package @alastairlundy (#13)
+    Add Immediate CountAtLeast and CountAtMost extension methods @alastairlundy (#11)
+    Add missing xml doc comments @alastairlundy (#10)</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <Description>Additional LINQ style Deferred and Immediate enumeration mode extension methods for .NET . </Description>
@@ -21,7 +24,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>0.1.0</Version>
+        <Version>0.3.0</Version>
         <AssemblyName>AlastairLundy.EnhancedLinq</AssemblyName>
         <PackageId>AlastairLundy.EnhancedLinq</PackageId>
         <RootNamespace>AlastairLundy.EnhancedLinq</RootNamespace>
@@ -44,7 +47,7 @@
 
     <ItemGroup>
       <PackageReference Include="AlastairLundy.DotExtensions" Version="8.2.0" />
-        <PackageReference Include="AlastairLundy.DotPrimitives.Collections" Version="3.1.0"/>
+        <PackageReference Include="AlastairLundy.DotPrimitives.Collections" Version="3.2.0" />
     </ItemGroup>
 
     <ItemGroup>
