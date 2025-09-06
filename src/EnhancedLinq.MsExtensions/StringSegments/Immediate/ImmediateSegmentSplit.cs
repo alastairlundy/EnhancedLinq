@@ -12,7 +12,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 using AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred;
 
 using Microsoft.Extensions.Primitives;
@@ -43,7 +42,7 @@ public static partial class EnhancedLinqSegmentImmediate
             {
                 if (current.Length > 0)
                 {
-                    segments.Add(current.ToString());
+                    segments.Add(new StringSegment(current.ToString()));
                     current.Clear();
                 }
             }
@@ -65,7 +64,8 @@ public static partial class EnhancedLinqSegmentImmediate
     /// <returns>An array of StringSegment subsegments, from the source StringSegment that is delimited by the separator.</returns>
     public static StringSegment[] Split(this StringSegment source, StringSegment separator)
     {
-        IEnumerable<int> indices = source.IndicesOf(separator);
+        IEnumerable<int> indices = source.IndicesOf(separator)
+            .Where(x => x != -1);
 
         List<StringSegment> output = new();
 
@@ -73,9 +73,6 @@ public static partial class EnhancedLinqSegmentImmediate
 
         foreach(int index in indices)
         {
-            if (index == -1)
-                break;
-            
             int end = index > 0 ? index - 1 : 0;
 
             StringSegment newSegment = source.Subsegment(start, Math.Abs(end - start));
