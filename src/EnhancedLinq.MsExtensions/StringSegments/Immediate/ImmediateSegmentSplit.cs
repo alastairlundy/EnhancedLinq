@@ -8,9 +8,13 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+
 using AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 using AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred;
+
 using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
@@ -19,43 +23,67 @@ public static partial class EnhancedLinqSegmentImmediate
 {
     
     /// <summary>
-    /// Splits a StringSegment into StringSegment substrings using a specified separator.
+    /// Splits a StringSegment into StringSegment subsegments using a specified <see cref="char"/> separator.
     /// </summary>
-    /// <param name="segment">The input StringSegment.</param>
-    /// <param name="separator">The separator to delimit the StringSegment substrings in the StringSegment.</param>
-    /// <returns>An array of StringSegment substrings, from this StringSegment instance that is delimited by the separator.</returns>
-    public static StringSegment[] Split(this StringSegment segment, StringSegment separator)
+    /// <param name="source">The source StringSegment.</param>
+    /// <param name="separator">The separator to delimit the char in the source StringSegment.</param>
+    /// <returns>An array of StringSegment subsegments from the source StringSegment that is delimited by the separator, if the separator character is found.</returns>
+    public static StringSegment[] Split(this StringSegment source, char separator)
     {
-        if (segment.Contains(separator) == false)
+        if (StringSegment.IsNullOrEmpty(source))
             return [];
-        
-        int[] indices = segment.IndicesOf(separator).ToArray();
-        
-        StringSegment[] output = new StringSegment[indices.Length];
-        
-        if (indices.First().Equals(-1))
-            return [segment];
 
-        int outputIndex = 0;
-        int start = 0;
-
-        for (int i = 0; i < indices.Length; i++)
+        List<StringSegment> segments = new();
+        
+        StringBuilder current = new StringBuilder();
+        
+        for (int index = 0; index < source.Length; index++)
         {
-            if (indices.Any(x => x == i))
+            if (source[index] == separator)
             {
-                int end = i > 0 ? i - 1 : 0;
-
-                StringSegment newSegment = segment.Subsegment(start, Math.Abs(end - start));
-
-                output[outputIndex] = newSegment;
-                outputIndex++;
-                start = i;
+                if (current.Length > 0)
+                {
+                    segments.Add(current.ToString());
+                    current.Clear();
+                }
+            }
+            else
+            {
+                current.Append(source[index]);
             }
         }
         
-        if(outputIndex < output.Length)
-            Array.Resize(ref output, outputIndex);
+        return segments.ToArray();
+    }
 
-        return output;
+    
+    /// <summary>
+    /// Splits a StringSegment into StringSegment subsegments using a specified <see cref="StringSegment"/> separator.
+    /// </summary>
+    /// <param name="source">The source StringSegment.</param>
+    /// <param name="separator">The separator to delimit the StringSegment subsegments in the source StringSegment.</param>
+    /// <returns>An array of StringSegment subsegments, from the source StringSegment that is delimited by the separator.</returns>
+    public static StringSegment[] Split(this StringSegment source, StringSegment separator)
+    {
+        IEnumerable<int> indices = source.IndicesOf(separator);
+
+        List<StringSegment> output = new();
+
+        int start = 0;
+
+        foreach(int index in indices)
+        {
+            if (index == -1)
+                break;
+            
+            int end = index > 0 ? index - 1 : 0;
+
+            StringSegment newSegment = source.Subsegment(start, Math.Abs(end - start));
+
+            output.Add(newSegment);
+            start = index;
+        }
+        
+        return output.ToArray();
     }
 }
