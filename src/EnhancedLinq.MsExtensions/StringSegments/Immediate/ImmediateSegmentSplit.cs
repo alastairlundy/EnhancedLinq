@@ -8,9 +8,13 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+
 using AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 using AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred;
+
 using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
@@ -21,16 +25,46 @@ public static partial class EnhancedLinqSegmentImmediate
     /// <summary>
     /// Splits a StringSegment into StringSegment subsegments using a specified <see cref="char"/> separator.
     /// </summary>
+    /// <param name="source">The source StringSegment.</param>
+    /// <param name="separator">The separator to delimit the StringSegment subsegments in the source StringSegment.</param>
+    /// <returns>An array of StringSegment subsegments, from the source StringSegment that is delimited by the separator.</returns>
+    public static StringSegment[] Split(this StringSegment source, char separator)
     {
-        if (segment.Contains(separator) == false)
+        if (StringSegment.IsNullOrEmpty(source))
             return [];
+
+        List<StringSegment> segments = new();
         
-        int[] indices = segment.IndicesOf(separator).ToArray();
+        StringBuilder current = new StringBuilder();
         
-        StringSegment[] output = new StringSegment[indices.Length];
+        for (int index = 0; index < source.Length; index++)
+        {
+            if (source[index] == separator)
+            {
+                if (current.Length > 0)
+                {
+                    segments.Add(current.ToString());
+                    current.Clear();
+                }
+            }
+            else
+            {
+                current.Append(source[index]);
+            }
+        }
         
-        if (indices.First().Equals(-1))
-            return [segment];
+        return segments.ToArray();
+    }
+
+    
+    /// <summary>
+    /// Splits a StringSegment into StringSegment subsegments using a specified <see cref="StringSegment"/> separator.
+    /// </summary>
+    /// <param name="source">The source StringSegment.</param>
+    /// <param name="separator">The separator to delimit the StringSegment subsegments in the source StringSegment.</param>
+    /// <returns>An array of StringSegment subsegments, from the source StringSegment that is delimited by the separator.</returns>
+    public static StringSegment[] Split(this StringSegment source, StringSegment separator)
+    {
         IEnumerable<int> indices = source.IndicesOf(separator);
 
         List<StringSegment> output = new();
@@ -39,7 +73,6 @@ public static partial class EnhancedLinqSegmentImmediate
 
         foreach(int index in indices)
         {
-                int end = i > 0 ? i - 1 : 0;
             if (index == -1)
                 break;
             
