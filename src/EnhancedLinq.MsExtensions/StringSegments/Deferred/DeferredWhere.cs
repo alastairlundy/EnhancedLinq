@@ -23,13 +23,13 @@ public static partial class EnhancedLinqSegmentDeferred
     /// Returns an IEnumerable of chars that match the predicate. 
     /// </summary>
     /// <param name="target">The StringSegment to search.</param>
-    /// <param name="selector">The predicate to check each char against.</param>
+    /// <param name="predicate">The predicate to check each char against.</param>
     /// <returns>An IEnumerable of chars that matches the predicate.</returns>
-    public static IEnumerable<char> Where(this StringSegment target, Func<char, bool> selector)
+    public static IEnumerable<char> Where(this StringSegment target, Func<char, bool> predicate)
     {
         if(StringSegment.IsNullOrEmpty(target)) 
             throw new ArgumentNullException(nameof(target));
 
-        return new WhereSegmentEnumerable(target, selector);
+        return new WhereSegmentEnumerable(target, predicate);
     }
 }

@@ -16,18 +16,18 @@ namespace AlastairLundy.EnhancedLinq.Memory.Immediate;
 public static partial class EnhancedLinqMemoryImmediate
 {
     /// <summary>
-    /// Transforms elements of a Span according to behaviour defined by the Selector.
+    /// Transforms elements of a Span according to behaviour defined by the predicate.
     /// </summary>
     /// <param name="source">The span to search.</param>
-    /// <param name="selector">The selector to use.</param>
+    /// <param name="predicate">The predicate to use.</param>
     /// <typeparam name="TSource">The type of elements in the source Span.</typeparam>
-    /// <typeparam name="TResult">The type of elements the selector transforms elements into.</typeparam>
-    /// <returns>The newly created Span with the elements transformed by the selector.</returns>
+    /// <typeparam name="TResult">The type of elements the predicate transforms elements into.</typeparam>
+    /// <returns>The newly created Span with the elements transformed by the predicate.</returns>
     public static Span<TResult> Select<TSource, TResult>(
         [NotNull]
         this Span<TSource> source,
         [NotNull]
-        Func<TSource, TResult> selector)
+        Func<TSource, TResult> predicate)
     {
         TResult[] array = new  TResult[source.Length];
         
@@ -35,7 +35,7 @@ public static partial class EnhancedLinqMemoryImmediate
         
         source.ForEach(x =>
         {
-            array[index] = selector.Invoke(x);
+            array[index] = predicate.Invoke(x);
             index++;
         });
 
@@ -46,7 +46,7 @@ public static partial class EnhancedLinqMemoryImmediate
     /// 
     /// </summary>
     /// <param name="source"></param>
-    /// <param name="selector"></param>
+    /// <param name="predicate"></param>
     /// <typeparam name="TSource"></typeparam>
     /// <typeparam name="TResult"></typeparam>
     /// <returns></returns>
@@ -54,7 +54,7 @@ public static partial class EnhancedLinqMemoryImmediate
         [NotNull]
         this Memory<TSource> source,
         [NotNull]
-        Func<TSource, TResult> selector)
+        Func<TSource, TResult> predicate)
     {
         TResult[] array = new  TResult[source.Length];
         
@@ -62,7 +62,7 @@ public static partial class EnhancedLinqMemoryImmediate
         
         source.ForEach(x =>
         {
-            array[index] = selector.Invoke(x);
+            array[index] = predicate.Invoke(x);
             index++;
         });
         

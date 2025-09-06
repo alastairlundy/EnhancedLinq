@@ -21,21 +21,21 @@ public static partial class EnhancedLinqImmediate
     /// </summary>
     /// <remarks>
     /// This method is a computationally expensive as the number of items in the sequence is needed, to obtain the index
-    /// of the last element that satisfies the selector.
+    /// of the last element that satisfies the predicate.
     /// </remarks>
     /// <param name="source">The <see cref="IEnumerable{T}"/> to be searched.</param>
-    /// <param name="selector">The predicate condition to check elements of the sequence against.</param>
+    /// <param name="predicate">The predicate condition to check elements of the sequence against.</param>
     /// <typeparam name="T">The type of elements in the sequence.</typeparam>
     /// <returns>The index of the last element in the sequence to match the predicate condition,
     /// if the sequence contains any elements that match the predicate condition, returns -1 otherwise.
     /// </returns>
-    public static int LastIndexOf<T>(this IEnumerable<T> source, Func<T, bool> selector)
+    public static int LastIndexOf<T>(this IEnumerable<T> source, Func<T, bool> predicate)
     {
         ArgumentNullException.ThrowIfNull(source, nameof(source));
 
         if (source is ICollection<T> collection)
         {
-            return LastIndexOf(collection, selector);
+            return LastIndexOf(collection, predicate);
         }
         
         bool foundItem = false;
@@ -45,7 +45,7 @@ public static partial class EnhancedLinqImmediate
         
         foreach (T item in source.Reverse())
         {
-            if (selector(item))
+            if (predicate(item))
             {
                 foundItem = true;
                 reverseIndex = count;
@@ -62,12 +62,12 @@ public static partial class EnhancedLinqImmediate
     /// Gets the index of the last element that matches the predicate condition.
     /// </summary>
     /// <param name="source">The <see cref="ICollection{T}"/> to be searched.</param>
-    /// <param name="selector">The predicate condition to check elements of the collection against.</param>
+    /// <param name="predicate">The predicate condition to check elements of the collection against.</param>
     /// <typeparam name="T">The type of elements in the collection.</typeparam>
     /// <returns>The index of the last element in the collection to match the predicate condition,
     /// if the collection contains any elements that match the predicate condition, returns -1 otherwise.
     /// </returns>
-    public static int LastIndexOf<T>(this ICollection<T> source, Func<T, bool> selector)
+    public static int LastIndexOf<T>(this ICollection<T> source, Func<T, bool> predicate)
     {
         ArgumentNullException.ThrowIfNull(source, nameof(source));
         
@@ -75,7 +75,7 @@ public static partial class EnhancedLinqImmediate
         
         foreach (T item in source.Reverse())
         {
-            if(selector(item))
+            if(predicate(item))
                 return index;
 
             index--;

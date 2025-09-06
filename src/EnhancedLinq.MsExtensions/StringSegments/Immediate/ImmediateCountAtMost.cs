@@ -39,10 +39,10 @@ public static partial class EnhancedLinqSegmentImmediate
     /// Determines whether there are at most a maximum number elements in the source <see cref="StringSegment"/> that satisfy the given condition.
     /// </summary>
     /// <param name="source">The source <see cref="StringSegment"/> to search through.</param>
-    /// <param name="selector">The predicate condition to check elements against.</param>
+    /// <param name="predicate">The predicate condition to check elements against.</param>
     /// <param name="countToLookFor">The maximum number of elements that can meet the condition.</param>
     /// <returns>True if there are at most <paramref name="countToLookFor"/> number of elements that satisfy the condition, false otherwise.</returns>
-    public static bool CountAtMost(this StringSegment source, Func<char, bool> selector,
+    public static bool CountAtMost(this StringSegment source, Func<char, bool> predicate,
         int countToLookFor)
     {
         if(StringSegment.IsNullOrEmpty(source))
@@ -57,7 +57,7 @@ public static partial class EnhancedLinqSegmentImmediate
         {
             char c = source[index];
             
-            if (selector(c))
+            if (predicate(c))
                 currentCount += 1;
             
             if(currentCount >= countToLookFor)
