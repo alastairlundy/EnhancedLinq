@@ -8,8 +8,10 @@
  */
 
 using System;
-
+using System.Collections.Generic;
+using AlastairLundy.EnhancedLinq.Memory.Immediate.Ranges;
 using AlastairLundy.EnhancedLinq.Memory.Internals.Localizations;
+// ReSharper disable ReplaceSliceWithRangeIndexer
 
 namespace AlastairLundy.EnhancedLinq.Memory.Immediate;
 
@@ -29,6 +31,35 @@ public static partial class EnhancedLinqMemoryImmediate
             throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
 
         return source.Slice(0, count);
+    }
+    
+    /// <summary>
+    /// Returns elements from the <see cref="Span{T}"/> as long as the predicate condition matches elements in the Span.
+    /// </summary>
+    /// <param name="source">The Span to extract elements from.</param>
+    /// <param name="predicate">The predicate condition to test each element of the Span against.</param>
+    /// <typeparam name="T">The type of elements in the <see cref="Span{T}"/>.</typeparam>
+    /// <returns>A <see cref="Span{T}"/> containing the elements that occur before the predicate condition is false.</returns>
+    /// <exception cref="ArgumentException">Thrown if the Span is empty.</exception>
+    public static Span<T> TakeWhile<T>(this Span<T> source, Func<T, int, bool> predicate)
+    {
+        if (source.IsEmpty)
+            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
+
+        int end = 0;
+
+        for (int index = 0; index < source.Length; index++)
+        {
+            bool result = predicate(source[index], index);
+
+            if (result == false)
+            {
+                end = index;
+                break;
+            }
+        }
+
+        return source.Slice(0, Math.Abs(end - 0));
     }
     
     /// <summary>
