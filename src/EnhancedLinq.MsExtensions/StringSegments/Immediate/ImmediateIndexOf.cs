@@ -10,8 +10,6 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred;
-
 using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
@@ -56,8 +54,6 @@ public static partial class EnhancedLinqSegmentImmediate
     {
         if (str.Length < segment.Length || segment.Length == 0)
             return -1;
-
-        int index = 0;
         
         for (int i = 0; i < str.Length; i++)
         {
@@ -67,7 +63,7 @@ public static partial class EnhancedLinqSegmentImmediate
 
                 if (indexSegment.Equals(segment))
                 {
-                    return index;
+                    return i;
                 }
             }
         }
