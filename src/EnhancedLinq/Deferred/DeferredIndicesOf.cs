@@ -33,14 +33,14 @@ public static partial class EnhancedLinqDeferred
     /// Gets all the indices of the elements that match the predicate within a sequence.
     /// </summary>
     /// <param name="source">The sequence to be searched.</param>
-    /// <param name="selector"></param>
+    /// <param name="predicate"></param>
     /// <typeparam name="T">The type of the elements in the source sequence.</typeparam>
     /// <returns>The indices if one or more elements matching the predicate is found; an empty sequence otherwise.</returns>
-    public static IEnumerable<int> IndicesOf<T>(this IEnumerable<T> source, Func<T, bool> selector)
+    public static IEnumerable<int> IndicesOf<T>(this IEnumerable<T> source, Func<T, bool> predicate)
     {
         ArgumentNullException.ThrowIfNull(source);
         
-        return new IndicesEnumerable<T>(source, selector);
+        return new IndicesEnumerable<T>(source, predicate);
     }
     
     /// <summary>

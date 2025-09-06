@@ -38,10 +38,10 @@ public static partial class EnhancedLinqSegmentImmediate
     /// Determines whether there are at least a specified number of elements in the <see cref="StringSegment"/> that meet a given condition.
     /// </summary>
     /// <param name="source">The source <see cref="StringSegment"/>.</param>
-    /// <param name="selector">The predicate condition to check elements against.</param>
+    /// <param name="predicate">The predicate condition to check elements against.</param>
     /// <param name="countToLookFor">The minimum count to look for.</param>
     /// <returns><c>true</c> if there are at least the specified number of elements that meet the condition; otherwise, <c>false</c>.</returns>
-    public static bool CountAtLeast(this StringSegment source, Func<char, bool> selector,
+    public static bool CountAtLeast(this StringSegment source, Func<char, bool> predicate,
         int countToLookFor)
     {
         if(StringSegment.IsNullOrEmpty(source))
@@ -56,7 +56,7 @@ public static partial class EnhancedLinqSegmentImmediate
         {
             char c = source[index];
 
-            if (selector(c))
+            if (predicate(c))
                 currentCount += 1;
             
             if(currentCount >= countToLookFor)

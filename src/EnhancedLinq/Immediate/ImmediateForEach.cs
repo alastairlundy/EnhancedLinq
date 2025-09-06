@@ -31,13 +31,13 @@ public static partial class EnhancedLinqImmediate
     }
 
     /// <summary>
-    /// Applies the given selector function to each element of this <see cref="ICollection{T}"/>.
+    /// Applies the given predicate function to each element of this <see cref="ICollection{T}"/>.
     /// </summary>
-    /// <param name="target">The <see cref="ICollection{T}"/> to apply the selector to.</param>
-    /// <param name="selector">The func to apply to each element in the collection.</param>
+    /// <param name="target">The <see cref="ICollection{T}"/> to apply the predicate to.</param>
+    /// <param name="predicate">The func to apply to each element in the collection.</param>
     /// <typeparam name="T">The type of elements in the collection.</typeparam>
-    /// <returns>A new <see cref="ICollection{T}"/> containing the result of applying each element to the selector.</returns>
-    public static ICollection<T> ForEach<T>(this ICollection<T> target, Func<T, T> selector)
+    /// <returns>A new <see cref="ICollection{T}"/> containing the result of applying each element to the predicate.</returns>
+    public static ICollection<T> ForEach<T>(this ICollection<T> target, Func<T, T> predicate)
     {
         ArgumentNullException.ThrowIfNull(target);
         
@@ -45,14 +45,14 @@ public static partial class EnhancedLinqImmediate
         
         foreach (T item in target)
         {
-            output.Add(selector.Invoke(item));
+            output.Add(predicate.Invoke(item));
         }
         
         return output;
     }
     
     /// <summary>
-    /// Applies the given selector function to each element of this <see cref="IList{T}"/>.
+    /// Applies the given predicate function to each element of this <see cref="IList{T}"/>.
     /// </summary>
     /// <param name="target">The <see cref="IList{T}"/> to apply the selector to.</param>
     /// <param name="selector">The func to apply to each element in the <see cref="IList{T}"/>.</param>

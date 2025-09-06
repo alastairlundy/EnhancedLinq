@@ -24,19 +24,19 @@ public static partial class EnhancedLinqSegmentDeferred
 {
 
     /// <summary>
-    /// Groups the characters in the specified <see cref="StringSegment"/> according to a specified key selector function.
+    /// Groups the characters in the specified <see cref="StringSegment"/> according to a specified key predicate function.
     /// </summary>
-    /// <typeparam name="TKey">The type of the key returned by <paramref name="selector"/>.</typeparam>
+    /// <typeparam name="TKey">The type of the key returned by <paramref name="predicate"/>.</typeparam>
     /// <param name="target">The <see cref="StringSegment"/> whose characters to group.</param>
-    /// <param name="selector">A function to extract the key for each character.</param>
+    /// <param name="predicate">A function to extract the key for each character.</param>
     /// <returns>A sequence where each <see cref="IGrouping{TKey,TElement}"/> contains a sequence of characters that share the same key.</returns>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="target"/> is null or empty.</exception>
     public static IEnumerable<IGrouping<TKey, char>> GroupBy<TKey>(this StringSegment target, 
-        Func<char, TKey> selector)
+        Func<char, TKey> predicate)
     {
         if(StringSegment.IsNullOrEmpty(target))
             throw new ArgumentNullException(nameof(target));
         
-        return new GroupStringSegmentEnumerable<TKey>(target, selector);
+        return new GroupStringSegmentEnumerable<TKey>(target, predicate);
     }
 }
