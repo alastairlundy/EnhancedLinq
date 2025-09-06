@@ -19,12 +19,8 @@ public static partial class EnhancedLinqSegmentImmediate
 {
     
     /// <summary>
-    /// Splits a StringSegment into StringSegment substrings using a specified separator.
+    /// Splits a StringSegment into StringSegment subsegments using a specified <see cref="char"/> separator.
     /// </summary>
-    /// <param name="segment">The input StringSegment.</param>
-    /// <param name="separator">The separator to delimit the StringSegment substrings in the StringSegment.</param>
-    /// <returns>An array of StringSegment substrings, from this StringSegment instance that is delimited by the separator.</returns>
-    public static StringSegment[] Split(this StringSegment segment, StringSegment separator)
     {
         if (segment.Contains(separator) == false)
             return [];
@@ -35,27 +31,26 @@ public static partial class EnhancedLinqSegmentImmediate
         
         if (indices.First().Equals(-1))
             return [segment];
+        IEnumerable<int> indices = source.IndicesOf(separator);
 
-        int outputIndex = 0;
+        List<StringSegment> output = new();
+
         int start = 0;
 
-        for (int i = 0; i < indices.Length; i++)
+        foreach(int index in indices)
         {
-            if (indices.Any(x => x == i))
-            {
                 int end = i > 0 ? i - 1 : 0;
+            if (index == -1)
+                break;
+            
+            int end = index > 0 ? index - 1 : 0;
 
-                StringSegment newSegment = segment.Subsegment(start, Math.Abs(end - start));
+            StringSegment newSegment = source.Subsegment(start, Math.Abs(end - start));
 
-                output[outputIndex] = newSegment;
-                outputIndex++;
-                start = i;
-            }
+            output.Add(newSegment);
+            start = index;
         }
         
-        if(outputIndex < output.Length)
-            Array.Resize(ref output, outputIndex);
-
-        return output;
+        return output.ToArray();
     }
 }
