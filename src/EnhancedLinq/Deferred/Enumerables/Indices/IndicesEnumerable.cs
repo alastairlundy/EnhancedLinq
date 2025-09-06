@@ -10,9 +10,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using EnhancedLinq.Deferred.Enumerators.Indices;
+using AlastairLundy.EnhancedLinq.Deferred.Enumerators.Indices;
 
-namespace EnhancedLinq.Deferred.Enumerables;
+namespace AlastairLundy.EnhancedLinq.Deferred.Enumerables;
 
 internal class IndicesEnumerable<T> : IEnumerable<int>
 {

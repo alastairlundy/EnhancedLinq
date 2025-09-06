@@ -9,10 +9,9 @@
 
 using System;
 using System.Collections.Generic;
+using AlastairLundy.EnhancedLinq.Deferred.Enumerables;
 
-using EnhancedLinq.Deferred.Enumerables;
-
-namespace EnhancedLinq.Deferred;
+namespace AlastairLundy.EnhancedLinq.Deferred;
 
 /// <summary>
 /// This static partial class contains Deferred Execution extension methods for the <see cref="IEnumerable{T}"/> interface.

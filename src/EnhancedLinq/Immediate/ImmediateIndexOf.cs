@@ -10,18 +10,20 @@
 using System;
 using System.Collections.Generic;
 
-namespace EnhancedLinq.Immediate;
+namespace AlastairLundy.EnhancedLinq.Immediate;
 
 public static partial class EnhancedLinqImmediate
 {
     
     /// <summary>
-    /// 
+    /// Gets the first index of the first element that matches the predicate condition.
     /// </summary>
-    /// <param name="source">The IEnumerable to be searched.</param>
-    /// <param name="selector"></param>
-    /// <typeparam name="T">The type of object in the IEnumerable.</typeparam>
-    /// <returns></returns>
+    /// <param name="source">The <see cref="IEnumerable{T}"/> to be searched.</param>
+    /// <param name="selector">The predicate condition to check elements of the sequence against.</param>
+    /// <typeparam name="T">The type of elements in the sequence.</typeparam>
+    /// <returns>The first index of the first element in the sequence to match the predicate condition,
+    /// if the sequence contains any elements that match the predicate condition, returns -1 otherwise.
+    /// </returns>
     public static int IndexOf<T>(this IEnumerable<T> source, Func<T, bool> selector)
     {
         ArgumentNullException.ThrowIfNull(source, nameof(source));
@@ -41,12 +43,12 @@ public static partial class EnhancedLinqImmediate
     }
     
     /// <summary>
-    /// Returns the index of an object in an IEnumerable.
+    /// Gets the first index of an element in a sequence.
     /// </summary>
-    /// <param name="source">The IEnumerable to be searched.</param>
-    /// <param name="obj">The object to get the index of.</param>
-    /// <typeparam name="T">The type of object in the IEnumerable.</typeparam>
-    /// <returns>The index of an object in an IEnumerable, if the IEnumerable contains the object, returns -1 otherwise.</returns>
+    /// <param name="source">The sequence to be searched.</param>
+    /// <param name="obj">The element to get the index of.</param>
+    /// <typeparam name="T">The type of elements in the sequence.</typeparam>
+    /// <returns>The first index of an element in a sequence, if the sequence contains the element, returns -1 otherwise.</returns>
     public static int IndexOf<T>(this IEnumerable<T> source, T obj)
     {
         ArgumentNullException.ThrowIfNull(source, nameof(source));

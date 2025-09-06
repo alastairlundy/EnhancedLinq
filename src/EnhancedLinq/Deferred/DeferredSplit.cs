@@ -9,21 +9,23 @@
 
 using System;
 using System.Collections.Generic;
-using EnhancedLinq.Deferred.Enumerables;
 
-namespace EnhancedLinq.Deferred;
+using AlastairLundy.EnhancedLinq.Deferred.Enumerables;
+
+namespace AlastairLundy.EnhancedLinq.Deferred;
 
 public static partial class EnhancedLinqDeferred
 {
     
     /// <summary>
-    /// 
+    /// Splits the source sequence into multiple subsequences, each containing up to a specified maximum number of elements.
     /// </summary>
-    /// <param name="source"></param>
-    /// <param name="maximumCount"></param>
-    /// <typeparam name="TSource"></typeparam>
-    /// <returns></returns>
-    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    /// <param name="source">The sequence to split.</param>
+    /// <param name="maximumCount">The maximum number of elements in each subsequence. Must be greater than zero.</param>
+    /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+    /// <returns>A sequence of subsequences, each containing up to <paramref name="maximumCount"/> elements from the source sequence.</returns>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if <paramref name="maximumCount"/> is less than or equal to zero.</exception>
     public static IEnumerable<IEnumerable<TSource>> SplitByCount<TSource>(this IEnumerable<TSource> source, int maximumCount)
     {
         ArgumentNullException.ThrowIfNull(source, nameof(source));
@@ -35,12 +37,12 @@ public static partial class EnhancedLinqDeferred
     }
 
     /// <summary>
-    /// 
+    /// Splits the source sequence into a number of subsequences equal to the number of available logical processors.
     /// </summary>
-    /// <param name="source"></param>
-    /// <typeparam name="TSource"></typeparam>
-    /// <returns></returns>
-    /// <exception cref="ArgumentNullException"></exception>
+    /// <param name="source">The sequence to split.</param>
+    /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+    /// <returns>An enumerable of subsequences, where the number of subsequences equals the number of logical processors on the current machine.</returns>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null.</exception>
     public static IEnumerable<IEnumerable<TSource>> SplitByProcessorCount<TSource>(this IEnumerable<TSource> source)
     {
         ArgumentNullException.ThrowIfNull(source, nameof(source));

@@ -3,29 +3,36 @@
     <PropertyGroup>
         <TargetFrameworks>net8.0;net9.0;</TargetFrameworks>
         <LangVersion>13</LangVersion>
-        <ImplicitUsings>enable</ImplicitUsings>
+        <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>EnhancedLinq.Memory</Title>
         <Authors>Alastair Lundy</Authors>
-        <Description>LINQ lambda style extension methods for Spans.</Description>
+        <Description>LINQ style Immediate enumeration mode extension methods for Spans and Memory. </Description>
         <Copyright>Copyright (c) 2025 Alastair Lundy</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/EnhancedLinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageTags>linq, enhancedlinq, enhanced</PackageTags>
-        <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
-        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <PackageTags>linq, enhanced-linq, enhanced, extensions, memory, extensions</PackageTags>
+        <PackageReleaseNotes>    Add Immediate CountAtMost and CountAtLeast for Memory and MsExtensions packages @alastairlundy (#16)
+    Update DotPrimitives.Collections from 3.1.0 to 3.2.0 @alastairlundy (#15)
+    Disable implicit usings for EnhancedLinq.Memory @alastairlundy (#12)
+    Add missing xml doc comments @alastairlundy (#10)</PackageReleaseNotes>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <IncludeSymbols>true</IncludeSymbols>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <Version>0.3.0</Version>
+        <AssemblyName>AlastairLundy.EnhancedLinq.Memory</AssemblyName>
+        <PackageId>AlastairLundy.EnhancedLinq.Memory</PackageId>
+        <RootNamespace>AlastairLundy.EnhancedLinq.Memory</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="AlastairLundy.DotExtensions" Version="8.2.0" />
-        <PackageReference Include="AlastairLundy.DotPrimitives.Collections" Version="3.1.0" />
+        <PackageReference Include="AlastairLundy.DotPrimitives.Collections" Version="3.2.0" />
     </ItemGroup>
 
     <ItemGroup>
@@ -41,10 +48,6 @@
         <AutoGen>True</AutoGen>
         <DependentUpon>Resources.resx</DependentUpon>
       </Compile>
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\EnhancedLinq\EnhancedLinq.csproj" />
     </ItemGroup>
 
     <ItemGroup>

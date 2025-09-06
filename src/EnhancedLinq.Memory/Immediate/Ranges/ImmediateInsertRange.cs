@@ -7,9 +7,11 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+using System;
+using System.Collections.Generic;
 using AlastairLundy.DotExtensions.Memory.Spans;
 
-namespace EnhancedLinq.Memory.Immediate.Ranges;
+namespace AlastairLundy.EnhancedLinq.Memory.Immediate.Ranges;
 
 public static partial class EnhancedLinqMemoryImmediateRange
 {

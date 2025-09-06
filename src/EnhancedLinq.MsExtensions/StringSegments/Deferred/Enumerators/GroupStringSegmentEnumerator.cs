@@ -14,9 +14,9 @@ using System.Linq;
 using AlastairLundy.DotPrimitives.Collections.Groupings;
 using Microsoft.Extensions.Primitives;
 
-namespace EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerators;
+namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerators;
 
-public class GroupStringSegmentEnumerator<TKey> : IEnumerator<IGrouping<TKey, char>>
+internal class GroupStringSegmentEnumerator<TKey> : IEnumerator<IGrouping<TKey, char>>
 {
     private readonly StringSegment _source;
     private readonly Func<char, TKey> _selector;

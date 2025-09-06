@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EnhancedLinq.MsExtensions.Internals.Localizations {
+namespace AlastairLundy.EnhancedLinq.MsExtensions.Internals.Localizations {
     using System;
     
     
@@ -28,7 +28,7 @@ namespace EnhancedLinq.MsExtensions.Internals.Localizations {
         internal static System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.Equals(null, resourceMan)) {
-                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("EnhancedLinq.MsExtensions.Internals.Localizations.Resources", typeof(Resources).Assembly);
+                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("AlastairLundy.EnhancedLinq.MsExtensions.Internals.Localizations.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -48,6 +48,12 @@ namespace EnhancedLinq.MsExtensions.Internals.Localizations {
         internal static string Exceptions_Segments_InvalidOperation_EmptySequence {
             get {
                 return ResourceManager.GetString("Exceptions.Segments.InvalidOperation.EmptySequence", resourceCulture);
+            }
+        }
+        
+        internal static string Exceptions_Count_LessThanZero {
+            get {
+                return ResourceManager.GetString("Exceptions.Count.LessThanZero", resourceCulture);
             }
         }
     }

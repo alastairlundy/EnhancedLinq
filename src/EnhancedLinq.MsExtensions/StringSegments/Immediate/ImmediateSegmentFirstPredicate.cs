@@ -8,14 +8,12 @@
  */
 
 using System;
-using System.Collections.Generic;
-using EnhancedLinq.MsExtensions.Internals.Localizations;
-using EnhancedLinq.MsExtensions.StringSegments.Deferred;
+using AlastairLundy.EnhancedLinq.MsExtensions.Internals.Localizations;
 using Microsoft.Extensions.Primitives;
 
-namespace EnhancedLinq.MsExtensions.StringSegments.Immediate;
+namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
 
-public static class ImmediateSegmentFirstPredicate
+public static partial class EnhancedLinqSegmentImmediate
 {
 
     /// <summary>

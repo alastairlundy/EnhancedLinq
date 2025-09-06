@@ -10,15 +10,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
-using EnhancedLinq.Deferred.Enumerators.NumberRanges;
+using AlastairLundy.EnhancedLinq.Deferred.Enumerators.NumberRanges;
 
-namespace EnhancedLinq.Deferred.Enumerables.NumberRanges;
+namespace AlastairLundy.EnhancedLinq.Deferred.Enumerables.NumberRanges;
 
 internal class NumberRangeEnumerable<TNumber> : IEnumerable<TNumber> where TNumber : INumber<TNumber>
 {
     private List<TNumber> _source;
     
-    internal NumberRangeEnumerable(TNumber start, TNumber count)
+    internal NumberRangeEnumerable(TNumber start, TNumber count, TNumber incrementor)
     {
         _source = new List<TNumber>();
         
@@ -29,7 +29,7 @@ internal class NumberRangeEnumerable<TNumber> : IEnumerable<TNumber> where TNumb
         {
             _source.Add(current);
             
-            current += TNumber.Zero;
+            current += incrementor;
         }
     }
     

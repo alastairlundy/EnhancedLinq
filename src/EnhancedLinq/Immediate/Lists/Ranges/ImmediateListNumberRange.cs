@@ -9,12 +9,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Numerics;
 using AlastairLundy.DotExtensions.Numbers;
-using EnhancedLinq.Internals.Localizations;
+using AlastairLundy.EnhancedLinq.Internals.Localizations;
 
-namespace EnhancedLinq.Immediate.Ranges;
+namespace AlastairLundy.EnhancedLinq.Immediate.Ranges;
 
 public static partial class EnhancedLinqImmediateRange
 {

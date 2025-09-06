@@ -9,14 +9,15 @@
 
 using System;
 using System.Collections.Generic;
-
- using EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerables;
-
+using AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerables;
 using Microsoft.Extensions.Primitives;
 
-namespace EnhancedLinq.MsExtensions.StringSegments.Deferred;
+namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred;
 
-public static partial class MsExtensionsDeferred
+/// <summary>
+/// 
+/// </summary>
+public static partial class EnhancedLinqSegmentDeferred
 {
     /// <summary>
     /// Returns an IEnumerable of chars that match the predicate. 

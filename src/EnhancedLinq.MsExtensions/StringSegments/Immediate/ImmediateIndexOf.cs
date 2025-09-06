@@ -10,15 +10,11 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using AlastairLundy.DotExtensions.MsExtensions.StringSegments;
-
-using EnhancedLinq.MsExtensions.StringSegments.Deferred;
-
 using Microsoft.Extensions.Primitives;
 
-namespace EnhancedLinq.MsExtensions.StringSegments.Immediate;
+namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
 
-public static class ImmediateIndexOf
+public static partial class EnhancedLinqSegmentImmediate
 {
     
     /// <summary>
@@ -32,7 +28,7 @@ public static class ImmediateIndexOf
         if (@this.Length < segment.Length || segment.Length == 0)
             return -1;
         
-        IEnumerable<int> indexes = @this.IndicesOf(segment.First())
+        IEnumerable<int> indexes = @this.IndicesOf(segment[0])
             .Where(x  => x != -1);
 
         foreach (int index in indexes)
@@ -58,8 +54,6 @@ public static class ImmediateIndexOf
     {
         if (str.Length < segment.Length || segment.Length == 0)
             return -1;
-
-        int index = 0;
         
         for (int i = 0; i < str.Length; i++)
         {
@@ -69,7 +63,7 @@ public static class ImmediateIndexOf
 
                 if (indexSegment.Equals(segment))
                 {
-                    return index;
+                    return i;
                 }
             }
         }

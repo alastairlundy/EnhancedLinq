@@ -1,42 +1,117 @@
 # EnhancedLinq
-Additional LINQ style Deferred and Immediate enumeration mode extension methods for .NET .
+This library adds Additional LINQ style Deferred execution and Immediate enumeration mode extension methods for .NET .
 
-## Included Methods
+## 🚀 Included Methods
+For a comprehensive list of included methods, check out the following resources:
 
-For a full list of included methods please see:
-* [EnhancedLinq Methods](./docs/Methods/EnhancedLinq.md)
-* [EnhancedLinq.Memory Methods](./docs/Methods/EnhancedLinq.Memory.md)
-* [EnhancedLinq.MsExtensions Methods](./docs/Methods/EnhancedLinq.MsExtensions.md)
+- [EnhancedLinq Methods](./docs/Methods/EnhancedLinq.md)
+- [EnhancedLinq.Memory Methods](./docs/Methods/EnhancedLinq.Memory.md)
+- [EnhancedLinq.MsExtensions Methods](./docs/Methods/EnhancedLinq.MsExtensions.md)
 
+## 📦 NuGet Packages
 
-## Nuget Packages
+**EnhancedLinq** comes with several packages tailored to your needs:
 
-These are the EnhancedLinq packages:
-* ``EnhancedLinq`` - The main EnhancedLinq package.
-* ``EnhancedLinq.Memory`` - EnhancedLinq for Span<T> and Memory<T>
-* ``EnhancedLinq.MsExtensions`` - This mainly deals with StringSegment from Microsoft.Extensions.Primitives but is open to supporting other packages in the future in the Microsoft.Extensions namespace.
+- **`EnhancedLinq`**: The core package that enhances your LINQ experience.
+- **`EnhancedLinq.Memory`**: Specifically for `Span<T>` and `Memory<T>`, providing helpful immediate mode extensions.
+- **`EnhancedLinq.MsExtensions`**: Focused on `StringSegment` from `Microsoft.Extensions.Primitives`, with plans to potentially expand support for other Microsoft.Extensions packages.
 
-### Installing EnhancedLinq
-EnhancedLinq's packages can be installed via the .NET SDK CLI, Nuget via your IDE or code editor's package interface, or via the Nuget website.
+### 🛠️ Installing EnhancedLinq
 
-| Package Name | Nuget Link | .NET SDK CLI command |
-|--|--|--|
-| EnhancedLinq | [EnhancedLinq Nuget](https://nuget.org/packages/EnhancedLinq) | ``dotnet add package EnhancedLinq`` |
-| EnhancedLinq.Memory | [EnhancedLinq.Memory Nuget](https://nuget.org/packages/EnhancedLinq.Memory) | ``dotnet add package EnhancedLinq.Memory`` |
-| EnhancedLinq.MsExtensions | [EnhancedLinq.MsExtensions Nuget](https://nuget.org/packages/EnhancedLinq.MsExtensions) | ``dotnet add package EnhancedLinq.MsExtensions`` |
+Getting started with **EnhancedLinq** is easy! You can install the packages using the .NET SDK CLI, your IDE's package manager, or directly from the NuGet website.
 
+| Package Id                              | NuGet Link | .NET SDK CLI Command |
+|-----------------------------------------|-------------|----------------------|
+| AlastairLundy.EnhancedLinq.MsExtensions | [EnhancedLinq NuGet](https://nuget.org/packages/AlastairLundy.EnhancedLinq) | `dotnet add package AlastairLundy.EnhancedLinq.` |
+| AlastairLundy.EnhancedLinq.EnhancedLinq.Memory                     | [EnhancedLinq.Memory NuGet](https://nuget.org/packages/AlastairLundy.EnhancedLinq.Memory) | `dotnet add package AlastairLundy.EnhancedLinq.Memory` |
+| AlastairLundy.EnhancedLinq.EnhancedLinq.MsExtensions               | [EnhancedLinq.MsExtensions NuGet](https://nuget.org/packages/AlastairLundy.EnhancedLinq.MsExtensions) | `dotnet add package AlastairLundy.EnhancedLinq.MsExtensions` |
 
-## Usage
+## 📖 Usage
+Here are some examples demonstrating how to use some methods provided by EnhancedLinq.
 
-## Building
+### Deferred Execution Examples
 
-## Contributing
+**ElementsAt**
+This example shows how to find the elements at a given sequence of indices.
 
-## License
-EnhancedLinq is licensed under the Mozilla Public License 2.0 .
+```csharp
 
-## Questions
+        var fruits = ["Apple", "Banana", "Cherry", "Date", "Elderberry" ];
+        var indices = [1, 3]; // We want to retrieve "Banana" and "Date"
+        
+        IEnumerable<string> selectedFruits = fruits.ElementsAt(indices);
 
-## Alternatives
-* [SuperLinq](https://github.com/viceroypenguin/SuperLinq)
-* [MoreLinq](https://github.com/morelinq/MoreLINQ). 
+        Console.WriteLine("Selected Fruits:");
+        foreach (string fruit in selectedFruits)
+        {
+            Console.WriteLine(fruit); // Outputs: Banana, Date
+        }
+```
+
+**IndicesOf**
+This example shows how to find all the indices of a specific element in an IEnumerable<T>.
+```csharp
+
+        var numbers = [ 1, 2, 3, 2, 4, 2, 5 ];
+        int target = 2; // We want to find the indices of the number 2
+
+        IEnumerable<int> indices = numbers.IndicesOf(target);
+
+        Console.WriteLine("Indices of target element:");
+        foreach (var index in indices)
+        {
+            Console.WriteLine(index); // Outputs: 1, 3, 5
+        }
+```
+
+### Immediate Enumeration Mode Examples
+
+**ContainsDuplicates**
+This example shows how to check if an IEnumerable<T> contains any duplicate elements.
+
+```csharp
+        var fruits = ["Apple", "Banana", "Cherry", "Apple" ]; // Contains a duplicate
+
+        bool hasDuplicates = fruits.ContainsDuplicates();
+
+        Console.WriteLine($"Does the list contain duplicates? {hasDuplicates}"); // Output: True
+```
+
+**IndexOf**
+This example shows how to find the index of the first element that matches a predicate in an IEnumerable<T>.
+```csharp
+        var numbers = new List<int> { 10, 20, 30, 40, 50 };
+
+        // Define a predicate to find the first number greater than 25
+        Func<int, bool> predicate = n => n > 25;
+
+        int index = numbers.IndexOf(predicate);
+
+        Console.WriteLine($"Zero based index of the first element greater than 25: {index}"); // Output: 2
+```
+
+## 🏗️ Building
+
+To build **EnhancedLinq** from source, follow these steps:
+
+1. Clone the repository.
+2. Open the solution in your preferred IDE or Code Editor.
+3. Build the desired project to restore dependencies and compile the project.
+
+## 🤝 Contributing
+I welcome contributions. If you have ideas for new features, improvements, or bug fixes, please check out the [contributing guidelines](./CONTRIBUTING.md) for more information.
+
+## 📜 License
+
+**EnhancedLinq** is licensed under the **Mozilla Public License 2.0**. Feel free to use and modify EnhancedLinq according to the terms of the license.
+
+## ❓ Questions?
+
+If you have any questions or experience any issues, please open an issue in the [repository's GitHub issues page](https://github.com/alastairlundy/enhancedlinq/issues).
+
+## 🔄 Alternatives
+
+While **EnhancedLinq** is a powerful tool, you may also want to explore these alternatives:
+
+- [SuperLinq](https://github.com/viceroypenguin/SuperLinq)
+- [MoreLinq](https://github.com/morelinq/MoreLINQ)

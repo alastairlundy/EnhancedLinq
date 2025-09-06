@@ -7,9 +7,10 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-using EnhancedLinq.Memory.Internals.Localizations;
+using System;
+using AlastairLundy.EnhancedLinq.Memory.Internals.Localizations;
 
-namespace EnhancedLinq.Memory.Immediate;
+namespace AlastairLundy.EnhancedLinq.Memory.Immediate;
 
 public static partial class EnhancedLinqMemoryImmediate
 {

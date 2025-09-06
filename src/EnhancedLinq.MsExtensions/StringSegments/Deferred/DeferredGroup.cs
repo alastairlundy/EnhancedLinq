@@ -10,22 +10,27 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerables;
+
+using AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerables;
+
 using Microsoft.Extensions.Primitives;
 
-namespace EnhancedLinq.MsExtensions.StringSegments.Deferred;
+namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred;
 
-public static class DeferredGroup
+/// <summary>
+/// 
+/// </summary>
+public static partial class EnhancedLinqSegmentDeferred
 {
-    
+
     /// <summary>
-    /// 
+    /// Groups the characters in the specified <see cref="StringSegment"/> according to a specified key selector function.
     /// </summary>
-    /// <param name="target"></param>
-    /// <param name="selector"></param>
-    /// <typeparam name="TKey"></typeparam>
-    /// <returns></returns>
-    /// <exception cref="ArgumentNullException"></exception>
+    /// <typeparam name="TKey">The type of the key returned by <paramref name="selector"/>.</typeparam>
+    /// <param name="target">The <see cref="StringSegment"/> whose characters to group.</param>
+    /// <param name="selector">A function to extract the key for each character.</param>
+    /// <returns>A sequence where each <see cref="IGrouping{TKey,TElement}"/> contains a sequence of characters that share the same key.</returns>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="target"/> is null or empty.</exception>
     public static IEnumerable<IGrouping<TKey, char>> GroupBy<TKey>(this StringSegment target, 
         Func<char, TKey> selector)
     {

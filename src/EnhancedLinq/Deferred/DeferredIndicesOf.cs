@@ -9,9 +9,9 @@
 
 using System;
 using System.Collections.Generic;
-using EnhancedLinq.Deferred.Enumerables;
+using AlastairLundy.EnhancedLinq.Deferred.Enumerables;
 
-namespace EnhancedLinq.Deferred;
+namespace AlastairLundy.EnhancedLinq.Deferred;
 
 public static partial class EnhancedLinqDeferred
 {
@@ -20,7 +20,7 @@ public static partial class EnhancedLinqDeferred
     /// </summary>
     /// <param name="source">The sequence to be searched.</param>
     /// <param name="target">The item to search for.</param>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">The type of the elements in the source sequence.</typeparam>
     /// <returns>The indices if the object is found; an empty sequence otherwise.</returns>
     public static IEnumerable<int> IndicesOf<T>(this IEnumerable<T> source, T target) where T : notnull
     {
@@ -34,7 +34,7 @@ public static partial class EnhancedLinqDeferred
     /// </summary>
     /// <param name="source">The sequence to be searched.</param>
     /// <param name="selector"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">The type of the elements in the source sequence.</typeparam>
     /// <returns>The indices if one or more elements matching the predicate is found; an empty sequence otherwise.</returns>
     public static IEnumerable<int> IndicesOf<T>(this IEnumerable<T> source, Func<T, bool> selector)
     {

@@ -9,20 +9,24 @@
 
 using System;
 using System.Collections.Concurrent;
-using EnhancedLinq.Internals.Localizations;
 
-namespace EnhancedLinq.Immediate.Concurrent.Ranges;
+using AlastairLundy.EnhancedLinq.Internals.Localizations;
 
+namespace AlastairLundy.EnhancedLinq.Immediate.Concurrent.Ranges;
+
+/// <summary>
+/// Provides extension methods for retrieving ranges of elements from concurrent collections.
+/// </summary>
 public static partial class EnhancedLinqImmediateConcurrentRange
 {
     /// <summary>
-    /// Retrieves the specified range of elements from the collection.
+    /// Retrieves a range of elements from the specified concurrent collection, starting at the given index and containing the specified number of elements.
     /// </summary>
-    /// <param name="collection">The producer-consumer collection to retrieve elements from.</param>
-    /// <param name="startIndex">The starting index (inclusive) of the range to retrieve.</param>
-    /// <param name="count">The number of elements in the range to retrieve.</param>
     /// <typeparam name="T">The type of elements contained within the collection.</typeparam>
-    /// <returns>A new sequence containing the specified range of elements.</returns>
+    /// <param name="collection">The producer-consumer collection to retrieve elements from.</param>
+    /// <param name="startIndex">The zero-based starting index (inclusive) of the range to retrieve.</param>
+    /// <param name="count">The number of elements in the range to retrieve.</param>
+    /// <returns>A new <see cref="IProducerConsumerCollection{T}"/> containing the specified range of elements.</returns>
     public static IProducerConsumerCollection<T> GetRange<T>(this IProducerConsumerCollection<T> collection,
         int startIndex, int count)
     {
@@ -70,12 +74,12 @@ public static partial class EnhancedLinqImmediateConcurrentRange
     }
 
     /// <summary>
-    /// 
+    /// Retrieves a range of elements from the specified concurrent collection, as defined by a <see cref="Range"/> object.
     /// </summary>
-    /// <param name="collection"></param>
-    /// <param name="range"></param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
+    /// <typeparam name="T">The type of elements contained within the collection.</typeparam>
+    /// <param name="collection">The producer-consumer collection to retrieve elements from.</param>
+    /// <param name="range">A <see cref="Range"/> object that specifies the start and end indexes of the range to retrieve.</param>
+    /// <returns>A new <see cref="IProducerConsumerCollection{T}"/> containing the specified range of elements.</returns>
     public static IProducerConsumerCollection<T> GetRange<T>(this IProducerConsumerCollection<T> collection,
         Range range) => GetRange(collection, range.Start.Value, range.End.Value);
 }
