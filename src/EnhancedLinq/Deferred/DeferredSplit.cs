@@ -23,7 +23,7 @@ public static partial class EnhancedLinqDeferred
     /// <param name="source">The sequence to split.</param>
     /// <param name="maximumCount">The maximum number of elements in each subsequence. Must be greater than zero.</param>
     /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
-    /// <returns>An enumerable of subsequences, each containing up to <paramref name="maximumCount"/> elements from the source sequence.</returns>
+    /// <returns>A sequence of subsequences, each containing up to <paramref name="maximumCount"/> elements from the source sequence.</returns>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null.</exception>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if <paramref name="maximumCount"/> is less than or equal to zero.</exception>
     public static IEnumerable<IEnumerable<TSource>> SplitByCount<TSource>(this IEnumerable<TSource> source, int maximumCount)
