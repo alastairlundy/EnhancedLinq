@@ -24,6 +24,12 @@ public static partial class EnhancedLinqMemoryImmediate
     /// <returns><c>true</c> if there are at least the specified number of elements in the <see cref="Span{T}"/>; otherwise, <c>false</c>.</returns>
     public static bool CountAtLeast<T>(this Span<T> source, int countToLookFor)
     {
+        if(source.IsEmpty)
+            throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptySpan);
+
+        if (countToLookFor < 0)
+            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero.Replace("{x}", countToLookFor.ToString()));
+
         return source.Length >= countToLookFor;
     }
 

@@ -25,6 +25,12 @@ public static partial class EnhancedLinqSegmentImmediate
     /// <returns>True if there are at most <paramref name="countToLookFor"/> number of elements, false otherwise.</returns>
     public static bool CountAtMost<TNumber>(this StringSegment source, int countToLookFor)
     {
+        if(StringSegment.IsNullOrEmpty(source))
+            throw new InvalidOperationException(Resources.Exceptions_Segments_InvalidOperation_EmptySequence);
+
+        if (countToLookFor < 0)
+            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero.Replace("{x}", countToLookFor.ToString()));
+        
         return source.Length <= countToLookFor;
     }
 

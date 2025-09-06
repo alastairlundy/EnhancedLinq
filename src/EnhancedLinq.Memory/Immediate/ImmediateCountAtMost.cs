@@ -24,6 +24,12 @@ public static partial class EnhancedLinqMemoryImmediate
     /// <returns>True if there are at most <paramref name="countToLookFor"/> number of elements, false otherwise.</returns>
     public static bool CountAtMost<T>(this Span<T> source, int countToLookFor)
     {
+        if(source.IsEmpty)
+            throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptySpan);
+
+        if (countToLookFor < 0)
+            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero.Replace("{x}", countToLookFor.ToString()));
+
         return source.Length <= countToLookFor;
     }
 
