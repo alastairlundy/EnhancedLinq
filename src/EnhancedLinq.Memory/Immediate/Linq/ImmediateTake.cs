@@ -8,8 +8,7 @@
  */
 
 using System;
-using System.Collections.Generic;
-using AlastairLundy.EnhancedLinq.Memory.Immediate.Ranges;
+
 using AlastairLundy.EnhancedLinq.Memory.Internals.Localizations;
 // ReSharper disable ReplaceSliceWithRangeIndexer
 
