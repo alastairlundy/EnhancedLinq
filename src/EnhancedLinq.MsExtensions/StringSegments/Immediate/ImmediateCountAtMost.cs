@@ -56,6 +56,7 @@ public static partial class EnhancedLinqSegmentImmediate
         for (int index = 0; index < source.Length; index++ )
         {
             char c = source[index];
+            
             if (selector(c))
                 currentCount += 1;
             
