@@ -52,11 +52,11 @@ public static partial class EnhancedLinqImmediate
     /// Determines whether there are at least a specified number of elements in the sequence that meet a given condition.
     /// </summary>
     /// <param name="source">The source sequence.</param>
-    /// <param name="selector">The predicate condition to check elements against.</param>
+    /// <param name="predicate">The predicate condition to check elements against.</param>
     /// <param name="countToLookFor">The minimum count to look for.</param>
     /// <typeparam name="T">The element type in the source sequence.</typeparam>
     /// <returns><c>true</c> if there are at least the specified number of elements that meet the condition; otherwise, <c>false</c>.</returns>
-    public static bool CountAtLeast<T>(this IEnumerable<T> source, Func<T, bool> selector,
+    public static bool CountAtLeast<T>(this IEnumerable<T> source, Func<T, bool> predicate,
         int countToLookFor)
     {
         ArgumentNullException.ThrowIfNull(source);
@@ -68,7 +68,7 @@ public static partial class EnhancedLinqImmediate
 
         foreach (T obj in source)
         {
-            if (selector(obj))
+            if (predicate(obj))
                 currentCount += 1;
             
             if(currentCount >= countToLookFor)

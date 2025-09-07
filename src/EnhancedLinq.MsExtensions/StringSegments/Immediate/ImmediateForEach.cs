@@ -33,7 +33,7 @@ public static partial class EnhancedLinqSegmentImmediate
     /// <summary>
     /// Applies the given func to each char in this <see cref="StringSegment"/>.
     /// </summary>
-    /// <param name="target">The <see cref="StringSegment"/> to have the selector applied to.</param>
+    /// <param name="target">The <see cref="StringSegment"/> to have the predicate applied to.</param>
     /// <param name="action">The func to apply to each element in the <see cref="StringSegment"/>.</param>
     public static void ForEach(this ref StringSegment target, Func<char, char> action)
     {

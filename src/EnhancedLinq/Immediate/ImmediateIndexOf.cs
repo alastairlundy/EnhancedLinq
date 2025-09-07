@@ -19,21 +19,21 @@ public static partial class EnhancedLinqImmediate
     /// Gets the first index of the first element that matches the predicate condition.
     /// </summary>
     /// <param name="source">The <see cref="IEnumerable{T}"/> to be searched.</param>
-    /// <param name="selector">The predicate condition to check elements of the sequence against.</param>
+    /// <param name="predicate">The predicate condition to check elements of the sequence against.</param>
     /// <typeparam name="T">The type of elements in the sequence.</typeparam>
     /// <returns>The first index of the first element in the sequence to match the predicate condition,
     /// if the sequence contains any elements that match the predicate condition, returns -1 otherwise.
     /// </returns>
-    public static int IndexOf<T>(this IEnumerable<T> source, Func<T, bool> selector)
+    public static int IndexOf<T>(this IEnumerable<T> source, Func<T, bool> predicate)
     {
         ArgumentNullException.ThrowIfNull(source, nameof(source));
-        ArgumentNullException.ThrowIfNull(selector, nameof(selector));
+        ArgumentNullException.ThrowIfNull(predicate, nameof(predicate));
      
         int index = 0;
 
         foreach (T item in source)
         {
-            if (selector(item))
+            if (predicate(item))
                 return index;
 
             index++;

@@ -23,14 +23,14 @@ public static partial class EnhancedLinqSegmentImmediate
     /// Returns whether any char in a StringSegment matches the predicate condition.
     /// </summary>
     /// <param name="target">The StringSegment to be searched.</param>
-    /// <param name="selector">The predicate func to be invoked on each char in the StringSegment.</param>
+    /// <param name="predicate">The predicate func to be invoked on each char in the StringSegment.</param>
     /// <returns>True if any char in the StringSegment matches the predicate; false otherwise.</returns>
-    public static bool Any(this StringSegment target, Func<char, bool> selector)
+    public static bool Any(this StringSegment target, Func<char, bool> predicate)
     {
         if(StringSegment.IsNullOrEmpty(target))
             throw new ArgumentNullException(nameof(target));
         
-        IEnumerable<bool> groups = target.GroupBy(selector)
+        IEnumerable<bool> groups = target.GroupBy(predicate)
             .Select(g => g.Any());
 
         bool? result = groups.FirstOrDefault();

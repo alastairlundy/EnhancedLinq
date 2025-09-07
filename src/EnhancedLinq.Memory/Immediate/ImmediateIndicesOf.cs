@@ -40,19 +40,19 @@ public static partial class EnhancedLinqMemoryImmediate
     }
 
     /// <summary>
-    /// Gets a collection of indices within the given span where items match the selector condition.
+    /// Gets a collection of indices within the given span where items match the predicate condition.
     /// </summary>
     /// <param name="source">The initial span to search.</param>
-    /// <param name="selector"></param>
+    /// <param name="predicate"></param>
     /// <typeparam name="T">The type of elements within the span.</typeparam>
-    /// <returns>A collection of indices that represent all items in the span that match the selector.</returns>
-    public static ICollection<int> IndicesOf<T>(this Span<T> source, Func<T, bool> selector) where T : notnull
+    /// <returns>A collection of indices that represent all items in the span that match the predicate.</returns>
+    public static ICollection<int> IndicesOf<T>(this Span<T> source, Func<T, bool> predicate) where T : notnull
     {
         List<int> indices = new List<int>();
         
         for (int index = 0; index < source.Length; index++)
         {
-            if(selector(source[index]))
+            if(predicate(source[index]))
                 indices.Add(index);
         }
         
