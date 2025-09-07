@@ -23,7 +23,7 @@ public static partial class EnhancedLinqDeferred
     /// <param name="source">The sequence to split.</param>
     /// <param name="maximumCount">The maximum number of elements in each subsequence. Must be greater than zero.</param>
     /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
-    /// <returns>A sequence of subsequences, each containing up to <paramref name="maximumCount"/> elements from the source sequence.</returns>
+    /// <returns>A sequence of sequences, each containing up to <paramref name="maximumCount"/> elements from the source sequence.</returns>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null.</exception>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if <paramref name="maximumCount"/> is less than or equal to zero.</exception>
     public static IEnumerable<IEnumerable<TSource>> SplitByCount<TSource>(this IEnumerable<TSource> source, int maximumCount)
@@ -41,7 +41,7 @@ public static partial class EnhancedLinqDeferred
     /// </summary>
     /// <param name="source">The sequence to split.</param>
     /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
-    /// <returns>An enumerable of subsequences, where the number of subsequences equals the number of logical processors on the current machine.</returns>
+    /// <returns>A sequence of sequences, where the number of subsequences equals the number of logical processors on the current machine.</returns>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null.</exception>
     public static IEnumerable<IEnumerable<TSource>> SplitByProcessorCount<TSource>(this IEnumerable<TSource> source)
     {
@@ -51,5 +51,24 @@ public static partial class EnhancedLinqDeferred
             throw new ArgumentNullException(nameof(source));
         
         return new SplitByEnumerableCountEnumerable<TSource>(source, Environment.ProcessorCount);
+    }
+
+    /// <summary>
+    /// Splits a sequence by a separator, into a sequence of sequences.
+    /// </summary>
+    /// <param name="source">The sequence to split.</param>
+    /// <param name="separator">The separator to split by.</param>
+    /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+    /// <returns>A sequence of sequences, each containing the elements before the separator was found.</returns>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null.</exception>
+    public static IEnumerable<IEnumerable<TSource>> SplitBy<TSource>(this IEnumerable<TSource> source,
+        TSource separator)
+    {
+        ArgumentNullException.ThrowIfNull(source, nameof(source));
+
+        if(source == null)
+            throw new ArgumentNullException(nameof(source));
+        
+        return new SplitBySeparatorEnumerable<TSource>(source, separator);
     }
 }
