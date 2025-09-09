@@ -13,7 +13,7 @@ For a comprehensive list of included methods, check out the following resources:
 **EnhancedLinq** comes with several packages tailored to your needs:
 
 - **`EnhancedLinq`**: The core package that enhances your LINQ experience.
-- **`EnhancedLinq.Memory`**: Specifically for `Span<T>` and `Memory<T>`, providing helpful immediate mode extensions.
+- **`EnhancedLinq.Memory`**: This package is specifically for `Span<T>` and `Memory<T>`, providing helpful immediate mode extensions.
 - **`EnhancedLinq.MsExtensions`**: Focused on `StringSegment` from `Microsoft.Extensions.Primitives`, with plans to potentially expand support for other Microsoft.Extensions packages.
 
 ### 🛠️ Installing EnhancedLinq
@@ -111,7 +111,7 @@ If you have any questions or experience any issues, please open an issue in the 
 
 ## 🔄 Alternatives
 
-While **EnhancedLinq** is a powerful tool, you may also want to explore these alternatives:
+While **EnhancedLinq** is a powerful tool, you may wish to explore these alternatives:
 
 - [SuperLinq](https://github.com/viceroypenguin/SuperLinq)
 - [MoreLinq](https://github.com/morelinq/MoreLINQ)
