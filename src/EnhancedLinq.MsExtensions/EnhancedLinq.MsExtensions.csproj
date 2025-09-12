@@ -10,11 +10,9 @@
         <Copyright>Copyright (c) 2025 Alastair Lundy</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/Enhancedlinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>    Improve Segment Any and All predicate methods @alastairlundy (#17)
-    Add Immediate CountAtMost and CountAtLeast for Memory and MsExtensions packages @alastairlundy (#16)
-    Update DotPrimitives.Collections from 3.1.0 to 3.2.0 @alastairlundy (#15)
-    Add Immediate ForEach for Main package and MsExtensions package @alastairlundy (#13)
-    Add missing xml doc comments @alastairlundy (#10)</PackageReleaseNotes>
+        <PackageReleaseNotes>Add Segment immediate Split(char) @alastairlundy (#21)
+Updated DotExtensions.MsExtensions from 8.2.0 to 8.3.1
+Updated Microsoft.Extensions.Primitives from 9.0.8 to 9.0.9</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <PackageId>AlastairLundy.EnhancedLinq.MsExtensions</PackageId>
@@ -23,7 +21,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>0.3.0</Version>
+        <Version>0.4.0</Version>
         <PackageTags>linq, enhanced-linq, enhanced, stringsegment, extensions</PackageTags>
         <Description>LINQ style Deferred and Immediate enumeration mode extension methods for StringSegments and potentially other Microsoft.Extension.* packages in the future . </Description>
         <AssemblyName>AlastairLundy.EnhancedLinq.MsExtensions</AssemblyName>
@@ -31,9 +29,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="AlastairLundy.DotExtensions.MsExtensions" Version="8.2.0" />
+      <PackageReference Include="AlastairLundy.DotExtensions.MsExtensions" Version="8.3.1" />
       <PackageReference Include="AlastairLundy.DotPrimitives.Collections" Version="3.2.0" />
-      <PackageReference Include="Microsoft.Extensions.Primitives" Version="9.0.8" />
+      <PackageReference Include="Microsoft.Extensions.Primitives" Version="9.0.9" />
     </ItemGroup>
 
     <ItemGroup>

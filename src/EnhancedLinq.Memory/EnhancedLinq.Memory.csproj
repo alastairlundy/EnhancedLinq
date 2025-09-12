@@ -13,10 +13,8 @@
         <RepositoryUrl>https://github.com/alastairlundy/EnhancedLinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>linq, enhanced-linq, enhanced, extensions, memory, extensions</PackageTags>
-        <PackageReleaseNotes>    Add Immediate CountAtMost and CountAtLeast for Memory and MsExtensions packages @alastairlundy (#16)
-    Update DotPrimitives.Collections from 3.1.0 to 3.2.0 @alastairlundy (#15)
-    Disable implicit usings for EnhancedLinq.Memory @alastairlundy (#12)
-    Add missing xml doc comments @alastairlundy (#10)</PackageReleaseNotes>
+        <PackageReleaseNotes>Add Span Take, TakeLast, TakeWhile and improve folder organisation @alastairlundy (#23)
+Update DotExtensions from 8.2.0 to 8.3.0</PackageReleaseNotes>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -24,14 +22,14 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>0.3.0</Version>
+        <Version>0.4.0</Version>
         <AssemblyName>AlastairLundy.EnhancedLinq.Memory</AssemblyName>
         <PackageId>AlastairLundy.EnhancedLinq.Memory</PackageId>
         <RootNamespace>AlastairLundy.EnhancedLinq.Memory</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AlastairLundy.DotExtensions" Version="8.2.0" />
+        <PackageReference Include="AlastairLundy.DotExtensions" Version="8.3.0" />
         <PackageReference Include="AlastairLundy.DotPrimitives.Collections" Version="3.2.0" />
     </ItemGroup>
 
