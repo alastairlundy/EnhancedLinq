@@ -9,7 +9,7 @@
 
 using System;
 using System.Collections.Generic;
-
+using AlastairLundy.DotPrimitives.Collections.Enumerables;
 using AlastairLundy.EnhancedLinq.Deferred.Enumerables;
 using AlastairLundy.EnhancedLinq.Deferred.Enumerators;
 
@@ -91,6 +91,7 @@ public static partial class EnhancedLinqDeferred
         if(source == null)
             throw new ArgumentNullException(nameof(source));
 
-        return new HelperEnumerable<IEnumerable<TSource>>(new SplitByPredicateEnumerator<TSource>(source, predicate));
+        return new CustomEnumeratorEnumerable<IEnumerable<TSource>>(
+            new SplitByPredicateEnumerator<TSource>(source, predicate));
     }
 }
