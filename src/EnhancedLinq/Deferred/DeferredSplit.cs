@@ -11,6 +11,9 @@ using System;
 using System.Collections.Generic;
 
 using AlastairLundy.EnhancedLinq.Deferred.Enumerables;
+using AlastairLundy.EnhancedLinq.Deferred.Enumerators;
+
+using AlastairLundy.EnhancedLinq.Internals;
 
 namespace AlastairLundy.EnhancedLinq.Deferred;
 
@@ -70,5 +73,24 @@ public static partial class EnhancedLinqDeferred
             throw new ArgumentNullException(nameof(source));
         
         return new SplitBySeparatorEnumerable<TSource>(source, separator);
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="source">The sequence to split.</param>
+    /// <param name="predicate"></param>
+    /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+    /// <returns></returns>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null.</exception>
+    public static IEnumerable<IEnumerable<TSource>> SplitBy<TSource>(this IEnumerable<TSource> source,
+        Func<TSource, bool> predicate)
+    {
+        ArgumentNullException.ThrowIfNull(source, nameof(source));
+
+        if(source == null)
+            throw new ArgumentNullException(nameof(source));
+
+        return new HelperEnumerable<IEnumerable<TSource>>(new SplitByPredicateEnumerator<TSource>(source, predicate));
     }
 }
