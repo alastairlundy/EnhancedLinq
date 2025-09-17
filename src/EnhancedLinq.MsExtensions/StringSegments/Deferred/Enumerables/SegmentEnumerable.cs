@@ -9,7 +9,9 @@
 
 using System.Collections;
 using System.Collections.Generic;
+
 using AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerators;
+
 using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerables;
