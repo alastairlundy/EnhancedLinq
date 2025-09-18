@@ -27,7 +27,6 @@ public static partial class EnhancedLinqImmediateRange
     /// <param name="count">The number of elements to be removed.
     /// If greater than or equal to the remaining elements at start index, an IndexOutOfRangeException is thrown.</param>
     /// <typeparam name="T">The type of elements in this list.</typeparam>
-    /// <returns>This list with the specified range of elements removed.</returns>
     /// <exception cref="IndexOutOfRangeException">Thrown if the start index is out of range for this list or if the count exceeds available elements from that index.</exception>
     /// <exception cref="ArgumentException">Thrown if the start index is negative.</exception>
     public static void RemoveRange<T>(this IList<T> list, int startIndex, int count)
