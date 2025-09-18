@@ -29,7 +29,7 @@ Updated Microsoft.Extensions.Primitives from 9.0.8 to 9.0.9</PackageReleaseNotes
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="AlastairLundy.DotExtensions.MsExtensions" Version="8.3.1" />
+      <PackageReference Include="AlastairLundy.DotExtensions.MsExtensions" Version="8.4.0" />
       <PackageReference Include="AlastairLundy.DotPrimitives.Collections" Version="3.3.0" />
       <PackageReference Include="Microsoft.Extensions.Primitives" Version="9.0.9" />
     </ItemGroup>
