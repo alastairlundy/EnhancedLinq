@@ -9,6 +9,9 @@
 
 using System;
 using System.Collections.Generic;
+using AlastairLundy.DotExtensions.Collections;
+using AlastairLundy.EnhancedLinq.Immediate;
+using AlastairLundy.EnhancedLinq.Immediate.Linq;
 using AlastairLundy.EnhancedLinq.Internals.Localizations;
 
 // ReSharper disable CheckNamespace
@@ -17,6 +20,51 @@ namespace EnhancedLinq.Immediate.Ranges;
 
 public static partial class EnhancedLinqImmediateRange
 {
+    /// <summary>
+    /// Removes a specified range of elements from this collection.
+    /// </summary>
+    /// <param name="source">The collection from which to remove elements.</param>
+    /// <param name="startIndex">The zero-based index (inclusive) where the removal starts.
+    /// If less than 0, an ArgumentException is thrown.</param>
+    /// <param name="count">The number of elements to be removed.
+    /// If greater than or equal to the remaining elements at start index, an IndexOutOfRangeException is thrown.</param>
+    /// <typeparam name="T">The type of elements in this collection.</typeparam>
+    /// <exception cref="IndexOutOfRangeException">Thrown if the start index is out of range for this collection or if the count exceeds available elements from that index.</exception>
+    /// <exception cref="ArgumentException">Thrown if the start index is negative.</exception>
+    public static void RemoveRange<T>(this ICollection<T> source, int startIndex, int count)
+    {
+        if (source.IsReadOnly || source is T[])
+            throw new NotSupportedException();
+        
+        if (startIndex >= source.Count || startIndex < 0 )
+            throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
+                .Replace("{x}", $"{startIndex}")
+                .Replace("{y}", "0")
+                .Replace("{z}", $"{source.Count}"));
+
+        if(count < 0)
+            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
+
+        if ((source.Count < startIndex + count) == false)
+            throw new ArgumentException();
+        
+        if (startIndex > 0)
+        {
+            ICollection<T> newCollection = source.Take(startIndex - 1);
+                
+            source.Clear();
+            source.AddRange(newCollection);
+        }
+        else
+        {
+            int itemsToKeep = Math.Abs(source.LastIndex() - count);
+                
+            ICollection<T> newCollection = source.TakeLast(itemsToKeep);
+                
+            source.Clear();
+            source.AddRange(newCollection);
+        }
+    }
     
     /// <summary>
     /// Removes a specified range of elements from this list.
