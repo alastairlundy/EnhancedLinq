@@ -18,7 +18,7 @@ public static partial class EnhancedLinqImmediateRange
     /// <summary>
     /// Inserts a specified range of elements from another sequence into this list at a specified position.
     /// </summary>
-    /// <param name="list">The list into which to insert the new elements.</param>
+    /// <param name="source">The list into which to insert the new elements.</param>
     /// <param name="index">The zero-based index where the new elements will be inserted. If less than 0, values are inserted at the end of the list.</param>
     /// <param name="values">The sequence of elements to be inserted into the list.</param>
     /// <typeparam name="T">The type of elements in the value sequence and the list.</typeparam>
