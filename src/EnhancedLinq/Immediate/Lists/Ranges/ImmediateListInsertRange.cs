@@ -24,27 +24,30 @@ public static partial class EnhancedLinqImmediateRange
     /// <typeparam name="T">The type of elements in the value sequence and the list.</typeparam>
     /// <exception cref="IndexOutOfRangeException">Thrown if the specified index is out of range for this list.</exception>
     /// <exception cref="OverflowException">Thrown if the list overflows with the new elements.</exception>
-    public static void InsertRange<T>(this IList<T> list, int index, IEnumerable<T> values)
+    public static void InsertRange<T>(this IList<T> source, int index, IEnumerable<T> values)
     {
-        if (index < 0 || index > list.Count)
+        ArgumentNullException.ThrowIfNull(source);
+
+        
+        if (index < 0 || index > source.Count)
         {
             throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
                 .Replace("{x}", $"{index}")
                 .Replace("{y}", $"0")
-                .Replace("z", $"{list.Count}"));
+                .Replace("z", $"{source.Count}"));
         }
             
         int newIndex = index;
 
         foreach (T value in values)
         {
-            if (newIndex >= list.Count)
+            if (newIndex >= source.Count)
             {
-                list.Add(value);       
+                source.Add(value);       
             }
             else
             {
-                list.Insert(newIndex, value);
+                source.Insert(newIndex, value);
             }
                 
             newIndex++;
