@@ -9,7 +9,9 @@
 
 using System;
 using System.Collections.Generic;
+
 using AlastairLundy.DotExtensions.Collections;
+
 using AlastairLundy.EnhancedLinq.Immediate;
 using AlastairLundy.EnhancedLinq.Immediate.Linq;
 using AlastairLundy.EnhancedLinq.Internals.Localizations;
