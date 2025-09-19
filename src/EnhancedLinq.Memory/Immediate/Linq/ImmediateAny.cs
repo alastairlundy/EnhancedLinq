@@ -10,13 +10,21 @@
 using System;
 using System.Linq;
 
-using AlastairLundy.DotExtensions.Memory.Spans;
-
 namespace AlastairLundy.EnhancedLinq.Memory.Immediate;
 
 public static partial class EnhancedLinqMemoryImmediate
 {
-    
+    /// <summary>
+    /// Returns whether there are any items in the span.
+    /// </summary>
+    /// <typeparam name="T">The type of items stored in the span.</typeparam>
+    /// <param name="target">The Span to be searched.</param>
+    /// <returns></returns>
+    public static bool Any<T>(this Span<T> target)
+    {
+        return target.Length > 0;
+    }
+
     /// <summary>
     /// Returns whether any item in a Span matches the predicate condition.
     /// </summary>
@@ -27,10 +35,10 @@ public static partial class EnhancedLinqMemoryImmediate
     public static bool Any<T>(this Span<T> target, Func<T, bool> predicate)
     {
         Span<bool> groups = (from c in target
-                group c by predicate.Invoke(c)
+                             group c by predicate.Invoke(c)
                 into g
-                where g.Key
-                select g.Any());
+                             where g.Key
+                             select g.Any());
 
         bool? result = groups.FirstOrDefault();
 
