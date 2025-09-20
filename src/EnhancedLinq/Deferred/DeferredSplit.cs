@@ -73,8 +73,7 @@ public static partial class EnhancedLinqDeferred
         if(source == null)
             throw new ArgumentNullException(nameof(source));
         
-        return new CustomEnumeratorEnumerable<IEnumerable<TSource>>(
-            new SplitBySeparatorEnumerator<TSource>(source, separator));
+        return SplitBy(source, x => x is not null && x.Equals(separator));
     }
     
     /// <summary>
