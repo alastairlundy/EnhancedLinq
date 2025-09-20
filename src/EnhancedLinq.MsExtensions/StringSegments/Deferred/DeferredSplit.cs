@@ -34,7 +34,10 @@ public static partial class EnhancedLinqSegmentDeferred
         if (source.Contains(separator) == false)
             return [];
         
-        return new SegmentSplitCharEnumerable(source, separator);
+        if (source.Contains(separator) == false)
+            return [source];
+
+        return SplitBy(source, x => x == separator);
     }
     
     /// <summary>
