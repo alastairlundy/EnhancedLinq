@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 namespace AlastairLundy.EnhancedLinq.Deferred.Enumerators;
 
-internal class SplitBySeparatorEnumerator<T> : IEnumerator<IEnumerable<T>>
+internal class SplitByPredicateEnumerator<T> : IEnumerator<IEnumerable<T>>
 {
     private readonly IEnumerable<T> _source;
-    private readonly T _separator;
+    private readonly Func<T, bool> _predicate;
 
     private IEnumerator<T> _enumerator;
     
@@ -15,10 +15,10 @@ internal class SplitBySeparatorEnumerator<T> : IEnumerator<IEnumerable<T>>
     
     private int _state;
     
-    internal SplitBySeparatorEnumerator(IEnumerable<T> source, T separator)
+    internal SplitByPredicateEnumerator(IEnumerable<T> source, Func<T, bool> predicate)
     {
+        _predicate = predicate;
         _source = source;
-        _separator = separator;
         _state = 1;
     }
     
@@ -37,10 +37,7 @@ internal class SplitBySeparatorEnumerator<T> : IEnumerator<IEnumerable<T>>
                 
                 while(_enumerator.MoveNext())
                 {
-                    bool split = false;
-                    
-                    if(_enumerator.Current is not null)
-                        split = _enumerator.Current.Equals(_separator);
+                    bool split = _predicate(_enumerator.Current);
                     
                     if (split == false)
                     {
@@ -68,12 +65,12 @@ internal class SplitBySeparatorEnumerator<T> : IEnumerator<IEnumerable<T>>
 
     public void Reset()
     {
-        throw new NotSupportedException();
+       throw new NotSupportedException();
     }
 
     public IEnumerable<T> Current => _current;
 
-    object? IEnumerator.Current => _current;
+    object? IEnumerator.Current => Current;
 
     public void Dispose()
     {

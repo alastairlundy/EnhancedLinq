@@ -10,7 +10,7 @@
 using System;
 using System.Collections.Generic;
 using AlastairLundy.DotPrimitives.Collections.Enumerables;
-using AlastairLundy.EnhancedLinq.Deferred.Enumerables;
+
 using AlastairLundy.EnhancedLinq.Deferred.Enumerators;
 
 namespace AlastairLundy.EnhancedLinq.Deferred;
@@ -51,14 +51,15 @@ public static partial class EnhancedLinqDeferred
 
         if(source == null)
             throw new ArgumentNullException(nameof(source));
-
+        
         return new CustomEnumeratorEnumerable<IEnumerable<TSource>>(
-            new SplitByEnumerableCountEnumerator<TSource>(source, Environment.ProcessorCount));
+            new SplitByEnumerableCountEnumerator<TSource>(source, Environment.ProcessorCount)); 
     }
 
     /// <summary>
     /// Splits a sequence by a separator, into a sequence of sequences.
-    /// </summary>
+    /// </summary>    /// <returns>A sequence of sequences, each containing the elements before the separator was found.</returns>
+
     /// <param name="source">The sequence to split.</param>
     /// <param name="separator">The separator to split by.</param>
     /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
@@ -71,8 +72,27 @@ public static partial class EnhancedLinqDeferred
 
         if(source == null)
             throw new ArgumentNullException(nameof(source));
+        
+        return SplitBy(source, x => x is not null && x.Equals(separator));
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="source">The sequence to split.</param>
+    /// <param name="predicate"></param>
+    /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
+    /// <returns></returns>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null.</exception>
+    public static IEnumerable<IEnumerable<TSource>> SplitBy<TSource>(this IEnumerable<TSource> source,
+        Func<TSource, bool> predicate)
+    {
+        ArgumentNullException.ThrowIfNull(source, nameof(source));
+
+        if(source == null)
+            throw new ArgumentNullException(nameof(source));
 
         return new CustomEnumeratorEnumerable<IEnumerable<TSource>>(
-            new SplitBySeparatorEnumerator<TSource>(source, separator));
+            new SplitByPredicateEnumerator<TSource>(source, predicate));
     }
 }

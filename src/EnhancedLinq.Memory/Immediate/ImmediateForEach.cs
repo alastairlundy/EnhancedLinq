@@ -9,9 +9,7 @@
 
 using System;
 
-using AlastairLundy.DotExtensions.Memory;
-
-namespace EnhancedLinq.Memory.Immediate;
+namespace AlastairLundy.EnhancedLinq.Memory.Immediate;
 
 public static partial class EnhancedLinqMemoryImmediate
 {

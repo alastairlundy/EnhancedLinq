@@ -12,7 +12,10 @@ using System.Collections.Generic;
 
 using AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 
+using AlastairLundy.DotPrimitives.Collections.Enumerables;
+
 using AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerables;
+using AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerators;
 
 using Microsoft.Extensions.Primitives;
 
@@ -31,7 +34,10 @@ public static partial class EnhancedLinqSegmentDeferred
         if (StringSegment.IsNullOrEmpty(source))
             throw new ArgumentException();
         
-        return new SegmentSplitCharEnumerable(source, separator);
+        if (source.Contains(separator) == false)
+            return [source];
+
+        return SplitBy(source, x => x == separator);
     }
     
     /// <summary>
@@ -50,5 +56,21 @@ public static partial class EnhancedLinqSegmentDeferred
             return [source];
         
         return new SegmentSplitEnumerable(source, separator);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="source">The <see cref="StringSegment"/> to split.</param>
+    /// <param name="predicate"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException">Thrown if <paramref name="source"/> is null or empty.</exception>
+    public static IEnumerable<StringSegment> SplitBy(this StringSegment source, Func<char, bool> predicate)
+    {
+        if (StringSegment.IsNullOrEmpty(source))
+            throw new ArgumentException();
+
+        return new CustomEnumeratorEnumerable<StringSegment>
+            (new SegmentSplitPredicateEnumerator(source, predicate));
     }
 }

@@ -9,7 +9,6 @@
 
 using System;
 using System.Diagnostics.CodeAnalysis;
-using EnhancedLinq.Memory.Immediate;
 
 namespace AlastairLundy.EnhancedLinq.Memory.Immediate;
 
