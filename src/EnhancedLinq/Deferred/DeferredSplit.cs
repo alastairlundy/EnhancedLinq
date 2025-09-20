@@ -58,7 +58,8 @@ public static partial class EnhancedLinqDeferred
 
     /// <summary>
     /// Splits a sequence by a separator, into a sequence of sequences.
-    /// </summary>
+    /// </summary>    /// <returns>A sequence of sequences, each containing the elements before the separator was found.</returns>
+
     /// <param name="source">The sequence to split.</param>
     /// <param name="separator">The separator to split by.</param>
     /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
