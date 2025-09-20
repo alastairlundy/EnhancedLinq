@@ -10,8 +10,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using AlastairLundy.DotPrimitives.Collections.Enumerables;
 using AlastairLundy.EnhancedLinq.Deferred.Enumerables;
+using AlastairLundy.EnhancedLinq.Deferred.Enumerators.Indices;
 
 namespace AlastairLundy.EnhancedLinq.Deferred;
 
@@ -29,7 +30,7 @@ public static partial class EnhancedLinqDeferred
     {
         ArgumentNullException.ThrowIfNull(source);
         
-        return new IndicesEnumerable<T>(source, x => x.Equals(target))
+        return new CustomEnumeratorEnumerable<int>(new IndicesEnumerator<T>(source, x => x.Equals(target)))
             .Take(count);
     }
 
@@ -37,15 +38,15 @@ public static partial class EnhancedLinqDeferred
     /// Gets the first <paramref name="count"/> indices of the elements that match the predicate within a sequence.
     /// </summary>
     /// <param name="source">The sequence to be searched.</param>
-    /// <param name="selector">The selector to use when comparing elements in the source.</param>
+    /// <param name="predicate">The predicate to use when comparing elements in the source.</param>
     /// <param name="count">The maximum number of indices to return.</param>
     /// <typeparam name="T">The type of the elements in the source sequence.</typeparam>
     /// <returns>A sequence of the first <paramref name="count"/> indices if one or more elements matching the predicate is found; an empty sequence otherwise.</returns>
-    public static IEnumerable<int> FirstNIndicesOf<T>(this IEnumerable<T> source, Func<T, bool> selector, int count)
+    public static IEnumerable<int> FirstNIndicesOf<T>(this IEnumerable<T> source, Func<T, bool> predicate, int count)
     {
         ArgumentNullException.ThrowIfNull(source);
         
-        return new IndicesEnumerable<T>(source, selector)
+        return new CustomEnumeratorEnumerable<int>(new IndicesEnumerator<T>(source, predicate))
             .Take(count);
     }
 
@@ -62,7 +63,7 @@ public static partial class EnhancedLinqDeferred
     {
         ArgumentNullException.ThrowIfNull(str);
         
-        return new IndicesEnumerable<char>(str, x => x.Equals(c))
+        return new CustomEnumeratorEnumerable<int>(new IndicesEnumerator<char>(str, x => x.Equals(c)))
             .Take(count);
     }
 
@@ -78,7 +79,7 @@ public static partial class EnhancedLinqDeferred
         ArgumentException.ThrowIfNullOrEmpty(str);
         ArgumentException.ThrowIfNullOrEmpty(substring);
         
-        return new StringIndicesEnumerable(str, substring)
+        return new CustomEnumeratorEnumerable<int>(new StringIndicesEnumerator(str, substring))
             .Take(count);
     }
     

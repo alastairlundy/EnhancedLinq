@@ -9,8 +9,9 @@
 
 using System;
 using System.Collections.Generic;
-
+using AlastairLundy.DotPrimitives.Collections.Enumerables;
 using AlastairLundy.EnhancedLinq.Deferred.Enumerables;
+using AlastairLundy.EnhancedLinq.Deferred.Enumerators;
 
 namespace AlastairLundy.EnhancedLinq.Deferred;
 
@@ -33,7 +34,8 @@ public static partial class EnhancedLinqDeferred
         if(maximumCount <= 0)
             throw new ArgumentOutOfRangeException(nameof(maximumCount));
 
-        return new SplitByItemCountEnumerable<TSource>(source, maximumItemCount: maximumCount);
+        return new CustomEnumeratorEnumerable<IEnumerable<TSource>>(
+            new SplitByItemCountEnumerator<TSource>(source, maximumCount));
     }
 
     /// <summary>
@@ -49,8 +51,9 @@ public static partial class EnhancedLinqDeferred
 
         if(source == null)
             throw new ArgumentNullException(nameof(source));
-        
-        return new SplitByEnumerableCountEnumerable<TSource>(source, Environment.ProcessorCount);
+
+        return new CustomEnumeratorEnumerable<IEnumerable<TSource>>(
+            new SplitByEnumerableCountEnumerator<TSource>(source, Environment.ProcessorCount));
     }
 
     /// <summary>
@@ -68,7 +71,8 @@ public static partial class EnhancedLinqDeferred
 
         if(source == null)
             throw new ArgumentNullException(nameof(source));
-        
-        return new SplitBySeparatorEnumerable<TSource>(source, separator);
+
+        return new CustomEnumeratorEnumerable<IEnumerable<TSource>>(
+            new SplitBySeparatorEnumerator<TSource>(source, separator));
     }
 }
