@@ -9,7 +9,10 @@
 
 using System;
 using System.Collections.Generic;
-using AlastairLundy.EnhancedLinq.Deferred.Enumerables;
+
+using AlastairLundy.DotPrimitives.Collections.Enumerables;
+
+using AlastairLundy.EnhancedLinq.Deferred.Enumerators.Indices;
 
 namespace AlastairLundy.EnhancedLinq.Deferred;
 
@@ -26,7 +29,7 @@ public static partial class EnhancedLinqDeferred
     {
         ArgumentNullException.ThrowIfNull(source);
         
-        return new IndicesEnumerable<T>(source, x => x.Equals(target));
+        return new CustomEnumeratorEnumerable<int>(new IndicesEnumerator<T>(source, x => x.Equals(target)));
     }
 
     /// <summary>
@@ -40,7 +43,7 @@ public static partial class EnhancedLinqDeferred
     {
         ArgumentNullException.ThrowIfNull(source);
         
-        return new IndicesEnumerable<T>(source, predicate);
+        return new CustomEnumeratorEnumerable<int>(new IndicesEnumerator<T>(source, predicate));
     }
     
     /// <summary>
@@ -55,7 +58,7 @@ public static partial class EnhancedLinqDeferred
     {
         ArgumentNullException.ThrowIfNull(str);
         
-        return new IndicesEnumerable<char>(str, x => x.Equals(c));
+        return new CustomEnumeratorEnumerable<int>(new IndicesEnumerator<char>(str, x => x.Equals(c)));
     }
     
     /// <summary>
@@ -69,7 +72,7 @@ public static partial class EnhancedLinqDeferred
         ArgumentException.ThrowIfNullOrEmpty(str);
         ArgumentException.ThrowIfNullOrEmpty(substring);
         
-        return new StringIndicesEnumerable(str, substring);
+        return new CustomEnumeratorEnumerable<int>(new StringIndicesEnumerator(str, substring));
     }
 
 }

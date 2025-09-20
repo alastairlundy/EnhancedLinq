@@ -9,7 +9,9 @@
 
 using System;
 using System.Collections.Generic;
+using AlastairLundy.DotPrimitives.Collections.Enumerables;
 using AlastairLundy.EnhancedLinq.Deferred.Enumerables;
+using AlastairLundy.EnhancedLinq.Deferred.Enumerators;
 
 namespace AlastairLundy.EnhancedLinq.Deferred;
 
@@ -32,7 +34,7 @@ public static partial class EnhancedLinqDeferred
     {
         ArgumentNullException.ThrowIfNull(source);
         ArgumentNullException.ThrowIfNull(indices);
-        
-        return new ElementsAtEnumerable<TSource>(source, indices);
+
+        return new CustomEnumeratorEnumerable<TSource>(new ElementsAtEnumerator<TSource>(source, indices));
     }
 }
