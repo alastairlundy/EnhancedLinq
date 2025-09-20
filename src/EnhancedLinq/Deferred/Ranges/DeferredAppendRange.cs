@@ -26,6 +26,7 @@ public static partial class EnhancedLinqDeferredRange
     /// <param name="source">The sequence to add items to.</param>
     /// <param name="toBeAppended">The elements to add to the sequence.</param>
     /// <typeparam name="TSource">The type of element in the sequence and elements being added.</typeparam>
+    /// <returns></returns>
     public static IEnumerable<TSource> AppendRange<TSource>(this IEnumerable<TSource> source,
         IEnumerable<TSource> toBeAppended)
     { 

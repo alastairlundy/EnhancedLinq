@@ -23,7 +23,7 @@ public static partial class EnhancedLinqDeferredRange
     /// </summary>
     /// <param name="source">The IEnumerable to have items removed from.</param>
     /// <param name="itemsToBeRemoved">The items to be removed.</param>
-    /// <typeparam name="TSource">The type of elements stored in the IEnumerable.</typeparam>
+    /// <typeparam name="TSource">The type of elements stored in the sequence.</typeparam>
     /// <returns>The new IEnumerable with the specified items removed.</returns>
     public static IEnumerable<TSource> RemoveRange<TSource>(this IEnumerable<TSource> source, IEnumerable<TSource> itemsToBeRemoved)
     {
