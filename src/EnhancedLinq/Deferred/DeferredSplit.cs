@@ -27,7 +27,7 @@ public static partial class EnhancedLinqDeferred
     /// <returns>A sequence of sequences, each containing up to <paramref name="maximumCount"/> elements from the source sequence.</returns>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null.</exception>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if <paramref name="maximumCount"/> is less than or equal to zero.</exception>
-    public static IEnumerable<IEnumerable<TSource>> SplitByCount<TSource>(this IEnumerable<TSource> source, int maximumCount)
+    public static IEnumerable<IEnumerable<TSource>> SplitByItemCount<TSource>(this IEnumerable<TSource> source, int maximumCount)
     {
         ArgumentNullException.ThrowIfNull(source, nameof(source));
         

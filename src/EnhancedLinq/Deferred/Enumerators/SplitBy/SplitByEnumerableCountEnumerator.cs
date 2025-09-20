@@ -15,65 +15,30 @@ namespace AlastairLundy.EnhancedLinq.Deferred.Enumerators;
 
 internal class SplitByEnumerableCountEnumerator<T> : IEnumerator<IEnumerable<T>>
 {
-    private readonly IEnumerable<T> _source;
-    private readonly int _maxEnumerableCount;
-    
-    private IEnumerable<T> _current;
-
-    private IEnumerator<T> _enumerator;
-
-    private int _state;
-    
-    private List<T> _currentEnumerable;
+    private readonly IEnumerator<IEnumerable<T>> _enumerator;
     
     public SplitByEnumerableCountEnumerator(IEnumerable<T> source, int maxEnumerableCount)
     {
-        _source = new List<T>(source);
-        _maxEnumerableCount = maxEnumerableCount;
-        _state = 1;
+       List<T> list = new List<T>(source);
+       
+        double maxItems = Convert.ToDouble(list.Count / maxEnumerableCount);
+        int maxItemCount;
+        
+        if (maxItems % 1 != 0)
+        {
+            maxItemCount = Convert.ToInt32(maxItems) + 1;
+        }
+        else
+        {
+            maxItemCount = Convert.ToInt32(maxItems);
+        }
+        
+        _enumerator = new SplitByItemCountEnumerator<T>(list, maxItemCount, maxEnumerableCount);
     }
     
     public bool MoveNext()
     {
-        if (_state == 1)
-        {
-            _enumerator = _source.GetEnumerator();
-            _currentEnumerable = new();
-
-            _state = 2;
-        }
-
-        if (_state == 2)
-        {
-            while(_enumerator.MoveNext())
-            {
-                if (_currentEnumerable.Count <= _maxEnumerableCount)
-                {
-                    try
-                    {
-                        _currentEnumerable.Add(_enumerator.Current);
-                    }
-                    catch
-                    {
-                        Dispose();
-                        throw;
-                    }
-                }
-                else
-                {
-                    List<T> list = new List<T>();
-                    list.AddRange(_currentEnumerable);
-                
-                    _current = list;
-                    _currentEnumerable.Clear();
-                    return true;
-                }
-            }
-        }
-
-        Dispose();
-        _state = -1;
-        return false;
+       return _enumerator.MoveNext();
     }
 
     public void Reset()
@@ -81,9 +46,9 @@ internal class SplitByEnumerableCountEnumerator<T> : IEnumerator<IEnumerable<T>>
         throw new NotSupportedException();
     }
 
-    IEnumerable<T> IEnumerator<IEnumerable<T>>.Current => _current;
+    IEnumerable<T> IEnumerator<IEnumerable<T>>.Current => _enumerator.Current;
 
-    object? IEnumerator.Current => _current;
+    object? IEnumerator.Current => _enumerator.Current;
 
     public void Dispose()
     {
