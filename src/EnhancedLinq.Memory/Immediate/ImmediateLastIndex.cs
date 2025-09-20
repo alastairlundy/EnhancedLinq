@@ -17,7 +17,7 @@ public static class ImmediateLastIndex
     /// 
     /// </summary>
     /// <param name="span"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">The type of elements within the span.</typeparam>
     /// <returns></returns>
     public static int LastIndex<T>(this Span<T> span)
     {
@@ -31,7 +31,7 @@ public static class ImmediateLastIndex
     /// 
     /// </summary>
     /// <param name="span"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">The type of elements within the span.</typeparam>
     /// <returns></returns>
     public static int LastIndex<T>(this ReadOnlySpan<T> span)
     {
@@ -45,7 +45,7 @@ public static class ImmediateLastIndex
     /// 
     /// </summary>
     /// <param name="memory"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">The type of elements within the memory.</typeparam>
     /// <returns></returns>
     public static int LastIndex<T>(this Memory<T> memory)
     {

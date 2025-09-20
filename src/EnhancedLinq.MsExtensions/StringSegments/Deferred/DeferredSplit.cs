@@ -26,10 +26,10 @@ public static partial class EnhancedLinqSegmentDeferred
     /// <param name="source">The <see cref="StringSegment"/> to split.</param>
     /// <param name="separator">The character separator to split by.</param>
     /// <returns>An <see cref="IEnumerable{StringSegment}"/> containing the split segments. Returns an empty sequence if the separator is not found.</returns>
-    public static IEnumerable<StringSegment> Split(this StringSegment source, char separator)
+    public static IEnumerable<StringSegment> SplitBy(this StringSegment source, char separator)
     {
-        if (source.Contains(separator) == false)
-            return [];
+        if (StringSegment.IsNullOrEmpty(source))
+            throw new ArgumentException();
         
         return new SegmentSplitCharEnumerable(source, separator);
     }
@@ -41,13 +41,13 @@ public static partial class EnhancedLinqSegmentDeferred
     /// <param name="separator">The <see cref="StringSegment"/> separator to split by.</param>
     /// <returns>An <see cref="IEnumerable{StringSegment}"/> containing the split segments. Returns an empty sequence if the separator is not found.</returns>
     /// <exception cref="ArgumentException">Thrown if <paramref name="separator"/> or <paramref name="source"/> is null or empty.</exception>
-    public static IEnumerable<StringSegment> Split(this StringSegment source, StringSegment separator)
+    public static IEnumerable<StringSegment> SplitBy(this StringSegment source, StringSegment separator)
     {
         if (StringSegment.IsNullOrEmpty(separator) || StringSegment.IsNullOrEmpty(source))
             throw new ArgumentException();
             
         if (source.Contains(separator) == false)
-            return [];
+            return [source];
         
         return new SegmentSplitEnumerable(source, separator);
     }
