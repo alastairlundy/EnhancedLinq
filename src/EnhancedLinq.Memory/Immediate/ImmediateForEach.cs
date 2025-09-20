@@ -8,7 +8,6 @@
  */
 
 using System;
-using AlastairLundy.DotExtensions.Memory;
 
 namespace AlastairLundy.EnhancedLinq.Memory.Immediate;
 
