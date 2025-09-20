@@ -26,4 +26,32 @@ public static class ImmediateLastIndex
 
         return -1;
     }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="span"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static int LastIndex<T>(this ReadOnlySpan<T> span)
+    {
+        if(span.Length > 0)
+            return span.Length - 1;
+
+        return -1;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="memory"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static int LastIndex<T>(this Memory<T> memory)
+    {
+        if(memory.Length > 0)
+            return memory.Length - 1;
+
+        return -1;
+    }
 }
