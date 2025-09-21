@@ -12,11 +12,14 @@
         <RepositoryUrl>https://github.com/alastairlundy/Enhancedlinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageReleaseNotes>Add Immediate Array, IList, and ICollection Take and TakeLast extension methods @alastairlundy (#20)
-Add IList&lt;T&gt; and ICollection Reverse extension methods @alastairlundy (#19)
-Add Deferred IEnumerable SplitBy separator extension method @alastairlundy (#24)
-Add IEnumerable FirstNIndicesOf and LastNIndicesOf extenstion methods @alastairlundy (#22)
-Update DotExtensions from 8.2.0 to 8.3.0</PackageReleaseNotes>
+        <PackageReleaseNotes>* Updated DotExtensions from 8.3.0 to 8.4.0
+* Add Immediate ICollection&lt;\T&gt;  ``LastIndex``
+* Add Immediate  ICollection&lt;\T&gt; ``RemoveRange``
+* Add Immediate Mode ICollection&lt;\T&gt; ``InsertRange``
+* Add Deferred Mode IEnumerable&lt;\T&gt; ``InsertRange`` and ``Insert``
+* Added Deferred Mode IEnumerable&lt;\T&gt; ``SplitBy`` predicate method - This method splits the source sequence each time the predicate ``Func&lt;T, bool&gt;`` is true
+* Fixed issues with IEnumerable&lt;\T&gt; ``SplitByProcessorCount`` extension method
+* Renamed IEnumerable&lt;\T&gt; ``SplitByCount`` extension methods to ``SplitByItemCount`` </PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <Description>Additional LINQ style Deferred and Immediate enumeration mode extension methods for .NET . </Description>
@@ -25,7 +28,7 @@ Update DotExtensions from 8.2.0 to 8.3.0</PackageReleaseNotes>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>0.4.0</Version>
+        <Version>0.5.0</Version>
         <AssemblyName>AlastairLundy.EnhancedLinq</AssemblyName>
         <PackageId>AlastairLundy.EnhancedLinq</PackageId>
         <RootNamespace>AlastairLundy.EnhancedLinq</RootNamespace>

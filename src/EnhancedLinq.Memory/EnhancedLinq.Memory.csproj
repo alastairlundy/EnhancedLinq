@@ -13,8 +13,12 @@
         <RepositoryUrl>https://github.com/alastairlundy/EnhancedLinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>linq, enhanced-linq, enhanced, extensions, memory, extensions</PackageTags>
-        <PackageReleaseNotes>Add Span Take, TakeLast, TakeWhile and improve folder organisation @alastairlundy (#23)
-Update DotExtensions from 8.2.0 to 8.3.0</PackageReleaseNotes>
+        <PackageReleaseNotes>* Updated DotExtensions from 8.3.0 to 8.4.0
+* Updated DotPrimitives from 3.2.0 to 3.3.0
+* Add Span&lt;T&gt; ``Any&lt;T&gt;()`` non predicate extension method
+* Add Span&lt;T&gt; and Memory&lt;T&gt; ``LastIndex``
+* Added Immediate Mode ``SplitBy`` predicate method - This method splits the source Span&lt;T&gt; each time the predicate ``Func&lt;T, bool&gt;`` is true
+* Fixed an issue where the class holding the Span&lt;T&gt; ``ForEach`` extension methods used the wrong namespace</PackageReleaseNotes>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -22,7 +26,7 @@ Update DotExtensions from 8.2.0 to 8.3.0</PackageReleaseNotes>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>0.4.0</Version>
+        <Version>0.5.0</Version>
         <AssemblyName>AlastairLundy.EnhancedLinq.Memory</AssemblyName>
         <PackageId>AlastairLundy.EnhancedLinq.Memory</PackageId>
         <RootNamespace>AlastairLundy.EnhancedLinq.Memory</RootNamespace>
