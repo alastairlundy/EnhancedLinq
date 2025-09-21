@@ -6,9 +6,10 @@ These are the currently supported versions of EnhancedLinq:
 
 | Version | Supported with Bug Fixes | Supported with Security Updates |
 | ------- | --------------------------|------------------------------- |
+| 0.5.0 | | |
 
 ## Reporting a Vulnerability
-If you wish to report a potential security vulnerability please go to the security tab on this GitHub project and create a new Security Vulnerability report. 
+If you wish to report a potential security vulnerability please go to the [security tab on this GitHub project](https://github.com/alastairlundy/EnhancedLinq/security) and create a new Security Vulnerability report. 
 
 Please ensure information about the potential vulnerability is contained in the report!
 
