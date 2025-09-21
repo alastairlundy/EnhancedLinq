@@ -18,6 +18,7 @@ namespace AlastairLundy.EnhancedLinq.Deferred.Ranges;
 /// </summary>
 public static partial class EnhancedLinqDeferredRange
 {
+    
     /// <summary>
     /// Removes items from an IEnumerable.
     /// </summary>

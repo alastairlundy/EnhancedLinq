@@ -58,8 +58,7 @@ public static partial class EnhancedLinqDeferred
 
     /// <summary>
     /// Splits a sequence by a separator, into a sequence of sequences.
-    /// </summary>    /// <returns>A sequence of sequences, each containing the elements before the separator was found.</returns>
-
+    /// </summary>
     /// <param name="source">The sequence to split.</param>
     /// <param name="separator">The separator to split by.</param>
     /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
@@ -77,12 +76,12 @@ public static partial class EnhancedLinqDeferred
     }
     
     /// <summary>
-    /// 
+    /// Splits a sequence when a predicate evaluates to true.
     /// </summary>
     /// <param name="source">The sequence to split.</param>
-    /// <param name="predicate"></param>
+    /// <param name="predicate">The predicate to split the sequence on when it evaluates to true.</param>
     /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
-    /// <returns></returns>
+    /// <returns>A sequence of sequences, each containing the elements before the predicate evaluated to true.</returns>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null.</exception>
     public static IEnumerable<IEnumerable<TSource>> SplitBy<TSource>(this IEnumerable<TSource> source,
         Func<TSource, bool> predicate)

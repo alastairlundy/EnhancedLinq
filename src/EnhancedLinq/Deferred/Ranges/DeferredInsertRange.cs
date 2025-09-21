@@ -31,7 +31,7 @@ public static partial class EnhancedLinqDeferredRange
         => InsertRange(source, indexToInsertAt, [toBeInserted]);
     
     /// <summary>
-    /// 
+    /// Inserts a sequence of elements into a sequence at a specified index.
     /// </summary>
     /// <param name="source">The sequence to insert items into.</param>
     /// <param name="indexToInsertAt">The index at which to insert the elements into the sequence</param>

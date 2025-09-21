@@ -17,7 +17,7 @@ public static partial class EnhancedLinqMemoryImmediate
     /// Applies the given action to each element of this Span.
     /// </summary>
     /// <param name="action">The action to apply to each element in the span.</param>
-    /// <param name="target">The span to apply the elements to.</param>
+    /// <param name="target">The span to apply the action to.</param>
     /// <typeparam name="T">The type of items in the Span.</typeparam>
     public static void ForEach<T>(this ref Span<T> target, Action<T> action)
     {
@@ -30,7 +30,7 @@ public static partial class EnhancedLinqMemoryImmediate
     /// <summary>
     /// Applies the given func to each element of this Span.
     /// </summary>
-    /// <param name="target">The span to apply the elements to.</param>
+    /// <param name="target">The span to apply the action to.</param>
     /// <param name="action">The func to apply to each element in the span.</param>
     /// <typeparam name="T">The type of items in the Span.</typeparam>
     public static void ForEach<T>(this Span<T> target, Func<T, T> action)
@@ -43,11 +43,11 @@ public static partial class EnhancedLinqMemoryImmediate
 
 
     /// <summary>
-    /// 
+    /// Applies the given action to each element of this Memory.
     /// </summary>
-    /// <param name="target"></param>
-    /// <param name="action"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <param name="target">The memory to apply the action to.</param>
+    /// <param name="action">The action to apply to each element in the memory.</param>
+    /// <typeparam name="T">The type of items in the Memory.</typeparam>
     public static void ForEach<T>(this ref Memory<T> target, Action<T> action)
     {
         T[] array = new T[target.Length];
@@ -64,15 +64,15 @@ public static partial class EnhancedLinqMemoryImmediate
     }
 
     /// <summary>
-    /// 
+    /// Applies the given action to each element of this Memory.
     /// </summary>
-    /// <param name="target"></param>
-    /// <param name="action"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <param name="target">The memory to apply the action to.</param>
+    /// <param name="action">The action to apply to each element in the memory.</param>
+    /// <typeparam name="T">The type of items in the Memory.</typeparam>
     public static void ForEach<T>(this ref Memory<T> target, Func<T, T> action)
     {
         T[] array = new T[target.Length];
-        
+
         for (int index = 0; index < target.Length; index++)
         {
             T item = target.ElementAt(index);

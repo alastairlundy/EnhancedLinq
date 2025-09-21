@@ -19,7 +19,7 @@ public static partial class EnhancedLinqImmediate
     /// </summary>
     /// <param name="source"></param>
     /// <typeparam name="T">The type of element in the collection.</typeparam>
-    /// <returns></returns>
+    /// <returns>The last index of an item in a collection.</returns>
     public static int LastIndex<T>(this ICollection<T> source)
     {
         ArgumentNullException.ThrowIfNull(source);

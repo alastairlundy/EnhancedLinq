@@ -65,24 +65,25 @@ public static partial class EnhancedLinqMemoryImmediate
     }
 
     /// <summary>
-    /// 
+    /// Splits a span into an <see cref="IList{T}"/> of arrays of type <see cref="T"/> based on the number of processors available.
     /// </summary>
-    /// <param name="span"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <param name="span">The span to split.</param>
     /// <returns></returns>
-    public static IList<T[]> SplitByProcessorCount<T>(this Span<T> span) 
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    public static IList<T[]> SplitByProcessorCount<T>(this Span<T> span)
         => SplitByItemCount(span, Environment.ProcessorCount);
 
     /// <summary>
-    /// 
+    /// Splits a span into an <see cref="IList{T}"/> of arrays of type <see cref="T"/> based on the number of elements specified.
     /// </summary>
-    /// <param name="span"></param>
-    /// <param name="maximumNumberOfArrays"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <param name="span">The span to split.</param>
+    /// <param name="maximumNumberOfArrays">The desired maximum number of arrays of which to store elements in.</param>
+    /// <typeparam name="T">The type of elements within the span.</typeparam>
     /// <returns></returns>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
     public static IList<T[]> SplitByArrayCount<T>(this Span<T> span, int maximumNumberOfArrays)
     {
-        if(span.IsEmpty)
+        if (span.IsEmpty)
             return Array.Empty<T[]>();
 
         double maxItems = Convert.ToDouble(span.Length / maximumNumberOfArrays);
@@ -109,22 +110,23 @@ public static partial class EnhancedLinqMemoryImmediate
     /// <returns></returns>
     public static IList<T[]> SplitBy<T>(this Span<T> span, T separator)
     {
-        if(span.IsEmpty)
+        if (span.IsEmpty)
             return Array.Empty<T[]>();
 
         return SplitBy(span, x => x is not null && x.Equals(separator));
     }
 
     /// <summary>
-    /// 
+    /// Splits a span into an <see cref="IList{T}"/> of arrays of type <see cref="T"/> based on the provided predicate.
     /// </summary>
-    /// <param name="span"></param>
-    /// <param name="predicate"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <param name="span">The span to split.</param>
+    /// <param name="predicate">A function that returns true or false indicating if an element should start a new array.</param>
+    /// <typeparam name="T">The type of elements within the span.</typeparam>
     /// <returns></returns>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
     public static IList<T[]> SplitBy<T>(this Span<T> span, Func<T, bool> predicate)
     {
-        if(span.IsEmpty)
+        if (span.IsEmpty)
             return Array.Empty<T[]>();
 
         List<T[]> list = new();

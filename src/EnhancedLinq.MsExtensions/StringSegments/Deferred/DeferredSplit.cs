@@ -59,12 +59,11 @@ public static partial class EnhancedLinqSegmentDeferred
     }
 
     /// <summary>
-    /// 
+    /// Splits the given <see cref="StringSegment"/> into segments when the predicate evaluates to true.
     /// </summary>
     /// <param name="source">The <see cref="StringSegment"/> to split.</param>
-    /// <param name="predicate"></param>
-    /// <returns></returns>
-    /// <exception cref="ArgumentException">Thrown if <paramref name="source"/> is null or empty.</exception>
+    /// <param name="predicate">The predicate to split on when true.</param>
+    /// <returns>An <see cref="IEnumerable{StringSegment}"/> containing the split segments.</returns>
     public static IEnumerable<StringSegment> SplitBy(this StringSegment source, Func<char, bool> predicate)
     {
         if (StringSegment.IsNullOrEmpty(source))
