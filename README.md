@@ -1,12 +1,14 @@
 # EnhancedLinq
 This library adds Additional LINQ style Deferred execution and Immediate enumeration mode extension methods for .NET .
 
+
+
 ## 🚀 Included Methods
 For a comprehensive list of included methods, check out the following resources:
 
-- [EnhancedLinq Methods](./docs/Methods/EnhancedLinq.md)
-- [EnhancedLinq.Memory Methods](./docs/Methods/EnhancedLinq.Memory.md)
-- [EnhancedLinq.MsExtensions Methods](./docs/Methods/EnhancedLinq.MsExtensions.md)
+- [EnhancedLinq Methods](./docs/Methods/EnhancedLinq.md) [![NuGet](https://img.shields.io/nuget/v/AlastairLundy.EnhancedLinq.svg)](https://www.nuget.org/packages/AlastairLundy.EnhancedLinq/)  [![NuGet](https://img.shields.io/nuget/dt/AlastairLundy.EnhancedLinq.svg)](https://www.nuget.org/packages/AlastairLundy.EnhancedLinq/)
+- [EnhancedLinq.Memory Methods](./docs/Methods/EnhancedLinq.Memory.md) [![NuGet](https://img.shields.io/nuget/v/AlastairLundy.EnhancedLinq.Memory.svg)](https://www.nuget.org/packages/AlastairLundy.EnhancedLinq.Memory/)  [![NuGet](https://img.shields.io/nuget/dt/AlastairLundy.EnhancedLinq.Memory.svg)](https://www.nuget.org/packages/AlastairLundy.EnhancedLinq.Memory/)
+- [EnhancedLinq.MsExtensions Methods](./docs/Methods/EnhancedLinq.MsExtensions.md) [![NuGet](https://img.shields.io/nuget/v/AlastairLundy.EnhancedLinq.MsExtensions.svg)](https://www.nuget.org/packages/AlastairLundy.EnhancedLinq.MsExtensions/)  [![NuGet](https://img.shields.io/nuget/dt/AlastairLundy.EnhancedLinq.MsExtensions.svg)](https://www.nuget.org/packages/AlastairLundy.EnhancedLinq.MsExtensions/)
 
 ## 📦 NuGet Packages
 
