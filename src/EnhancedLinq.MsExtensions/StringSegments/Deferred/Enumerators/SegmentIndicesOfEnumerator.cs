@@ -11,7 +11,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-using AlastairLundy.DotExtensions.MsExtensions.StringSegments;
+using AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
 
 using Microsoft.Extensions.Primitives;
 
