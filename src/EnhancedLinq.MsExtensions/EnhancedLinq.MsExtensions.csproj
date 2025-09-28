@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+        <TargetFrameworks>net8.0;net9.0;netstandard2.0</TargetFrameworks>
+        <LangVersion>13</LangVersion>
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -29,7 +30,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="AlastairLundy.DotExtensions.MsExtensions" Version="8.4.0" />
+      <PackageReference Include="AlastairLundy.DotExtensions.MsExtensions" Version="8.5.0" />
       <PackageReference Include="AlastairLundy.DotPrimitives.Collections" Version="3.3.0" />
       <PackageReference Include="Microsoft.Extensions.Primitives" Version="9.0.9" />
     </ItemGroup>
