@@ -25,7 +25,7 @@ internal class GroupStringSegmentEnumerator<TKey> : IEnumerator<IGrouping<TKey, 
 
     private IEnumerator<char> _enumerator;
     
-    private TKey _currentKey;
+    private TKey? _currentKey;
     
     private int _state;
 
@@ -46,8 +46,8 @@ internal class GroupStringSegmentEnumerator<TKey> : IEnumerator<IGrouping<TKey, 
         {
             _enumerator = new SegmentEnumerator(_source);
             _currentKey = _selector(_enumerator.Current);
-            _currentGrouping = new GroupingCollection<TKey, char>(_currentKey, false);
-            _groupingCollection = new GroupingCollection<TKey, char>(_currentKey, false);
+            _currentGrouping = new GroupingCollection<TKey, char>(_currentKey);
+            _groupingCollection = new GroupingCollection<TKey, char>(_currentKey);
         }
 
         if (_state == 2)
@@ -56,7 +56,7 @@ internal class GroupStringSegmentEnumerator<TKey> : IEnumerator<IGrouping<TKey, 
             {
                 while(_enumerator.MoveNext())
                 {
-                    if (_currentKey is not null && _currentKey.Equals(default(TKey)))
+                    if (_currentKey is not null && _currentKey.Equals(default(TKey)) || _currentKey is null)
                     {
                         _currentKey = _selector(_enumerator.Current);
                     }
