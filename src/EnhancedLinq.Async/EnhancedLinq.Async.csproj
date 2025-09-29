@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+        <ImplicitUsings>disable</ImplicitUsings>
+        <LangVersion>13</LangVersion>
+        <Nullable>enable</Nullable>
+        <AssemblyName>AlastairLundy.EnhancedLinq.Async</AssemblyName>
+        <RootNamespace>AlastairLundy.EnhancedLinq.Async</RootNamespace>
+        <PackageId>AlastairLundy.EnhancedLinq.Async</PackageId>
+        <Version>0.6.0</Version>
+        <Title>EnhancedLinq.Async</Title>
+        <Authors>Alastair Lundy</Authors>
+        <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
+        <RepositoryUrl>https://github.com/alastairlundy/enhancedlinq</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="Deferred\" />
+      <Folder Include="Immediate\" />
+      <Folder Include="Internals\" />
+    </ItemGroup>
+
+</Project>
