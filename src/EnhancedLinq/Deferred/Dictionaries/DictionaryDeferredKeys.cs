@@ -12,6 +12,9 @@ using System.Linq;
 
 namespace AlastairLundy.EnhancedLinq.Deferred.Dictionaries;
 
+/// <summary>
+/// 
+/// </summary>
 public static partial class EnhancedLinqDeferredDictionary
 {
     /// <summary>
