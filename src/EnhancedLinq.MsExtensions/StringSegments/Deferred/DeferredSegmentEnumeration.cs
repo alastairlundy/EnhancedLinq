@@ -9,8 +9,10 @@
 
 using System;
 using System.Collections.Generic;
+using AlastairLundy.DotPrimitives.Collections.Enumerables;
 using AlastairLundy.EnhancedLinq.MsExtensions.Internals.Localizations;
 using AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerables;
+using AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerators;
 using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred;
@@ -28,6 +30,6 @@ public static partial class EnhancedLinqSegmentDeferred
         if (StringSegment.IsNullOrEmpty(segment))
             throw new ArgumentException(Resources.Exceptions_Segments_InvalidOperation_EmptySequence);
 
-        return new SegmentEnumerable(segment);
+        return new CustomEnumeratorEnumerable<char>(new SegmentEnumerator(segment));
     }
 }
