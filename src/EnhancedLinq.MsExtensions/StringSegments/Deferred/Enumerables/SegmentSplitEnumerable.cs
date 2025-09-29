@@ -28,7 +28,6 @@ internal class SegmentSplitEnumerable : IEnumerable<StringSegment>
     
     public IEnumerator<StringSegment> GetEnumerator()
     {
-        
         if(_separator.Length == 1)
             return new SegmentSplitCharEnumerator(_segment, _separator.First());
         else
