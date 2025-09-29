@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections.Generic;
+
 using AlastairLundy.EnhancedLinq.Deferred.Enumerables;
 
 namespace AlastairLundy.EnhancedLinq.Deferred.Ranges;
