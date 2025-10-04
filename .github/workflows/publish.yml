@@ -11,7 +11,7 @@ jobs:
         id-token: write 
         
       steps:
-      - name: Set up SDK
+      - uses: actions/checkout@v5.0.0
       - uses: actions/setup-dotnet@v5.0.0
         with:
           dotnet-version: 9.0.x
