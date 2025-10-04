@@ -19,7 +19,7 @@
 
 ### Main package
 * Add deferred execution PrependRange(IEnumerable\&lt;TSource&gt;, IEnumerable\&lt;TSource&gt;) extension @alastairlundy (https://github.com/alastairlundy/EnhancedLinq/pull/37)
-</PackageReleaseNotes>
+* Add Immediate Mode ``None&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, bool&gt;)`` extension</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <Description>Additional LINQ style Deferred and Immediate enumeration mode extension methods for .NET . </Description>
@@ -28,7 +28,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>0.5.0</Version>
+        <Version>0.6.0</Version>
         <AssemblyName>AlastairLundy.EnhancedLinq</AssemblyName>
         <PackageId>AlastairLundy.EnhancedLinq</PackageId>
         <RootNamespace>AlastairLundy.EnhancedLinq</RootNamespace>

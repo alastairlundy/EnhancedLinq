@@ -13,12 +13,13 @@
         <RepositoryUrl>https://github.com/alastairlundy/EnhancedLinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>linq, enhanced-linq, enhanced, extensions, memory, extensions</PackageTags>
-        <PackageReleaseNotes>* Updated DotExtensions from 8.3.0 to 8.4.0
-* Updated DotPrimitives from 3.2.0 to 3.3.0
-* Add Span&lt;T&gt; ``Any&lt;T&gt;()`` non predicate extension method
-* Add Span&lt;T&gt; and Memory&lt;T&gt; ``LastIndex``
-* Added Immediate Mode ``SplitBy`` predicate method - This method splits the source Span&lt;T&gt; each time the predicate ``Func&lt;T, bool&gt;`` is true
-* Fixed an issue where the class holding the Span&lt;T&gt; ``ForEach`` extension methods used the wrong namespace</PackageReleaseNotes>
+        <PackageReleaseNotes>## Changes since 0.5.0
+
+### All packages
+* Update DotExtensions to 8.5.1
+
+### Memory package
+* Add Immediate Mode ``None&lt;TSource&gt;(Span&lt;TSource&gt;, Func&lt;TSource, bool&gt;)`` and Memory&lt;TSource&gt; equivalent extensions</PackageReleaseNotes>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -26,7 +27,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>0.5.0</Version>
+        <Version>0.6.0</Version>
         <AssemblyName>AlastairLundy.EnhancedLinq.Memory</AssemblyName>
         <PackageId>AlastairLundy.EnhancedLinq.Memory</PackageId>
         <RootNamespace>AlastairLundy.EnhancedLinq.Memory</RootNamespace>
