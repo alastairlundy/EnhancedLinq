@@ -13,7 +13,7 @@ using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
 
-public static partial class EnhancedLinqMemoryImmediate
+public static partial class EnhancedLinqSegmentImmediate
 {
     /// <summary>
     /// Determines if none of the characters in the <see cref="StringSegment"/> match a predicate condition.
@@ -23,22 +23,5 @@ public static partial class EnhancedLinqMemoryImmediate
     /// <returns>True if none of the characters matched the predicate, false otherwise.</returns>
     /// <exception cref="ArgumentNullException">Thrown if the source <see cref="StringSegment"/> or predicate are null.</exception>
     public static bool None(this StringSegment segment, Func<char, bool> predicate)
-    {
-        if (StringSegment.IsNullOrEmpty(segment))
-            throw new NullReferenceException();
-        
-#if NET8_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(predicate, nameof(predicate));
-#endif
-
-        for (int index = 0; index < segment.Length; index++)
-        {
-            if (predicate(segment[index]) == true)
-            {
-                return false;
-            }
-        }
-        
-        return true;
-    }
+        => CountAtMost(segment, predicate, 0);
 }

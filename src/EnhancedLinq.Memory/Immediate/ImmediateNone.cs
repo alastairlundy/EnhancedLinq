@@ -13,7 +13,7 @@ namespace AlastairLundy.EnhancedLinq.Memory.Immediate;
 
 public static partial class EnhancedLinqMemoryImmediate
 {
-    
+
     /// <summary>
     /// Determines if none of the elements in a span match a predicate condition.
     /// </summary>
@@ -24,21 +24,8 @@ public static partial class EnhancedLinqMemoryImmediate
     /// <exception cref="ArgumentNullException">Thrown if the predicate is null.</exception>
     /// <exception cref="ArgumentException">Thrown if the span is empty.</exception>
     public static bool None<TSource>(this Span<TSource> span, Func<TSource, bool> predicate)
-    {
-        if (span.IsEmpty)
-            throw new ArgumentException();
-            
-        ArgumentNullException.ThrowIfNull(predicate, nameof(predicate));
-        
-        foreach (TSource item in span)
-        {
-            if (predicate(item) == true)
-                return false;
-        }
-        
-        return true;
-    }
-    
+        => CountAtMost(span, predicate, 0);
+
     /// <summary>
     /// Determines if none of the elements in a span match a predicate condition.
     /// </summary>
@@ -49,20 +36,7 @@ public static partial class EnhancedLinqMemoryImmediate
     /// <exception cref="ArgumentNullException">Thrown if the predicate is null.</exception>
     /// <exception cref="ArgumentException">Thrown if the span is empty.</exception>
     public static bool None<TSource>(this ReadOnlySpan<TSource> span, Func<TSource, bool> predicate)
-    {
-        if (span.IsEmpty)
-            throw new ArgumentException();
-            
-        ArgumentNullException.ThrowIfNull(predicate, nameof(predicate));
-        
-        foreach (TSource item in span)
-        {
-            if (predicate(item) == true)
-                return false;
-        }
-        
-        return true;
-    }
+        => CountAtMost(span, predicate, 0);
 
 
     /// <summary>

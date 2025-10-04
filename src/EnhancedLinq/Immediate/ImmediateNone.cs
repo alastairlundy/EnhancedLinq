@@ -24,17 +24,6 @@ public static partial class EnhancedLinqImmediate
     /// <returns>True if none of the elements matched the predicate, false otherwise.</returns>
     /// <exception cref="ArgumentNullException">Thrown if the source sequence or predicate are null.</exception>
     public static bool None<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
-    {
-        ArgumentNullException.ThrowIfNull(source, nameof(source));
-        ArgumentNullException.ThrowIfNull(predicate, nameof(predicate));
-        
-        foreach (TSource item in source)
-        {
-            if (predicate(item) == true)
-                return false;
-        }
-        
-        return true;
-    }
+        => CountAtMost(source, predicate, 0);
 
 }
