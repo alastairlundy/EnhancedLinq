@@ -16,6 +16,9 @@ using AlastairLundy.EnhancedLinq.Memory.Internals.Localizations;
 
 namespace AlastairLundy.EnhancedLinq.Memory.Immediate.Ranges;
 
+/// <summary>
+/// 
+/// </summary>
 public static partial class EnhancedLinqMemoryImmediateRange
 {
     
