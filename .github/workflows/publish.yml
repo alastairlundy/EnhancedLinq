@@ -1,0 +1,41 @@
+name: Publish to Nuget
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-and-publish:
+      runs-on: ubuntu-latest
+  
+      permissions:
+        id-token: write 
+        
+      steps:
+      - uses: actions/setup-dotnet@v5.0.0
+      - name: Set up SDK
+        with:
+          dotnet-version: 9.0.x
+          working-directory: src 
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Create packages
+        run: dotnet build -c Release
+        
+          # Get a short-lived NuGet API key
+      - name: NuGet login (OIDC → temp API key)
+        uses: NuGet/login@v1
+        id: login
+        with:
+            user: ${{ secrets.NUGET_USER }}
+              
+          # Push the package
+      - name: NuGet push
+        run: dotnet nuget push EnhancedLinq/bin/Releases/*.nupkg --api-key ${{steps.login.outputs.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
+           
+           # Push the Memory package
+      - name: NuGet push
+        run: dotnet nuget push EnhancedLinq.Memory/bin/Releases/*.nupkg --api-key ${{steps.login.outputs.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
+           
+           # Push the MsExtensions package
+          - name: NuGet push
+            run: dotnet nuget push EnhancedLinq.MsExtensions/bin/Releases/*.nupkg --api-key ${{steps.login.outputs.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
