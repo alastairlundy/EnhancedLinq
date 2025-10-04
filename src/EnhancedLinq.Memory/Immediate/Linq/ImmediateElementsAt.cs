@@ -29,7 +29,7 @@ public static partial class EnhancedLinqMemoryImmediate
 
         Memory<T> items = ElementsAt(source, index, 1);
 
-        return SpanFirstAndLast.First(items.Span);
+        return First(items.Span);
     }
     
     /// <summary>
