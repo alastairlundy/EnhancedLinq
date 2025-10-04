@@ -11,8 +11,8 @@ jobs:
         id-token: write 
         
       steps:
-      - uses: actions/setup-dotnet@v5.0.0
       - name: Set up SDK
+      - uses: actions/setup-dotnet@v5.0.0
         with:
           dotnet-version: 9.0.x
           working-directory: src 
