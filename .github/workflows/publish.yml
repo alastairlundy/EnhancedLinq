@@ -23,11 +23,12 @@ jobs:
       - uses: actions/setup-dotnet@d4c94342e560b34958eacfc5d055d21461ed1c5d # v5.0.0
         with:
           dotnet-version: 9.0.x
-          working-directory: src
       - name: Restore dependencies
         run: dotnet restore
+        working-directory: src
       - name: Create packages
         run: dotnet build -c Release
+        working-directory: src
         
           # Get a short-lived NuGet API key
       - name: NuGet login (OIDC → temp API key)
