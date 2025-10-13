@@ -12,6 +12,7 @@ jobs:
   
       permissions:
         id-token: write 
+      environment: production
         
       steps:
       - name: Harden the runner (Audit all outbound calls)
