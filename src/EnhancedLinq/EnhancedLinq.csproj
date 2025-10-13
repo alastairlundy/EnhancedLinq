@@ -12,14 +12,9 @@
         <RepositoryUrl>https://github.com/alastairlundy/Enhancedlinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageReleaseNotes>## Changes since 0.5.0
-
-### All packages
-* Update DotExtensions to 8.5.1
-
-### Main package
-* Add deferred execution PrependRange(IEnumerable\&lt;TSource&gt;, IEnumerable\&lt;TSource&gt;) extension @alastairlundy (https://github.com/alastairlundy/EnhancedLinq/pull/37)
-* Add Immediate Mode ``None&lt;TSource&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, bool&gt;)`` extension</PackageReleaseNotes>
+        <PackageReleaseNotes>## Changes since 0.6.0
+* Update DotExtensions to 8.6.2
+* Added limited .NET Standard 2.0 support</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <Description>Additional LINQ style Deferred and Immediate enumeration mode extension methods for .NET . </Description>

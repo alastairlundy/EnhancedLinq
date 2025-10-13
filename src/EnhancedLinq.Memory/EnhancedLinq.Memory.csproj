@@ -13,13 +13,10 @@
         <RepositoryUrl>https://github.com/alastairlundy/EnhancedLinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>linq, enhanced-linq, enhanced, extensions, memory, extensions</PackageTags>
-        <PackageReleaseNotes>## Changes since 0.5.0
-
-### All packages
-* Update DotExtensions to 8.5.1
-
-### Memory package
-* Add Immediate Mode ``None&lt;TSource&gt;(Span&lt;TSource&gt;, Func&lt;TSource, bool&gt;)`` and Memory&lt;TSource&gt; equivalent extensions</PackageReleaseNotes>
+        <PackageReleaseNotes>## Changes since 0.6.0
+* Update DotExtensions to 8.6.2
+* Added limited .NET Standard 2.0 support
+* Added Span ``Contains`` and ReadOnlySpan ``Contains`` immediate mode extension methods</PackageReleaseNotes>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -27,7 +24,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>0.6.0</Version>
+        <Version>0.7.0</Version>
         <AssemblyName>AlastairLundy.EnhancedLinq.Memory</AssemblyName>
         <PackageId>AlastairLundy.EnhancedLinq.Memory</PackageId>
         <RootNamespace>AlastairLundy.EnhancedLinq.Memory</RootNamespace>
