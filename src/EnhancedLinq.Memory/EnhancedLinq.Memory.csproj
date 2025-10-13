@@ -16,7 +16,7 @@
         <PackageReleaseNotes>## Changes since 0.6.0
 * Update DotExtensions to 8.6.2
 * Added limited .NET Standard 2.0 support
-* Added Span ``Contains`` and ReadOnlySpan ``Contains`` immediate mode extension methods</PackageReleaseNotes>
+* Added Span ``Contains`` and ReadOnlySpan ``Contains`` immediate mode extension methods for .NET Standard 2.0 users</PackageReleaseNotes>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
