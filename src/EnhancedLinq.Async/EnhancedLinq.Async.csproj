@@ -20,7 +20,6 @@
 
     <ItemGroup>
       <Folder Include="Deferred\" />
-      <Folder Include="Immediate\" />
       <Folder Include="Internals\" />
     </ItemGroup>
 
