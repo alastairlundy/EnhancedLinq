@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+        <TargetFrameworks>net8.0;net9.0;netstandard2.0</TargetFrameworks>
         <LangVersion>13</LangVersion>
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
@@ -28,7 +28,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>0.6.0</Version>
+        <Version>0.7.0</Version>
         <AssemblyName>AlastairLundy.EnhancedLinq</AssemblyName>
         <PackageId>AlastairLundy.EnhancedLinq</PackageId>
         <RootNamespace>AlastairLundy.EnhancedLinq</RootNamespace>
@@ -50,7 +50,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="AlastairLundy.DotExtensions" Version="8.6.0" />
+      <PackageReference Include="AlastairLundy.DotExtensions" Version="8.6.2" />
         <PackageReference Include="AlastairLundy.DotPrimitives.Collections" Version="3.3.0" />
     </ItemGroup>
 

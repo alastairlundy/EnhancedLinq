@@ -41,9 +41,11 @@ public static partial class EnhancedLinqDeferredRange
     public static IEnumerable<TSource> InsertRange<TSource>(this IEnumerable<TSource> source, int indexToInsertAt,
         IEnumerable<TSource> toBeInserted)
     {
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
         ArgumentNullException.ThrowIfNull(toBeInserted);
-
+#endif
+        
         if (indexToInsertAt < 0)
             throw new IndexOutOfRangeException();
         

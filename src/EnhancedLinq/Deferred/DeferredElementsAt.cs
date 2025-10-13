@@ -32,9 +32,11 @@ public static partial class EnhancedLinqDeferred
     /// <returns>A new <see cref="IEnumerable{T}"/> containing the elements at the specified indexes from the original source.</returns>
     public static IEnumerable<TSource> ElementsAt<TSource>(this IEnumerable<TSource> source, IEnumerable<int> indices)
     {
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
         ArgumentNullException.ThrowIfNull(indices);
-
+#endif
+        
         return new CustomEnumeratorEnumerable<TSource>(new ElementsAtEnumerator<TSource>(source, indices));
     }
 }

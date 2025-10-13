@@ -8,7 +8,6 @@
  */
 
 using System;
-
 using AlastairLundy.EnhancedLinq.Memory.Internals.Localizations;
 
 namespace AlastairLundy.EnhancedLinq.Memory.Immediate;

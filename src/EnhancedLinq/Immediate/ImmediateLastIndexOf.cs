@@ -31,8 +31,9 @@ public static partial class EnhancedLinqImmediate
     /// </returns>
     public static int LastIndexOf<T>(this IEnumerable<T> source, Func<T, bool> predicate)
     {
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source, nameof(source));
-
+#endif
         if (source is ICollection<T> collection)
         {
             return LastIndexOf(collection, predicate);
@@ -69,7 +70,9 @@ public static partial class EnhancedLinqImmediate
     /// </returns>
     public static int LastIndexOf<T>(this ICollection<T> source, Func<T, bool> predicate)
     {
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source, nameof(source));
+#endif
         
         int index = source.Count - 1;
         
@@ -97,7 +100,9 @@ public static partial class EnhancedLinqImmediate
     /// <returns>The last index of an element in a sequence, if the sequence contains the element, returns -1 otherwise.</returns>
     public static int LastIndexOf<T>(this IEnumerable<T> source, T obj)
     {
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source, nameof(source));
+#endif
         
         bool foundItem = false;
         int reverseIndex = 0;
@@ -126,7 +131,9 @@ public static partial class EnhancedLinqImmediate
     /// <returns>The index of an element in a collection, if the collection contains the element, returns -1 otherwise.</returns>
     public static int LastIndexOf<T>(this ICollection<T> source, T obj)
     {
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source, nameof(source));
+#endif
         
         int index = source.Count -1;
                 

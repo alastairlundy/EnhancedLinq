@@ -22,7 +22,9 @@ public static partial class EnhancedLinqImmediate
     /// <returns>The last index of an item in a collection.</returns>
     public static int LastIndex<T>(this ICollection<T> source)
     {
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+#endif
         
         if(source.Count > 0)
             return source.Count - 1;

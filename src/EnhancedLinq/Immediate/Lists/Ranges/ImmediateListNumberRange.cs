@@ -17,6 +17,7 @@ namespace AlastairLundy.EnhancedLinq.Immediate.Ranges;
 
 public static partial class EnhancedLinqImmediateRange
 {
+#if NET8_0_OR_GREATER
     /// <summary>
     /// Generates an array of <see cref="TNumber"/> values starting from a specified value and continuing for a specified count,
     /// with each value incremented by 1 from the starting point.
@@ -77,4 +78,5 @@ public static partial class EnhancedLinqImmediateRange
         
         return output;
     }
+#endif
 }

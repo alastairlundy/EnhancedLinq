@@ -22,8 +22,10 @@ public static partial class EnhancedLinqImmediate
     /// <typeparam name="T">The type of elements in the sequence.</typeparam>
     public static void ForEach<T>(this IEnumerable<T> target, Action<T> action)
     {
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(target);
-
+#endif
+        
         foreach (T item in target)
         {
             action.Invoke(item);
@@ -39,7 +41,9 @@ public static partial class EnhancedLinqImmediate
     /// <returns>A new <see cref="ICollection{T}"/> containing the result of applying each element to the predicate.</returns>
     public static ICollection<T> ForEach<T>(this ICollection<T> target, Func<T, T> predicate)
     {
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(target);
+#endif
         
         List<T> output = new List<T>(capacity:target.Count);
         
@@ -59,8 +63,10 @@ public static partial class EnhancedLinqImmediate
     /// <typeparam name="T">The type of items in the <see cref="IList{T}"/>.</typeparam>
     public static void ForEach<T>(this IList<T> target, Func<T, T> selector)
     {
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(target);
-
+#endif
+        
         for (int index = 0; index < target.Count; index++)
         {
             target[index] = selector.Invoke(target[index]);

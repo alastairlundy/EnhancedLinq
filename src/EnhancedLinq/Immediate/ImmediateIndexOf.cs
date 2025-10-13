@@ -26,9 +26,11 @@ public static partial class EnhancedLinqImmediate
     /// </returns>
     public static int IndexOf<T>(this IEnumerable<T> source, Func<T, bool> predicate)
     {
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source, nameof(source));
         ArgumentNullException.ThrowIfNull(predicate, nameof(predicate));
-     
+     #endif
+        
         int index = 0;
 
         foreach (T item in source)
@@ -51,8 +53,10 @@ public static partial class EnhancedLinqImmediate
     /// <returns>The first index of an element in a sequence, if the sequence contains the element, returns -1 otherwise.</returns>
     public static int IndexOf<T>(this IEnumerable<T> source, T obj)
     {
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source, nameof(source));
-
+#endif
+        
         if (source is IList<T> list)
         {
             return list.IndexOf(obj);

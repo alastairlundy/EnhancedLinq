@@ -26,4 +26,9 @@
       <ProjectReference Include="..\EnhancedLinq\EnhancedLinq.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Deferred\" />
+      <Folder Include="Immediate\" />
+    </ItemGroup>
+
 </Project>

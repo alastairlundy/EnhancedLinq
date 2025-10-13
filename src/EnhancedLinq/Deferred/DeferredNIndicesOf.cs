@@ -28,7 +28,9 @@ public static partial class EnhancedLinqDeferred
     /// <returns>A sequence of the first <paramref name="count"/> indices if the object is found; an empty sequence otherwise.</returns>
     public static IEnumerable<int> FirstNIndicesOf<T>(this IEnumerable<T> source, T target, int count) where T : notnull
     {
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+#endif
         
         return new CustomEnumeratorEnumerable<int>(new IndicesEnumerator<T>(source, x => x.Equals(target)))
             .Take(count);
@@ -44,7 +46,9 @@ public static partial class EnhancedLinqDeferred
     /// <returns>A sequence of the first <paramref name="count"/> indices if one or more elements matching the predicate is found; an empty sequence otherwise.</returns>
     public static IEnumerable<int> FirstNIndicesOf<T>(this IEnumerable<T> source, Func<T, bool> predicate, int count)
     {
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+#endif
         
         return new CustomEnumeratorEnumerable<int>(new IndicesEnumerator<T>(source, predicate))
             .Take(count);
@@ -61,7 +65,9 @@ public static partial class EnhancedLinqDeferred
     /// </returns>
     public static IEnumerable<int> FirstNIndicesOf(this string str, char c, int count)
     {
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(str);
+#endif
         
         return new CustomEnumeratorEnumerable<int>(new IndicesEnumerator<char>(str, x => x.Equals(c)))
             .Take(count);
@@ -76,8 +82,10 @@ public static partial class EnhancedLinqDeferred
     /// <returns>A sequence of the first <paramref name="count"/> indices where the character is found; an empty sequence if the character could not be found.</returns>
     public static IEnumerable<int> FirstNIndicesOf(this string str, string substring, int count)
     {
-        ArgumentException.ThrowIfNullOrEmpty(str);
+#if NET8_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(str);
         ArgumentException.ThrowIfNullOrEmpty(substring);
+#endif
         
         return new CustomEnumeratorEnumerable<int>(new StringIndicesEnumerator(str, substring))
             .Take(count);

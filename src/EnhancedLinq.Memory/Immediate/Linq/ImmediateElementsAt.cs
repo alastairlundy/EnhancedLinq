@@ -14,6 +14,7 @@ namespace AlastairLundy.EnhancedLinq.Memory.Immediate;
 
 public static partial class EnhancedLinqMemoryImmediate
 {
+
     /// <summary>
     /// Returns the element at the specified index in the source <see cref="Memory{T}"/>.
     /// </summary>
@@ -31,7 +32,7 @@ public static partial class EnhancedLinqMemoryImmediate
 
         return First(items.Span);
     }
-    
+        
     /// <summary>
     /// Returns a new <see cref="Memory{T}"/> containing the specified number of elements starting at the specified index.
     /// </summary>
@@ -46,6 +47,10 @@ public static partial class EnhancedLinqMemoryImmediate
         if (source.Length == 0)
             throw new ArgumentOutOfRangeException(nameof(index));
 
+#if NET8_0_OR_GREATER
         return source[new Range(index, index + count)];
+#else
+        return source.Slice(index, index + count);
+#endif
     }
 }

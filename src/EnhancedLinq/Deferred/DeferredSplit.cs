@@ -29,7 +29,9 @@ public static partial class EnhancedLinqDeferred
     /// <exception cref="ArgumentOutOfRangeException">Thrown if <paramref name="maximumCount"/> is less than or equal to zero.</exception>
     public static IEnumerable<IEnumerable<TSource>> SplitByItemCount<TSource>(this IEnumerable<TSource> source, int maximumCount)
     {
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source, nameof(source));
+#endif
         
         if(maximumCount <= 0)
             throw new ArgumentOutOfRangeException(nameof(maximumCount));
@@ -47,8 +49,10 @@ public static partial class EnhancedLinqDeferred
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null.</exception>
     public static IEnumerable<IEnumerable<TSource>> SplitByProcessorCount<TSource>(this IEnumerable<TSource> source)
     {
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source, nameof(source));
-
+#endif
+        
         if(source == null)
             throw new ArgumentNullException(nameof(source));
         
@@ -67,8 +71,10 @@ public static partial class EnhancedLinqDeferred
     public static IEnumerable<IEnumerable<TSource>> SplitBy<TSource>(this IEnumerable<TSource> source,
         TSource separator)
     {
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source, nameof(source));
-
+#endif
+        
         if(source == null)
             throw new ArgumentNullException(nameof(source));
         
@@ -86,8 +92,10 @@ public static partial class EnhancedLinqDeferred
     public static IEnumerable<IEnumerable<TSource>> SplitBy<TSource>(this IEnumerable<TSource> source,
         Func<TSource, bool> predicate)
     {
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source, nameof(source));
-
+#endif
+        
         if(source == null)
             throw new ArgumentNullException(nameof(source));
 

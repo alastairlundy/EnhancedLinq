@@ -36,6 +36,7 @@ public static partial class EnhancedLinqMemoryImmediateRange
         return target.GetRange(newIndices);
     }
     
+#if NET8_0_OR_GREATER
     /// <summary>
     /// Creates a new Span with all items of the original Span minus the items to be removed.
     /// </summary>
@@ -45,7 +46,8 @@ public static partial class EnhancedLinqMemoryImmediateRange
     /// <returns>A new Span with all items of the original Span minus the items to be removed.</returns>
     public static Span<T> RemoveRange<T>(this Span<T> target, Range range) where T : IEquatable<T>? 
         => RemoveRange(target, range.Start.Value, range.End.Value - range.Start.Value);
-
+#endif
+    
     /// <summary>
     /// Creates a new Span with all items of the original Span minus the items to be removed.
     /// </summary>

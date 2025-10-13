@@ -8,7 +8,10 @@
  */
 
 using System;
+
+#if NET8_0_OR_GREATER
 using System.Numerics;
+#endif
 
 namespace AlastairLundy.EnhancedLinq.Memory.Immediate;
 
@@ -36,7 +39,8 @@ public static partial class EnhancedLinqMemoryImmediate
         
         return count;
     }
-
+    
+#if NET8_0_OR_GREATER
     /// <summary>
     /// Returns the number of elements in a given span that satisfy a condition as a <see cref="TNumber"/>.
     /// </summary>
@@ -58,4 +62,5 @@ public static partial class EnhancedLinqMemoryImmediate
         
         return total;
     }
+#endif
 }
