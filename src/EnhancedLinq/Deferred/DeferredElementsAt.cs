@@ -30,13 +30,15 @@ public static partial class EnhancedLinqDeferred
     /// <param name="indices">A sequence of indices, where each index corresponds to an element in the source.</param>
     /// <typeparam name="TSource">The type of the elements in the source and returned <see cref="IEnumerable{T}"/>.</typeparam>
     /// <returns>A new <see cref="IEnumerable{T}"/> containing the elements at the specified indexes from the original source.</returns>
-    public static IEnumerable<TSource> ElementsAt<TSource>(this IEnumerable<TSource> source, IEnumerable<int> indices)
+    public static IEnumerable<TSource> ElementsAt<TSource>(this IEnumerable<TSource> source,
+        IEnumerable<int> indices)
     {
 #if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
         ArgumentNullException.ThrowIfNull(indices);
 #endif
         
-        return new CustomEnumeratorEnumerable<TSource>(new ElementsAtEnumerator<TSource>(source, indices));
+        return new CustomEnumeratorEnumerable<TSource>(
+            new ElementsAtEnumerator<TSource>(source, indices));
     }
 }
