@@ -76,7 +76,11 @@ public static partial class EnhancedLinqMemoryImmediate
         if (target.IsEmpty)
             throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptySpan);
 
+#if NET8_0_OR_GREATER
         return target[^1];
+#else
+        return target[target.Length - 1];
+#endif
     }
     
     /// <summary>
@@ -105,7 +109,11 @@ public static partial class EnhancedLinqMemoryImmediate
         if (target.IsEmpty)
             return default;
         
+#if NET8_0_OR_GREATER
         return target[^1];
+#else
+        return target[target.Length - 1];
+#endif
     }
     
     /// <summary>
