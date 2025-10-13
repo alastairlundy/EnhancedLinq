@@ -26,10 +26,8 @@ public static partial class EnhancedLinqMemoryImmediate
         if (source.IsEmpty)
             return false;
         
-        for (int i = 0; i < source.Length; i++)
+        foreach (T obj in source)
         {
-            T obj = source[i];
-            
             if (obj is not null && obj.Equals(item))
             {
                 return true;
@@ -51,10 +49,8 @@ public static partial class EnhancedLinqMemoryImmediate
         if (source.IsEmpty)
             return false;
         
-        for (int i = 0; i < source.Length; i++)
+        foreach (T obj in source)
         {
-            T obj = source[i];
-            
             if (obj is not null && obj.Equals(item))
             {
                 return true;
