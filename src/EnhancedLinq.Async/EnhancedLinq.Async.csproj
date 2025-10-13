@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+        <TargetFrameworks>net8.0;net9.0;netstandard2.0</TargetFrameworks>
         <ImplicitUsings>disable</ImplicitUsings>
         <LangVersion>13</LangVersion>
         <Nullable>enable</Nullable>
@@ -24,4 +24,8 @@
       <Folder Include="Internals\" />
     </ItemGroup>
 
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="9.0.9" Condition="'$(TargetFramework)' == 'netstandard2.0'"/>
+    </ItemGroup>
+    
 </Project>
