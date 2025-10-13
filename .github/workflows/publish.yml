@@ -38,12 +38,12 @@ jobs:
               
           # Push the package
       - name: NuGet push
-        run: dotnet nuget push EnhancedLinq/bin/Releases/*.nupkg --api-key ${{steps.login.outputs.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
+        run: dotnet nuget push src/EnhancedLinq/bin/Releases/*.nupkg --api-key ${{steps.login.outputs.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
            
         # Push the Memory package
       - name: NuGet push
-        run: dotnet nuget push EnhancedLinq.Memory/bin/Releases/*.nupkg --api-key ${{steps.login.outputs.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
+        run: dotnet nuget push src/EnhancedLinq.Memory/bin/Releases/*.nupkg --api-key ${{steps.login.outputs.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
            
            # Push the MsExtensions package
       - name: NuGet push
-        run: dotnet nuget push EnhancedLinq.MsExtensions/bin/Releases/*.nupkg --api-key ${{steps.login.outputs.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
+        run: dotnet nuget push src/EnhancedLinq.MsExtensions/bin/Releases/*.nupkg --api-key ${{steps.login.outputs.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
