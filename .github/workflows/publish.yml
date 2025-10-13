@@ -23,11 +23,12 @@ jobs:
       - uses: actions/setup-dotnet@d4c94342e560b34958eacfc5d055d21461ed1c5d # v5.0.0
         with:
           dotnet-version: 9.0.x
-          working-directory: src 
       - name: Restore dependencies
         run: dotnet restore
+        working-directory: src
       - name: Create packages
         run: dotnet build -c Release
+        working-directory: src
         
           # Get a short-lived NuGet API key
       - name: NuGet login (OIDC → temp API key)
@@ -38,12 +39,12 @@ jobs:
               
           # Push the package
       - name: NuGet push
-        run: dotnet nuget push EnhancedLinq/bin/Releases/*.nupkg --api-key ${{steps.login.outputs.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
+        run: dotnet nuget push src/EnhancedLinq/bin/Releases/*.nupkg --api-key ${{steps.login.outputs.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
            
         # Push the Memory package
       - name: NuGet push
-        run: dotnet nuget push EnhancedLinq.Memory/bin/Releases/*.nupkg --api-key ${{steps.login.outputs.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
+        run: dotnet nuget push src/EnhancedLinq.Memory/bin/Releases/*.nupkg --api-key ${{steps.login.outputs.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
            
            # Push the MsExtensions package
       - name: NuGet push
-        run: dotnet nuget push EnhancedLinq.MsExtensions/bin/Releases/*.nupkg --api-key ${{steps.login.outputs.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
+        run: dotnet nuget push src/EnhancedLinq.MsExtensions/bin/Releases/*.nupkg --api-key ${{steps.login.outputs.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
