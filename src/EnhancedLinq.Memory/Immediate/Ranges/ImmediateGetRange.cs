@@ -9,16 +9,23 @@
 
 using System;
 using System.Collections.Generic;
+
+#if NET8_0_OR_GREATER
 using System.Linq;
 using AlastairLundy.DotExtensions.Numbers;
+#endif
 
 using AlastairLundy.EnhancedLinq.Memory.Internals.Localizations;
 
 namespace AlastairLundy.EnhancedLinq.Memory.Immediate.Ranges;
 
+/// <summary>
+/// 
+/// </summary>
 public static partial class EnhancedLinqMemoryImmediateRange
 {
-    
+#if NET8_0_OR_GREATER
+
     /// <summary>
     /// Returns a new Span with the specified range of elements,
     /// starting from the given start index and ending at the given end index.
@@ -29,6 +36,7 @@ public static partial class EnhancedLinqMemoryImmediateRange
     /// <returns>A new span containing the specified range of elements.</returns>
     public static Span<T> GetRange<T>(this Span<T> target, Range range)
         => GetRange(target, range.Start.Value, range.End.Value);
+#endif
     
     /// <summary>
     /// Returns a new Span with the specified range of elements,
@@ -78,7 +86,9 @@ public static partial class EnhancedLinqMemoryImmediateRange
         if (target == Span<T>.Empty)
             throw new ArgumentException();
         
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(indices);
+#endif
         
         List<T> output = new();
         
@@ -112,10 +122,12 @@ public static partial class EnhancedLinqMemoryImmediateRange
         if (target == Span<T>.Empty)
             throw new ArgumentException();
         
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(indices);
         
         if(indices.IsIncrementedNumberRange(1))
             return GetRange(target, indices.Min(), indices.Max());
+#endif
         
         T[] array = new T[indices.Count];
         

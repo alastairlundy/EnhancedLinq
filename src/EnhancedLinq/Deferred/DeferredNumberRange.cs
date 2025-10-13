@@ -1,12 +1,13 @@
 /*
-    EnhancedLinq 
+    EnhancedLinq
     Copyright (c) 2025 Alastair Lundy
-    
+
     This Source Code Form is subject to the terms of the Mozilla Public
     License, v. 2.0. If a copy of the MPL was not distributed with this
     file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+#if NET8_0_OR_GREATER
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,6 @@ namespace AlastairLundy.EnhancedLinq.Deferred;
 
 public static partial class EnhancedLinqDeferred
 {
-
     /// <summary>
     /// Generates a sequence of numeric values starting from a specified value and continuing for a specified count,
     /// with each value incremented by 1 from the starting point.
@@ -63,4 +63,6 @@ public static partial class EnhancedLinqDeferred
         IEnumerable<TNumber> numbersToSkip) where TNumber : INumber<TNumber> 
         => GenerateNumberRange(start, count, incrementor)
             .SkipWhile(x => numbersToSkip.Contains(x));
+
 }
+#endif

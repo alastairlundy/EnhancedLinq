@@ -27,7 +27,9 @@ public static partial class EnhancedLinqDeferred
     /// <returns>The indices if the object is found; an empty sequence otherwise.</returns>
     public static IEnumerable<int> IndicesOf<T>(this IEnumerable<T> source, T target) where T : notnull
     {
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+#endif
         
         return new CustomEnumeratorEnumerable<int>(new IndicesEnumerator<T>(source, x => x.Equals(target)));
     }
@@ -41,7 +43,9 @@ public static partial class EnhancedLinqDeferred
     /// <returns>The indices if one or more elements matching the predicate is found; an empty sequence otherwise.</returns>
     public static IEnumerable<int> IndicesOf<T>(this IEnumerable<T> source, Func<T, bool> predicate)
     {
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+#endif
         
         return new CustomEnumeratorEnumerable<int>(new IndicesEnumerator<T>(source, predicate));
     }
@@ -56,7 +60,9 @@ public static partial class EnhancedLinqDeferred
     /// </returns>
     public static IEnumerable<int> IndicesOf(this string str, char c)
     {
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(str);
+#endif
         
         return new CustomEnumeratorEnumerable<int>(new IndicesEnumerator<char>(str, x => x.Equals(c)));
     }
@@ -69,8 +75,10 @@ public static partial class EnhancedLinqDeferred
     /// <returns>A sequence of indices where the character is found; an empty sequence if the character could not be found.</returns>
     public static IEnumerable<int> IndicesOf(this string str, string substring)
     {
+#if NET8_0_OR_GREATER
         ArgumentException.ThrowIfNullOrEmpty(str);
         ArgumentException.ThrowIfNullOrEmpty(substring);
+#endif
         
         return new CustomEnumeratorEnumerable<int>(new StringIndicesEnumerator(str, substring));
     }

@@ -11,9 +11,8 @@
         <Copyright>Copyright (c) 2025 Alastair Lundy</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/Enhancedlinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>* Updated DotExtensions.MsExtensions from 8.3.1 to 8.4.0
-* Updated DotPrimitives from 3.2.0 to 3.3.0
-* Added Deferred Mode ``SplitBy`` predicate method - This method splits the source StringSegment each time the predicate ``Func&lt;char, bool&gt;`` is true</PackageReleaseNotes>
+        <PackageReleaseNotes>### Changes since 0.6.0
+* Updated DotExtensions.MsExtensions from 8.5.1 to 8.6.1</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <PackageId>AlastairLundy.EnhancedLinq.MsExtensions</PackageId>
@@ -22,7 +21,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>0.5.0</Version>
+        <Version>0.7.0</Version>
         <PackageTags>linq, enhanced-linq, enhanced, stringsegment, extensions</PackageTags>
         <Description>LINQ style Deferred and Immediate enumeration mode extension methods for StringSegments and potentially other Microsoft.Extension.* packages in the future . </Description>
         <AssemblyName>AlastairLundy.EnhancedLinq.MsExtensions</AssemblyName>
@@ -30,7 +29,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="AlastairLundy.DotExtensions.MsExtensions" Version="8.5.0" />
+      <PackageReference Include="AlastairLundy.DotExtensions.MsExtensions" Version="8.6.1" />
       <PackageReference Include="AlastairLundy.DotPrimitives.Collections" Version="3.3.0" />
       <PackageReference Include="Microsoft.Extensions.Primitives" Version="9.0.9" />
     </ItemGroup>

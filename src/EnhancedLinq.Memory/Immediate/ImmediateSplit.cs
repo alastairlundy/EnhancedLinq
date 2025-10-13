@@ -69,7 +69,6 @@ public static partial class EnhancedLinqMemoryImmediate
     /// </summary>
     /// <param name="span">The span to split.</param>
     /// <returns></returns>
-    /// <exception cref="ArgumentOutOfRangeException"></exception>
     public static IList<T[]> SplitByProcessorCount<T>(this Span<T> span)
         => SplitByItemCount(span, Environment.ProcessorCount);
 
@@ -102,12 +101,12 @@ public static partial class EnhancedLinqMemoryImmediate
     }
 
     /// <summary>
-    /// 
+    /// Splits a span by a separator, into a list of spans.
     /// </summary>
-    /// <param name="span"></param>
-    /// <param name="separator"></param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
+    /// <param name="span">The span to split.</param>
+    /// <param name="separator">The separator to split by.</param>
+    /// <typeparam name="T">The type of the elements in the source span.</typeparam>
+    /// <returns>A list of spans, each containing the elements before the separator was found.</returns>
     public static IList<T[]> SplitBy<T>(this Span<T> span, T separator)
     {
         if (span.IsEmpty)

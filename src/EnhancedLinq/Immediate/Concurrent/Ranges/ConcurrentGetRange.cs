@@ -73,6 +73,7 @@ public static partial class EnhancedLinqImmediateConcurrentRange
         return output;
     }
 
+#if NET8_0_OR_GREATER
     /// <summary>
     /// Retrieves a range of elements from the specified concurrent collection, as defined by a <see cref="Range"/> object.
     /// </summary>
@@ -82,4 +83,5 @@ public static partial class EnhancedLinqImmediateConcurrentRange
     /// <returns>A new <see cref="IProducerConsumerCollection{T}"/> containing the specified range of elements.</returns>
     public static IProducerConsumerCollection<T> GetRange<T>(this IProducerConsumerCollection<T> collection,
         Range range) => GetRange(collection, range.Start.Value, range.End.Value);
+#endif
 }

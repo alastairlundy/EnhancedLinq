@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net8.0;net9.0;</TargetFrameworks>
+        <TargetFrameworks>net8.0;net9.0;netstandard2.0;</TargetFrameworks>
         <LangVersion>13</LangVersion>
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
@@ -13,12 +13,10 @@
         <RepositoryUrl>https://github.com/alastairlundy/EnhancedLinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>linq, enhanced-linq, enhanced, extensions, memory, extensions</PackageTags>
-        <PackageReleaseNotes>* Updated DotExtensions from 8.3.0 to 8.4.0
-* Updated DotPrimitives from 3.2.0 to 3.3.0
-* Add Span&lt;T&gt; ``Any&lt;T&gt;()`` non predicate extension method
-* Add Span&lt;T&gt; and Memory&lt;T&gt; ``LastIndex``
-* Added Immediate Mode ``SplitBy`` predicate method - This method splits the source Span&lt;T&gt; each time the predicate ``Func&lt;T, bool&gt;`` is true
-* Fixed an issue where the class holding the Span&lt;T&gt; ``ForEach`` extension methods used the wrong namespace</PackageReleaseNotes>
+        <PackageReleaseNotes>## Changes since 0.6.0
+* Update DotExtensions to 8.6.2
+* Added limited .NET Standard 2.0 support
+* Added Span ``Contains`` and ReadOnlySpan ``Contains`` immediate mode extension methods for .NET Standard 2.0 users</PackageReleaseNotes>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -26,14 +24,14 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>0.5.0</Version>
+        <Version>0.7.0</Version>
         <AssemblyName>AlastairLundy.EnhancedLinq.Memory</AssemblyName>
         <PackageId>AlastairLundy.EnhancedLinq.Memory</PackageId>
         <RootNamespace>AlastairLundy.EnhancedLinq.Memory</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AlastairLundy.DotExtensions" Version="8.5.0" />
+        <PackageReference Include="AlastairLundy.DotExtensions" Version="8.6.2" />
         <PackageReference Include="AlastairLundy.DotPrimitives.Collections" Version="3.3.0" />
     </ItemGroup>
 

@@ -23,9 +23,13 @@ public static partial class EnhancedLinqMemoryImmediate
     /// <typeparam name="TResult">The type of elements the predicate transforms elements into.</typeparam>
     /// <returns>The newly created Span with the elements transformed by the predicate.</returns>
     public static Span<TResult> Select<TSource, TResult>(
+#if NET8_0_OR_GREATER
         [NotNull]
+#endif
         this Span<TSource> source,
+#if NET8_0_OR_GREATER
         [NotNull]
+#endif
         Func<TSource, TResult> predicate)
     {
         TResult[] array = new  TResult[source.Length];
@@ -50,9 +54,13 @@ public static partial class EnhancedLinqMemoryImmediate
     /// <typeparam name="TResult"></typeparam>
     /// <returns></returns>
     public static Memory<TResult> Select<TSource, TResult>(
+#if NET8_0_OR_GREATER
         [NotNull]
+#endif
         this Memory<TSource> source,
+#if NET8_0_OR_GREATER
         [NotNull]
+#endif
         Func<TSource, TResult> predicate)
     {
         TResult[] array = new  TResult[source.Length];

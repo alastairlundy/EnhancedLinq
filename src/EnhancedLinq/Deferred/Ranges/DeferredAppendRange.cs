@@ -31,8 +31,10 @@ public static partial class EnhancedLinqDeferredRange
     public static IEnumerable<TSource> AppendRange<TSource>(this IEnumerable<TSource> source,
         IEnumerable<TSource> toBeAppended)
     { 
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source, nameof(source));
         ArgumentNullException.ThrowIfNull(toBeAppended, nameof(toBeAppended));
+#endif
         
         return new AppendRangeEnumerable<TSource>(source, toBeAppended);
     }

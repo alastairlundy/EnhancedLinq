@@ -35,9 +35,13 @@ public static partial class EnhancedLinqImmediate
     /// <returns>The new list with distinct elements from the source list.</returns>
     public static List<T> Distinct<T>(this List<T> source, IEqualityComparer<T> equalityComparer)
     {
+#if NET8_0_OR_GREATER
         HashSet<T> hash = new(capacity: source.Count / 10, comparer: equalityComparer);
+#else
+        HashSet<T> hash = new(comparer: equalityComparer);
+#endif
         List<T> output = new(capacity: source.Count / 10);
-        
+
         for (int index = 0; index < source.Count; index++)
         {
             T item = source[index];
@@ -68,7 +72,12 @@ public static partial class EnhancedLinqImmediate
     /// <returns>The new array with distinct elements from the source array.</returns>
     public static T[] Distinct<T>(this T[] source, IEqualityComparer<T> equalityComparer)
     {
+#if NET8_0_OR_GREATER
         HashSet<T> hash = new(capacity: source.Length / 10, comparer: equalityComparer);
+#else
+        HashSet<T> hash = new(comparer: equalityComparer);
+#endif
+        
         T[] output = new T[source.Length];
 
         int count = 0;

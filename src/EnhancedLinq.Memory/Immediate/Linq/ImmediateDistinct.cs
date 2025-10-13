@@ -34,8 +34,12 @@ public static partial class EnhancedLinqMemoryImmediate
     {
         comparer ??= EqualityComparer<T>.Default;
         
+#if NET8_0_OR_GREATER
         HashSet<T> set = new(capacity: source.Length, comparer: comparer);
-
+#else
+        HashSet<T> set = new(comparer: comparer);
+#endif
+        
         int currentIndex = 0;
         T[] output = new T[source.Length];
         

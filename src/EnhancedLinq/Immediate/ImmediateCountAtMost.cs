@@ -24,7 +24,9 @@ public static partial class EnhancedLinqImmediate
     /// <returns>True if there are at most <paramref name="countToLookFor"/> number of elements, false otherwise.</returns>
     public static bool CountAtMost<T>(this IEnumerable<T> source, int countToLookFor)
     {
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+#endif
         
         if (source is ICollection<T> collection)
         {
@@ -59,8 +61,10 @@ public static partial class EnhancedLinqImmediate
     public static bool CountAtMost<T>(this IEnumerable<T> source, Func<T, bool> predicate,
         int countToLookFor)
     {
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
-
+#endif
+        
         if (countToLookFor < 0)
             throw new ArgumentException(Resources.Exceptions_Count_LessThanZero.Replace("{x}", countToLookFor.ToString()));
         

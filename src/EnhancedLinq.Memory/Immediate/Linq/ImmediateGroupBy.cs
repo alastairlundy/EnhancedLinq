@@ -30,9 +30,13 @@ public static partial class EnhancedLinqMemoryImmediate
     /// <typeparam name="TElement">The type of elements in the source span.</typeparam>
     /// <returns>A span of groups, each containing a key and the elements that share that key.</returns>
     public static Span<IGrouping<TKey, TElement>> GroupBy<TKey, TElement>(
+#if NET8_0_OR_GREATER
         [NotNull]
+#endif
         this Span<TElement> source,
+#if NET8_0_OR_GREATER
         [NotNull]
+#endif
         Func<TElement, TKey> keyPredicate) where TKey : notnull
     {
         Dictionary<TKey, List<TElement>> dictionary = new();

@@ -27,8 +27,10 @@ public static partial class EnhancedLinqDeferredRange
     public static IEnumerable<TSource> PrependRange<TSource>(this IEnumerable<TSource> source,
         IEnumerable<TSource> toBePrepended)
     {
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source, nameof(source));
         ArgumentNullException.ThrowIfNull(toBePrepended, nameof(toBePrepended));
+#endif
         
         return new PrependRangeEnumerable<TSource>(source, toBePrepended);
     }

@@ -29,7 +29,9 @@ public static partial class EnhancedLinqImmediateList
     /// <exception cref="ArgumentException">Thrown when count is less than zero or greater than the length of the source.</exception>
     public static T[] Take<T>(this T[] source, int count)
     {
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+#endif
 
         if (count < 0 || count > source.Length)
             throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
@@ -54,7 +56,9 @@ public static partial class EnhancedLinqImmediateList
     /// <exception cref="ArgumentException">Thrown when count is less than zero or greater than the length/size of the source.</exception>
     public static IList<T> Take<T>(this IList<T> source, int count)
     {
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+#endif
 
         if (count < 0 || count > source.Count)
             throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
@@ -79,8 +83,10 @@ public static partial class EnhancedLinqImmediateList
     /// <exception cref="ArgumentException">Thrown when count is less than zero or greater than the length/size of the source.</exception>
     public static ICollection<T> Take<T>(this ICollection<T> source, int count)
     {
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
-
+#endif
+        
         if (count < 0 || count > source.Count)
             throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
         

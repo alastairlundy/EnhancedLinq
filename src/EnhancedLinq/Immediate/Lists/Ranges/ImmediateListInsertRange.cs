@@ -34,8 +34,10 @@ public static partial class EnhancedLinqImmediateRange
     /// <exception cref="IndexOutOfRangeException">Thrown if the specified index is out of range for this collection.</exception>
     public static void InsertRange<T>(this ICollection<T> source, int index, IEnumerable<T> values)
     {
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
-        
+#endif        
+
         if (index < 0 || index > source.Count)
         {
             throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
@@ -65,8 +67,9 @@ public static partial class EnhancedLinqImmediateRange
     /// <exception cref="OverflowException">Thrown if the list overflows with the new elements.</exception>
     public static void InsertRange<T>(this IList<T> source, int index, IEnumerable<T> values)
     {
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
-
+#endif
         
         if (index < 0 || index > source.Count)
         {
