@@ -10,7 +10,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using AlastairLundy.DotPrimitives.Collections.Enumerables;
+
 using AlastairLundy.EnhancedLinq.Deferred.Enumerators;
 using AlastairLundy.EnhancedLinq.Internals.Localizations;
 
