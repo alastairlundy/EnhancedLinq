@@ -12,9 +12,9 @@
         <RepositoryUrl>https://github.com/alastairlundy/Enhancedlinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageReleaseNotes>## Changes since 0.6.0
-* Update DotExtensions to 8.6.2
-* Added limited .NET Standard 2.0 support</PackageReleaseNotes>
+        <PackageReleaseNotes>## Changes since 0.7.0
+* Update DotExtensions to 9.0.0 Preview 1
+* Added .NET Standard 2.0 fallback method for ``GenerateNumberRange``</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <Description>Additional LINQ style Deferred and Immediate enumeration mode extension methods for .NET . </Description>
@@ -23,7 +23,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>0.7.0</Version>
+        <Version>0.8.0</Version>
         <AssemblyName>AlastairLundy.EnhancedLinq</AssemblyName>
         <PackageId>AlastairLundy.EnhancedLinq</PackageId>
         <RootNamespace>AlastairLundy.EnhancedLinq</RootNamespace>
@@ -45,7 +45,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="AlastairLundy.DotExtensions" Version="8.6.2" />
+      <PackageReference Include="AlastairLundy.DotExtensions" Version="9.0.0-preview.1" />
         <PackageReference Include="AlastairLundy.DotPrimitives.Collections" Version="3.3.0" />
     </ItemGroup>
 
