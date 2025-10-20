@@ -10,6 +10,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using AlastairLundy.EnhancedLinq.Memory.Internals.Localizations;
 
 // ReSharper disable ConvertClosureToMethodGroup

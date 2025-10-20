@@ -11,8 +11,8 @@
         <Copyright>Copyright (c) 2025 Alastair Lundy</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/Enhancedlinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>### Changes since 0.6.0
-* Updated DotExtensions.MsExtensions from 8.5.1 to 8.6.1</PackageReleaseNotes>
+        <PackageReleaseNotes>### Changes since 0.7.0
+* Updated DotExtensions.MsExtensions from 9.0.0 Preview 1</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <PackageId>AlastairLundy.EnhancedLinq.MsExtensions</PackageId>
@@ -21,7 +21,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>0.7.0</Version>
+        <Version>0.8.0</Version>
         <PackageTags>linq, enhanced-linq, enhanced, stringsegment, extensions</PackageTags>
         <Description>LINQ style Deferred and Immediate enumeration mode extension methods for StringSegments and potentially other Microsoft.Extension.* packages in the future . </Description>
         <AssemblyName>AlastairLundy.EnhancedLinq.MsExtensions</AssemblyName>
@@ -29,9 +29,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="AlastairLundy.DotExtensions.MsExtensions" Version="8.6.1" />
+      <PackageReference Include="AlastairLundy.DotExtensions.MsExtensions" Version="9.0.0-preview.1" />
       <PackageReference Include="AlastairLundy.DotPrimitives.Collections" Version="3.3.0" />
-      <PackageReference Include="Microsoft.Extensions.Primitives" Version="9.0.9" />
+      <PackageReference Include="Microsoft.Extensions.Primitives" Version="9.0.10" />
     </ItemGroup>
 
     <ItemGroup>

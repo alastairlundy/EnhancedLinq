@@ -9,6 +9,7 @@
 
 using System;
 using AlastairLundy.EnhancedLinq.MsExtensions.Internals.Localizations;
+
 using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
