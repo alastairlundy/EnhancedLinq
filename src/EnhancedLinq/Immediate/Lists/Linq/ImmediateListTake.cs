@@ -79,7 +79,6 @@ public static partial class EnhancedLinqImmediateList
     /// <param name="source">The source <see cref="ICollection{T}"/> to extract elements from.</param>
     /// <param name="count">The number of elements to take.</param>
     /// <typeparam name="T">The type of elements in the source collection.</typeparam>
-    /// <typeparam name="T">The type of elements in the source collection.</typeparam>
     /// <returns>A new <see cref="ICollection{T}"/> containing the first 'count' elements from the source.</returns>
     /// <exception cref="ArgumentException">Thrown when count is less than zero or greater than the length/size of the source.</exception>
     public static ICollection<T> Take<T>(this ICollection<T> source, int count)
