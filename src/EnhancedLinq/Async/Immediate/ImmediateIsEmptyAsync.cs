@@ -26,6 +26,7 @@ public static partial class EnhancedLinqAsyncImmediate
     {
         bool anyAsync = await source.AnyAsync();
         
+        // ReSharper disable once RedundantBoolCompare
         return anyAsync == false;
     }
 }
