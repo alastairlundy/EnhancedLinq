@@ -45,9 +45,9 @@ public static partial class EnhancedLinqAsyncImmediate
     /// <param name="source"></param>
     /// <param name="predicate"></param>
     /// <param name="countToLookFor"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">The type of elements in the sequence.</typeparam>
     /// <returns></returns>
-    public static async Task<bool> CountAtMost<T>(this IAsyncEnumerable<T> source, Func<T, bool> predicate,
+    public static async Task<bool> CountAtMostAsync<T>(this IAsyncEnumerable<T> source, Func<T, bool> predicate,
         int countToLookFor)
     {
         int count = 0;
