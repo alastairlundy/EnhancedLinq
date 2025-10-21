@@ -3,7 +3,7 @@ A set of Immediate Mode LINQ lambda-style extensions specifically designed for w
 
 ## License
 
-This project is licensed under the **MPL 2.0** License. See the [LICENSE](../../LICENSE.txt) file for more details.
+This project is licensed under the **Apache 2.0 License**. See the [LICENSE](../../LICENSE.txt) file for more details.
 
 ## Features
 

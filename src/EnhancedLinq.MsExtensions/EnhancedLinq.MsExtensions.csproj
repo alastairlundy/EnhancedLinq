@@ -14,7 +14,7 @@
         <PackageReleaseNotes>### Changes since 0.7.0
 * Updated DotExtensions.MsExtensions from 9.0.0 Preview 1</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-        <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
+        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
         <PackageId>AlastairLundy.EnhancedLinq.MsExtensions</PackageId>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <IncludeSymbols>true</IncludeSymbols>

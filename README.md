@@ -2,7 +2,6 @@
 This library adds Additional LINQ style Deferred execution and Immediate enumeration mode extension methods for .NET .
 
 
-
 ## 🚀 Included Methods
 For a comprehensive list of included methods, check out the following resources:
 
@@ -22,11 +21,11 @@ For a comprehensive list of included methods, check out the following resources:
 
 Getting started with **EnhancedLinq** is easy! You can install the packages using the .NET SDK CLI, your IDE's package manager, or directly from the NuGet website.
 
-| Package Id                              | NuGet Link | .NET SDK CLI Command |
-|-----------------------------------------|-------------|----------------------|
-| AlastairLundy.EnhancedLinq.MsExtensions | [EnhancedLinq NuGet](https://nuget.org/packages/AlastairLundy.EnhancedLinq) | `dotnet add package AlastairLundy.EnhancedLinq.` |
-| AlastairLundy.EnhancedLinq.EnhancedLinq.Memory                     | [EnhancedLinq.Memory NuGet](https://nuget.org/packages/AlastairLundy.EnhancedLinq.Memory) | `dotnet add package AlastairLundy.EnhancedLinq.Memory` |
-| AlastairLundy.EnhancedLinq.EnhancedLinq.MsExtensions               | [EnhancedLinq.MsExtensions NuGet](https://nuget.org/packages/AlastairLundy.EnhancedLinq.MsExtensions) | `dotnet add package AlastairLundy.EnhancedLinq.MsExtensions` |
+| Package Id                                           | NuGet Link                                                                                            | .NET SDK CLI Command                                         |
+|------------------------------------------------------|-------------------------------------------------------------------------------------------------------|--------------------------------------------------------------|
+| AlastairLundy.EnhancedLinq.MsExtensions              | [EnhancedLinq NuGet](https://nuget.org/packages/AlastairLundy.EnhancedLinq)                           | `dotnet add package AlastairLundy.EnhancedLinq.`             |
+| AlastairLundy.EnhancedLinq.EnhancedLinq.Memory       | [EnhancedLinq.Memory NuGet](https://nuget.org/packages/AlastairLundy.EnhancedLinq.Memory)             | `dotnet add package AlastairLundy.EnhancedLinq.Memory`       |
+| AlastairLundy.EnhancedLinq.EnhancedLinq.MsExtensions | [EnhancedLinq.MsExtensions NuGet](https://nuget.org/packages/AlastairLundy.EnhancedLinq.MsExtensions) | `dotnet add package AlastairLundy.EnhancedLinq.MsExtensions` |
 
 ## 📖 Usage
 Here are some examples demonstrating how to use some methods provided by EnhancedLinq.
@@ -105,7 +104,7 @@ I welcome contributions. If you have ideas for new features, improvements, or bu
 
 ## 📜 License
 
-**EnhancedLinq** is licensed under the **Mozilla Public License 2.0**. Feel free to use and modify EnhancedLinq according to the terms of the license.
+**EnhancedLinq** is licensed under the **Apache 2.0 license**. Feel free to use and modify EnhancedLinq according to the terms of the license.
 
 ## ❓ Questions?
 
