@@ -116,3 +116,10 @@ While **EnhancedLinq** is a powerful tool, you may wish to explore these alterna
 
 - [SuperLinq](https://github.com/viceroypenguin/SuperLinq)
 - [MoreLinq](https://github.com/morelinq/MoreLINQ)
+
+### Why ``EnhancedLinq`` was created
+In no particular order, these are some of the reasons why ``EnhancedLinq`` was created:
+
+* To move DotExtension LINQ style methods/operations to a separate library.
+* Hardly any .NET libraries exist that bring Linq style methods/operations to Span/Memory.
+* Hardly any .NET libraries exist that bring Linq style methods/operations to StringSegment and other ``Microsoft.Extensions.Primitives`` package types.
