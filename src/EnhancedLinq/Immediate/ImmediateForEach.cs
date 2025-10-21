@@ -20,6 +20,9 @@ using System.Collections.Generic;
 
 namespace AlastairLundy.EnhancedLinq.Immediate;
 
+/// <summary>
+/// Provides additional immediate execution Linq style methods.
+/// </summary>
 public static partial class EnhancedLinqImmediate
 {
     /// <summary>
