@@ -5,7 +5,7 @@ This library enhances the usability of `StringSegment` by providing deferred exe
 
 ## License
 
-This project is licensed under the **Mozilla Public License 2.0**. See the [LICENSE](../../LICENSE.txt) file for more details.
+This project is licensed under the **Apache 2.0 license**. See the [LICENSE](../../LICENSE.txt) file for more details.
 
 ## Features
 
