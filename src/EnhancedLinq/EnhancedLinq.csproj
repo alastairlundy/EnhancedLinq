@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net8.0;net9.0;netstandard2.0</TargetFrameworks>
+        <TargetFrameworks>netstandard2.0;net8.0;net9.0;</TargetFrameworks>
         <LangVersion>13</LangVersion>
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
@@ -50,10 +50,20 @@
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="10.0.0-rc.2.25502.107" Condition="'$(TargetFramework)' == 'netstandard2.0'" />
+        <PackageReference Include="System.Linq.AsyncEnumerable" Version="10.0.0-rc.2.25502.107" 
+                          Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'net8.0' OR '$(TargetFramework)' == 'net9.0'"/>
+    </ItemGroup>
+
+    <ItemGroup>
       <Content Include="..\..\README.md">
         <Link>README.md</Link>
           <PackagePath>README.md</PackagePath>
       </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Async\Deferred\" />
     </ItemGroup>
 
 </Project>
