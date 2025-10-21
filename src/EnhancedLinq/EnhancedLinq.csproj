@@ -16,7 +16,7 @@
 * Update DotExtensions to 9.0.0 Preview 1
 * Added .NET Standard 2.0 fallback method for ``GenerateNumberRange``</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-        <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
+        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
         <Description>Additional LINQ style Deferred and Immediate enumeration mode extension methods for .NET . </Description>
         <PackageTags>linq, enhancedlinq, enhanced, deferred-execution,extensions</PackageTags>
         <IncludeSymbols>true</IncludeSymbols>
