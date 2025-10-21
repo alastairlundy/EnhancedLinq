@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 
 namespace AlastairLundy.EnhancedLinq.Async.Immediate;
 
+/// <summary>
+/// Provides immediate mode asynchronous operations using Async methods.
+/// </summary>
 public static partial class EnhancedLinqAsyncImmediate
 {
     /// <summary>

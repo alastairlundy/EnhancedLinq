@@ -16,16 +16,15 @@ namespace AlastairLundy.EnhancedLinq.Async.Immediate;
 public static partial class EnhancedLinqAsyncImmediate
 {
     /// <summary>
-    /// 
+    /// Asynchronously counts elements in the source sequence until it finds at most 'countToLookFor' elements.
     /// </summary>
-    /// <param name="source"></param>
-    /// <param name="countToLookFor"></param>
-    /// <typeparam name="T">The type of elements in the sequence.</typeparam>
-    /// <returns></returns>
+    /// <param name="source">The asynchronous enumerable source.</param>
+    /// <param name="countToLookFor">The maximum count of elements to find.</param>
+    /// <returns>A boolean indicating whether at most 'countToLookFor' elements were found.</returns>
     public static async Task<bool> CountAtMostAsync<T>(this IAsyncEnumerable<T> source, int countToLookFor)
     {
         int count = 0;
-        
+
         await foreach (T obj in source)
         {
             count++;
@@ -40,18 +39,17 @@ public static partial class EnhancedLinqAsyncImmediate
     }
 
     /// <summary>
-    /// 
+    /// Asynchronously counts elements in the source sequence until it finds at most 'countToLookFor' elements.
     /// </summary>
-    /// <param name="source"></param>
-    /// <param name="predicate"></param>
-    /// <param name="countToLookFor"></param>
-    /// <typeparam name="T">The type of elements in the sequence.</typeparam>
-    /// <returns></returns>
+    /// <param name="source">The asynchronous enumerable source.</param>
+    /// <param name="countToLookFor">The maximum count of elements to find.</param>
+    /// <param name="predicate">The predicate condition to use.</param>
+    /// <returns>A boolean indicating whether at most 'countToLookFor' elements were found.</returns>
     public static async Task<bool> CountAtMostAsync<T>(this IAsyncEnumerable<T> source, Func<T, bool> predicate,
         int countToLookFor)
     {
         int count = 0;
-        
+
         await foreach (T obj in source)
         {
             if (predicate(obj))
