@@ -16,7 +16,7 @@
         <PackageReleaseNotes>## Changes since 0.7.0
 * Updated DotExtensions to 9.0.0 Preview 1
 * Added DotExtensions.Memory 9.0.0 Preview 1 as a dependency</PackageReleaseNotes>
-        <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
+        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <IncludeSymbols>true</IncludeSymbols>
