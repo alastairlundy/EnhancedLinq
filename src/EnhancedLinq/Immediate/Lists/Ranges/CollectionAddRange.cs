@@ -5,10 +5,7 @@ using System.Collections.Generic;
 
 namespace AlastairLundy.EnhancedLinq.Immediate.Ranges;
 
-/// <summary>
-/// 
-/// </summary>
-public static class CollectionAddRange
+public static partial class EnhancedLinqImmediateRange
 {
     /// <summary>
     /// Appends elements from another collection to the end of the specified collection.

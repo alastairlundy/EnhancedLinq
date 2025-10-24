@@ -28,6 +28,9 @@ using AlastairLundy.EnhancedLinq.Internals.Localizations;
 
 namespace EnhancedLinq.Immediate.Ranges;
 
+/// <summary>
+/// Provides functionality to work with immediate insertion of ranges of items into collections and lists.
+/// </summary>
 public static partial class EnhancedLinqImmediateRange
 {
     /// <summary>

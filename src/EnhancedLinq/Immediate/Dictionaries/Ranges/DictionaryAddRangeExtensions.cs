@@ -5,10 +5,7 @@ using System.Collections.Generic;
 
 namespace AlastairLundy.EnhancedLinq.Immediate.Dictionaries.Ranges;
 
-/// <summary>
-/// 
-/// </summary>
-public static class DictionaryAddRangeExtensions
+public static partial class EnhancedLinqImmediateDictionary
 {
     #if NETSTANDARD2_0
     /// <summary>

@@ -20,6 +20,9 @@ using System.Linq;
 
 namespace AlastairLundy.EnhancedLinq.Immediate.Dictionaries;
 
+/// <summary>
+/// Provides a collection of extension methods for performing enhanced LINQ operations on dictionaries.
+/// </summary>
 public static partial class EnhancedLinqImmediateDictionary
 {
     /// <summary>

@@ -45,14 +45,14 @@ public static partial class EnhancedLinqImmediateConcurrentRange
     }
 
     /// <summary>
-    /// 
+    /// Adds multiple objects to a concurrent bag.
     /// </summary>
-    /// <param name="source"></param>
-    /// <param name="items"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <param name="source">The concurrent bag to which the objects will be added.</param>
+    /// <param name="items">The collection of objects to add into the concurrent bag.</param>
+    /// <typeparam name="T">The type of elements contained within the bag.</typeparam>
     public static void AddRange<T>(this ConcurrentBag<T> source, IEnumerable<T> items)
     {
-        #if NET8_0_OR_GREATER
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source, nameof(source));
         ArgumentNullException.ThrowIfNull(items, nameof(items));
         #endif
@@ -64,11 +64,11 @@ public static partial class EnhancedLinqImmediateConcurrentRange
     }
 
     /// <summary>
-    /// 
+    /// Adds multiple objects to a concurrent queue.
     /// </summary>
-    /// <param name="source"></param>
-    /// <param name="items"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <param name="source">The concurrent queue to which the objects will be added.</param>
+    /// <param name="items">The collection of objects to enqueue into the concurrent queue.</param>
+    /// <typeparam name="T">The type of elements contained within the queue.</typeparam>
     public static void EnqueueRange<T>(this ConcurrentQueue<T> source, IEnumerable<T> items)
     {
 #if NET8_0_OR_GREATER
