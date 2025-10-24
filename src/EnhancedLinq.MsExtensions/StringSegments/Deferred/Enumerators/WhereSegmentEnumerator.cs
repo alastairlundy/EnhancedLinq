@@ -81,6 +81,6 @@ internal class WhereSegmentEnumerator : IEnumerator<char>
 
     public void Dispose()
     {
-        throw new NotImplementedException();
+        _enumerator.Dispose();
     }
 }
