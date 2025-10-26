@@ -21,8 +21,6 @@ using System.Collections.Generic;
 using AlastairLundy.EnhancedLinq.Immediate.Linq;
 using AlastairLundy.EnhancedLinq.Internals.Localizations;
 
-using EnhancedLinq.Immediate.Ranges;
-
 namespace AlastairLundy.EnhancedLinq.Immediate.Ranges;
 
 /// <summary>
