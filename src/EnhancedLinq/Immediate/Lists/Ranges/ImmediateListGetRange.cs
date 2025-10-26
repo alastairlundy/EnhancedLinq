@@ -21,6 +21,10 @@ using AlastairLundy.EnhancedLinq.Internals.Localizations;
 
 namespace AlastairLundy.EnhancedLinq.Immediate.Ranges;
 
+/// <summary>
+/// Provides extended functionality for working with ranges of elements in lists,
+/// including retrieving specified ranges of elements by indices or by count.
+/// </summary>
 public static partial class EnhancedLinqImmediateRange
 {
         /// <summary>

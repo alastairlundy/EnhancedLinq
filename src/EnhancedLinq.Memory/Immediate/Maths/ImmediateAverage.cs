@@ -22,7 +22,10 @@ using AlastairLundy.DotExtensions.Numbers;
 
 namespace AlastairLundy.EnhancedLinq.Memory.Immediate.Maths;
 
-
+/// <summary>
+/// Provides extension methods for performing arithmetic operations such as sum and average
+/// on memory and span structures containing numerical data types.
+/// </summary>
 public static partial class EnhancedLinqMemoryImmediateMaths
 {
     /// <summary>

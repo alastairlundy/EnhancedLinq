@@ -21,7 +21,7 @@ using System.Linq;
 namespace AlastairLundy.EnhancedLinq.Deferred.Dictionaries;
 
 /// <summary>
-/// 
+/// Provides a set of static methods for working with dictionaries in a Linq style deferred manner.
 /// </summary>
 public static partial class EnhancedLinqDeferredDictionary
 {

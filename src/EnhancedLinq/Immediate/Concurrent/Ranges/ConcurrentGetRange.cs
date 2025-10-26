@@ -23,7 +23,7 @@ using AlastairLundy.EnhancedLinq.Internals.Localizations;
 namespace AlastairLundy.EnhancedLinq.Immediate.Concurrent.Ranges;
 
 /// <summary>
-/// Provides extension methods for retrieving ranges of elements from concurrent collections.
+/// Provides extension methods for retrieving or adding ranges of elements from concurrent collections.
 /// </summary>
 public static partial class EnhancedLinqImmediateConcurrentRange
 {
@@ -58,7 +58,7 @@ public static partial class EnhancedLinqImmediateConcurrentRange
 
         if (count < 0)
         {
-            //TODO: Add CountOutOfRange in the future
+            //TODO: Add CountOutOfRange Exception in the future
         }
             
             
