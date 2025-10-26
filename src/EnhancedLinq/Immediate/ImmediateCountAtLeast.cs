@@ -30,7 +30,7 @@ public static partial class EnhancedLinqImmediate
     /// <param name="source">The source sequence.</param>
     /// <param name="countToLookFor">The minimum count to look for.</param>
     /// <typeparam name="T">The element type in the source sequence.</typeparam>
-    /// <returns><c>true</c> if there are at least the specified number of elements in the sequence; otherwise, <c>false</c>.</returns>
+    /// <returns><c>true</c> if there is at least the specified number of elements in the sequence; otherwise, <c>false</c>.</returns>
     public static bool CountAtLeast<T>(this IEnumerable<T> source, int countToLookFor)
     {
 #if NET8_0_OR_GREATER
