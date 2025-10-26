@@ -18,8 +18,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using AlastairLundy.DotPrimitives.Collections.Enumerables;
-using AlastairLundy.EnhancedLinq.Deferred.Enumerables;
+
 using AlastairLundy.EnhancedLinq.Deferred.Enumerators.Indices;
 
 namespace AlastairLundy.EnhancedLinq.Deferred;
@@ -33,25 +34,29 @@ public static partial class EnhancedLinqDeferred
     /// <param name="target">The item to search for.</param>
     /// <param name="count">The maximum number of indices to return.</param>
     /// <typeparam name="T">The type of the elements in the source sequence.</typeparam>
-    /// <returns>A sequence of the first <paramref name="count"/> indices if the object is found; an empty sequence otherwise.</returns>
+    /// <returns>A sequence of the first <paramref name="count"/> indices if the object is found;
+    /// an empty sequence otherwise.</returns>
     public static IEnumerable<int> FirstNIndicesOf<T>(this IEnumerable<T> source, T target, int count) where T : notnull
     {
 #if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
 #endif
         
-        return new CustomEnumeratorEnumerable<int>(new IndicesEnumerator<T>(source, x => x.Equals(target)))
+        return new CustomEnumeratorEnumerable<int>(new IndicesEnumerator<T>(source,
+                x => x.Equals(target)))
             .Take(count);
     }
 
     /// <summary>
-    /// Gets the first <paramref name="count"/> indices of the elements that match the predicate within a sequence.
+    /// Gets the first <paramref name="count"/> indices of the elements that match the predicate
+    /// within a sequence.
     /// </summary>
     /// <param name="source">The sequence to be searched.</param>
     /// <param name="predicate">The predicate to use when comparing elements in the source.</param>
     /// <param name="count">The maximum number of indices to return.</param>
     /// <typeparam name="T">The type of the elements in the source sequence.</typeparam>
-    /// <returns>A sequence of the first <paramref name="count"/> indices if one or more elements matching the predicate is found; an empty sequence otherwise.</returns>
+    /// <returns>A sequence of the first <paramref name="count"/> indices if one or more elements
+    /// matching the predicate is found; an empty sequence otherwise.</returns>
     public static IEnumerable<int> FirstNIndicesOf<T>(this IEnumerable<T> source, Func<T, bool> predicate, int count)
     {
 #if NET8_0_OR_GREATER
@@ -63,13 +68,15 @@ public static partial class EnhancedLinqDeferred
     }
 
     /// <summary>
-    /// Finds the first <paramref name="count"/> occurrences of a specified char within a string, starting from the beginning of the string.
+    /// Finds the first <paramref name="count"/> occurrences of a specified char within a string,
+    /// starting from the beginning of the string.
     /// </summary>
     /// <param name="str">The input string.</param>
     /// <param name="c">The character to find in the string.</param>
     /// <param name="count">The maximum number of indices to return.</param>
     /// <returns>
-    /// A sequence of the first <paramref name="count"/> indices where the character is found; an empty sequence if the character could not be found.
+    /// A sequence of the first <paramref name="count"/> indices where the character is found;
+    /// an empty sequence if the character could not be found.
     /// </returns>
     public static IEnumerable<int> FirstNIndicesOf(this string str, char c, int count)
     {
@@ -77,17 +84,20 @@ public static partial class EnhancedLinqDeferred
         ArgumentNullException.ThrowIfNull(str);
 #endif
         
-        return new CustomEnumeratorEnumerable<int>(new IndicesEnumerator<char>(str, x => x.Equals(c)))
+        return new CustomEnumeratorEnumerable<int>(new IndicesEnumerator<char>(str, 
+                x => x.Equals(c)))
             .Take(count);
     }
 
     /// <summary>
-    /// Finds the first <paramref name="count"/> occurrences of a specified substring within a string, starting from the beginning of the string.
+    /// Finds the first <paramref name="count"/> occurrences of a specified substring within a string,
+    /// starting from the beginning of the string.
     /// </summary>
     /// <param name="str">The input string.</param>
     /// <param name="substring">The substring to look for.</param>
     /// <param name="count">The maximum number of indices to return.</param>
-    /// <returns>A sequence of the first <paramref name="count"/> indices where the character is found; an empty sequence if the character could not be found.</returns>
+    /// <returns>A sequence of the first <paramref name="count"/> indices where the character is found;
+    /// an empty sequence if the character could not be found.</returns>
     public static IEnumerable<int> FirstNIndicesOf(this string str, string substring, int count)
     {
 #if NET8_0_OR_GREATER
@@ -106,7 +116,8 @@ public static partial class EnhancedLinqDeferred
     /// <param name="target">The item to search for.</param>
     /// <param name="count">The maximum number of indices to return.</param>
     /// <typeparam name="T">The type of the elements in the source sequence.</typeparam>
-    /// <returns>A sequence of the last <paramref name="count"/> indices if the object is found; an empty sequence otherwise.</returns>
+    /// <returns>A sequence of the last <paramref name="count"/> indices if the object is found;
+    /// an empty sequence otherwise.</returns>
     public static IEnumerable<int> LastNIndicesOf<T>(this IEnumerable<T> source, T target, int count) where T : notnull
        => FirstNIndicesOf(source.Reverse(), target, count);
        
@@ -117,18 +128,22 @@ public static partial class EnhancedLinqDeferred
     /// <param name="selector">The selector to use when comparing elements in the source.</param>
     /// <param name="count">The maximum number of indices to return.</param>
     /// <typeparam name="T">The type of the elements in the source sequence.</typeparam>
-    /// <returns>A sequence of the last <paramref name="count"/> indices if one or more elements matching the predicate is found; an empty sequence otherwise.</returns>
-    public static IEnumerable<int> LastNIndicesOf<T>(this IEnumerable<T> source, Func<T, bool> selector, int count) 
+    /// <returns>A sequence of the last <paramref name="count"/> indices if one or more elements
+    /// matching the predicate is found; an empty sequence otherwise.</returns>
+    public static IEnumerable<int> LastNIndicesOf<T>(this IEnumerable<T> source, 
+        Func<T, bool> selector, int count) 
         => FirstNIndicesOf(source.Reverse(), selector, count);
 
     /// <summary>
-    /// Finds the last <paramref name="count"/> occurrences of a specified char within a string, starting from the beginning of the string.
+    /// Finds the last <paramref name="count"/> occurrences of a specified char within a string,
+    /// starting from the beginning of the string.
     /// </summary>
     /// <param name="str">The input string.</param>
     /// <param name="c">The character to find in the string.</param>
     /// <param name="count">The maximum number of indices to return.</param>
     /// <returns>
-    /// A sequence of the last <paramref name="count"/> indices where the character is found; an empty sequence if the character could not be found.
+    /// A sequence of the last <paramref name="count"/> indices where the character is found;
+    /// an empty sequence if the character could not be found.
     /// </returns>
     public static IEnumerable<int> LastNIndicesOf(this string str, char c, int count)
         => FirstNIndicesOf(str.Reverse(), c, count);
@@ -139,7 +154,8 @@ public static partial class EnhancedLinqDeferred
     /// <param name="str">The input string.</param>
     /// <param name="substring">The substring to look for.</param>
     /// <param name="count">The maximum number of indices to return.</param>
-    /// <returns>A sequence of the last <paramref name="count"/> indices where the character is found; an empty sequence if the character could not be found.</returns>
+    /// <returns>A sequence of the last <paramref name="count"/> indices where the character is found;
+    /// an empty sequence if the character could not be found.</returns>
     public static IEnumerable<int> LastNIndicesOf(this string str, string substring, int count)
         => FirstNIndicesOf(string.Join("", str.Reverse()), substring, count);
 

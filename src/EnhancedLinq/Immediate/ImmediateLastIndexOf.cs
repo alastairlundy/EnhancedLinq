@@ -28,7 +28,7 @@ public static partial class EnhancedLinqImmediate
     /// Gets the index of the last element that matches the predicate condition.
     /// </summary>
     /// <remarks>
-    /// This method is a computationally expensive as the number of items in the sequence is needed, to obtain the index
+    /// This method is computationally expensive as the number of items in the sequence is needed to get the index
     /// of the last element that satisfies the predicate.
     /// </remarks>
     /// <param name="source">The <see cref="IEnumerable{T}"/> to be searched.</param>
