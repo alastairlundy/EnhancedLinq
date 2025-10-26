@@ -31,7 +31,7 @@
     <ItemGroup>
       <PackageReference Include="AlastairLundy.DotExtensions.MsExtensions" Version="9.0.0-preview.1" />
       <PackageReference Include="AlastairLundy.DotPrimitives.Collections" Version="3.3.0" />
-      <PackageReference Include="Microsoft.Extensions.Primitives" Version="9.0.10" />
+      <PackageReference Include="Microsoft.Extensions.Primitives" Version="10.0.0-rc.2.25502.107" />
     </ItemGroup>
 
     <ItemGroup>
