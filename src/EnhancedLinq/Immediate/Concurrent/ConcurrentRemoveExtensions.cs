@@ -22,7 +22,9 @@ using System.Linq;
 namespace AlastairLundy.EnhancedLinq.Immediate.Concurrent;
 
 /// <summary>
-/// 
+/// Provides a set of static methods for immediate, concurrent processing and manipulation of collections
+/// within the System.Collections.Concurrent namespace.
+/// These methods are designed to enhance LINQ operability for concurrent collections.
 /// </summary>
 public static partial class EnhancedLinqImmediateConcurrent
 {
@@ -37,6 +39,7 @@ public static partial class EnhancedLinqImmediateConcurrent
     public static ConcurrentBag<T> Remove<T>(this ConcurrentBag<T> concurrentBag, T obj)
     {
         IEnumerable<T> newCollection = from item in concurrentBag
+            // ReSharper disable once RedundantBoolCompare
             where item.Equals(obj) == false
             select item;
         
