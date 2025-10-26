@@ -1,27 +1,49 @@
 ﻿
+/*
+      EnhancedLinq
+      Copyright (c) 2025 Alastair Lundy
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ */
 
 using System;
 using System.Collections.Generic;
 
 namespace AlastairLundy.EnhancedLinq.Immediate.Dictionaries.Ranges;
 
+/// <summary>
+/// Provides extension methods for adding multiple items to dictionaries.
+/// </summary>
 public static partial class EnhancedLinqImmediateDictionary
 {
     #if NETSTANDARD2_0
     /// <summary>
-    /// 
+    /// Attempts to add a key-value pair to the dictionary.
+    /// Returns true if the addition is successful, or false if the key already exists or the dictionary is read-only.
     /// </summary>
-    /// <param name="dictionary"></param>
-    /// <param name="key"></param>
-    /// <param name="value"></param>
-    /// <typeparam name="TKey"></typeparam>
-    /// <typeparam name="TValue"></typeparam>
-    /// <returns></returns>
-    private static bool TryAdd<TKey, TValue>(IDictionary<TKey, TValue> dictionary,  TKey key, TValue value)
+    /// <param name="dictionary">The dictionary to add the key-value pair to.</param>
+    /// <param name="key">The key to add to the dictionary.</param>
+    /// <param name="value">The value to associate with the specified key.</param>
+    /// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+    /// <typeparam name="TValue">The type of the values in the dictionary.</typeparam>
+    /// <returns>
+    /// True if the key-value pair was added successfully; otherwise, false.
+    /// </returns>
+    private static bool TryAdd<TKey, TValue>(IDictionary<TKey, TValue> dictionary, TKey key, TValue value)
     {
         if (dictionary.IsReadOnly)
             return false;
-        
+
         try
         {
             dictionary.Add(key, value);
