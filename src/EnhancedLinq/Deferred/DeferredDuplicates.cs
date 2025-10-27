@@ -18,8 +18,6 @@
 using System;
 using System.Collections.Generic;
 
-using AlastairLundy.DotPrimitives.Collections.Enumerables;
-
 using AlastairLundy.EnhancedLinq.Deferred.Enumerators;
 
 namespace AlastairLundy.EnhancedLinq.Deferred;
@@ -50,7 +48,7 @@ public static partial class EnhancedLinqDeferred
         ArgumentNullException.ThrowIfNull(source, nameof(source));
 #endif
         
-        return new CustomEnumeratorEnumerable<TSource>(
+        return new Internals.Infra.CustomEnumeratorEnumerable<TSource>(
             new DuplicatesEnumerator<TSource>(source, comparer));
     }
 }

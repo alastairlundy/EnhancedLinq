@@ -18,8 +18,6 @@
 using System;
 using System.Collections.Generic;
 
-using AlastairLundy.DotPrimitives.Collections.Enumerables;
-
 using AlastairLundy.EnhancedLinq.Deferred.Enumerators.Ranges;
 
 namespace AlastairLundy.EnhancedLinq.Deferred.Ranges;
@@ -57,7 +55,7 @@ public static partial class EnhancedLinqDeferredRange
         if (indexToInsertAt < 0)
             throw new IndexOutOfRangeException();
         
-        return new CustomEnumeratorEnumerable<TSource>(
+        return new Internals.Infra.CustomEnumeratorEnumerable<TSource>(
             new InsertRangeEnumerator<TSource>(source, indexToInsertAt, toBeInserted));
     }
 }

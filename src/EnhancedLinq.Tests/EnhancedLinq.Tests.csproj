@@ -27,6 +27,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Async\" />
       <Folder Include="Deferred\" />
       <Folder Include="Immediate\" />
     </ItemGroup>
