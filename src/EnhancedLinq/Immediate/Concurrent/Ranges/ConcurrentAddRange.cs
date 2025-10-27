@@ -1,7 +1,7 @@
 /*
-      EnhancedLinq 
+      EnhancedLinq
       Copyright (c) 2025 Alastair Lundy
-      
+
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
      You may obtain a copy of the License at
@@ -15,7 +15,9 @@
      limitations under the License.
  */
 
+#if NET8_0_OR_GREATER
 using System;
+#endif
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 
@@ -55,7 +57,7 @@ public static partial class EnhancedLinqImmediateConcurrentRange
 #if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source, nameof(source));
         ArgumentNullException.ThrowIfNull(items, nameof(items));
-        #endif
+#endif
         
         foreach (T item in items)
         {
