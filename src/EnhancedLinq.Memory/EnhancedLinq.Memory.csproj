@@ -13,7 +13,9 @@
         <RepositoryUrl>https://github.com/alastairlundy/EnhancedLinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>linq, enhanced-linq, enhanced, extensions, memory, extensions</PackageTags>
-        <PackageReleaseNotes>* Re-licensed project under Apache 2.0 license</PackageReleaseNotes>
+        <PackageReleaseNotes>### Memory package
+* Updated DotExtensions from 9.0.0 Preview 1 to 9.0.0 Preview 2
+* Added immediate mode Span ``SelectMany`` extension methods - Note: These return arrays of type ``TResult``</PackageReleaseNotes>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -21,7 +23,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>0.9.0</Version>
+        <Version>0.10.0</Version>
         <AssemblyName>AlastairLundy.EnhancedLinq.Memory</AssemblyName>
         <PackageId>AlastairLundy.EnhancedLinq.Memory</PackageId>
         <RootNamespace>AlastairLundy.EnhancedLinq.Memory</RootNamespace>
