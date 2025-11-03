@@ -108,7 +108,7 @@ I welcome contributions. If you have ideas for new features, improvements, or bu
 
 ## ❓ Questions?
 
-If you have any questions or experience any issues, please open an issue in the [repository's GitHub issues page](https://github.com/alastairlundy/enhancedlinq/issues).
+If you have any questions or experience any issues, please open a discussion in the [repository's GitHub issues page](https://github.com/alastairlundy/enhancedlinq/discussions).
 
 ## 🔄 Alternatives
 

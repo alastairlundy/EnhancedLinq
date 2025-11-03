@@ -19,8 +19,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using AlastairLundy.DotPrimitives.Collections.Enumerables;
-
 using AlastairLundy.EnhancedLinq.Deferred.Enumerators;
 using AlastairLundy.EnhancedLinq.Internals.Localizations;
 
@@ -49,7 +47,7 @@ public static partial class EnhancedLinqDeferred
         ArgumentNullException.ThrowIfNull(indices);
 #endif
         
-        return new CustomEnumeratorEnumerable<TSource>(
+        return new Internals.Infra.CustomEnumeratorEnumerable<TSource>(
             new ElementsAtEnumerator<TSource>(source, indices));
     }
 

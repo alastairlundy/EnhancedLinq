@@ -17,7 +17,6 @@
 
 using System;
 using System.Collections.Generic;
-using AlastairLundy.DotPrimitives.Collections.Enumerables;
 
 using AlastairLundy.EnhancedLinq.Deferred.Enumerators;
 
@@ -44,7 +43,7 @@ public static partial class EnhancedLinqDeferred
         if(maximumCount <= 0)
             throw new ArgumentOutOfRangeException(nameof(maximumCount));
 
-        return new CustomEnumeratorEnumerable<IEnumerable<TSource>>(
+        return new Internals.Infra.CustomEnumeratorEnumerable<IEnumerable<TSource>>(
             new SplitByItemCountEnumerator<TSource>(source, maximumCount));
     }
 
@@ -64,7 +63,7 @@ public static partial class EnhancedLinqDeferred
         if(source == null)
             throw new ArgumentNullException(nameof(source));
         
-        return new CustomEnumeratorEnumerable<IEnumerable<TSource>>(
+        return new Internals.Infra.CustomEnumeratorEnumerable<IEnumerable<TSource>>(
             new SplitByEnumerableCountEnumerator<TSource>(source, Environment.ProcessorCount)); 
     }
 
@@ -107,7 +106,7 @@ public static partial class EnhancedLinqDeferred
         if(source == null)
             throw new ArgumentNullException(nameof(source));
 
-        return new CustomEnumeratorEnumerable<IEnumerable<TSource>>(
+        return new Internals.Infra.CustomEnumeratorEnumerable<IEnumerable<TSource>>(
             new SplitByPredicateEnumerator<TSource>(source, predicate));
     }
 }

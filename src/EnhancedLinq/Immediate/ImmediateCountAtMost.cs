@@ -24,7 +24,7 @@ namespace AlastairLundy.EnhancedLinq.Immediate;
 public static partial class EnhancedLinqImmediate
 {
     /// <summary>
-    /// Determines whether there are at most a maximum number elements in the source sequence.
+    /// Determines whether there are at most a maximum number of elements in the source sequence.
     /// </summary>
     /// <param name="source">The source sequence to search through.</param>
     /// <param name="countToLookFor">The maximum number of elements that can meet the condition.</param>
@@ -59,7 +59,7 @@ public static partial class EnhancedLinqImmediate
 
 
     /// <summary>
-    /// Determines whether there are at most a maximum number elements in the source sequence that satisfy the given condition.
+    /// Determines whether there are at most a maximum number of elements in the source sequence that satisfy the given condition.
     /// </summary>
     /// <param name="source">The source sequence to search through.</param>
     /// <param name="predicate">The predicate condition to check elements against.</param>

@@ -17,6 +17,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AlastairLundy.EnhancedLinq.Immediate;
 
@@ -80,6 +81,32 @@ public static partial class EnhancedLinqImmediate
             }
                     
             index++;
+        }
+        
+        return -1;
+    }
+    
+    /// <summary>
+    /// Finds the first occurrence of a specified substring within a string, starting from the beginning of the string.
+    /// </summary>
+    /// <param name="str">The input string.</param>
+    /// <param name="value">The substring to find.</param>
+    /// <returns>The index of the found substring if it exists, otherwise -1.</returns>
+    public static int IndexOf(this string str, string value)
+    {
+        if (str.Length < value.Length || value.Length == 0)
+            return -1;
+
+        int[] indices = str.IndicesOf(value.First());
+
+        foreach (int index in indices)
+        {
+            string indexValue = value.Substring(index, value.Length);
+
+            if (indexValue.Equals(str))
+            {
+                return index;
+            }
         }
         
         return -1;

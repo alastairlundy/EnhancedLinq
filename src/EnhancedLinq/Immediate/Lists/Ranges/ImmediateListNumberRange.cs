@@ -1,7 +1,7 @@
 /*
-      EnhancedLinq 
+      EnhancedLinq
       Copyright (c) 2025 Alastair Lundy
-      
+
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
      You may obtain a copy of the License at
@@ -15,11 +15,13 @@
      limitations under the License.
  */
 
+#if NET8_0_OR_GREATER
 using System;
 using System.Collections.Generic;
 using System.Numerics;
 using AlastairLundy.DotExtensions.Numbers;
 using AlastairLundy.EnhancedLinq.Internals.Localizations;
+#endif
 
 namespace AlastairLundy.EnhancedLinq.Immediate.Ranges;
 

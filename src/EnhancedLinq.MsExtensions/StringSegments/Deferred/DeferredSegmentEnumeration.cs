@@ -17,9 +17,10 @@
 
 using System;
 using System.Collections.Generic;
-using AlastairLundy.DotPrimitives.Collections.Enumerables;
+using AlastairLundy.EnhancedLinq.MsExtensions.Internals.Infra;
 using AlastairLundy.EnhancedLinq.MsExtensions.Internals.Localizations;
 using AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerators;
+
 using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred;
