@@ -11,9 +11,12 @@
         <Copyright>Copyright (c) 2025 Alastair Lundy</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/Enhancedlinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>* Updated DotExtensions.MsExtensions from 9.0.0 Preview 1 to 9.0.0 Preview 2
-* Fix issue with ``StringSegment`` ``Where`` extension that would lead to a ``NotImplementedException`` being thrown
-* Updated Microsoft.Extensions.Primitives from 9.0.10 to 10.0.0 RC 2</PackageReleaseNotes>
+        <PackageReleaseNotes>## Changes since 0.10.0
+* Added .NET 10 TFM ( #80 )
+* Updated DotExtensions dependency from 9.0.0 Preview 2 to 9.0.0 Preview 3
+* Moved ``CustomEnumeratorEnumerable`` class back into EnhancedLinq.MsExtensions
+* Updated DotPrimitives.Collections dependency from 3.3.0 to 4.0.0 Preview 1
+* Updated DotExtensions.MsExtensions dependency from 9.0.0 Preview 2 to 9.0.0 Preview 3</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
         <PackageId>AlastairLundy.EnhancedLinq.MsExtensions</PackageId>
@@ -22,7 +25,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>0.10.0</Version>
+        <Version>0.11.0</Version>
         <PackageTags>linq, enhanced-linq, enhanced, stringsegment, extensions</PackageTags>
         <Description>LINQ style Deferred and Immediate enumeration mode extension methods for StringSegments and potentially other Microsoft.Extension.* packages in the future . </Description>
         <AssemblyName>AlastairLundy.EnhancedLinq.MsExtensions</AssemblyName>
