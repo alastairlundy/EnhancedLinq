@@ -1,4 +1,6 @@
-﻿namespace ExtendedLinq.Tests;
+﻿using Xunit;
+
+namespace ExtendedLinq.Tests;
 
 public class UnitTest1
 {
