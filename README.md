@@ -1,6 +1,8 @@
 # EnhancedLinq
-This library adds Additional LINQ style Deferred execution and Immediate enumeration mode extension methods for .NET .
+This library adds Additional LINQ style Deferred execution and Immediate enumeration mode extension methods for .NET.
 
+Now updated to use C# 14 and extension everything as of version 0.12.0. 
+C# language version must be set to 14 or higher for EnhancedLinq to work. 
 
 ## 🚀 Included Methods
 For a comprehensive list of included methods, check out the following resources:

@@ -13,10 +13,8 @@
         <RepositoryUrl>https://github.com/alastairlundy/EnhancedLinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>linq, enhanced-linq, enhanced, extensions, memory, extensions</PackageTags>
-        <PackageReleaseNotes>## Changes since 0.10.0
-* Added .NET 10 TFM ( #80 )
-* Updated DotExtensions dependency from 9.0.0 Preview 2 to 9.0.0 Preview 3
-* Updated DotPrimitives.Collections dependency from 3.3.0 to 4.0.0 Preview 1</PackageReleaseNotes>
+        <PackageReleaseNotes>* Updated DotPrimitives.Collections from 4.0.0 Preview 1 to 4.0.0 Preview 2
+* Updated most extension methods to use C# 14 extension everything - Note: Some have been left as traditional extension methods because they do not support extension everything, and a few have been left as is for practical choices.</PackageReleaseNotes>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -24,7 +22,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>0.11.0</Version>
+        <Version>0.12.0</Version>
         <AssemblyName>AlastairLundy.EnhancedLinq.Memory</AssemblyName>
         <PackageId>AlastairLundy.EnhancedLinq.Memory</PackageId>
         <RootNamespace>AlastairLundy.EnhancedLinq.Memory</RootNamespace>

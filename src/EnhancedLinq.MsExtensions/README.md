@@ -3,6 +3,9 @@ A set of LINQ lambda-style extension methods specifically designed for working w
 
 This library enhances the usability of `StringSegment` by providing deferred execution and immediate mode LINQ style extensions.
 
+Now updated to use C# 14 and extension everything as of version 0.12.0.
+C# language version must be set to 14 or higher for EnhancedLinq to work.
+
 ## License
 
 This project is licensed under the **Apache 2.0 license**. See the [LICENSE](../../LICENSE.txt) file for more details.

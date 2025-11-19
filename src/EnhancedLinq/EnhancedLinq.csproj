@@ -12,11 +12,14 @@
         <RepositoryUrl>https://github.com/alastairlundy/Enhancedlinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageReleaseNotes>## Changes since 0.10.0
-* Added .NET 10 TFM ( #80 )
-* Updated DotExtensions dependency from 9.0.0 Preview 2 to 9.0.0 Preview 3
-* Moved ``CustomEnumeratorEnumerable`` class back into EnhancedLinq and removed dependency on DotPrimitives.Collections
-* Removed dependency on ``System.Linq.AsyncEnumerable`` for .NET 10 TFM (since it is not needed starting with .NET 10 and newer) - It is still required for .NET Standard 2.0, .NET 8, and .NET 9 TFMs</PackageReleaseNotes>
+        <PackageReleaseNotes>* Added .NET 10 TFM
+* Updated csproj to use C# 14
+* Updated System.Linq.AsyncEnumerable from 10.0.0 RC 2 to 10.0.0
+* Updated to Polyfill 8.9.1 to 9.1.0
+* Updated DotExtensions from 9.0.0 Preview 3 to 9.0.1
+* Removed immediate mode ElementAt extension
+* Reworked Deferred ElementsAt logic
+* Updated most extension methods to use C# 14 extension everything - Note: A few have been left as is for practical choices.</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
         <Description>Additional LINQ style Deferred and Immediate enumeration mode extension methods for .NET . </Description>
@@ -25,7 +28,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>0.11.0</Version>
+        <Version>0.12.0</Version>
         <AssemblyName>AlastairLundy.EnhancedLinq</AssemblyName>
         <PackageId>AlastairLundy.EnhancedLinq</PackageId>
         <RootNamespace>AlastairLundy.EnhancedLinq</RootNamespace>

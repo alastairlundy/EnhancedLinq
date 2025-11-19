@@ -1,6 +1,10 @@
 # EnhancedLinq.Memory
 A set of Immediate Mode LINQ lambda-style extensions specifically designed for working with Spans and System.Memory data structures in .NET. 
 
+Now updated to use C# 14 and extension everything as of version 0.12.0.
+C# language version must be set to 14 or higher for EnhancedLinq to work.
+
+
 ## License
 
 This project is licensed under the **Apache 2.0 License**. See the [LICENSE](../../LICENSE.txt) file for more details.
