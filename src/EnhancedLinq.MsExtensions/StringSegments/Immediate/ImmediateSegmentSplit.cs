@@ -28,67 +28,67 @@ namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
 
 public static partial class EnhancedLinqSegmentImmediate
 {
-    
-    /// <summary>
-    /// Splits a StringSegment into StringSegment subsegments using a specified <see cref="char"/> separator.
-    /// </summary>
     /// <param name="source">The source StringSegment.</param>
-    /// <param name="separator">The separator to delimit the char in the source StringSegment.</param>
-    /// <returns>An array of StringSegment subsegments from the source StringSegment that is delimited by the separator, if the separator character is found.</returns>
-    public static StringSegment[] Split(this StringSegment source, char separator)
+    extension(StringSegment source)
     {
-        if (StringSegment.IsNullOrEmpty(source))
-            return [];
-
-        List<StringSegment> segments = new();
-        
-        StringBuilder current = new StringBuilder();
-        
-        for (int index = 0; index < source.Length; index++)
+        /// <summary>
+        /// Splits a StringSegment into StringSegment subsegments using a specified <see cref="char"/> separator.
+        /// </summary>
+        /// <param name="separator">The separator to delimit the char in the source StringSegment.</param>
+        /// <returns>An array of StringSegment subsegments from the source StringSegment that is delimited by the separator, if the separator character is found.</returns>
+        public StringSegment[] Split(char separator)
         {
-            if (source[index] == separator)
+            if (StringSegment.IsNullOrEmpty(source))
+                return [];
+
+            List<StringSegment> segments = new();
+        
+            StringBuilder current = new StringBuilder();
+        
+            for (int index = 0; index < source.Length; index++)
             {
-                if (current.Length > 0)
+                if (source[index] == separator)
                 {
-                    segments.Add(new StringSegment(current.ToString()));
-                    current.Clear();
+                    if (current.Length > 0)
+                    {
+                        segments.Add(new StringSegment(current.ToString()));
+                        current.Clear();
+                    }
+                }
+                else
+                {
+                    current.Append(source[index]);
                 }
             }
-            else
-            {
-                current.Append(source[index]);
-            }
-        }
         
-        return segments.ToArray();
-    }
+            return segments.ToArray();
+        }
 
-    
-    /// <summary>
-    /// Splits a StringSegment into StringSegment subsegments using a specified <see cref="StringSegment"/> separator.
-    /// </summary>
-    /// <param name="source">The source StringSegment.</param>
-    /// <param name="separator">The separator to delimit the StringSegment subsegments in the source StringSegment.</param>
-    /// <returns>An array of StringSegment subsegments, from the source StringSegment that is delimited by the separator.</returns>
-    public static StringSegment[] Split(this StringSegment source, StringSegment separator)
-    {
-        IEnumerable<int> indices = source.IndicesOf(separator)
-            .Where(x => x != -1);
-
-        List<StringSegment> output = new();
-
-        int start = 0;
-
-        foreach(int index in indices)
+        /// <summary>
+        /// Splits a StringSegment into StringSegment subsegments using a specified <see cref="StringSegment"/> separator.
+        /// </summary>
+        /// <param name="separator">The separator to delimit the StringSegment subsegments in the source StringSegment.</param>
+        /// <returns>An array of StringSegment subsegments, from the source StringSegment that is delimited by the separator.</returns>
+        public StringSegment[] Split(StringSegment separator)
         {
-            int end = index > 0 ? index - 1 : 0;
+            IEnumerable<int> indices = source.IndicesOf(separator)
+                .Where(x => x != -1);
 
-            StringSegment newSegment = source.Subsegment(start, Math.Abs(end - start));
+            List<StringSegment> output = new();
 
-            output.Add(newSegment);
-            start = index;
-        }
+            int start = 0;
+
+            foreach(int index in indices)
+            {
+                int end = index > 0 ? index - 1 : 0;
+
+                StringSegment newSegment = source.Subsegment(start, Math.Abs(end - start));
+
+                output.Add(newSegment);
+                start = index;
+            }
         
-        return output.ToArray();
+            return output.ToArray();
+        }
     }
 }

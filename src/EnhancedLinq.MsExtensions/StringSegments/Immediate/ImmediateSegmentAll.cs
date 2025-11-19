@@ -27,20 +27,23 @@ namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
 
 public static partial class EnhancedLinqSegmentImmediate
 {
-    /// <summary>
-    /// Returns whether all chars in a StringSegment match the predicate condition.
-    /// </summary>
     /// <param name="target">The StringSegment to be searched.</param>
-    /// <param name="predicate">The predicate func to be invoked on each item in the StringSegment.</param>
-    /// <returns>True if all chars in the StringSegment match the predicate; false otherwise.</returns>
-    public static bool All(this StringSegment target, Func<char, bool> predicate)
+    extension(StringSegment target)
     {
-        if(StringSegment.IsNullOrEmpty(target))
-            throw new ArgumentNullException(nameof(target));
+        /// <summary>
+        /// Returns whether all chars in a StringSegment match the predicate condition.
+        /// </summary>
+        /// <param name="predicate">The predicate func to be invoked on each item in the StringSegment.</param>
+        /// <returns>True if all chars in the StringSegment match the predicate; false otherwise.</returns>
+        public bool All(Func<char, bool> predicate)
+        {
+            if(StringSegment.IsNullOrEmpty(target))
+                throw new ArgumentNullException(nameof(target));
         
-        IEnumerable<bool> groups = target.GroupBy(predicate)
-            .Select(g => g.Any());
+            IEnumerable<bool> groups = target.GroupBy(predicate)
+                .Select(g => g.Any());
       
-        return groups.Distinct().Count() == 1;
+            return groups.Distinct().Count() == 1;
+        }
     }
 }

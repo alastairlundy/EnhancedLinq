@@ -23,39 +23,40 @@ namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
 
 public static partial class EnhancedLinqSegmentImmediate
 {
-
-    /// <summary>
-    /// Returns the first char in the StringSegment that matches the predicate condition.
-    /// </summary>
     /// <param name="target">The StringSegment to be searched.</param>
-    /// <param name="predicate">The predicate func condition to be checked against each char in the StringSegment.</param>
-    /// <returns>The first char in the StringSegment that matches the predicate condition.</returns>
-    /// <exception cref="ArgumentException">Thrown if no characters in the StringSegment meet the predicate condition.</exception>
-    public static char First(this StringSegment target, Func<char, bool> predicate)
+    extension(StringSegment target)
     {
-        for (int index = 0; index < target.Length; index++)
+        /// <summary>
+        /// Returns the first char in the StringSegment that matches the predicate condition.
+        /// </summary>
+        /// <param name="predicate">The predicate func condition to be checked against each char in the StringSegment.</param>
+        /// <returns>The first char in the StringSegment that matches the predicate condition.</returns>
+        /// <exception cref="ArgumentException">Thrown if no characters in the StringSegment meet the predicate condition.</exception>
+        public char First(Func<char, bool> predicate)
         {
-            if(predicate(target[index]))
-                return target[index];
-        }
+            for (int index = 0; index < target.Length; index++)
+            {
+                if(predicate(target[index]))
+                    return target[index];
+            }
         
-        throw new ArgumentException(Resources.Exceptions_Segments_InvalidOperation_EmptySequence);
-    }
+            throw new ArgumentException(Resources.Exceptions_Segments_InvalidOperation_EmptySequence);
+        }
 
-    /// <summary>
-    /// Returns the first character of the specified <see cref="StringSegment"/> that meets the predicate condition or null if the segment is empty.
-    /// </summary>
-    /// <param name="target">The StringSegment to be searched.</param>
-    /// <param name="predicate">The predicate func condition to be checked against each char in the StringSegment.</param>
-    /// <returns>The first character of the segment that meets the predicate condition if any match; otherwise, null.</returns>
-    public static char? FirstOrDefault(this StringSegment target, Func<char, bool> predicate)
-    {
-        for (int index = 0; index < target.Length; index++)
+        /// <summary>
+        /// Returns the first character of the specified <see cref="StringSegment"/> that meets the predicate condition or null if the segment is empty.
+        /// </summary>
+        /// <param name="predicate">The predicate func condition to be checked against each char in the StringSegment.</param>
+        /// <returns>The first character of the segment that meets the predicate condition if any match; otherwise, null.</returns>
+        public char? FirstOrDefault(Func<char, bool> predicate)
         {
-            if(predicate(target[index]))
-                return target[index];
-        }
+            for (int index = 0; index < target.Length; index++)
+            {
+                if(predicate(target[index]))
+                    return target[index];
+            }
         
-        return null;
+            return null;
+        }
     }
 }

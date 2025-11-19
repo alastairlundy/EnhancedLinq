@@ -28,17 +28,20 @@ namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred;
 /// </summary>
 public static partial class EnhancedLinqSegmentDeferred
 {
-    /// <summary>
-    /// Returns an IEnumerable of chars that match the predicate. 
-    /// </summary>
     /// <param name="target">The StringSegment to search.</param>
-    /// <param name="predicate">The predicate to check each char against.</param>
-    /// <returns>An IEnumerable of chars that matches the predicate.</returns>
-    public static IEnumerable<char> Where(this StringSegment target, Func<char, bool> predicate)
+    extension(StringSegment target)
     {
-        if(StringSegment.IsNullOrEmpty(target)) 
-            throw new ArgumentNullException(nameof(target));
+        /// <summary>
+        /// Returns an IEnumerable of chars that match the predicate. 
+        /// </summary>
+        /// <param name="predicate">The predicate to check each char against.</param>
+        /// <returns>An IEnumerable of chars that matches the predicate.</returns>
+        public IEnumerable<char> Where(Func<char, bool> predicate)
+        {
+            if(StringSegment.IsNullOrEmpty(target)) 
+                throw new ArgumentNullException(nameof(target));
 
-        return new CustomEnumeratorEnumerable<char>(new WhereSegmentEnumerator(target, predicate));
+            return new CustomEnumeratorEnumerable<char>(new WhereSegmentEnumerator(target, predicate));
+        }
     }
 }

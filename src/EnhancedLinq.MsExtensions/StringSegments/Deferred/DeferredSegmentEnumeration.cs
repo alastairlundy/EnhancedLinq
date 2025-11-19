@@ -27,17 +27,20 @@ namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred;
 
 public static partial class EnhancedLinqSegmentDeferred
 {
-    /// <summary>
-    /// Enumerates the specified StringSegment.
-    /// </summary>
     /// <param name="segment">The string segment to enumerate.</param>
-    /// <returns>The <see cref="IEnumerable{T}"/> of chars from the <see cref="StringSegment"/>.</returns>
-    /// <exception cref="ArgumentException">Thrown if the StringSegment is null or empty.</exception>
-    public static IEnumerable<char> AsEnumerable(this StringSegment segment)
+    extension(StringSegment segment)
     {
-        if (StringSegment.IsNullOrEmpty(segment))
-            throw new ArgumentException(Resources.Exceptions_Segments_InvalidOperation_EmptySequence);
+        /// <summary>
+        /// Enumerates the specified StringSegment.
+        /// </summary>
+        /// <returns>The <see cref="IEnumerable{T}"/> of chars from the <see cref="StringSegment"/>.</returns>
+        /// <exception cref="ArgumentException">Thrown if the StringSegment is null or empty.</exception>
+        public IEnumerable<char> AsEnumerable()
+        {
+            if (StringSegment.IsNullOrEmpty(segment))
+                throw new ArgumentException(Resources.Exceptions_Segments_InvalidOperation_EmptySequence);
 
-        return new CustomEnumeratorEnumerable<char>(new SegmentEnumerator(segment));
+            return new CustomEnumeratorEnumerable<char>(new SegmentEnumerator(segment));
+        }
     }
 }

@@ -25,33 +25,35 @@ namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
 /// </summary>
 public static partial class EnhancedLinqSegmentImmediate
 {
-    /// <summary>
-    /// Applies the given action for each <see cref="char"/> in this <see cref="StringSegment"/>.
-    /// </summary>
-    /// <param name="action">The action to apply to each <see cref="char"/> in the <see cref="StringSegment"/>.</param>
     /// <param name="target">The <see cref="StringSegment"/> to have the action applied for.</param>
-    public static void ForEach(this ref StringSegment target, Action<char> action)
+    extension(ref StringSegment target)
     {
-        for (int index = 0; index < target.Length; index++)
+        /// <summary>
+        /// Applies the given action for each <see cref="char"/> in this <see cref="StringSegment"/>.
+        /// </summary>
+        /// <param name="action">The action to apply to each <see cref="char"/> in the <see cref="StringSegment"/>.</param>
+        public void ForEach(Action<char> action)
         {
-            action.Invoke(target[index]);
+            for (int index = 0; index < target.Length; index++)
+            {
+                action.Invoke(target[index]);
+            }
         }
-    }
 
-    /// <summary>
-    /// Applies the given func to each char in this <see cref="StringSegment"/>.
-    /// </summary>
-    /// <param name="target">The <see cref="StringSegment"/> to have the predicate applied to.</param>
-    /// <param name="action">The func to apply to each element in the <see cref="StringSegment"/>.</param>
-    public static void ForEach(this ref StringSegment target, Func<char, char> action)
-    {
-        char[] output = new char[target.Length];
+        /// <summary>
+        /// Applies the given func to each char in this <see cref="StringSegment"/>.
+        /// </summary>
+        /// <param name="action">The func to apply to each element in the <see cref="StringSegment"/>.</param>
+        public void ForEach(Func<char, char> action)
+        {
+            char[] output = new char[target.Length];
         
-        for (int i = 0; i < target.Length; i++)
-        {
-            output[i] = action.Invoke(target[i]);
-        }
+            for (int i = 0; i < target.Length; i++)
+            {
+                output[i] = action.Invoke(target[i]);
+            }
 
-        target = new StringSegment(new string(output));
+            target = new StringSegment(new string(output));
+        }
     }
 }

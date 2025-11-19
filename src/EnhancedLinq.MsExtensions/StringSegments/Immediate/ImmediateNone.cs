@@ -23,13 +23,16 @@ namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
 
 public static partial class EnhancedLinqSegmentImmediate
 {
-    /// <summary>
-    /// Determines if none of the characters in the <see cref="StringSegment"/> match a predicate condition.
-    /// </summary>
     /// <param name="segment">The <see cref="StringSegment"/> to be searched.</param>
-    /// <param name="predicate">The predicate to check characters against.</param>
-    /// <returns>True if none of the characters matched the predicate, false otherwise.</returns>
-    /// <exception cref="ArgumentNullException">Thrown if the source <see cref="StringSegment"/> or predicate are null.</exception>
-    public static bool None(this StringSegment segment, Func<char, bool> predicate)
-        => CountAtMost(segment, predicate, 0);
+    extension(StringSegment segment)
+    {
+        /// <summary>
+        /// Determines if none of the characters in the <see cref="StringSegment"/> match a predicate condition.
+        /// </summary>
+        /// <param name="predicate">The predicate to check characters against.</param>
+        /// <returns>True if none of the characters matched the predicate, false otherwise.</returns>
+        /// <exception cref="ArgumentNullException">Thrown if the source <see cref="StringSegment"/> or predicate are null.</exception>
+        public bool None(Func<char, bool> predicate)
+            => CountAtMost(segment, predicate, 0);
+    }
 }

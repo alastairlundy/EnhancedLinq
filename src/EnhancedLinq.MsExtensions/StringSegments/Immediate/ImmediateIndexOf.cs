@@ -24,58 +24,63 @@ namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
 
 public static partial class EnhancedLinqSegmentImmediate
 {
-    
-    /// <summary>
-    /// Finds the index of a specified StringSegment within another StringSegment.
-    /// </summary>
     /// <param name="this">The StringSegment to be searched.</param>
-    /// <param name="segment">The StringSegment to search for.</param>
-    /// <returns>The index at which the specified StringSegment can be found, or -1 if not found.</returns>
-    public static int IndexOf(this StringSegment @this, StringSegment segment)
+    extension(StringSegment @this)
     {
-        if (@this.Length < segment.Length || segment.Length == 0)
-            return -1;
-        
-        IEnumerable<int> indexes = @this.IndicesOf(segment[0])
-            .Where(x  => x != -1);
-
-        foreach (int index in indexes)
+        /// <summary>
+        /// Finds the index of a specified StringSegment within another StringSegment.
+        /// </summary>
+        /// <param name="segment">The StringSegment to search for.</param>
+        /// <returns>The index at which the specified StringSegment can be found, or -1 if not found.</returns>
+        public int IndexOf(StringSegment segment)
         {
-            StringSegment indexSegment = @this.Subsegment(index, segment.Length);
-
-            if (indexSegment.Equals(segment))
-            {
-                return index;
-            }
-        }
-
-        return -1;
-    }
-    
-    /// <summary>
-    /// Finds the index of a specified StringSegment within a string.
-    /// </summary>
-    /// <param name="str">The string to be searched.</param>
-    /// <param name="segment">The StringSegment to search for.</param>
-    /// <returns>The index at which the specified StringSegment can be found, or -1 if not found.</returns>
-    public static int IndexOf(this string str, StringSegment segment)
-    {
-        if (str.Length < segment.Length || segment.Length == 0)
-            return -1;
+            if (@this.Length < segment.Length || segment.Length == 0)
+                return -1;
         
-        for (int i = 0; i < str.Length; i++)
-        {
-            if (str[i] == segment[0])
+            IEnumerable<int> indexes = @this.IndicesOf(segment[0])
+                .Where(x  => x != -1);
+
+            foreach (int index in indexes)
             {
-                StringSegment indexSegment = str.Substring(i, segment.Length);
+                StringSegment indexSegment = @this.Subsegment(index, segment.Length);
 
                 if (indexSegment.Equals(segment))
                 {
-                    return i;
+                    return index;
                 }
             }
-        }
 
-        return -1;
+            return -1;
+        }
+    }
+
+    /// <param name="str">The string to be searched.</param>
+    extension(string str)
+    {
+        /// <summary>
+        /// Finds the index of a specified StringSegment within a string.
+        /// </summary>
+        /// <param name="segment">The StringSegment to search for.</param>
+        /// <returns>The index at which the specified StringSegment can be found, or -1 if not found.</returns>
+        public int IndexOf(StringSegment segment)
+        {
+            if (str.Length < segment.Length || segment.Length == 0)
+                return -1;
+        
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (str[i] == segment[0])
+                {
+                    StringSegment indexSegment = str.Substring(i, segment.Length);
+
+                    if (indexSegment.Equals(segment))
+                    {
+                        return i;
+                    }
+                }
+            }
+
+            return -1;
+        }
     }
 }

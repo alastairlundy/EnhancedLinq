@@ -22,22 +22,25 @@ namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
 
 public static partial class EnhancedLinqSegmentImmediate
 {
-    /// <summary>
-    /// Counts the number of chars in the StringSegment that match the predicate.
-    /// </summary>
     /// <param name="target">The StringSegment to search.</param>
-    /// <param name="predicate">The predicate to check each char against.</param>
-    /// <returns>The number of chars matching the predicate condition as an integer.</returns>
-    public static int Count(this StringSegment target,  Func<char, bool> predicate)
+    extension(StringSegment target)
     {
-        int output = 0;
-
-        for (int i =  0; i < target.Length; i++)
+        /// <summary>
+        /// Counts the number of chars in the StringSegment that match the predicate.
+        /// </summary>
+        /// <param name="predicate">The predicate to check each char against.</param>
+        /// <returns>The number of chars matching the predicate condition as an integer.</returns>
+        public int Count(Func<char, bool> predicate)
         {
-            if (predicate(target[i])) 
-                output++;
-        }
+            int output = 0;
+
+            for (int i =  0; i < target.Length; i++)
+            {
+                if (predicate(target[i])) 
+                    output++;
+            }
             
-        return output;
+            return output;
+        }
     }
 }

@@ -26,34 +26,35 @@ namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred;
 
 public static partial class EnhancedLinqSegmentDeferred
 {
-    
-    /// <summary>
-    /// Finds all occurrences of a specified char within a <see cref="StringSegment"/>
-    /// </summary>
     /// <param name="source">The <see cref="StringSegment"/> to be searched.</param>
-    /// <param name="c">The <see cref="char"/> to search for.</param>
-    /// <returns>A sequence of Indices for all occurrences of the specified char within the StringSegment; empty if not found within the String Segment.</returns>
-    /// <exception cref="ArgumentException">Thrown if the source is null or empty.</exception>
-    public static IEnumerable<int> IndicesOf(this StringSegment source, char c)
+    extension(StringSegment source)
     {
-        if (StringSegment.IsNullOrEmpty(source))
-            throw new ArgumentException();
+        /// <summary>
+        /// Finds all occurrences of a specified char within a <see cref="StringSegment"/>
+        /// </summary>
+        /// <param name="c">The <see cref="char"/> to search for.</param>
+        /// <returns>A sequence of Indices for all occurrences of the specified char within the StringSegment; empty if not found within the String Segment.</returns>
+        /// <exception cref="ArgumentException">Thrown if the source is null or empty.</exception>
+        public IEnumerable<int> IndicesOf(char c)
+        {
+            if (StringSegment.IsNullOrEmpty(source))
+                throw new ArgumentException();
 
-        return new SegmentIndicesEnumerable(source, c);
-    }
+            return new SegmentIndicesEnumerable(source, c);
+        }
 
-    /// <summary>
-    /// Finds all occurrences of a specified StringSegment within a StringSegment.
-    /// </summary>
-    /// <param name="source">The <see cref="StringSegment"/> to be searched.</param>
-    /// <param name="segment">The StringSegment to search for.</param>
-    /// <returns>A sequence of Indices for all occurrences of the specified StringSegment within the StringSegment; empty if not found within the String Segment.</returns>
-    /// <exception cref="ArgumentException">Thrown if the source is null or empty.</exception>
-    public static IEnumerable<int> IndicesOf(this StringSegment source, StringSegment segment)
-    {
-        if (StringSegment.IsNullOrEmpty(source))
-            throw new ArgumentException();
+        /// <summary>
+        /// Finds all occurrences of a specified StringSegment within a StringSegment.
+        /// </summary>
+        /// <param name="segment">The StringSegment to search for.</param>
+        /// <returns>A sequence of Indices for all occurrences of the specified StringSegment within the StringSegment; empty if not found within the String Segment.</returns>
+        /// <exception cref="ArgumentException">Thrown if the source is null or empty.</exception>
+        public IEnumerable<int> IndicesOf(StringSegment segment)
+        {
+            if (StringSegment.IsNullOrEmpty(source))
+                throw new ArgumentException();
 
-        return new SegmentIndicesEnumerable(source, segment);
+            return new SegmentIndicesEnumerable(source, segment);
+        }
     }
 }
