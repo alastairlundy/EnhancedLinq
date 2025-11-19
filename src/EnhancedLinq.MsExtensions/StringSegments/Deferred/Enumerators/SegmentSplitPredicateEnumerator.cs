@@ -27,9 +27,7 @@ internal class SegmentSplitPredicateEnumerator : IEnumerator<StringSegment>
 {
     private readonly StringSegment _source;
     private readonly Func<char, bool> _predicate;
-    
-    private StringSegment _current;
-    
+
     private int _index;
     private int _state;
 
@@ -61,7 +59,7 @@ internal class SegmentSplitPredicateEnumerator : IEnumerator<StringSegment>
 
                 if (separate)
                 {
-                    _current = _source.Subsegment(_currentStart, _index - _currentStart);
+                    Current = _source.Subsegment(_currentStart, _index - _currentStart);
                     _currentStart = -1;
                     _index++;
                     return true;
@@ -85,12 +83,12 @@ internal class SegmentSplitPredicateEnumerator : IEnumerator<StringSegment>
         throw new NotSupportedException();
     }
 
-    public StringSegment Current => _current;
+    public StringSegment Current { get; private set; }
 
     object? IEnumerator.Current => Current;
 
     public void Dispose()
     {
-        _current = StringSegment.Empty;
+        Current = StringSegment.Empty;
     }
 }

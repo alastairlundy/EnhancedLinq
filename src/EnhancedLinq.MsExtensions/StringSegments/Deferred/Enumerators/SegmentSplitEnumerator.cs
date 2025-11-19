@@ -27,15 +27,12 @@ internal class SegmentSplitEnumerator : IEnumerator<StringSegment>
     private readonly StringSegment _segment;
     private readonly StringSegment _separator;
 
-    private List<char> _currentChars;
-    
-    private StringSegment _current;
+    private readonly List<char> _currentChars;
 
     private int _index;
     private int _state;
 
-    private readonly IEnumerable<int> _separatorIndices;
-    private IEnumerator<int> _separatorIndicesEnumerator;
+    private readonly IEnumerator<int> _separatorIndicesEnumerator;
     
     internal SegmentSplitEnumerator(StringSegment segment, StringSegment separator)
     {
@@ -46,18 +43,13 @@ internal class SegmentSplitEnumerator : IEnumerator<StringSegment>
         _index = 0;
         _state = 1;
         
-        _separatorIndices = _segment.IndicesOf(_separator[0]);
+        IEnumerable<int> separatorIndices = _segment.IndicesOf(_separator[0]);
+        _separatorIndicesEnumerator = separatorIndices.GetEnumerator();
     }
 
     public bool MoveNext()
     {
         if (_state == 1)
-        {
-            _separatorIndicesEnumerator = _separatorIndices.GetEnumerator();
-            
-            _state = 2;
-        }
-        if (_state == 2)
         {
             while (_index < _segment.Length)
             {
@@ -70,7 +62,7 @@ internal class SegmentSplitEnumerator : IEnumerator<StringSegment>
 
                 if (_index == _separatorIndicesEnumerator.Current && comparison.Equals(_segment))
                 {
-                    _current = new StringSegment(string.Join("", _currentChars));
+                    Current = new StringSegment(string.Join("", _currentChars));
             
                     _currentChars.Clear();
                     ++_index;
@@ -85,7 +77,6 @@ internal class SegmentSplitEnumerator : IEnumerator<StringSegment>
             _state = -1;
         }
 
-        _state = -1;
         Dispose();
         return false;
     }
@@ -95,9 +86,9 @@ internal class SegmentSplitEnumerator : IEnumerator<StringSegment>
         throw new NotSupportedException();
     }
 
-    public StringSegment Current => _current;
+    public StringSegment Current { get; private set; }
 
-    object? IEnumerator.Current => _current;
+    object? IEnumerator.Current => Current;
 
     public void Dispose()
     {

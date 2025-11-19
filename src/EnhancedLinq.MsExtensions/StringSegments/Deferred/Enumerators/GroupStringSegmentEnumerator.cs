@@ -28,43 +28,36 @@ namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumer
 
 internal class GroupStringSegmentEnumerator<TKey> : IEnumerator<IGrouping<TKey, char>>
 {
-    private readonly StringSegment _source;
     private readonly Func<char, TKey> _selector;
 
-    private IEnumerator<char> _enumerator;
+    private readonly IEnumerator<char> _enumerator;
     
     private TKey? _currentKey;
     
     private int _state;
 
-    private GroupingCollection<TKey, char>  _groupingCollection;
+    private readonly GroupingCollection<TKey, char>  _groupingCollection;
 
-    private IGrouping<TKey, char> _currentGrouping;
-    
     internal GroupStringSegmentEnumerator(StringSegment source, Func<char, TKey> selector)
     {
-        _source = source;
         _selector = selector;
         _state = 1;
+        _enumerator = new SegmentEnumerator(source);
+        _currentKey = _selector(_enumerator.Current);
+        Current = new GroupingCollection<TKey, char>(_currentKey);
+        _groupingCollection = new GroupingCollection<TKey, char>(_currentKey);
     }
 
     public bool MoveNext()
     {
         if (_state == 1)
         {
-            _enumerator = new SegmentEnumerator(_source);
-            _currentKey = _selector(_enumerator.Current);
-            _currentGrouping = new GroupingCollection<TKey, char>(_currentKey);
-            _groupingCollection = new GroupingCollection<TKey, char>(_currentKey);
-        }
-
-        if (_state == 2)
-        {
             try
             {
                 while(_enumerator.MoveNext())
                 {
-                    if (_currentKey is not null && _currentKey.Equals(default(TKey)) || _currentKey is null)
+                    if (_currentKey is not null && _currentKey.Equals(default(TKey)) ||
+                        _currentKey is null)
                     {
                         _currentKey = _selector(_enumerator.Current);
                     }
@@ -77,8 +70,8 @@ internal class GroupStringSegmentEnumerator<TKey> : IEnumerator<IGrouping<TKey, 
                     }
                     else
                     {
-                        _currentGrouping = new GroupingCollection<TKey, char>
-                            (_currentKey, _groupingCollection, false);
+                        Current = new GroupingCollection<TKey, char>
+                            (_currentKey, _groupingCollection);
                         
                         _groupingCollection.Clear();
 
@@ -106,7 +99,7 @@ internal class GroupStringSegmentEnumerator<TKey> : IEnumerator<IGrouping<TKey, 
         throw new NotSupportedException();
     }
 
-    public IGrouping<TKey, char> Current => _currentGrouping;
+    public IGrouping<TKey, char> Current { get; private set; }
 
     object? IEnumerator.Current => Current;
 

@@ -32,27 +32,21 @@ internal class SegmentIndicesOfEnumerator : IEnumerator<int>
 
     private int _state;
     
-    private IEnumerator<int> _segmentIndicesEnumerator;
+    private readonly IEnumerator<int> _segmentIndicesEnumerator;
     private int _segmentIndex;
 
-    private int _current;
-    
     internal SegmentIndicesOfEnumerator(StringSegment source, StringSegment segment)
     {
         _source = source;
         _segment = segment;
         _state = 1;
         _segmentIndex = 0;
+        _segmentIndicesEnumerator = new SegmentIndicesCharEnumerator(_source, _segment.First());
     }
     
     public bool MoveNext()
     {
         if (_state == 1)
-        {
-            _segmentIndicesEnumerator = new SegmentIndicesCharEnumerator(_source, _segment.First());
-        }
-
-        if (_state == 2)
         {
             while (_segmentIndicesEnumerator.MoveNext())
             {
@@ -67,13 +61,13 @@ internal class SegmentIndicesOfEnumerator : IEnumerator<int>
                     
                 if (indexSegment.Equals(_segment))
                 {
-                   _current = _segmentIndex;
+                   Current = _segmentIndex;
                    return true;
                 }
             }
+            _state = -1;
         }
 
-        _state = -1;
         Dispose();
         return false;
     }
@@ -83,9 +77,9 @@ internal class SegmentIndicesOfEnumerator : IEnumerator<int>
         throw new NotSupportedException();
     }
 
-    public int Current => _current;
+    public int Current { get; private set; }
 
-    object? IEnumerator.Current => _current;
+    object? IEnumerator.Current => Current;
 
     public void Dispose()
     {

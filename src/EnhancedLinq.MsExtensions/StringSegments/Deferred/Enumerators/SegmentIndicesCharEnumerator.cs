@@ -27,8 +27,6 @@ internal class SegmentIndicesCharEnumerator : IEnumerator<int>
     private readonly StringSegment _segment;
     private readonly char _c;
 
-    private int _current;
-
     private int _state;
     private int _index;
     
@@ -48,7 +46,7 @@ internal class SegmentIndicesCharEnumerator : IEnumerator<int>
             {
                 if (_segment[_index] == _c)
                 {
-                    _current = _index;
+                    Current = _index;
                     return true;
                 }
 
@@ -67,9 +65,9 @@ internal class SegmentIndicesCharEnumerator : IEnumerator<int>
         throw new NotSupportedException();
     }
 
-    public int Current => _current;
+    public int Current { get; private set; }
 
-    object? IEnumerator.Current => _current;
+    object? IEnumerator.Current => Current;
 
     public void Dispose()
     {

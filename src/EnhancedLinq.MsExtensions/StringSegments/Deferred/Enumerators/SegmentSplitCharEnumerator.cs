@@ -31,8 +31,7 @@ internal class SegmentSplitCharEnumerator : IEnumerator<StringSegment>
     private int _state;
 
     private readonly List<char> _currentChars;
-    private StringSegment _current;
-    
+
     internal SegmentSplitCharEnumerator(StringSegment segment, char separator)
     {
         _segment = segment;
@@ -58,7 +57,7 @@ internal class SegmentSplitCharEnumerator : IEnumerator<StringSegment>
                 }
                 else
                 {
-                    _current = new StringSegment(string.Join("",  _currentChars));
+                    Current = new StringSegment(string.Join("",  _currentChars));
                     _currentChars.Clear();
 
                     return true;
@@ -77,13 +76,13 @@ internal class SegmentSplitCharEnumerator : IEnumerator<StringSegment>
         throw new NotSupportedException();
     }
 
-    public StringSegment Current => _current;
+    public StringSegment Current { get; private set; }
 
-    object? IEnumerator.Current => _current;
+    object? IEnumerator.Current => Current;
 
     public void Dispose()
     {
-        _current = StringSegment.Empty;
+        Current = StringSegment.Empty;
         _currentChars.Clear();
     }
 }

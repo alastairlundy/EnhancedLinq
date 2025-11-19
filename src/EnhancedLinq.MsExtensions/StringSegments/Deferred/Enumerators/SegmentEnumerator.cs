@@ -25,9 +25,7 @@ namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumer
 internal class SegmentEnumerator :  IEnumerator<char>
 {
     private StringSegment _segment;
-    
-    private char _current;
-    
+
     private int _state;
     private int _index;
 
@@ -44,14 +42,12 @@ internal class SegmentEnumerator :  IEnumerator<char>
         {
             if (_index <= _segment.Length - 1)
             {
-                _current = _segment[_index];
+                Current = _segment[_index];
                 ++_index;
                 return true;
             }
-            else
-            {
-                _state = -1;
-            }
+
+            _state = -1;
         }
         
         Dispose();
@@ -63,7 +59,7 @@ internal class SegmentEnumerator :  IEnumerator<char>
         throw new NotSupportedException();
     }
 
-    public char Current => _current;
+    public char Current { get; private set; }
 
     object? IEnumerator.Current => Current;
 
