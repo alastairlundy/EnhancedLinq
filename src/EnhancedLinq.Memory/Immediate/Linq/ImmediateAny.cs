@@ -22,34 +22,35 @@ namespace AlastairLundy.EnhancedLinq.Memory.Immediate;
 
 public static partial class EnhancedLinqMemoryImmediate
 {
-    /// <summary>
-    /// Returns whether there are any items in the span.
-    /// </summary>
-    /// <typeparam name="T">The type of items stored in the span.</typeparam>
     /// <param name="target">The Span to be searched.</param>
-    /// <returns></returns>
-    public static bool Any<T>(this Span<T> target)
+    /// <typeparam name="T">The type of items stored in the span.</typeparam>
+    extension<T>(Span<T> target)
     {
-        return target.Length > 0;
-    }
+        /// <summary>
+        /// Returns whether there are any items in the span.
+        /// </summary>
+        /// <returns></returns>
+        public bool Any()
+        {
+            return target.Length > 0;
+        }
 
-    /// <summary>
-    /// Returns whether any item in a Span matches the predicate condition.
-    /// </summary>
-    /// <param name="target">The Span to be searched.</param>
-    /// <param name="predicate">The predicate func to be invoked on each item in the Span.</param>
-    /// <typeparam name="T">The type of items stored in the span.</typeparam>
-    /// <returns>True if any item in the span matches the predicate; false otherwise.</returns>
-    public static bool Any<T>(this Span<T> target, Func<T, bool> predicate)
-    {
-        Span<bool> groups = (from c in target
-                             group c by predicate.Invoke(c)
+        /// <summary>
+        /// Returns whether any item in a Span matches the predicate condition.
+        /// </summary>
+        /// <param name="predicate">The predicate func to be invoked on each item in the Span.</param>
+        /// <returns>True if any item in the span matches the predicate; false otherwise.</returns>
+        public bool Any(Func<T, bool> predicate)
+        {
+            Span<bool> groups = (from c in target
+                group c by predicate.Invoke(c)
                 into g
-                             where g.Key
-                             select g.Any());
+                where g.Key
+                select g.Any());
 
-        bool? result = groups.FirstOrDefault();
+            bool? result = groups.FirstOrDefault();
 
-        return result ?? false;
+            return result ?? false;
+        }
     }
 }

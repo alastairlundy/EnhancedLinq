@@ -22,23 +22,25 @@ namespace AlastairLundy.EnhancedLinq.Memory.Immediate;
 
 public static partial class EnhancedLinqMemoryImmediate
 {
-
-    /// <summary>
-    /// Returns the element at the specified index in the source <see cref="Memory{T}"/>.
-    /// </summary>
     /// <param name="source">The source <see cref="Memory{T}"/> .</param>
-    /// <param name="index">The zero-based index of the element to be retrieved.</param>
     /// <typeparam name="T">The type of items stored in the Memory.</typeparam>
-    /// <returns>A new source <see cref="Memory{T}"/> containing a single element starting at the specified index in the Memory.</returns>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown if the source <see cref="Memory{T}"/> has no elements or the index is out of range.</exception>
-    public static T ElementAt<T>(this Memory<T> source, int index)
+    extension<T>(Memory<T> source)
     {
-        if (source.Length == 0)
-            throw new ArgumentOutOfRangeException(nameof(index));
+        /// <summary>
+        /// Returns the element at the specified index in the source <see cref="Memory{T}"/>.
+        /// </summary>
+        /// <param name="index">The zero-based index of the element to be retrieved.</param>
+        /// <returns>A new source <see cref="Memory{T}"/> containing a single element starting at the specified index in the Memory.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if the source <see cref="Memory{T}"/> has no elements or the index is out of range.</exception>
+        public T ElementAt(int index)
+        {
+            if (source.Length == 0)
+                throw new ArgumentOutOfRangeException(nameof(index));
 
-        Memory<T> items = ElementsAt(source, index, 1);
+            Memory<T> items = ElementsAt(source, index, 1);
 
-        return First(items.Span);
+            return First(items.Span);
+        }
     }
         
     /// <summary>

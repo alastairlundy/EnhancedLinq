@@ -27,46 +27,47 @@ namespace AlastairLundy.EnhancedLinq.Memory.Immediate.Maths;
 /// </summary>
 public static partial class EnhancedLinqMemoryImmediateMaths
 {
-    /// <summary>
-    /// Determines the minimum value of a span of numbers of type <see cref="TNumber"/>.
-    /// </summary>
     /// <param name="source">The span of type <see cref="TNumber"/> to be searched.</param>
     /// <typeparam name="TNumber">The numeric type that represents the type of numbers in the span.</typeparam>
-    /// <returns>The minimum value of the number in the span.</returns>
-    public static TNumber Minimum<TNumber>(this Span<TNumber> source) where TNumber : INumber<TNumber>
+    extension<TNumber>(Span<TNumber> source) where TNumber : INumber<TNumber>
     {
-        TNumber total = source[0];
-
-        foreach (TNumber item in source)
+        /// <summary>
+        /// Determines the minimum value of a span of numbers of type <see cref="TNumber"/>.
+        /// </summary>
+        /// <returns>The minimum value of the number in the span.</returns>
+        public TNumber Minimum()
         {
-            if (item <= total)
+            TNumber total = source[0];
+
+            foreach (TNumber item in source)
             {
-                total = item;
+                if (item <= total)
+                {
+                    total = item;
+                }
             }
+
+            return total;
         }
 
-        return total;
-    }
-    
-    /// <summary>
-    /// Determines the maximum value of a span of numbers of type <see cref="TNumber"/>.
-    /// </summary>
-    /// <param name="source">The span of type <see cref="TNumber"/> to be searched.</param>
-    /// <typeparam name="TNumber">The numeric type that represents the type of numbers in the span.</typeparam>
-    /// <returns>The maximum value of the number in the span.</returns>
-    public static TNumber Maximum<TNumber>(this Span<TNumber> source) where TNumber : INumber<TNumber>
-    {
-        TNumber total = TNumber.Zero;
-
-        foreach (TNumber item in source)
+        /// <summary>
+        /// Determines the maximum value of a span of numbers of type <see cref="TNumber"/>.
+        /// </summary>
+        /// <returns>The maximum value of the number in the span.</returns>
+        public TNumber Maximum()
         {
-            if (item > total)
-            {
-                total = item;
-            }
-        }
+            TNumber total = TNumber.Zero;
 
-        return total;
+            foreach (TNumber item in source)
+            {
+                if (item > total)
+                {
+                    total = item;
+                }
+            }
+
+            return total;
+        }
     }
 }
 #endif

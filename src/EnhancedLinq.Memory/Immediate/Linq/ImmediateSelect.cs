@@ -52,15 +52,15 @@ public static partial class EnhancedLinqMemoryImmediate
 
         return new Span<TResult>(array);
     }
-    
+
     /// <summary>
-    /// 
+    /// Transforms elements of a Span into a new Span using the provided predicate.
     /// </summary>
-    /// <param name="source"></param>
-    /// <param name="predicate"></param>
-    /// <typeparam name="TSource"></typeparam>
-    /// <typeparam name="TResult"></typeparam>
-    /// <returns></returns>
+    /// <param name="source">The source span containing elements to be transformed.</param>
+    /// <param name="predicate">The transformation function to apply to each element in the span.</param>
+    /// <typeparam name="TSource">The type of elements in the source span.</typeparam>
+    /// <typeparam name="TResult">The type of elements in the transformed span.</typeparam>
+    /// <returns>A new Span containing the elements transformed by the predicate.</returns>
     public static Memory<TResult> Select<TSource, TResult>(
 #if NET8_0_OR_GREATER
         [NotNull]

@@ -28,26 +28,31 @@ namespace AlastairLundy.EnhancedLinq.Memory.Immediate.Maths;
 /// </summary>
 public static partial class EnhancedLinqMemoryImmediateMaths
 {
-    /// <summary>
-    /// Calculates the arithmetic average of a span of numbers.
-    /// </summary>
     /// <param name="source">The span of type <see cref="TNumber"/> to be averaged.</param>
     /// <typeparam name="TNumber">The numeric type that represents the type of numbers in the span.</typeparam>
-    /// <returns>The arithmetic average of the specified numbers.</returns>
-    public static TNumber Average<TNumber>(this Span<TNumber> source) where TNumber : INumber<TNumber>
+    extension<TNumber>(Span<TNumber> source) where TNumber : INumber<TNumber>
     {
-        TNumber sum = source.Sum();
+        /// <summary>
+        /// Calculates the arithmetic average of a span of numbers.
+        /// </summary>
+        /// <returns>The arithmetic average of the specified numbers.</returns>
+        public TNumber Average()
+        {
+            TNumber sum = source.Sum();
 
-        return sum / source.Length.ToNumber<TNumber>();
+            return sum / source.Length.ToNumber<TNumber>();
+        }
     }
-    
-    /// <summary>
-    /// Calculates the arithmetic average of a Memory struct holding numbers of type <see cref="TNumber"/>.
-    /// </summary>
+
     /// <param name="source">The Memory of type <see cref="TNumber"/> to be averaged.</param>
     /// <typeparam name="TNumber">The numeric type that represents the type of numbers in the span.</typeparam>
-    /// <returns>The arithmetic average of the specified numbers.</returns>
-    public static TNumber Average<TNumber>(this Memory<TNumber> source) where TNumber : INumber<TNumber>
-        => Average(source.Span);
+    extension<TNumber>(Memory<TNumber> source) where TNumber : INumber<TNumber>
+    {
+        /// <summary>
+        /// Calculates the arithmetic average of a Memory struct holding numbers of type <see cref="TNumber"/>.
+        /// </summary>
+        /// <returns>The arithmetic average of the specified numbers.</returns>
+        public TNumber Average() => Average(source.Span);
+    }
 }
 #endif

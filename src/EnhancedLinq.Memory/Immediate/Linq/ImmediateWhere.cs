@@ -22,30 +22,33 @@ namespace AlastairLundy.EnhancedLinq.Memory.Immediate;
 
 public static partial class EnhancedLinqMemoryImmediate
 {
-    /// <summary>
-    /// Returns a new Span with all items in the Span that match the predicate condition.
-    /// </summary>
     /// <param name="target">The Span to be searched.</param>
-    /// <param name="predicate">The predicate func to be invoked on each item in the Span.</param>
     /// <typeparam name="T">The type of items stored in the span.</typeparam>
-    /// <returns>A new Span with the items that match the predicate condition.</returns>
-    public static Span<T> Where<T>(this Span<T> target, Func<T, bool> predicate)
+    extension<T>(Span<T> target)
     {
-        List<T> list;
-
-        if (target.Length <= 100)
-            list = new(capacity: target.Length);
-        else
-            list = new();
-        
-        foreach (T item in target)
+        /// <summary>
+        /// Returns a new Span with all items in the Span that match the predicate condition.
+        /// </summary>
+        /// <param name="predicate">The predicate func to be invoked on each item in the Span.</param>
+        /// <returns>A new Span with the items that match the predicate condition.</returns>
+        public Span<T> Where(Func<T, bool> predicate)
         {
-            if (predicate.Invoke(item))
-            {
-                list.Add(item);
-            }
-        }
+            List<T> list;
+
+            if (target.Length <= 100)
+                list = new(capacity: target.Length);
+            else
+                list = new();
         
-        return new Span<T>(list.ToArray());
+            foreach (T item in target)
+            {
+                if (predicate.Invoke(item))
+                {
+                    list.Add(item);
+                }
+            }
+        
+            return new Span<T>(list.ToArray());
+        }
     }
 }
