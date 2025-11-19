@@ -54,6 +54,7 @@ internal class SegmentEnumerator :  IEnumerator<char>
             }
         }
         
+        Dispose();
         return false;
     }
 

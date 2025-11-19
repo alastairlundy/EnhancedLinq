@@ -97,6 +97,7 @@ internal class GroupStringSegmentEnumerator<TKey> : IEnumerator<IGrouping<TKey, 
             _state = -1;
         }
 
+        Dispose();
         return false;
     }
 

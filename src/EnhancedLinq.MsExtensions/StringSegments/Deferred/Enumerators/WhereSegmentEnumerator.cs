@@ -67,6 +67,8 @@ internal class WhereSegmentEnumerator : IEnumerator<char>
 
             _state = -1;
         }
+        
+        Dispose();
         return false;
     }
 

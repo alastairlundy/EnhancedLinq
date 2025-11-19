@@ -67,7 +67,8 @@ internal class SegmentSplitCharEnumerator : IEnumerator<StringSegment>
             
             _state = -1;
         }
-        
+
+        Dispose();
         return false;
     }
 
