@@ -25,29 +25,32 @@ namespace AlastairLundy.EnhancedLinq.Async.Immediate;
 
 public static partial class EnhancedLinqAsyncImmediate
 {
-    /// <summary>
-    /// Retrieves the element at a specified index from the sequence.
-    /// </summary>
     /// <param name="source">The sequence to retrieve the element from.</param>
-    /// <param name="index">The zero-based index of the element to retrieve.</param>
     /// <typeparam name="T">The type of elements in the sequence.</typeparam>
-    /// <returns>The element at the specified index in the sequence, or throws an exception if no such element exists.</returns>
-    /// <exception cref="ArgumentException">Thrown when no element is found at the specified index.</exception>
-    public static async Task<T> ElementAtAsync<T>(this IAsyncEnumerable<T> source, int index)
+    extension<T>(IAsyncEnumerable<T> source)
     {
-        int i = 0;
-
-        await foreach (T item in source)
+        /// <summary>
+        /// Retrieves the element at a specified index from the sequence.
+        /// </summary>
+        /// <param name="index">The zero-based index of the element to retrieve.</param>
+        /// <returns>The element at the specified index in the sequence, or throws an exception if no such element exists.</returns>
+        /// <exception cref="ArgumentException">Thrown when no element is found at the specified index.</exception>
+        public async Task<T> ElementAtAsync(int index)
         {
-            if (i == index)
+            int i = 0;
+
+            await foreach (T item in source)
             {
-                return item;
+                if (i == index)
+                {
+                    return item;
+                }
+
+                ++i;
             }
 
-            ++i;
+            throw new ArgumentException(Resources.Exceptions_ValueNotFound_AtIndex.Replace("{y}", nameof(source))
+                .Replace("{x}",$"{index}"));
         }
-
-        throw new ArgumentException(Resources.Exceptions_ValueNotFound_AtIndex.Replace("{y}", nameof(source))
-            .Replace("{x}",$"{index}"));
     }
 }

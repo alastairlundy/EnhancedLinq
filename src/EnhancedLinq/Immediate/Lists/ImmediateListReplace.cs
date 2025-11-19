@@ -21,20 +21,23 @@ namespace AlastairLundy.EnhancedLinq.Immediate;
 
 public static partial class EnhancedLinqImmediate
 {
-    /// <summary>
-    /// Replaces all occurrences of an item in an IList with a replacement item.
-    /// </summary>
     /// <param name="source">The IList to be modified.</param>
-    /// <param name="oldValue">The value to be replaced.</param>
-    /// <param name="newValue">The replacement value.</param>
     /// <typeparam name="T">The type of value.</typeparam>
-    public static void Replace<T>(this IList<T> source, T oldValue, T newValue)
+    extension<T>(IList<T> source)
     {
-        ICollection<int> indices = source.IndicesOf(oldValue);
-
-        foreach (int index in indices)
+        /// <summary>
+        /// Replaces all occurrences of an item in an IList with a replacement item.
+        /// </summary>
+        /// <param name="oldValue">The value to be replaced.</param>
+        /// <param name="newValue">The replacement value.</param>
+        public void Replace(T oldValue, T newValue)
         {
-            source[index] = newValue;
+            ICollection<int> indices = source.IndicesOf(oldValue);
+
+            foreach (int index in indices)
+            {
+                source[index] = newValue;
+            }
         }
     }
 }

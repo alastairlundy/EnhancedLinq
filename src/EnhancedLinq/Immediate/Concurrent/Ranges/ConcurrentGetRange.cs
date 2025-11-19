@@ -27,69 +27,73 @@ namespace AlastairLundy.EnhancedLinq.Immediate.Concurrent.Ranges;
 /// </summary>
 public static partial class EnhancedLinqImmediateConcurrentRange
 {
-    /// <summary>
-    /// Retrieves a range of elements from the specified concurrent collection, starting at the given index and containing the specified number of elements.
-    /// </summary>
-    /// <typeparam name="T">The type of elements contained within the collection.</typeparam>
     /// <param name="collection">The producer-consumer collection to retrieve elements from.</param>
-    /// <param name="startIndex">The zero-based starting index (inclusive) of the range to retrieve.</param>
-    /// <param name="count">The number of elements in the range to retrieve.</param>
-    /// <returns>A new <see cref="IProducerConsumerCollection{T}"/> containing the specified range of elements.</returns>
-    public static IProducerConsumerCollection<T> GetRange<T>(this IProducerConsumerCollection<T> collection,
-        int startIndex, int count)
+    /// <typeparam name="T">The type of elements contained within the collection.</typeparam>
+    extension<T>(IProducerConsumerCollection<T> collection)
     {
-        ConcurrentBag<T> output = new ConcurrentBag<T>();
-
-        int limit = startIndex + count;
-
-        if (limit > collection.Count)
+        /// <summary>
+        /// Retrieves a range of elements from the specified concurrent collection, starting at the given index and containing the specified number of elements.
+        /// </summary>
+        /// <param name="startIndex">The zero-based starting index (inclusive) of the range to retrieve.</param>
+        /// <param name="count">The number of elements in the range to retrieve.</param>
+        /// <returns>A new <see cref="IProducerConsumerCollection{T}"/> containing the specified range of elements.</returns>
+        public IProducerConsumerCollection<T> GetRange(int startIndex, int count)
         {
-            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
-        }
+            ConcurrentBag<T> output = new ConcurrentBag<T>();
 
-        if (startIndex < 0 || startIndex >= collection.Count && startIndex != 0 ||
-            startIndex > collection.Count)
-        {
-            throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
-                .Replace("{x}", $"{startIndex}")
-                .Replace("{y}", $"0")
-                .Replace("{z}", $"{limit}"));
-        }
+            int limit = startIndex + count;
 
-        if (count < 0)
-        {
-            //TODO: Add CountOutOfRange Exception in the future
-        }
-            
-            
-        int actualIndex = 0;
-        foreach (T item in collection)
-        {
-            if (actualIndex >= startIndex || actualIndex <= limit)
+            if (limit > collection.Count)
             {
-                output.Add(item);
+                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
             }
 
-            if (actualIndex == limit)
+            if (startIndex < 0 || startIndex >= collection.Count && startIndex != 0 ||
+                startIndex > collection.Count)
             {
-                break;
+                throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
+                    .Replace("{x}", $"{startIndex}")
+                    .Replace("{y}", $"0")
+                    .Replace("{z}", $"{limit}"));
             }
 
-            actualIndex++;
-        }
+            if (count < 0)
+            {
+                //TODO: Add CountOutOfRange Exception in the future
+            }
+            
+            
+            int actualIndex = 0;
+            foreach (T item in collection)
+            {
+                if (actualIndex >= startIndex || actualIndex <= limit)
+                {
+                    output.Add(item);
+                }
+
+                if (actualIndex == limit)
+                {
+                    break;
+                }
+
+                actualIndex++;
+            }
            
-        return output;
+            return output;
+        }
     }
 
 #if NET8_0_OR_GREATER
-    /// <summary>
-    /// Retrieves a range of elements from the specified concurrent collection, as defined by a <see cref="Range"/> object.
-    /// </summary>
-    /// <typeparam name="T">The type of elements contained within the collection.</typeparam>
     /// <param name="collection">The producer-consumer collection to retrieve elements from.</param>
-    /// <param name="range">A <see cref="Range"/> object that specifies the start and end indexes of the range to retrieve.</param>
-    /// <returns>A new <see cref="IProducerConsumerCollection{T}"/> containing the specified range of elements.</returns>
-    public static IProducerConsumerCollection<T> GetRange<T>(this IProducerConsumerCollection<T> collection,
-        Range range) => GetRange(collection, range.Start.Value, range.End.Value);
+    /// <typeparam name="T">The type of elements contained within the collection.</typeparam>
+    extension<T>(IProducerConsumerCollection<T> collection)
+    {
+        /// <summary>
+        /// Retrieves a range of elements from the specified concurrent collection, as defined by a <see cref="Range"/> object.
+        /// </summary>
+        /// <param name="range">A <see cref="Range"/> object that specifies the start and end indexes of the range to retrieve.</param>
+        /// <returns>A new <see cref="IProducerConsumerCollection{T}"/> containing the specified range of elements.</returns>
+        public IProducerConsumerCollection<T> GetRange(Range range) => GetRange(collection, range.Start.Value, range.End.Value);
+    }
 #endif
 }

@@ -24,31 +24,31 @@ namespace AlastairLundy.EnhancedLinq.Deferred;
 
 public static partial class EnhancedLinqDeferred
 {
-    /// <summary>
-    /// Returns a sequence of duplicate elements from the source sequence using the default equality comparer.
-    /// </summary>
-    /// <typeparam name="TSource">The type of elements in the source sequence.</typeparam>
     /// <param name="source">The sequence to find duplicates in.</param>
-    /// <returns>A sequence that contains only duplicate elements from the source sequence.</returns>
-    public static IEnumerable<TSource> GetDuplicates<TSource>(this IEnumerable<TSource> source)
-        where TSource : IEquatable<TSource>
-        => GetDuplicates(source, EqualityComparer<TSource>.Default);
-
-    /// <summary>
-    /// Returns a sequence of duplicate elements from the source sequence using the specified equality comparer.
-    /// </summary>
     /// <typeparam name="TSource">The type of elements in the source sequence.</typeparam>
-    /// <param name="source">The sequence to find duplicates in.</param>
-    /// <param name="comparer">The equality comparer to use for determining duplicates.</param>
-    /// <returns>A sequence that contains only duplicate elements from the source sequence.</returns>
-    public static IEnumerable<TSource> GetDuplicates<TSource>(this IEnumerable<TSource> source,
-        IEqualityComparer<TSource> comparer)
+    extension<TSource>(IEnumerable<TSource> source) where TSource : IEquatable<TSource>
     {
+        /// <summary>
+        /// Returns a sequence of duplicate elements from the source sequence using the default equality comparer.
+        /// </summary>
+        /// <returns>A sequence that contains only duplicate elements from the source sequence.</returns>
+        public IEnumerable<TSource> GetDuplicates() => GetDuplicates(source, EqualityComparer<TSource>.Default);
+        
+        /// <summary>
+        /// Returns a sequence of duplicate elements from the source sequence using the specified equality comparer.
+        /// </summary>
+        /// <param name="comparer">The equality comparer to use for determining duplicates.</param>
+        /// <returns>A sequence that contains only duplicate elements from the source sequence.</returns>
+        public IEnumerable<TSource> GetDuplicates(IEqualityComparer<TSource> comparer)
+        {
 #if NET8_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source, nameof(source));
+            ArgumentNullException.ThrowIfNull(source);
 #endif
         
-        return new Internals.Infra.CustomEnumeratorEnumerable<TSource>(
-            new DuplicatesEnumerator<TSource>(source, comparer));
+            return new Internals.Infra.CustomEnumeratorEnumerable<TSource>(
+                new DuplicatesEnumerator<TSource>(source, comparer));
+        }
     }
+
+
 }

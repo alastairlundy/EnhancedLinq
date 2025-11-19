@@ -24,38 +24,41 @@ namespace AlastairLundy.EnhancedLinq.Deferred.Ranges;
 
 public static partial class EnhancedLinqDeferredRange
 {
-    /// <summary>
-    /// Inserts an element into a sequence at the specified index.
-    /// </summary>
     /// <param name="source">The sequence to insert items into.</param>
-    /// <param name="indexToInsertAt">The index at which to insert the element into the sequence</param>
-    /// <param name="toBeInserted">The element to be inserted.</param>
     /// <typeparam name="TSource">The type of elements stored in the sequence.</typeparam>
-    /// <returns>A new sequence with the elements of the original sequence, and the specified element inserted at the specified index. </returns>
-    public static IEnumerable<TSource> Insert<TSource>(this IEnumerable<TSource> source, int indexToInsertAt,
-        TSource toBeInserted)
-        => InsertRange(source, indexToInsertAt, [toBeInserted]);
-    
-    /// <summary>
-    /// Inserts a sequence of elements into a sequence at a specified index.
-    /// </summary>
-    /// <param name="source">The sequence to insert items into.</param>
-    /// <param name="indexToInsertAt">The index at which to insert the elements into the sequence</param>
-    /// <param name="toBeInserted">The sequence of elements to be inserted.</param>
-    /// <typeparam name="TSource">The type of elements stored in the sequence.</typeparam>
-    /// <returns>A new sequence with the elements of the original sequence, and the elements of the second sequence inserted at the specified index. </returns>
-    public static IEnumerable<TSource> InsertRange<TSource>(this IEnumerable<TSource> source, int indexToInsertAt,
-        IEnumerable<TSource> toBeInserted)
+    extension<TSource>(IEnumerable<TSource> source)
     {
+        /// <summary>
+        /// Inserts an element into a sequence at the specified index.
+        /// </summary>
+        /// <param name="indexToInsertAt">The index at which to insert the element into the sequence</param>
+        /// <param name="toBeInserted">The element to be inserted.</param>
+        /// <returns>A new sequence with the elements of the original sequence, and the specified element inserted at the specified index. </returns>
+        public IEnumerable<TSource> Insert(int indexToInsertAt,
+            TSource toBeInserted)
+            => InsertRange(source, indexToInsertAt, [toBeInserted]);
+        
+        /// <summary>
+        /// Inserts a sequence of elements into a sequence at a specified index.
+        /// </summary>
+        /// <param name="indexToInsertAt">The index at which to insert the elements into the sequence</param>
+        /// <param name="toBeInserted">The sequence of elements to be inserted.</param>
+        /// <typeparam name="TSource">The type of elements stored in the sequence.</typeparam>
+        /// <returns>A new sequence with the elements of the original sequence, and the elements of the second sequence inserted at the specified index. </returns>
+        public IEnumerable<TSource> InsertRange(int indexToInsertAt, IEnumerable<TSource> toBeInserted)
+        {
 #if NET8_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-        ArgumentNullException.ThrowIfNull(toBeInserted);
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(toBeInserted);
 #endif
         
-        if (indexToInsertAt < 0)
-            throw new IndexOutOfRangeException();
+            if (indexToInsertAt < 0)
+                throw new IndexOutOfRangeException();
         
-        return new Internals.Infra.CustomEnumeratorEnumerable<TSource>(
-            new InsertRangeEnumerator<TSource>(source, indexToInsertAt, toBeInserted));
+            return new Internals.Infra.CustomEnumeratorEnumerable<TSource>(
+                new InsertRangeEnumerator<TSource>(source, indexToInsertAt, toBeInserted));
+        }
     }
+    
+
 }

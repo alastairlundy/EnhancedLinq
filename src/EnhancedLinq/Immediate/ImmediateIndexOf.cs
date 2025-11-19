@@ -23,92 +23,99 @@ namespace AlastairLundy.EnhancedLinq.Immediate;
 
 public static partial class EnhancedLinqImmediate
 {
-    
     /// <summary>
-    /// Gets the first index of the first element that matches the predicate condition.
+    /// 
     /// </summary>
     /// <param name="source">The <see cref="IEnumerable{T}"/> to be searched.</param>
-    /// <param name="predicate">The predicate condition to check elements of the sequence against.</param>
     /// <typeparam name="T">The type of elements in the sequence.</typeparam>
-    /// <returns>The first index of the first element in the sequence to match the predicate condition,
-    /// if the sequence contains any elements that match the predicate condition, returns -1 otherwise.
-    /// </returns>
-    public static int IndexOf<T>(this IEnumerable<T> source, Func<T, bool> predicate)
+    extension<T>(IEnumerable<T> source)
     {
-#if NET8_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source, nameof(source));
-        ArgumentNullException.ThrowIfNull(predicate, nameof(predicate));
-     #endif
-        
-        int index = 0;
-
-        foreach (T item in source)
+        /// <summary>
+        /// Gets the first index of the first element that matches the predicate condition.
+        /// </summary>
+        /// <param name="predicate">The predicate condition to check elements of the sequence against.</param>
+        /// <returns>The first index of the first element in the sequence to match the predicate condition,
+        /// if the sequence contains any elements that match the predicate condition, returns -1 otherwise.
+        /// </returns>
+        public int IndexOf(Func<T, bool> predicate)
         {
-            if (predicate(item))
-                return index;
-
-            index++;
-        }
-
-        return -1;
-    }
-    
-    /// <summary>
-    /// Gets the first index of an element in a sequence.
-    /// </summary>
-    /// <param name="source">The sequence to be searched.</param>
-    /// <param name="obj">The element to get the index of.</param>
-    /// <typeparam name="T">The type of elements in the sequence.</typeparam>
-    /// <returns>The first index of an element in a sequence, if the sequence contains the element, returns -1 otherwise.</returns>
-    public static int IndexOf<T>(this IEnumerable<T> source, T obj)
-    {
 #if NET8_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source, nameof(source));
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(predicate);
 #endif
         
-        if (source is IList<T> list)
-        {
-            return list.IndexOf(obj);
-        }
-        
-        int index = 0;
-                
-        foreach (T item in source)
-        {
-            if (item is not null && item.Equals(obj))
+            int index = 0;
+
+            foreach (T item in source)
             {
-                return index;
+                if (predicate(item))
+                    return index;
+
+                index++;
             }
-                    
-            index++;
-        }
-        
-        return -1;
-    }
-    
-    /// <summary>
-    /// Finds the first occurrence of a specified substring within a string, starting from the beginning of the string.
-    /// </summary>
-    /// <param name="str">The input string.</param>
-    /// <param name="value">The substring to find.</param>
-    /// <returns>The index of the found substring if it exists, otherwise -1.</returns>
-    public static int IndexOf(this string str, string value)
-    {
-        if (str.Length < value.Length || value.Length == 0)
+
             return -1;
-
-        int[] indices = str.IndicesOf(value.First());
-
-        foreach (int index in indices)
-        {
-            string indexValue = value.Substring(index, value.Length);
-
-            if (indexValue.Equals(str))
-            {
-                return index;
-            }
         }
         
-        return -1;
+        /// <summary>
+        /// Gets the first index of an element in a sequence.
+        /// </summary>
+        /// <param name="obj">The element to get the index of.</param>
+        /// <returns>The first index of an element in a sequence, if the sequence contains the element, returns -1 otherwise.</returns>
+        public int IndexOf(T obj)
+        {
+#if NET8_0_OR_GREATER
+            ArgumentNullException.ThrowIfNull(source);
+#endif
+        
+            if (source is IList<T> list)
+            {
+                return list.IndexOf(obj);
+            }
+        
+            int index = 0;
+                
+            foreach (T item in source)
+            {
+                if (item is not null && item.Equals(obj))
+                {
+                    return index;
+                }
+                    
+                index++;
+            }
+        
+            return -1;
+        }
+    }
+
+
+    /// <param name="str">The input string.</param>
+    extension(string str)
+    {
+        /// <summary>
+        /// Finds the first occurrence of a specified substring within a string, starting from the beginning of the string.
+        /// </summary>
+        /// <param name="value">The substring to find.</param>
+        /// <returns>The index of the found substring if it exists, otherwise -1.</returns>
+        public int IndexOf(string value)
+        {
+            if (str.Length < value.Length || value.Length == 0)
+                return -1;
+
+            int[] indices = str.IndicesOf(value.First());
+
+            foreach (int index in indices)
+            {
+                string indexValue = value.Substring(index, value.Length);
+
+                if (indexValue.Equals(str))
+                {
+                    return index;
+                }
+            }
+        
+            return -1;
+        }
     }
 }

@@ -26,20 +26,26 @@ namespace AlastairLundy.EnhancedLinq.Immediate;
 public static partial class EnhancedLinqImmediate
 {
     /// <summary>
-    /// Provides the last index of an item in a collection.
+    /// 
     /// </summary>
     /// <param name="source"></param>
     /// <typeparam name="T">The type of element in the collection.</typeparam>
-    /// <returns>The last index of an item in a collection.</returns>
-    public static int LastIndex<T>(this ICollection<T> source)
+    extension<T>(ICollection<T> source)
     {
+        /// <summary>
+        /// Provides the last index of an item in a collection.
+        /// </summary>
+        /// <returns>The last index of an item in a collection.</returns>
+        public int LastIndex()
+        {
 #if NET8_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(source);
 #endif
         
-        if(source.Count > 0)
-            return source.Count - 1;
+            if(source.Count > 0)
+                return source.Count - 1;
 
-        return -1;
+            return -1;
+        }
     }
 }

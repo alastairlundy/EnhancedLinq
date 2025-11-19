@@ -24,69 +24,72 @@ namespace AlastairLundy.EnhancedLinq.Immediate;
 public static partial class EnhancedLinqImmediate
 {
     /// <summary>
-    /// Determines whether there are at most a maximum number of elements in the source sequence.
+    /// 
     /// </summary>
     /// <param name="source">The source sequence to search through.</param>
-    /// <param name="countToLookFor">The maximum number of elements that can meet the condition.</param>
     /// <typeparam name="T">The element type of the source sequence.</typeparam>
-    /// <returns>True if there are at most <paramref name="countToLookFor"/> number of elements, false otherwise.</returns>
-    public static bool CountAtMost<T>(this IEnumerable<T> source, int countToLookFor)
+    extension<T>(IEnumerable<T> source)
     {
+        /// <summary>
+        /// Determines whether there are at most a maximum number of elements in the source sequence.
+        /// </summary>
+        /// <param name="countToLookFor">The maximum number of elements that can meet the condition.</param>
+        /// <returns>True if there are at most <paramref name="countToLookFor"/> number of elements, false otherwise.</returns>
+        public bool CountAtMost(int countToLookFor)
+        {
 #if NET8_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(source);
 #endif
         
-        if (source is ICollection<T> collection)
-        {
-            return collection.Count <= countToLookFor;
-        }
+            if (source is ICollection<T> collection)
+            {
+                return collection.Count <= countToLookFor;
+            }
         
-        if (countToLookFor < 0)
-            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
+            if (countToLookFor < 0)
+                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
         
-        int currentCount = 0;
+            int currentCount = 0;
         
-        foreach (T obj in source)
-        {
-            if(currentCount >= countToLookFor)
-                return false;
+            foreach (T obj in source)
+            {
+                if(currentCount >= countToLookFor)
+                    return false;
 
-            currentCount += 1;
-        }
-
-        return true;
-    }
-
-
-    /// <summary>
-    /// Determines whether there are at most a maximum number of elements in the source sequence that satisfy the given condition.
-    /// </summary>
-    /// <param name="source">The source sequence to search through.</param>
-    /// <param name="predicate">The predicate condition to check elements against.</param>
-    /// <param name="countToLookFor">The maximum number of elements that can meet the condition.</param>
-    /// <typeparam name="T">The element type of the source sequence.</typeparam>
-    /// <returns>True if there are at most <paramref name="countToLookFor"/> number of elements that satisfy the condition, false otherwise.</returns>
-    public static bool CountAtMost<T>(this IEnumerable<T> source, Func<T, bool> predicate,
-        int countToLookFor)
-    {
-#if NET8_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#endif
-        
-        if (countToLookFor < 0)
-            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero.Replace("{x}", countToLookFor.ToString()));
-        
-        int currentCount = 0;
-
-        foreach (T obj in source)
-        {
-            if (predicate(obj))
                 currentCount += 1;
-            
-            if(currentCount >= countToLookFor)
-                return false;
-        }
+            }
 
-        return true;
+            return true;
+        }
+        
+        /// <summary>
+        /// Determines whether there are at most a maximum number of elements in the source sequence that satisfy the given condition.
+        /// </summary>
+        /// <param name="predicate">The predicate condition to check elements against.</param>
+        /// <param name="countToLookFor">The maximum number of elements that can meet the condition.</param>
+        /// <returns>True if there are at most <paramref name="countToLookFor"/> number of elements that satisfy the condition, false otherwise.</returns>
+        public bool CountAtMost(Func<T, bool> predicate,
+            int countToLookFor)
+        {
+#if NET8_0_OR_GREATER
+            ArgumentNullException.ThrowIfNull(source);
+#endif
+        
+            if (countToLookFor < 0)
+                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero.Replace("{x}", countToLookFor.ToString()));
+        
+            int currentCount = 0;
+
+            foreach (T obj in source)
+            {
+                if (predicate(obj))
+                    currentCount += 1;
+            
+                if(currentCount >= countToLookFor)
+                    return false;
+            }
+
+            return true;
+        }
     }
 }

@@ -23,61 +23,64 @@ namespace AlastairLundy.EnhancedLinq.Async.Immediate;
 
 public static partial class EnhancedLinqAsyncImmediate
 {
-        
     /// <summary>
-    /// Gets the first index of the first element that matches the predicate condition.
+    /// 
     /// </summary>
     /// <param name="source">The <see cref="IAsyncEnumerable{T}"/> to be searched.</param>
-    /// <param name="predicate">The predicate condition to check elements of the sequence against.</param>
     /// <typeparam name="T">The type of elements in the sequence.</typeparam>
-    /// <returns>The first index of the first element in the sequence to match the predicate condition,
-    /// if the sequence contains any elements that match the predicate condition, returns -1 otherwise.
-    /// </returns>
-    public static async Task<int> IndexOfAsync<T>(this IAsyncEnumerable<T> source, Func<T, bool> predicate)
+    extension<T>(IAsyncEnumerable<T> source)
     {
-#if NET8_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source, nameof(source));
-        ArgumentNullException.ThrowIfNull(predicate, nameof(predicate));
-     #endif
-        
-        int index = 0;
-
-        await foreach (T item in source)
+        /// <summary>
+        /// Gets the first index of the first element that matches the predicate condition.
+        /// </summary>
+        /// <param name="predicate">The predicate condition to check elements of the sequence against.</param>
+        /// <returns>The first index of the first element in the sequence to match the predicate condition,
+        /// if the sequence contains any elements that match the predicate condition, returns -1 otherwise.
+        /// </returns>
+        public async Task<int> IndexOfAsync(Func<T, bool> predicate)
         {
-            if (predicate(item))
-                return index;
-
-            index++;
-        }
-
-        return -1;
-    }
-    
-    /// <summary>
-    /// Gets the first index of an element in a sequence.
-    /// </summary>
-    /// <param name="source">The <see cref="IAsyncEnumerable{T}"/> to be searched.</param>
-    /// <param name="obj">The element to get the index of.</param>
-    /// <typeparam name="T">The type of elements in the sequence.</typeparam>
-    /// <returns>The first index of an element in a sequence, if the sequence contains the element, returns -1 otherwise.</returns>
-    public static async Task<int> IndexOfAsync<T>(this IAsyncEnumerable<T> source, T obj)
-    {
 #if NET8_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source, nameof(source));
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(predicate);
 #endif
         
-        int index = 0;
-                
-        await foreach (T item in source)
-        {
-            if (item is not null && item.Equals(obj))
+            int index = 0;
+
+            await foreach (T item in source)
             {
-                return index;
+                if (predicate(item))
+                    return index;
+
+                index++;
             }
-                    
-            index++;
+
+            return -1;
         }
         
-        return -1;
+        /// <summary>
+        /// Gets the first index of an element in a sequence.
+        /// </summary>
+        /// <param name="obj">The element to get the index of.</param>
+        /// <returns>The first index of an element in a sequence, if the sequence contains the element, returns -1 otherwise.</returns>
+        public async Task<int> IndexOfAsync(T obj)
+        {
+#if NET8_0_OR_GREATER
+            ArgumentNullException.ThrowIfNull(source);
+#endif
+        
+            int index = 0;
+                
+            await foreach (T item in source)
+            {
+                if (item is not null && item.Equals(obj))
+                {
+                    return index;
+                }
+                    
+                index++;
+            }
+        
+            return -1;
+        }
     }
 }

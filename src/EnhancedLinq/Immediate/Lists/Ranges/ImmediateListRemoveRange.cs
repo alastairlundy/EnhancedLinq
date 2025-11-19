@@ -72,71 +72,71 @@ public static partial class EnhancedLinqImmediateRange
             source.AddRange(newCollection);
         }
     }
-    
-    /// <summary>
-    /// Removes a specified range of elements from this list.
-    /// </summary>
+
     /// <param name="list">The list from which to remove elements.</param>
-    /// <param name="startIndex">The zero-based index (inclusive) where the removal starts.
-    /// If less than 0, an ArgumentException is thrown.</param>
-    /// <param name="count">The number of elements to be removed.
-    /// If greater than or equal to the remaining elements at start index, an IndexOutOfRangeException is thrown.</param>
     /// <typeparam name="T">The type of elements in this list.</typeparam>
-    /// <exception cref="IndexOutOfRangeException">Thrown if the start index is out of range for this list or if the count exceeds available elements from that index.</exception>
-    /// <exception cref="ArgumentException">Thrown if the start index is negative.</exception>
-    public static void RemoveRange<T>(this IList<T> list, int startIndex, int count)
+    extension<T>(IList<T> list)
     {
-        if (list.IsReadOnly || list is T[])
-            throw new NotSupportedException();
-        
-        if (startIndex >= list.Count || startIndex < 0 )
-            throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
-                .Replace("{x}", $"{startIndex}")
-                .Replace("{y}", "0")
-                .Replace("{z}", $"{list.Count}"));
-
-        if(count < 0)
-            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
-
-        if ((list.Count < startIndex + count) == false)
-            throw new ArgumentException();
-        
-        int limit = startIndex + count;
-        
-        for (int index = startIndex; index < limit; index++)
+        /// <summary>
+        /// Removes a specified range of elements from this list.
+        /// </summary>
+        /// <param name="startIndex">The zero-based index (inclusive) where the removal starts.
+        /// If less than 0, an ArgumentException is thrown.</param>
+        /// <param name="count">The number of elements to be removed.
+        /// If greater than or equal to the remaining elements at start index, an IndexOutOfRangeException is thrown.</param>
+        /// <exception cref="IndexOutOfRangeException">Thrown if the start index is out of range for this list or if the count exceeds available elements from that index.</exception>
+        /// <exception cref="ArgumentException">Thrown if the start index is negative.</exception>
+        public void RemoveRange(int startIndex, int count)
         {
-            list.RemoveAt(index);
-        }
-    }
+            if (list.IsReadOnly || list is T[])
+                throw new NotSupportedException();
         
-    
-    /// <summary>Removes a range of elements from the specified list.
-    ///
-    /// <para>
-    /// If the range of indices is empty, no elements will be removed.
-    ///</para>
-    /// </summary>
-    /// <param name="list">The list from which to remove elements.</param>
-    /// <param name="indices">A list of 0-based indices specifying the range of elements to remove.</param>
-    /// <typeparam name="T">The type of elements in the list.</typeparam>
-    /// <exception cref="IndexOutOfRangeException">Thrown if any index in the indices list is out of range for the corresponding element in the list.</exception>
-    public static void RemoveRange<T>(this IList<T> list, IList<int> indices)
-    {
-        if (list.IsReadOnly || list is T[])
-            throw new NotSupportedException();
-        
-        foreach (int index in indices)
-        {
-            if (index >= list.Count || index < 0 )
+            if (startIndex >= list.Count || startIndex < 0 )
                 throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
-                    .Replace("{x}", $"{index}")
+                    .Replace("{x}", $"{startIndex}")
                     .Replace("{y}", "0")
                     .Replace("{z}", $"{list.Count}"));
 
-            if (indices.Count > list.Count)
+            if(count < 0)
                 throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
 
-            list.RemoveAt(index);
+            if ((list.Count < startIndex + count) == false)
+                throw new ArgumentException();
+        
+            int limit = startIndex + count;
+        
+            for (int index = startIndex; index < limit; index++)
+            {
+                list.RemoveAt(index);
+            }
+        }
+
+        ///  <summary>Removes a range of elements from the specified list.
+        /// 
+        ///  <para>
+        ///  If the range of indices is empty, no elements will be removed.
+        /// </para>
+        ///  </summary>
+        ///  <param name="indices">A list of 0-based indices specifying the range of elements to remove.</param>
+        ///  <exception cref="IndexOutOfRangeException">Thrown if any index in the indices list is out of range for the corresponding element in the list.</exception>
+        public void RemoveRange(IList<int> indices)
+        {
+            if (list.IsReadOnly || list is T[])
+                throw new NotSupportedException();
+        
+            foreach (int index in indices)
+            {
+                if (index >= list.Count || index < 0 )
+                    throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
+                        .Replace("{x}", $"{index}")
+                        .Replace("{y}", "0")
+                        .Replace("{z}", $"{list.Count}"));
+
+                if (indices.Count > list.Count)
+                    throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
+
+                list.RemoveAt(index);
+            }
         }
     }
 }

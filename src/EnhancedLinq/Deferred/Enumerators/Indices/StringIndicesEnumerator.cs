@@ -28,7 +28,7 @@ internal class StringIndicesEnumerator : IEnumerator<int>
     
     private readonly IEnumerable<int> _indices;
     
-    private IEnumerator<int> _indicesEnumerator;
+    private readonly IEnumerator<int> _indicesEnumerator;
     
     private int _index;
     private int _current;
@@ -42,30 +42,26 @@ internal class StringIndicesEnumerator : IEnumerator<int>
         _index = 0;
 
         _indices = str.IndicesOf(substring[0]);
+        _indicesEnumerator = _indices.GetEnumerator();
     }
 
     public bool MoveNext()
     {
         if (_state == 1)
         {
-            _indicesEnumerator = _indices.GetEnumerator();
-            _state = 2;
-        }
-
-        if (_state == 2)
-        {
             try
             {
-                while(_indicesEnumerator.MoveNext())
+                while (_indicesEnumerator.MoveNext())
                 {
                     string compare = _str.Substring(_indicesEnumerator.Current,
                         _substring.Length);
-                    
+
                     if (_substring.Equals(compare))
                     {
                         _current = _index;
                         return true;
                     }
+
                     _index++;
                 }
             }
@@ -74,10 +70,13 @@ internal class StringIndicesEnumerator : IEnumerator<int>
                 Dispose();
                 throw;
             }
+            finally
+            {
+                _state = -1;
+            }
         }
         
         Dispose();
-        _state = -1;
         return false;
     }
 

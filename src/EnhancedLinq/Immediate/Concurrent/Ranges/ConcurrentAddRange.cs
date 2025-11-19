@@ -25,25 +25,28 @@ namespace AlastairLundy.EnhancedLinq.Immediate.Concurrent.Ranges;
 
 public static partial class EnhancedLinqImmediateConcurrentRange
 {
-    /// <summary>
-    /// Attempts to add multiple objects to a producer-consumer collection.
-    /// </summary>
     /// <param name="collection">The producer-consumer collection to add objects to.</param>
-    /// <param name="items">The collection of objects to be added to the collection.</param>
     /// <typeparam name="T">The type of elements contained within the collection.</typeparam>
-    /// <returns>True if all objects were successfully added, false otherwise.</returns>
-    public static bool TryAddRange<T>(this IProducerConsumerCollection<T> collection, IEnumerable<T> items)
+    extension<T>(IProducerConsumerCollection<T> collection)
     {
-        foreach (T item in items)
+        /// <summary>
+        /// Attempts to add multiple objects to a producer-consumer collection.
+        /// </summary>
+        /// <param name="items">The collection of objects to be added to the collection.</param>
+        /// <returns>True if all objects were successfully added, false otherwise.</returns>
+        public bool TryAddRange(IEnumerable<T> items)
         {
-            bool result = collection.TryAdd(item);
-
-            if (result == false)
+            foreach (T item in items)
             {
-                return false;
+                bool result = collection.TryAdd(item);
+
+                if (result == false)
+                {
+                    return false;
+                }
             }
+            return true;
         }
-        return true;
     }
 
     /// <summary>
@@ -55,8 +58,8 @@ public static partial class EnhancedLinqImmediateConcurrentRange
     public static void AddRange<T>(this ConcurrentBag<T> source, IEnumerable<T> items)
     {
 #if NET8_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source, nameof(source));
-        ArgumentNullException.ThrowIfNull(items, nameof(items));
+        ArgumentNullException.ThrowIfNull(source);
+        ArgumentNullException.ThrowIfNull(items);
 #endif
         
         foreach (T item in items)
@@ -74,8 +77,8 @@ public static partial class EnhancedLinqImmediateConcurrentRange
     public static void EnqueueRange<T>(this ConcurrentQueue<T> source, IEnumerable<T> items)
     {
 #if NET8_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source, nameof(source));
-        ArgumentNullException.ThrowIfNull(items, nameof(items));
+        ArgumentNullException.ThrowIfNull(source);
+        ArgumentNullException.ThrowIfNull(items);
 #endif
         
         foreach (T item in items)

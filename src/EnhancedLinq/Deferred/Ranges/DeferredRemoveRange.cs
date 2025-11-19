@@ -26,18 +26,20 @@ namespace AlastairLundy.EnhancedLinq.Deferred.Ranges;
 /// </summary>
 public static partial class EnhancedLinqDeferredRange
 {
-    
-    /// <summary>
-    /// Removes items from an IEnumerable.
-    /// </summary>
     /// <param name="source">The IEnumerable to have items removed from.</param>
-    /// <param name="itemsToBeRemoved">The items to be removed.</param>
     /// <typeparam name="TSource">The type of elements stored in the sequence.</typeparam>
-    /// <returns>The new IEnumerable with the specified items removed.</returns>
-    public static IEnumerable<TSource> RemoveRange<TSource>(this IEnumerable<TSource> source, IEnumerable<TSource> itemsToBeRemoved)
+    extension<TSource>(IEnumerable<TSource> source)
     {
-        return from item in source
-            where itemsToBeRemoved.Contains(item) == false
-            select item;
+        /// <summary>
+        /// Removes items from an IEnumerable.
+        /// </summary>
+        /// <param name="itemsToBeRemoved">The items to be removed.</param>
+        /// <returns>The new IEnumerable with the specified items removed.</returns>
+        public IEnumerable<TSource> RemoveRange(IEnumerable<TSource> itemsToBeRemoved)
+        {
+            return from item in source
+                where itemsToBeRemoved.Contains(item) == false
+                select item;
+        }
     }
 }

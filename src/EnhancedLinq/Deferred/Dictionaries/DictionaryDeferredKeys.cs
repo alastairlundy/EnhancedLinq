@@ -25,18 +25,21 @@ namespace AlastairLundy.EnhancedLinq.Deferred.Dictionaries;
 /// </summary>
 public static partial class EnhancedLinqDeferredDictionary
 {
-    /// <summary>
-    /// Returns all keys associated with a specified value in a Dictionary.
-    /// </summary>
     /// <param name="dictionary">The Dictionary to be searched.</param>
-    /// <param name="value">The value to search for.</param>
     /// <typeparam name="TKey">The type of Key in the Dictionary.</typeparam>
     /// <typeparam name="TValue">The type of Value in the Dictionary.</typeparam>
-    /// <returns>The keys associated with the specified value in a Dictionary.</returns>
-    public static IEnumerable<TKey> GetKeysByValue<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TValue value)
+    extension<TKey, TValue>(IDictionary<TKey, TValue> dictionary)
     {
-        return (from pair in dictionary
-            where pair.Value.Equals(value)
-            select pair.Key);
+        /// <summary>
+        /// Returns all keys associated with a specified value in a Dictionary.
+        /// </summary>
+        /// <param name="value">The value to search for.</param>
+        /// <returns>The keys associated with the specified value in a Dictionary.</returns>
+        public IEnumerable<TKey> GetKeysByValue(TValue value)
+        {
+            return (from pair in dictionary
+                where pair.Value.Equals(value)
+                select pair.Key);
+        }
     }
 }

@@ -25,86 +25,89 @@ namespace AlastairLundy.EnhancedLinq.Immediate;
 /// </summary>
 public static partial class EnhancedLinqImmediate
 {
-    /// <summary>
-    /// Creates a new <see cref="List{T}"/> with distinct elements from the source list.
-    /// </summary>
     /// <param name="source">The list to de-duplicate.</param>
     /// <typeparam name="T">The type of elements in the list.</typeparam>
-    /// <returns>The new list with distinct elements from the source list.</returns>
-    public static List<T> Distinct<T>(this List<T> source)
-        => Distinct(source, EqualityComparer<T>.Default);
-    
-    /// <summary>
-    /// Creates a new <see cref="List{T}"/> with distinct elements from the source list.
-    /// </summary>
-    /// <param name="source">The list to de-duplicate.</param>
-    /// <param name="equalityComparer">The equality comparer to use.</param>
-    /// <typeparam name="T">The type of elements in the list.</typeparam>
-    /// <returns>The new list with distinct elements from the source list.</returns>
-    public static List<T> Distinct<T>(this List<T> source, IEqualityComparer<T> equalityComparer)
+    extension<T>(List<T> source)
     {
-#if NET8_0_OR_GREATER
-        HashSet<T> hash = new(capacity: source.Count / 10, comparer: equalityComparer);
-#else
-        HashSet<T> hash = new(comparer: equalityComparer);
-#endif
-        List<T> output = new(capacity: source.Count / 10);
-
-        for (int index = 0; index < source.Count; index++)
+        /// <summary>
+        /// Creates a new <see cref="List{T}"/> with distinct elements from the source list.
+        /// </summary>
+        /// <returns>The new list with distinct elements from the source list.</returns>
+        public List<T> Distinct()
+            => Distinct(source, EqualityComparer<T>.Default);
+        
+        /// <summary>
+        /// Creates a new <see cref="List{T}"/> with distinct elements from the source list.
+        /// </summary>
+        /// <param name="equalityComparer">The equality comparer to use.</param>
+        /// <returns>The new list with distinct elements from the source list.</returns>
+        public List<T> Distinct(IEqualityComparer<T> equalityComparer)
         {
-            T item = source[index];
-            bool result = hash.Add(item);
+#if NET8_0_OR_GREATER
+            HashSet<T> hash = new(capacity: source.Count / 10, comparer: equalityComparer);
+#else
+            HashSet<T> hash = new(comparer: equalityComparer);
+#endif
+            List<T> output = new(capacity: source.Count / 10);
 
-            if (result == false)
-                output.Add(item);
+            for (int index = 0; index < source.Count; index++)
+            {
+                T item = source[index];
+                bool result = hash.Add(item);
+
+                if (result == false)
+                    output.Add(item);
+            }
+
+            return output;
         }
-
-        return output;
     }
 
-    /// <summary>
-    /// Creates a new array with distinct elements from the source array.
-    /// </summary>
+
     /// <param name="source">The array to de-duplicate.</param>
     /// <typeparam name="T">The type of elements in the array.</typeparam>
-    /// <returns>The new array with distinct elements from the source array.</returns>
-    public static T[] Distinct<T>(this T[] source)
-        => Distinct(source, EqualityComparer<T>.Default);
-    
-    /// <summary>
-    /// Creates a new array with distinct elements from the source array.
-    /// </summary>
-    /// <param name="source">The array to de-duplicate.</param>
-    /// <typeparam name="T">The type of elements in the array.</typeparam>
-    /// <param name="equalityComparer">The equality comparer to use.</param>
-    /// <returns>The new array with distinct elements from the source array.</returns>
-    public static T[] Distinct<T>(this T[] source, IEqualityComparer<T> equalityComparer)
+    extension<T>(T[] source)
     {
+        /// <summary>
+        /// Creates a new array with distinct elements from the source array.
+        /// </summary>
+        /// <returns>The new array with distinct elements from the source array.</returns>
+        public T[] Distinct()
+            => Distinct(source, EqualityComparer<T>.Default);
+        
+        /// <summary>
+        /// Creates a new array with distinct elements from the source array.
+        /// </summary>
+        /// <param name="equalityComparer">The equality comparer to use.</param>
+        /// <returns>The new array with distinct elements from the source array.</returns>
+        public T[] Distinct(IEqualityComparer<T> equalityComparer)
+        {
 #if NET8_0_OR_GREATER
-        HashSet<T> hash = new(capacity: source.Length / 10, comparer: equalityComparer);
+            HashSet<T> hash = new(capacity: source.Length / 10, comparer: equalityComparer);
 #else
-        HashSet<T> hash = new(comparer: equalityComparer);
+            HashSet<T> hash = new(comparer: equalityComparer);
 #endif
         
-        T[] output = new T[source.Length];
+            T[] output = new T[source.Length];
 
-        int count = 0;
+            int count = 0;
 
-        for (int index = 0; index < source.Length; index++)
-        {
-            T item = source[index];
-            
-            bool result = hash.Add(item);
-
-            if (result == false)
+            for (int index = 0; index < source.Length; index++)
             {
-                output[count] = source[index];
-                count++;
+                T item = source[index];
+            
+                bool result = hash.Add(item);
+
+                if (result == false)
+                {
+                    output[count] = source[index];
+                    count++;
+                }
             }
+        
+            Array.Resize(ref output, count);
+        
+            return output;
         }
-        
-        Array.Resize(ref output, count);
-        
-        return output;
     }
 }

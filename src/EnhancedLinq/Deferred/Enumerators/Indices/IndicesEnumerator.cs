@@ -23,10 +23,9 @@ namespace AlastairLundy.EnhancedLinq.Deferred.Enumerators.Indices;
 
 internal class IndicesEnumerator<T> : IEnumerator<int>
 {
-    private readonly IEnumerable<T> _source;
     private readonly Func<T, bool> _predicate;
 
-    private IEnumerator<T> enumerator;
+    private readonly IEnumerator<T> _enumerator;
 
     private int _index;
     private int _current;
@@ -35,32 +34,27 @@ internal class IndicesEnumerator<T> : IEnumerator<int>
 
     public IndicesEnumerator(IEnumerable<T> source, Func<T, bool> predicate)
     {
-        _source = source;
         _predicate = predicate;
         
         _index = 0;
         _state = 1;
+        _enumerator = source.GetEnumerator();
     }
 
     public bool MoveNext()
     {
         if (_state == 1)
         {
-            enumerator = _source.GetEnumerator();
-            _state = 2;
-        }
-
-        if (_state == 2)
-        {
             try
             {
-                while(enumerator.MoveNext())
+                while (_enumerator.MoveNext())
                 {
-                    if (_predicate(enumerator.Current))
+                    if (_predicate(_enumerator.Current))
                     {
                         _current = _index;
                         return true;
                     }
+
                     _index++;
                 }
             }
@@ -69,10 +63,13 @@ internal class IndicesEnumerator<T> : IEnumerator<int>
                 Dispose();
                 throw;
             }
+            finally
+            {
+                _state = -1;
+            }
         }
         
         Dispose();
-        _state = -1;
         return false;
     }
 
@@ -87,6 +84,6 @@ internal class IndicesEnumerator<T> : IEnumerator<int>
 
     public void Dispose()
     {
-        enumerator.Dispose();
+        _enumerator.Dispose();
     }
 }

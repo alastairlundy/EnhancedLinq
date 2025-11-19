@@ -26,61 +26,80 @@ namespace AlastairLundy.EnhancedLinq.Immediate;
 public static partial class EnhancedLinqImmediate
 {
     /// <summary>
-    /// Applies the given action for each element of this sequence.
+    /// 
     /// </summary>
-    /// <param name="action">The action to apply to each element in the sequence.</param>
     /// <param name="target">The sequence to apply the action for.</param>
     /// <typeparam name="T">The type of elements in the sequence.</typeparam>
-    public static void ForEach<T>(this IEnumerable<T> target, Action<T> action)
+    extension<T>(IEnumerable<T> target)
     {
+        /// <summary>
+        /// Applies the given action for each element of this sequence.
+        /// </summary>
+        /// <param name="action">The action to apply to each element in the sequence.</param>
+
+        public void ForEach(Action<T> action)
+        {
 #if NET8_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(target);
+            ArgumentNullException.ThrowIfNull(target);
 #endif
         
-        foreach (T item in target)
-        {
-            action.Invoke(item);
+            foreach (T item in target)
+            {
+                action.Invoke(item);
+            }
         }
     }
 
     /// <summary>
-    /// Applies the given predicate function to each element of this <see cref="ICollection{T}"/>.
+    /// 
     /// </summary>
     /// <param name="target">The <see cref="ICollection{T}"/> to apply the predicate to.</param>
-    /// <param name="predicate">The func to apply to each element in the collection.</param>
     /// <typeparam name="T">The type of elements in the collection.</typeparam>
-    /// <returns>A new <see cref="ICollection{T}"/> containing the result of applying each element to the predicate.</returns>
-    public static ICollection<T> ForEach<T>(this ICollection<T> target, Func<T, T> predicate)
+    extension<T>(ICollection<T> target)
     {
+        /// <summary>
+        /// Applies the given predicate function to each element of this <see cref="ICollection{T}"/>.
+        /// </summary>
+        /// <param name="predicate">The func to apply to each element in the collection.</param>
+        /// <returns>A new <see cref="ICollection{T}"/> containing the result of applying each element to the predicate.</returns>
+        public ICollection<T> ForEach(Func<T, T> predicate)
+        {
 #if NET8_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(target);
+            ArgumentNullException.ThrowIfNull(target);
 #endif
         
-        List<T> output = new List<T>(capacity:target.Count);
+            List<T> output = new List<T>(capacity:target.Count);
         
-        foreach (T item in target)
-        {
-            output.Add(predicate.Invoke(item));
+            foreach (T item in target)
+            {
+                output.Add(predicate.Invoke(item));
+            }
+        
+            return output;
         }
-        
-        return output;
     }
-    
+
     /// <summary>
-    /// Applies the given predicate function to each element of this <see cref="IList{T}"/>.
+    /// 
     /// </summary>
     /// <param name="target">The <see cref="IList{T}"/> to apply the selector to.</param>
-    /// <param name="selector">The func to apply to each element in the <see cref="IList{T}"/>.</param>
     /// <typeparam name="T">The type of items in the <see cref="IList{T}"/>.</typeparam>
-    public static void ForEach<T>(this IList<T> target, Func<T, T> selector)
+    extension<T>(IList<T> target)
     {
+        /// <summary>
+        /// Applies the given predicate function to each element of this <see cref="IList{T}"/>.
+        /// </summary>
+        /// <param name="selector">The func to apply to each element in the <see cref="IList{T}"/>.</param>
+        public void ForEach(Func<T, T> selector)
+        {
 #if NET8_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(target);
+            ArgumentNullException.ThrowIfNull(target);
 #endif
         
-        for (int index = 0; index < target.Count; index++)
-        {
-            target[index] = selector.Invoke(target[index]);
+            for (int index = 0; index < target.Count; index++)
+            {
+                target[index] = selector.Invoke(target[index]);
+            }
         }
     }
 }

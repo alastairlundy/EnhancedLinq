@@ -48,6 +48,8 @@ internal class SplitByItemCountEnumerator<T> : IEnumerator<IEnumerable<T>>
             throw new ArgumentOutOfRangeException(nameof(maximumItemCount));
 
         _maxEnumerableCount = -1;
+        
+        _enumerator = _source.GetEnumerator();
     }
     
     internal SplitByItemCountEnumerator(IEnumerable<T> source, int maximumItemCount, int maxEnumerableCount)
@@ -65,31 +67,27 @@ internal class SplitByItemCountEnumerator<T> : IEnumerator<IEnumerable<T>>
             _maxEnumerableCount = maxEnumerableCount;
         else
             _maxEnumerableCount = -1;
+        
+        _enumerator = _source.GetEnumerator();
     }
 
     public bool MoveNext()
     {
         if (_state == 1)
         {
-            _enumerator = _source.GetEnumerator();
-            _state = 2;
-        }
-        
-        if (_state == 2)
-        {
             try
             {
                 _currentEnumerableCount = 0;
                 List<T> tempList = new List<T>();
-                
-                while(_enumerator.MoveNext())
+
+                while (_enumerator.MoveNext())
                 {
                     if (_currentItemCount < _maximumItemCount)
                     {
                         tempList.Add(_enumerator.Current);
                         _currentItemCount++;
                     }
-                    else if(_currentEnumerableCount < _maxEnumerableCount)
+                    else if (_currentEnumerableCount < _maxEnumerableCount)
                     {
                         _current = new List<T>(tempList);
                         _currentEnumerableCount++;
@@ -110,10 +108,13 @@ internal class SplitByItemCountEnumerator<T> : IEnumerator<IEnumerable<T>>
                 Dispose();
                 throw;
             }
+            finally
+            {
+                _state = -1;
+            }
         }
         
         Dispose();
-        _state = -1;
         return false;
     }
 

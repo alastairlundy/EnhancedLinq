@@ -132,29 +132,30 @@ public static partial class EnhancedLinqDeferred
         Func<T, bool> selector, int count) 
         => FirstNIndicesOf(source.Reverse(), selector, count);
 
-    /// <summary>
-    /// Finds the last <paramref name="count"/> occurrences of a specified char within a string,
-    /// starting from the beginning of the string.
-    /// </summary>
     /// <param name="str">The input string.</param>
-    /// <param name="c">The character to find in the string.</param>
-    /// <param name="count">The maximum number of indices to return.</param>
-    /// <returns>
-    /// A sequence of the last <paramref name="count"/> indices where the character is found;
-    /// an empty sequence if the character could not be found.
-    /// </returns>
-    public static IEnumerable<int> LastNIndicesOf(this string str, char c, int count)
-        => FirstNIndicesOf(str.Reverse(), c, count);
+    extension(string str)
+    {
+        /// <summary>
+        /// Finds the last <paramref name="count"/> occurrences of a specified char within a string,
+        /// starting from the beginning of the string.
+        /// </summary>
+        /// <param name="c">The character to find in the string.</param>
+        /// <param name="count">The maximum number of indices to return.</param>
+        /// <returns>
+        /// A sequence of the last <paramref name="count"/> indices where the character is found;
+        /// an empty sequence if the character could not be found.
+        /// </returns>
+        public IEnumerable<int> LastNIndicesOf(char c, int count)
+            => FirstNIndicesOf(str.Reverse(), c, count);
 
-    /// <summary>
-    /// Finds the last <paramref name="count"/> occurrences of a specified substring within a string, starting from the beginning of the string.
-    /// </summary>
-    /// <param name="str">The input string.</param>
-    /// <param name="substring">The substring to look for.</param>
-    /// <param name="count">The maximum number of indices to return.</param>
-    /// <returns>A sequence of the last <paramref name="count"/> indices where the character is found;
-    /// an empty sequence if the character could not be found.</returns>
-    public static IEnumerable<int> LastNIndicesOf(this string str, string substring, int count)
-        => FirstNIndicesOf(string.Join("", str.Reverse()), substring, count);
-
+        /// <summary>
+        /// Finds the last <paramref name="count"/> occurrences of a specified substring within a string, starting from the beginning of the string.
+        /// </summary>
+        /// <param name="substring">The substring to look for.</param>
+        /// <param name="count">The maximum number of indices to return.</param>
+        /// <returns>A sequence of the last <paramref name="count"/> indices where the character is found;
+        /// an empty sequence if the character could not be found.</returns>
+        public IEnumerable<int> LastNIndicesOf(string substring, int count)
+            => FirstNIndicesOf(string.Join("", str.Reverse()), substring, count);
+    }
 }

@@ -22,24 +22,27 @@ namespace AlastairLundy.EnhancedLinq.Async.Immediate;
 
 public static partial class EnhancedLinqAsyncImmediate
 {
-    /// <summary>
-    /// Determines whether an <see cref="IEnumerable{T}"/> contains duplicate instances of an object.
-    /// </summary>
     /// <param name="source">The <see cref="IEnumerable{T}"/> to be searched.</param>
     /// <typeparam name="T">The type of objects in the <see cref="IEnumerable{T}"/>.</typeparam>
-    /// <returns>True if the <see cref="IEnumerable{T}"/> contains duplicate objects; false otherwise.</returns>
-    public static async Task<bool> ContainsDuplicates<T>(this IAsyncEnumerable<T> source) where T : notnull
+    extension<T>(IAsyncEnumerable<T> source) where T : notnull
     {
-        HashSet<T> hash = new();
-        
-        await foreach (T item in source)
+        /// <summary>
+        /// Determines whether an <see cref="IEnumerable{T}"/> contains duplicate instances of an object.
+        /// </summary>
+        /// <returns>True if the <see cref="IEnumerable{T}"/> contains duplicate objects; false otherwise.</returns>
+        public async Task<bool> ContainsDuplicates()
         {
-            bool result = hash.Add(item);
+            HashSet<T> hash = new();
+        
+            await foreach (T item in source)
+            {
+                bool result = hash.Add(item);
 
-            if (result == false)
-                return true;
+                if (!result)
+                    return true;
+            }
+
+            return false;
         }
-
-        return false;
     }
 }

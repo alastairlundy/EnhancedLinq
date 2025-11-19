@@ -29,9 +29,7 @@ internal class InsertRangeEnumerator<T> : IEnumerator<T>
     
     private IEnumerator<T> _sourceEnumerator;
     private IEnumerator<T> _toBeInsertedEnumerator;
-    
-    private T _current;
-    
+
     private int _state;
     private int _index;
 
@@ -60,14 +58,14 @@ internal class InsertRangeEnumerator<T> : IEnumerator<T>
             {
                 while (_toBeInsertedEnumerator.MoveNext())
                 {
-                    _current = _toBeInsertedEnumerator.Current;
+                    Current = _toBeInsertedEnumerator.Current;
                     _index++;
                     return true;
                 }
 
                 while (_sourceEnumerator.MoveNext())
                 {
-                    _current = _sourceEnumerator.Current;
+                    Current = _sourceEnumerator.Current;
                     _index++;
                     return true;
                 }
@@ -80,14 +78,14 @@ internal class InsertRangeEnumerator<T> : IEnumerator<T>
                     {
                         while (_toBeInsertedEnumerator.MoveNext())
                         {
-                            _current = _toBeInsertedEnumerator.Current;
+                            Current = _toBeInsertedEnumerator.Current;
                             _index++;
                             return true;
                         }
                     }
                     else
                     {
-                        _current = _sourceEnumerator.Current;
+                        Current = _sourceEnumerator.Current;
                         _index++;
                         return true;
                     }
@@ -105,7 +103,7 @@ internal class InsertRangeEnumerator<T> : IEnumerator<T>
         throw new NotSupportedException();
     }
 
-    public T Current => _current;
+    public T Current { get; private set; }
 
     object? IEnumerator.Current => Current;
 

@@ -25,68 +25,80 @@ namespace AlastairLundy.EnhancedLinq.Deferred;
 public static partial class EnhancedLinqDeferred
 {
     /// <summary>
-    /// Gets all the indices of the specified item within a sequence.
+    /// 
     /// </summary>
     /// <param name="source">The sequence to be searched.</param>
-    /// <param name="target">The item to search for.</param>
     /// <typeparam name="T">The type of the elements in the source sequence.</typeparam>
-    /// <returns>The indices if the object is found; an empty sequence otherwise.</returns>
-    public static IEnumerable<int> IndicesOf<T>(this IEnumerable<T> source, T target) where T : notnull
+    extension<T>(IEnumerable<T> source)
+        where T : notnull
     {
+        /// <summary>
+        /// Gets all the indices of the specified item within a sequence.
+        /// </summary>
+        /// <param name="target">The item to search for.</param>
+        /// <returns>The indices if the object is found; an empty sequence otherwise.</returns>
+        public IEnumerable<int> IndicesOf(T target)
+        {
 #if NET8_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(source);
 #endif
         
-        return new Internals.Infra.CustomEnumeratorEnumerable<int>(new IndicesEnumerator<T>(source, x => x.Equals(target)));
-    }
-
-    /// <summary>
-    /// Gets all the indices of the elements that match the predicate within a sequence.
-    /// </summary>
-    /// <param name="source">The sequence to be searched.</param>
-    /// <param name="predicate"></param>
-    /// <typeparam name="T">The type of the elements in the source sequence.</typeparam>
-    /// <returns>The indices if one or more elements matching the predicate is found; an empty sequence otherwise.</returns>
-    public static IEnumerable<int> IndicesOf<T>(this IEnumerable<T> source, Func<T, bool> predicate)
-    {
+            return new Internals.Infra.CustomEnumeratorEnumerable<int>(
+                new IndicesEnumerator<T>(source, x => x.Equals(target)));
+        }
+        
+        /// <summary>
+        /// Gets all the indices of the elements that match the predicate within a sequence.
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns>The indices if one or more elements that matching the predicate are found; an empty sequence otherwise.</returns>
+        public IEnumerable<int> IndicesOf(Func<T, bool> predicate)
+        {
 #if NET8_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(source);
 #endif
         
-        return new Internals.Infra.CustomEnumeratorEnumerable<int>(new IndicesEnumerator<T>(source, predicate));
+            return new Internals.Infra.CustomEnumeratorEnumerable<int>(new IndicesEnumerator<T>(source, predicate));
+        }
+        
+        
     }
     
     /// <summary>
-    /// Finds all occurrences of a specified char within a string, starting from the beginning of the string.
+    /// 
     /// </summary>
     /// <param name="str">The input string.</param>
-    /// <param name="c">The character to find in the string.</param>
-    /// <returns>
-    /// A sequence of indices where the character is found; an empty sequence if the character could not be found.
-    /// </returns>
-    public static IEnumerable<int> IndicesOf(this string str, char c)
+    extension(string str)
     {
+        /// <summary>
+        /// Finds all occurrences of a specified char within a string, starting from the beginning of the string.
+        /// </summary>
+        /// <param name="c">The character to find in the string.</param>
+        /// <returns>
+        /// A sequence of indices where the character is found; an empty sequence if the character could not be found.
+        /// </returns>
+        public IEnumerable<int> IndicesOf(char c)
+        {
 #if NET8_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(str);
+            ArgumentNullException.ThrowIfNull(str);
 #endif
         
-        return new Internals.Infra.CustomEnumeratorEnumerable<int>(new IndicesEnumerator<char>(str, x => x.Equals(c)));
-    }
-    
-    /// <summary>
-    /// Finds all occurrences of a specified substring within a string, starting from the beginning of the string.
-    /// </summary>
-    /// <param name="str">The input string.</param>
-    /// <param name="substring">The substring to look for.</param>
-    /// <returns>A sequence of indices where the character is found; an empty sequence if the character could not be found.</returns>
-    public static IEnumerable<int> IndicesOf(this string str, string substring)
-    {
+            return new Internals.Infra.CustomEnumeratorEnumerable<int>(new IndicesEnumerator<char>(str, x => x.Equals(c)));
+        }
+        
+        /// <summary>
+        /// Finds all occurrences of a specified substring within a string, starting from the beginning of the string.
+        /// </summary>
+        /// <param name="substring">The substring to look for.</param>
+        /// <returns>A sequence of indices where the character is found; an empty sequence if the character could not be found.</returns>
+        public IEnumerable<int> IndicesOf(string substring)
+        {
 #if NET8_0_OR_GREATER
-        ArgumentException.ThrowIfNullOrEmpty(str);
-        ArgumentException.ThrowIfNullOrEmpty(substring);
+            ArgumentException.ThrowIfNullOrEmpty(str);
+            ArgumentException.ThrowIfNullOrEmpty(substring);
 #endif
         
-        return new Internals.Infra.CustomEnumeratorEnumerable<int>(new StringIndicesEnumerator(str, substring));
+            return new Internals.Infra.CustomEnumeratorEnumerable<int>(new StringIndicesEnumerator(str, substring));
+        }
     }
-
 }

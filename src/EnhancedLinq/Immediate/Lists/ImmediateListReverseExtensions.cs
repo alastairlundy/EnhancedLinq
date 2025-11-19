@@ -21,86 +21,98 @@ namespace AlastairLundy.EnhancedLinq.Immediate;
 
 public static partial class EnhancedLinqImmediate
 {
-    /// <summary>
-    /// Reverses a <see cref="List{T}"/>.
-    /// </summary>
     /// <param name="list">The list to reverse.</param>
     /// <typeparam name="T">The type of elements in the array.</typeparam>
-    /// <returns>The reversed IList.</returns>
-    public static void Reverse<T>(this List<T> list)
+    extension<T>(List<T> list)
     {
-        List<T> output = new List<T>(list.Count);
-
-        for (int i = 0; i < output.Count; i++)
+        /// <summary>
+        /// Reverses a <see cref="List{T}"/>.
+        /// </summary>
+        /// <returns>The reversed IList.</returns>
+        public void Reverse()
         {
-            if(list.Count -1 - i >= 0)
-                output.Add(list[list.Count - 1 - i]);
-            else
-                break;
-        }
+            List<T> output = new List<T>(list.Count);
+
+            for (int i = 0; i < output.Count; i++)
+            {
+                if(list.Count -1 - i >= 0)
+                    output.Add(list[list.Count - 1 - i]);
+                else
+                    break;
+            }
         
-        list.Clear();
-        list.AddRange(output);
+            list.Clear();
+            list.AddRange(output);
+        }
     }
 
-    /// <summary>
-    /// Returns a reversed array.
-    /// </summary>
     /// <param name="array">The array to reverse.</param>
     /// <typeparam name="T">The type of elements in the array.</typeparam>
-    /// <returns>The reversed array.</returns>
-    public static T[] Reverse<T>(this T[] array)
+    extension<T>(T[] array)
     {
-        T[] newArray = new T[array.Length];
-
-        for (int i = 0; i < array.Length; i++)
+        /// <summary>
+        /// Returns a reversed array.
+        /// </summary>
+        /// <returns>The reversed array.</returns>
+        public T[] Reverse()
         {
-            if(array.Length - 1 - i >= 0)
-                newArray[i] = array[array.Length - 1 - i];
-        }
+            T[] newArray = new T[array.Length];
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                if(array.Length - 1 - i >= 0)
+                    newArray[i] = array[array.Length - 1 - i];
+            }
         
-        return newArray;
+            return newArray;
+        }
     }
 
-    /// <summary>
-    /// Returns a reversed collection.
-    /// </summary>
     /// <param name="source">The collection to reverse.</param>
     /// <typeparam name="T">The type of elements in the collection.</typeparam>
-    /// <returns>The reversed collection.</returns>
-    public static ICollection<T> Reverse<T>(this ICollection<T> source)
+    extension<T>(ICollection<T> source)
     {
-        T[] newArray = new T[source.Count];
-
-        int index = 0;
-        
-        foreach (T item in source)
+        /// <summary>
+        /// Returns a reversed collection.
+        /// </summary>
+        /// <returns>The reversed collection.</returns>
+        public ICollection<T> Reverse()
         {
-            if(source.Count - 1 - index >= 0)
-                newArray[source.Count - 1 - index] = item;
-        }
+            T[] newArray = new T[source.Count];
+
+            int index = 0;
         
-        return newArray;
+            foreach (T item in source)
+            {
+                if(source.Count - 1 - index >= 0)
+                    newArray[source.Count - 1 - index] = item;
+            }
+        
+            return newArray;
+        }
     }
-    
-    /// <summary>
-    /// Returns a reversed list.
-    /// </summary>
+
     /// <param name="source">The list to reverse.</param>
     /// <typeparam name="T">The type of elements in the list.</typeparam>
-    /// <returns>The reversed list.</returns>
-    public static IList<T> Reverse<T>(this IList<T> source)
+    extension<T>(IList<T> source)
     {
-        T[] newArray = new T[source.Count];
-
-        int index = 0;
-        
-        foreach (T item in source)
+        /// <summary>
+        /// Returns a reversed list.
+        /// </summary>
+        /// <returns>The reversed list.</returns>
+        public IList<T> Reverse()
         {
-            if(source.Count - 1 - index >= 0)
-                newArray[source.Count - 1 - index] = item;
-        }
+            T[] newArray = new T[source.Count];
+
+            int index = 0;
         
-        return newArray;
+            foreach (T item in source)
+            {
+                if(source.Count - 1 - index >= 0)
+                    newArray[source.Count - 1 - index] = item;
+            }
+        
+            return newArray;
+        }
     }
 }

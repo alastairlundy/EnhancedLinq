@@ -25,68 +25,72 @@ namespace AlastairLundy.EnhancedLinq.Immediate;
 public static partial class EnhancedLinqImmediate
 {
     /// <summary>
-    /// Determines whether there are at least a specified number of elements in the sequence.
+    /// 
     /// </summary>
     /// <param name="source">The source sequence.</param>
-    /// <param name="countToLookFor">The minimum count to look for.</param>
     /// <typeparam name="T">The element type in the source sequence.</typeparam>
-    /// <returns><c>true</c> if there is at least the specified number of elements in the sequence; otherwise, <c>false</c>.</returns>
-    public static bool CountAtLeast<T>(this IEnumerable<T> source, int countToLookFor)
+    extension<T>(IEnumerable<T> source)
     {
-#if NET8_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-        #endif
-        
-        if (source is ICollection<T> collection)
+        /// <summary>
+        /// Determines whether there are at least a specified number of elements in the sequence.
+        /// </summary>
+        /// <param name="countToLookFor">The minimum count to look for.</param>
+        /// <returns><c>true</c> if there is at least the specified number of elements in the sequence; otherwise, <c>false</c>.</returns>
+        public bool CountAtLeast(int countToLookFor)
         {
-            return collection.Count >= countToLookFor;
-        }
-        
-        if (countToLookFor < 0)
-            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero.Replace("{x}", countToLookFor.ToString()));
-
-        int currentCount = 0;
-
-        foreach (T obj in source)
-        {
-            if(currentCount >= countToLookFor)
-                return true;
-
-            currentCount += 1;
-        }
-
-        return false;
-    }
-
-    /// <summary>
-    /// Determines whether there are at least a specified number of elements in the sequence that meet a given condition.
-    /// </summary>
-    /// <param name="source">The source sequence.</param>
-    /// <param name="predicate">The predicate condition to check elements against.</param>
-    /// <param name="countToLookFor">The minimum count to look for.</param>
-    /// <typeparam name="T">The element type in the source sequence.</typeparam>
-    /// <returns><c>true</c> if there is at least the specified number of elements that meet the condition; otherwise, <c>false</c>.</returns>
-    public static bool CountAtLeast<T>(this IEnumerable<T> source, Func<T, bool> predicate,
-        int countToLookFor)
-    {
 #if NET8_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(source);
 #endif
         
-        if (countToLookFor < 0)
-            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero.Replace("{x}", countToLookFor.ToString()));
+            if (source is ICollection<T> collection)
+            {
+                return collection.Count >= countToLookFor;
+            }
         
-        int currentCount = 0;
+            if (countToLookFor < 0)
+                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero.Replace("{x}", countToLookFor.ToString()));
 
-        foreach (T obj in source)
-        {
-            if (predicate(obj))
+            int currentCount = 0;
+
+            foreach (T obj in source)
+            {
+                if(currentCount >= countToLookFor)
+                    return true;
+
                 currentCount += 1;
-            
-            if(currentCount >= countToLookFor)
-                return true;
-        }
+            }
 
-        return false;
+            return false;
+        }
+        
+        /// <summary>
+        /// Determines whether there are at least a specified number of elements in the sequence that meet a given condition.
+        /// </summary>
+        /// <param name="predicate">The predicate condition to check elements against.</param>
+        /// <param name="countToLookFor">The minimum count to look for.</param>
+        /// <returns><c>true</c> if there is at least the specified number of elements that meet the condition; otherwise, <c>false</c>.</returns
+        public bool CountAtLeast(Func<T, bool> predicate,
+            int countToLookFor)
+        {
+#if NET8_0_OR_GREATER
+            ArgumentNullException.ThrowIfNull(source);
+#endif
+        
+            if (countToLookFor < 0)
+                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero.Replace("{x}", countToLookFor.ToString()));
+        
+            int currentCount = 0;
+
+            foreach (T obj in source)
+            {
+                if (predicate(obj))
+                    currentCount += 1;
+            
+                if(currentCount >= countToLookFor)
+                    return true;
+            }
+
+            return false;
+        }
     }
 }

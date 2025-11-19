@@ -30,22 +30,26 @@ namespace AlastairLundy.EnhancedLinq.Deferred.Ranges;
 /// </summary>
 public static partial class EnhancedLinqDeferredRange
 {
-    
     /// <summary>
-    /// Appends one sequence of elements to the end of another specified sequence.
+    /// 
     /// </summary>
     /// <param name="source">The sequence to append items to.</param>
-    /// <param name="toBeAppended">The elements to append to the sequence.</param>
     /// <typeparam name="TSource">The type of element in the sequence and elements being appended.</typeparam>
-    /// <returns>A new sequence made up of the source sequence and the appended sequence.</returns>
-    public static IEnumerable<TSource> AppendRange<TSource>(this IEnumerable<TSource> source,
-        IEnumerable<TSource> toBeAppended)
-    { 
+    extension<TSource>(IEnumerable<TSource> source)
+    {
+        /// <summary>
+        /// Appends one sequence of elements to the end of another specified sequence.
+        /// </summary>
+        /// <param name="toBeAppended">The elements to append to the sequence.</param>
+        /// <returns>A new sequence made up of the source sequence and the appended sequence.</returns>
+        public IEnumerable<TSource> AppendRange(IEnumerable<TSource> toBeAppended)
+        { 
 #if NET8_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source, nameof(source));
-        ArgumentNullException.ThrowIfNull(toBeAppended, nameof(toBeAppended));
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(toBeAppended);
 #endif
         
-        return new AppendRangeEnumerable<TSource>(source, toBeAppended);
+            return new AppendRangeEnumerable<TSource>(source, toBeAppended);
+        }
     }
 }

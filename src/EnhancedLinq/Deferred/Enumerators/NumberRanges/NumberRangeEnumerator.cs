@@ -38,21 +38,16 @@ internal class NumberRangeEnumerator<TNumber> : IEnumerator<TNumber> where TNumb
         _source = source;
         _current = TNumber.Zero;
         _state = 0;
+        _enumerator = _source.GetEnumerator();
     }
     
     public bool MoveNext()
     {
         if (_state == 1)
         {
-            _enumerator = _source.GetEnumerator();
-            _state = 2;
-        }
-
-        if (_state == 2)
-        {
             try
             {
-                while(_enumerator.MoveNext())
+                while (_enumerator.MoveNext())
                 {
                     _current = _enumerator.Current;
                     return true;
@@ -63,9 +58,12 @@ internal class NumberRangeEnumerator<TNumber> : IEnumerator<TNumber> where TNumb
                 Dispose();
                 throw;
             }
+            finally
+            {
+                _state = -1;
+            }
         }
 
-        _state = -1;
         Dispose();
         return false;
     }

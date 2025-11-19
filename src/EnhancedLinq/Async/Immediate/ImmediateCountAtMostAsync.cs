@@ -23,53 +23,54 @@ namespace AlastairLundy.EnhancedLinq.Async.Immediate;
 
 public static partial class EnhancedLinqAsyncImmediate
 {
-    /// <summary>
-    /// Asynchronously counts elements in the source sequence until it finds at most 'countToLookFor' elements.
-    /// </summary>
     /// <param name="source">The asynchronous enumerable source.</param>
-    /// <param name="countToLookFor">The maximum count of elements to find.</param>
-    /// <returns>A boolean indicating whether at most 'countToLookFor' elements were found.</returns>
-    public static async Task<bool> CountAtMostAsync<T>(this IAsyncEnumerable<T> source, int countToLookFor)
+    extension<T>(IAsyncEnumerable<T> source)
     {
-        int count = 0;
-
-        await foreach (T obj in source)
+        /// <summary>
+        /// Asynchronously counts elements in the source sequence until it finds at most 'countToLookFor' elements.
+        /// </summary>
+        /// <param name="countToLookFor">The maximum count of elements to find.</param>
+        /// <returns>A boolean indicating whether at most 'countToLookFor' elements were found.</returns>
+        public async Task<bool> CountAtMostAsync(int countToLookFor)
         {
-            count++;
+            int count = 0;
 
-            if (count > countToLookFor)
+            await foreach (T obj in source)
             {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    /// <summary>
-    /// Asynchronously counts elements in the source sequence until it finds at most 'countToLookFor' elements.
-    /// </summary>
-    /// <param name="source">The asynchronous enumerable source.</param>
-    /// <param name="countToLookFor">The maximum count of elements to find.</param>
-    /// <param name="predicate">The predicate condition to use.</param>
-    /// <returns>A boolean indicating whether at most 'countToLookFor' elements were found.</returns>
-    public static async Task<bool> CountAtMostAsync<T>(this IAsyncEnumerable<T> source, Func<T, bool> predicate,
-        int countToLookFor)
-    {
-        int count = 0;
-
-        await foreach (T obj in source)
-        {
-            if (predicate(obj))
                 count++;
 
-            if (count > countToLookFor)
-            {
-                return false;
+                if (count > countToLookFor)
+                {
+                    return false;
+                }
             }
+
+            return true;
         }
 
-        return true;
-    }
+        /// <summary>
+        /// Asynchronously counts elements in the source sequence until it finds at most 'countToLookFor' elements.
+        /// </summary>
+        /// <param name="countToLookFor">The maximum count of elements to find.</param>
+        /// <param name="predicate">The predicate condition to use.</param>
+        /// <returns>A boolean indicating whether at most 'countToLookFor' elements were found.</returns>
+        public async Task<bool> CountAtMostAsync(Func<T, bool> predicate,
+            int countToLookFor)
+        {
+            int count = 0;
 
+            await foreach (T obj in source)
+            {
+                if (predicate(obj))
+                    count++;
+
+                if (count > countToLookFor)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+    }
 }

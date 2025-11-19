@@ -25,29 +25,29 @@ namespace AlastairLundy.EnhancedLinq.Deferred.Pairs.KeyValuePairs;
 /// </summary>
 public static partial class EnhancedLinqDeferredPairs
 {
-    /// <summary>
-    /// Converts an IEnumerable of key-value pairs to a sequence of keys.
-    /// </summary>
     /// <param name="source">The IEnumerable of key-value pairs.</param>
     /// <typeparam name="TKey">The type of Key in the KeyValuePair.</typeparam>
     /// <typeparam name="TValue">The type of Value in the KeyValuePair.</typeparam>
-    /// <returns>A sequence of keys extracted from the input.</returns>
-    public static IEnumerable<TKey> ToKeys<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> source)
+    extension<TKey, TValue>(IEnumerable<KeyValuePair<TKey, TValue>> source)
     {
-        return from pair in source
-            select pair.Key;
-    }
+        /// <summary>
+        /// Converts an IEnumerable of key-value pairs to a sequence of keys.
+        /// </summary>
+        /// <returns>A sequence of keys extracted from the input.</returns>
+        public IEnumerable<TKey> ToKeys()
+        {
+            return from pair in source
+                select pair.Key;
+        }
 
-    /// <summary>
-    /// Converts an IEnumerable of key-value pairs to a sequence of values.
-    /// </summary>
-    /// <param name="source">The IEnumerable of key-value pairs to extract values from.</param>
-    /// <typeparam name="TKey">The type of Key in the KeyValuePair.</typeparam>
-    /// <typeparam name="TValue">The type of Value in the KeyValuePair.</typeparam>
-    /// <returns>A sequence of values extracted from the input.</returns>
-    public static IEnumerable<TValue> ToValues<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> source)
-    {
-        return from pair in source
-            select pair.Value;
+        /// <summary>
+        /// Converts an IEnumerable of key-value pairs to a sequence of values.
+        /// </summary>
+        /// <returns>A sequence of values extracted from the input.</returns>
+        public IEnumerable<TValue> ToValues()
+        {
+            return from pair in source
+                select pair.Value;
+        }
     }
 }

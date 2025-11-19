@@ -27,7 +27,7 @@ namespace AlastairLundy.EnhancedLinq.Deferred.Enumerables.NumberRanges;
 
 internal class NumberRangeEnumerable<TNumber> : IEnumerable<TNumber> where TNumber : INumber<TNumber>
 {
-    private List<TNumber> _source;
+    private readonly List<TNumber> _source;
     
     internal NumberRangeEnumerable(TNumber start, TNumber count, TNumber incrementor)
     {

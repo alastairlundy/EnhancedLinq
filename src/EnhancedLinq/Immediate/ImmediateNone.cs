@@ -22,16 +22,18 @@ namespace AlastairLundy.EnhancedLinq.Immediate;
 
 public static partial class EnhancedLinqImmediate
 {
-
-    /// <summary>
-    /// Determines if none of the elements in the sequence match a predicate condition.
-    /// </summary>
     /// <param name="source">The sequence to be searched.</param>
-    /// <param name="predicate">The predicate to check elements against.</param>
     /// <typeparam name="TSource">The type of elements in the sequence.</typeparam>
-    /// <returns>True if none of the elements matched the predicate, false otherwise.</returns>
-    /// <exception cref="ArgumentNullException">Thrown if the source sequence or predicate are null.</exception>
-    public static bool None<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
-        => CountAtMost(source, predicate, 0);
+    extension<TSource>(IEnumerable<TSource> source)
+    {
+        /// <summary>
+        /// Determines if none of the elements in the sequence match a predicate condition.
+        /// </summary>
+        /// <param name="predicate">The predicate to check elements against.</param>
+        /// <returns>True if none of the elements matched the predicate, false otherwise.</returns>
+        /// <exception cref="ArgumentNullException">Thrown if the source sequence or predicate are null.</exception>
+        public bool None(Func<TSource, bool> predicate)
+            => CountAtMost(source, predicate, 0);
+    }
 
 }

@@ -32,7 +32,7 @@ public static partial class EnhancedLinqImmediateList
     /// <param name="count">The number of elements to take from the end of the source array.</param>
     /// <typeparam name="T">The type of elements in the source array.</typeparam>
     /// <returns>An array containing the last 'count' elements from the source array.</returns>
-    /// <exception cref="ArgumentException">Thrown when count is less than 0 or greater than the length of the source array.</exception>
+    /// <exception cref="ArgumentException">Thrown when the count is less than 0 or greater than the length of the source array.</exception>
     public static T[] TakeLast<T>(this T[] source, int count)
     {
 #if NET8_0_OR_GREATER
@@ -59,7 +59,7 @@ public static partial class EnhancedLinqImmediateList
     /// <param name="count">The number of elements to take from the end of the source.</param>
     /// <typeparam name="T">The type of elements in the source.</typeparam>
     /// <returns>A <see cref="IList{T}"/> containing the last 'count' elements from the source.</returns>
-    /// <exception cref="ArgumentException">Thrown when count is less than 0 or greater than the length/count of the source <see cref="IList{T}"/>.</exception>
+    /// <exception cref="ArgumentException">Thrown when the count is less than 0 or greater than the length/count of the source <see cref="IList{T}"/>.</exception>
     public static IList<T> TakeLast<T>(this IList<T> source, int count)
     {
 #if NET8_0_OR_GREATER
@@ -87,7 +87,7 @@ public static partial class EnhancedLinqImmediateList
     /// <param name="count">The number of elements to take from the end of the source collection.</param>
     /// <typeparam name="T">The type of elements in the source collection.</typeparam>
     /// <returns>A collection containing the last 'count' elements from the source collection.</returns>
-    /// <exception cref="ArgumentException">Thrown when count is less than 0 or greater than the length/count of the source collection.</exception>
+    /// <exception cref="ArgumentException">Thrown when the count is less than 0 or greater than the length/count of the source collection.</exception>
     public static ICollection<T> TakeLast<T>(this ICollection<T> source, int count)
     {
 #if NET8_0_OR_GREATER

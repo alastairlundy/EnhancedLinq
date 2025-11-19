@@ -34,7 +34,7 @@ public static partial class EnhancedLinqImmediateList
     /// <param name="count">The number of elements to take.</param>
     /// <typeparam name="T">The type of elements in the source collection.</typeparam>
     /// <returns>A new array containing the first 'count' elements from the source.</returns>
-    /// <exception cref="ArgumentException">Thrown when count is less than zero or greater than the length of the source.</exception>
+    /// <exception cref="ArgumentException">Thrown when the count is less than zero or greater than the length of the source.</exception>
     public static T[] Take<T>(this T[] source, int count)
     {
 #if NET8_0_OR_GREATER
@@ -61,7 +61,7 @@ public static partial class EnhancedLinqImmediateList
     /// <param name="count">The number of elements to take.</param>
     /// <typeparam name="T">The type of elements in the source collection.</typeparam>
     /// <returns>A new <see cref="IList{T}"/> containing the first 'count' elements from the source.</returns>
-    /// <exception cref="ArgumentException">Thrown when count is less than zero or greater than the length/size of the source.</exception>
+    /// <exception cref="ArgumentException">Thrown when the count is less than zero or greater than the length/size of the source.</exception>
     public static IList<T> Take<T>(this IList<T> source, int count)
     {
 #if NET8_0_OR_GREATER
@@ -88,7 +88,7 @@ public static partial class EnhancedLinqImmediateList
     /// <param name="count">The number of elements to take.</param>
     /// <typeparam name="T">The type of elements in the source collection.</typeparam>
     /// <returns>A new <see cref="ICollection{T}"/> containing the first 'count' elements from the source.</returns>
-    /// <exception cref="ArgumentException">Thrown when count is less than zero or greater than the length/size of the source.</exception>
+    /// <exception cref="ArgumentException">Thrown when the count is less than zero or greater than the length/size of the source.</exception>
     public static ICollection<T> Take<T>(this ICollection<T> source, int count)
     {
 #if NET8_0_OR_GREATER

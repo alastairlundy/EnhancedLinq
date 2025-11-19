@@ -23,17 +23,20 @@ namespace AlastairLundy.EnhancedLinq.Async.Immediate;
 
 public static partial class EnhancedLinqAsyncImmediate
 {
-    /// <summary>
-    /// Asynchronously checks if an IAsyncEnumerable is empty.
-    /// </summary>
     /// <param name="source">The IAsyncEnumerable to check for emptiness.</param>
     /// <typeparam name="TSource"></typeparam>
-    /// <returns>A task representing the asynchronous operation. Returns true if the source is empty, false otherwise.</returns>
-    public static async Task<bool> IsEmptyAsync<TSource>(this IAsyncEnumerable<TSource> source)
+    extension<TSource>(IAsyncEnumerable<TSource> source)
     {
-        bool anyAsync = await source.AnyAsync();
+        /// <summary>
+        /// Asynchronously checks if an IAsyncEnumerable is empty.
+        /// </summary>
+        /// <returns>A task representing the asynchronous operation. Returns true if the source is empty, false otherwise.</returns>
+        public async Task<bool> IsEmptyAsync()
+        {
+            bool anyAsync = await source.AnyAsync();
         
-        // ReSharper disable once RedundantBoolCompare
-        return anyAsync == false;
+            // ReSharper disable once RedundantBoolCompare
+            return anyAsync == false;
+        }
     }
 }

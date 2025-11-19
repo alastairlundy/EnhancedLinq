@@ -29,8 +29,6 @@ internal class DuplicatesEnumerator<TSource> : IEnumerator<TSource>
     
     private readonly IEnumerator<TSource> _enumerator;
 
-    private TSource _current;
-    
     internal DuplicatesEnumerator(IEnumerable<TSource> source, IEqualityComparer<TSource> comparer)
     {
         _hashSet = new HashSet<TSource>(comparer);
@@ -49,7 +47,7 @@ internal class DuplicatesEnumerator<TSource> : IEnumerator<TSource>
 
                 if (isDuplicate)
                 {
-                    _current = _enumerator.Current;
+                    Current = _enumerator.Current;
                     return true;
                 }
             }
@@ -66,9 +64,9 @@ internal class DuplicatesEnumerator<TSource> : IEnumerator<TSource>
         throw new NotSupportedException();
     }
 
-    public TSource Current => _current;
+    public TSource Current { get; private set; }
 
-    object? IEnumerator.Current => _current;
+    object? IEnumerator.Current => Current;
 
     public void Dispose()
     {

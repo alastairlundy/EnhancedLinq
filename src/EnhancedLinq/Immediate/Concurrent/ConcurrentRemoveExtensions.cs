@@ -28,21 +28,23 @@ namespace AlastairLundy.EnhancedLinq.Immediate.Concurrent;
 /// </summary>
 public static partial class EnhancedLinqImmediateConcurrent
 {
-    
-    /// <summary>
-    /// Removes all occurrences of a specified object from a concurrent bag.
-    /// </summary>
     /// <param name="concurrentBag">The concurrent bag to remove objects from.</param>
-    /// <param name="obj">The object to be removed from the concurrent bag.</param>
     /// <typeparam name="T">The type of elements contained within the concurrent bag.</typeparam>
-    /// <returns>A new concurrent bag with all occurrences of the specified object removed.</returns>
-    public static ConcurrentBag<T> Remove<T>(this ConcurrentBag<T> concurrentBag, T obj)
+    extension<T>(ConcurrentBag<T> concurrentBag)
     {
-        IEnumerable<T> newCollection = from item in concurrentBag
-            // ReSharper disable once RedundantBoolCompare
-            where item.Equals(obj) == false
-            select item;
+        /// <summary>
+        /// Removes all occurrences of a specified object from a concurrent bag.
+        /// </summary>
+        /// <param name="obj">The object to be removed from the concurrent bag.</param>
+        /// <returns>A new concurrent bag with all occurrences of the specified object removed.</returns>
+        public ConcurrentBag<T> Remove(T obj)
+        {
+            IEnumerable<T> newCollection = from item in concurrentBag
+                // ReSharper disable once RedundantBoolCompare
+                where item.Equals(obj) == false
+                select item;
         
-        return new ConcurrentBag<T>(newCollection);
+            return new ConcurrentBag<T>(newCollection);
+        }
     }
 }
