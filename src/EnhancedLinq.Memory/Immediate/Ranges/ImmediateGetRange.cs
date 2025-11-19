@@ -34,44 +34,50 @@ public static partial class EnhancedLinqMemoryImmediateRange
 {
 #if NET8_0_OR_GREATER
 
-    /// <summary>
-    /// Returns a new Span with the specified range of elements,
-    /// starting from the given start index and ending at the given end index.
-    /// </summary>
     /// <param name="target">The original span to extract the range of items from.</param>
-    /// <param name="range">The <see cref="Range"/> containing the start and end indices.</param>
     /// <typeparam name="T">The type of elements in the span.</typeparam>
-    /// <returns>A new span containing the specified range of elements.</returns>
-    public static Span<T> GetRange<T>(this Span<T> target, Range range)
-        => GetRange(target, range.Start.Value, range.End.Value);
-#endif
-    
-    /// <summary>
-    /// Returns a new Span with the specified range of elements,
-    /// starting from the given start index and ending at the given end index.
-    /// </summary>
-    /// <param name="target">The original span to extract the range of items from.</param>
-    /// <param name="start">The zero-based starting index of the range.</param>
-    /// <param name="end">The one-based ending index of the range (inclusive).</param>
-    /// <typeparam name="T">The type of elements in the span.</typeparam>
-    /// <returns>A new span containing the specified range of elements.</returns>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown if the start or end indices are out of range for the span.</exception>
-    /// <exception cref="IndexOutOfRangeException">Thrown if the start index is greater than the length of the span, or if the end index exceeds the span's capacity.</exception>
-    public static Span<T> GetRange<T>(this Span<T> target, int start, int end)
+    extension<T>(Span<T> target)
     {
-        if ((end - start) > target.Length)
-            throw new ArgumentOutOfRangeException(
-                Resources.Exceptions_SkipCount_TooLarge);
+        /// <summary>
+        /// Returns a new Span with the specified range of elements,
+        /// starting from the given start index and ending at the given end index.
+        /// </summary>
+        /// <param name="range">The <see cref="Range"/> containing the start and end indices.</param>
+        /// <returns>A new span containing the specified range of elements.</returns>
+        public Span<T> GetRange(Range range)
+            => GetRange(target, range.Start.Value, range.End.Value);
+    }
+#endif
 
-        if (start < 0 || start >= target.Length)
+    /// <param name="target">The original span to extract the range of items from.</param>
+    /// <typeparam name="T">The type of elements in the span.</typeparam>
+    extension<T>(Span<T> target)
+    {
+        /// <summary>
+        /// Returns a new Span with the specified range of elements,
+        /// starting from the given start index and ending at the given end index.
+        /// </summary>
+        /// <param name="start">The zero-based starting index of the range.</param>
+        /// <param name="end">The one-based ending index of the range (inclusive).</param>
+        /// <returns>A new span containing the specified range of elements.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if the start or end indices are out of range for the span.</exception>
+        /// <exception cref="IndexOutOfRangeException">Thrown if the start index is greater than the length of the span, or if the end index exceeds the span's capacity.</exception>
+        public Span<T> GetRange(int start, int end)
         {
-            throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
-                .Replace("{x}", $"{start}")
-                .Replace("{y}", $"0")
-                .Replace("{z}", $"{target.Length}"));
-        }
+            if ((end - start) > target.Length)
+                throw new ArgumentOutOfRangeException(
+                    Resources.Exceptions_SkipCount_TooLarge);
+
+            if (start < 0 || start >= target.Length)
+            {
+                throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
+                    .Replace("{x}", $"{start}")
+                    .Replace("{y}", $"0")
+                    .Replace("{z}", $"{target.Length}"));
+            }
         
-        return target.Slice(start, end - start);
+            return target.Slice(start, end - start);
+        }
     }
 
     /// <summary>

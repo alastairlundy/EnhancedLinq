@@ -22,37 +22,37 @@ namespace AlastairLundy.EnhancedLinq.Memory.Immediate;
 
 public static partial class EnhancedLinqMemoryImmediate
 {
-    /// <summary>
-    /// 
-    /// </summary>
     /// <param name="span"></param>
     /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
-    public static ICollection<int> Index<T>(this Span<T> span)
-        => Index(span, 0);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="span"></param>
-    /// <param name="startIndex"></param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
-    /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public static ICollection<int> Index<T>(this Span<T> span, int startIndex)
+    extension<T>(Span<T> span)
     {
-        if(startIndex < 0 || startIndex >= span.Length)
-            throw new ArgumentOutOfRangeException(nameof(startIndex));
-        
-        List<int> output = new();
-        
-        for (int i = 0; i < span.Length; i++)
-        {
-            if(i >= startIndex)
-                output.Add(i);
-        }
-        
-        return output;
-    }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public ICollection<int> Index()
+            => Index(span, 0);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="startIndex"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        public ICollection<int> Index(int startIndex)
+        {
+            if(startIndex < 0 || startIndex >= span.Length)
+                throw new ArgumentOutOfRangeException(nameof(startIndex));
+        
+            List<int> output = new();
+        
+            for (int i = 0; i < span.Length; i++)
+            {
+                if(i >= startIndex)
+                    output.Add(i);
+            }
+        
+            return output;
+        }
+    }
 }

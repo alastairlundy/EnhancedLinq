@@ -51,44 +51,45 @@ public static partial class EnhancedLinqMemoryImmediate
     }
 
 
-    /// <summary>
-    /// Applies the given action to each element of this Memory.
-    /// </summary>
     /// <param name="target">The memory to apply the action to.</param>
-    /// <param name="action">The action to apply to each element in the memory.</param>
     /// <typeparam name="T">The type of items in the Memory.</typeparam>
-    public static void ForEach<T>(this ref Memory<T> target, Action<T> action)
+    extension<T>(ref Memory<T> target)
     {
-        T[] array = new T[target.Length];
-
-        for (int index = 0; index < target.Length; index++)
+        /// <summary>
+        /// Applies the given action to each element of this Memory.
+        /// </summary>
+        /// <param name="action">The action to apply to each element in the memory.</param>
+        public void ForEach(Action<T> action)
         {
-            T item = target.ElementAt(index);
+            T[] array = new T[target.Length];
+
+            for (int index = 0; index < target.Length; index++)
+            {
+                T item = target.ElementAt(index);
             
-            action.Invoke(item);
-            array[index] = item;
+                action.Invoke(item);
+                array[index] = item;
+            }
+
+            target = new Memory<T>(array);
         }
 
-        target = new Memory<T>(array);
-    }
-
-    /// <summary>
-    /// Applies the given action to each element of this Memory.
-    /// </summary>
-    /// <param name="target">The memory to apply the action to.</param>
-    /// <param name="action">The action to apply to each element in the memory.</param>
-    /// <typeparam name="T">The type of items in the Memory.</typeparam>
-    public static void ForEach<T>(this ref Memory<T> target, Func<T, T> action)
-    {
-        T[] array = new T[target.Length];
-
-        for (int index = 0; index < target.Length; index++)
+        /// <summary>
+        /// Applies the given action to each element of this Memory.
+        /// </summary>
+        /// <param name="action">The action to apply to each element in the memory.</param>
+        public void ForEach(Func<T, T> action)
         {
-            T item = target.ElementAt(index);
+            T[] array = new T[target.Length];
 
-            array[index] = action.Invoke(item);
+            for (int index = 0; index < target.Length; index++)
+            {
+                T item = target.ElementAt(index);
+
+                array[index] = action.Invoke(item);
+            }
+
+            target = new Memory<T>(array);
         }
-
-        target = new Memory<T>(array);
     }
 }

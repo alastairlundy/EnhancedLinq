@@ -22,145 +22,140 @@ namespace AlastairLundy.EnhancedLinq.Memory.Immediate;
 
 public static partial class EnhancedLinqMemoryImmediate
 {
-    
-    /// <summary>
-    /// Splits a span into an <see cref="IList{T}"/> of arrays of type <see cref="T"/> based on a maximum number of elements.
-    /// </summary>
     /// <param name="span">The span to split.</param>
-    /// <param name="count">The maximum number of elements to have in each array.</param>
     /// <typeparam name="T">The type of elements within the span.</typeparam>
-    /// <returns></returns>
-    /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public static IList<T[]> SplitByItemCount<T>(this Span<T> span, int count)
+    extension<T>(Span<T> span)
     {
-        if(span.IsEmpty)
-            return Array.Empty<T[]>();
-        
-        if(count <= 0)
-            throw new ArgumentOutOfRangeException(nameof(count));
-        
-        List<T[]> list = new();
-
-        if (span.Length > count == false)
+        /// <summary>
+        /// Splits a span into an <see cref="IList{T}"/> of arrays of type <see cref="T"/> based on a maximum number of elements.
+        /// </summary>
+        /// <param name="count">The maximum number of elements to have in each array.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        public IList<T[]> SplitByItemCount(int count)
         {
-            return [span.ToArray()];
-        }
+            if(span.IsEmpty)
+                return Array.Empty<T[]>();
+        
+            if(count <= 0)
+                throw new ArgumentOutOfRangeException(nameof(count));
+        
+            List<T[]> list = new();
 
-        int start = 0;
-        int nextSplit = 0;
-
-        for (int i = 0; i < span.Length; i++)
-        {
-            if (start == -1)
+            if (span.Length > count == false)
             {
-                start = i;
+                return [span.ToArray()];
             }
+
+            int start = 0;
+            int nextSplit = 0;
+
+            for (int i = 0; i < span.Length; i++)
+            {
+                if (start == -1)
+                {
+                    start = i;
+                }
             
-            nextSplit += 1;
+                nextSplit += 1;
 
-            if (nextSplit - start == count)
-            {
-                list.Add(span.Slice(start, count).ToArray());
-                start = -1;
+                if (nextSplit - start == count)
+                {
+                    list.Add(span.Slice(start, count).ToArray());
+                    start = -1;
+                }
+                else if (i == span.Length - 1 && start != -1)
+                {
+                    list.Add(span.Slice(start, span.Length - start).ToArray());
+                }
             }
-            else if (i == span.Length - 1 && start != -1)
+        
+            return list;
+        }
+
+        /// <summary>
+        /// Splits a span into an <see cref="IList{T}"/> of arrays of type <see cref="T"/> based on the number of processors available.
+        /// </summary>
+        /// <returns></returns>
+        public IList<T[]> SplitByProcessorCount()
+            => SplitByItemCount(span, Environment.ProcessorCount);
+
+        /// <summary>
+        /// Splits a span into an <see cref="IList{T}"/> of arrays of type <see cref="T"/> based on the number of elements specified.
+        /// </summary>
+        /// <param name="maximumNumberOfArrays">The desired maximum number of arrays of which to store elements in.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        public IList<T[]> SplitByArrayCount(int maximumNumberOfArrays)
+        {
+            if (span.IsEmpty)
+                return Array.Empty<T[]>();
+
+            double maxItems = Convert.ToDouble(span.Length / maximumNumberOfArrays);
+            int maxItemCount;
+        
+            if (maxItems % 1 != 0)
             {
-                list.Add(span.Slice(start, span.Length - start).ToArray());
+                maxItemCount = Convert.ToInt32(maxItems) + 1;
             }
-        }
-        
-        return list;
-    }
-
-    /// <summary>
-    /// Splits a span into an <see cref="IList{T}"/> of arrays of type <see cref="T"/> based on the number of processors available.
-    /// </summary>
-    /// <param name="span">The span to split.</param>
-    /// <returns></returns>
-    public static IList<T[]> SplitByProcessorCount<T>(this Span<T> span)
-        => SplitByItemCount(span, Environment.ProcessorCount);
-
-    /// <summary>
-    /// Splits a span into an <see cref="IList{T}"/> of arrays of type <see cref="T"/> based on the number of elements specified.
-    /// </summary>
-    /// <param name="span">The span to split.</param>
-    /// <param name="maximumNumberOfArrays">The desired maximum number of arrays of which to store elements in.</param>
-    /// <typeparam name="T">The type of elements within the span.</typeparam>
-    /// <returns></returns>
-    /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public static IList<T[]> SplitByArrayCount<T>(this Span<T> span, int maximumNumberOfArrays)
-    {
-        if (span.IsEmpty)
-            return Array.Empty<T[]>();
-
-        double maxItems = Convert.ToDouble(span.Length / maximumNumberOfArrays);
-        int maxItemCount;
-        
-        if (maxItems % 1 != 0)
-        {
-            maxItemCount = Convert.ToInt32(maxItems) + 1;
-        }
-        else
-        {
-            maxItemCount = Convert.ToInt32(maxItems);
-        }
-        
-        return SplitByItemCount(span, maxItemCount);
-    }
-
-    /// <summary>
-    /// Splits a span by a separator, into a list of spans.
-    /// </summary>
-    /// <param name="span">The span to split.</param>
-    /// <param name="separator">The separator to split by.</param>
-    /// <typeparam name="T">The type of the elements in the source span.</typeparam>
-    /// <returns>A list of spans, each containing the elements before the separator was found.</returns>
-    public static IList<T[]> SplitBy<T>(this Span<T> span, T separator)
-    {
-        if (span.IsEmpty)
-            return Array.Empty<T[]>();
-
-        return SplitBy(span, x => x is not null && x.Equals(separator));
-    }
-
-    /// <summary>
-    /// Splits a span into an <see cref="IList{T}"/> of arrays of type <see cref="T"/> based on the provided predicate.
-    /// </summary>
-    /// <param name="span">The span to split.</param>
-    /// <param name="predicate">A function that returns true or false indicating if an element should start a new array.</param>
-    /// <typeparam name="T">The type of elements within the span.</typeparam>
-    /// <returns></returns>
-    /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public static IList<T[]> SplitBy<T>(this Span<T> span, Func<T, bool> predicate)
-    {
-        if (span.IsEmpty)
-            return Array.Empty<T[]>();
-
-        List<T[]> list = new();
-
-        int start = 0;
-        int nextSplit = 0;
-
-        for (int i = 0; i < span.Length; i++)
-        {
-            if (start == -1)
+            else
             {
-                start = i;
+                maxItemCount = Convert.ToInt32(maxItems);
             }
+        
+            return SplitByItemCount(span, maxItemCount);
+        }
+
+        /// <summary>
+        /// Splits a span by a separator, into a list of spans.
+        /// </summary>
+        /// <param name="separator">The separator to split by.</param>
+        /// <returns>A list of spans, each containing the elements before the separator was found.</returns>
+        public IList<T[]> SplitBy(T separator)
+        {
+            if (span.IsEmpty)
+                return Array.Empty<T[]>();
+
+            return SplitBy(span, x => x is not null && x.Equals(separator));
+        }
+
+        /// <summary>
+        /// Splits a span into an <see cref="IList{T}"/> of arrays of type <see cref="T"/> based on the provided predicate.
+        /// </summary>
+        /// <param name="predicate">A function that returns true or false indicating if an element should start a new array.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        public IList<T[]> SplitBy(Func<T, bool> predicate)
+        {
+            if (span.IsEmpty)
+                return Array.Empty<T[]>();
+
+            List<T[]> list = new();
+
+            int start = 0;
+            int nextSplit = 0;
+
+            for (int i = 0; i < span.Length; i++)
+            {
+                if (start == -1)
+                {
+                    start = i;
+                }
             
-            nextSplit += 1;
+                nextSplit += 1;
             
-            if (predicate(span[i]))
-            {
-                list.Add(span.Slice(start, Math.Abs(nextSplit - start)).ToArray());
-                start = -1;
+                if (predicate(span[i]))
+                {
+                    list.Add(span.Slice(start, Math.Abs(nextSplit - start)).ToArray());
+                    start = -1;
+                }
+                else if (i == span.Length - 1 && start != -1)
+                {
+                    list.Add(span.Slice(start, span.Length - start).ToArray());
+                }
             }
-            else if (i == span.Length - 1 && start != -1)
-            {
-                list.Add(span.Slice(start, span.Length - start).ToArray());
-            }
-        }
         
-        return list;
+            return list;
+        }
     }
 }

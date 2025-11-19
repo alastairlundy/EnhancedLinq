@@ -25,45 +25,46 @@ namespace AlastairLundy.EnhancedLinq.Memory.Immediate;
 /// </summary>
 public static partial class EnhancedLinqMemoryImmediate
 {
-    /// <summary>
-    /// Gets a collection of indices within the given span where the specified value occurs.
-    /// </summary>
     /// <param name="source">The initial span to search.</param>
-    /// <param name="item">The value to find in the span.</param>
     /// <typeparam name="T">The type of elements within the span.</typeparam>
-    /// <returns>A collection of indices that represent the occurrences of item in span.</returns>
-    public static ICollection<int> IndicesOf<T>(this Span<T> source, T item) where T : notnull
+    extension<T>(Span<T> source) where T : notnull
     {
-        List<int> indices = new List<int>();
-
-        for (int index = 0; index < source.Length; index++)
+        /// <summary>
+        /// Gets a collection of indices within the given span where the specified value occurs.
+        /// </summary>
+        /// <param name="item">The value to find in the span.</param>
+        /// <returns>A collection of indices that represent the occurrences of item in span.</returns>
+        public ICollection<int> IndicesOf(T item)
         {
-            if (item is not null && item.Equals(source[index]))
+            List<int> indices = new List<int>();
+
+            for (int index = 0; index < source.Length; index++)
             {
-                indices.Add(index);
+                if (item is not null && item.Equals(source[index]))
+                {
+                    indices.Add(index);
+                }
             }
-        }
         
-        return indices;
-    }
+            return indices;
+        }
 
-    /// <summary>
-    /// Gets a collection of indices within the given span where items match the predicate condition.
-    /// </summary>
-    /// <param name="source">The initial span to search.</param>
-    /// <param name="predicate"></param>
-    /// <typeparam name="T">The type of elements within the span.</typeparam>
-    /// <returns>A collection of indices that represent all items in the span that match the predicate.</returns>
-    public static ICollection<int> IndicesOf<T>(this Span<T> source, Func<T, bool> predicate) where T : notnull
-    {
-        List<int> indices = new List<int>();
-        
-        for (int index = 0; index < source.Length; index++)
+        /// <summary>
+        /// Gets a collection of indices within the given span where items match the predicate condition.
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns>A collection of indices that represent all items in the span that match the predicate.</returns>
+        public ICollection<int> IndicesOf(Func<T, bool> predicate)
         {
-            if(predicate(source[index]))
-                indices.Add(index);
-        }
+            List<int> indices = new List<int>();
         
-        return indices;
+            for (int index = 0; index < source.Length; index++)
+            {
+                if(predicate(source[index]))
+                    indices.Add(index);
+            }
+        
+            return indices;
+        }
     }
 }
