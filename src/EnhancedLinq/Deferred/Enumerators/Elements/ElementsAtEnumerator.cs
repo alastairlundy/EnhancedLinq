@@ -18,44 +18,36 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+
 using AlastairLundy.EnhancedLinq.Immediate;
 
 namespace AlastairLundy.EnhancedLinq.Deferred.Enumerators;
 
 internal class ElementsAtEnumerator<TSource> : IEnumerator<TSource>
 {
-    private IEnumerator<int> _indicesEnumerator;
-    
-    private readonly IEnumerable<TSource> _source;
-    private readonly IEnumerable<int> _indices;
+    private readonly IEnumerator<TSource> _enumerator;
 
     private int _state;
-    
-    private TSource _current;
-    
+
     internal ElementsAtEnumerator(IEnumerable<TSource> source, IEnumerable<int> indices)
     {
-        _source = source;
-        _indices = indices;
         _state = 1;
+
+      IEnumerable<TSource> values = indices.Select(i => source.ElementAt(i));
+
+      _enumerator = values.GetEnumerator();
     }
 
     public bool MoveNext()
     {
         if (_state == 1)
         {
-            _indicesEnumerator = _indices.GetEnumerator();
-            
-            _state = 2;
-        }
-
-        if (_state == 2)
-        {
             try
             {
-                if(_indicesEnumerator.MoveNext())
+                if (_enumerator.MoveNext())
                 {
-                    _current = _source.ElementAt(_indicesEnumerator.Current);
+                    Current = _enumerator.Current;
                     return true;
                 }
 
@@ -66,10 +58,13 @@ internal class ElementsAtEnumerator<TSource> : IEnumerator<TSource>
                 Dispose();
                 throw;
             }
+            finally
+            {
+                _state = -1;
+            }
         }
         
         Dispose();
-        _state = -1;
         return false;
     }
 
@@ -78,12 +73,12 @@ internal class ElementsAtEnumerator<TSource> : IEnumerator<TSource>
         throw new NotSupportedException();
     }
 
-    public TSource Current => _current;
+    public TSource Current { get; private set; }
 
-    object? IEnumerator.Current => _current;
+    object? IEnumerator.Current => Current;
 
     public void Dispose()
     {
-        _indicesEnumerator?.Dispose();
+        _enumerator.Dispose();
     }
 }
