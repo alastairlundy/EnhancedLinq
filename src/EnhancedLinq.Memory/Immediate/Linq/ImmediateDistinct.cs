@@ -22,7 +22,7 @@ namespace AlastairLundy.EnhancedLinq.Memory.Immediate;
 
 public static partial class EnhancedLinqMemoryImmediate
 {
-    /// <param name="source">The source span from which to Enhancedct distinct elements.</param>
+    /// <param name="source">The source span from which to remove non-distinct elements.</param>
     /// <typeparam name="T">The type of elements in the source span.</typeparam>
     extension<T>(Span<T> source)
     {
@@ -37,7 +37,7 @@ public static partial class EnhancedLinqMemoryImmediate
     /// <summary>
     /// Returns a new span containing distinct elements from the source span, using the specified equality comparer.
     /// </summary>
-    /// <param name="source">The source span from which to Enhancedct distinct elements.</param>
+    /// <param name="source">The source span from which to remove non-distinct elements.</param>
     /// <param name="comparer">The equality comparer to use for comparing elements.</param>
     /// <typeparam name="T">The type of elements in the source span.</typeparam>
     /// <returns>A span containing the distinct elements from the source span.</returns>
