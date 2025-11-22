@@ -38,7 +38,7 @@ public static partial class EnhancedLinqMemoryImmediate
 
             Memory<T> items = ElementsAt(source, index, 1);
 
-            return First(items.Span);
+            return First(items);
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ public static partial class EnhancedLinqMemoryImmediate
             {
                 Memory<T> items = ElementsAt(source, index, 1);
 
-                return FirstOrDefault(items.Span);
+                return FirstOrDefault(items);
             }
             catch(ArgumentOutOfRangeException)
             {
@@ -73,6 +73,71 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <returns>A new <see cref="Memory{T}"/> containing the specified number of elements starting at the specified index.</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown if the source <see cref="Memory{T}"/> has no elements or the index is out of range.</exception>
         public Memory<T> ElementsAt(int index, int count)
+        {
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(source.Length);
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(index);
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
+
+#if NET8_0_OR_GREATER
+            return source[new Range(index, index + count)];
+#else
+        return source.Slice(index, index + count);
+#endif
+        }
+    }
+    
+        /// <param name="source">The source <see cref="ReadOnlyMemory{T}"/> .</param>
+    /// <typeparam name="T">The type of items stored in the Memory.</typeparam>
+    extension<T>(ReadOnlyMemory<T> source)
+    {
+        /// <summary>
+        /// Returns the element at the specified index in the source <see cref="ReadOnlyMemory{T}"/>.
+        /// </summary>
+        /// <param name="index">The zero-based index of the element to be retrieved.</param>
+        /// <returns>A new source <see cref="ReadOnlyMemory{T}"/> containing a single element starting at the specified index in the Memory.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if the source <see cref="ReadOnlyMemory{T}"/> has no elements or the index is out of range.</exception>
+        public T ElementAt(int index)
+        {
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(source.Length);
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(index);
+
+            ReadOnlyMemory<T> items = ElementsAt(source, index, 1);
+
+            return First(items);
+        }
+
+        /// <summary>
+        /// Returns the element at the specified index in the source <see cref="ReadOnlyMemory{T}"/>,
+        /// or the default value of type <typeparamref name="T"/> if the index is out of range.
+        /// </summary>
+        /// <param name="index">The zero-based index of the element to be retrieved.</param>
+        /// <returns>The element at the specified index in the source <see cref="ReadOnlyMemory{T}"/> if found;
+        /// otherwise, the default value of type <typeparamref name="T"/>.</returns>
+        public T? ElementAtOrDefault(int index)
+        {
+            if (source.Length == 0 || index < 0)
+                return default;
+
+            try
+            {
+                ReadOnlyMemory<T> items = ElementsAt(source, index, 1);
+
+                return FirstOrDefault(items);
+            }
+            catch(ArgumentOutOfRangeException)
+            {
+                return default;
+            }
+        }
+        
+        /// <summary>
+        /// Returns a new <see cref="ReadOnlyMemory{T}"/> containing the specified number of elements starting at the specified index.
+        /// </summary>
+        /// <param name="index">The zero-based index of the element to be retrieved.</param>
+        /// <param name="count">The number of elements to include in the returned Memory.</param>
+        /// <returns>A new <see cref="ReadOnlyMemory{T}"/> containing the specified number of elements starting at the specified index.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if the source <see cref="ReadOnlyMemory{T}"/> has no elements or the index is out of range.</exception>
+        public ReadOnlyMemory<T> ElementsAt(int index, int count)
         {
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(source.Length);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(index);
