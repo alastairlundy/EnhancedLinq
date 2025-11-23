@@ -98,6 +98,8 @@ public static partial class EnhancedLinqImmediate
                 {
                     indices.Add(index);
                 }
+
+                index++;
             }
 
             return indices;
@@ -127,6 +129,8 @@ public static partial class EnhancedLinqImmediate
                     indices[count] = index;
                     count++;
                 }
+
+                index++;
             }
         
             Array.Resize(ref indices, count);
@@ -146,14 +150,13 @@ public static partial class EnhancedLinqImmediate
         public List<int> IndicesOf(char c)
         {
             List<int> indices = new List<int>();
-        
-            int index = 0;
-
-            foreach (char obj in source)
+            
+            for (int i = 0; i < source.Count; i++)
             {
+                char obj = source[i];
                 if (obj == c)
                 {
-                    indices.Add(index);
+                    indices.Add(i);
                 }
             }
 
@@ -183,6 +186,8 @@ public static partial class EnhancedLinqImmediate
                     indices[count] = index;
                     count++;
                 }
+
+                index++;
             }
         
             Array.Resize(ref indices, count);

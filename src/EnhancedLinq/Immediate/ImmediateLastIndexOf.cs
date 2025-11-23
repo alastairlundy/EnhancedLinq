@@ -58,7 +58,7 @@ public static partial class EnhancedLinqImmediate
         
             foreach (T item in source.Reverse())
             {
-                if (predicate(item))
+                if (predicate(item) && !foundItem)
                 {
                     foundItem = true;
                     reverseIndex = count;
@@ -93,7 +93,7 @@ public static partial class EnhancedLinqImmediate
                 
             foreach (T item in source.Reverse())
             {
-                if (item is not null && item.Equals(obj))
+                if (item is not null && item.Equals(obj) && !foundItem)
                 {
                     foundItem = true;
                     reverseIndex = count;
