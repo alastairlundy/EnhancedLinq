@@ -26,6 +26,7 @@
         <AssemblyName>AlastairLundy.EnhancedLinq.Memory</AssemblyName>
         <PackageId>AlastairLundy.EnhancedLinq.Memory</PackageId>
         <RootNamespace>AlastairLundy.EnhancedLinq.Memory</RootNamespace>
+        <PolyArgumentExceptions>true</PolyArgumentExceptions>
     </PropertyGroup>
 
     <ItemGroup>
