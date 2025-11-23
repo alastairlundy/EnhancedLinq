@@ -15,7 +15,7 @@
      limitations under the License.
  */
 
-using System;
+
 // ReSharper disable ForCanBeConvertedToForeach
 
 namespace AlastairLundy.EnhancedLinq.Memory.Immediate;

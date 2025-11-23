@@ -15,9 +15,7 @@
      limitations under the License.
  */
 
-using System;
 
-using AlastairLundy.EnhancedLinq.Memory.Internals.Localizations;
 // ReSharper disable ReplaceSliceWithRangeIndexer
 
 namespace AlastairLundy.EnhancedLinq.Memory.Immediate;

@@ -17,9 +17,6 @@
 
 #if NET8_0_OR_GREATER
 
-using System;
-using System.Numerics;
-
 namespace AlastairLundy.EnhancedLinq.Memory.Immediate.Maths;
 
 public static partial class EnhancedLinqMemoryImmediateMaths

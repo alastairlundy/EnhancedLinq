@@ -15,7 +15,6 @@
      limitations under the License.
  */
 
-using System;
 using System.Diagnostics.CodeAnalysis;
 
 namespace AlastairLundy.EnhancedLinq.Memory.Immediate;

@@ -15,10 +15,7 @@
      limitations under the License.
  */
 
-using System;
-
 #if NET8_0_OR_GREATER
-using System.Numerics;
 #endif
 
 namespace AlastairLundy.EnhancedLinq.Memory.Immediate;
