@@ -46,10 +46,8 @@ public static partial class EnhancedLinqDeferred
         /// <returns>A new sequence containing the elements at the specified indexes from the original source.</returns>
         public IEnumerable<TSource> ElementsAt(IEnumerable<int> indices)
         {
-#if NET8_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(indices);
-#endif
         
             return new Internals.Infra.CustomEnumeratorEnumerable<TSource>(
                 new ElementsAtEnumerator<TSource>(source, indices));
@@ -81,19 +79,14 @@ public static partial class EnhancedLinqDeferred
         /// <exception cref="ArgumentOutOfRangeException">Thrown if the count is less than or equal to 0.</exception>
         public IEnumerable<TSource> ElementsAt(int startIndex, int count)
         {
-#if NET8_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(source);
-#endif
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
 
             if(startIndex < 0)
                 throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
                     .Replace("{x}", startIndex.ToString())
                     .Replace("{y}", "0")
                     .Replace("{z}", source.Count().ToString()));
-
-            if (count <= 0)
-                throw new ArgumentOutOfRangeException(Resources.Exceptions_Count_LessThanZero
-                    .Replace("{x}", count.ToString()));
         
             IEnumerable<int> sequence = startIndex.GenerateNumberRange(count, 1);
        

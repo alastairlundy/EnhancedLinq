@@ -15,6 +15,7 @@
      limitations under the License.
  */
 
+using System;
 using System.Collections.Generic;
 
 namespace AlastairLundy.EnhancedLinq.Immediate;
@@ -31,6 +32,8 @@ public static partial class EnhancedLinqImmediate
         /// <returns>The reversed IList.</returns>
         public void Reverse()
         {
+            ArgumentNullException.ThrowIfNull(list);
+            
             List<T> output = new List<T>(list.Count);
 
             for (int i = 0; i < output.Count; i++)
@@ -56,6 +59,8 @@ public static partial class EnhancedLinqImmediate
         /// <returns>The reversed array.</returns>
         public T[] Reverse()
         {
+            ArgumentNullException.ThrowIfNull(array);
+
             T[] newArray = new T[array.Length];
 
             for (int i = 0; i < array.Length; i++)
@@ -78,6 +83,8 @@ public static partial class EnhancedLinqImmediate
         /// <returns>The reversed collection.</returns>
         public ICollection<T> Reverse()
         {
+            ArgumentNullException.ThrowIfNull(source);
+
             T[] newArray = new T[source.Count];
 
             int index = 0;
@@ -102,6 +109,8 @@ public static partial class EnhancedLinqImmediate
         /// <returns>The reversed list.</returns>
         public IList<T> Reverse()
         {
+            ArgumentNullException.ThrowIfNull(source);
+
             T[] newArray = new T[source.Count];
 
             int index = 0;

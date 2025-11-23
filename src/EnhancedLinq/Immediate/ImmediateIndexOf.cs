@@ -29,6 +29,7 @@ public static partial class EnhancedLinqImmediate
     /// <param name="source">The <see cref="IEnumerable{T}"/> to be searched.</param>
     /// <typeparam name="T">The type of elements in the sequence.</typeparam>
     extension<T>(IEnumerable<T> source)
+    where T : notnull
     {
         /// <summary>
         /// Gets the first index of the first element that matches the predicate condition.
@@ -39,10 +40,8 @@ public static partial class EnhancedLinqImmediate
         /// </returns>
         public int IndexOf(Func<T, bool> predicate)
         {
-#if NET8_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(predicate);
-#endif
         
             int index = 0;
 
@@ -64,9 +63,7 @@ public static partial class EnhancedLinqImmediate
         /// <returns>The first index of an element in a sequence, if the sequence contains the element, returns -1 otherwise.</returns>
         public int IndexOf(T obj)
         {
-#if NET8_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(source);
-#endif
         
             if (source is IList<T> list)
             {
@@ -77,7 +74,7 @@ public static partial class EnhancedLinqImmediate
                 
             foreach (T item in source)
             {
-                if (item is not null && item.Equals(obj))
+                if (item.Equals(obj))
                 {
                     return index;
                 }
@@ -89,7 +86,6 @@ public static partial class EnhancedLinqImmediate
         }
     }
 
-
     /// <param name="str">The input string.</param>
     extension(string str)
     {
@@ -100,6 +96,9 @@ public static partial class EnhancedLinqImmediate
         /// <returns>The index of the found substring if it exists, otherwise -1.</returns>
         public int IndexOf(string value)
         {
+            ArgumentException.ThrowIfNullOrEmpty(str);
+            ArgumentException.ThrowIfNullOrEmpty(value);
+            
             if (str.Length < value.Length || value.Length == 0)
                 return -1;
 

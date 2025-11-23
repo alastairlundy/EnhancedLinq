@@ -15,6 +15,7 @@
      limitations under the License.
  */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -36,6 +37,8 @@ public static partial class EnhancedLinqDeferredPairs
         /// <returns>A sequence of keys extracted from the input.</returns>
         public IEnumerable<TKey> ToKeys()
         {
+            ArgumentNullException.ThrowIfNull(source);
+            
             return from pair in source
                 select pair.Key;
         }
@@ -46,6 +49,8 @@ public static partial class EnhancedLinqDeferredPairs
         /// <returns>A sequence of values extracted from the input.</returns>
         public IEnumerable<TValue> ToValues()
         {
+            ArgumentNullException.ThrowIfNull(source);
+            
             return from pair in source
                 select pair.Value;
         }

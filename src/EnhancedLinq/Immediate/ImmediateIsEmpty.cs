@@ -15,6 +15,7 @@
      limitations under the License.
  */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -32,10 +33,12 @@ public static partial class EnhancedLinqImmediate
         /// <returns>True if the sequence is empty, false otherwise.</returns>
         public bool IsEmpty()
         {
+            ArgumentNullException.ThrowIfNull(source);
+            
             if (source is ICollection<T> collection)
                 return collection.Count == 0;
 
-            return source.Any() == false;
+            return !source.Any();
         }
     }
 }

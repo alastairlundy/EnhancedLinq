@@ -41,9 +41,8 @@ public static partial class EnhancedLinqDeferred
         /// <returns>A sequence that contains only duplicate elements from the source sequence.</returns>
         public IEnumerable<TSource> GetDuplicates(IEqualityComparer<TSource> comparer)
         {
-#if NET8_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(source);
-#endif
+            ArgumentNullException.ThrowIfNull(comparer);
         
             return new Internals.Infra.CustomEnumeratorEnumerable<TSource>(
                 new DuplicatesEnumerator<TSource>(source, comparer));

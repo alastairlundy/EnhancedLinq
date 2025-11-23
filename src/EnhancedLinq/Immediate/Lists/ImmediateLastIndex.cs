@@ -15,10 +15,7 @@
      limitations under the License.
  */
 
-#if NET8_0_OR_GREATER
 using System;
-#endif
-
 using System.Collections.Generic;
 
 namespace AlastairLundy.EnhancedLinq.Immediate;
@@ -38,9 +35,7 @@ public static partial class EnhancedLinqImmediate
         /// <returns>The last index of an item in a collection.</returns>
         public int LastIndex()
         {
-#if NET8_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(source);
-#endif
         
             if(source.Count > 0)
                 return source.Count - 1;

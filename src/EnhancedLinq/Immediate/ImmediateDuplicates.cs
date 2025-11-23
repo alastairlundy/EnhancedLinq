@@ -15,6 +15,7 @@
      limitations under the License.
  */
 
+using System;
 using System.Collections.Generic;
 
 namespace AlastairLundy.EnhancedLinq.Immediate;
@@ -31,6 +32,8 @@ public static partial class EnhancedLinqImmediate
         /// <returns>True if the <see cref="IEnumerable{T}"/> contains duplicate objects; false otherwise.</returns>
         public bool ContainsDuplicates()
         {
+            ArgumentNullException.ThrowIfNull(source);
+            
             HashSet<T> hash = new();
         
             foreach (T item in source)

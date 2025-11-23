@@ -25,7 +25,7 @@ namespace AlastairLundy.EnhancedLinq.Immediate;
 /// </summary>
 public static partial class EnhancedLinqImmediate
 {
-    /// <param name="source">The list to de-duplicate.</param>
+    /// <param name="source">The list to deduplicate.</param>
     /// <typeparam name="T">The type of elements in the list.</typeparam>
     extension<T>(List<T> source)
     {
@@ -43,6 +43,9 @@ public static partial class EnhancedLinqImmediate
         /// <returns>The new list with distinct elements from the source list.</returns>
         public List<T> Distinct(IEqualityComparer<T> equalityComparer)
         {
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(equalityComparer);
+
 #if NET8_0_OR_GREATER
             HashSet<T> hash = new(capacity: source.Count / 10, comparer: equalityComparer);
 #else
@@ -82,6 +85,9 @@ public static partial class EnhancedLinqImmediate
         /// <returns>The new array with distinct elements from the source array.</returns>
         public T[] Distinct(IEqualityComparer<T> equalityComparer)
         {
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(equalityComparer);
+
 #if NET8_0_OR_GREATER
             HashSet<T> hash = new(capacity: source.Length / 10, comparer: equalityComparer);
 #else

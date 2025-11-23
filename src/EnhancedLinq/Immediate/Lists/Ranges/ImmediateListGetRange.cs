@@ -40,6 +40,10 @@ public static partial class EnhancedLinqImmediateRange
         /// <exception cref="IndexOutOfRangeException">Thrown if the start index is out of range for the original list.</exception>
         public IList<T> GetRange(int startIndex, int count)
         {
+            ArgumentNullException.ThrowIfNull(list);
+            ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
+            
             if (list.Count >= startIndex + count)
             {
                 throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
@@ -71,17 +75,15 @@ public static partial class EnhancedLinqImmediateRange
         /// (less than 0 or greater than or equal to Count).</exception>
         public IList<T> GetRange(ICollection<int> indices)
         {
+            ArgumentNullException.ThrowIfNull(list);
+            ArgumentNullException.ThrowIfNull(indices);
+
             List<T> output = new();
 
             foreach (int index in indices)
             {
-                if (index < 0 || index >= list.Count)
-                {
-                    throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
-                        .Replace("{x}", index.ToString())
-                        .Replace("{y}", $"0")
-                        .Replace("{z}", $"{list.Count}"));
-                }
+                ArgumentOutOfRangeException.ThrowIfNegative(index);
+                ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(index, list.Count);
 
                 output.Add(list[index]);
             }

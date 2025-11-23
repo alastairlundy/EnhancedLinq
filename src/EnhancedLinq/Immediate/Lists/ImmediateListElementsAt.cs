@@ -15,6 +15,7 @@
      limitations under the License.
  */
 
+using System;
 using System.Collections.Generic;
 
 namespace AlastairLundy.EnhancedLinq.Immediate;
@@ -35,6 +36,9 @@ public static partial class EnhancedLinqImmediate
         /// <returns>A new List containing the elements at the specified indexes from the original source.</returns>
         public List<T> ElementsAt(List<int> indices)
         {
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(indices);
+            
             List<T> output = new();
         
             for (int i = 0; i < indices.Count; i++)
@@ -65,6 +69,9 @@ public static partial class EnhancedLinqImmediate
         /// <returns>A new array containing the elements at the specified indexes from the original source.</returns>
         public T[] ElementsAt(int[] indices)
         {
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(indices);
+
             T[] output = new T[indices.Length];
             int count = 0;
         

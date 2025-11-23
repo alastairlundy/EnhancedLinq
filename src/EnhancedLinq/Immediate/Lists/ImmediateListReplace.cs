@@ -15,6 +15,7 @@
      limitations under the License.
  */
 
+using System;
 using System.Collections.Generic;
 
 namespace AlastairLundy.EnhancedLinq.Immediate;
@@ -32,6 +33,10 @@ public static partial class EnhancedLinqImmediate
         /// <param name="newValue">The replacement value.</param>
         public void Replace(T oldValue, T newValue)
         {
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(oldValue);
+            ArgumentNullException.ThrowIfNull(newValue);
+            
             ICollection<int> indices = source.IndicesOf(oldValue);
 
             foreach (int index in indices)

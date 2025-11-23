@@ -80,6 +80,7 @@ public static partial class EnhancedLinqImmediate
     /// <param name="source">The list to search.</param>
     /// <typeparam name="T">The type of elements contained within the list.</typeparam>
     extension<T>(List<T> source)
+    where T : notnull
     {
         /// <summary>
         /// Retrieves a list of indices where the specified item can be found within the given List.
@@ -88,13 +89,15 @@ public static partial class EnhancedLinqImmediate
         /// <returns>A list containing the indices where the specified item can be found, or empty if not found.</returns>
         public List<int> IndicesOf(T item)
         {
-            List<int> indices = new List<int>();
+            ArgumentNullException.ThrowIfNull(source);
+            
+            List<int> indices = new();
         
             int index = 0;
 
             foreach (T obj in source)
             {
-                if (obj is not null && obj.Equals(item))
+                if (obj.Equals(item))
                 {
                     indices.Add(index);
                 }
@@ -109,6 +112,7 @@ public static partial class EnhancedLinqImmediate
     /// <param name="source">The array to search.</param>
     /// <typeparam name="T">The type of elements contained within the array.</typeparam>
     extension<T>(T[] source)
+    where T : notnull
     {
         /// <summary>
         /// Retrieves an array of indices where the specified item can be found within the given array.
@@ -117,6 +121,8 @@ public static partial class EnhancedLinqImmediate
         /// <returns>An array containing the indices where the specified item can be found, or an empty array if not found.</returns>
         public int[] IndicesOf(T item)
         {
+            ArgumentNullException.ThrowIfNull(source);
+            
             int[] indices = new int[source.Length];
 
             int count = 0;
@@ -124,7 +130,7 @@ public static partial class EnhancedLinqImmediate
 
             foreach (T obj in source)
             {
-                if (obj is not null && obj.Equals(item))
+                if (obj.Equals(item))
                 {
                     indices[count] = index;
                     count++;
@@ -149,6 +155,8 @@ public static partial class EnhancedLinqImmediate
         /// <returns>A list containing the indices where the specified character can be found, or empty if not found.</returns>
         public List<int> IndicesOf(char c)
         {
+            ArgumentNullException.ThrowIfNull(source);
+            
             List<int> indices = new List<int>();
             
             for (int i = 0; i < source.Count; i++)
@@ -174,6 +182,8 @@ public static partial class EnhancedLinqImmediate
         /// <returns>An array containing the indices where the specified character can be found, or an empty array if not found.</returns>
         public int[] IndicesOf(char c)
         {
+            ArgumentNullException.ThrowIfNull(source);
+            
             int[] indices = new int[source.Length];
 
             int count = 0;

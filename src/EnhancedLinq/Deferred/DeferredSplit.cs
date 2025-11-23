@@ -1,7 +1,7 @@
 /*
-      EnhancedLinq 
+      EnhancedLinq
       Copyright (c) 2025 Alastair Lundy
-      
+
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
      You may obtain a copy of the License at
@@ -40,17 +40,13 @@ public static partial class EnhancedLinqDeferred
         /// <exception cref="ArgumentOutOfRangeException">Thrown if <paramref name="maximumCount"/> is less than or equal to zero.</exception>
         public IEnumerable<IEnumerable<TSource>> SplitByItemCount(int maximumCount)
         {
-#if NET8_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#endif
-        
-            if(maximumCount <= 0)
-                throw new ArgumentOutOfRangeException(nameof(maximumCount));
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(maximumCount);
 
             return new Internals.Infra.CustomEnumeratorEnumerable<IEnumerable<TSource>>(
                 new SplitByItemCountEnumerator<TSource>(source, maximumCount));
         }
-        
+
         /// <summary>
         /// Splits the source sequence into a number of subsequences equal to the number of available logical processors.
         /// </summary>
@@ -58,17 +54,12 @@ public static partial class EnhancedLinqDeferred
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null.</exception>
         public IEnumerable<IEnumerable<TSource>> SplitByProcessorCount()
         {
-#if NET8_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#endif
-        
-            if(source == null)
-                throw new ArgumentNullException(nameof(source));
-        
+            ArgumentNullException.ThrowIfNull(source);
+
             return new Internals.Infra.CustomEnumeratorEnumerable<IEnumerable<TSource>>(
-                new SplitByEnumerableCountEnumerator<TSource>(source, Environment.ProcessorCount)); 
+                new SplitByEnumerableCountEnumerator<TSource>(source, Environment.ProcessorCount));
         }
-        
+
         /// <summary>
         /// Splits a sequence by a separator, into a sequence of sequences.
         /// </summary>
@@ -77,14 +68,12 @@ public static partial class EnhancedLinqDeferred
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null.</exception>
         public IEnumerable<IEnumerable<TSource>> SplitBy(TSource separator)
         {
-#if NET8_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#endif
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(separator);
 
-            return source != null ? SplitBy(source, x => x is not null && x.Equals(separator)) :
-                throw new ArgumentNullException(nameof(source));
+            return SplitBy(source, x => x is not null && x.Equals(separator));
         }
-        
+
         /// <summary>
         /// Splits a sequence when a predicate evaluates to true.
         /// </summary>
@@ -93,11 +82,10 @@ public static partial class EnhancedLinqDeferred
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null.</exception>
         public IEnumerable<IEnumerable<TSource>> SplitBy(Func<TSource, bool> predicate)
         {
-#if NET8_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#endif
-        
-            if(source == null)
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(predicate);
+
+            if (source == null)
                 throw new ArgumentNullException(nameof(source));
 
             return new Internals.Infra.CustomEnumeratorEnumerable<IEnumerable<TSource>>(

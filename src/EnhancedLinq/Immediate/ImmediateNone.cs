@@ -33,7 +33,12 @@ public static partial class EnhancedLinqImmediate
         /// <returns>True if none of the elements matched the predicate, false otherwise.</returns>
         /// <exception cref="ArgumentNullException">Thrown if the source sequence or predicate are null.</exception>
         public bool None(Func<TSource, bool> predicate)
-            => CountAtMost(source, predicate, 0);
+        {
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(predicate);
+            
+            return CountAtMost(source, predicate, 0);
+        }
     }
 
 }

@@ -39,9 +39,8 @@ public static partial class EnhancedLinqImmediate
 
         public void ForEach(Action<T> action)
         {
-#if NET8_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(target);
-#endif
+            ArgumentNullException.ThrowIfNull(action);
         
             foreach (T item in target)
             {
@@ -64,9 +63,8 @@ public static partial class EnhancedLinqImmediate
         /// <returns>A new <see cref="ICollection{T}"/> containing the result of applying each element to the predicate.</returns>
         public ICollection<T> ForEach(Func<T, T> predicate)
         {
-#if NET8_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(target);
-#endif
+            ArgumentNullException.ThrowIfNull(predicate);
         
             List<T> output = new List<T>(capacity:target.Count);
         
@@ -89,16 +87,15 @@ public static partial class EnhancedLinqImmediate
         /// <summary>
         /// Applies the given predicate function to each element of this <see cref="IList{T}"/>.
         /// </summary>
-        /// <param name="selector">The func to apply to each element in the <see cref="IList{T}"/>.</param>
-        public void ForEach(Func<T, T> selector)
+        /// <param name="predicate">The func to apply to each element in the <see cref="IList{T}"/>.</param>
+        public void ForEach(Func<T, T> predicate)
         {
-#if NET8_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(target);
-#endif
+            ArgumentNullException.ThrowIfNull(predicate);
         
             for (int index = 0; index < target.Count; index++)
             {
-                target[index] = selector.Invoke(target[index]);
+                target[index] = predicate.Invoke(target[index]);
             }
         }
     }

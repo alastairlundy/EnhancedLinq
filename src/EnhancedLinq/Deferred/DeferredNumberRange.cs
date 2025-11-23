@@ -47,15 +47,15 @@ public static partial class EnhancedLinqDeferred
         /// <exception cref="NotFiniteNumberException">Thrown if the start number or count are infinity.</exception>
         public IEnumerable<TNumber> GenerateNumberRange(TNumber count, TNumber incrementor)
         {
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
+            ArgumentOutOfRangeException.ThrowIfZero(incrementor);
+            
             if (TNumber.IsNaN(start) || TNumber.IsNaN(count) || TNumber.IsNaN(incrementor))
                 throw new ArgumentException();
 
             if (TNumber.IsInfinity(start) || TNumber.IsInfinity(count))
                 throw new NotFiniteNumberException();
 
-            if (incrementor == TNumber.Zero)
-                throw new ArgumentOutOfRangeException(nameof(incrementor));
-        
             return new NumberRangeEnumerable<TNumber>(start, count, incrementor);
         }
 
@@ -90,9 +90,10 @@ public static partial class EnhancedLinqDeferred
         /// <exception cref="NotFiniteNumberException">Thrown if the start number or count are infinity.</exception>
         public IEnumerable<int> GenerateNumberRange(int count, int incrementor)
         {
-            if (incrementor == 0)
-                throw new ArgumentOutOfRangeException(nameof(incrementor));
-
+            ArgumentOutOfRangeException.ThrowIfZero(incrementor);
+            ArgumentOutOfRangeException.ThrowIfEqual(incrementor,int.MaxValue);
+            ArgumentOutOfRangeException.ThrowIfEqual(incrementor, int.MinValue);
+            
             for (int i = start; i < count; i += incrementor)
             {
                 yield return i;

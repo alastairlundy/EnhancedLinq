@@ -39,9 +39,7 @@ public static partial class EnhancedLinqDeferred
         /// <returns>The indices if the object is found; an empty sequence otherwise.</returns>
         public IEnumerable<int> IndicesOf(T target)
         {
-#if NET8_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(source);
-#endif
         
             return new Internals.Infra.CustomEnumeratorEnumerable<int>(
                 new IndicesEnumerator<T>(source, x => x.Equals(target)));
@@ -54,14 +52,11 @@ public static partial class EnhancedLinqDeferred
         /// <returns>The indices if one or more elements that matching the predicate are found; an empty sequence otherwise.</returns>
         public IEnumerable<int> IndicesOf(Func<T, bool> predicate)
         {
-#if NET8_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(source);
-#endif
+            ArgumentNullException.ThrowIfNull(predicate);
         
             return new Internals.Infra.CustomEnumeratorEnumerable<int>(new IndicesEnumerator<T>(source, predicate));
         }
-        
-        
     }
     
     /// <summary>
@@ -79,11 +74,10 @@ public static partial class EnhancedLinqDeferred
         /// </returns>
         public IEnumerable<int> IndicesOf(char c)
         {
-#if NET8_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(str);
-#endif
         
-            return new Internals.Infra.CustomEnumeratorEnumerable<int>(new IndicesEnumerator<char>(str, x => x.Equals(c)));
+            return new Internals.Infra.CustomEnumeratorEnumerable<int>(
+                new IndicesEnumerator<char>(str, x => x.Equals(c)));
         }
         
         /// <summary>
@@ -93,10 +87,8 @@ public static partial class EnhancedLinqDeferred
         /// <returns>A sequence of indices where the character is found; an empty sequence if the character could not be found.</returns>
         public IEnumerable<int> IndicesOf(string substring)
         {
-#if NET8_0_OR_GREATER
             ArgumentException.ThrowIfNullOrEmpty(str);
             ArgumentException.ThrowIfNullOrEmpty(substring);
-#endif
         
             return new Internals.Infra.CustomEnumeratorEnumerable<int>(new StringIndicesEnumerator(str, substring));
         }

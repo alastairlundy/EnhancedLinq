@@ -48,10 +48,8 @@ public static partial class EnhancedLinqImmediateDictionary
           if(source.IsReadOnly)
               throw new InvalidOperationException($"{nameof(source)} is read-only.");
 
-#if NET8_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-        ArgumentNullException.ThrowIfNull(pairsToAdd);
-#endif
+          ArgumentNullException.ThrowIfNull(source);
+          ArgumentNullException.ThrowIfNull(pairsToAdd);
         
           foreach (KeyValuePair<TKey, TValue> pair in pairsToAdd)
           {
@@ -73,10 +71,8 @@ public static partial class EnhancedLinqImmediateDictionary
           if(source.IsReadOnly)
               throw new InvalidOperationException($"{nameof(source)} is read-only.");
         
-#if NET8_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-        ArgumentNullException.ThrowIfNull(dictionaryToAdd);
-#endif
+          ArgumentNullException.ThrowIfNull(source);
+          ArgumentNullException.ThrowIfNull(dictionaryToAdd);
 
           if (source.Count == int.MaxValue)
               throw new OverflowException(
@@ -106,10 +102,8 @@ public static partial class EnhancedLinqImmediateDictionary
     public void TryAddRange(
         IEnumerable<KeyValuePair<TKey, TValue>> pairsToAdd)
     {
-        #if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
         ArgumentNullException.ThrowIfNull(pairsToAdd);
-        #endif
         
         if(source.IsReadOnly)
             throw new InvalidOperationException($"{nameof(source)} is read-only.");
@@ -134,10 +128,8 @@ public static partial class EnhancedLinqImmediateDictionary
     /// <exception cref="InvalidOperationException">Thrown if the source dictionary is read-only.</exception>
     public void TryAddRange(IDictionary<TKey, TValue> dictionaryToAdd) 
     {
-#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
         ArgumentNullException.ThrowIfNull(dictionaryToAdd);
-#endif
         
         if(source.IsReadOnly)
             throw new InvalidOperationException($"{nameof(source)} is read-only.");

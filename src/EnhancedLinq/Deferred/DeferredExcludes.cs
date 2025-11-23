@@ -37,10 +37,8 @@ public static partial class EnhancedLinqDeferred
         /// <returns>A new sequence containing the source sequence minus any elements present in the sequence of elements to be excluded.</returns>
         public IEnumerable<TSource> Exclude(IEnumerable<TSource> exclude)
         {
-#if NET8_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(exclude);
-#endif
         
             return (from item in source where !exclude.Contains(item)
                 select item);
@@ -53,10 +51,8 @@ public static partial class EnhancedLinqDeferred
         /// <returns>A new sequence containing the source sequence minus any elements that matched the predicate condition.</returns>
         public IEnumerable<TSource> Exclude(Func<TSource, bool> predicate)
         {
-#if NET8_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(predicate);
-#endif
         
             return (from item in source where !predicate(item)
                 select item);

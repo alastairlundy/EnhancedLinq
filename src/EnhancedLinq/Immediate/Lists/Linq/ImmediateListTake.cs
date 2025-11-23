@@ -27,31 +27,31 @@ namespace AlastairLundy.EnhancedLinq.Immediate.Linq;
 /// </summary>
 public static partial class EnhancedLinqImmediateList
 {
-    /// <summary>
-    /// Takes the first 'count' elements from the specified source.
-    /// </summary>
     /// <param name="source">The source array to extract elements from.</param>
-    /// <param name="count">The number of elements to take.</param>
     /// <typeparam name="T">The type of elements in the source collection.</typeparam>
-    /// <returns>A new array containing the first 'count' elements from the source.</returns>
-    /// <exception cref="ArgumentException">Thrown when the count is less than zero or greater than the length of the source.</exception>
-    public static T[] Take<T>(this T[] source, int count)
+    extension<T>(T[] source)
     {
-#if NET8_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-#endif
-
-        if (count < 0 || count > source.Length)
-            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
-        
-        T[] output = new T[count];
-
-        for (int index = 0; index < count; index++)
+        /// <summary>
+        /// Takes the first 'count' elements from the specified source.
+        /// </summary>
+        /// <param name="count">The number of elements to take.</param>
+        /// <returns>A new array containing the first 'count' elements from the source.</returns>
+        /// <exception cref="ArgumentException">Thrown when the count is less than zero or greater than the length of the source.</exception>
+        public T[] Take(int count)
         {
-            output[index] = source[index];
-        }
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentOutOfRangeException.ThrowIfNegative(count);
+            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(count, source.Length);
+            
+            T[] output = new T[count];
 
-        return output;
+            for (int index = 0; index < count; index++)
+            {
+                output[index] = source[index];
+            }
+
+            return output;
+        }
     }
 
     /// <summary>
@@ -64,14 +64,11 @@ public static partial class EnhancedLinqImmediateList
     /// <exception cref="ArgumentException">Thrown when the count is less than zero or greater than the length/size of the source.</exception>
     public static IList<T> Take<T>(this IList<T> source, int count)
     {
-#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
-#endif
+        ArgumentOutOfRangeException.ThrowIfNegative(count);
+        ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(count, source.Count);
 
-        if (count < 0 || count > source.Count)
-            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
-        
-        List<T> output = new List<T>(capacity: count);
+        List<T> output = new(capacity: count);
 
         for (int index = 0; index < count; index++)
         {
@@ -91,14 +88,11 @@ public static partial class EnhancedLinqImmediateList
     /// <exception cref="ArgumentException">Thrown when the count is less than zero or greater than the length/size of the source.</exception>
     public static ICollection<T> Take<T>(this ICollection<T> source, int count)
     {
-#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
-#endif
-        
-        if (count < 0 || count > source.Count)
-            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
-        
-        List<T> output = new List<T>(capacity: count);
+        ArgumentOutOfRangeException.ThrowIfNegative(count);
+        ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(count, source.Count);
+
+        List<T> output = new(capacity: count);
 
         int index = 0;
         foreach (T item in source)

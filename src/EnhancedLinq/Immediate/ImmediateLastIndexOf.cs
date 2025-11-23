@@ -43,9 +43,9 @@ public static partial class EnhancedLinqImmediate
         /// </returns>
         public int LastIndexOf(Func<T, bool> predicate)
         {
-#if NET8_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(source);
-#endif
+            ArgumentNullException.ThrowIfNull(predicate);
+            
             if (source is ICollection<T> collection)
             {
                 return LastIndexOf(collection, predicate);
@@ -83,9 +83,8 @@ public static partial class EnhancedLinqImmediate
 
         public int LastIndexOf(T obj)
         {
-#if NET8_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(source);
-#endif
+            ArgumentNullException.ThrowIfNull(obj);
         
             bool foundItem = false;
             int reverseIndex = 0;

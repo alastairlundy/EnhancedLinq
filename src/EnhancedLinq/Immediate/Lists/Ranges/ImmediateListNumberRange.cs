@@ -30,7 +30,8 @@ public static partial class EnhancedLinqImmediateRange
 #if NET8_0_OR_GREATER
     /// <param name="startIndex">The starting value of the array.</param>
     /// <typeparam name="TNumber"></typeparam>
-    extension<TNumber>(TNumber startIndex) where TNumber : INumber<TNumber>, IMinMaxValue<TNumber>?
+    extension<TNumber>(TNumber startIndex)
+        where TNumber : INumber<TNumber>, IMinMaxValue<TNumber>
     {
         /// <summary>
         /// Generates an array of <see cref="TNumber"/> values starting from a specified value and continuing for a specified count,
@@ -42,10 +43,10 @@ public static partial class EnhancedLinqImmediateRange
         /// <exception cref="ArgumentException">Thrown when the count + startIndex are greater than <see cref="TNumber"/>.MaxValue </exception>
         public TNumber[] GenerateNumberRangeAsArray(TNumber count)
         {
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
+            
             if (startIndex + count >= TNumber.MaxValue)
-            {
                 throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
-            }
 
             int arrayCount = count.ToDestinationNumber<TNumber, int>() + 1;
         
@@ -73,12 +74,10 @@ public static partial class EnhancedLinqImmediateRange
         /// <exception cref="ArgumentException">Thrown if the count is less than zero.</exception>
         public List<TNumber> GenerateNumberRangeAsList(TNumber count)
         {
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
+
             if (startIndex + count > TNumber.MaxValue)
                 throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
-        
-            if (count < TNumber.Zero)
-                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero
-                    .Replace("{x}", $"{count}"));
         
             List<TNumber> output = new List<TNumber>(count.ToDestinationNumber<TNumber, int>() + 1);
         

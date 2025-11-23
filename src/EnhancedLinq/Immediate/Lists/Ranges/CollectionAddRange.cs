@@ -36,10 +36,8 @@ public static partial class EnhancedLinqImmediateRange
         /// <exception cref="NotSupportedException">Thrown if adding to the collection is not supported.</exception>
         public void AddRange(IEnumerable<T> enumerableToAdd)
         {
-#if NET8_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(enumerableToAdd);
-#endif
 
             if (source.IsReadOnly)
                 throw new NotSupportedException();
@@ -61,10 +59,8 @@ public static partial class EnhancedLinqImmediateRange
         /// <param name="collectionToAdd">The collection containing elements to append to the original collection.</param>
         public void AddRange(ICollection<T> collectionToAdd)
         {
-#if NET8_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(collectionToAdd);
-#endif        
 
             if (source.IsReadOnly)
                 throw new NotSupportedException();

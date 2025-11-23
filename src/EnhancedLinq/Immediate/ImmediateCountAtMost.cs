@@ -37,21 +37,17 @@ public static partial class EnhancedLinqImmediate
         /// <returns>True if there are at most <paramref name="countToLookFor"/> number of elements, false otherwise.</returns>
         public bool CountAtMost(int countToLookFor)
         {
-#if NET8_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(source);
-#endif
-        
+            ArgumentOutOfRangeException.ThrowIfNegative(countToLookFor);
+            
             if (source is ICollection<T> collection)
             {
                 return collection.Count <= countToLookFor;
             }
-        
-            if (countToLookFor < 0)
-                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
-        
+            
             int currentCount = 0;
         
-            foreach (T obj in source)
+            foreach (T unused in source)
             {
                 if(currentCount >= countToLookFor)
                     return false;
@@ -71,13 +67,9 @@ public static partial class EnhancedLinqImmediate
         public bool CountAtMost(Func<T, bool> predicate,
             int countToLookFor)
         {
-#if NET8_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(source);
-#endif
-        
-            if (countToLookFor < 0)
-                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero.Replace("{x}", countToLookFor.ToString()));
-        
+            ArgumentNullException.ThrowIfNull(predicate);
+            ArgumentOutOfRangeException.ThrowIfNegative(countToLookFor);
             int currentCount = 0;
 
             foreach (T obj in source)
