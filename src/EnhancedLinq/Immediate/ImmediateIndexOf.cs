@@ -15,9 +15,6 @@
      limitations under the License.
  */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace AlastairLundy.EnhancedLinq.Immediate;
 
@@ -103,7 +100,7 @@ public static partial class EnhancedLinqImmediate
             if (str.Length < value.Length || value.Length == 0)
                 return -1;
 
-            int[] indices = str.IndicesOf(value.First());
+            int[] indices = str.IndicesOf(value[0]);
 
             foreach (int index in indices)
             {

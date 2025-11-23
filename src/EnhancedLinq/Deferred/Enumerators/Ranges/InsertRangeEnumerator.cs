@@ -15,9 +15,7 @@
      limitations under the License.
  */
 
-using System;
 using System.Collections;
-using System.Collections.Generic;
 
 namespace AlastairLundy.EnhancedLinq.Deferred.Enumerators.Ranges;
 

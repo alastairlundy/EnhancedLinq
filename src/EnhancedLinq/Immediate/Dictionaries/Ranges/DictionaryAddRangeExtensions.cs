@@ -16,9 +16,6 @@
      limitations under the License.
  */
 
-using System;
-using System.Collections.Generic;
-
 namespace AlastairLundy.EnhancedLinq.Immediate.Dictionaries.Ranges;
 
 /// <summary>

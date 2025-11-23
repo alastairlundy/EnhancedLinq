@@ -16,7 +16,6 @@
  */
 
 using System.Collections;
-using System.Collections.Generic;
 
 namespace AlastairLundy.EnhancedLinq.Deferred.Enumerables;
 

@@ -15,10 +15,6 @@
      limitations under the License.
  */
 
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
 namespace AlastairLundy.EnhancedLinq.Async.Immediate;
 
 public static partial class EnhancedLinqAsyncImmediate

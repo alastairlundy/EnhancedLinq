@@ -19,8 +19,6 @@
 using System;
 #endif
 
-using System.Collections.Generic;
-
 namespace AlastairLundy.EnhancedLinq.Immediate;
 
 public static partial class EnhancedLinqImmediate

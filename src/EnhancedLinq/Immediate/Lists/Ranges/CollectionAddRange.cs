@@ -15,9 +15,6 @@
      limitations under the License.
  */
 
-using System;
-using System.Collections.Generic;
-
 namespace AlastairLundy.EnhancedLinq.Immediate.Ranges;
 
 public static partial class EnhancedLinqImmediateRange

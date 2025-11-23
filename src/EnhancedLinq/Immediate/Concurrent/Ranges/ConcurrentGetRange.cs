@@ -15,10 +15,7 @@
      limitations under the License.
  */
 
-using System;
 using System.Collections.Concurrent;
-
-using AlastairLundy.EnhancedLinq.Internals.Localizations;
 
 namespace AlastairLundy.EnhancedLinq.Immediate.Concurrent.Ranges;
 

@@ -19,7 +19,6 @@
 using System;
 #endif
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 
 namespace AlastairLundy.EnhancedLinq.Immediate.Concurrent.Ranges;
 
