@@ -39,7 +39,7 @@ internal class SplitByItemCountEnumerator<T> : IEnumerator<IEnumerable<T>>
     {
         _maximumItemCount = maximumItemCount;
         
-        _state = 0;
+        _state = 1;
         _currentItemCount = 0;
 
         if (maximumItemCount <= 0)
@@ -55,7 +55,7 @@ internal class SplitByItemCountEnumerator<T> : IEnumerator<IEnumerable<T>>
     {
         _maximumItemCount = maximumItemCount;
         
-        _state = 0;
+        _state = 1;
         _currentItemCount = 0;
 
         if (maximumItemCount <= 0)
