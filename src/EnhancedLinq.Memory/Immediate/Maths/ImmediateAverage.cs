@@ -16,8 +16,6 @@
  */
 
 #if NET8_0_OR_GREATER
-using System;
-using System.Numerics;
 using AlastairLundy.DotExtensions.Numbers;
 
 namespace AlastairLundy.EnhancedLinq.Memory.Immediate.Maths;

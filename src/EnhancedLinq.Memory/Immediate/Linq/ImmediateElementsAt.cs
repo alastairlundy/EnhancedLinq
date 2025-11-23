@@ -15,8 +15,6 @@
      limitations under the License.
  */
 
-using System;
-
 namespace AlastairLundy.EnhancedLinq.Memory.Immediate;
 
 public static partial class EnhancedLinqMemoryImmediate

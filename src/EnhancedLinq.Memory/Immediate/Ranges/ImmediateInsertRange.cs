@@ -15,11 +15,6 @@
      limitations under the License.
  */
 
-using System;
-using System.Collections.Generic;
-
-using AlastairLundy.DotExtensions.Memory.Spans;
-
 namespace AlastairLundy.EnhancedLinq.Memory.Immediate.Ranges;
 
 public static partial class EnhancedLinqMemoryImmediateRange

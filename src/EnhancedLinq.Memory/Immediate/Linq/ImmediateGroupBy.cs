@@ -15,11 +15,8 @@
      limitations under the License.
  */
 
-using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-
 using AlastairLundy.DotPrimitives.Collections.Groupings;
 
 namespace AlastairLundy.EnhancedLinq.Memory.Immediate;

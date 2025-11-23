@@ -15,10 +15,7 @@
      limitations under the License.
  */
 
-using System;
-
 #if NET8_0_OR_GREATER
-using System.Numerics;
 #endif
 
 namespace AlastairLundy.EnhancedLinq.Memory.Immediate;
@@ -40,10 +37,8 @@ public static partial class EnhancedLinqMemoryImmediate
 
             foreach (TSource item in source)
             {
-                if (selector(item))
-                {
+                if (selector(item)) 
                     count++;
-                }
             }
         
             return count;
@@ -70,6 +65,53 @@ public static partial class EnhancedLinqMemoryImmediate
             return total;
         }
 #endif
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="source"></param>
+    /// <typeparam name="TSource"></typeparam>
+    extension<TSource>(ReadOnlySpan<TSource> source)
+    {
+        /// <summary>
+        /// Returns the number of elements in a given <see cref="ReadOnlySpan{T}"/> that satisfy a condition.
+        /// </summary>
+        /// <param name="selector">A func that takes an element and returns a boolean indicating whether it should be counted.</param>
+        /// <returns>The number of elements that satisfy the predicate.</returns>
+        public int Count(Func<TSource, bool> selector)
+        {
+            int count = 0;
 
+            foreach (TSource item in source)
+            {
+                if (selector(item)) 
+                    count++;
+            }
+        
+            return count;
+        }
+
+#if NET8_0_OR_GREATER
+
+        /// <summary>
+        /// Returns the number of elements in a given <see cref="ReadOnlySpan{T}"/> that satisfy a condition as a <see cref="TNumber"/>.
+        /// </summary>
+        /// <param name="selector">A func that takes an element and returns a boolean indicating whether it should be counted.</param>
+        /// <typeparam name="TNumber">The numeric type that represents the type of numbers in the <see cref="ReadOnlySpan{T}"/>.</typeparam>
+        /// <returns>The number of elements that satisfy the predicate.</returns>
+        public TNumber Count<TNumber>(Func<TSource, bool> selector) where TNumber : INumber<TNumber>
+        {
+            TNumber total = TNumber.Zero;
+
+            foreach (TSource item in source)
+            {
+                if(selector(item))
+                    total += TNumber.One;
+            }
+        
+            return total;
+        }
+#endif
     }
 }

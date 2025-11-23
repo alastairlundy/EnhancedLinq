@@ -15,10 +15,6 @@
      limitations under the License.
  */
 
-using System;
-
-using AlastairLundy.EnhancedLinq.Memory.Internals.Localizations;
-
 namespace AlastairLundy.EnhancedLinq.Memory.Immediate;
 
 /// <summary>
@@ -27,14 +23,14 @@ namespace AlastairLundy.EnhancedLinq.Memory.Immediate;
 public static partial class EnhancedLinqMemoryImmediate
 {
     /// <param name="target">The span to be searched.</param>
-    /// <typeparam name="T">The type of items stored in the span.</typeparam>
+    /// <typeparam name="T">The type of items stored in the <see cref="Span{T}"/>.</typeparam>
     extension<T>(Span<T> target)
     {
         /// <summary>
-        /// Returns the first element in the Span.
+        /// Returns the first element in the <see cref="Span{T}"/>.
         /// </summary>
-        /// <returns>The first item in the span if any items are in the Span.</returns>
-        /// <exception cref="InvalidOperationException">Thrown if the Span contains zero items.</exception>
+        /// <returns>The first item in the <see cref="Span{T}"/> if any items are in the <see cref="Span{T}"/>.</returns>
+        /// <exception cref="InvalidOperationException">Thrown if the <see cref="Span{T}"/> contains zero items.</exception>
         public T First()
         {
             if (target.IsEmpty)
@@ -44,9 +40,9 @@ public static partial class EnhancedLinqMemoryImmediate
         }
         
         /// <summary>
-        /// Returns the first element of a span that satisfies or null if the Span is empty.
+        /// Returns the first element of a <see cref="Span{T}"/> that satisfies a specified condition, or null if the <see cref="Span{T}"/> is empty.
         /// </summary>
-        /// <returns>The first element of the <see cref="ReadOnlySpan{T}"/> or null if the span is empty.</returns>
+        /// <returns>The first element of the <see cref="Span{T}"/> that satisfies the condition, or null if the <see cref="Span{T}"/> is empty.</returns>
         public T? FirstOrDefault() 
             => !target.IsEmpty ? target[0] : default;
         

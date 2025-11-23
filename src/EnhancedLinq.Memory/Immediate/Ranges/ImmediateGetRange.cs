@@ -15,15 +15,11 @@
      limitations under the License.
  */
 
-using System;
-using System.Collections.Generic;
 
-#if NET8_0_OR_GREATER
 using System.Linq;
+#if NET8_0_OR_GREATER
 using AlastairLundy.DotExtensions.Numbers;
 #endif
-
-using AlastairLundy.EnhancedLinq.Memory.Internals.Localizations;
 
 namespace AlastairLundy.EnhancedLinq.Memory.Immediate.Ranges;
 
@@ -112,7 +108,7 @@ public static partial class EnhancedLinqMemoryImmediateRange
             {
                 throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
                     .Replace("{x}", $"{index}")
-                    .Replace("{y}", "0")
+      .Replace("{y}", "0")
                     .Replace("{z}", $"{target.Length}"));
             }
                 

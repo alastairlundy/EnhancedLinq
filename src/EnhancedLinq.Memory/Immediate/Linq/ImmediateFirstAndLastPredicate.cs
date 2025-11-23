@@ -1,7 +1,7 @@
 /*
-      EnhancedLinq 
+      EnhancedLinq
       Copyright (c) 2025 Alastair Lundy
-      
+
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
      You may obtain a copy of the License at
@@ -15,8 +15,6 @@
      limitations under the License.
  */
 
-using System;
-
 namespace AlastairLundy.EnhancedLinq.Memory.Immediate;
 
 public static partial class EnhancedLinqMemoryImmediate
@@ -26,10 +24,10 @@ public static partial class EnhancedLinqMemoryImmediate
     extension<T>(Span<T> target)
     {
         /// <summary>
-        /// Returns the first element of a span that satisfies a specified condition.
+        /// Returns the first element of a <see cref="Span{T}"/> that satisfies a specified condition.
         /// </summary>
         /// <param name="predicate">A function that defines the condition to be met.</param>
-        /// <returns>The first element of the span that satisfies the condition.</returns>
+        /// <returns>The first element of the <see cref="Span{T}"/> that satisfies the condition.</returns>
         /// <exception cref="ArgumentException">Thrown when no element satisfies the condition.</exception>
         public T First(Func<T, bool> predicate)
         {
@@ -46,12 +44,12 @@ public static partial class EnhancedLinqMemoryImmediate
         }
 
         /// <summary>
-        /// Returns the first element of a span that satisfies a specified condition,
+        /// Returns the first element of a <see cref="Span{T}"/> that satisfies a specified condition,
         /// or a default value if no such element is found.
         /// </summary>
         /// <param name="predicate">A function that defines the condition to be met.</param>
-        /// <returns>The first element of the span that satisfies the condition, or null if no such element is found.</returns>
-        /// <exception cref="ArgumentException">Thrown when the span is empty or no element satisfies the condition.</exception>
+        /// <returns>The first element of the <see cref="Span{T}"/> that satisfies the condition, or null if no such element is found.</returns>
+        /// <exception cref="ArgumentException">Thrown when the <see cref="Span{T}"/> is empty or no element satisfies the condition.</exception>
         public T? FirstOrDefault(Func<T, bool> predicate)
         {
             for (int index = 0; index < target.Length; index++)
@@ -67,16 +65,16 @@ public static partial class EnhancedLinqMemoryImmediate
         }
 
         /// <summary>
-        /// Returns the last element of a span that satisfies a specified condition.
+        /// Returns the last element of a <see cref="Span{T}"/> that satisfies a specified condition.
         /// </summary>
         /// <param name="predicate">A function that defines the condition to be met.</param>
-        /// <returns>The last element of the span that satisfies the condition.</returns>
+        /// <returns>The last element of the <see cref="Span{T}"/> that satisfies the condition.</returns>
         /// <exception cref="ArgumentException">Thrown when no element satisfies the condition.</exception>
         public T Last(Func<T, bool> predicate)
         {
             Span<T> newTarget = target;
             newTarget.Reverse();
-        
+
             for (int index = 0; index < target.Length; index++)
             {
                 T item = newTarget[index];
@@ -90,18 +88,190 @@ public static partial class EnhancedLinqMemoryImmediate
         }
 
         /// <summary>
-        /// Returns the last element of a span that satisfies a specified condition, or a default value if no such element is found.
+        /// Returns the last element of a <see cref="Span{T}"/> that satisfies a specified condition, or a default value if no such element is found.
         /// </summary>
         /// <param name="predicate">A function that defines the condition to be met.</param>
-        /// <returns>The last element of the span that satisfies the condition, or null if no such element is found.</returns>
-        public T? LastOrDefault(Func<T,  bool> predicate)
+        /// <returns>The last element of the <see cref="Span{T}"/> that satisfies the condition, or null if no such element is found.</returns>
+        public T? LastOrDefault(Func<T, bool> predicate)
         {
             Span<T> newTarget = target;
             newTarget.Reverse();
-        
+
             for (int index = 0; index < target.Length; index++)
             {
                 T item = newTarget[index];
+                if (predicate.Invoke(item))
+                {
+                    return item;
+                }
+            }
+
+            return default;
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="target"></param>
+    /// <typeparam name="T"></typeparam>
+    extension<T>(ReadOnlySpan<T> target)
+    {
+        /// <summary>
+        /// Returns the first element of a <see cref="ReadOnlySpan{T}"/> that satisfies a specified condition.
+        /// </summary>
+        /// <param name="predicate">A function that defines the condition to be met.</param>
+        /// <returns>The first element of the <see cref="ReadOnlySpan{T}"/> that satisfies the condition.</returns>
+        /// <exception cref="ArgumentException">Thrown when no element satisfies the condition.</exception>
+        public T First(Func<T, bool> predicate)
+        {
+            foreach (T item in target)
+            {
+                if (predicate.Invoke(item))
+                    return item;
+            }
+
+            throw new ArgumentException();
+        }
+
+        /// <summary>
+        /// Returns the first element of a <see cref="ReadOnlySpan{T}"/> that satisfies a specified condition,
+        /// or a default value if no such element is found.
+        /// </summary>
+        /// <param name="predicate">A function that defines the condition to be met.</param>
+        /// <returns>The first element of the <see cref="ReadOnlySpan{T}"/> that satisfies the condition, or null if no such element is found.</returns>
+        /// <exception cref="ArgumentException">Thrown when the <see cref="ReadOnlySpan{T}"/> is empty or no element satisfies the condition.</exception>
+        public T? FirstOrDefault(Func<T, bool> predicate)
+        {
+            foreach (T item in target)
+            {
+                if (predicate.Invoke(item))
+                    return item;
+            }
+
+            return default;
+        }
+
+        /// <summary>
+        /// Returns the last element of a  <see cref="ReadOnlySpan{T}"/> that satisfies a specified condition.
+        /// </summary>
+        /// <param name="predicate">A function that defines the condition to be met.</param>
+        /// <returns>The last element of the  <see cref="ReadOnlySpan{T}"/> that satisfies the condition.</returns>
+        /// <exception cref="ArgumentException">Thrown when no element satisfies the condition.</exception>
+        public T Last(Func<T, bool> predicate)
+        {
+            ReadOnlySpan<T> newTarget = target;
+            newTarget.Reverse();
+
+            foreach (T item in target)
+            {
+                if (predicate.Invoke(item))
+                    return item;
+            }
+
+            throw new ArgumentException();
+        }
+
+        /// <summary>
+        /// Returns the last element of a <see cref="ReadOnlySpan{T}"/> that satisfies a specified condition, or a default value if no such element is found.
+        /// </summary>
+        /// <param name="predicate">A function that defines the condition to be met.</param>
+        /// <returns>The last element of the <see cref="ReadOnlySpan{T}"/> that satisfies the condition, or null if no such element is found.</returns>
+        public T? LastOrDefault(Func<T, bool> predicate)
+        {
+            ReadOnlySpan<T> newTarget = target;
+            newTarget.Reverse();
+
+            foreach (T item in target)
+            {
+                if (predicate.Invoke(item))
+                    return item;
+            }
+
+            return default;
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="target"></param>
+    /// <typeparam name="T"></typeparam>
+    extension<T>(Memory<T> target)
+    {
+        /// <summary>
+        /// Returns the first element of a <see cref="Memory{T}"/> that satisfies a specified condition.
+        /// </summary>
+        /// <param name="predicate">A function that defines the condition to be met.</param>
+        /// <returns>The first element of the <see cref="Memory{T}"/> that satisfies the condition.</returns>
+        /// <exception cref="ArgumentException">Thrown when no element satisfies the condition.</exception>
+        public T First(Func<T, bool> predicate)
+        {
+            for (int index = 0; index < target.Length; index++)
+            {
+                T item = target.ElementAt(index);
+                if (predicate.Invoke(item))
+                    return item;
+            }
+
+            throw new ArgumentException();
+        }
+
+        /// <summary>
+        /// Returns the first element of a <see cref="Memory{T}"/> that satisfies a specified condition,
+        /// or a default value if no such element is found.
+        /// </summary>
+        /// <param name="predicate">A function that defines the condition to be met.</param>
+        /// <returns>The first element of the <see cref="Memory{T}"/> that satisfies the condition, or null if no such element is found.</returns>
+        /// <exception cref="ArgumentException">Thrown when the <see cref="Memory{T}"/> is empty or no element satisfies the condition.</exception>
+        public T? FirstOrDefault(Func<T, bool> predicate)
+        {
+            for (int index = 0; index < target.Length; index++)
+            {
+                T item = target.ElementAt(index);
+                if (predicate.Invoke(item))
+                    return item;
+            }
+
+            return default;
+        }
+
+        /// <summary>
+        /// Returns the last element of a <see cref="Memory{T}"/> that satisfies a specified condition.
+        /// </summary>
+        /// <param name="predicate">A function that defines the condition to be met.</param>
+        /// <returns>The last element of the <see cref="Memory{T}"/> that satisfies the condition.</returns>
+        /// <exception cref="ArgumentException">Thrown when no element satisfies the condition.</exception>
+        public T Last(Func<T, bool> predicate)
+        {
+            Memory<T> newTarget = target;
+            newTarget.Reverse();
+
+            for (int index = 0; index < target.Length; index++)
+            {
+                T item = newTarget.ElementAt(index);
+                if (predicate.Invoke(item))
+                {
+                    return item;
+                }
+            }
+
+            throw new ArgumentException();
+        }
+
+        /// <summary>
+        /// Returns the last element of a <see cref="Memory{T}"/> that satisfies a specified condition, or a default value if no such element is found.
+        /// </summary>
+        /// <param name="predicate">A function that defines the condition to be met.</param>
+        /// <returns>The last element of the <see cref="Memory{T}"/> that satisfies the condition, or null if no such element is found.</returns>
+        public T? LastOrDefault(Func<T, bool> predicate)
+        {
+            Memory<T> newTarget = target;
+            newTarget.Reverse();
+
+            for (int index = 0; index < target.Length; index++)
+            {
+                T item = newTarget.ElementAt(index);
                 if (predicate.Invoke(item))
                 {
                     return item;
