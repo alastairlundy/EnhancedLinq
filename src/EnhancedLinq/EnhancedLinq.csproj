@@ -12,14 +12,13 @@
         <RepositoryUrl>https://github.com/alastairlundy/Enhancedlinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageReleaseNotes>* Added .NET 10 TFM
-* Updated csproj to use C# 14
-* Updated System.Linq.AsyncEnumerable from 10.0.0 RC 2 to 10.0.0
-* Updated to Polyfill 8.9.1 to 9.1.0
-* Updated DotExtensions from 9.0.0 Preview 3 to 9.0.1
-* Removed immediate mode ElementAt extension
-* Reworked Deferred ElementsAt logic
-* Updated most extension methods to use C# 14 extension everything - Note: A few have been left as is for practical choices.</PackageReleaseNotes>
+        <PackageReleaseNotes>* Updated to DotExtensions 9.1.0 Preview 2 from 9.0.0 (#110)
+* Updated to Polyfill 9.3.0 from 9.1.0 ( #110 )
+* Fixed a bug where ``IndicesOf`` Immediate mode extensions would return the wrong indices
+* Fixed a bug where ``LastIndexOf`` Immediate mode extensions would not return the last index of the element
+* Fixed a bug where SplitByItemCountEnumerator failed to execute due to an incorrect state configuration
+* Enabled Argument Exception style ThrowIfX Polyfill methods for .NET Standard 2.0
+* Converted some Deferred methods to extension blocks</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
         <Description>Additional LINQ style Deferred and Immediate enumeration mode extension methods for .NET . </Description>
@@ -28,7 +27,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>0.12.0</Version>
+        <Version>0.13.0</Version>
         <AssemblyName>AlastairLundy.EnhancedLinq</AssemblyName>
         <PackageId>AlastairLundy.EnhancedLinq</PackageId>
         <RootNamespace>AlastairLundy.EnhancedLinq</RootNamespace>
