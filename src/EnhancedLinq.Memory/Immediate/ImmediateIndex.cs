@@ -19,8 +19,8 @@ namespace AlastairLundy.EnhancedLinq.Memory.Immediate;
 
 public static partial class EnhancedLinqMemoryImmediate
 {
-    /// <param name="span"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <param name="span">The span whose indices will be generated.</param>
+    /// <typeparam name="T">The type of the elements in the span.</typeparam>
     extension<T>(Span<T> span)
     {
         /// <summary>
@@ -31,16 +31,18 @@ public static partial class EnhancedLinqMemoryImmediate
             => Index(span, 0);
 
         /// <summary>
-        /// 
+        /// Returns a collection of indices of elements within the given span starting from the specified start index.
         /// </summary>
-        /// <param name="startIndex"></param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <param name="startIndex">The starting index from which to generate the indices.</param>
+        /// <returns>A collection of integers representing the indices of the elements in the span starting from the provided start index.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when the startIndex is negative or exceeds the span length.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the span is empty.</exception>
         public ICollection<int> Index(int startIndex)
         {
-            if(startIndex < 0 || startIndex >= span.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex));
-        
+            InvalidOperationException.ThrowIfSpanIsEmpty(span);
+            ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
+            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(startIndex, span.Length);
+
             List<int> output = new();
         
             for (int i = 0; i < span.Length; i++)

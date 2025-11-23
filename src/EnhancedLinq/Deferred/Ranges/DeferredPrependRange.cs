@@ -15,12 +15,8 @@
      limitations under the License.
  */
 
-#if NET8_0_OR_GREATER
 using System;
-#endif
-
 using System.Collections.Generic;
-
 using AlastairLundy.EnhancedLinq.Deferred.Enumerables;
 
 namespace AlastairLundy.EnhancedLinq.Deferred.Ranges;
@@ -41,10 +37,8 @@ public static partial class EnhancedLinqDeferredRange
         /// <returns>A new sequence made up of the prepended sequence and the source sequence.</returns>
         public IEnumerable<TSource> PrependRange(IEnumerable<TSource> toBePrepended)
         {
-#if NET8_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(toBePrepended);
-#endif
         
             return new PrependRangeEnumerable<TSource>(source, toBePrepended);
         }

@@ -15,6 +15,8 @@
      limitations under the License.
  */
 
+using AlastairLundy.EnhancedLinq.Memory.Internals.Helpers;
+
 #if NET8_0_OR_GREATER
 
 namespace AlastairLundy.EnhancedLinq.Memory.Immediate.Maths;
@@ -34,6 +36,8 @@ public static partial class EnhancedLinqMemoryImmediateMaths
         /// <returns>The minimum value of the number in the span.</returns>
         public TNumber Minimum()
         {
+            InvalidOperationException.ThrowIfSpanIsEmpty(source);
+            
             TNumber total = source[0];
 
             foreach (TNumber item in source)
@@ -53,6 +57,8 @@ public static partial class EnhancedLinqMemoryImmediateMaths
         /// <returns>The maximum value of the number in the span.</returns>
         public TNumber Maximum()
         {
+            InvalidOperationException.ThrowIfSpanIsEmpty(source);
+
             TNumber total = TNumber.Zero;
 
             foreach (TNumber item in source)

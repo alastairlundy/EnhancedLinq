@@ -28,6 +28,9 @@
         <value>Count cannot be 0 or less. Provided count was {x}.</value>
     </data>
     <data name="Exceptions.InvalidOperation.EmptySpan" xml:space="preserve">
-        <value />
+        <value>Span must not be empty for this operation to be performed successfully.</value>
+    </data>
+    <data name="Exceptions.InvalidOperation.EmptyMemory" xml:space="preserve">
+        <value>Memory must not be empty for this operation to be performed successfully.</value>
     </data>
 </root>

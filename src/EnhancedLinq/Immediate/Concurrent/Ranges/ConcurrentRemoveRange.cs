@@ -36,8 +36,11 @@ public static partial class EnhancedLinqImmediateConcurrentRange
         /// <returns>A new concurrent bag with all specified objects removed.</returns>
         public ConcurrentBag<T> RemoveRange(IEnumerable<T> itemsToRemove)
         {
+            ArgumentNullException.ThrowIfNull(concurrentBag);
+            ArgumentNullException.ThrowIfNull(itemsToRemove);
+            
             IEnumerable<T> newCollection = from item in concurrentBag
-                where itemsToRemove.Contains(item) == false
+                where !itemsToRemove.Contains(item)
                 select item;
             
             return new ConcurrentBag<T>(newCollection);
@@ -55,6 +58,11 @@ public static partial class EnhancedLinqImmediateConcurrentRange
         /// than the number of items in the ConcurrentBag.</exception>
         public ConcurrentBag<T> RemoveRange(int startIndex, int count)
         {
+            ArgumentNullException.ThrowIfNull(concurrentBag);
+            ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
+            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(count, concurrentBag.Count);
+            
             ConcurrentBag<T> output = new ConcurrentBag<T>();
 
             int limit = startIndex + count;
@@ -64,18 +72,13 @@ public static partial class EnhancedLinqImmediateConcurrentRange
                 throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
             }
 
-            if (startIndex < 0 || startIndex >= concurrentBag.Count && startIndex != 0 ||
+            if (startIndex >= concurrentBag.Count && startIndex != 0 ||
                 startIndex > concurrentBag.Count)
             {
                 throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
                     .Replace("{x}", $"{startIndex}")
                     .Replace("{y}", $"0")
                     .Replace("{z}", $"{limit}"));
-            }
-
-            if (count < 0)
-            {
-                //TODO: Add CountOutOfRange in the future
             }
             
             int actualIndex = 0;
@@ -103,6 +106,9 @@ public static partial class EnhancedLinqImmediateConcurrentRange
         /// <returns>A new producer-consumer collection with all specified objects removed.</returns>
         public IProducerConsumerCollection<T> RemoveRange(IEnumerable<T> itemsToRemove)
         {
+            ArgumentNullException.ThrowIfNull(collection);
+            ArgumentNullException.ThrowIfNull(itemsToRemove);
+
             IEnumerable<T> newCollection = from item in collection
                 where itemsToRemove.Contains(item) == false
                 select item;
@@ -118,27 +124,25 @@ public static partial class EnhancedLinqImmediateConcurrentRange
         /// <returns>A new producer-consumer collection with the specified range removed.</returns>
         public IProducerConsumerCollection<T> RemoveRange(int startIndex, int count)
         {
+            ArgumentNullException.ThrowIfNull(collection);
+            ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
+            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(count, collection.Count);
+            
             ConcurrentBag<T> output = new ConcurrentBag<T>();
 
             int limit = startIndex + count;
 
             if (limit > collection.Count)
-            {
                 throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
-            }
 
-            if (startIndex < 0 || startIndex >= collection.Count && startIndex != 0 ||
+            if (startIndex >= collection.Count && startIndex != 0 ||
                 startIndex > collection.Count)
             {
                 throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
                     .Replace("{x}", $"{startIndex}")
                     .Replace("{y}", $"0")
                     .Replace("{z}", $"{limit}"));
-            }
-
-            if (count < 0)
-            {
-                //TODO: Add CountOutOfRange in the future
             }
             
             int actualIndex = 0;

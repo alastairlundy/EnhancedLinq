@@ -15,9 +15,7 @@
      limitations under the License.
  */
 
-#if NET8_0_OR_GREATER
 using System;
-#endif
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 
@@ -36,11 +34,14 @@ public static partial class EnhancedLinqImmediateConcurrentRange
         /// <returns>True if all objects were successfully added, false otherwise.</returns>
         public bool TryAddRange(IEnumerable<T> items)
         {
+            ArgumentNullException.ThrowIfNull(collection);
+            ArgumentNullException.ThrowIfNull(items);
+            
             foreach (T item in items)
             {
                 bool result = collection.TryAdd(item);
 
-                if (result == false)
+                if (!result)
                 {
                     return false;
                 }
@@ -49,41 +50,43 @@ public static partial class EnhancedLinqImmediateConcurrentRange
         }
     }
 
-    /// <summary>
-    /// Adds multiple objects to a concurrent bag.
-    /// </summary>
     /// <param name="source">The concurrent bag to which the objects will be added.</param>
-    /// <param name="items">The collection of objects to add into the concurrent bag.</param>
     /// <typeparam name="T">The type of elements contained within the bag.</typeparam>
-    public static void AddRange<T>(this ConcurrentBag<T> source, IEnumerable<T> items)
+    extension<T>(ConcurrentBag<T> source)
     {
-#if NET8_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-        ArgumentNullException.ThrowIfNull(items);
-#endif
-        
-        foreach (T item in items)
+        /// <summary>
+        /// Adds multiple objects to a concurrent bag.
+        /// </summary>
+        /// <param name="items">The collection of objects to add into the concurrent bag.</param>
+        public void AddRange(IEnumerable<T> items)
         {
-            source.Add(item);
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(items);
+        
+            foreach (T item in items)
+            {
+                source.Add(item);
+            }
         }
     }
 
-    /// <summary>
-    /// Adds multiple objects to a concurrent queue.
-    /// </summary>
     /// <param name="source">The concurrent queue to which the objects will be added.</param>
-    /// <param name="items">The collection of objects to enqueue into the concurrent queue.</param>
     /// <typeparam name="T">The type of elements contained within the queue.</typeparam>
-    public static void EnqueueRange<T>(this ConcurrentQueue<T> source, IEnumerable<T> items)
+    extension<T>(ConcurrentQueue<T> source)
     {
-#if NET8_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(source);
-        ArgumentNullException.ThrowIfNull(items);
-#endif
-        
-        foreach (T item in items)
+        /// <summary>
+        /// Adds multiple objects to a concurrent queue.
+        /// </summary>
+        /// <param name="items">The collection of objects to enqueue into the concurrent queue.</param>
+        public void EnqueueRange(IEnumerable<T> items)
         {
-            source.Enqueue(item);
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(items);
+        
+            foreach (T item in items)
+            {
+                source.Enqueue(item);
+            }
         }
     }
 }

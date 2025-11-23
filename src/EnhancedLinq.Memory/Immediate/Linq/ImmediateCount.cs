@@ -29,15 +29,18 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <summary>
         /// Returns the number of elements in a given span that satisfy a condition.
         /// </summary>
-        /// <param name="selector">A func that takes an element and returns a boolean indicating whether it should be counted.</param>
+        /// <param name="predicate">A func that takes an element and returns a boolean indicating whether it should be counted.</param>
         /// <returns>The number of elements that satisfy the predicate.</returns>
-        public int Count(Func<TSource, bool> selector)
+        public int Count(Func<TSource, bool> predicate)
         {
+            InvalidOperationException.ThrowIfSpanIsEmpty(source);
+            ArgumentNullException.ThrowIfNull(predicate);
+            
             int count = 0;
 
             foreach (TSource item in source)
             {
-                if (selector(item)) 
+                if (predicate(item)) 
                     count++;
             }
         
@@ -49,16 +52,19 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <summary>
         /// Returns the number of elements in a given span that satisfy a condition as a <see cref="TNumber"/>.
         /// </summary>
-        /// <param name="selector">A func that takes an element and returns a boolean indicating whether it should be counted.</param>
+        /// <param name="predicate">A func that takes an element and returns a boolean indicating whether it should be counted.</param>
         /// <typeparam name="TNumber">The numeric type that represents the type of numbers in the span.</typeparam>
         /// <returns>The number of elements that satisfy the predicate.</returns>
-        public TNumber Count<TNumber>(Func<TSource, bool> selector) where TNumber : INumber<TNumber>
+        public TNumber Count<TNumber>(Func<TSource, bool> predicate) where TNumber : INumber<TNumber>
         {
+            InvalidOperationException.ThrowIfSpanIsEmpty(source);
+            ArgumentNullException.ThrowIfNull(predicate);
+            
             TNumber total = TNumber.Zero;
 
             foreach (TSource item in source)
             {
-                if(selector(item))
+                if(predicate(item))
                     total += TNumber.One;
             }
         
@@ -77,15 +83,18 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <summary>
         /// Returns the number of elements in a given <see cref="ReadOnlySpan{T}"/> that satisfy a condition.
         /// </summary>
-        /// <param name="selector">A func that takes an element and returns a boolean indicating whether it should be counted.</param>
+        /// <param name="predicate">A func that takes an element and returns a boolean indicating whether it should be counted.</param>
         /// <returns>The number of elements that satisfy the predicate.</returns>
-        public int Count(Func<TSource, bool> selector)
+        public int Count(Func<TSource, bool> predicate)
         {
+            InvalidOperationException.ThrowIfSpanIsEmpty(source);
+            ArgumentNullException.ThrowIfNull(predicate);
+            
             int count = 0;
 
             foreach (TSource item in source)
             {
-                if (selector(item)) 
+                if (predicate(item)) 
                     count++;
             }
         
@@ -97,16 +106,19 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <summary>
         /// Returns the number of elements in a given <see cref="ReadOnlySpan{T}"/> that satisfy a condition as a <see cref="TNumber"/>.
         /// </summary>
-        /// <param name="selector">A func that takes an element and returns a boolean indicating whether it should be counted.</param>
+        /// <param name="predicate">A func that takes an element and returns a boolean indicating whether it should be counted.</param>
         /// <typeparam name="TNumber">The numeric type that represents the type of numbers in the <see cref="ReadOnlySpan{T}"/>.</typeparam>
         /// <returns>The number of elements that satisfy the predicate.</returns>
-        public TNumber Count<TNumber>(Func<TSource, bool> selector) where TNumber : INumber<TNumber>
+        public TNumber Count<TNumber>(Func<TSource, bool> predicate) where TNumber : INumber<TNumber>
         {
+            InvalidOperationException.ThrowIfSpanIsEmpty(source);
+            ArgumentNullException.ThrowIfNull(predicate);
+            
             TNumber total = TNumber.Zero;
 
             foreach (TSource item in source)
             {
-                if(selector(item))
+                if(predicate(item))
                     total += TNumber.One;
             }
         

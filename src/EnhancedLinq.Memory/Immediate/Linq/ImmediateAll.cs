@@ -31,7 +31,10 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <param name="predicate">The predicate func to be invoked on each item in the Span.</param>
         /// <returns>True if all items in the span match the predicate; false otherwise.</returns>
         public bool All(Func<T, bool> predicate)
-        {      
+        {   
+            InvalidOperationException.ThrowIfSpanIsEmpty(target);
+            ArgumentNullException.ThrowIfNull(predicate);
+            
             Span<bool> groups = (from c in target
                 group c by predicate.Invoke(c)
                 into g

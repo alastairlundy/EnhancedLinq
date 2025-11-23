@@ -15,6 +15,7 @@
        limitations under the License.
    */
 
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,7 @@ public static partial class EnhancedLinqImmediateConcurrent
     /// <param name="concurrentBag">The concurrent bag to remove objects from.</param>
     /// <typeparam name="T">The type of elements contained within the concurrent bag.</typeparam>
     extension<T>(ConcurrentBag<T> concurrentBag)
+    where T : notnull
     {
         /// <summary>
         /// Removes all occurrences of a specified object from a concurrent bag.
@@ -39,9 +41,10 @@ public static partial class EnhancedLinqImmediateConcurrent
         /// <returns>A new concurrent bag with all occurrences of the specified object removed.</returns>
         public ConcurrentBag<T> Remove(T obj)
         {
+            ArgumentNullException.ThrowIfNull(concurrentBag);
+            
             IEnumerable<T> newCollection = from item in concurrentBag
-                // ReSharper disable once RedundantBoolCompare
-                where item.Equals(obj) == false
+                where !item.Equals(obj)
                 select item;
         
             return new ConcurrentBag<T>(newCollection);

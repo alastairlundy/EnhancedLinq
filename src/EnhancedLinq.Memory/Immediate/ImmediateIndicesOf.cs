@@ -33,6 +33,8 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <returns>A collection of indices that represent the occurrences of item in span.</returns>
         public ICollection<int> IndicesOf(T item)
         {
+            InvalidOperationException.ThrowIfSpanIsEmpty(source);
+
             List<int> indices = new List<int>();
 
             for (int index = 0; index < source.Length; index++)
@@ -52,7 +54,10 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <param name="predicate"></param>
         /// <returns>A collection of indices that represent all items in the span that match the predicate.</returns>
         public ICollection<int> IndicesOf(Func<T, bool> predicate)
-        {
+        {            
+            InvalidOperationException.ThrowIfSpanIsEmpty(source);
+            ArgumentNullException.ThrowIfNull(predicate);
+            
             List<int> indices = new List<int>();
         
             for (int index = 0; index < source.Length; index++)

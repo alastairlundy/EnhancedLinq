@@ -29,10 +29,7 @@ public static partial class EnhancedLinqMemoryImmediate
         /// Returns whether there are any items in the span.
         /// </summary>
         /// <returns></returns>
-        public bool Any()
-        {
-            return target.Length > 0;
-        }
+        public bool Any() => target.Length > 0;
 
         /// <summary>
         /// Returns whether any item in a Span matches the predicate condition.
@@ -41,6 +38,9 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <returns>True if any item in the span matches the predicate; false otherwise.</returns>
         public bool Any(Func<T, bool> predicate)
         {
+            InvalidOperationException.ThrowIfSpanIsEmpty(target);
+            ArgumentNullException.ThrowIfNull(predicate);
+            
             Span<bool> groups = (from c in target
                 group c by predicate.Invoke(c)
                 into g

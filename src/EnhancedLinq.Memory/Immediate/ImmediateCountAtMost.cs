@@ -24,23 +24,20 @@ public static partial class EnhancedLinqMemoryImmediate
     extension<T>(Span<T> source)
     {
         /// <summary>
-        /// Determines whether there are at most a maximum number elements in the source <see cref="Span{T}"/>.
+        /// Determines whether there are at most a maximum number of elements in the source <see cref="Span{T}"/>.
         /// </summary>
         /// <param name="countToLookFor">The maximum number of elements that can meet the condition.</param>
         /// <returns>True if there are at most <paramref name="countToLookFor"/> number of elements, false otherwise.</returns>
         public bool CountAtMost(int countToLookFor)
         {
-            if(source.IsEmpty)
-                throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptySpan);
-
-            if (countToLookFor < 0)
-                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero.Replace("{x}", countToLookFor.ToString()));
-
+            InvalidOperationException.ThrowIfSpanIsEmpty(source);
+            ArgumentOutOfRangeException.ThrowIfNegative(countToLookFor);
+            
             return source.Length <= countToLookFor;
         }
 
         /// <summary>
-        /// Determines whether there are at most a maximum number elements in the source <see cref="Span{T}"/> that satisfy the given condition.
+        /// Determines whether there are at most a maximum number of elements in the source <see cref="Span{T}"/> that satisfy the given condition.
         /// </summary>
         /// <param name="predicate">The predicate condition to check elements against.</param>
         /// <param name="countToLookFor">The maximum number of elements that can meet the condition.</param>
@@ -48,11 +45,9 @@ public static partial class EnhancedLinqMemoryImmediate
         public bool CountAtMost(Func<T, bool> predicate,
             int countToLookFor)
         {
-            if(source.IsEmpty)
-                throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptySpan);
-
-            if (countToLookFor < 0)
-                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero.Replace("{x}", countToLookFor.ToString()));
+            InvalidOperationException.ThrowIfSpanIsEmpty(source);
+            ArgumentNullException.ThrowIfNull(predicate);
+            ArgumentOutOfRangeException.ThrowIfNegative(countToLookFor);
 
             int currentCount = 0;
 
@@ -81,12 +76,9 @@ public static partial class EnhancedLinqMemoryImmediate
     public static bool CountAtMost<T>(this ReadOnlySpan<T> source, Func<T, bool> predicate,
         int countToLookFor)
     {
-        if(source.IsEmpty)
-            throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptySpan);
-
-        if (countToLookFor < 0)
-            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero.Replace("{x}", countToLookFor.ToString()));
-
+        InvalidOperationException.ThrowIfSpanIsEmpty(source);
+        ArgumentOutOfRangeException.ThrowIfNegative(countToLookFor);
+        
         int currentCount = 0;
 
         foreach (T obj in source)

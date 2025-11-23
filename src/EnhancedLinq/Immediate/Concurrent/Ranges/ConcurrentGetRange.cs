@@ -39,16 +39,19 @@ public static partial class EnhancedLinqImmediateConcurrentRange
         /// <returns>A new <see cref="IProducerConsumerCollection{T}"/> containing the specified range of elements.</returns>
         public IProducerConsumerCollection<T> GetRange(int startIndex, int count)
         {
+            ArgumentNullException.ThrowIfNull(collection);
+            ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
+            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(count, collection.Count);
+
             ConcurrentBag<T> output = new ConcurrentBag<T>();
 
             int limit = startIndex + count;
 
             if (limit > collection.Count)
-            {
                 throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
-            }
 
-            if (startIndex < 0 || startIndex >= collection.Count && startIndex != 0 ||
+            if (startIndex >= collection.Count && startIndex != 0 ||
                 startIndex > collection.Count)
             {
                 throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
@@ -56,12 +59,6 @@ public static partial class EnhancedLinqImmediateConcurrentRange
                     .Replace("{y}", $"0")
                     .Replace("{z}", $"{limit}"));
             }
-
-            if (count < 0)
-            {
-                //TODO: Add CountOutOfRange Exception in the future
-            }
-            
             
             int actualIndex = 0;
             foreach (T item in collection)

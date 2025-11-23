@@ -40,20 +40,20 @@ public static partial class EnhancedLinqMemoryImmediate
             => DistinctBy(source, keySelector, EqualityComparer<TKey>.Default);
 
         /// <summary>
-        /// 
+        /// Returns a new span containing only the distinct elements from the source span, determined by a specified key selector.
         /// </summary>
-        /// <param name="keySelector"></param>
-        /// <param name="comparer"></param>
-        /// <typeparam name="TKey"></typeparam>
-        /// <returns></returns>
-        /// <exception cref="InvalidOperationException"></exception>
+        /// <typeparam name="TSource">The type of the elements in the source span.</typeparam>
+        /// <typeparam name="TKey">The type of the key extracted from each element.</typeparam>
+        /// <param name="keySelector">A function to extract a key from an element.</param>
+        /// <param name="comparer">An equality comparer to compare keys. If null, the default equality comparer for the key type is used.</param>
+        /// <returns>A span that contains only the distinct elements from the source span, determined by the key selector.</returns>
+        /// <exception cref="InvalidOperationException">Thrown when the source span is empty.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when the key selector is null.</exception>
         public Span<TSource> DistinctBy<TKey>(Func<TSource, TKey> keySelector, IEqualityComparer<TKey>? comparer)
         {
             comparer ??= EqualityComparer<TKey>.Default;
-            
-            if (source.IsEmpty)
-                throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptySpan);
-            
+
+            InvalidOperationException.ThrowIfSpanIsEmpty(source);
             ArgumentNullException.ThrowIfNull(keySelector);
             
             List<TSource> allowedItems = new();
@@ -101,9 +101,7 @@ public static partial class EnhancedLinqMemoryImmediate
         {
             comparer ??= EqualityComparer<TKey>.Default;
 
-            if (source.IsEmpty)
-                throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptySpan);
-            
+            InvalidOperationException.ThrowIfSpanIsEmpty(source);
             ArgumentNullException.ThrowIfNull(keySelector);
             
             List<TSource> allowedItems = new();
@@ -150,9 +148,7 @@ public static partial class EnhancedLinqMemoryImmediate
         {
             comparer ??= EqualityComparer<TKey>.Default;
 
-            if (source.IsEmpty)
-                throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptySpan);
-            
+            InvalidOperationException.ThrowIfMemoryIsEmpty(source);
             ArgumentNullException.ThrowIfNull(keySelector);
             
             List<TSource> allowedItems = new();
@@ -201,9 +197,7 @@ public static partial class EnhancedLinqMemoryImmediate
         {
             comparer ??= EqualityComparer<TKey>.Default;
 
-            if (source.IsEmpty)
-                throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptySpan);
-            
+            InvalidOperationException.ThrowIfMemoryIsEmpty(source);
             ArgumentNullException.ThrowIfNull(keySelector);
             
             List<TSource> allowedItems = new();

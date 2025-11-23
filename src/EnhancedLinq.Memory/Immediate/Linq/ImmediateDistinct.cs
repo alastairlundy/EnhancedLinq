@@ -104,6 +104,8 @@ public static partial class EnhancedLinqMemoryImmediate
     {
         comparer ??= EqualityComparer<T>.Default;
         
+        InvalidOperationException.ThrowIfSpanIsEmpty(source);
+        
 #if NET8_0_OR_GREATER
         HashSet<T> set = new(capacity: source.Length, comparer: comparer);
 #else
@@ -133,6 +135,8 @@ public static partial class EnhancedLinqMemoryImmediate
     private static T[] DistinctArray<T>(ReadOnlySpan<T> source, IEqualityComparer<T>? comparer)
     {
         comparer ??= EqualityComparer<T>.Default;
+        
+        InvalidOperationException.ThrowIfSpanIsEmpty(source);
         
 #if NET8_0_OR_GREATER
         HashSet<T> set = new(capacity: source.Length, comparer: comparer);

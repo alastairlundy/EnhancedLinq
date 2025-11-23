@@ -30,6 +30,8 @@ public static partial class EnhancedLinqDeferredPairs
     /// <typeparam name="TKey">The type of Key in the KeyValuePair.</typeparam>
     /// <typeparam name="TValue">The type of Value in the KeyValuePair.</typeparam>
     extension<TKey, TValue>(IEnumerable<KeyValuePair<TKey, TValue>> source)
+    where TKey : notnull
+    where TValue : notnull
     {
         /// <summary>
         /// Converts an IEnumerable of key-value pairs to a sequence of keys.

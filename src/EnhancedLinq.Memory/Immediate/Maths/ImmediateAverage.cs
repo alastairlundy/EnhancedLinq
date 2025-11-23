@@ -36,6 +36,8 @@ public static partial class EnhancedLinqMemoryImmediateMaths
         /// <returns>The arithmetic average of the specified numbers.</returns>
         public TNumber Average()
         {
+            InvalidOperationException.ThrowIfSpanIsEmpty(source);
+
             TNumber sum = source.Sum();
 
             return sum / source.Length.ToNumber<TNumber>();

@@ -15,6 +15,7 @@
      limitations under the License.
  */
 
+
 #if NET8_0_OR_GREATER
 
 namespace AlastairLundy.EnhancedLinq.Memory.Immediate.Maths;
@@ -31,6 +32,8 @@ public static partial class EnhancedLinqMemoryImmediateMaths
         /// <returns>The sum of all the number in the span.</returns>
         public TNumber Sum()
         {
+            InvalidOperationException.ThrowIfSpanIsEmpty(source);
+
             TNumber total = TNumber.Zero;
 
             foreach (TNumber item in source)

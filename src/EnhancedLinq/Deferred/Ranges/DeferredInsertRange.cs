@@ -47,14 +47,10 @@ public static partial class EnhancedLinqDeferredRange
         /// <returns>A new sequence with the elements of the original sequence, and the elements of the second sequence inserted at the specified index. </returns>
         public IEnumerable<TSource> InsertRange(int indexToInsertAt, IEnumerable<TSource> toBeInserted)
         {
-#if NET8_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(toBeInserted);
-#endif
-        
-            if (indexToInsertAt < 0)
-                throw new IndexOutOfRangeException();
-        
+            ArgumentOutOfRangeException.ThrowIfNegative(indexToInsertAt);
+            
             return new Internals.Infra.CustomEnumeratorEnumerable<TSource>(
                 new InsertRangeEnumerator<TSource>(source, indexToInsertAt, toBeInserted));
         }

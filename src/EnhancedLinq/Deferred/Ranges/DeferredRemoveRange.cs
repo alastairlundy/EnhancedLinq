@@ -15,6 +15,7 @@
      limitations under the License.
  */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -37,6 +38,9 @@ public static partial class EnhancedLinqDeferredRange
         /// <returns>The new IEnumerable with the specified items removed.</returns>
         public IEnumerable<TSource> RemoveRange(IEnumerable<TSource> itemsToBeRemoved)
         {
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(itemsToBeRemoved);
+            
             return from item in source
                 where itemsToBeRemoved.Contains(item) == false
                 select item;

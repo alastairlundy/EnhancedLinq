@@ -36,9 +36,9 @@ public static partial class EnhancedLinqMemoryImmediateRange
         /// <returns>A new Span with all items of the original Span minus the items to be removed.</returns>
         public Span<T> RemoveRange(IEnumerable<int> indices)
         {
-            if (target.IsEmpty)
-                throw new ArgumentException(Resources.Exceptions_InvalidOperation_EmptySpan);
-        
+            InvalidOperationException.ThrowIfSpanIsEmpty(target);
+            ArgumentNullException.ThrowIfNull(indices);
+            
             IEnumerable<int> newIndices = target.Index().SkipWhile(x => indices.Contains(x));
         
             return target.GetRange(newIndices);
@@ -52,15 +52,11 @@ public static partial class EnhancedLinqMemoryImmediateRange
         /// <returns>A new Span with all items of the original Span minus the items to be removed.</returns>
         public Span<T> RemoveRange(int startIndex, int count)
         {
-            if (target.IsEmpty)
-                throw new ArgumentException(Resources.Exceptions_InvalidOperation_EmptySpan);
-        
-            if (startIndex < 0 || startIndex > target.Length)
-                throw new IndexOutOfRangeException();
-        
-            if(count < 0 || count > target.Length)
-                throw new ArgumentOutOfRangeException(nameof(count));
-
+            InvalidOperationException.ThrowIfSpanIsEmpty(target);
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
+            ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
+            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(count, target.Length);
+            
             return RemoveRange(target, Enumerable.Range(startIndex, count));
         }
     }

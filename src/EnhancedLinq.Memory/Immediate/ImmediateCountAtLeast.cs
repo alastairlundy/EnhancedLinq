@@ -27,15 +27,12 @@ public static partial class EnhancedLinqMemoryImmediate
         /// Determines whether there are at least a specified number of elements in the <see cref="Span{T}"/>.
         /// </summary>
         /// <param name="countToLookFor">The minimum count to look for.</param>
-        /// <returns><c>true</c> if there are at least the specified number of elements in the <see cref="Span{T}"/>; otherwise, <c>false</c>.</returns>
+        /// <returns><c>true</c> if there is at least the specified number of elements in the <see cref="Span{T}"/>; otherwise, <c>false</c>.</returns>
         public bool CountAtLeast(int countToLookFor)
         {
-            if(source.IsEmpty)
-                throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptySpan);
-
-            if (countToLookFor < 0)
-                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero.Replace("{x}", countToLookFor.ToString()));
-
+            InvalidOperationException.ThrowIfSpanIsEmpty(source);
+            ArgumentOutOfRangeException.ThrowIfNegative(countToLookFor);
+            
             return source.Length >= countToLookFor;
         }
 
@@ -48,12 +45,10 @@ public static partial class EnhancedLinqMemoryImmediate
         public bool CountAtLeast(Func<T, bool> predicate,
             int countToLookFor)
         {
-            if(source.IsEmpty)
-                throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptySpan);
+            InvalidOperationException.ThrowIfSpanIsEmpty(source);
+            ArgumentOutOfRangeException.ThrowIfNegative(countToLookFor);
+            ArgumentNullException.ThrowIfNull(predicate);
 
-            if (countToLookFor < 0)
-                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero.Replace("{x}", countToLookFor.ToString()));
-        
             int currentCount = 0;
 
             foreach (T obj in source)

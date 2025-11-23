@@ -30,6 +30,7 @@ public static partial class EnhancedLinqDeferred
     /// <param name="source">The sequence to split.</param>
     /// <typeparam name="TSource">The type of the elements in the source sequence.</typeparam>
     extension<TSource>(IEnumerable<TSource> source)
+        where TSource : notnull
     {
         /// <summary>
         /// Splits the source sequence into multiple subsequences, each containing up to a specified maximum number of elements.
@@ -69,9 +70,8 @@ public static partial class EnhancedLinqDeferred
         public IEnumerable<IEnumerable<TSource>> SplitBy(TSource separator)
         {
             ArgumentNullException.ThrowIfNull(source);
-            ArgumentNullException.ThrowIfNull(separator);
 
-            return SplitBy(source, x => x is not null && x.Equals(separator));
+            return SplitBy(source, x => x.Equals(separator));
         }
 
         /// <summary>
@@ -84,9 +84,6 @@ public static partial class EnhancedLinqDeferred
         {
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(predicate);
-
-            if (source == null)
-                throw new ArgumentNullException(nameof(source));
 
             return new Internals.Infra.CustomEnumeratorEnumerable<IEnumerable<TSource>>(
                 new SplitByPredicateEnumerator<TSource>(source, predicate));

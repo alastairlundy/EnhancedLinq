@@ -19,33 +19,33 @@ namespace AlastairLundy.EnhancedLinq.Memory.Immediate.Ranges;
 
 public static partial class EnhancedLinqMemoryImmediateRange
 {
-    /// <summary>
-    /// Inserts a collection of elements at the specified start index into the span.
-    /// </summary>
     /// <param name="span">The original span to insert the range of items into.</param>
-    /// <param name="elements">The collection of elements to be inserted.</param>
-    /// <param name="startIndex">The zero-based starting index of the insertion.</param>
     /// <typeparam name="T">The type of elements in the span.</typeparam>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown if the start or end indices are out of range for the span.</exception>
-    public static void InsertRange<T>(this ref Span<T> span, ICollection<T> elements, int startIndex)
+    extension<T>(ref Span<T> span)
     {
-        if (startIndex >= 0 == false && startIndex < span.Length == false)
-            throw new ArgumentOutOfRangeException(nameof(startIndex));
-
-        int newLength = span.Length + elements.Count;
-        
-        span.Resize(newLength);
-        
-        int i = startIndex;
-        
-        foreach (T element in elements)
+        /// <summary>
+        /// Inserts a collection of elements at the specified start index into the span.
+        /// </summary>
+        /// <param name="elements">The collection of elements to be inserted.</param>
+        /// <param name="startIndex">The zero-based starting index of the insertion.</param>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if the start or end indices are out of range for the span.</exception>
+        public void InsertRange(ICollection<T> elements, int startIndex)
         {
-            if (i > span.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex));
+            ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex, span.Length);
+        
+            int newLength = span.Length + elements.Count;
+        
+            span.Resize(newLength);
+        
+            int i = startIndex;
+        
+            foreach (T element in elements)
+            {
+                span[i] = element;
             
-            span[i] = element;
-            
-            i++;
+                i++;
+            }
         }
     }
 }

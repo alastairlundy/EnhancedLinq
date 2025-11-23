@@ -18,6 +18,7 @@
 #if NET8_0_OR_GREATER
 using System;
 #endif
+using System;
 using System.Collections.Generic;
 
 using AlastairLundy.EnhancedLinq.Deferred.Enumerables;
@@ -44,10 +45,8 @@ public static partial class EnhancedLinqDeferredRange
         /// <returns>A new sequence made up of the source sequence and the appended sequence.</returns>
         public IEnumerable<TSource> AppendRange(IEnumerable<TSource> toBeAppended)
         { 
-#if NET8_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(toBeAppended);
-#endif
         
             return new AppendRangeEnumerable<TSource>(source, toBeAppended);
         }

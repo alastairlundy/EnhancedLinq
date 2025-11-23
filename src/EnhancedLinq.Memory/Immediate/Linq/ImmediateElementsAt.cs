@@ -31,6 +31,7 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <exception cref="ArgumentOutOfRangeException">Thrown if the source <see cref="Memory{T}"/> has no elements or the index is out of range.</exception>
         public T ElementAt(int index)
         {
+            InvalidOperationException.ThrowIfMemoryIsEmpty(source);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(source.Length);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(index);
 
@@ -53,6 +54,7 @@ public static partial class EnhancedLinqMemoryImmediate
 
             try
             {
+                InvalidOperationException.ThrowIfMemoryIsEmpty(source);
                 Memory<T> items = ElementsAt(source, index, 1);
 
                 return FirstOrDefault(items);
@@ -72,6 +74,7 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <exception cref="ArgumentOutOfRangeException">Thrown if the source <see cref="Memory{T}"/> has no elements or the index is out of range.</exception>
         public Memory<T> ElementsAt(int index, int count)
         {
+            InvalidOperationException.ThrowIfMemoryIsEmpty(source);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(source.Length);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(index);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
@@ -118,6 +121,7 @@ public static partial class EnhancedLinqMemoryImmediate
 
             try
             {
+                InvalidOperationException.ThrowIfMemoryIsEmpty(source);
                 ReadOnlyMemory<T> items = ElementsAt(source, index, 1);
 
                 return FirstOrDefault(items);
@@ -137,6 +141,7 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <exception cref="ArgumentOutOfRangeException">Thrown if the source <see cref="ReadOnlyMemory{T}"/> has no elements or the index is out of range.</exception>
         public ReadOnlyMemory<T> ElementsAt(int index, int count)
         {
+            InvalidOperationException.ThrowIfMemoryIsEmpty(source);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(source.Length);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(index);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
@@ -165,6 +170,7 @@ public static partial class EnhancedLinqMemoryImmediate
         {
             try
             {
+                InvalidOperationException.ThrowIfSpanIsEmpty(source);
                 ArgumentOutOfRangeException.ThrowIfNegativeOrZero(index);
                 
                 return source[index];
@@ -191,6 +197,7 @@ public static partial class EnhancedLinqMemoryImmediate
         /// </exception>
         public Span<T> ElementsAt(int index, int count)
         {
+            InvalidOperationException.ThrowIfSpanIsEmpty(source);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(source.Length);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(index);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
@@ -222,6 +229,7 @@ public static partial class EnhancedLinqMemoryImmediate
         {
             try
             {
+                InvalidOperationException.ThrowIfSpanIsEmpty(source);
                 ArgumentOutOfRangeException.ThrowIfNegativeOrZero(index);
 
                 return source[index];
@@ -247,6 +255,7 @@ public static partial class EnhancedLinqMemoryImmediate
         /// </exception>
         public ReadOnlySpan<T> ElementsAt(int index, int count)
         {
+            InvalidOperationException.ThrowIfSpanIsEmpty(source);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(source.Length);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(index);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);

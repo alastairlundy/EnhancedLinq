@@ -22,24 +22,25 @@ public static partial class EnhancedLinqMemoryImmediate
     /// <param name="span">The span to split.</param>
     /// <typeparam name="T">The type of elements within the span.</typeparam>
     extension<T>(Span<T> span)
+    where T : notnull
     {
         /// <summary>
-        /// Splits a span into an <see cref="IList{T}"/> of arrays of type <see cref="T"/> based on a maximum number of elements.
+        /// Splits a span into an <see cref="IList{T}"/> of arrays of type <see cref="T"/> based on the specified item count per array.
         /// </summary>
-        /// <param name="count">The maximum number of elements to have in each array.</param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <typeparam name="T">The type of elements within the span.</typeparam>
+        /// <param name="count">The maximum number of items in each array.</param>
+        /// <returns>An <see cref="IList{T}"/> of arrays, where each array contains a maximum of <paramref name="count"/> elements.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="count"/> is less than or equal to zero.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the input span is empty.</exception>
         public IList<T[]> SplitByItemCount(int count)
         {
-            if(span.IsEmpty)
-                return Array.Empty<T[]>();
-        
-            if(count <= 0)
-                throw new ArgumentOutOfRangeException(nameof(count));
-        
+            InvalidOperationException.ThrowIfSpanIsEmpty(span);
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
+            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(count, span.Length);
+            
             List<T[]> list = new();
 
-            if (span.Length > count == false)
+            if (!(span.Length > count))
             {
                 return [span.ToArray()];
             }
@@ -78,15 +79,17 @@ public static partial class EnhancedLinqMemoryImmediate
             => SplitByItemCount(span, Environment.ProcessorCount);
 
         /// <summary>
-        /// Splits a span into an <see cref="IList{T}"/> of arrays of type <see cref="T"/> based on the number of elements specified.
+        /// Splits a span into an <see cref="IList{T}"/> of arrays of type <see cref="T"/> based on a specified maximum number of arrays.
         /// </summary>
-        /// <param name="maximumNumberOfArrays">The desired maximum number of arrays of which to store elements in.</param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <typeparam name="T">The type of elements within the span.</typeparam>
+        /// <param name="maximumNumberOfArrays">The maximum number of arrays to divide the span into.</param>
+        /// <returns>An <see cref="IList{T}"/> of arrays, where the span is divided into at most <paramref name="maximumNumberOfArrays"/> arrays.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="maximumNumberOfArrays"/> is less than or equal to zero.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the input span is empty.</exception>
         public IList<T[]> SplitByArrayCount(int maximumNumberOfArrays)
         {
-            if (span.IsEmpty)
-                return Array.Empty<T[]>();
+            InvalidOperationException.ThrowIfSpanIsEmpty(span);
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(maximumNumberOfArrays);
 
             double maxItems = Convert.ToDouble(span.Length / maximumNumberOfArrays);
             int maxItemCount;
@@ -110,10 +113,9 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <returns>A list of spans, each containing the elements before the separator was found.</returns>
         public IList<T[]> SplitBy(T separator)
         {
-            if (span.IsEmpty)
-                return Array.Empty<T[]>();
+            InvalidOperationException.ThrowIfSpanIsEmpty(span);
 
-            return SplitBy(span, x => x is not null && x.Equals(separator));
+            return SplitBy(span, x => x.Equals(separator));
         }
 
         /// <summary>
@@ -124,8 +126,8 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public IList<T[]> SplitBy(Func<T, bool> predicate)
         {
-            if (span.IsEmpty)
-                return Array.Empty<T[]>();
+            InvalidOperationException.ThrowIfSpanIsEmpty(span);
+            ArgumentNullException.ThrowIfNull(predicate);
 
             List<T[]> list = new();
 

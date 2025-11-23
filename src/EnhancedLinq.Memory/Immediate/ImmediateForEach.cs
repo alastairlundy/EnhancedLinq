@@ -30,6 +30,9 @@ public static partial class EnhancedLinqMemoryImmediate
     /// <typeparam name="T">The type of items in the Span.</typeparam>
     public static void ForEach<T>(this ref Span<T> target, Action<T> action)
     {
+        InvalidOperationException.ThrowIfSpanIsEmpty(target);
+        ArgumentNullException.ThrowIfNull(action);
+
         for (int index = 0; index < target.Length; index++)
         {
             action.Invoke(target[index]);
@@ -44,6 +47,9 @@ public static partial class EnhancedLinqMemoryImmediate
     /// <typeparam name="T">The type of items in the Span.</typeparam>
     public static void ForEach<T>(this Span<T> target, Func<T, T> action)
     {
+        InvalidOperationException.ThrowIfSpanIsEmpty(target);
+        ArgumentNullException.ThrowIfNull(action);
+        
         for (int i = 0; i < target.Length; i++)
         {
             target[i] = action.Invoke(target[i]);
@@ -61,6 +67,9 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <param name="action">The action to apply to each element in the memory.</param>
         public void ForEach(Action<T> action)
         {
+            InvalidOperationException.ThrowIfMemoryIsEmpty(target);
+            ArgumentNullException.ThrowIfNull(action);
+            
             T[] array = new T[target.Length];
 
             for (int index = 0; index < target.Length; index++)
@@ -80,6 +89,9 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <param name="action">The action to apply to each element in the memory.</param>
         public void ForEach(Func<T, T> action)
         {
+            InvalidOperationException.ThrowIfMemoryIsEmpty(target);
+            ArgumentNullException.ThrowIfNull(action);
+            
             T[] array = new T[target.Length];
 
             for (int index = 0; index < target.Length; index++)

@@ -56,9 +56,7 @@ public static partial class EnhancedLinqMemoryImmediate
     /// <exception cref="ArgumentException">Thrown if the Memory is empty.</exception>
     public static bool None<TSource>(this Memory<TSource> memory, Func<TSource, bool> predicate)
     {
-#if NET8_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(predicate, nameof(predicate));
-#endif
+        ArgumentNullException.ThrowIfNull(predicate);
         
         for (int i = 0; i < memory.Length; i++)
         {
@@ -82,9 +80,7 @@ public static partial class EnhancedLinqMemoryImmediate
     /// <exception cref="ArgumentException">Thrown if the Memory is empty.</exception>
     public static bool None<TSource>(this ReadOnlyMemory<TSource> memory, Func<TSource, bool> predicate)
     {
-#if NET8_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(predicate, nameof(predicate));
-#endif
+        ArgumentNullException.ThrowIfNull(predicate);
         
         for (int i = 0; i < memory.Length; i++)
         {
