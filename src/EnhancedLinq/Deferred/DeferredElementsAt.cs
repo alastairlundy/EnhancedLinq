@@ -73,7 +73,7 @@ public static partial class EnhancedLinqDeferred
         /// <remarks>The order of the elements in the returned <see cref="IEnumerable{T}"/> is determined by their original position in the source,
         /// but the order within the returned <see cref="IEnumerable{T}"/> is based on the provided indexes.</remarks>
         /// <param name="startIndex">The first index to retrieve elements at.</param>
-        /// <param name="count">The number of elements from the <see cref="startIndex"/> to retrieve.</param>
+        /// <param name="count">The number of elements from the start index to retrieve.</param>
         /// <returns>A new <see cref="IEnumerable{T}"/> containing the elements at the specified indexes from the original source.</returns>
         /// <exception cref="IndexOutOfRangeException">Thrown if the starting index is less than 0.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown if the count is less than or equal to 0.</exception>
@@ -81,12 +81,6 @@ public static partial class EnhancedLinqDeferred
         {
             ArgumentNullException.ThrowIfNull(source);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
-
-            if(startIndex < 0)
-                throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
-                    .Replace("{x}", startIndex.ToString())
-                    .Replace("{y}", "0")
-                    .Replace("{z}", source.Count().ToString()));
         
             IEnumerable<int> sequence = startIndex.GenerateNumberRange(count, 1);
        

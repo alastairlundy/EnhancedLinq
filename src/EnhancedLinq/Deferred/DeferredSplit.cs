@@ -37,7 +37,7 @@ public static partial class EnhancedLinqDeferred
         /// </summary>
         /// <param name="maximumCount">The maximum number of elements in each subsequence. Must be greater than zero.</param>
         /// <returns>A sequence of sequences, each containing up to <paramref name="maximumCount"/> elements from the source sequence.</returns>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">Thrown if the source sequence is null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown if <paramref name="maximumCount"/> is less than or equal to zero.</exception>
         public IEnumerable<IEnumerable<TSource>> SplitByItemCount(int maximumCount)
         {
@@ -52,7 +52,7 @@ public static partial class EnhancedLinqDeferred
         /// Splits the source sequence into a number of subsequences equal to the number of available logical processors.
         /// </summary>
         /// <returns>A sequence of sequences, where the number of subsequences equals the number of logical processors on the current machine.</returns>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">Thrown if the source sequence is null.</exception>
         public IEnumerable<IEnumerable<TSource>> SplitByProcessorCount()
         {
             ArgumentNullException.ThrowIfNull(source);
@@ -66,7 +66,7 @@ public static partial class EnhancedLinqDeferred
         /// </summary>
         /// <param name="separator">The separator to split by.</param>
         /// <returns>A sequence of sequences, each containing the elements before the separator was found.</returns>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">Thrown if the source sequence is null.</exception>
         public IEnumerable<IEnumerable<TSource>> SplitBy(TSource separator)
         {
             ArgumentNullException.ThrowIfNull(source);
@@ -79,7 +79,7 @@ public static partial class EnhancedLinqDeferred
         /// </summary>
         /// <param name="predicate">The predicate to split the sequence on when it evaluates to true.</param>
         /// <returns>A sequence of sequences, each containing the elements before the predicate evaluated to true.</returns>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">Thrown if the source sequence is null.</exception>
         public IEnumerable<IEnumerable<TSource>> SplitBy(Func<TSource, bool> predicate)
         {
             ArgumentNullException.ThrowIfNull(source);

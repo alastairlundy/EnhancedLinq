@@ -17,9 +17,7 @@
 
 
 using System.Linq;
-#if NET8_0_OR_GREATER
 using AlastairLundy.DotExtensions.Numbers;
-#endif
 
 namespace AlastairLundy.EnhancedLinq.Memory.Immediate.Ranges;
 
@@ -121,10 +119,8 @@ public static partial class EnhancedLinqMemoryImmediateRange
 
         ArgumentNullException.ThrowIfNull(indices);
             
-#if NET8_0_OR_GREATER
         if(indices.IsIncrementedNumberRange(1))
             return GetRange(target, indices.Min(), indices.Max());
-#endif
         
         T[] array = new T[indices.Count];
         

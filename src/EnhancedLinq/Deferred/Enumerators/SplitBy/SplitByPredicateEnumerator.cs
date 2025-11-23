@@ -34,6 +34,7 @@ internal class SplitByPredicateEnumerator<T> : IEnumerator<IEnumerable<T>>
         _predicate = predicate;
         _state = 1;
         _enumerator =  source.GetEnumerator();
+        Current = [];
     }
     
     public bool MoveNext()

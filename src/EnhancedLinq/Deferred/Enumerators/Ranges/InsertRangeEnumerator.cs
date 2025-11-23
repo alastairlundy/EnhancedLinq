@@ -23,36 +23,26 @@ namespace AlastairLundy.EnhancedLinq.Deferred.Enumerators.Ranges;
 
 internal class InsertRangeEnumerator<T> : IEnumerator<T>
 {
-    private readonly IEnumerable<T> _source;
     private readonly int _indexToInsertAt;
-    private readonly IEnumerable<T> _toBeInserted;
-    
-    private IEnumerator<T> _sourceEnumerator;
-    private IEnumerator<T> _toBeInsertedEnumerator;
+
+    private readonly IEnumerator<T> _sourceEnumerator;
+    private readonly IEnumerator<T> _toBeInsertedEnumerator;
 
     private int _state;
     private int _index;
 
     internal InsertRangeEnumerator(IEnumerable<T> source, int indexToInsertAt, IEnumerable<T> toBeInserted)
     {
-        _source = source;
         _indexToInsertAt = indexToInsertAt;
-        _toBeInserted = toBeInserted;
         _state = 1;
+        _sourceEnumerator = source.GetEnumerator();
+        _toBeInsertedEnumerator = toBeInserted.GetEnumerator();
+        Current = _toBeInsertedEnumerator.Current;
     }
     
     public bool MoveNext()
     {
         if (_state == 1)
-        {
-            _index = 0;
-
-            _sourceEnumerator = _source.GetEnumerator();
-            _toBeInsertedEnumerator = _toBeInserted.GetEnumerator();
-
-            _state = 2;
-        }
-        if (_state == 2)
         {
             if (_indexToInsertAt == 0)
             {
@@ -109,7 +99,7 @@ internal class InsertRangeEnumerator<T> : IEnumerator<T>
 
     public void Dispose()
     {
-        _sourceEnumerator?.Dispose();
-        _toBeInsertedEnumerator?.Dispose();
+        _sourceEnumerator.Dispose();
+        _toBeInsertedEnumerator.Dispose();
     }
 }

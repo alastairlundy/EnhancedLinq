@@ -43,7 +43,6 @@ public static partial class EnhancedLinqDeferredRange
         /// </summary>
         /// <param name="indexToInsertAt">The index at which to insert the elements into the sequence</param>
         /// <param name="toBeInserted">The sequence of elements to be inserted.</param>
-        /// <typeparam name="TSource">The type of elements stored in the sequence.</typeparam>
         /// <returns>A new sequence with the elements of the original sequence, and the elements of the second sequence inserted at the specified index. </returns>
         public IEnumerable<TSource> InsertRange(int indexToInsertAt, IEnumerable<TSource> toBeInserted)
         {

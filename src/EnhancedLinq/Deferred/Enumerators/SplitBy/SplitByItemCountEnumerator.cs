@@ -23,9 +23,8 @@ namespace AlastairLundy.EnhancedLinq.Deferred.Enumerators;
 
 internal class SplitByItemCountEnumerator<T> : IEnumerator<IEnumerable<T>>
 {
-    private IEnumerator<T> _enumerator;
-    
-    private readonly IEnumerable<T> _source;
+    private readonly IEnumerator<T> _enumerator;
+
     private readonly int _maximumItemCount;
     private readonly int _maxEnumerableCount;
     
@@ -38,7 +37,6 @@ internal class SplitByItemCountEnumerator<T> : IEnumerator<IEnumerable<T>>
     
     internal SplitByItemCountEnumerator(IEnumerable<T> source, int maximumItemCount)
     {
-        _source = source;
         _maximumItemCount = maximumItemCount;
         
         _state = 0;
@@ -49,12 +47,12 @@ internal class SplitByItemCountEnumerator<T> : IEnumerator<IEnumerable<T>>
 
         _maxEnumerableCount = -1;
         
-        _enumerator = _source.GetEnumerator();
+        _enumerator = source.GetEnumerator();
+        _current = [];
     }
     
     internal SplitByItemCountEnumerator(IEnumerable<T> source, int maximumItemCount, int maxEnumerableCount)
     {
-        _source = source;
         _maximumItemCount = maximumItemCount;
         
         _state = 0;
@@ -68,7 +66,8 @@ internal class SplitByItemCountEnumerator<T> : IEnumerator<IEnumerable<T>>
         else
             _maxEnumerableCount = -1;
         
-        _enumerator = _source.GetEnumerator();
+        _enumerator = source.GetEnumerator();
+        _current = [];
     }
 
     public bool MoveNext()
@@ -125,7 +124,7 @@ internal class SplitByItemCountEnumerator<T> : IEnumerator<IEnumerable<T>>
 
     IEnumerable<T> IEnumerator<IEnumerable<T>>.Current => _current;
 
-    object? IEnumerator.Current => _current;
+    object IEnumerator.Current => _current;
 
     public void Dispose()
     {

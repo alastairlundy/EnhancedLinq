@@ -35,6 +35,7 @@ internal class DuplicatesEnumerator<TSource> : IEnumerator<TSource>
         _state = 0;
         
         _enumerator = source.GetEnumerator();
+        Current = _enumerator.Current;
     }
     
     public bool MoveNext()

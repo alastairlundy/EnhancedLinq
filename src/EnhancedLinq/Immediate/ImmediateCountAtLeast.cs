@@ -62,7 +62,7 @@ public static partial class EnhancedLinqImmediate
         /// </summary>
         /// <param name="predicate">The predicate condition to check elements against.</param>
         /// <param name="countToLookFor">The minimum count to look for.</param>
-        /// <returns><c>true</c> if there is at least the specified number of elements that meet the condition; otherwise, <c>false</c>.</returns
+        /// <returns><c>true</c> if there is at least the specified number of elements that meet the condition; otherwise, <c>false</c>.</returns>
         public bool CountAtLeast(Func<T, bool> predicate,
             int countToLookFor)
         {

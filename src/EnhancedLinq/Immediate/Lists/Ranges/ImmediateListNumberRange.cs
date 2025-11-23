@@ -34,13 +34,13 @@ public static partial class EnhancedLinqImmediateRange
         where TNumber : INumber<TNumber>, IMinMaxValue<TNumber>
     {
         /// <summary>
-        /// Generates an array of <see cref="TNumber"/> values starting from a specified value and continuing for a specified count,
+        /// Generates an array of <see cref="INumber{TSelf}"/> values starting from a specified value and continuing for a specified count,
         /// with each value incremented by 1 from the starting point.
         /// </summary>
         /// <param name="count">The number of values to generate in the array.</param>
-        /// <returns>An array of type <see cref="TNumber"/> containing the generated range of values,
+        /// <returns>An array of type <see cref="INumber{TSelf}"/> containing the generated range of values,
         /// incremented by 1 from the starting point.</returns>
-        /// <exception cref="ArgumentException">Thrown when the count + startIndex are greater than <see cref="TNumber"/>.MaxValue </exception>
+        /// <exception cref="ArgumentException">Thrown when the count + startIndex are greater than <see cref="INumber{TSelf}"/>.MaxValue </exception>
         public TNumber[] GenerateNumberRangeAsArray(TNumber count)
         {
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
@@ -65,11 +65,11 @@ public static partial class EnhancedLinqImmediateRange
         }
 
         /// <summary>
-        /// Generates a list of <see cref="TNumber"/> values starting from a specified value and continuing for a specified count,
+        /// Generates a list of <see cref="INumber{TSelf}"/> values starting from a specified value and continuing for a specified count,
         /// with each value incremented by 1 from the starting point.
         /// </summary>
         /// <param name="count">The number of values to generate in the list.</param>
-        /// <returns>A <see cref="List{TNumber}"/> containing the generated range of <see cref="TNumber"/> values,
+        /// <returns>A <see cref="List{INumber}"/> containing the generated range of <see cref="INumber{TSelf}"/> values,
         /// incremented by 1 from the starting point.</returns>
         /// <exception cref="ArgumentException">Thrown if the count is less than zero.</exception>
         public List<TNumber> GenerateNumberRangeAsList(TNumber count)

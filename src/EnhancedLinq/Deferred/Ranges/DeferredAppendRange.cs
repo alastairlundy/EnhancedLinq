@@ -15,9 +15,6 @@
      limitations under the License.
  */
 
-#if NET8_0_OR_GREATER
-using System;
-#endif
 using System;
 using System.Collections.Generic;
 

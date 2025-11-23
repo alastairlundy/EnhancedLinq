@@ -37,6 +37,7 @@ internal class ElementsAtEnumerator<TSource> : IEnumerator<TSource>
       IEnumerable<TSource> values = indices.Select(i => source.ElementAt(i));
 
       _enumerator = values.GetEnumerator();
+      Current = _enumerator.Current;
     }
 
     public bool MoveNext()
