@@ -7,7 +7,7 @@ C# language version must be set to 14 or higher for EnhancedLinq to work.
 
 ## License
 
-This project is licensed under the **Apache 2.0 License**. See the [LICENSE](../../LICENSE.txt) file for more details.
+This project is licensed under the **MPL 2.0 License**. See the [LICENSE](../../LICENSE.txt) file for more details.
 
 ## Features
 

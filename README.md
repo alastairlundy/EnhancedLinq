@@ -106,7 +106,7 @@ I welcome contributions. If you have ideas for new features, improvements, or bu
 
 ## 📜 License
 
-**EnhancedLinq** is licensed under the **Apache 2.0 license**. Feel free to use and modify EnhancedLinq according to the terms of the license.
+**EnhancedLinq** is licensed under the **MPL 2.0 license**. Feel free to use and modify EnhancedLinq according to the terms of the license.
 
 ## ❓ Questions?
 

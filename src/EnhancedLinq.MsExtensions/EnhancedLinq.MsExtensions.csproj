@@ -14,7 +14,7 @@
         <PackageReleaseNotes>* Updated to DotExtensions.MsExtensions 9.1.0 Preview 1 from 9.0.0 (#110)
 * Updated to Polyfill 9.3.0 from 9.1.0</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+        <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <PackageId>AlastairLundy.EnhancedLinq.MsExtensions</PackageId>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <IncludeSymbols>true</IncludeSymbols>

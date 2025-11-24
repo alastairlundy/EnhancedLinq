@@ -20,7 +20,7 @@
 * Enabled Argument Exception style ThrowIfX Polyfill methods for .NET Standard 2.0
 * Converted some Deferred methods to extension blocks</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+        <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <Description>Additional LINQ style Deferred and Immediate enumeration mode extension methods for .NET . </Description>
         <PackageTags>linq, enhancedlinq, enhanced, deferred-execution,extensions</PackageTags>
         <IncludeSymbols>true</IncludeSymbols>

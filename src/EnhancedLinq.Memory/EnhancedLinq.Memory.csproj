@@ -19,7 +19,7 @@
 * Add ElementsAtOrDefault and ElementsAt for Memory package (#107 ) 
 * Enabled code path in Span&lt;T&gt; ``GetRange`` method previously only accessible to .NET 8+ due to .NET Standard 2 backport of ``IsIncrementedRange`` in DotExtensions
 * Enabled Argument Exception style ThrowIfX Polyfill methods, using Polyfill 9.3.0, for .NET Standard 2.0</PackageReleaseNotes>
-        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+        <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <IncludeSymbols>true</IncludeSymbols>
