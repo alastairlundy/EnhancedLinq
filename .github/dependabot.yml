@@ -8,29 +8,10 @@ updates:
   - package-ecosystem: "nuget" # See documentation for possible values
     directory: "src" # Location of package manifests
     schedule:
-      interval: "daily"
+      interval: daily
 
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: daily
 
-  - package-ecosystem: nuget
-    directory: /src/EnhancedLinq.Memory
-    schedule:
-      interval: daily
-
-  - package-ecosystem: nuget
-    directory: /src/EnhancedLinq.MsExtensions
-    schedule:
-      interval: daily
-
-  - package-ecosystem: nuget
-    directory: /src/EnhancedLinq.Tests
-    schedule:
-      interval: daily
-
-  - package-ecosystem: nuget
-    directory: /src/EnhancedLinq
-    schedule:
-      interval: daily
