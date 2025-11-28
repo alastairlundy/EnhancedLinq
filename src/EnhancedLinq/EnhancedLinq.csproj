@@ -50,7 +50,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="AlastairLundy.DotExtensions" Version="9.1.0-preview.2" />
+      <PackageReference Include="AlastairLundy.DotExtensions" Version="9.1.0" />
     </ItemGroup>
 
     <ItemGroup>
