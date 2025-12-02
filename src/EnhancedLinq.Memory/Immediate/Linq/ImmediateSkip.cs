@@ -7,7 +7,9 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-namespace AlastairLundy.EnhancedLinq.Memory.Immediate;
+using EnhancedLinq.Memory.Internals.Localizations;
+
+namespace EnhancedLinq.Memory.Immediate;
 
 public static partial class EnhancedLinqMemoryImmediate
 {

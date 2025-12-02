@@ -10,8 +10,9 @@
 
 using System.Linq;
 using AlastairLundy.DotExtensions.Numbers;
+using EnhancedLinq.Memory.Internals.Localizations;
 
-namespace AlastairLundy.EnhancedLinq.Memory.Immediate.Ranges;
+namespace EnhancedLinq.Memory.Immediate.Ranges;
 
 /// <summary>
 /// 

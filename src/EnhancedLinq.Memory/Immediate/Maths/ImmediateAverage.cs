@@ -10,7 +10,7 @@
 #if NET8_0_OR_GREATER
 using AlastairLundy.DotExtensions.Numbers;
 
-namespace AlastairLundy.EnhancedLinq.Memory.Immediate.Maths;
+namespace EnhancedLinq.Memory.Immediate.Maths;
 
 /// <summary>
 /// Provides extension methods for performing arithmetic operations such as sum and average

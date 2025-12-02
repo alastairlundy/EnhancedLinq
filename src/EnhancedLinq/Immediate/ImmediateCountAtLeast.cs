@@ -10,9 +10,7 @@
 using System;
 using System.Collections.Generic;
 
-using AlastairLundy.EnhancedLinq.Internals.Localizations;
-
-namespace AlastairLundy.EnhancedLinq.Immediate;
+namespace EnhancedLinq.Immediate;
 
 public static partial class EnhancedLinqImmediate
 {

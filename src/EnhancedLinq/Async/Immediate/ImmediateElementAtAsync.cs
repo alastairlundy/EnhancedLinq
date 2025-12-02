@@ -10,10 +10,9 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using EnhancedLinq.Internals.Localizations;
 
-using AlastairLundy.EnhancedLinq.Internals.Localizations;
-
-namespace AlastairLundy.EnhancedLinq.Async.Immediate;
+namespace EnhancedLinq.Async.Immediate;
 
 public static partial class EnhancedLinqAsyncImmediate
 {

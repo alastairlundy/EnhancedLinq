@@ -11,7 +11,7 @@ using System;
 using System.Collections.Generic;
 using EnhancedLinq.Deferred;
 
-namespace AlastairLundy.EnhancedLinq.Immediate;
+namespace EnhancedLinq.Immediate;
 
 public static partial class EnhancedLinqImmediate
 {
@@ -30,7 +30,7 @@ public static partial class EnhancedLinqImmediate
             ArgumentNullException.ThrowIfNull(oldValue);
             ArgumentNullException.ThrowIfNull(newValue);
             
-            ICollection<int> indices = source.IndicesOf(oldValue);
+            IEnumerable<int> indices = source.IndicesOf(oldValue);
 
             foreach (int index in indices)
             {

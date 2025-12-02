@@ -9,13 +9,11 @@
 
 using System.Collections;
 using System.Collections.Generic;
-
-using AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerators;
-using AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
-
+using EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerators;
+using EnhancedLinq.MsExtensions.StringSegments.Immediate;
 using Microsoft.Extensions.Primitives;
 
-namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerables;
+namespace EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerables;
 
 internal class SegmentIndicesEnumerable : IEnumerable<int>
 {

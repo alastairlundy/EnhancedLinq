@@ -9,16 +9,16 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Linq; 
 
 #if NET8_0_OR_GREATER
 using System.Numerics;
-using AlastairLundy.EnhancedLinq.Deferred.Enumerables.NumberRanges;
+using EnhancedLinq.Deferred.Enumerables.NumberRanges;
 #endif
 
 // ReSharper disable ConvertClosureToMethodGroup
 
-namespace AlastairLundy.EnhancedLinq.Deferred;
+namespace EnhancedLinq.Deferred;
 
 public static partial class EnhancedLinqDeferred
 {

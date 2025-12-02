@@ -10,7 +10,7 @@
 
 #if NET8_0_OR_GREATER
 
-namespace AlastairLundy.EnhancedLinq.Memory.Immediate.Maths;
+namespace EnhancedLinq.Memory.Immediate.Maths;
 
 public static partial class EnhancedLinqMemoryImmediateMaths
 {

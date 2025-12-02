@@ -10,7 +10,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AlastairLundy.EnhancedLinq.Immediate.Dictionaries;
+namespace EnhancedLinq.Immediate.Dictionaries;
 
 /// <summary>
 /// Provides a collection of extension methods for performing enhanced LINQ operations on dictionaries.

@@ -9,10 +9,9 @@
 
 using System;
 using System.Collections.Concurrent;
+using EnhancedLinq.Internals.Localizations;
 
-using AlastairLundy.EnhancedLinq.Internals.Localizations;
-
-namespace AlastairLundy.EnhancedLinq.Immediate.Concurrent.Ranges;
+namespace EnhancedLinq.Immediate.Concurrent.Ranges;
 
 /// <summary>
 /// Provides extension methods for retrieving or adding ranges of elements from concurrent collections.

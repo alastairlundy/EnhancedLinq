@@ -11,7 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AlastairLundy.EnhancedLinq.Deferred;
+namespace EnhancedLinq.Deferred;
 
 public static partial class EnhancedLinqDeferred
 {

@@ -12,7 +12,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AlastairLundy.EnhancedLinq.Immediate.Concurrent;
+namespace EnhancedLinq.Immediate.Concurrent;
 
 /// <summary>
 /// Provides a set of static methods for immediate, concurrent processing and manipulation of collections

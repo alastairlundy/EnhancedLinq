@@ -11,7 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace AlastairLundy.EnhancedLinq.Async.Immediate;
+namespace EnhancedLinq.Async.Immediate;
 
 /// <summary>
 /// Provides immediate mode asynchronous operations using Async methods.

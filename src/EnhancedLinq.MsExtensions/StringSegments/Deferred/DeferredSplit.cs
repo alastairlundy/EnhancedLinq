@@ -9,15 +9,13 @@
 
 using System;
 using System.Collections.Generic;
-
 using AlastairLundy.DotExtensions.MsExtensions.StringSegments;
-using AlastairLundy.EnhancedLinq.MsExtensions.Internals.Infra;
-using AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerables;
-using AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerators;
-
+using EnhancedLinq.MsExtensions.Internals.Infra;
+using EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerables;
+using EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerators;
 using Microsoft.Extensions.Primitives;
 
-namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred;
+namespace EnhancedLinq.MsExtensions.StringSegments.Deferred;
 
 public static partial class EnhancedLinqSegmentDeferred
 {

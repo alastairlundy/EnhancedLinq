@@ -27,9 +27,7 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <Version>0.13.0</Version>
-        <AssemblyName>AlastairLundy.EnhancedLinq.Memory</AssemblyName>
-        <PackageId>AlastairLundy.EnhancedLinq.Memory</PackageId>
-        <RootNamespace>AlastairLundy.EnhancedLinq.Memory</RootNamespace>
+        <PackageId>EnhancedLinq.Memory</PackageId>
         <PolyArgumentExceptions>true</PolyArgumentExceptions>
     </PropertyGroup>
 

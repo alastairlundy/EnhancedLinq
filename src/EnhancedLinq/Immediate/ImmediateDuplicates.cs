@@ -10,7 +10,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace AlastairLundy.EnhancedLinq.Immediate;
+namespace EnhancedLinq.Immediate;
 
 public static partial class EnhancedLinqImmediate
 {
@@ -32,7 +32,7 @@ public static partial class EnhancedLinqImmediate
             {
                 bool result = hash.Add(item);
 
-                if (result == false)
+                if (!result)
                     return true;
             }
 

@@ -14,7 +14,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 
-namespace AlastairLundy.EnhancedLinq.Deferred.Enumerators.NumberRanges;
+namespace EnhancedLinq.Deferred.Enumerators.NumberRanges;
 
 internal class NumberRangeEnumerator<TNumber> : IEnumerator<TNumber> where TNumber : INumber<TNumber>
 {

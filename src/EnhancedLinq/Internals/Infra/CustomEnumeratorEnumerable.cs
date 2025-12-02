@@ -26,7 +26,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace AlastairLundy.EnhancedLinq.Internals.Infra;
+namespace EnhancedLinq.Internals.Infra;
 
 /// <summary>
 /// A sequence that wraps a custom enumerator.

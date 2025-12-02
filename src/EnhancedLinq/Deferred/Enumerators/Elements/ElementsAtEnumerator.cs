@@ -12,9 +12,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-using AlastairLundy.EnhancedLinq.Immediate;
-
-namespace AlastairLundy.EnhancedLinq.Deferred.Enumerators;
+namespace EnhancedLinq.Deferred.Enumerators;
 
 internal class ElementsAtEnumerator<TSource> : IEnumerator<TSource>
 {

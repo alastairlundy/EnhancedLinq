@@ -10,12 +10,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
-using AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred;
-
+using EnhancedLinq.MsExtensions.StringSegments.Deferred;
 using Microsoft.Extensions.Primitives;
 
-namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
+namespace EnhancedLinq.MsExtensions.StringSegments.Immediate;
 
 public static partial class EnhancedLinqSegmentImmediate
 {
@@ -32,8 +30,8 @@ public static partial class EnhancedLinqSegmentImmediate
             if(StringSegment.IsNullOrEmpty(target))
                 throw new ArgumentNullException(nameof(target));
         
-            IEnumerable<bool> groups = target.GroupBy(predicate)
-                .Select(g => g.Any());
+            IEnumerable<bool> groups = Enumerable
+                .Select<IGrouping<bool, char>, bool>(target.GroupBy(predicate), g => Enumerable.Any<char>(g));
       
             return groups.Distinct().Count() == 1;
         }

@@ -7,7 +7,7 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-namespace AlastairLundy.EnhancedLinq.Memory.Immediate;
+namespace EnhancedLinq.Memory.Immediate;
 
 public static partial class EnhancedLinqMemoryImmediate
 {
@@ -16,9 +16,10 @@ public static partial class EnhancedLinqMemoryImmediate
     extension<T>(Span<T> span)
     {
         /// <summary>
-        /// 
+        /// Returns a collection of indices of all elements within the given span, starting from an initial index of zero.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A collection of integers representing the indices of the elements in the span starting from index zero.</returns>
+        /// <exception cref="InvalidOperationException">Thrown when the span is empty.</exception>
         public ICollection<int> Index()
             => Index(span, 0);
 

@@ -9,7 +9,7 @@
 
 using System.Linq;
 
-namespace AlastairLundy.EnhancedLinq.Memory.Immediate;
+namespace EnhancedLinq.Memory.Immediate;
 
 public static partial class EnhancedLinqMemoryImmediate
 {

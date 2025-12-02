@@ -10,7 +10,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace AlastairLundy.EnhancedLinq.Immediate.Linq;
+namespace EnhancedLinq.Immediate.Linq;
 
 public static partial class EnhancedLinqImmediateList
 {

@@ -11,7 +11,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace AlastairLundy.EnhancedLinq.Immediate.Dictionaries.Ranges;
+namespace EnhancedLinq.Immediate.Dictionaries.Ranges;
 
 /// <summary>
 /// Provides extension methods for adding multiple items to dictionaries.

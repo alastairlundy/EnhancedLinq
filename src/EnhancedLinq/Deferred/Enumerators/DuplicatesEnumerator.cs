@@ -11,7 +11,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace AlastairLundy.EnhancedLinq.Deferred.Enumerators;
+namespace EnhancedLinq.Deferred.Enumerators;
 
 internal class DuplicatesEnumerator<TSource> : IEnumerator<TSource>
 {

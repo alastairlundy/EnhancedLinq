@@ -10,9 +10,7 @@
 using System;
 using System.Collections.Generic;
 
-using AlastairLundy.EnhancedLinq.Internals.Localizations;
-
-namespace AlastairLundy.EnhancedLinq.Immediate.Linq;
+namespace EnhancedLinq.Immediate.Linq;
 
 /// <summary>
 /// A class that represents a collection of methods to extend LINQ capabilities for immediate list/array operations.

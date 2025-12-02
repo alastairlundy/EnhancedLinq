@@ -11,7 +11,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace AlastairLundy.EnhancedLinq.Deferred.Enumerators.Ranges;
+namespace EnhancedLinq.Deferred.Enumerators.Ranges;
 
 internal class InsertRangeEnumerator<T> : IEnumerator<T>
 {

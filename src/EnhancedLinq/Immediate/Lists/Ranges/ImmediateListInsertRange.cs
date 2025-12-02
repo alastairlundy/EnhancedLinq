@@ -9,11 +9,9 @@
 
 using System;
 using System.Collections.Generic;
+using EnhancedLinq.Immediate.Linq;
 
-using AlastairLundy.EnhancedLinq.Immediate.Linq;
-using AlastairLundy.EnhancedLinq.Internals.Localizations;
-
-namespace AlastairLundy.EnhancedLinq.Immediate.Ranges;
+namespace EnhancedLinq.Immediate.Ranges;
 
 /// <summary>
 /// Provides functionality to work with immediate insertion of ranges of items into collections and lists.

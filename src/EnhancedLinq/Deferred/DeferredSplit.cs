@@ -9,10 +9,9 @@
 
 using System;
 using System.Collections.Generic;
+using EnhancedLinq.Deferred.Enumerators;
 
-using AlastairLundy.EnhancedLinq.Deferred.Enumerators;
-
-namespace AlastairLundy.EnhancedLinq.Deferred;
+namespace EnhancedLinq.Deferred;
 
 public static partial class EnhancedLinqDeferred
 {

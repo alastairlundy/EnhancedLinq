@@ -11,12 +11,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
-using AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred;
-
+using EnhancedLinq.MsExtensions.StringSegments.Deferred;
 using Microsoft.Extensions.Primitives;
 
-namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
+namespace EnhancedLinq.MsExtensions.StringSegments.Immediate;
 
 public static partial class EnhancedLinqSegmentImmediate
 {
@@ -60,11 +58,11 @@ public static partial class EnhancedLinqSegmentImmediate
         /// Splits a StringSegment into StringSegment subsegments using a specified <see cref="StringSegment"/> separator.
         /// </summary>
         /// <param name="separator">The separator to delimit the StringSegment subsegments in the source StringSegment.</param>
-        /// <returns>An array of StringSegment subsegments, from the source StringSegment that is delimited by the separator.</returns>
+        /// <returns>An array of StringSegment subsegments from the source StringSegment that is delimited by the separator.</returns>
         public StringSegment[] Split(StringSegment separator)
         {
-            IEnumerable<int> indices = source.IndicesOf(separator)
-                .Where(x => x != -1);
+            IEnumerable<int> indices = Enumerable
+                .Where<int>(source.IndicesOf(separator), x => x != -1);
 
             List<StringSegment> output = new();
 

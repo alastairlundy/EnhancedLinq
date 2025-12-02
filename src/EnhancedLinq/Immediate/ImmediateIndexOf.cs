@@ -10,8 +10,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using EnhancedLinq.Deferred;
 
-namespace AlastairLundy.EnhancedLinq.Immediate;
+namespace EnhancedLinq.Immediate;
 
 public static partial class EnhancedLinqImmediate
 {
@@ -94,7 +95,7 @@ public static partial class EnhancedLinqImmediate
             if (str.Length < value.Length || value.Length == 0)
                 return -1;
 
-            int[] indices = str.IndicesOf(value.First());
+            IEnumerable<int> indices = str.IndicesOf(value.First());
 
             foreach (int index in indices)
             {

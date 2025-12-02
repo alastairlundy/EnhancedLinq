@@ -9,10 +9,9 @@
 
 using System;
 using System.Collections.Generic;
+using EnhancedLinq.Deferred.Enumerables;
 
-using AlastairLundy.EnhancedLinq.Deferred.Enumerables;
-
-namespace AlastairLundy.EnhancedLinq.Deferred.Ranges;
+namespace EnhancedLinq.Deferred.Ranges;
 
 /// <summary>
 /// This static partial class contains Deferred Execution Range related extension methods (such as <see cref="AppendRange{TSource}"/>

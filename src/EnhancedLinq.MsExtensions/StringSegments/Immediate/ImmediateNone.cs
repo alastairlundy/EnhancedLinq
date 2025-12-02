@@ -8,10 +8,9 @@
     */
 
 using System;
-
 using Microsoft.Extensions.Primitives;
 
-namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
+namespace EnhancedLinq.MsExtensions.StringSegments.Immediate;
 
 public static partial class EnhancedLinqSegmentImmediate
 {

@@ -7,15 +7,16 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-#if NET8_0_OR_GREATER
-using System;
+
 using System.Collections.Generic;
 using System.Numerics;
 using AlastairLundy.DotExtensions.Numbers;
-using AlastairLundy.EnhancedLinq.Internals.Localizations;
+using EnhancedLinq.Internals.Localizations;
+#if NET8_0_OR_GREATER
+using System;
 #endif
 
-namespace AlastairLundy.EnhancedLinq.Immediate.Ranges;
+namespace EnhancedLinq.Immediate.Ranges;
 
 public static partial class EnhancedLinqImmediateRange
 {

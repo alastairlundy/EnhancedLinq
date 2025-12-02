@@ -9,9 +9,9 @@
 
 using System;
 using System.Collections.Generic;
-using AlastairLundy.EnhancedLinq.Internals.Localizations;
+using EnhancedLinq.Internals.Localizations;
 
-namespace AlastairLundy.EnhancedLinq.Immediate.Ranges;
+namespace EnhancedLinq.Immediate.Ranges;
 
 /// <summary>
 /// Provides extended functionality for working with ranges of elements in lists,

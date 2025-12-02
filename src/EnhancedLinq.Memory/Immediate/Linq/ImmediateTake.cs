@@ -10,7 +10,9 @@
 
 // ReSharper disable ReplaceSliceWithRangeIndexer
 
-namespace AlastairLundy.EnhancedLinq.Memory.Immediate;
+using EnhancedLinq.Memory.Internals.Localizations;
+
+namespace EnhancedLinq.Memory.Immediate;
 
 public static partial class EnhancedLinqMemoryImmediate
 {

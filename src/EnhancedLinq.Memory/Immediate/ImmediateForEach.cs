@@ -10,7 +10,7 @@
 
 // ReSharper disable ForCanBeConvertedToForeach
 
-namespace AlastairLundy.EnhancedLinq.Memory.Immediate;
+namespace EnhancedLinq.Memory.Immediate;
 
 public static partial class EnhancedLinqMemoryImmediate
 {

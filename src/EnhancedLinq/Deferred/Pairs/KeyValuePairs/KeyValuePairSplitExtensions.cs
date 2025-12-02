@@ -11,7 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AlastairLundy.EnhancedLinq.Deferred.Pairs.KeyValuePairs;
+namespace EnhancedLinq.Deferred.Pairs.KeyValuePairs;
 
 /// <summary>
 /// This static class contains Deferred Execution extension methods for sequences that store <see cref="KeyValuePair{TKey,TValue}"/>.

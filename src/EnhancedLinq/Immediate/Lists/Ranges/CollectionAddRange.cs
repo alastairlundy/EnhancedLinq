@@ -10,7 +10,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace AlastairLundy.EnhancedLinq.Immediate.Ranges;
+namespace EnhancedLinq.Immediate.Ranges;
 
 public static partial class EnhancedLinqImmediateRange
 {

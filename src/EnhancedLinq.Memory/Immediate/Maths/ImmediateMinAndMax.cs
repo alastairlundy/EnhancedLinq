@@ -10,7 +10,7 @@
 
 #if NET8_0_OR_GREATER
 
-namespace AlastairLundy.EnhancedLinq.Memory.Immediate.Maths;
+namespace EnhancedLinq.Memory.Immediate.Maths;
 
 /// <summary>
 /// Provides an implementation of immediate mathematical operations on memory spans

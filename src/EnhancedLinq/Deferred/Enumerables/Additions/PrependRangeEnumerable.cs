@@ -10,7 +10,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace AlastairLundy.EnhancedLinq.Deferred.Enumerables;
+namespace EnhancedLinq.Deferred.Enumerables;
 
 internal class PrependRangeEnumerable<TSource> : IEnumerable<TSource>
 {
