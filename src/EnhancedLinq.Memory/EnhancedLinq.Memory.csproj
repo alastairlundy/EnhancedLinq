@@ -34,8 +34,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AlastairLundy.DotExtensions" Version="9.1.0" />
-        <PackageReference Include="AlastairLundy.DotExtensions.Memory" Version="9.1.0" />
+        <PackageReference Include="AlastairLundy.DotExtensions" Version="9.1.1" />
+        <PackageReference Include="AlastairLundy.DotExtensions.Memory" Version="9.1.1" />
         <PackageReference Include="AlastairLundy.DotPrimitives.Collections" Version="4.0.0" />
         <PackageReference Include="Polyfill" Version="9.3.1" PrivateAssets="all"
                           Condition="'$(TargetFramework)' == 'netstandard2.0'"/>
@@ -61,9 +61,5 @@
             <Link>README.md</Link>
             <PackagePath>README.md</PackagePath>
         </Content>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Internals\Helpers\" />
     </ItemGroup>
 </Project>
