@@ -13,7 +13,9 @@
 namespace AlastairLundy.EnhancedLinq.Memory.Immediate.Maths;
 
 /// <summary>
-/// 
+/// Provides an implementation of immediate mathematical operations on memory spans
+/// for use in scenarios that demand enhanced LINQ-like capabilities with a focus
+/// on performance and utility.
 /// </summary>
 public static partial class EnhancedLinqMemoryImmediateMaths
 {
