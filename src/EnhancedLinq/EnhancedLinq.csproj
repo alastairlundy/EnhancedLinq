@@ -12,13 +12,14 @@
         <RepositoryUrl>https://github.com/alastairlundy/Enhancedlinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageReleaseNotes>* Updated to DotExtensions 9.1.0 Preview 2 from 9.0.0 (#110)
-* Updated to Polyfill 9.3.0 from 9.1.0 ( #110 )
-* Fixed a bug where ``IndicesOf`` Immediate mode extensions would return the wrong indices
-* Fixed a bug where ``LastIndexOf`` Immediate mode extensions would not return the last index of the element
-* Fixed a bug where SplitByItemCountEnumerator failed to execute due to an incorrect state configuration
-* Enabled Argument Exception style ThrowIfX Polyfill methods for .NET Standard 2.0
-* Converted some Deferred methods to extension blocks</PackageReleaseNotes>
+        <PackageReleaseNotes>## All packages
+* Shortened Nuget package Ids to start with ``EnhancedLinq``
+* Shortened package namespaces
+
+### Main package
+* Updated to DotExtensions 9.1.1 from 9.0.0
+* Updated to Polyfill 9.3.1 from 9.3.0
+* Removed immediate mode ``IndicesOf`` extensions - Use the Deferred execution mode extensions instead</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <Description>Additional LINQ style Deferred and Immediate enumeration mode extension methods for .NET . </Description>
@@ -27,7 +28,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>0.13.0</Version>
+        <Version>1.0.0-alpha.1</Version>
         <PackageId>EnhancedLinq</PackageId>
         <PolyArgumentExceptions>true</PolyArgumentExceptions>
     </PropertyGroup>

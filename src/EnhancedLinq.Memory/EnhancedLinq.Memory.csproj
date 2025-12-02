@@ -13,12 +13,15 @@
         <RepositoryUrl>https://github.com/alastairlundy/EnhancedLinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>linq, enhanced-linq, enhanced, extensions, memory, extensions</PackageTags>
-        <PackageReleaseNotes>* Updated to DotExtensions.Memory 9.1.0 Preview 2 from 9.0.0 (#110 )
-* Added missing ``Count``, ``Distinct``, ``Select``, and ``First`` and ``Last`` predicate methods for ``ReadOnlySpan&lt;T&gt;``, ``ReadOnlyMemory&lt;T&gt;``, and ``Memory&lt;T&gt;`` ( #108)
-* Added Immediate mode method ``DistinctBy`` LINQ style extensions
-* Add ElementsAtOrDefault and ElementsAt for Memory package (#107 ) 
-* Enabled code path in Span&lt;T&gt; ``GetRange`` method previously only accessible to .NET 8+ due to .NET Standard 2 backport of ``IsIncrementedRange`` in DotExtensions
-* Enabled Argument Exception style ThrowIfX Polyfill methods, using Polyfill 9.3.0, for .NET Standard 2.0</PackageReleaseNotes>
+        <PackageReleaseNotes>## Changes since 0.13.0
+## All packages
+* Shortened Nuget package Ids to start with ``EnhancedLinq``
+* Shortened package namespaces
+
+### Memory package
+* Updated to DotExtensions 9.1.1 from 9.0.0
+* Updated to DotExtensions.Memory 9.1.1 from 9.0.0
+* Updated to Polyfill 9.3.1 from 9.3.0</PackageReleaseNotes>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -26,7 +29,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>0.13.0</Version>
+        <Version>1.0.0-alpha.1</Version>
         <PackageId>EnhancedLinq.Memory</PackageId>
         <PolyArgumentExceptions>true</PolyArgumentExceptions>
     </PropertyGroup>
