@@ -25,9 +25,9 @@ Getting started with **EnhancedLinq** is easy! You can install the packages usin
 
 | Package Id                                           | NuGet Link                                                                                            | .NET SDK CLI Command                                         |
 |------------------------------------------------------|-------------------------------------------------------------------------------------------------------|--------------------------------------------------------------|
-| EnhancedLinq.MsExtensions              | [EnhancedLinq NuGet](https://nuget.org/packages/EnhancedLinq)                           | `dotnet add package EnhancedLinq.`             |
-| EnhancedLinq.EnhancedLinq.Memory       | [EnhancedLinq.Memory NuGet](https://nuget.org/packages/EnhancedLinq.Memory)             | `dotnet add package EnhancedLinq.Memory`       |
-| EnhancedLinq.EnhancedLinq.MsExtensions | [EnhancedLinq.MsExtensions NuGet](https://nuget.org/packages/EnhancedLinq.MsExtensions) | `dotnet add package EnhancedLinq.MsExtensions` |
+| EnhancedLinq              | [EnhancedLinq NuGet](https://nuget.org/packages/EnhancedLinq)                           | `dotnet add package EnhancedLinq.`             |
+| EnhancedLinq.Memory       | [EnhancedLinq.Memory NuGet](https://nuget.org/packages/EnhancedLinq.Memory)             | `dotnet add package EnhancedLinq.Memory`       |
+| EnhancedLinq.MsExtensions | [EnhancedLinq.MsExtensions NuGet](https://nuget.org/packages/EnhancedLinq.MsExtensions) | `dotnet add package EnhancedLinq.MsExtensions` |
 
 ## 📖 Usage
 Here are some examples demonstrating how to use some methods provided by EnhancedLinq.
