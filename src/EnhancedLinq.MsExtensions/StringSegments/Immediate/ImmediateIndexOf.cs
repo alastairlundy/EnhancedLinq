@@ -9,7 +9,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
-
+using EnhancedLinq.MsExtensions.StringSegments.Deferred;
 using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
@@ -29,8 +29,8 @@ public static partial class EnhancedLinqSegmentImmediate
             if (@this.Length < segment.Length || segment.Length == 0)
                 return -1;
         
-            IEnumerable<int> indexes = @this.IndicesOf(segment[0])
-                .Where(x  => x != -1);
+            IEnumerable<int> indexes = Enumerable
+                .Where<int>(@this.IndicesOf(segment[0]), x  => x != -1);
 
             foreach (int index in indexes)
             {

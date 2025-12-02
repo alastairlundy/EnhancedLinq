@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections.Generic;
+using EnhancedLinq.Deferred;
 
 namespace AlastairLundy.EnhancedLinq.Immediate;
 
@@ -16,7 +17,7 @@ public static partial class EnhancedLinqImmediate
 {
     /// <param name="source">The IList to be modified.</param>
     /// <typeparam name="T">The type of value.</typeparam>
-    extension<T>(IList<T> source)
+    extension<T>(IList<T> source) where T : notnull
     {
         /// <summary>
         /// Replaces all occurrences of an item in an IList with a replacement item.
