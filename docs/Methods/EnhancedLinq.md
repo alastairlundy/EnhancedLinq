@@ -38,10 +38,6 @@ Selects the Keys from a sequence of ``KeyValuePair<TKey, TValue>``.
 Selects the Values from a sequence of ``KeyValuePair<TKey, TValue>``.
 
 ## Immediate Execution
-
-**IsEmpty**
-Determines if a sequence is empty.
-
 **ContainsDuplicates**
 Determines whether a sequence contains duplicate instances of an object.
 
@@ -52,9 +48,6 @@ Retrieves the element at the specified index from a sequence.
 Retrieves the index of an element or a specified predicate within the sequence.
 
 This method has 1 overload.
-
-
-### Non IEnumerable<T> Generic Collections
 
 **ElementsAt**
 Gets the elements in a source sequence at the corresponding list of indices.
