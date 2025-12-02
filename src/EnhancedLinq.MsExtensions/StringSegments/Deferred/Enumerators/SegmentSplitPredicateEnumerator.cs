@@ -7,12 +7,9 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using Microsoft.Extensions.Primitives;
 
-namespace EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerators;
+namespace EnhancedLinq.MsExtensions.Deferred;
 
 internal class SegmentSplitPredicateEnumerator : IEnumerator<StringSegment>
 {

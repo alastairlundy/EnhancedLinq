@@ -7,15 +7,9 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-using System;
-using System.Collections.Generic;
-using AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 using EnhancedLinq.MsExtensions.Internals.Infra;
-using EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerables;
-using EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerators;
-using Microsoft.Extensions.Primitives;
 
-namespace EnhancedLinq.MsExtensions.StringSegments.Deferred;
+namespace EnhancedLinq.MsExtensions.Deferred;
 
 public static partial class EnhancedLinqSegmentDeferred
 {
@@ -29,9 +23,8 @@ public static partial class EnhancedLinqSegmentDeferred
         /// <returns>An <see cref="IEnumerable{StringSegment}"/> containing the split segments. Returns an empty sequence if the separator is not found.</returns>
         public IEnumerable<StringSegment> SplitBy(char separator)
         {
-            if (StringSegment.IsNullOrEmpty(source))
-                throw new ArgumentException();
-        
+            ArgumentException.ThrowIfNullOrWhitespace(source);
+            
             if (source.Contains(separator) == false)
                 return [source];
 
@@ -46,10 +39,10 @@ public static partial class EnhancedLinqSegmentDeferred
         /// <exception cref="ArgumentException">Thrown if <paramref name="separator"/> or <paramref name="source"/> is null or empty.</exception>
         public IEnumerable<StringSegment> SplitBy(StringSegment separator)
         {
-            if (StringSegment.IsNullOrEmpty(separator) || StringSegment.IsNullOrEmpty(source))
-                throw new ArgumentException();
+            ArgumentException.ThrowIfNullOrWhitespace(source);
+            ArgumentException.ThrowIfNullOrWhitespace(separator);
             
-            if (source.Contains(separator) == false)
+            if (!source.Contains(separator))
                 return [source];
         
             return new SegmentSplitEnumerable(source, separator);
@@ -62,8 +55,8 @@ public static partial class EnhancedLinqSegmentDeferred
         /// <returns>An <see cref="IEnumerable{StringSegment}"/> containing the split segments.</returns>
         public IEnumerable<StringSegment> SplitBy(Func<char, bool> predicate)
         {
-            if (StringSegment.IsNullOrEmpty(source))
-                throw new ArgumentException();
+            ArgumentException.ThrowIfNullOrWhitespace(source);
+            ArgumentNullException.ThrowIfNull(predicate);
 
             return new CustomEnumeratorEnumerable<StringSegment>
                 (new SegmentSplitPredicateEnumerator(source, predicate));

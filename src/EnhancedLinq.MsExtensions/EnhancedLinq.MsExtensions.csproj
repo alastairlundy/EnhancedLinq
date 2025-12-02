@@ -21,6 +21,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <PolyArgumentExceptions>true</PolyArgumentExceptions>
         <Version>0.13.0</Version>
         <PackageTags>linq, enhanced-linq, enhanced, stringsegment, extensions</PackageTags>
         <Description>LINQ style Deferred and Immediate enumeration mode extension methods for StringSegments and potentially other Microsoft.Extension.* packages in the future . </Description>
@@ -30,6 +31,8 @@
       <PackageReference Include="AlastairLundy.DotExtensions.MsExtensions" Version="9.1.1" />
       <PackageReference Include="AlastairLundy.DotPrimitives.Collections" Version="4.0.0" />
       <PackageReference Include="Microsoft.Extensions.Primitives" Version="10.0.0" />
+        <PackageReference Include="Polyfill" PrivateAssets="all" Condition="'$(TargetFramework)' == 'netstandard2.0'"
+                          Version="9.3.1"/>
     </ItemGroup>
 
     <ItemGroup>

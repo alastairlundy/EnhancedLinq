@@ -7,12 +7,7 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-using System;
-using System.Collections.Generic;
-using EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerables;
-using Microsoft.Extensions.Primitives;
-
-namespace EnhancedLinq.MsExtensions.StringSegments.Deferred;
+namespace EnhancedLinq.MsExtensions.Deferred;
 
 public static partial class EnhancedLinqSegmentDeferred
 {
@@ -27,8 +22,7 @@ public static partial class EnhancedLinqSegmentDeferred
         /// <exception cref="ArgumentException">Thrown if the source is null or empty.</exception>
         public IEnumerable<int> IndicesOf(char c)
         {
-            if (StringSegment.IsNullOrEmpty(source))
-                throw new ArgumentException();
+            ArgumentException.ThrowIfNullOrWhitespace(source);
 
             return new SegmentIndicesEnumerable(source, c);
         }
@@ -41,8 +35,8 @@ public static partial class EnhancedLinqSegmentDeferred
         /// <exception cref="ArgumentException">Thrown if the source is null or empty.</exception>
         public IEnumerable<int> IndicesOf(StringSegment segment)
         {
-            if (StringSegment.IsNullOrEmpty(source))
-                throw new ArgumentException();
+            ArgumentException.ThrowIfNullOrWhitespace(source);
+            ArgumentException.ThrowIfNullOrWhitespace(segment);
 
             return new SegmentIndicesEnumerable(source, segment);
         }

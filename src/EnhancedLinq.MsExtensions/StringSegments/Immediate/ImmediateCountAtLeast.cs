@@ -7,11 +7,7 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-using System;
-using EnhancedLinq.MsExtensions.Internals.Localizations;
-using Microsoft.Extensions.Primitives;
-
-namespace EnhancedLinq.MsExtensions.StringSegments.Immediate;
+namespace EnhancedLinq.MsExtensions.Immediate;
 
 public static partial class EnhancedLinqSegmentImmediate
 {
@@ -25,12 +21,9 @@ public static partial class EnhancedLinqSegmentImmediate
         /// <returns><c>true</c> if there are at least the specified number of elements in the <see cref="StringSegment"/>; otherwise, <c>false</c>.</returns>
         public bool CountAtLeast(int countToLookFor)
         {
-            if(StringSegment.IsNullOrEmpty(source))
-                throw new InvalidOperationException(Resources.Exceptions_Segments_InvalidOperation_EmptySequence);
-
-            if (countToLookFor < 0)
-                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero.Replace("{x}", countToLookFor.ToString()));
-        
+            ArgumentException.ThrowIfNullOrWhitespace(source);
+            ArgumentOutOfRangeException.ThrowIfNegative(countToLookFor);
+            
             return source.Length >= countToLookFor;
         }
 
@@ -43,11 +36,9 @@ public static partial class EnhancedLinqSegmentImmediate
         public bool CountAtLeast(Func<char, bool> predicate,
             int countToLookFor)
         {
-            if(StringSegment.IsNullOrEmpty(source))
-                throw new InvalidOperationException(Resources.Exceptions_Segments_InvalidOperation_EmptySequence);
-
-            if (countToLookFor < 0)
-                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero.Replace("{x}", countToLookFor.ToString()));
+            ArgumentException.ThrowIfNullOrWhitespace(source);
+            ArgumentNullException.ThrowIfNull(predicate);
+            ArgumentOutOfRangeException.ThrowIfNegative(countToLookFor);
         
             int currentCount = 0;
 

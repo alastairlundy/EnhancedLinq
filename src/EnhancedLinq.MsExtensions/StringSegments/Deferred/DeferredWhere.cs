@@ -7,13 +7,9 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-using System;
-using System.Collections.Generic;
 using EnhancedLinq.MsExtensions.Internals.Infra;
-using EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerators;
-using Microsoft.Extensions.Primitives;
 
-namespace EnhancedLinq.MsExtensions.StringSegments.Deferred;
+namespace EnhancedLinq.MsExtensions.Deferred;
 
 /// <summary>
 /// 
@@ -30,8 +26,8 @@ public static partial class EnhancedLinqSegmentDeferred
         /// <returns>An IEnumerable of chars that matches the predicate.</returns>
         public IEnumerable<char> Where(Func<char, bool> predicate)
         {
-            if(StringSegment.IsNullOrEmpty(target)) 
-                throw new ArgumentNullException(nameof(target));
+            ArgumentException.ThrowIfNullOrWhitespace(target);
+            ArgumentNullException.ThrowIfNull(predicate);
 
             return new CustomEnumeratorEnumerable<char>(new WhereSegmentEnumerator(target, predicate));
         }

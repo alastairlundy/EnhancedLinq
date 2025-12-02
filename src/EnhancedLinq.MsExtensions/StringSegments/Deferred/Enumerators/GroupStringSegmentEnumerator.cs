@@ -7,14 +7,11 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using AlastairLundy.DotPrimitives.Collections.Groupings;
-using Microsoft.Extensions.Primitives;
 
-namespace EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerators;
+namespace EnhancedLinq.MsExtensions.Deferred;
 
 internal class GroupStringSegmentEnumerator<TKey> : IEnumerator<IGrouping<TKey, char>>
 {

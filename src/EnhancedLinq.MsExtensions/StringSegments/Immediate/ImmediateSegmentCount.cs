@@ -7,10 +7,7 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-using System;
-using Microsoft.Extensions.Primitives;
-
-namespace EnhancedLinq.MsExtensions.StringSegments.Immediate;
+namespace EnhancedLinq.MsExtensions.Immediate;
 
 public static partial class EnhancedLinqSegmentImmediate
 {
@@ -24,6 +21,9 @@ public static partial class EnhancedLinqSegmentImmediate
         /// <returns>The number of chars matching the predicate condition as an integer.</returns>
         public int Count(Func<char, bool> predicate)
         {
+            ArgumentException.ThrowIfNullOrWhitespace(target);
+            ArgumentNullException.ThrowIfNull(predicate);
+            
             int output = 0;
 
             for (int i =  0; i < target.Length; i++)

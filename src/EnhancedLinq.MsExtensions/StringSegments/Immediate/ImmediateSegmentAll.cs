@@ -7,13 +7,10 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using EnhancedLinq.MsExtensions.StringSegments.Deferred;
-using Microsoft.Extensions.Primitives;
+using EnhancedLinq.MsExtensions.Deferred;
 
-namespace EnhancedLinq.MsExtensions.StringSegments.Immediate;
+namespace EnhancedLinq.MsExtensions.Immediate;
 
 public static partial class EnhancedLinqSegmentImmediate
 {
@@ -27,11 +24,10 @@ public static partial class EnhancedLinqSegmentImmediate
         /// <returns>True if all chars in the StringSegment match the predicate; false otherwise.</returns>
         public bool All(Func<char, bool> predicate)
         {
-            if(StringSegment.IsNullOrEmpty(target))
-                throw new ArgumentNullException(nameof(target));
+            ArgumentException.ThrowIfNullOrWhitespace(target);
         
-            IEnumerable<bool> groups = Enumerable
-                .Select<IGrouping<bool, char>, bool>(target.GroupBy(predicate), g => Enumerable.Any<char>(g));
+            IEnumerable<bool> groups = target.GroupBy(predicate)
+                .Select(g => g.Any());
       
             return groups.Distinct().Count() == 1;
         }

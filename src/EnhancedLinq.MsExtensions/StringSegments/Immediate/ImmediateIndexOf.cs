@@ -7,12 +7,10 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-using System.Collections.Generic;
 using System.Linq;
-using EnhancedLinq.MsExtensions.StringSegments.Deferred;
-using Microsoft.Extensions.Primitives;
+using EnhancedLinq.MsExtensions.Deferred;
 
-namespace EnhancedLinq.MsExtensions.StringSegments.Immediate;
+namespace EnhancedLinq.MsExtensions.Immediate;
 
 public static partial class EnhancedLinqSegmentImmediate
 {
@@ -29,8 +27,8 @@ public static partial class EnhancedLinqSegmentImmediate
             if (@this.Length < segment.Length || segment.Length == 0)
                 return -1;
         
-            IEnumerable<int> indexes = Enumerable
-                .Where<int>(@this.IndicesOf(segment[0]), x  => x != -1);
+            IEnumerable<int> indexes = @this.IndicesOf(segment[0])
+                .Where(x  => x != -1);
 
             foreach (int index in indexes)
             {
@@ -56,7 +54,10 @@ public static partial class EnhancedLinqSegmentImmediate
         /// <returns>The index at which the specified StringSegment can be found, or -1 if not found.</returns>
         public int IndexOf(StringSegment segment)
         {
-            if (str.Length < segment.Length || segment.Length == 0)
+            ArgumentException.ThrowIfNullOrEmpty(str);
+            ArgumentException.ThrowIfNullOrEmpty(segment);
+            
+            if (str.Length < segment.Length)
                 return -1;
         
             for (int i = 0; i < str.Length; i++)

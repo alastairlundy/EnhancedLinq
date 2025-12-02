@@ -7,11 +7,7 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-using System;
-using EnhancedLinq.MsExtensions.Internals.Localizations;
-using Microsoft.Extensions.Primitives;
-
-namespace EnhancedLinq.MsExtensions.StringSegments.Immediate;
+namespace EnhancedLinq.MsExtensions.Immediate;
 
 public static partial class EnhancedLinqSegmentImmediate
 {
@@ -25,8 +21,7 @@ public static partial class EnhancedLinqSegmentImmediate
         /// <exception cref="InvalidOperationException">Thrown if the StringSegment contains zero chars.</exception>
         public char First()
         {
-            if (StringSegment.IsNullOrEmpty(target))
-                throw new InvalidOperationException(Resources.Exceptions_Segments_InvalidOperation_EmptySequence);
+            ArgumentException.ThrowIfNullOrEmpty(target);
 
             return target[0];
         }
@@ -39,37 +34,30 @@ public static partial class EnhancedLinqSegmentImmediate
             => StringSegment.IsNullOrEmpty(target) ? null : target[0];
     }
 
-    /// <summary>
-    /// Returns the last char in the StringSegment.
-    /// </summary>
     /// <param name="target">The StringSegment to be searched.</param>
-    /// <returns>The last char in the StringSegment.</returns>
-    /// <exception cref="InvalidOperationException">Thrown if the StringSegment contains zero chars.</exception>
-    public static char Last(this StringSegment target)
+    extension(StringSegment target)
     {
-        if (StringSegment.IsNullOrEmpty(target))
-            throw new InvalidOperationException(Resources.Exceptions_Segments_InvalidOperation_EmptySequence);
+        /// <summary>
+        /// Returns the last char in the StringSegment.
+        /// </summary>
+        /// <returns>The last char in the StringSegment.</returns>
+        /// <exception cref="InvalidOperationException">Thrown if the StringSegment contains zero chars.</exception>
+        public char Last()
+        {
+            ArgumentException.ThrowIfNullOrEmpty(target);
 
-#if NET8_0_OR_GREATER
-        return target[^1];
-#else
-        return target[target.Length - 1];
-#endif
-    }
+            return target[^1];
+        }
 
-    /// <summary>
-    /// Returns the last character of the specified <see cref="StringSegment"/> that meets the predicate condition or a null if the segment is empty.
-    /// </summary>
-    /// <param name="target">The <see cref="StringSegment"/> from which to retrieve the last character.</param>
-    /// <returns>The last character of the segment if it contains any characters; otherwise, null.</returns>
-    public static char? LastOrDefault(this StringSegment target)
-    {
-#if NET8_0_OR_GREATER
-        char last = target[^1];
-#else
-        char last = target[target.Length - 1];
-#endif
+        /// <summary>
+        /// Returns the last character of the specified <see cref="StringSegment"/> that meets the predicate condition or a null if the segment is empty.
+        /// </summary>
+        /// <returns>The last character of the segment if it contains any characters; otherwise, null.</returns>
+        public char? LastOrDefault()
+        {
+            char last = target[^1];
 
-        return StringSegment.IsNullOrEmpty(target) ? null : last;
+            return StringSegment.IsNullOrEmpty(target) ? null : last;
+        }
     }
 }

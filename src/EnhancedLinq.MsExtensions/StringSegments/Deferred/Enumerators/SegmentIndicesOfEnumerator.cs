@@ -7,13 +7,10 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using EnhancedLinq.MsExtensions.StringSegments.Immediate;
-using Microsoft.Extensions.Primitives;
+using EnhancedLinq.MsExtensions.Immediate;
 
-namespace EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerators;
+namespace EnhancedLinq.MsExtensions.Deferred;
 
 internal class SegmentIndicesOfEnumerator : IEnumerator<int>
 {

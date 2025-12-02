@@ -8,12 +8,9 @@
     */
 
 using System.Collections;
-using System.Collections.Generic;
-using EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerators;
-using EnhancedLinq.MsExtensions.StringSegments.Immediate;
-using Microsoft.Extensions.Primitives;
+using EnhancedLinq.MsExtensions.Immediate;
 
-namespace EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerables;
+namespace EnhancedLinq.MsExtensions.Deferred;
 
 internal class SegmentIndicesEnumerable : IEnumerable<int>
 {

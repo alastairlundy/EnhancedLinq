@@ -7,14 +7,11 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using EnhancedLinq.MsExtensions.StringSegments.Deferred;
-using Microsoft.Extensions.Primitives;
+using EnhancedLinq.MsExtensions.Deferred;
 
-namespace EnhancedLinq.MsExtensions.StringSegments.Immediate;
+namespace EnhancedLinq.MsExtensions.Immediate;
 
 public static partial class EnhancedLinqSegmentImmediate
 {
@@ -61,8 +58,8 @@ public static partial class EnhancedLinqSegmentImmediate
         /// <returns>An array of StringSegment subsegments from the source StringSegment that is delimited by the separator.</returns>
         public StringSegment[] Split(StringSegment separator)
         {
-            IEnumerable<int> indices = Enumerable
-                .Where<int>(source.IndicesOf(separator), x => x != -1);
+            IEnumerable<int> indices = source.IndicesOf(separator)
+                .Where(x => x != -1);
 
             List<StringSegment> output = new();
 

@@ -7,11 +7,7 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-using System;
-using EnhancedLinq.MsExtensions.Internals.Localizations;
-using Microsoft.Extensions.Primitives;
-
-namespace EnhancedLinq.MsExtensions.StringSegments.Immediate;
+namespace EnhancedLinq.MsExtensions.Immediate;
 
 public static partial class EnhancedLinqSegmentImmediate
 {
@@ -23,14 +19,11 @@ public static partial class EnhancedLinqSegmentImmediate
         /// </summary>
         /// <param name="countToLookFor">The maximum number of elements that can meet the condition.</param>
         /// <returns>True if there are at most <paramref name="countToLookFor"/> number of elements, false otherwise.</returns>
-        public bool CountAtMost<TNumber>(int countToLookFor)
+        public bool CountAtMost(int countToLookFor)
         {
-            if(StringSegment.IsNullOrEmpty(source))
-                throw new InvalidOperationException(Resources.Exceptions_Segments_InvalidOperation_EmptySequence);
+            ArgumentException.ThrowIfNullOrWhitespace(source);
+            ArgumentOutOfRangeException.ThrowIfNegative(countToLookFor);
 
-            if (countToLookFor < 0)
-                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero.Replace("{x}", countToLookFor.ToString()));
-        
             return source.Length <= countToLookFor;
         }
 
@@ -43,11 +36,9 @@ public static partial class EnhancedLinqSegmentImmediate
         public bool CountAtMost(Func<char, bool> predicate,
             int countToLookFor)
         {
-            if(StringSegment.IsNullOrEmpty(source))
-                throw new InvalidOperationException(Resources.Exceptions_Segments_InvalidOperation_EmptySequence);
-
-            if (countToLookFor < 0)
-                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero.Replace("{x}", countToLookFor.ToString()));
+            ArgumentException.ThrowIfNullOrWhitespace(source);
+            ArgumentNullException.ThrowIfNull(predicate);
+            ArgumentOutOfRangeException.ThrowIfNegative(countToLookFor);
 
             int currentCount = 0;
 

@@ -7,14 +7,10 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using EnhancedLinq.MsExtensions.Internals.Infra;
-using EnhancedLinq.MsExtensions.StringSegments.Deferred.Enumerators;
-using Microsoft.Extensions.Primitives;
 
-namespace EnhancedLinq.MsExtensions.StringSegments.Deferred;
+namespace EnhancedLinq.MsExtensions.Deferred;
 
 /// <summary>
 /// 
@@ -33,8 +29,8 @@ public static partial class EnhancedLinqSegmentDeferred
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="target"/> is null or empty.</exception>
         public IEnumerable<IGrouping<TKey, char>> GroupBy<TKey>(Func<char, TKey> predicate)
         {
-            if(StringSegment.IsNullOrEmpty(target))
-                throw new ArgumentNullException(nameof(target));
+            ArgumentException.ThrowIfNullOrWhitespace(target);
+            ArgumentNullException.ThrowIfNull(predicate);
         
             return new CustomEnumeratorEnumerable<IGrouping<TKey, char>>(
                 new GroupStringSegmentEnumerator<TKey>(target, predicate));
