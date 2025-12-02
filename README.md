@@ -7,9 +7,9 @@ C# language version must be set to 14 or higher for EnhancedLinq to work.
 ## 🚀 Included Methods
 For a comprehensive list of included methods, check out the following resources:
 
-- [EnhancedLinq Methods](./docs/Methods/EnhancedLinq.md) [![NuGet](https://img.shields.io/nuget/v/AlastairLundy.EnhancedLinq.svg)](https://www.nuget.org/packages/AlastairLundy.EnhancedLinq/)  [![NuGet](https://img.shields.io/nuget/dt/AlastairLundy.EnhancedLinq.svg)](https://www.nuget.org/packages/AlastairLundy.EnhancedLinq/)
-- [EnhancedLinq.Memory Methods](./docs/Methods/EnhancedLinq.Memory.md) [![NuGet](https://img.shields.io/nuget/v/AlastairLundy.EnhancedLinq.Memory.svg)](https://www.nuget.org/packages/AlastairLundy.EnhancedLinq.Memory/)  [![NuGet](https://img.shields.io/nuget/dt/AlastairLundy.EnhancedLinq.Memory.svg)](https://www.nuget.org/packages/AlastairLundy.EnhancedLinq.Memory/)
-- [EnhancedLinq.MsExtensions Methods](./docs/Methods/EnhancedLinq.MsExtensions.md) [![NuGet](https://img.shields.io/nuget/v/AlastairLundy.EnhancedLinq.MsExtensions.svg)](https://www.nuget.org/packages/AlastairLundy.EnhancedLinq.MsExtensions/)  [![NuGet](https://img.shields.io/nuget/dt/AlastairLundy.EnhancedLinq.MsExtensions.svg)](https://www.nuget.org/packages/AlastairLundy.EnhancedLinq.MsExtensions/)
+- [EnhancedLinq Methods](./docs/Methods/EnhancedLinq.md) [![NuGet](https://img.shields.io/nuget/v/EnhancedLinq.svg)](https://www.nuget.org/packages/EnhancedLinq/)  [![NuGet](https://img.shields.io/nuget/dt/EnhancedLinq.svg)](https://www.nuget.org/packages/EnhancedLinq/)
+- [EnhancedLinq.Memory Methods](./docs/Methods/EnhancedLinq.Memory.md) [![NuGet](https://img.shields.io/nuget/v/EnhancedLinq.Memory.svg)](https://www.nuget.org/packages/EnhancedLinq.Memory/)  [![NuGet](https://img.shields.io/nuget/dt/EnhancedLinq.Memory.svg)](https://www.nuget.org/packages/EnhancedLinq.Memory/)
+- [EnhancedLinq.MsExtensions Methods](./docs/Methods/EnhancedLinq.MsExtensions.md) [![NuGet](https://img.shields.io/nuget/v/EnhancedLinq.MsExtensions.svg)](https://www.nuget.org/packages/EnhancedLinq.MsExtensions/)  [![NuGet](https://img.shields.io/nuget/dt/EnhancedLinq.MsExtensions.svg)](https://www.nuget.org/packages/EnhancedLinq.MsExtensions/)
 
 ## 📦 NuGet Packages
 
@@ -25,9 +25,9 @@ Getting started with **EnhancedLinq** is easy! You can install the packages usin
 
 | Package Id                                           | NuGet Link                                                                                            | .NET SDK CLI Command                                         |
 |------------------------------------------------------|-------------------------------------------------------------------------------------------------------|--------------------------------------------------------------|
-| AlastairLundy.EnhancedLinq.MsExtensions              | [EnhancedLinq NuGet](https://nuget.org/packages/AlastairLundy.EnhancedLinq)                           | `dotnet add package AlastairLundy.EnhancedLinq.`             |
-| AlastairLundy.EnhancedLinq.EnhancedLinq.Memory       | [EnhancedLinq.Memory NuGet](https://nuget.org/packages/AlastairLundy.EnhancedLinq.Memory)             | `dotnet add package AlastairLundy.EnhancedLinq.Memory`       |
-| AlastairLundy.EnhancedLinq.EnhancedLinq.MsExtensions | [EnhancedLinq.MsExtensions NuGet](https://nuget.org/packages/AlastairLundy.EnhancedLinq.MsExtensions) | `dotnet add package AlastairLundy.EnhancedLinq.MsExtensions` |
+| EnhancedLinq.MsExtensions              | [EnhancedLinq NuGet](https://nuget.org/packages/EnhancedLinq)                           | `dotnet add package EnhancedLinq.`             |
+| EnhancedLinq.EnhancedLinq.Memory       | [EnhancedLinq.Memory NuGet](https://nuget.org/packages/EnhancedLinq.Memory)             | `dotnet add package EnhancedLinq.Memory`       |
+| EnhancedLinq.EnhancedLinq.MsExtensions | [EnhancedLinq.MsExtensions NuGet](https://nuget.org/packages/EnhancedLinq.MsExtensions) | `dotnet add package EnhancedLinq.MsExtensions` |
 
 ## 📖 Usage
 Here are some examples demonstrating how to use some methods provided by EnhancedLinq.
