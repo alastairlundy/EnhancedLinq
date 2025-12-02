@@ -64,6 +64,11 @@ public static partial class EnhancedLinqMemoryImmediate
     }
 
     
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="source"></param>
+    /// <typeparam name="TSource"></typeparam>
     extension<TSource>(ReadOnlySpan<TSource> source)
     {
         /// <summary>
@@ -111,6 +116,11 @@ public static partial class EnhancedLinqMemoryImmediate
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="source"></param>
+    /// <typeparam name="TSource"></typeparam>
     extension<TSource>(Memory<TSource> source)
     {
         /// <summary>
@@ -158,6 +168,11 @@ public static partial class EnhancedLinqMemoryImmediate
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="source"></param>
+    /// <typeparam name="TSource"></typeparam>
     extension<TSource>(ReadOnlyMemory<TSource> source)
     {
         /// <summary>
