@@ -7,11 +7,7 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-using System;
-using EnhancedLinq.MsExtensions.Internals.Localizations;
-using Microsoft.Extensions.Primitives;
-
-namespace EnhancedLinq.MsExtensions.StringSegments.Immediate;
+namespace EnhancedLinq.MsExtensions.Immediate;
 
 public static partial class EnhancedLinqSegmentImmediate
 {
@@ -26,6 +22,9 @@ public static partial class EnhancedLinqSegmentImmediate
         /// <exception cref="ArgumentException">Thrown if no characters in the StringSegment meet the predicate condition.</exception>
         public char First(Func<char, bool> predicate)
         {
+            ArgumentException.ThrowIfNullOrEmpty(target);
+            ArgumentNullException.ThrowIfNull(predicate);
+            
             for (int index = 0; index < target.Length; index++)
             {
                 if(predicate(target[index]))
@@ -42,12 +41,52 @@ public static partial class EnhancedLinqSegmentImmediate
         /// <returns>The first character of the segment that meets the predicate condition if any match; otherwise, null.</returns>
         public char? FirstOrDefault(Func<char, bool> predicate)
         {
+            ArgumentNullException.ThrowIfNull(predicate);
+            
             for (int index = 0; index < target.Length; index++)
             {
                 if(predicate(target[index]))
                     return target[index];
             }
         
+            return null;
+        }
+        
+        /// <summary>
+        /// Returns the last character of the specified <see cref="StringSegment"/> that meets the predicate condition.
+        /// </summary>
+        /// <param name="predicate">The predicate func condition to be checked against each char in the StringSegment.</param>
+        /// <returns>The last character of the segment that meets the predicate condition if any match.</returns>
+        /// <exception cref="ArgumentException">Thrown if no characters in the StringSegment meet the predicate condition.</exception>
+        public char Last(Func<char, bool> predicate)
+        {
+            ArgumentException.ThrowIfNullOrEmpty(target);
+            ArgumentNullException.ThrowIfNull(predicate);
+        
+            for (int i = target.Length - 1; i >= 0; i--)
+            {
+                if(predicate(target[i]))
+                    return target[i];
+            }
+
+            throw new ArgumentException();
+        }
+
+        /// <summary>
+        /// Returns the last character of the specified <see cref="StringSegment"/> that matches the predicate condition or a default value if the segment is empty.
+        /// </summary>
+        /// <param name="predicate">The predicate func condition to be checked against each char in the StringSegment.</param>
+        /// <returns>The last character of the segment that meets the predicate condition if any match; otherwise, null.</returns>
+        public char? LastOrDefault(Func<char, bool> predicate)
+        {
+            ArgumentNullException.ThrowIfNull(predicate);
+        
+            for (int i = target.Length - 1; i >= 0; i--)
+            {
+                if(predicate(target[i]))
+                    return target[i];
+            }
+
             return null;
         }
     }
