@@ -15,7 +15,7 @@
 * Updated to Polyfill 9.3.0 from 9.1.0</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
-        <PackageId>AlastairLundy.EnhancedLinq.MsExtensions</PackageId>
+        <PackageId>EnhancedLinq.MsExtensions</PackageId>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <IncludeSymbols>true</IncludeSymbols>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
