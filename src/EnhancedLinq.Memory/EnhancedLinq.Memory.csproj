@@ -62,4 +62,8 @@
             <PackagePath>README.md</PackagePath>
         </Content>
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Internals\Helpers\" />
+    </ItemGroup>
 </Project>

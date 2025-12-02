@@ -7,7 +7,6 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-using AlastairLundy.EnhancedLinq.Memory.Internals.Helpers;
 
 #if NET8_0_OR_GREATER
 
