@@ -35,13 +35,42 @@ public static partial class EnhancedLinqMemoryImmediateMaths
             return sum / source.Length.ToNumber<TNumber>();
         }
     }
+    
+    /// <param name="source">The <see cref="ReadOnlySpan{T}"/> of type <see cref="TNumber"/> to be averaged.</param>
+    /// <typeparam name="TNumber">The numeric type that represents the type of numbers in the <see cref="ReadOnlySpan{T}"/>.</typeparam>
+    extension<TNumber>(ReadOnlySpan<TNumber> source) where TNumber : INumber<TNumber>
+    {
+        /// <summary>
+        /// Calculates the arithmetic average of a <see cref="ReadOnlySpan{T}"/> of numbers.
+        /// </summary>
+        /// <returns>The arithmetic average of the specified numbers.</returns>
+        public TNumber Average()
+        {
+            InvalidOperationException.ThrowIfSpanIsEmpty(source);
 
-    /// <param name="source">The Memory of type <see cref="TNumber"/> to be averaged.</param>
-    /// <typeparam name="TNumber">The numeric type that represents the type of numbers in the span.</typeparam>
+            TNumber sum = source.Sum();
+
+            return sum / source.Length.ToNumber<TNumber>();
+        }
+    }
+
+    /// <param name="source">The <see cref="Memory{T}"/> of type <see cref="TNumber"/> to be averaged.</param>
+    /// <typeparam name="TNumber">The numeric type that represents the type of numbers in the <see cref="Memory{T}"/>.</typeparam>
     extension<TNumber>(Memory<TNumber> source) where TNumber : INumber<TNumber>
     {
         /// <summary>
         /// Calculates the arithmetic average of a Memory struct holding numbers of type <see cref="TNumber"/>.
+        /// </summary>
+        /// <returns>The arithmetic average of the specified numbers.</returns>
+        public TNumber Average() => Average(source.Span);
+    }
+    
+    /// <param name="source">The <see cref="ReadOnlyMemory{T}"/> of type <see cref="TNumber"/> to be averaged.</param>
+    /// <typeparam name="TNumber">The numeric type that represents the type of numbers in the <see cref="ReadOnlyMemory{T}"/>.</typeparam>
+    extension<TNumber>(ReadOnlyMemory<TNumber> source) where TNumber : INumber<TNumber>
+    {
+        /// <summary>
+        /// Calculates the arithmetic average of a <see cref="ReadOnlyMemory{T}"/> struct holding numbers of type <see cref="TNumber"/>.
         /// </summary>
         /// <returns>The arithmetic average of the specified numbers.</returns>
         public TNumber Average() => Average(source.Span);
