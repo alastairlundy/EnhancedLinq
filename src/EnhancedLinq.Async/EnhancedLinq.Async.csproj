@@ -25,7 +25,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AlastairLundy.DotExtensions" Version="9.1.1" />
+        <PackageReference Include="AlastairLundy.DotExtensions" Version="9.2.0-preview.2" />
     </ItemGroup>
 
     <ItemGroup>
