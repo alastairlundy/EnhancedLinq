@@ -37,10 +37,7 @@ public static partial class EnhancedLinqImmediate
             }
         }
     }
-
-    /// <summary>
-    /// 
-    /// </summary>
+    
     /// <param name="target">The <see cref="ICollection{T}"/> to apply the predicate to.</param>
     /// <typeparam name="T">The type of elements in the collection.</typeparam>
     extension<T>(ICollection<T> target)
@@ -65,10 +62,7 @@ public static partial class EnhancedLinqImmediate
             return output;
         }
     }
-
-    /// <summary>
-    /// 
-    /// </summary>
+    
     /// <param name="target">The <see cref="IList{T}"/> to apply the selector to.</param>
     /// <typeparam name="T">The type of items in the <see cref="IList{T}"/>.</typeparam>
     extension<T>(IList<T> target)
