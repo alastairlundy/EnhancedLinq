@@ -11,15 +11,9 @@
         <Copyright>Copyright (c) 2025 Alastair Lundy</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/Enhancedlinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>## Changes since 0.13.0
-## All packages
-* Shortened Nuget package Ids to start with ``EnhancedLinq``
-* Shortened package namespaces
-
-### MsExtensions package
-* Updated to DotExtensions.MsExtensions 9.1.1 from 9.0.0
-* Add ArgumentException polyfills for .NET Standard 2 from Polyfill
-* Removed immediate mode ``IndicesOf`` extensions - Use the Deferred execution mode extensions instead</PackageReleaseNotes>
+        <PackageReleaseNotes>### MsExtensions package
+* Updated to DotExtensions 9.2.0 Preview 2 from 9.1.1
+* Addressed warnings caused by xml doc comments</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <PackageId>EnhancedLinq.MsExtensions</PackageId>
@@ -31,7 +25,7 @@
         <PolyArgumentExceptions>true</PolyArgumentExceptions>
         <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
         <TrimmerSingleWarn>false</TrimmerSingleWarn>
-        <Version>1.0.0-alpha.1</Version>
+        <Version>1.0.0-alpha.2</Version>
         <PackageTags>linq, enhanced-linq, enhanced, stringsegment, extensions</PackageTags>
         <Description>LINQ style Deferred and Immediate enumeration mode extension methods for StringSegments and potentially other Microsoft.Extension.* packages in the future . </Description>
     </PropertyGroup>

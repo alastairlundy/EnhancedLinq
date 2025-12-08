@@ -13,15 +13,18 @@
         <RepositoryUrl>https://github.com/alastairlundy/EnhancedLinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>linq, enhanced-linq, enhanced, extensions, memory, extensions</PackageTags>
-        <PackageReleaseNotes>## Changes since 0.13.0
-## All packages
-* Shortened Nuget package Ids to start with ``EnhancedLinq``
-* Shortened package namespaces
-
-### Memory package
-* Updated to DotExtensions 9.1.1 from 9.0.0
-* Updated to DotExtensions.Memory 9.1.1 from 9.0.0
-* Updated to Polyfill 9.3.1 from 9.3.0</PackageReleaseNotes>
+        <PackageReleaseNotes>### Memory package
+* Converted Immediate ``Select`` extension methods to extension blocks
+* Converted Immediate ``None`` extension methods to extension blocks
+* Added ``ReadOnlySpan&lt;T&gt;`` Numeric ``Sum``, ``Average``, ``Minimum``, and ``Maximum`` extensions
+* Added ``ReadOnlySpan&lt;T&gt;`` Immediate ``GroupBy`` and ``Where`` extensions
+* Added ``ReadOnlySpan&lt;T&gt;`` Immediate ``Any`` and ``All`` extensions
+* Added ``ReadOnySpan&lt;T&gt;`` Immediate ``Except`` extensions
+* Added ``ReadOnlySpan&lt;T&gt;`` Immediate ``CountAtMost`` non-predicate extension and converted predicate extensions to extension block
+* Added ``ReadOnlySpan&lt;T&gt;`` Immediate ``CountAtLeast`` predicate and non-predicate extensios in extension blocks
+* Fixed a xml doc comment grammar issue
+* Updated to DotExtensions 9.2.0 Preview 2 from 9.1.1
+* Addressed warnings caused by xml doc comments</PackageReleaseNotes>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -29,7 +32,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>1.0.0-alpha.1</Version>
+        <Version>1.0.0-alpha.2</Version>
         <PackageId>EnhancedLinq.Memory</PackageId>
         <PolyArgumentExceptions>true</PolyArgumentExceptions>
         <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
