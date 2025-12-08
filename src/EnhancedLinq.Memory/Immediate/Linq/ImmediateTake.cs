@@ -63,7 +63,7 @@ public static partial class EnhancedLinqMemoryImmediate
         /// </summary>
         /// <param name="count">The number of elements to take from the end of the source Span.</param>
         /// <returns>An <see cref="Span{T}"/> containing the last 'count' elements from the Span.</returns>
-        /// <exception cref="ArgumentException">Thrown when count is less than 0 or greater than the length of the Span.</exception>
+        /// <exception cref="ArgumentException">Thrown when the count is less than 0 or greater than the length of the Span.</exception>
         public Span<T> TakeLast(int count)
         {
             if (source.IsEmpty || count < 0 || count > source.Length)
