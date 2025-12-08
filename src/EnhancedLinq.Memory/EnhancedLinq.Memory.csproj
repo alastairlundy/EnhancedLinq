@@ -32,6 +32,8 @@
         <Version>1.0.0-alpha.1</Version>
         <PackageId>EnhancedLinq.Memory</PackageId>
         <PolyArgumentExceptions>true</PolyArgumentExceptions>
+        <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+        <TrimmerSingleWarn>false</TrimmerSingleWarn>
     </PropertyGroup>
 
     <ItemGroup>

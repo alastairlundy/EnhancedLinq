@@ -29,6 +29,8 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PolyArgumentExceptions>true</PolyArgumentExceptions>
+        <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+        <TrimmerSingleWarn>false</TrimmerSingleWarn>
         <Version>1.0.0-alpha.1</Version>
         <PackageTags>linq, enhanced-linq, enhanced, stringsegment, extensions</PackageTags>
         <Description>LINQ style Deferred and Immediate enumeration mode extension methods for StringSegments and potentially other Microsoft.Extension.* packages in the future . </Description>
