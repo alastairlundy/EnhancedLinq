@@ -40,4 +40,34 @@ public static partial class EnhancedLinqMemoryImmediate
             return new Span<T>(list.ToArray());
         }
     }
+    
+    /// <param name="target">The <see cref="ReadOnlySpan{T}"/> to be searched.</param>
+    /// <typeparam name="T">The type of items stored in the <see cref="ReadOnlySpan{T}"/></typeparam>
+    extension<T>(ReadOnlySpan<T> target)
+    {
+        /// <summary>
+        /// Returns a new <see cref="ReadOnlySpan{T}"/> with all items in the <see cref="ReadOnlySpan{T}"/> that match the predicate condition.
+        /// </summary>
+        /// <param name="predicate">The predicate func to be invoked on each item in the <see cref="ReadOnlySpan{T}"/>.</param>
+        /// <returns>A new <see cref="ReadOnlySpan{T}"/> with the items that match the predicate condition.</returns>
+        public ReadOnlySpan<T> Where(Func<T, bool> predicate)
+        {
+            List<T> list;
+
+            if (target.Length <= 100)
+                list = new(capacity: target.Length);
+            else
+                list = new();
+        
+            foreach (T item in target)
+            {
+                if (predicate.Invoke(item))
+                {
+                    list.Add(item);
+                }
+            }
+        
+            return new ReadOnlySpan<T>(list.ToArray());
+        }
+    }
 }

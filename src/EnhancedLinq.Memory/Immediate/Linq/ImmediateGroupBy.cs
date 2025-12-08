@@ -56,4 +56,42 @@ public static partial class EnhancedLinqMemoryImmediate
             return new  Span<IGrouping<TKey, TElement>>(groups.ToArray());
         }
     }
+    
+    /// <param name="source">The source <see cref="ReadOnlySpan{T}"/> to group elements from.</param>
+    /// <typeparam name="TKey">The type of the key returned by the key predicate function.</typeparam>
+    /// <typeparam name="TElement">The type of elements in the source span.</typeparam>
+    extension<TKey, TElement>(ReadOnlySpan<TElement> source) where TKey : notnull
+    {
+        /// <summary>
+        /// Groups the elements of the source <see cref="ReadOnlySpan{T}"/> by a specified key predicate function.
+        /// </summary>
+        /// <param name="keyPredicate">A function to extract the key for each element.</param>
+        /// <returns>A <see cref="ReadOnlySpan{T}"/> of groups, each containing a key and the elements that share that key.</returns>
+        public ReadOnlySpan<IGrouping<TKey, TElement>> GroupBy(Func<TElement, TKey> keyPredicate)
+        {
+            ArgumentNullException.ThrowIfNull(keyPredicate);
+        
+            Dictionary<TKey, List<TElement>> dictionary = new();
+
+            foreach (TElement item in source)
+            {
+                TKey key = keyPredicate.Invoke(item);
+            
+                if (dictionary.ContainsKey(key))
+                {
+                    dictionary[key].Add(item);
+                }
+                else
+                {
+                    dictionary.Add(key, new List<TElement>());
+                    dictionary[key].Add(item);
+                }
+            }
+
+            IEnumerable<IGrouping<TKey, TElement>> groups = (from kvp in dictionary
+                select new GroupingEnumerable<TKey, TElement>(kvp.Key, kvp.Value));
+        
+            return new ReadOnlySpan<IGrouping<TKey, TElement>>(groups.ToArray());
+        }
+    }
 }
