@@ -22,9 +22,20 @@ public static partial class EnhancedLinqAsyncImmediate
         /// </summary>
         /// <returns>True if the <see cref="IEnumerable{T}"/> contains duplicate objects; false otherwise.</returns>
         public async Task<bool> ContainsDuplicates()
+            => await ContainsDuplicates(source, EqualityComparer<T>.Default);
+
+        /// <summary>
+        /// Determines whether an <see cref="IAsyncEnumerable{T}"/> contains duplicate instances of an object.
+        /// </summary>
+        /// <typeparam name="T">The type of objects in the <see cref="IAsyncEnumerable{T}"/>.</typeparam>
+        /// <param name="comparer">The <see cref="IEqualityComparer{T}"/> to be used to check for duplicates, uses the Default Equality Comparer if null.</param>
+        /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation. True if duplicates are found; otherwise, false.</returns>
+        public async Task<bool> ContainsDuplicates(IEqualityComparer<T>? comparer)
         {
+            comparer ??= EqualityComparer<T>.Default;
             ArgumentNullException.ThrowIfNull(source);
-            HashSet<T> hash = new();
+            
+            HashSet<T> hash = new(comparer: comparer);
         
             await foreach (T item in source)
             {
