@@ -24,6 +24,7 @@ public static partial class EnhancedLinqAsyncImmediate
         /// <returns>A task that returns a boolean indicating whether at least 'countToLookFor' items were found.</returns>
         public async Task<bool> CountAtLeastAsync(int countToLookFor)
         {
+            ArgumentNullException.ThrowIfNull(source);
             ArgumentOutOfRangeException.ThrowIfNegative(countToLookFor);
             
             int count = 0;
@@ -50,6 +51,7 @@ public static partial class EnhancedLinqAsyncImmediate
         public async Task<bool> CountAtLeastAsync(Func<T, bool> predicate,
             int countToLookFor)
         {
+            ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(predicate);
             ArgumentOutOfRangeException.ThrowIfNegative(countToLookFor);
             
