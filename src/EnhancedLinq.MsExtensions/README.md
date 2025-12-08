@@ -20,13 +20,13 @@ This project is licensed under the **MPL 2.0 license**. See the [LICENSE](../../
 You can install the **EnhancedLinq.MsExtensions** package via NuGet Package Manager with the following command:
 
 ```bash
-Install-Package AlastairLundy.EnhancedLinq.MsExtensions
+Install-Package EnhancedLinq.MsExtensions
 ```
 
 Alternatively, you can add it to your project file:
 
 ```xml
-<PackageReference Include="AlastairLundy.EnhancedLinq.MsExtensions" Version="0.1.0" />
+<PackageReference Include="EnhancedLinq.MsExtensions" Version="0.1.0" />
 ```
 
 ## Usage
@@ -35,7 +35,7 @@ Here are some examples of how to use the extensions provided by **EnhancedLinq.M
 ### Example 1: Using Immediate Mode Extensions
 
 ```csharp
-using AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Immediate;
+using EnhancedLinq.MsExtensions.Immediate;
 using Microsoft.Extensions.Primitives;
 
 StringSegment segment = new StringSegment("Hello, World!");
@@ -48,7 +48,7 @@ int count = segment.Count(c => c == 'o'); // Returns 2
 ### Example 2: Using Deferred Execution Extensions
 
 ```csharp
-using AlastairLundy.EnhancedLinq.MsExtensions.StringSegments.Deferred;
+using EnhancedLinq.MsExtensions.StringSegments.Deferred;
 using Microsoft.Extensions.Primitives;
 
 // Using the Where extension
