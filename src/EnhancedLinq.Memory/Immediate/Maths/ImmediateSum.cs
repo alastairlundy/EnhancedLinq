@@ -35,6 +35,29 @@ public static partial class EnhancedLinqMemoryImmediateMaths
             return total;
         }
     }
+    
+    /// <param name="source">The <see cref="ReadOnlySpan{T}"/> of type <see cref="TNumber"/> to be summed.</param>
+    /// <typeparam name="TNumber">The numeric type that represents the type of numbers in the <see cref="ReadOnlySpan{T}"/>.</typeparam>
+    extension<TNumber>(ReadOnlySpan<TNumber> source) where TNumber : INumber<TNumber>
+    {
+        /// <summary>
+        /// Calculates the sum of a <see cref="ReadOnlySpan{T}"/> of numbers.
+        /// </summary>
+        /// <returns>The sum of all the number in the <see cref="ReadOnlySpan{T}"/>.</returns>
+        public TNumber Sum()
+        {
+            InvalidOperationException.ThrowIfSpanIsEmpty(source);
+
+            TNumber total = TNumber.Zero;
+
+            foreach (TNumber item in source)
+            {
+                total += item;
+            }
+
+            return total;
+        }
+    }
 
     /// <param name="source">The memory of type <see cref="TNumber"/> to be summed.</param>
     /// <typeparam name="TNumber">The numeric type that represents the type of numbers in the memory.</typeparam>
@@ -44,6 +67,17 @@ public static partial class EnhancedLinqMemoryImmediateMaths
         /// Calculates the sum of a memory of numbers.
         /// </summary>
         /// <returns>The sum of all the number in the memory.</returns>
+        public TNumber Sum() => Sum(source.Span);
+    }
+    
+    /// <param name="source">The <see cref="ReadOnlyMemory{T}"/> of type <see cref="TNumber"/> to be summed.</param>
+    /// <typeparam name="TNumber">The numeric type that represents the type of numbers in the <see cref="ReadOnlyMemory{T}"/>.</typeparam>
+    extension<TNumber>(ReadOnlyMemory<TNumber> source) where TNumber : INumber<TNumber>
+    {
+        /// <summary>
+        /// Calculates the sum of a <see cref="ReadOnlyMemory{T}"/> of numbers.
+        /// </summary>
+        /// <returns>The sum of all the number in the <see cref="ReadOnlyMemory{T}"/>.</returns>
         public TNumber Sum() => Sum(source.Span);
     }
 }
