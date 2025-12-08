@@ -7,10 +7,7 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-
 // ReSharper disable ReplaceSliceWithRangeIndexer
-
-using EnhancedLinq.Memory.Internals.Localizations;
 
 namespace EnhancedLinq.Memory.Immediate;
 
