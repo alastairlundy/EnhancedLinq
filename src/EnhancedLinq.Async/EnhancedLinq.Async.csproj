@@ -6,32 +6,36 @@
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Title>EnhancedLinq</Title>
+        <Title>EnhancedLinq.Async</Title>
         <Authors>Alastair Lundy</Authors>
         <Copyright>Copyright (c) 2025 Alastair Lundy</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/Enhancedlinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageReleaseNotes>## All packages
-* Shortened Nuget package Ids to start with ``EnhancedLinq``
-* Shortened package namespaces
-
-### Main package
-* Updated to DotExtensions 9.1.1 from 9.0.0
-* Updated to Polyfill 9.3.1 from 9.3.0
-* Removed immediate mode ``IndicesOf`` extensions - Use the Deferred execution mode extensions instead</PackageReleaseNotes>
-        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-        <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <Description>Additional LINQ style Deferred and Immediate enumeration mode extension methods for .NET . </Description>
         <PackageTags>linq, enhancedlinq, enhanced, deferred-execution,extensions</PackageTags>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <IncludeSymbols>true</IncludeSymbols>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <Version>1.0.0-alpha.1</Version>
-        <PackageId>EnhancedLinq</PackageId>
+        <PackageId>EnhancedLinq.Async</PackageId>
         <PolyArgumentExceptions>true</PolyArgumentExceptions>
     </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AlastairLundy.DotExtensions" Version="9.1.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Polyfill" Version="9.3.1" PrivateAssets="all"
+                          Condition="'$(TargetFramework)' == 'netstandard2.0'"/>
+        <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="10.0.0"
+                          Condition="'$(TargetFramework)' == 'netstandard2.0'" />
+        <PackageReference Include="System.Linq.AsyncEnumerable" Version="10.0.0"
+                          Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'net8.0' OR '$(TargetFramework)' == 'net9.0'"/>
+    </ItemGroup>
 
     <ItemGroup>
       <EmbeddedResource Update="Internals\Localizations\Resources.resx">
@@ -46,22 +50,6 @@
         <AutoGen>True</AutoGen>
         <DependentUpon>Resources.resx</DependentUpon>
       </Compile>
-    </ItemGroup>
-
-    <ItemGroup>
-      <PackageReference Include="AlastairLundy.DotExtensions" Version="9.1.1" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <PackageReference Include="Polyfill" Version="9.3.1" PrivateAssets="all"
-                          Condition="'$(TargetFramework)' == 'netstandard2.0'"/>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Content Include="..\..\README.md">
-        <Link>README.md</Link>
-          <PackagePath>README.md</PackagePath>
-      </Content>
     </ItemGroup>
 
 </Project>

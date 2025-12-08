@@ -1,5 +1,5 @@
 /*
-    EnhancedLinq 
+    EnhancedLinq.Async
     Copyright (c) 2025 Alastair Lundy
     
     This Source Code Form is subject to the terms of the Mozilla Public
@@ -8,7 +8,6 @@
 */
 
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace EnhancedLinq.Async.Immediate;
 
