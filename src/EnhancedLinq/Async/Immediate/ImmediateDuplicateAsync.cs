@@ -7,7 +7,6 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/.
 */
 
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace EnhancedLinq.Async.Immediate;
@@ -24,6 +23,7 @@ public static partial class EnhancedLinqAsyncImmediate
         /// <returns>True if the <see cref="IEnumerable{T}"/> contains duplicate objects; false otherwise.</returns>
         public async Task<bool> ContainsDuplicates()
         {
+            ArgumentNullException.ThrowIfNull(source);
             HashSet<T> hash = new();
         
             await foreach (T item in source)

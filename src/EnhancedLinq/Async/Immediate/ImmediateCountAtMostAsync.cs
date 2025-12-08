@@ -7,8 +7,6 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/.
 */
 
-using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace EnhancedLinq.Async.Immediate;
@@ -25,6 +23,8 @@ public static partial class EnhancedLinqAsyncImmediate
         /// <returns>A boolean indicating whether at most 'countToLookFor' elements were found.</returns>
         public async Task<bool> CountAtMostAsync(int countToLookFor)
         {
+            ArgumentOutOfRangeException.ThrowIfNegative(countToLookFor);
+            
             int count = 0;
 
             await foreach (T obj in source)
@@ -49,6 +49,9 @@ public static partial class EnhancedLinqAsyncImmediate
         public async Task<bool> CountAtMostAsync(Func<T, bool> predicate,
             int countToLookFor)
         {
+            ArgumentNullException.ThrowIfNull(predicate);
+            ArgumentOutOfRangeException.ThrowIfNegative(countToLookFor);
+            
             int count = 0;
 
             await foreach (T obj in source)

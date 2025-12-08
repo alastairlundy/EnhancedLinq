@@ -7,8 +7,6 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace EnhancedLinq.Async.Immediate;
@@ -29,10 +27,10 @@ public static partial class EnhancedLinqAsyncImmediate
 
         public async Task ForEachAsync(Action<T> action)
         {
-#if NET8_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(target);
-#endif
-        
+            ArgumentNullException.ThrowIfNull(action);
+
+            
             await foreach (T item in target)
             {
                 action.Invoke(item);

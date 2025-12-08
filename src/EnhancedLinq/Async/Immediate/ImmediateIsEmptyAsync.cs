@@ -7,7 +7,6 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -25,6 +24,8 @@ public static partial class EnhancedLinqAsyncImmediate
         /// <returns>A task representing the asynchronous operation. Returns true if the source is empty, false otherwise.</returns>
         public async Task<bool> IsEmptyAsync()
         {
+            ArgumentNullException.ThrowIfNull(source);
+
             bool anyAsync = await source.AnyAsync();
         
             // ReSharper disable once RedundantBoolCompare

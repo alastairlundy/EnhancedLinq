@@ -7,10 +7,7 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using EnhancedLinq.Internals.Localizations;
 
 namespace EnhancedLinq.Async.Immediate;
 
@@ -28,6 +25,9 @@ public static partial class EnhancedLinqAsyncImmediate
         /// <exception cref="ArgumentException">Thrown when no element is found at the specified index.</exception>
         public async Task<T> ElementAtAsync(int index)
         {
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentOutOfRangeException.ThrowIfNegative(index);
+            
             int i = 0;
 
             await foreach (T item in source)

@@ -7,8 +7,6 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/.
 */
 
-using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace EnhancedLinq.Async.Immediate;
@@ -31,10 +29,8 @@ public static partial class EnhancedLinqAsyncImmediate
         /// </returns>
         public async Task<int> IndexOfAsync(Func<T, bool> predicate)
         {
-#if NET8_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(predicate);
-#endif
         
             int index = 0;
 
@@ -56,9 +52,7 @@ public static partial class EnhancedLinqAsyncImmediate
         /// <returns>The first index of an element in a sequence, if the sequence contains the element, returns -1 otherwise.</returns>
         public async Task<int> IndexOfAsync(T obj)
         {
-#if NET8_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(source);
-#endif
         
             int index = 0;
                 
