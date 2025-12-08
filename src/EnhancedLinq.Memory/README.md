@@ -18,13 +18,13 @@ This project is licensed under the **MPL 2.0 License**. See the [LICENSE](../../
 You can install the **EnhancedLinq.Memory** package via NuGet Package Manager with the following command:
 
 ```bash
-Install-Package AlastairLundy.EnhancedLinq.Memory
+Install-Package EnhancedLinq.Memory
 ```
 
 Alternatively, you can add it to your project file:
 
 ```xml
-<PackageReference Include="AlastairLundy.EnhancedLinq.Memory" Version="0.1.0" />
+<PackageReference Include="EnhancedLinq.Memory" Version="0.1.0" />
 ```
 
 ## Usage
@@ -33,7 +33,7 @@ Here are some examples of how to use the extensions provided by **EnhancedLinq.M
 ### Example 1: Using Immediate LINQ Extensions
 
 ```csharp
-using AlastairLundy.EnhancedLinq.Memory.Immediate;
+using EnhancedLinq.Memory.Immediate;
 
 Span<int> numbers = new int[] { 1, 2, 3, 4, 5 };
 
