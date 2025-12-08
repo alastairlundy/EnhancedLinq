@@ -28,7 +28,7 @@ public static partial class EnhancedLinqAsyncImmediate
         {
             int count = 0;
 
-            await foreach (T item in source)
+            await foreach (T unused in source)
             {
                 count++;
 
