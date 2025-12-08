@@ -11,77 +11,88 @@ namespace EnhancedLinq.Memory.Immediate;
 
 public static partial class EnhancedLinqMemoryImmediate
 {
-
-    /// <summary>
-    /// Determines if none of the elements in a span match a predicate condition.
-    /// </summary>
     /// <param name="span">The span to be searched.</param>
-    /// <param name="predicate">The predicate to check elements against.</param>
     /// <typeparam name="TSource">The type of elements in the span.</typeparam>
-    /// <returns>True if none of the elements matched the predicate, false otherwise.</returns>
-    /// <exception cref="ArgumentNullException">Thrown if the predicate is null.</exception>
-    /// <exception cref="ArgumentException">Thrown if the span is empty.</exception>
-    public static bool None<TSource>(this Span<TSource> span, Func<TSource, bool> predicate)
-        => CountAtMost(span, predicate, 0);
-
-    /// <summary>
-    /// Determines if none of the elements in a span match a predicate condition.
-    /// </summary>
-    /// <param name="span">The span to be searched.</param>
-    /// <param name="predicate">The predicate to check elements against.</param>
-    /// <typeparam name="TSource">The type of elements in the span.</typeparam>
-    /// <returns>True if none of the elements matched the predicate, false otherwise.</returns>
-    /// <exception cref="ArgumentNullException">Thrown if the predicate is null.</exception>
-    /// <exception cref="ArgumentException">Thrown if the span is empty.</exception>
-    public static bool None<TSource>(this ReadOnlySpan<TSource> span, Func<TSource, bool> predicate)
-        => CountAtMost(span, predicate, 0);
-
-
-    /// <summary>
-    /// Determines if none of the elements in a Memory match a predicate condition.
-    /// </summary>
-    /// <param name="memory">The memory to be searched.</param>
-    /// <param name="predicate">The predicate to check elements against.</param>
-    /// <typeparam name="TSource">The type of elements in the Memory.</typeparam>
-    /// <returns>True if none of the elements matched the predicate, false otherwise.</returns>
-    /// <exception cref="ArgumentNullException">Thrown if the predicate is null.</exception>
-    /// <exception cref="ArgumentException">Thrown if the Memory is empty.</exception>
-    public static bool None<TSource>(this Memory<TSource> memory, Func<TSource, bool> predicate)
+    extension<TSource>(Span<TSource> span)
     {
-        ArgumentNullException.ThrowIfNull(predicate);
-        
-        for (int i = 0; i < memory.Length; i++)
-        {
-             TSource item = memory.Span[i];
-             
-            if (predicate(item) == true)
-                return false;
-        }
-        
-        return true;
+        /// <summary>
+        /// Determines if none of the elements in a span match a predicate condition.
+        /// </summary>
+        /// <param name="predicate">The predicate to check elements against.</param>
+        /// <returns>True if none of the elements matched the predicate, false otherwise.</returns>
+        /// <exception cref="ArgumentNullException">Thrown if the predicate is null.</exception>
+        /// <exception cref="ArgumentException">Thrown if the span is empty.</exception>
+        public bool None(Func<TSource, bool> predicate)
+            => CountAtMost(span, predicate, 0);
     }
-    
-    /// <summary>
-    /// Determines if none of the elements in a Memory match a predicate condition.
-    /// </summary>
-    /// <param name="memory">The memory to be searched.</param>
-    /// <param name="predicate">The predicate to check elements against.</param>
-    /// <typeparam name="TSource">The type of elements in the Memory.</typeparam>
-    /// <returns>True if none of the elements matched the predicate, false otherwise.</returns>
-    /// <exception cref="ArgumentNullException">Thrown if the predicate is null.</exception>
-    /// <exception cref="ArgumentException">Thrown if the Memory is empty.</exception>
-    public static bool None<TSource>(this ReadOnlyMemory<TSource> memory, Func<TSource, bool> predicate)
+
+    /// <param name="span">The span to be searched.</param>
+    /// <typeparam name="TSource">The type of elements in the span.</typeparam>
+    extension<TSource>(ReadOnlySpan<TSource> span)
     {
-        ArgumentNullException.ThrowIfNull(predicate);
-        
-        for (int i = 0; i < memory.Length; i++)
+        /// <summary>
+        /// Determines if none of the elements in a span match a predicate condition.
+        /// </summary>
+        /// <param name="predicate">The predicate to check elements against.</param>
+        /// <returns>True if none of the elements matched the predicate, false otherwise.</returns>
+        /// <exception cref="ArgumentNullException">Thrown if the predicate is null.</exception>
+        /// <exception cref="ArgumentException">Thrown if the span is empty.</exception>
+        public bool None(Func<TSource, bool> predicate)
+            => CountAtMost(span, predicate, 0);
+    }
+
+
+    /// <param name="memory">The memory to be searched.</param>
+    /// <typeparam name="TSource">The type of elements in the Memory.</typeparam>
+    extension<TSource>(Memory<TSource> memory)
+    {
+        /// <summary>
+        /// Determines if none of the elements in a Memory match a predicate condition.
+        /// </summary>
+        /// <param name="predicate">The predicate to check elements against.</param>
+        /// <returns>True if none of the elements matched the predicate, false otherwise.</returns>
+        /// <exception cref="ArgumentNullException">Thrown if the predicate is null.</exception>
+        /// <exception cref="ArgumentException">Thrown if the Memory is empty.</exception>
+        public bool None(Func<TSource, bool> predicate)
         {
-            TSource item = memory.Span[i];
-             
-            if (predicate(item) == true)
-                return false;
-        }
+            ArgumentNullException.ThrowIfNull(predicate);
         
-        return true;
+            for (int i = 0; i < memory.Length; i++)
+            {
+                TSource item = memory.Span[i];
+             
+                if (predicate(item) == true)
+                    return false;
+            }
+        
+            return true;
+        }
+    }
+
+    /// <param name="memory">The memory to be searched.</param>
+    /// <typeparam name="TSource">The type of elements in the Memory.</typeparam>
+    extension<TSource>(ReadOnlyMemory<TSource> memory)
+    {
+        /// <summary>
+        /// Determines if none of the elements in a Memory match a predicate condition.
+        /// </summary>
+        /// <param name="predicate">The predicate to check elements against.</param>
+        /// <returns>True if none of the elements matched the predicate, false otherwise.</returns>
+        /// <exception cref="ArgumentNullException">Thrown if the predicate is null.</exception>
+        /// <exception cref="ArgumentException">Thrown if the Memory is empty.</exception>
+        public bool None(Func<TSource, bool> predicate)
+        {
+            ArgumentNullException.ThrowIfNull(predicate);
+        
+            for (int i = 0; i < memory.Length; i++)
+            {
+                TSource item = memory.Span[i];
+             
+                if (predicate(item) == true)
+                    return false;
+            }
+        
+            return true;
+        }
     }
 }
