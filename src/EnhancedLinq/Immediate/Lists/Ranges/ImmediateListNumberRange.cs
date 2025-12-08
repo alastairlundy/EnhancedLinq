@@ -8,12 +8,9 @@
     */
 
 
-using System.Collections.Generic;
 using System.Numerics;
 using AlastairLundy.DotExtensions.Numbers;
-using EnhancedLinq.Internals.Localizations;
 #if NET8_0_OR_GREATER
-using System;
 #endif
 
 namespace EnhancedLinq.Immediate.Ranges;

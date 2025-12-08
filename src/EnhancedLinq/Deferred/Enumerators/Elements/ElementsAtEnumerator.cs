@@ -7,9 +7,7 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace EnhancedLinq.Deferred.Enumerators;
