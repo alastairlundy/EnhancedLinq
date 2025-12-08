@@ -65,5 +65,52 @@ public static partial class EnhancedLinqMemoryImmediateMaths
             return total;
         }
     }
+    
+    /// <param name="source">The <see cref="ReadOnlySpan{T}"/> of type <see cref="TNumber"/> to be searched.</param>
+    /// <typeparam name="TNumber">The numeric type that represents the type of numbers in the <see cref="ReadOnlySpan{T}"/>.</typeparam>
+    extension<TNumber>(ReadOnlySpan<TNumber> source) where TNumber : INumber<TNumber>
+    {
+        /// <summary>
+        /// Determines the minimum value of a <see cref="ReadOnlySpan{T}"/> of numbers of type <see cref="TNumber"/>.
+        /// </summary>
+        /// <returns>The minimum value of the number in the <see cref="ReadOnlySpan{T}"/>.</returns>
+        public TNumber Minimum()
+        {
+            InvalidOperationException.ThrowIfSpanIsEmpty(source);
+            
+            TNumber total = source[0];
+
+            foreach (TNumber item in source)
+            {
+                if (item <= total)
+                {
+                    total = item;
+                }
+            }
+
+            return total;
+        }
+
+        /// <summary>
+        /// Determines the maximum value of a <see cref="ReadOnlySpan{T}"/> of numbers of type <see cref="TNumber"/>.
+        /// </summary>
+        /// <returns>The maximum value of the number in the <see cref="ReadOnlySpan{T}"/>.</returns>
+        public TNumber Maximum()
+        {
+            InvalidOperationException.ThrowIfSpanIsEmpty(source);
+
+            TNumber total = TNumber.Zero;
+
+            foreach (TNumber item in source)
+            {
+                if (item > total)
+                {
+                    total = item;
+                }
+            }
+
+            return total;
+        }
+    }
 }
 #endif
