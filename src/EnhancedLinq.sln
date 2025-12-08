@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnhancedLinq.Memory", "Enha
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{9E301A03-D941-4EE2-B7BA-BC0501258EFE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnhancedLinq.Async", "EnhancedLinq.Async\EnhancedLinq.Async.csproj", "{24FE67DB-76E4-4D74-9362-93AFEA93E341}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{C65241BC-94BE-4ACE-9373-CF6BC4917F6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C65241BC-94BE-4ACE-9373-CF6BC4917F6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C65241BC-94BE-4ACE-9373-CF6BC4917F6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24FE67DB-76E4-4D74-9362-93AFEA93E341}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24FE67DB-76E4-4D74-9362-93AFEA93E341}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24FE67DB-76E4-4D74-9362-93AFEA93E341}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24FE67DB-76E4-4D74-9362-93AFEA93E341}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{26D20606-D549-43D5-8EBC-E01D324690B8} = {9E301A03-D941-4EE2-B7BA-BC0501258EFE}

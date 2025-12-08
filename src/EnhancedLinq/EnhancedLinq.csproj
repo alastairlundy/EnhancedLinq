@@ -68,9 +68,4 @@
       </Content>
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Async\Deferred\Enumerables\" />
-      <Folder Include="Async\Deferred\Enumerators\" />
-    </ItemGroup>
-
 </Project>

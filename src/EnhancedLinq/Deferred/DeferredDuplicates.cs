@@ -13,22 +13,25 @@ namespace EnhancedLinq.Deferred;
 
 public static partial class EnhancedLinqDeferred
 {
+    /// <summary>
+    /// Returns a sequence of duplicate elements from the source sequence using the default equality comparer.
+    /// </summary>
+    /// <param name="source">The sequence to find duplicates in.</param>
+    /// <typeparam name="TSource">The type of elements in the source sequence.</typeparam>
+    /// <returns>A sequence that contains only duplicate elements from the source sequence.</returns>
+    public static IEnumerable<TSource> FindDuplicates<TSource>(this IEnumerable<TSource> source) where TSource : IEquatable<TSource> =>
+        FindDuplicates(source, EqualityComparer<TSource>.Default);
+
     /// <param name="source">The sequence to find duplicates in.</param>
     /// <typeparam name="TSource">The type of elements in the source sequence.</typeparam>
     extension<TSource>(IEnumerable<TSource> source) where TSource : IEquatable<TSource>
     {
         /// <summary>
-        /// Returns a sequence of duplicate elements from the source sequence using the default equality comparer.
-        /// </summary>
-        /// <returns>A sequence that contains only duplicate elements from the source sequence.</returns>
-        public IEnumerable<TSource> GetDuplicates() => GetDuplicates(source, EqualityComparer<TSource>.Default);
-        
-        /// <summary>
         /// Returns a sequence of duplicate elements from the source sequence using the specified equality comparer.
         /// </summary>
         /// <param name="comparer">The equality comparer to use for determining duplicates.</param>
         /// <returns>A sequence that contains only duplicate elements from the source sequence.</returns>
-        public IEnumerable<TSource> GetDuplicates(IEqualityComparer<TSource> comparer)
+        public IEnumerable<TSource> FindDuplicates(IEqualityComparer<TSource> comparer)
         {
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(comparer);
