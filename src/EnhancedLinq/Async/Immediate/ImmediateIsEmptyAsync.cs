@@ -22,14 +22,12 @@ public static partial class EnhancedLinqAsyncImmediate
         /// Asynchronously checks if an IAsyncEnumerable is empty.
         /// </summary>
         /// <returns>A task representing the asynchronous operation. Returns true if the source is empty, false otherwise.</returns>
-        public async Task<bool> IsEmptyAsync()
+        public async ValueTask<bool> IsEmptyAsync()
         {
             ArgumentNullException.ThrowIfNull(source);
 
             bool anyAsync = await source.AnyAsync();
-        
-            // ReSharper disable once RedundantBoolCompare
-            return anyAsync == false;
+            return !anyAsync;
         }
     }
 }
