@@ -42,7 +42,6 @@ public static partial class EnhancedLinqMemoryImmediate
         /// Returns the last element of a span that satisfies a specified condition,
         /// or null if the Span is empty.
         /// </summary>
-        /// <typeparam name="T">The type of elements in the span.</typeparam>
         /// <returns>The last element of the span, or null if the span is empty.</returns>
         public T? LastOrDefault()
         {
@@ -59,7 +58,6 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <summary>
         /// Returns the last element in the Span.
         /// </summary>
-        /// <typeparam name="T">The type of items stored in the span.</typeparam>
         /// <returns>The last item in the span if any items are in the Span.</returns>
         /// <exception cref="InvalidOperationException">Thrown if the Span contains zero items.</exception>
         public T Last()
@@ -103,7 +101,6 @@ public static partial class EnhancedLinqMemoryImmediate
         /// Returns the last element of a <see cref="ReadOnlySpan{T}"/> that satisfies a specified condition,
         /// or null if the Span is empty.
         /// </summary>
-        /// <typeparam name="T">The type of elements in the <see cref="ReadOnlySpan{T}"/>.</typeparam>
         /// <returns>The last element of the <see cref="ReadOnlySpan{T}"/>, or null if the span is empty.</returns>
         public T? LastOrDefault()
         {
@@ -120,7 +117,6 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <summary>
         /// Returns the last element in the <see cref="ReadOnlySpan{T}"/>.
         /// </summary>
-        /// <typeparam name="T">The type of items stored in the <see cref="ReadOnlySpan{T}"/>.</typeparam>
         /// <returns>The last item in the <see cref="ReadOnlySpan{T}"/> if any items are in the Span.</returns>
         /// <exception cref="InvalidOperationException">Thrown if the <see cref="ReadOnlySpan{T}"/> contains zero items.</exception>
         public T Last()

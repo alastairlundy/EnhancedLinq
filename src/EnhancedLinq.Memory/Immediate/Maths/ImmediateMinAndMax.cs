@@ -19,15 +19,15 @@ namespace EnhancedLinq.Memory.Immediate.Maths;
 /// </summary>
 public static partial class EnhancedLinqMemoryImmediateMaths
 {
-    /// <param name="source">The span of type <see cref="TNumber"/> to be searched.</param>
+    /// <param name="source">The span to be searched.</param>
     /// <typeparam name="TNumber">The numeric type that represents the type of numbers in the span.</typeparam>
     extension<TNumber>(Span<TNumber> source) where TNumber : INumber<TNumber>
     {
         /// <summary>
-        /// Determines the minimum value of a span of numbers of type <see cref="TNumber"/>.
+        /// Determines the minimum value of a span of numbers.
         /// </summary>
         /// <returns>The minimum value of the number in the span.</returns>
-        public TNumber Minimum()
+        public INumber<TNumber> Minimum()
         {
             InvalidOperationException.ThrowIfSpanIsEmpty(source);
             
@@ -45,7 +45,7 @@ public static partial class EnhancedLinqMemoryImmediateMaths
         }
 
         /// <summary>
-        /// Determines the maximum value of a span of numbers of type <see cref="TNumber"/>.
+        /// Determines the maximum value of a span of numbers.
         /// </summary>
         /// <returns>The maximum value of the number in the span.</returns>
         public TNumber Maximum()
@@ -66,12 +66,12 @@ public static partial class EnhancedLinqMemoryImmediateMaths
         }
     }
     
-    /// <param name="source">The <see cref="ReadOnlySpan{T}"/> of type <see cref="TNumber"/> to be searched.</param>
+    /// <param name="source">The <see cref="ReadOnlySpan{T}"/> to be searched.</param>
     /// <typeparam name="TNumber">The numeric type that represents the type of numbers in the <see cref="ReadOnlySpan{T}"/>.</typeparam>
     extension<TNumber>(ReadOnlySpan<TNumber> source) where TNumber : INumber<TNumber>
     {
         /// <summary>
-        /// Determines the minimum value of a <see cref="ReadOnlySpan{T}"/> of numbers of type <see cref="TNumber"/>.
+        /// Determines the minimum value of a <see cref="ReadOnlySpan{T}"/> of numbers.
         /// </summary>
         /// <returns>The minimum value of the number in the <see cref="ReadOnlySpan{T}"/>.</returns>
         public TNumber Minimum()
@@ -92,7 +92,7 @@ public static partial class EnhancedLinqMemoryImmediateMaths
         }
 
         /// <summary>
-        /// Determines the maximum value of a <see cref="ReadOnlySpan{T}"/> of numbers of type <see cref="TNumber"/>.
+        /// Determines the maximum value of a <see cref="ReadOnlySpan{T}"/> of numbers.
         /// </summary>
         /// <returns>The maximum value of the number in the <see cref="ReadOnlySpan{T}"/>.</returns>
         public TNumber Maximum()

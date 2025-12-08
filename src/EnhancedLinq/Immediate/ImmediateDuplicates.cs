@@ -26,7 +26,6 @@ public static partial class EnhancedLinqImmediate
         /// Determines whether an <see cref="IEnumerable{T}"/> contains duplicate instances of an object.
         /// </summary>
         /// <param name="comparer">The <see cref="IEqualityComparer{T}"/> to be used to check for duplicates, or the default equality comparer if null.</param>
-        /// <typeparam name="T">The type of objects in the <see cref="IEnumerable{T}"/>.</typeparam>
         /// <returns>True if the <see cref="IEnumerable{T}"/> contains duplicate objects; false otherwise.</returns>
         public bool ContainsDuplicates(IEqualityComparer<T>? comparer)
         {

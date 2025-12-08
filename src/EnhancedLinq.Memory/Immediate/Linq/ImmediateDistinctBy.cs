@@ -32,7 +32,6 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <summary>
         /// Returns a new span containing only the distinct elements from the source span, determined by a specified key selector.
         /// </summary>
-        /// <typeparam name="TSource">The type of the elements in the source span.</typeparam>
         /// <typeparam name="TKey">The type of the key extracted from each element.</typeparam>
         /// <param name="keySelector">A function to extract a key from an element.</param>
         /// <param name="comparer">An equality comparer to compare keys. If null, the default equality comparer for the key type is used.</param>

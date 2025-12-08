@@ -13,7 +13,7 @@ namespace EnhancedLinq.Memory.Immediate.Maths;
 
 public static partial class EnhancedLinqMemoryImmediateMaths
 {
-    /// <param name="source">The span of type <see cref="TNumber"/> to be summed.</param>
+    /// <param name="source">The span to be summed.</param>
     /// <typeparam name="TNumber">The numeric type that represents the type of numbers in the span.</typeparam>
     extension<TNumber>(Span<TNumber> source) where TNumber : INumber<TNumber>
     {
@@ -36,7 +36,7 @@ public static partial class EnhancedLinqMemoryImmediateMaths
         }
     }
     
-    /// <param name="source">The <see cref="ReadOnlySpan{T}"/> of type <see cref="TNumber"/> to be summed.</param>
+    /// <param name="source">The <see cref="ReadOnlySpan{T}"/> to be summed.</param>
     /// <typeparam name="TNumber">The numeric type that represents the type of numbers in the <see cref="ReadOnlySpan{T}"/>.</typeparam>
     extension<TNumber>(ReadOnlySpan<TNumber> source) where TNumber : INumber<TNumber>
     {
@@ -59,7 +59,7 @@ public static partial class EnhancedLinqMemoryImmediateMaths
         }
     }
 
-    /// <param name="source">The memory of type <see cref="TNumber"/> to be summed.</param>
+    /// <param name="source">The memory to be summed.</param>
     /// <typeparam name="TNumber">The numeric type that represents the type of numbers in the memory.</typeparam>
     extension<TNumber>(Memory<TNumber> source) where TNumber : INumber<TNumber>
     {
@@ -70,7 +70,7 @@ public static partial class EnhancedLinqMemoryImmediateMaths
         public TNumber Sum() => Sum(source.Span);
     }
     
-    /// <param name="source">The <see cref="ReadOnlyMemory{T}"/> of type <see cref="TNumber"/> to be summed.</param>
+    /// <param name="source">The <see cref="ReadOnlyMemory{T}"/> to be summed.</param>
     /// <typeparam name="TNumber">The numeric type that represents the type of numbers in the <see cref="ReadOnlyMemory{T}"/>.</typeparam>
     extension<TNumber>(ReadOnlyMemory<TNumber> source) where TNumber : INumber<TNumber>
     {

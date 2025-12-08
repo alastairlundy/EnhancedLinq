@@ -36,7 +36,7 @@ public static partial class EnhancedLinqSegmentDeferred
         /// </summary>
         /// <param name="separator">The <see cref="StringSegment"/> separator to split by.</param>
         /// <returns>An <see cref="IEnumerable{StringSegment}"/> containing the split segments. Returns an empty sequence if the separator is not found.</returns>
-        /// <exception cref="ArgumentException">Thrown if <paramref name="separator"/> or <paramref name="source"/> is null or empty.</exception>
+        /// <exception cref="ArgumentException">Thrown if the separator or the source is null or empty.</exception>
         public IEnumerable<StringSegment> SplitBy(StringSegment separator)
         {
             ArgumentException.ThrowIfNullOrWhitespace(source);

@@ -64,7 +64,6 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <summary>
         /// Returns a new <see cref="Memory{T}"/> containing distinct elements from the source <see cref="Memory{T}"/>, using the specified equality comparer.
         /// </summary>
-        /// <typeparam name="T">The type of elements in the source <see cref="Memory{T}"/>.</typeparam>
         /// <param name="comparer">The equality comparer to use for determining distinct elements. If null, the default equality comparer is used.</param>
         /// <returns>A <see cref="Memory{T}"/> containing the distinct elements from the source <see cref="Memory{T}"/>.</returns>
         public Memory<T> Distinct(IEqualityComparer<T>? comparer) =>
@@ -85,7 +84,6 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <summary>
         /// Returns a new <see cref="ReadOnlyMemory{T}"/> containing distinct elements from the source <see cref="ReadOnlyMemory{T}"/>, using the specified equality comparer.
         /// </summary>
-        /// <typeparam name="T">The type of elements in the source <see cref="ReadOnlyMemory{T}"/>.</typeparam>
         /// <param name="comparer">The equality comparer to use for determining distinct elements. If null, the default equality comparer is used.</param>
         /// <returns>A <see cref="ReadOnlyMemory{T}"/> containing the distinct elements from the source <see cref="ReadOnlyMemory{T}"/>.</returns>
         public ReadOnlyMemory<T> Distinct(IEqualityComparer<T>? comparer) =>

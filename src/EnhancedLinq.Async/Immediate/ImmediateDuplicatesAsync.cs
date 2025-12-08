@@ -25,7 +25,6 @@ public static partial class EnhancedLinqAsyncImmediate
         /// <summary>
         /// Determines whether an <see cref="IAsyncEnumerable{T}"/> contains duplicate instances of an object.
         /// </summary>
-        /// <typeparam name="T">The type of objects in the <see cref="IAsyncEnumerable{T}"/>.</typeparam>
         /// <param name="comparer">The <see cref="IEqualityComparer{T}"/> to be used to check for duplicates, uses the Default Equality Comparer if null.</param>
         /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation. True if duplicates are found; otherwise, false.</returns>
         public async Task<bool> ContainsDuplicates(IEqualityComparer<T>? comparer)

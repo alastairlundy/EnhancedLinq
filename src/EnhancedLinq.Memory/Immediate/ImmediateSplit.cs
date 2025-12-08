@@ -17,12 +17,11 @@ public static partial class EnhancedLinqMemoryImmediate
     where T : notnull
     {
         /// <summary>
-        /// Splits a span into an <see cref="IList{T}"/> of arrays of type <see cref="T"/> based on the specified item count per array.
+        /// Splits a span into an <see cref="IList{T}"/> of arrays based on the specified item count per array.
         /// </summary>
-        /// <typeparam name="T">The type of elements within the span.</typeparam>
         /// <param name="count">The maximum number of items in each array.</param>
-        /// <returns>An <see cref="IList{T}"/> of arrays, where each array contains a maximum of <paramref name="count"/> elements.</returns>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="count"/> is less than or equal to zero.</exception>
+        /// <returns>An <see cref="IList{T}"/> of arrays, where each array contains a maximum of count elements.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when the count is less than or equal to zero.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the input span is empty.</exception>
         public IList<T[]> SplitByItemCount(int count)
         {
@@ -64,19 +63,18 @@ public static partial class EnhancedLinqMemoryImmediate
         }
 
         /// <summary>
-        /// Splits a span into an <see cref="IList{T}"/> of arrays of type <see cref="T"/> based on the number of processors available.
+        /// Splits a span into an <see cref="IList{T}"/> of arrays based on the number of processors available.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>An <see cref="IList{T}"/> of arrays, where the span is split by the number of processors available.</returns>
         public IList<T[]> SplitByProcessorCount()
             => SplitByItemCount(span, Environment.ProcessorCount);
 
         /// <summary>
-        /// Splits a span into an <see cref="IList{T}"/> of arrays of type <see cref="T"/> based on a specified maximum number of arrays.
+        /// Splits a span into an <see cref="IList{T}"/> of arrays based on a specified maximum number of arrays.
         /// </summary>
-        /// <typeparam name="T">The type of elements within the span.</typeparam>
         /// <param name="maximumNumberOfArrays">The maximum number of arrays to divide the span into.</param>
-        /// <returns>An <see cref="IList{T}"/> of arrays, where the span is divided into at most <paramref name="maximumNumberOfArrays"/> arrays.</returns>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="maximumNumberOfArrays"/> is less than or equal to zero.</exception>
+        /// <returns>An <see cref="IList{T}"/> of arrays, where the span is divided into at most the maximum number the arrays.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when the maximum number of arrays is less than or equal to zero.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the input span is empty.</exception>
         public IList<T[]> SplitByArrayCount(int maximumNumberOfArrays)
         {
@@ -111,7 +109,7 @@ public static partial class EnhancedLinqMemoryImmediate
         }
 
         /// <summary>
-        /// Splits a span into an <see cref="IList{T}"/> of arrays of type <see cref="T"/> based on the provided predicate.
+        /// Splits a span into an <see cref="IList{T}"/> of arrays based on the provided predicate.
         /// </summary>
         /// <param name="predicate">A function that returns true or false indicating if an element should start a new array.</param>
         /// <returns></returns>

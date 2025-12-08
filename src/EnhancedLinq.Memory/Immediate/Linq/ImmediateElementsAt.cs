@@ -213,7 +213,6 @@ public static partial class EnhancedLinqMemoryImmediate
         /// Returns the element at the specified index from the source <see cref="ReadOnlySpan{T}"/>, or the default value for the type if the index is out of range.
         /// </summary>
         /// <param name="index">The zero-based index of the element to retrieve.</param>
-        /// <typeparam name="T">The type of elements in the source span.</typeparam>
         /// <returns>The element at the specified index if it exists; otherwise, the default value for the type.</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown if the specified index is negative or zero.</exception>
         /// <exception cref="IndexOutOfRangeException">Thrown if the specified index is out of bounds of the source span.</exception>

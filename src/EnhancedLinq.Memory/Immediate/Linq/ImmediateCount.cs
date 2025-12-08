@@ -39,7 +39,7 @@ public static partial class EnhancedLinqMemoryImmediate
 #if NET8_0_OR_GREATER
 
         /// <summary>
-        /// Returns the number of elements in a given span that satisfy a condition as a <see cref="TNumber"/>.
+        /// Returns the number of elements in a given span that satisfy a condition.
         /// </summary>
         /// <param name="predicate">A func that takes an element and returns a boolean indicating whether it should be counted.</param>
         /// <typeparam name="TNumber">The numeric type that represents the type of numbers in the span.</typeparam>
@@ -93,7 +93,7 @@ public static partial class EnhancedLinqMemoryImmediate
 #if NET8_0_OR_GREATER
 
         /// <summary>
-        /// Returns the number of elements in a given <see cref="ReadOnlySpan{T}"/> that satisfy a condition as a <see cref="TNumber"/>.
+        /// Returns the number of elements in a given <see cref="ReadOnlySpan{T}"/> that satisfy a condition.
         /// </summary>
         /// <param name="predicate">A func that takes an element and returns a boolean indicating whether it should be counted.</param>
         /// <typeparam name="TNumber">The numeric type that represents the type of numbers in the <see cref="ReadOnlySpan{T}"/>.</typeparam>
