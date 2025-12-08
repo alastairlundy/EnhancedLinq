@@ -36,4 +36,28 @@ public static partial class EnhancedLinqMemoryImmediate
             return groups.Distinct().Length ==  1;
         }
     }
+    
+    /// <param name="target">The <see cref="ReadOnlySpan{T}"/> to be searched.</param>
+    /// <typeparam name="T">The type of items stored in the <see cref="ReadOnlySpan{T}"/>.</typeparam>
+    extension<T>(ReadOnlySpan<T> target)
+    {
+        /// <summary>
+        /// Returns whether all items in a <see cref="ReadOnlySpan{T}"/> match the predicate condition.
+        /// </summary>
+        /// <param name="predicate">The predicate func to be invoked on each item in the <see cref="ReadOnlySpan{T}"/>.</param>
+        /// <returns>True if all items in the <see cref="ReadOnlySpan{T}"/> match the predicate; false otherwise.</returns>
+        public bool All(Func<T, bool> predicate)
+        {   
+            InvalidOperationException.ThrowIfSpanIsEmpty(target);
+            ArgumentNullException.ThrowIfNull(predicate);
+            
+            ReadOnlySpan<bool> groups = (from c in target
+                group c by predicate.Invoke(c)
+                into g
+                where g.Key
+                select g.Any());
+
+            return groups.Distinct().Length ==  1;
+        }
+    }
 }
