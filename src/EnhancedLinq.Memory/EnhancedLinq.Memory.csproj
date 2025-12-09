@@ -43,7 +43,7 @@
         <PackageReference Include="AlastairLundy.DotExtensions" Version="9.2.0-preview.2" />
         <PackageReference Include="AlastairLundy.DotExtensions.Memory" Version="9.2.0-preview.2" />
         <PackageReference Include="AlastairLundy.DotPrimitives.Collections" Version="4.0.0" />
-        <PackageReference Include="Polyfill" Version="9.3.1" PrivateAssets="all"
+        <PackageReference Include="Polyfill" Version="9.3.2" PrivateAssets="all"
                           Condition="'$(TargetFramework)' == 'netstandard2.0'"/>
     </ItemGroup>
     
