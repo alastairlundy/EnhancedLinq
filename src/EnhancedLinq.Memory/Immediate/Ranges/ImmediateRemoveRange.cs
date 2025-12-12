@@ -29,7 +29,8 @@ public static partial class EnhancedLinqMemoryImmediateRange
             InvalidOperationException.ThrowIfSpanIsEmpty(target);
             ArgumentNullException.ThrowIfNull(indices);
             
-            IEnumerable<int> newIndices = target.Index().SkipWhile(x => indices.Contains(x));
+            IEnumerable<int> newIndices = target.Index().Select(i => i.Index)
+                .SkipWhile(x => indices.Contains(x));
         
             return target.GetRange(newIndices);
         }
