@@ -68,4 +68,8 @@
             <PackagePath>README.md</PackagePath>
         </Content>
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Internals\Infra\" />
+    </ItemGroup>
 </Project>
