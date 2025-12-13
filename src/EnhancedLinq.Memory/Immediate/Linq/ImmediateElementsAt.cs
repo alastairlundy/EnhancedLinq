@@ -74,7 +74,7 @@ public static partial class EnhancedLinqMemoryImmediate
 #if NET8_0_OR_GREATER
             return source[new Range(index, index + count)];
 #else
-        return source.Slice(index, index + count);
+            return source.Slice(index, index + count);
 #endif
         }
     }
@@ -141,7 +141,7 @@ public static partial class EnhancedLinqMemoryImmediate
 #if NET8_0_OR_GREATER
             return source[new Range(index, index + count)];
 #else
-        return source.Slice(index, index + count);
+            return source.Slice(index, index + count);
 #endif
         }
     }

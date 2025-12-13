@@ -29,12 +29,12 @@ public static partial class EnhancedLinqMemoryImmediate
             => OrderBy(source, predicate, Comparer<TKey>.Default);
 
         /// <summary>
-        /// 
+        /// Sorts the elements of a Span in ascending order by using a specified key selector and optional comparer.
         /// </summary>
-        /// <param name="predicate"></param>
-        /// <param name="comparer"></param>
-        /// <typeparam name="TKey"></typeparam>
-        /// <returns></returns>
+        /// <typeparam name="TKey">The type of the key returned by the key selector function.</typeparam>
+        /// <param name="predicate">The function to extract the key for each element.</param>
+        /// <param name="comparer">An optional comparer to define custom comparison logic. If null, the default comparer is used.</param>
+        /// <returns>A new Span containing the sorted elements.</returns>
         public Span<TSource> OrderBy<TKey>(Func<TSource, TKey> predicate, IComparer<TKey>? comparer)
         {
             InvalidOperationException.ThrowIfSpanIsEmpty(source);
