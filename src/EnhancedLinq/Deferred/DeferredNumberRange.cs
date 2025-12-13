@@ -64,7 +64,6 @@ public static partial class EnhancedLinqDeferred
     }
 
 #else
-
     /// <param name="start">The starting value of the sequence.</param>
     extension(int start)
     {
