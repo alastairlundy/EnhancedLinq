@@ -79,7 +79,7 @@ public static partial class EnhancedLinqMemoryImmediate
         }
     }
     
-        /// <param name="source">The source <see cref="ReadOnlyMemory{T}"/> .</param>
+    /// <param name="source">The source <see cref="ReadOnlyMemory{T}"/> .</param>
     /// <typeparam name="T">The type of items stored in the Memory.</typeparam>
     extension<T>(ReadOnlyMemory<T> source)
     {
