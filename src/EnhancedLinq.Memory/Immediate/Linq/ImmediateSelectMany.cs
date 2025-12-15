@@ -24,12 +24,13 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <exception cref="OverflowException">Thrown when the resulting collection exceeds the maximum allowed size.</exception>
         public TResult[] SelectMany<TResult>(Func<TSource, ICollection<TResult>> resultSelector)
         {
+            InvalidOperationException.ThrowIfSpanIsEmpty(source);
             ArgumentNullException.ThrowIfNull(resultSelector);
 
             Span<ICollection<TResult>> newCollections = (from item in source
                 select resultSelector(item));
 
-            List<TResult> results = new List<TResult>();
+            List<TResult> results = new();
 
             foreach (ICollection<TResult> collection in newCollections)
             {
@@ -62,13 +63,11 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <exception cref="OverflowException">Thrown when the total number of resulting elements exceeds the maximum allowed size.</exception>
         public TResult[] SelectMany<TCollection, TResult>(Func<TSource, ICollection<TCollection>> collectionSelector, Func<TSource, TCollection, TResult> resultSelector)
         {
+            InvalidOperationException.ThrowIfSpanIsEmpty(source);
             ArgumentNullException.ThrowIfNull(collectionSelector);
             ArgumentNullException.ThrowIfNull(resultSelector);
-
-            if (source.IsEmpty)
-                throw new ArgumentException();
-
-            List<TResult> results = new List<TResult>(capacity: source.Length);
+            
+            List<TResult> results = new(capacity: source.Length);
 
             foreach (TSource item in source)
             {

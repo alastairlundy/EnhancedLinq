@@ -31,6 +31,8 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <returns>A span of groups, each containing a key and the elements that share that key.</returns>
         public Span<IGrouping<TKey, TElement>> GroupBy(Func<TElement, TKey> keyPredicate)
         {
+            InvalidOperationException.ThrowIfSpanIsEmpty(source);
+
             ArgumentNullException.ThrowIfNull(keyPredicate);
         
             Dictionary<TKey, List<TElement>> dictionary = new();
@@ -45,7 +47,7 @@ public static partial class EnhancedLinqMemoryImmediate
                 }
                 else
                 {
-                    dictionary.Add(key, new List<TElement>());
+                    dictionary.Add(key, new());
                     dictionary[key].Add(item);
                 }
             }
@@ -53,7 +55,7 @@ public static partial class EnhancedLinqMemoryImmediate
             IEnumerable<IGrouping<TKey, TElement>> groups = (from kvp in dictionary
                 select new GroupingEnumerable<TKey, TElement>(kvp.Key, kvp.Value));
         
-            return new  Span<IGrouping<TKey, TElement>>(groups.ToArray());
+            return new(groups.ToArray());
         }
     }
     
@@ -69,6 +71,7 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <returns>A <see cref="ReadOnlySpan{T}"/> of groups, each containing a key and the elements that share that key.</returns>
         public ReadOnlySpan<IGrouping<TKey, TElement>> GroupBy(Func<TElement, TKey> keyPredicate)
         {
+            InvalidOperationException.ThrowIfSpanIsEmpty(source);
             ArgumentNullException.ThrowIfNull(keyPredicate);
         
             Dictionary<TKey, List<TElement>> dictionary = new();
@@ -83,7 +86,7 @@ public static partial class EnhancedLinqMemoryImmediate
                 }
                 else
                 {
-                    dictionary.Add(key, new List<TElement>());
+                    dictionary.Add(key, new());
                     dictionary[key].Add(item);
                 }
             }
@@ -91,7 +94,7 @@ public static partial class EnhancedLinqMemoryImmediate
             IEnumerable<IGrouping<TKey, TElement>> groups = (from kvp in dictionary
                 select new GroupingEnumerable<TKey, TElement>(kvp.Key, kvp.Value));
         
-            return new ReadOnlySpan<IGrouping<TKey, TElement>>(groups.ToArray());
+            return new(groups.ToArray());
         }
     }
 }

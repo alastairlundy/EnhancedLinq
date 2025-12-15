@@ -37,7 +37,6 @@ public static partial class EnhancedLinqMemoryImmediate
         }
 
 #if NET8_0_OR_GREATER
-
         /// <summary>
         /// Returns the number of elements in a given span that satisfy a condition.
         /// </summary>
@@ -91,7 +90,6 @@ public static partial class EnhancedLinqMemoryImmediate
         }
 
 #if NET8_0_OR_GREATER
-
         /// <summary>
         /// Returns the number of elements in a given <see cref="ReadOnlySpan{T}"/> that satisfy a condition.
         /// </summary>

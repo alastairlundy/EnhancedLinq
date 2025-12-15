@@ -25,9 +25,10 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <exception cref="Span{T}">Thrown when count is less than zero or greater than the length of the Span.</exception>
         public Span<T> Take(int count)
         {
-            if (source.IsEmpty || count < 0 || count > source.Length)
-                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
-
+            InvalidOperationException.ThrowIfSpanIsEmpty(source);
+            ArgumentOutOfRangeException.ThrowIfNegative(count);
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(count, source.Length);
+            
             return source.Slice(0, count);
         }
 
@@ -39,16 +40,16 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <exception cref="ArgumentException">Thrown if the Span is empty.</exception>
         public Span<T> TakeWhile(Func<T, int, bool> predicate)
         {
-            if (source.IsEmpty)
-                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
-
+            InvalidOperationException.ThrowIfSpanIsEmpty(source);
+            ArgumentNullException.ThrowIfNull(predicate);
+            
             int end = 0;
 
             for (int index = 0; index < source.Length; index++)
             {
                 bool result = predicate(source[index], index);
 
-                if (result == false)
+                if (!result)
                 {
                     end = index;
                     break;
@@ -66,9 +67,10 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <exception cref="ArgumentException">Thrown when the count is less than 0 or greater than the length of the Span.</exception>
         public Span<T> TakeLast(int count)
         {
-            if (source.IsEmpty || count < 0 || count > source.Length)
-                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
-
+            InvalidOperationException.ThrowIfSpanIsEmpty(source);
+            ArgumentOutOfRangeException.ThrowIfNegative(count);
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(count, source.Length);
+            
             int start = source.Length - count;
             int length = source.Length - start;
 

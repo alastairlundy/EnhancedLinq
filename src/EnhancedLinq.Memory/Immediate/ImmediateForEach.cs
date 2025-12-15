@@ -72,7 +72,7 @@ public static partial class EnhancedLinqMemoryImmediate
                 array[index] = item;
             }
 
-            target = new Memory<T>(array);
+            target = new(array);
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ public static partial class EnhancedLinqMemoryImmediate
                 array[index] = action.Invoke(item);
             }
 
-            target = new Memory<T>(array);
+            target = new(array);
         }
     }
 }

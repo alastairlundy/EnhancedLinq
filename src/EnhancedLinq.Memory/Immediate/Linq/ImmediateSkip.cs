@@ -22,6 +22,8 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <returns>A new Span with all the elements of the original span except the specified number of first elements to skip.</returns>
         public Span<T> Skip(int count)
         {
+            InvalidOperationException.ThrowIfSpanIsEmpty(target);
+
             if (count > target.Length)
                 throw new ArgumentOutOfRangeException(Resources
                     .Exceptions_SkipCount_TooLarge);
@@ -36,6 +38,8 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <returns>A new Span with all the elements of the original span except the specified last number of elements to skip.</returns>
         public Span<T> SkipLast(int count)
         {
+            InvalidOperationException.ThrowIfSpanIsEmpty(target);
+
             if (count > target.Length)
                 throw new ArgumentOutOfRangeException(Resources
                     .Exceptions_SkipCount_TooLarge);
@@ -50,8 +54,10 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <returns>A new Span with all the elements of the original Span that did not match the specified predicate func.</returns>
         public Span<T> SkipWhile(Func<T, bool> predicate)
         {
+            InvalidOperationException.ThrowIfSpanIsEmpty(target);
+
             return from item in target
-                where predicate.Invoke(item) == false
+                where !predicate.Invoke(item)
                 select item;
         }
     }

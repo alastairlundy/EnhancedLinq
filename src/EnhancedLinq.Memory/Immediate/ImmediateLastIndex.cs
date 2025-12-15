@@ -21,6 +21,8 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <returns>The index of the last element in the <see cref="Span{T}"/>.</returns>
         public int LastIndex()
         {
+            InvalidOperationException.ThrowIfSpanIsEmpty(span);
+
             if (span.Length > 0)
                 return span.Length - 1;
 
@@ -38,6 +40,8 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <returns>The index of the last element in the <see cref="ReadOnlySpan{T}"/>.</returns>
         public int LastIndex()
         {
+            InvalidOperationException.ThrowIfSpanIsEmpty(span);
+
             if (span.Length > 0)
                 return span.Length - 1;
 
@@ -55,6 +59,8 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <returns>The index of the last element in the memory.</returns>
         public int LastIndex()
         {
+            InvalidOperationException.ThrowIfMemoryIsEmpty(memory);
+
             if (memory.Length > 0)
                 return memory.Length - 1;
 

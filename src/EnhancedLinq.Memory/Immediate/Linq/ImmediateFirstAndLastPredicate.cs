@@ -23,6 +23,8 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <exception cref="ArgumentException">Thrown when no element satisfies the condition.</exception>
         public T First(Func<T, bool> predicate)
         {
+            ArgumentNullException.ThrowIfNull(predicate);
+
             for (int index = 0; index < target.Length; index++)
             {
                 T item = target[index];
@@ -44,6 +46,8 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <exception cref="ArgumentException">Thrown when the <see cref="Span{T}"/> is empty or no element satisfies the condition.</exception>
         public T? FirstOrDefault(Func<T, bool> predicate)
         {
+            ArgumentNullException.ThrowIfNull(predicate);
+
             for (int index = 0; index < target.Length; index++)
             {
                 T item = target[index];
@@ -64,6 +68,8 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <exception cref="ArgumentException">Thrown when no element satisfies the condition.</exception>
         public T Last(Func<T, bool> predicate)
         {
+            ArgumentNullException.ThrowIfNull(predicate);
+
             Span<T> newTarget = target;
             newTarget.Reverse();
 
@@ -86,6 +92,8 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <returns>The last element of the <see cref="Span{T}"/> that satisfies the condition, or null if no such element is found.</returns>
         public T? LastOrDefault(Func<T, bool> predicate)
         {
+            ArgumentNullException.ThrowIfNull(predicate);
+
             Span<T> newTarget = target;
             newTarget.Reverse();
 

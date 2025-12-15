@@ -30,7 +30,7 @@ public static partial class EnhancedLinqMemoryImmediate
 
             foreach (T item in first)
             {
-                if (second.Contains(item) == false)
+                if (!second.Contains(item))
                 {
                     output[index] = item;
                     index++;
@@ -39,7 +39,7 @@ public static partial class EnhancedLinqMemoryImmediate
 
             foreach (T item in second)
             {
-                if(first.Contains(item) == false)
+                if(!first.Contains(item))
                 {
                     output[index] = item;
                     index++;
@@ -48,7 +48,7 @@ public static partial class EnhancedLinqMemoryImmediate
         
             Array.Resize(ref output, index);
 
-            return new Span<T>(output);
+            return new(output);
         }
     }
     
@@ -71,7 +71,7 @@ public static partial class EnhancedLinqMemoryImmediate
 
             foreach (T item in first)
             {
-                if (second.Contains(item) == false)
+                if (!second.Contains(item))
                 {
                     output[index] = item;
                     index++;
@@ -80,7 +80,7 @@ public static partial class EnhancedLinqMemoryImmediate
 
             foreach (T item in second)
             {
-                if(first.Contains(item) == false)
+                if(!first.Contains(item))
                 {
                     output[index] = item;
                     index++;

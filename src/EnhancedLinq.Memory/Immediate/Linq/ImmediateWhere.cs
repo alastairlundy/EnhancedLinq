@@ -22,6 +22,9 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <returns>A new Span with the items that match the predicate condition.</returns>
         public Span<T> Where(Func<T, bool> predicate)
         {
+            ArgumentNullException.ThrowIfNull(predicate);
+            InvalidOperationException.ThrowIfSpanIsEmpty(target);
+            
             List<T> list;
 
             if (target.Length <= 100)
@@ -37,7 +40,7 @@ public static partial class EnhancedLinqMemoryImmediate
                 }
             }
         
-            return new Span<T>(list.ToArray());
+            return new(list.ToArray());
         }
     }
     
@@ -52,6 +55,9 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <returns>A new <see cref="ReadOnlySpan{T}"/> with the items that match the predicate condition.</returns>
         public ReadOnlySpan<T> Where(Func<T, bool> predicate)
         {
+            ArgumentNullException.ThrowIfNull(predicate);
+            InvalidOperationException.ThrowIfSpanIsEmpty(target);
+
             List<T> list;
 
             if (target.Length <= 100)
@@ -67,7 +73,7 @@ public static partial class EnhancedLinqMemoryImmediate
                 }
             }
         
-            return new ReadOnlySpan<T>(list.ToArray());
+            return new(list.ToArray());
         }
     }
 }

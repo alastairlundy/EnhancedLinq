@@ -91,7 +91,7 @@ public static partial class EnhancedLinqMemoryImmediateRange
                 output.Add(target[index]);
             }
             
-            return new Span<T>(output.ToArray());
+            return new(output.ToArray());
         }
     }
         
@@ -126,6 +126,6 @@ public static partial class EnhancedLinqMemoryImmediateRange
             newIndex++;
         }
             
-        return new Span<T>(array);
+        return new(array);
     }
 }

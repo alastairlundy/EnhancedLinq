@@ -27,7 +27,7 @@ public static partial class EnhancedLinqMemoryImmediate
         {
             InvalidOperationException.ThrowIfSpanIsEmpty(source);
 
-            List<int> indices = new List<int>();
+            List<int> indices = new();
 
             for (int index = 0; index < source.Length; index++)
             {
@@ -50,7 +50,7 @@ public static partial class EnhancedLinqMemoryImmediate
             InvalidOperationException.ThrowIfSpanIsEmpty(source);
             ArgumentNullException.ThrowIfNull(predicate);
             
-            List<int> indices = new List<int>();
+            List<int> indices = new();
         
             for (int index = 0; index < source.Length; index++)
             {
