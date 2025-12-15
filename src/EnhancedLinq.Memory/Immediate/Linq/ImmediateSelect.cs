@@ -36,7 +36,7 @@ public static partial class EnhancedLinqMemoryImmediate
                 index++;
             });
 
-            return new Span<TResult>(array);
+            return new(array);
         }
     }
 

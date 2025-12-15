@@ -72,7 +72,7 @@ public static partial class EnhancedLinqMemoryImmediate
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
 
 #if NET8_0_OR_GREATER
-            return source[new Range(index, index + count)];
+            return source[new(index, index + count)];
 #else
             return source.Slice(index, index + count);
 #endif
@@ -139,7 +139,7 @@ public static partial class EnhancedLinqMemoryImmediate
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
 
 #if NET8_0_OR_GREATER
-            return source[new Range(index, index + count)];
+            return source[new(index, index + count)];
 #else
             return source.Slice(index, index + count);
 #endif

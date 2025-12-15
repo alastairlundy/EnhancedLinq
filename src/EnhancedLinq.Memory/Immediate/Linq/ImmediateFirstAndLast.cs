@@ -121,8 +121,7 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <exception cref="InvalidOperationException">Thrown if the <see cref="ReadOnlySpan{T}"/> contains zero items.</exception>
         public T Last()
         {
-            if (target.IsEmpty)
-                throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptySpan);
+            InvalidOperationException.ThrowIfSpanIsEmpty(target);
 
 #if NET8_0_OR_GREATER
             return target[^1];
