@@ -40,7 +40,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AlastairLundy.DotExtensions" Version="9.2.0" />
+        <PackageReference Include="AlastairLundy.DotExtensions" Version="9.2.1" />
         <PackageReference Include="AlastairLundy.DotExtensions.Memory" Version="9.2.0" />
         <PackageReference Include="AlastairLundy.DotPrimitives.Collections" Version="4.0.0" />
         <PackageReference Include="Polyfill" Version="9.3.4" PrivateAssets="all"
