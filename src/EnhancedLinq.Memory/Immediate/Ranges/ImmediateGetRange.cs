@@ -8,7 +8,7 @@
     */
 
 using System.Linq;
-using AlastairLundy.DotExtensions.Numbers;
+using DotExtensions.Numbers;
 
 namespace EnhancedLinq.Memory.Immediate.Ranges;
 

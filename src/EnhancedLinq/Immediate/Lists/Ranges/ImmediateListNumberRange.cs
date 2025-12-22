@@ -9,7 +9,7 @@
 
 
 using System.Numerics;
-using AlastairLundy.DotExtensions.Numbers;
+using DotExtensions.Numbers;
 #if NET8_0_OR_GREATER
 #endif
 

@@ -50,10 +50,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="AlastairLundy.DotExtensions" Version="9.2.1" />
-    </ItemGroup>
-
-    <ItemGroup>
+        <PackageReference Include="DotExtensions" Version="9.3.0" />
         <PackageReference Include="Polyfill" Version="9.4.1" PrivateAssets="all"
                           Condition="'$(TargetFramework)' == 'netstandard2.0'"/>
     </ItemGroup>

@@ -8,7 +8,7 @@
     */
 
 #if NET8_0_OR_GREATER
-using AlastairLundy.DotExtensions.Numbers;
+using DotExtensions.Numbers;
 
 namespace EnhancedLinq.Memory.Immediate.Maths;
 
@@ -62,7 +62,7 @@ public static partial class EnhancedLinqMemoryImmediateMaths
         /// Calculates the arithmetic average of a Memory.
         /// </summary>
         /// <returns>The arithmetic average of the specified numbers.</returns>
-        public TNumber Average() => Average(source.Span);
+        public TNumber Average() => source.Span.Average();
     }
     
     /// <param name="source">The <see cref="ReadOnlyMemory{T}"/> to be averaged.</param>
@@ -73,7 +73,7 @@ public static partial class EnhancedLinqMemoryImmediateMaths
         /// Calculates the arithmetic average of a <see cref="ReadOnlyMemory{T}"/>.
         /// </summary>
         /// <returns>The arithmetic average of the specified numbers.</returns>
-        public TNumber Average() => Average(source.Span);
+        public TNumber Average() => source.Span.Average();
     }
 }
 #endif

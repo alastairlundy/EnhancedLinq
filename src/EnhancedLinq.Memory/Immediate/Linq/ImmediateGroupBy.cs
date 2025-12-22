@@ -7,10 +7,8 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-using System.Diagnostics.CodeAnalysis;
-
-using System.Linq;
-using AlastairLundy.DotPrimitives.Collections.Groupings;
+using System.Linq; 
+using DotPrimitives.Collections.Groupings;
 
 namespace EnhancedLinq.Memory.Immediate;
 
