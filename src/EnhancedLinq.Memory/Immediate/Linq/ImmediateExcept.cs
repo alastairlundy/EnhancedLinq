@@ -92,7 +92,7 @@ public static partial class EnhancedLinqMemoryImmediate
                 }
             }
 
-            Span<T> output = array.GetRange(0, index);
+            ReadOnlySpan<T> output = array.GetRange(0, index);
             
             ArrayPool<T>.Shared.Return(array);
 
