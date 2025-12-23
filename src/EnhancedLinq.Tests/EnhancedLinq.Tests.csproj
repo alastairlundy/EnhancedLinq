@@ -27,6 +27,8 @@
       <Folder Include="Async\" />
       <Folder Include="Deferred\" />
       <Folder Include="Immediate\" />
+      <Folder Include="Memory\" />
+      <Folder Include="MsExtensions\" />
     </ItemGroup>
 
 </Project>
