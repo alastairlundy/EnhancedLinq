@@ -25,13 +25,10 @@ public static partial class EnhancedLinqMemoryImmediate
         {
             ArgumentNullException.ThrowIfNull(predicate);
 
-            for (int index = 0; index < target.Length; index++)
+            foreach (T item in target)
             {
-                T item = target[index];
                 if (predicate.Invoke(item))
-                {
                     return item;
-                }
             }
 
             throw new ArgumentException();
@@ -48,13 +45,10 @@ public static partial class EnhancedLinqMemoryImmediate
         {
             ArgumentNullException.ThrowIfNull(predicate);
 
-            for (int index = 0; index < target.Length; index++)
+            foreach (T item in target)
             {
-                T item = target[index];
                 if (predicate.Invoke(item))
-                {
                     return item;
-                }
             }
 
             return default;
@@ -69,17 +63,13 @@ public static partial class EnhancedLinqMemoryImmediate
         public T Last(Func<T, bool> predicate)
         {
             ArgumentNullException.ThrowIfNull(predicate);
-
-            Span<T> newTarget = target;
-            newTarget.Reverse();
-
+            
             for (int index = 0; index < target.Length; index++)
             {
-                T item = newTarget[index];
+                T item = target[target.LastIndex - index];
+                
                 if (predicate.Invoke(item))
-                {
                     return item;
-                }
             }
 
             throw new ArgumentException();
@@ -93,17 +83,13 @@ public static partial class EnhancedLinqMemoryImmediate
         public T? LastOrDefault(Func<T, bool> predicate)
         {
             ArgumentNullException.ThrowIfNull(predicate);
-
-            Span<T> newTarget = target;
-            newTarget.Reverse();
-
+            
             for (int index = 0; index < target.Length; index++)
             {
-                T item = newTarget[index];
+                T item = target[target.LastIndex - index];
+                
                 if (predicate.Invoke(item))
-                {
                     return item;
-                }
             }
 
             return default;
@@ -160,11 +146,10 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <exception cref="ArgumentException">Thrown when no element satisfies the condition.</exception>
         public T Last(Func<T, bool> predicate)
         {
-            ReadOnlySpan<T> newTarget = target;
-            newTarget.Reverse();
-
-            foreach (T item in target)
+            for (int index = 0; index < target.Length; index++)
             {
+                T item = target[target.LastIndex - index];
+                
                 if (predicate.Invoke(item))
                     return item;
             }
@@ -179,11 +164,9 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <returns>The last element of the <see cref="ReadOnlySpan{T}"/> that satisfies the condition, or null if no such element is found.</returns>
         public T? LastOrDefault(Func<T, bool> predicate)
         {
-            ReadOnlySpan<T> newTarget = target;
-            newTarget.Reverse();
-
-            foreach (T item in target)
+            for (int index = 0; index < target.Length; index++)
             {
+                T item = target[target.LastIndex - index];
                 if (predicate.Invoke(item))
                     return item;
             }
@@ -244,12 +227,9 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <exception cref="ArgumentException">Thrown when no element satisfies the condition.</exception>
         public T Last(Func<T, bool> predicate)
         {
-            Memory<T> newTarget = target;
-            newTarget.Reverse();
-
             for (int index = 0; index < target.Length; index++)
             {
-                T item = newTarget.ElementAt(index);
+                T item = target.ElementAt(target.LastIndex - index);
                 if (predicate.Invoke(item))
                 {
                     return item;
@@ -266,12 +246,9 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <returns>The last element of the <see cref="Memory{T}"/> that satisfies the condition, or null if no such element is found.</returns>
         public T? LastOrDefault(Func<T, bool> predicate)
         {
-            Memory<T> newTarget = target;
-            newTarget.Reverse();
-
             for (int index = 0; index < target.Length; index++)
             {
-                T item = newTarget.ElementAt(index);
+                T item = target.ElementAt(target.LastIndex - index);
                 if (predicate.Invoke(item))
                 {
                     return item;
