@@ -27,9 +27,9 @@ public static partial class EnhancedLinqMemoryImmediate
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(source.Length);
             ArgumentOutOfRangeException.ThrowIfNegative(index);
 
-            Memory<T> items = ElementsAt(source, index, 1);
+            Memory<T> items = source.ElementsAt(index, 1);
 
-            return First(items);
+            return items.First();
         }
 
         /// <summary>
@@ -46,10 +46,9 @@ public static partial class EnhancedLinqMemoryImmediate
 
             try
             {
-                InvalidOperationException.ThrowIfMemoryIsEmpty(source);
-                Memory<T> items = ElementsAt(source, index, 1);
+                Memory<T> items = source.ElementsAt(index, 1);
 
-                return FirstOrDefault(items);
+                return items.FirstOrDefault();
             }
             catch(ArgumentOutOfRangeException)
             {
@@ -92,11 +91,10 @@ public static partial class EnhancedLinqMemoryImmediate
         public T ElementAt(int index)
         {
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(source.Length);
-
-            ReadOnlyMemory<T> items = ElementsAt(source, index, 1);
-
-            return First(items);
             ArgumentOutOfRangeException.ThrowIfNegative(index);
+            
+            return source.ElementsAt(index, 1)
+                .First();
         }
 
         /// <summary>
@@ -108,15 +106,14 @@ public static partial class EnhancedLinqMemoryImmediate
         /// otherwise, the default value of type <typeparamref name="T"/>.</returns>
         public T? ElementAtOrDefault(int index)
         {
-            if (source.Length == 0 || index < 0)
+            ArgumentOutOfRangeException.ThrowIfNegative(index);
+            if (source.Length == 0)
                 return default;
 
             try
             {
-                InvalidOperationException.ThrowIfMemoryIsEmpty(source);
-                ReadOnlyMemory<T> items = ElementsAt(source, index, 1);
-
-                return FirstOrDefault(items);
+                return source.ElementsAt(index, 1)
+                    .FirstOrDefault();
             }
             catch(ArgumentOutOfRangeException)
             {
@@ -224,11 +221,7 @@ public static partial class EnhancedLinqMemoryImmediate
             {
                 return source[index];
             }
-            catch (ArgumentOutOfRangeException)
-            {
-                return default;
-            }
-            catch (IndexOutOfRangeException)
+            catch
             {
                 return default;
             }
