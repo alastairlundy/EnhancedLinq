@@ -30,7 +30,7 @@ public static partial class EnhancedLinqDeferred
             ArgumentNullException.ThrowIfNull(source);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
         
-            return new Internals.Infra.CustomEnumeratorEnumerable<int>(new IndicesEnumerator<T>(source,
+            return new CustomEnumeratorEnumerable<int>(new IndicesEnumerator<T>(source,
                     x => x.Equals(target)))
                 .Take(count);
         }
@@ -50,7 +50,7 @@ public static partial class EnhancedLinqDeferred
             ArgumentNullException.ThrowIfNull(predicate);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
         
-            return new Internals.Infra.CustomEnumeratorEnumerable<int>(new IndicesEnumerator<T>(source, predicate))
+            return new CustomEnumeratorEnumerable<int>(new IndicesEnumerator<T>(source, predicate))
                 .Take(count);
         }
         
@@ -95,7 +95,7 @@ public static partial class EnhancedLinqDeferred
             ArgumentNullException.ThrowIfNull(str);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
         
-            return new Internals.Infra.CustomEnumeratorEnumerable<int>(new IndicesEnumerator<char>(str, 
+            return new CustomEnumeratorEnumerable<int>(new IndicesEnumerator<char>(str, 
                     x => x.Equals(c)))
                 .Take(count);
         }
@@ -114,7 +114,7 @@ public static partial class EnhancedLinqDeferred
             ArgumentException.ThrowIfNullOrEmpty(substring);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
         
-            return new Internals.Infra.CustomEnumeratorEnumerable<int>(new StringIndicesEnumerator(str, substring))
+            return new CustomEnumeratorEnumerable<int>(new StringIndicesEnumerator(str, substring))
                 .Take(count);
         }
         

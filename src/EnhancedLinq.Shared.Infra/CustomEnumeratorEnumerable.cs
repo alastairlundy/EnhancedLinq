@@ -22,9 +22,11 @@
     SOFTWARE.
  */
 
+using System;
 using System.Collections;
+using System.Collections.Generic;
 
-namespace EnhancedLinq.Internals.Infra;
+namespace EnhancedLinq.Shared.Infra;
 
 /// <summary>
 /// A sequence that wraps a custom enumerator.

@@ -36,7 +36,7 @@ public static partial class EnhancedLinqDeferred
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(indices);
         
-            return new Internals.Infra.CustomEnumeratorEnumerable<TSource>(
+            return new CustomEnumeratorEnumerable<TSource>(
                 new ElementsAtEnumerator<TSource>(source, indices));
         }
         

@@ -8,7 +8,6 @@
     */
 
 using System.Linq;
-using EnhancedLinq.MsExtensions.Internals.Infra;
 
 namespace EnhancedLinq.MsExtensions.Deferred;
 

@@ -30,7 +30,7 @@ public static partial class EnhancedLinqDeferred
         {
             ArgumentNullException.ThrowIfNull(source);
         
-            return new Internals.Infra.CustomEnumeratorEnumerable<int>(
+            return new CustomEnumeratorEnumerable<int>(
                 new IndicesEnumerator<T>(source, x => x.Equals(target)));
         }
         
@@ -44,7 +44,7 @@ public static partial class EnhancedLinqDeferred
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(predicate);
         
-            return new Internals.Infra.CustomEnumeratorEnumerable<int>(new IndicesEnumerator<T>(source, predicate));
+            return new CustomEnumeratorEnumerable<int>(new IndicesEnumerator<T>(source, predicate));
         }
     }
     
@@ -65,7 +65,7 @@ public static partial class EnhancedLinqDeferred
         {
             ArgumentNullException.ThrowIfNull(str);
         
-            return new Internals.Infra.CustomEnumeratorEnumerable<int>(
+            return new CustomEnumeratorEnumerable<int>(
                 new IndicesEnumerator<char>(str, x => x.Equals(c)));
         }
         
@@ -79,7 +79,7 @@ public static partial class EnhancedLinqDeferred
             ArgumentException.ThrowIfNullOrEmpty(str);
             ArgumentException.ThrowIfNullOrEmpty(substring);
         
-            return new Internals.Infra.CustomEnumeratorEnumerable<int>(new StringIndicesEnumerator(str, substring));
+            return new CustomEnumeratorEnumerable<int>(new StringIndicesEnumerator(str, substring));
         }
     }
 }

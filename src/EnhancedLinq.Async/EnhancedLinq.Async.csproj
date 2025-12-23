@@ -55,4 +55,8 @@
       </Compile>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\EnhancedLinq.Shared.Infra\EnhancedLinq.Shared.Infra.csproj" PrivateAssets="all" />
+    </ItemGroup>
+
 </Project>

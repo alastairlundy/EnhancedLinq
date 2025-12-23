@@ -33,7 +33,7 @@ public static partial class EnhancedLinqDeferred
             ArgumentNullException.ThrowIfNull(source);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(maximumCount);
 
-            return new Internals.Infra.CustomEnumeratorEnumerable<IEnumerable<TSource>>(
+            return new CustomEnumeratorEnumerable<IEnumerable<TSource>>(
                 new SplitByItemCountEnumerator<TSource>(source, maximumCount));
         }
 
@@ -46,7 +46,7 @@ public static partial class EnhancedLinqDeferred
         {
             ArgumentNullException.ThrowIfNull(source);
 
-            return new Internals.Infra.CustomEnumeratorEnumerable<IEnumerable<TSource>>(
+            return new CustomEnumeratorEnumerable<IEnumerable<TSource>>(
                 new SplitByEnumerableCountEnumerator<TSource>(source, Environment.ProcessorCount));
         }
 
@@ -74,7 +74,7 @@ public static partial class EnhancedLinqDeferred
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(predicate);
 
-            return new Internals.Infra.CustomEnumeratorEnumerable<IEnumerable<TSource>>(
+            return new CustomEnumeratorEnumerable<IEnumerable<TSource>>(
                 new SplitByPredicateEnumerator<TSource>(source, predicate));
         }
     }

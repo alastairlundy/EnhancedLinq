@@ -57,4 +57,12 @@
       </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Internals\Infra\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\EnhancedLinq.Shared.Infra\EnhancedLinq.Shared.Infra.csproj" PrivateAssets="all" />
+    </ItemGroup>
+
 </Project>

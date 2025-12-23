@@ -13,13 +13,16 @@ namespace EnhancedLinq.Deferred;
 
 public static partial class EnhancedLinqDeferred
 {
-    /// <summary>
-    /// Returns a sequence of duplicate elements from the source sequence using the default equality comparer.
-    /// </summary>
     /// <param name="source">The sequence to find duplicates in.</param>
     /// <typeparam name="TSource">The type of elements in the source sequence.</typeparam>
-    /// <returns>A sequence that contains only duplicate elements from the source sequence.</returns>
-    public static IEnumerable<TSource> FindDuplicates<TSource>(this IEnumerable<TSource> source) where TSource : IEquatable<TSource> => source.FindDuplicates(EqualityComparer<TSource>.Default);
+    extension<TSource>(IEnumerable<TSource> source) where TSource : IEquatable<TSource>
+    {
+        /// <summary>
+        /// Returns a sequence of duplicate elements from the source sequence using the default equality comparer.
+        /// </summary>
+        /// <returns>A sequence that contains only duplicate elements from the source sequence.</returns>
+        public IEnumerable<TSource> FindDuplicates() => source.FindDuplicates(EqualityComparer<TSource>.Default);
+    }
 
     /// <param name="source">The sequence to find duplicates in.</param>
     /// <typeparam name="TSource">The type of elements in the source sequence.</typeparam>
@@ -35,7 +38,7 @@ public static partial class EnhancedLinqDeferred
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(comparer);
         
-            return new Internals.Infra.CustomEnumeratorEnumerable<TSource>(
+            return new CustomEnumeratorEnumerable<TSource>(
                 new DuplicatesEnumerator<TSource>(source, comparer));
         }
     }

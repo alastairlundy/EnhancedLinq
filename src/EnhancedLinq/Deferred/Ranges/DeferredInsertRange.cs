@@ -40,7 +40,7 @@ public static partial class EnhancedLinqDeferredRange
             ArgumentNullException.ThrowIfNull(toBeInserted);
             ArgumentOutOfRangeException.ThrowIfNegative(indexToInsertAt);
             
-            return new Internals.Infra.CustomEnumeratorEnumerable<TSource>(
+            return new CustomEnumeratorEnumerable<TSource>(
                 new InsertRangeEnumerator<TSource>(source, indexToInsertAt, toBeInserted));
         }
     }
