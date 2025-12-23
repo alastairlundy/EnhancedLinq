@@ -65,12 +65,8 @@ public static partial class EnhancedLinqMemoryImmediate
             InvalidOperationException.ThrowIfMemoryIsEmpty(source);
             ArgumentOutOfRangeException.ThrowIfNegative(index);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
-
-#if NET8_0_OR_GREATER
-            return source[new(index, index + count)];
-#else
+            
             return source.Slice(index, index + count);
-#endif
         }
     }
     
@@ -129,12 +125,8 @@ public static partial class EnhancedLinqMemoryImmediate
             InvalidOperationException.ThrowIfMemoryIsEmpty(source);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(index);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
-
-#if NET8_0_OR_GREATER
-            return source[new(index, index + count)];
-#else
+            
             return source.Slice(index, index + count);
-#endif
         }
     }
 
