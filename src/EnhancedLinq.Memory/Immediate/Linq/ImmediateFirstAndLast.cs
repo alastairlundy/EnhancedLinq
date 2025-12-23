@@ -51,7 +51,7 @@ public static partial class EnhancedLinqMemoryImmediate
 #if NET8_0_OR_GREATER
             return target[^1];
 #else
-            return target[target.Length - 1];
+            return target[target.LastIndex];
 #endif
         }
         
@@ -68,7 +68,7 @@ public static partial class EnhancedLinqMemoryImmediate
 #if NET8_0_OR_GREATER
             return target[^1];
 #else
-            return target[target.Length - 1];
+            return target[target.LastIndex];
 #endif
         }
     }
@@ -110,7 +110,7 @@ public static partial class EnhancedLinqMemoryImmediate
 #if NET8_0_OR_GREATER
             return target[^1];
 #else
-            return target[target.Length - 1];
+            return target[target.LastIndex];
 #endif
         }
         
@@ -126,7 +126,7 @@ public static partial class EnhancedLinqMemoryImmediate
 #if NET8_0_OR_GREATER
             return target[^1];
 #else
-            return target[target.Length - 1];
+            return target[target.LastIndex];
 #endif
         }
     }
@@ -149,7 +149,7 @@ public static partial class EnhancedLinqMemoryImmediate
         /// </summary>
         /// <returns>The last element of the Memory sequence.</returns>
         public T Last() =>
-            source.IsEmpty ? source.ElementAt(source.Length - 1) :
+            source.IsEmpty ? source.ElementAt(source.LastIndex) :
                 throw new InvalidOperationException("The source Memory is empty.");
 
         /// <summary>
@@ -163,7 +163,7 @@ public static partial class EnhancedLinqMemoryImmediate
         /// Returns the last element of a Memory sequence or default if it is empty.
         /// </summary>
         /// <returns>The last element of the Memory or default if no elements were found.</returns>
-        public T? LastOrDefault() => source.IsEmpty ? default : source.ElementAt(source.Length - 1);
+        public T? LastOrDefault() => source.IsEmpty ? default : source.ElementAt(source.LastIndex);
     }
     
     /// <param name="source">The source Memory sequence.</param>
@@ -183,7 +183,7 @@ public static partial class EnhancedLinqMemoryImmediate
         /// </summary>
         /// <returns>The last element of the <see cref="ReadOnlyMemory{T}"/>  sequence.</returns>
         public T Last() =>
-            source.IsEmpty ? source.ElementAt(source.Length - 1) :
+            source.IsEmpty ? source.ElementAt(source.LastIndex) :
                 throw new InvalidOperationException("The source Memory is empty.");
 
         /// <summary>
@@ -197,6 +197,6 @@ public static partial class EnhancedLinqMemoryImmediate
         /// Returns the last element of a <see cref="ReadOnlyMemory{T}"/>  sequence or default if it is empty.
         /// </summary>
         /// <returns>The last element of the <see cref="ReadOnlyMemory{T}"/>  or default if no elements were found.</returns>
-        public T? LastOrDefault() => source.IsEmpty ? default : source.ElementAt(source.Length - 1);
+        public T? LastOrDefault() => source.IsEmpty ? default : source.ElementAt(source.LastIndex);
     }
 }
