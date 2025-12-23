@@ -46,7 +46,7 @@ public static partial class EnhancedLinqMemoryImmediate
                     results.Add(obj);
                 }
             }
-       
+            
             return results.ToArray();
         }
 

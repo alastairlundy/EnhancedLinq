@@ -48,7 +48,7 @@ public static partial class EnhancedLinqMemoryImmediateRange
             ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
             ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(count, target.Length);
             
-            return RemoveRange(target, Enumerable.Range(startIndex, count));
+            return target.RemoveRange(Enumerable.Range(startIndex, count));
         }
     }
     
@@ -62,7 +62,7 @@ public static partial class EnhancedLinqMemoryImmediateRange
         /// </summary>
         /// <param name="range">The index <see cref="Range"/> of items to be removed.</param>
         /// <returns>A new Span with all items of the original Span minus the items to be removed.</returns>
-        public Span<T> RemoveRange(Range range) => RemoveRange(target, range.Start.Value, range.End.Value - range.Start.Value);
+        public Span<T> RemoveRange(Range range) => target.RemoveRange(range.Start.Value, range.End.Value - range.Start.Value);
     }
 #endif
 }

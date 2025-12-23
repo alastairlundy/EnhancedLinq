@@ -30,7 +30,7 @@ public static partial class EnhancedLinqMemoryImmediateRange
         /// <param name="range">The <see cref="Range"/> containing the start and end indices.</param>
         /// <returns>A new span containing the specified range of elements.</returns>
         public Span<T> GetRange(Range range)
-            => GetRange(target, range.Start.Value, range.End.Value);
+            => target.GetRange(range.Start.Value, range.End.Value);
     }
 #endif
 
@@ -79,7 +79,7 @@ public static partial class EnhancedLinqMemoryImmediateRange
             ArgumentNullException.ThrowIfNull(indices);
 
             if(indices is ICollection<int> collection)
-                return GetRange(target, collection);
+                return target.GetRange(collection);
         
             List<T> output = new();
         
