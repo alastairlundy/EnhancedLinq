@@ -24,11 +24,11 @@ public static partial class EnhancedLinqMemoryImmediate
         { 
             InvalidOperationException.ThrowIfSpanIsEmpty(span);
 
-            List<(int, TSource)> output = new();
+            (int, TSource)[] output = new (int, TSource)[span.Length];
         
             for (int i = 0; i < span.Length; i++)
             {
-                output.Add((i, span[i]));
+                output[i] = (i, span[i]);
             }
         
             return output;
@@ -48,11 +48,11 @@ public static partial class EnhancedLinqMemoryImmediate
         { 
             InvalidOperationException.ThrowIfSpanIsEmpty(span);
 
-            List<(int, TSource)> output = new();
-        
+            (int, TSource)[] output = new (int, TSource)[span.Length];
+
             for (int i = 0; i < span.Length; i++)
             {
-                output.Add((i, span[i]));
+                output[i] = (i, span[i]);
             }
         
             return output;
