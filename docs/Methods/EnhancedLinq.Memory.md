@@ -2,8 +2,17 @@
 
 Immediate Execution extensions perform the relevant operation(s) immediately. Examples of LINQ's built in immediate mode extensions are ``IndexOf``, ``Any``, ``All``, and ``Count``.
 
-## Immediate Mode
+## API Availability Comparison:
 
+### Immediate Mode 
+| Method Name | Span support | ReadOnlySpan support | Memory support | ReadOnlyMemory support |
+|-|-|-|-|-|
+| CountAtLeast(int) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:, as of 1.0.0 Alpha 3 | :heavy_check_mark:, as of 1.0.0 Alpha 3 |
+| CountAtLeast(Func<T, bool>, int) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:, as of 1.0.0 Alpha 3 | :heavy_check_mark:, as of 1.0.0 Alpha 3 |
+| CountAtMost(int) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:, as of 1.0.0 Alpha 3 | :heavy_check_mark:, as of 1.0.0 Alpha 3 |
+| CountAtMost(Func<T, bool>, int) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:, as of 1.0.0 Alpha 3 | :heavy_check_mark:, as of 1.0.0 Alpha 3 |
+
+## Immediate Mode
 
 ### Math Operations
 **Average**
