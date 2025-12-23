@@ -8,6 +8,7 @@ C# language version must be set to 14 or higher for EnhancedLinq to work.
 For a comprehensive list of included methods, check out the following resources:
 
 - [EnhancedLinq Methods](./docs/Methods/EnhancedLinq.md) [![NuGet](https://img.shields.io/nuget/v/EnhancedLinq.svg)](https://www.nuget.org/packages/EnhancedLinq/)  [![NuGet](https://img.shields.io/nuget/dt/EnhancedLinq.svg)](https://www.nuget.org/packages/EnhancedLinq/)
+- [EnhancedLinqAsync Methods](./docs/Methods/EnhancedLinq.md) [![NuGet](https://img.shields.io/nuget/v/EnhancedLinq.Async.svg)](https://www.nuget.org/packages/EnhancedLinq.Async/)  [![NuGet](https://img.shields.io/nuget/dt/EnhancedLinq.Async.svg)](https://www.nuget.org/packages/EnhancedLinq.Async/)
 - [EnhancedLinq.Memory Methods](./docs/Methods/EnhancedLinq.Memory.md) [![NuGet](https://img.shields.io/nuget/v/EnhancedLinq.Memory.svg)](https://www.nuget.org/packages/EnhancedLinq.Memory/)  [![NuGet](https://img.shields.io/nuget/dt/EnhancedLinq.Memory.svg)](https://www.nuget.org/packages/EnhancedLinq.Memory/)
 - [EnhancedLinq.MsExtensions Methods](./docs/Methods/EnhancedLinq.MsExtensions.md) [![NuGet](https://img.shields.io/nuget/v/EnhancedLinq.MsExtensions.svg)](https://www.nuget.org/packages/EnhancedLinq.MsExtensions/)  [![NuGet](https://img.shields.io/nuget/dt/EnhancedLinq.MsExtensions.svg)](https://www.nuget.org/packages/EnhancedLinq.MsExtensions/)
 
@@ -16,6 +17,7 @@ For a comprehensive list of included methods, check out the following resources:
 **EnhancedLinq** comes with several packages tailored to your needs:
 
 - **`EnhancedLinq`**: The core package that enhances your LINQ experience.
+- **`EnhancedLinq.Async`**: The IAsyncEnumerable supporting version of EnhancedLinq.
 - **`EnhancedLinq.Memory`**: This package is specifically for `Span<T>` and `Memory<T>`, providing helpful immediate mode extensions.
 - **`EnhancedLinq.MsExtensions`**: Focused on `StringSegment` from `Microsoft.Extensions.Primitives`, with plans to potentially expand support for other Microsoft.Extensions packages.
 
@@ -26,6 +28,7 @@ Getting started with **EnhancedLinq** is easy! You can install the packages usin
 | Package Id                | NuGet Link                                                                              | .NET SDK CLI Command                           |
 |---------------------------|-----------------------------------------------------------------------------------------|------------------------------------------------|
 | EnhancedLinq              | [EnhancedLinq NuGet](https://nuget.org/packages/EnhancedLinq)                           | `dotnet add package EnhancedLinq.`             |
+| EnhancedLinq.Async        | [EnhancedLinq NuGet](https://nuget.org/packages/EnhancedLinq.Async)                     | `dotnet add package EnhancedLinq.Async`        |
 | EnhancedLinq.Memory       | [EnhancedLinq.Memory NuGet](https://nuget.org/packages/EnhancedLinq.Memory)             | `dotnet add package EnhancedLinq.Memory`       |
 | EnhancedLinq.MsExtensions | [EnhancedLinq.MsExtensions NuGet](https://nuget.org/packages/EnhancedLinq.MsExtensions) | `dotnet add package EnhancedLinq.MsExtensions` |
 
