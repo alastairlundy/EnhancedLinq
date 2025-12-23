@@ -24,12 +24,10 @@ public static partial class EnhancedLinqMemoryImmediate
         public T ElementAt(int index)
         {
             InvalidOperationException.ThrowIfMemoryIsEmpty(source);
-            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(source.Length);
             ArgumentOutOfRangeException.ThrowIfNegative(index);
-
-            Memory<T> items = source.ElementsAt(index, 1);
-
-            return items.First();
+            
+            return source.ElementsAt(index, 1)
+                .First();
         }
 
         /// <summary>
@@ -46,9 +44,8 @@ public static partial class EnhancedLinqMemoryImmediate
 
             try
             {
-                Memory<T> items = source.ElementsAt(index, 1);
-
-                return items.FirstOrDefault();
+                return source.ElementsAt(index, 1)
+                    .FirstOrDefault();
             }
             catch(ArgumentOutOfRangeException)
             {
@@ -66,7 +63,6 @@ public static partial class EnhancedLinqMemoryImmediate
         public Memory<T> ElementsAt(int index, int count)
         {
             InvalidOperationException.ThrowIfMemoryIsEmpty(source);
-            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(source.Length);
             ArgumentOutOfRangeException.ThrowIfNegative(index);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
 
@@ -90,7 +86,7 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <exception cref="ArgumentOutOfRangeException">Thrown if the source <see cref="ReadOnlyMemory{T}"/> has no elements or the index is out of range.</exception>
         public T ElementAt(int index)
         {
-            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(source.Length);
+            InvalidOperationException.ThrowIfMemoryIsEmpty(source);
             ArgumentOutOfRangeException.ThrowIfNegative(index);
             
             return source.ElementsAt(index, 1)
@@ -131,7 +127,6 @@ public static partial class EnhancedLinqMemoryImmediate
         public ReadOnlyMemory<T> ElementsAt(int index, int count)
         {
             InvalidOperationException.ThrowIfMemoryIsEmpty(source);
-            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(source.Length);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(index);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
 
@@ -157,18 +152,13 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <returns>The element at the specified index in the source <see cref="Span{T}"/>, or the default value of type <typeparamref name="T"/> if the index is out of range.</returns>
         public T? ElementAtOrDefault(int index)
         {
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(index);
+
             try
             {
-                InvalidOperationException.ThrowIfSpanIsEmpty(source);
-                ArgumentOutOfRangeException.ThrowIfNegativeOrZero(index);
-                
                 return source[index];
             }
-            catch (ArgumentOutOfRangeException)
-            {
-                return default;
-            }
-            catch (IndexOutOfRangeException)
+            catch
             {
                 return default;
             }
@@ -187,7 +177,6 @@ public static partial class EnhancedLinqMemoryImmediate
         public Span<T> ElementsAt(int index, int count)
         {
             InvalidOperationException.ThrowIfSpanIsEmpty(source);
-            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(source.Length);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(index);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
 
@@ -239,7 +228,6 @@ public static partial class EnhancedLinqMemoryImmediate
         public ReadOnlySpan<T> ElementsAt(int index, int count)
         {
             InvalidOperationException.ThrowIfSpanIsEmpty(source);
-            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(source.Length);
             ArgumentOutOfRangeException.ThrowIfNegative(index);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
 
