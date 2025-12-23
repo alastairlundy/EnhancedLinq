@@ -44,19 +44,28 @@ public static partial class EnhancedLinqMemoryImmediate
             ArgumentNullException.ThrowIfNull(predicate);
             
             int end = 0;
+            int start = 0;
+            
+            bool firstDetection = true;
 
             for (int index = 0; index < source.Length; index++)
             {
                 bool result = predicate(source[index], index);
 
-                if (!result)
+                if (result && firstDetection)
+                {
+                    start = index;
+                    firstDetection = false;
+                }
+                
+                if (!result && !firstDetection)
                 {
                     end = index;
                     break;
                 }
             }
 
-            return source.Slice(0, Math.Abs(end - 0));
+            return source.Slice(start, end - 1);
         }
 
         /// <summary>
