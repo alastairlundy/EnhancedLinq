@@ -67,7 +67,7 @@ public static partial class EnhancedLinqMemoryImmediateRange
         /// Retrieves a range of elements within the specified span.
         /// </summary>
         /// <remarks>This method is more computationally expensive than the <see cref="ICollection{T}"/> overload for this method.
-        /// Please use that overload instead if using a Collection.
+        /// Please use that overload instead if possible.
         /// </remarks>
         /// <param name="indices">A sequence of indices specifying the positions of interest in the span.</param>
         /// <returns>A new Span containing only the elements at the specified indices.</returns>
@@ -93,39 +93,37 @@ public static partial class EnhancedLinqMemoryImmediateRange
             
             return new(output.ToArray());
         }
-    }
         
-    /// <summary>
-    /// Retrieves a range of elements within the specified span.
-    /// </summary>
-    /// <param name="target">The span to search.</param>
-    /// <param name="indices">A collection of indices specifying the positions of interest in the span.</param>
-    /// <typeparam name="T">The type of the elements within the span.</typeparam>
-    /// <returns>A new Span containing only the elements at the specified indices.</returns>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown if the span is empty.</exception>
-    /// <exception cref="IndexOutOfRangeException">Thrown if any index in indices is out of range for the target span.</exception>
-    public static Span<T> GetRange<T>(this Span<T> target, ICollection<int> indices)
-    {
-        InvalidOperationException.ThrowIfSpanIsEmpty(target);
-
-        ArgumentNullException.ThrowIfNull(indices);
-            
-        if(indices.IsIncrementedNumberRange(1))
-            return GetRange(target, indices.Min(), indices.Max());
-        
-        T[] array = new T[indices.Count];
-        
-        int newIndex = 0;
-        
-        foreach (int index in indices)
+        /// <summary>
+        /// Retrieves a range of elements within the specified span.
+        /// </summary>
+        /// <param name="indices">A collection of indices specifying the positions of interest in the span.</param>
+        /// <returns>A new Span containing only the elements at the specified indices.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if the span is empty.</exception>
+        /// <exception cref="IndexOutOfRangeException">Thrown if any index in indices is out of range for the target span.</exception>
+        public Span<T> GetRange(ICollection<int> indices)
         {
-            ArgumentOutOfRangeException.ThrowIfNegative(index);
-            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(index, target.Length);
+            InvalidOperationException.ThrowIfSpanIsEmpty(target);
 
-            target[newIndex] = target[index];
-            newIndex++;
-        }
+            ArgumentNullException.ThrowIfNull(indices);
             
-        return new(array);
+            if(indices.IsIncrementedNumberRange(1))
+                return target.GetRange(indices.Min(), indices.Max());
+        
+            T[] array = new T[indices.Count];
+        
+            int newIndex = 0;
+        
+            foreach (int index in indices)
+            {
+                ArgumentOutOfRangeException.ThrowIfNegative(index);
+                ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(index, target.Length);
+
+                target[newIndex] = target[index];
+                newIndex++;
+            }
+            
+            return new(array);
+        }
     }
 }
