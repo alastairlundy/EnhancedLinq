@@ -14,7 +14,7 @@ public static partial class EnhancedLinqMemoryImmediate
     /// <param name="span">The <see cref="Span{T}"/> to search</param>
     /// <typeparam name="T">The type of elements within the <see cref="Span{T}"/>.</typeparam>
     extension<T>(Span<T> span)
-    {
+    {   
         /// <summary>
         /// Retrieves the last index of elements within a <see cref="Span{T}"/>.
         /// </summary>
@@ -49,14 +49,33 @@ public static partial class EnhancedLinqMemoryImmediate
         }
     }
 
-    /// <param name="memory">The memory to search</param>
-    /// <typeparam name="T">The type of elements within the memory.</typeparam>
+    /// <param name="memory">The <see cref="Memory{T}"/> to search</param>
+    /// <typeparam name="T">The type of elements within the <see cref="Memory{T}"/>.</typeparam>
     extension<T>(Memory<T> memory)
     {
         /// <summary>
         /// Retrieves the last index of elements within a memory.
         /// </summary>
         /// <returns>The index of the last element in the memory.</returns>
+        public int LastIndex()
+        {
+            InvalidOperationException.ThrowIfMemoryIsEmpty(memory);
+
+            if (memory.Length > 0)
+                return memory.Length - 1;
+
+            return -1;
+        }
+    }
+
+    /// <param name="memory">The <see cref="ReadOnlyMemory{T}"/> to search</param>
+    /// <typeparam name="T">The type of elements within the <see cref="ReadOnlyMemory{T}"/>.</typeparam>
+    extension<T>(ReadOnlyMemory<T> memory)
+    {
+        /// <summary>
+        /// Retrieves the last index of elements within a <see cref="ReadOnlyMemory{T}"/>.
+        /// </summary>
+        /// <returns>The index of the last element in the <see cref="ReadOnlyMemory{T}"/>.</returns>
         public int LastIndex()
         {
             InvalidOperationException.ThrowIfMemoryIsEmpty(memory);
