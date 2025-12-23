@@ -7,6 +7,8 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
+using EnhancedLinq.Memory.Deferred;
+
 namespace EnhancedLinq.Memory.Immediate;
 
 /// <summary>
@@ -25,8 +27,7 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <exception cref="InvalidOperationException">Thrown if the <see cref="Span{T}"/> contains zero items.</exception>
         public T First()
         {
-            if (target.IsEmpty)
-                throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptySpan);
+            InvalidOperationException.ThrowIfSpanIsEmpty(target);
         
             return target[0];
         }
@@ -62,8 +63,7 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <exception cref="InvalidOperationException">Thrown if the Span contains zero items.</exception>
         public T Last()
         {
-            if (target.IsEmpty)
-                throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptySpan);
+            InvalidOperationException.ThrowIfSpanIsEmpty(target);
 
 #if NET8_0_OR_GREATER
             return target[^1];
@@ -131,7 +131,6 @@ public static partial class EnhancedLinqMemoryImmediate
         }
     }
 
-
     /// <param name="source">The source Memory sequence.</param>
     /// <typeparam name="T">The type of elements in the Memory sequence.</typeparam>
     extension<T>(Memory<T> source)
@@ -140,9 +139,17 @@ public static partial class EnhancedLinqMemoryImmediate
         /// Returns the first element of a Memory sequence.
         /// </summary>
         /// <returns>The first element of the Memory sequence.</returns>
-        public T First() =>
-            source.IsEmpty ? source.ElementAt(0) :
-                throw new InvalidOperationException("The source Memory is empty.");
+        public T First()
+        {
+            InvalidOperationException.ThrowIfMemoryIsEmpty(source);
+
+            foreach (T item in source.AsEnumerable())
+            {
+                return item;
+            }
+
+            throw new ArgumentException();
+        }
 
         /// <summary>
         /// Returns the last element of a Memory sequence.
@@ -156,8 +163,18 @@ public static partial class EnhancedLinqMemoryImmediate
         /// Returns the first element of a Memory sequence or default if it is empty.
         /// </summary>
         /// <returns>The first element of the Memory or default if no elements were found.</returns>
-        public T? FirstOrDefault() 
-            => source.IsEmpty ? default : source.ElementAt(0);
+        public T? FirstOrDefault()
+        {
+            if (source.IsEmpty)
+                return default;
+
+            foreach (T item in source.AsEnumerable())
+            {
+                return item;
+            }
+
+            return default;
+        }
 
         /// <summary>
         /// Returns the last element of a Memory sequence or default if it is empty.
@@ -174,24 +191,45 @@ public static partial class EnhancedLinqMemoryImmediate
         /// Returns the first element of a <see cref="ReadOnlyMemory{T}"/> sequence.
         /// </summary>
         /// <returns>The first element of the <see cref="ReadOnlyMemory{T}"/>  sequence.</returns>
-        public T First() =>
-            source.IsEmpty ? source.ElementAt(0) :
-                throw new InvalidOperationException("The source Memory is empty.");
+        public T First()
+        {
+            InvalidOperationException.ThrowIfMemoryIsEmpty(source);
+            
+            foreach (T item in source.AsEnumerable())
+            {
+                return item;
+            }
+
+            throw new ArgumentException();
+        }
 
         /// <summary>
         /// Returns the last element of a <see cref="ReadOnlyMemory{T}"/>  sequence.
         /// </summary>
         /// <returns>The last element of the <see cref="ReadOnlyMemory{T}"/>  sequence.</returns>
-        public T Last() =>
-            source.IsEmpty ? source.ElementAt(source.LastIndex) :
-                throw new InvalidOperationException("The source Memory is empty.");
+        public T Last()
+        {
+            InvalidOperationException.ThrowIfMemoryIsEmpty(source);
+            
+            return source.ElementAt(source.LastIndex);
+        }
 
         /// <summary>
         /// Returns the first element of a <see cref="ReadOnlyMemory{T}"/>  sequence or default if it is empty.
         /// </summary>
         /// <returns>The first element of the <see cref="ReadOnlyMemory{T}"/>  or default if no elements were found.</returns>
-        public T? FirstOrDefault() 
-            => source.IsEmpty ? default : source.ElementAt(0);
+        public T? FirstOrDefault()
+        {
+            if (source.IsEmpty)
+                return default;
+
+            foreach (T item in source.AsEnumerable())
+            {
+                return item;
+            }
+
+            return default;
+        }
 
         /// <summary>
         /// Returns the last element of a <see cref="ReadOnlyMemory{T}"/>  sequence or default if it is empty.
