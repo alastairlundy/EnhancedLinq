@@ -9,7 +9,7 @@
 
 using System.Collections;
 using System.Linq;
-using AlastairLundy.DotPrimitives.Collections.Groupings;
+using DotPrimitives.Collections.Groupings;
 
 namespace EnhancedLinq.MsExtensions.Deferred;
 
@@ -88,7 +88,7 @@ internal class GroupStringSegmentEnumerator<TKey> : IEnumerator<IGrouping<TKey, 
 
     public IGrouping<TKey, char> Current { get; private set; }
 
-    object? IEnumerator.Current => Current;
+    object IEnumerator.Current => Current;
 
     public void Dispose()
     {

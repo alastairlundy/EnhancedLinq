@@ -31,8 +31,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="AlastairLundy.DotExtensions.MsExtensions" Version="9.2.0" />
-      <PackageReference Include="AlastairLundy.DotPrimitives.Collections" Version="4.0.0" />
+      <PackageReference Include="DotExtensions.MsExtensions" Version="9.3.0" />
+      <PackageReference Include="DotPrimitives.Collections" Version="4.1.0" />
       <PackageReference Include="Microsoft.Extensions.Primitives" Version="10.0.1" />
         <PackageReference Include="Polyfill" PrivateAssets="all" Condition="'$(TargetFramework)' == 'netstandard2.0'"
                           Version="9.4.1"/>
