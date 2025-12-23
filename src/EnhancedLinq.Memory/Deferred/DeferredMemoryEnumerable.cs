@@ -25,12 +25,7 @@ public static partial class EnhancedLinqMemoryDeferred
         /// Converts a <see cref="Memory{T}"/> to an <see cref="IEnumerable{T}"/> that can be enumerated.
         /// </summary>
         /// <returns>An <see cref="IEnumerable{TSource}"/> representation of the elements contained in the provided <see cref="Memory{T}"/>.</returns>
-        public IEnumerable<TSource> AsEnumerable()
-        {
-            ArgumentNullException.ThrowIfNull(source);
-
-            return new MemoryEnumerable<TSource>(source);
-        }
+        public IEnumerable<TSource> AsEnumerable() => new MemoryEnumerable<TSource>(source);
     }
     
     /// <typeparam name="TSource">The type of the elements in the source memory.</typeparam>
@@ -41,11 +36,6 @@ public static partial class EnhancedLinqMemoryDeferred
         /// Converts a <see cref="ReadOnlyMemory{T}"/> to an <see cref="IEnumerable{T}"/> that can be enumerated.
         /// </summary>
         /// <returns>An <see cref="IEnumerable{TSource}"/> that represents the elements of the given <see cref="ReadOnlyMemory{T}"/>.</returns>
-        public IEnumerable<TSource> AsEnumerable()
-        {
-            ArgumentNullException.ThrowIfNull(source);
-
-            return new MemoryEnumerable<TSource>(source);
-        }
+        public IEnumerable<TSource> AsEnumerable() => new MemoryEnumerable<TSource>(source);
     }
 }
