@@ -7,6 +7,9 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
+using System.Buffers;
+using EnhancedLinq.Memory.Immediate.Ranges;
+
 namespace EnhancedLinq.Memory.Immediate;
 
 public static partial class EnhancedLinqMemoryImmediate
@@ -24,15 +27,15 @@ public static partial class EnhancedLinqMemoryImmediate
         {
             InvalidOperationException.ThrowIfSpanIsEmpty(first);
             InvalidOperationException.ThrowIfSpanIsEmpty(second);
-            
-            T[] output = new  T[first.Length + second.Length];
+
+            T[] array = ArrayPool<T>.Shared.Rent(first.Length + second.Length);
             int index = 0;
 
             foreach (T item in first)
             {
                 if (!second.Contains(item))
                 {
-                    output[index] = item;
+                    array[index] = item;
                     index++;
                 }
             }
@@ -41,14 +44,16 @@ public static partial class EnhancedLinqMemoryImmediate
             {
                 if(!first.Contains(item))
                 {
-                    output[index] = item;
+                    array[index] = item;
                     index++;
                 }
             }
         
-            Array.Resize(ref output, index);
+            Span<T> output = array.GetRange(0, index);
+            
+            ArrayPool<T>.Shared.Return(array);
 
-            return new(output);
+            return output;
         }
     }
     
@@ -66,14 +71,14 @@ public static partial class EnhancedLinqMemoryImmediate
             InvalidOperationException.ThrowIfSpanIsEmpty(first);
             InvalidOperationException.ThrowIfSpanIsEmpty(second);
             
-            T[] output = new  T[first.Length + second.Length];
+            T[] array = ArrayPool<T>.Shared.Rent(first.Length + second.Length);
             int index = 0;
 
             foreach (T item in first)
             {
                 if (!second.Contains(item))
                 {
-                    output[index] = item;
+                    array[index] = item;
                     index++;
                 }
             }
@@ -82,14 +87,16 @@ public static partial class EnhancedLinqMemoryImmediate
             {
                 if(!first.Contains(item))
                 {
-                    output[index] = item;
+                    array[index] = item;
                     index++;
                 }
             }
-        
-            Array.Resize(ref output, index);
 
-            return new Span<T>(output);
+            Span<T> output = array.GetRange(0, index);
+            
+            ArrayPool<T>.Shared.Return(array);
+
+            return output;
         }
     }
 }
