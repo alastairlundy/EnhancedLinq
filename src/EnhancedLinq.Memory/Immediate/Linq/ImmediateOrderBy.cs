@@ -11,30 +11,28 @@ namespace EnhancedLinq.Memory.Immediate;
 
 public static partial class EnhancedLinqMemoryImmediate
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="source"></param>
+#if NET8_0_OR_GREATER
+    
+    /// <param name="source">The <see cref="Span{T}"/> to order.</param>
     /// <typeparam name="TSource">The type of the elements of the source Span.</typeparam>
     extension<TSource>(Span<TSource> source)
     {
-#if NET8_0_OR_GREATER
         /// <summary>
-        /// Sorts the elements of a Span in ascending order by using a specified key selector.
+        /// Sorts the elements of a <see cref="Span{T}"/> in ascending order by using a specified key selector.
         /// </summary>
         /// <typeparam name="TKey">The type of the key returned by the key selector function.</typeparam>
         /// <param name="predicate">The function to extract the key for each element.</param>
-        /// <returns>A new Span containing the sorted elements.</returns>
+        /// <returns>A new <see cref="Span{T}"/> containing the sorted elements.</returns>
         public Span<TSource> OrderBy<TKey>(Func<TSource, TKey> predicate)
-            => OrderBy(source, predicate, Comparer<TKey>.Default);
+            => source.OrderBy(predicate, Comparer<TKey>.Default);
 
         /// <summary>
-        /// Sorts the elements of a Span in ascending order by using a specified key selector and optional comparer.
+        /// Sorts the elements of a <see cref="Span{T}"/> in ascending order by using a specified key selector and optional comparer.
         /// </summary>
         /// <typeparam name="TKey">The type of the key returned by the key selector function.</typeparam>
         /// <param name="predicate">The function to extract the key for each element.</param>
         /// <param name="comparer">An optional comparer to define custom comparison logic. If null, the default comparer is used.</param>
-        /// <returns>A new Span containing the sorted elements.</returns>
+        /// <returns>A new <see cref="Span{T}"/> containing the sorted elements.</returns>
         public Span<TSource> OrderBy<TKey>(Func<TSource, TKey> predicate, IComparer<TKey>? comparer)
         {
             InvalidOperationException.ThrowIfSpanIsEmpty(source);
@@ -49,6 +47,42 @@ public static partial class EnhancedLinqMemoryImmediate
 
             return keyItemPairs.Select(p => p.Item);
         }
-#endif
     }
+    
+    /// <param name="source">The <see cref="ReadOnlySpan{T}"/> to order.</param>
+    /// <typeparam name="TSource">The type of the elements of the source <see cref="ReadOnlySpan{T}"/>.</typeparam>
+    extension<TSource>(ReadOnlySpan<TSource> source)
+    {
+        /// <summary>
+        /// Sorts the elements of a <see cref="ReadOnlySpan{T}"/> in ascending order by using a specified key selector.
+        /// </summary>
+        /// <typeparam name="TKey">The type of the key returned by the key selector function.</typeparam>
+        /// <param name="predicate">The function to extract the key for each element.</param>
+        /// <returns>A new <see cref="ReadOnlySpan{T}"/> containing the sorted elements.</returns>
+        public ReadOnlySpan<TSource> OrderBy<TKey>(Func<TSource, TKey> predicate)
+            => source.OrderBy(predicate, Comparer<TKey>.Default);
+
+        /// <summary>
+        /// Sorts the elements of a <see cref="ReadOnlySpan{T}"/> in ascending order by using a specified key selector and optional comparer.
+        /// </summary>
+        /// <typeparam name="TKey">The type of the key returned by the key selector function.</typeparam>
+        /// <param name="predicate">The function to extract the key for each element.</param>
+        /// <param name="comparer">An optional comparer to define custom comparison logic. If null, the default comparer is used.</param>
+        /// <returns>A new <see cref="ReadOnlySpan{T}"/> containing the sorted elements.</returns>
+        public ReadOnlySpan<TSource> OrderBy<TKey>(Func<TSource, TKey> predicate, IComparer<TKey>? comparer)
+        {
+            InvalidOperationException.ThrowIfSpanIsEmpty(source);
+            ArgumentNullException.ThrowIfNull(predicate);
+            
+            comparer ??= Comparer<TKey>.Default;
+
+            ReadOnlySpan<(TSource Item, TKey Key)> keyItemPairs = source.Select(s => (s, predicate(s)));
+              
+            keyItemPairs.Sort((left, right) =>
+                comparer.Compare(left.Key, right.Key));
+
+            return keyItemPairs.Select(p => p.Item);
+        }
+    }
+#endif
 }
