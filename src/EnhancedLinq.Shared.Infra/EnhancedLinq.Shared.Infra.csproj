@@ -4,6 +4,9 @@
         <TargetFramework>netstandard2.0</TargetFramework>
         <LangVersion>14</LangVersion>
         <Nullable>enable</Nullable>
+        <IsPackable>false</IsPackable>
+        <Title>EnhancedLinq.Shared.Infra</Title>
+        <Authors />
     </PropertyGroup>
 
     <ItemGroup>
