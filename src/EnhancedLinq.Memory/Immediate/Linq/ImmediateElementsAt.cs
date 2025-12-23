@@ -25,7 +25,7 @@ public static partial class EnhancedLinqMemoryImmediate
         {
             InvalidOperationException.ThrowIfMemoryIsEmpty(source);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(source.Length);
-            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(index);
+            ArgumentOutOfRangeException.ThrowIfNegative(index);
 
             Memory<T> items = ElementsAt(source, index, 1);
 
@@ -68,7 +68,7 @@ public static partial class EnhancedLinqMemoryImmediate
         {
             InvalidOperationException.ThrowIfMemoryIsEmpty(source);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(source.Length);
-            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(index);
+            ArgumentOutOfRangeException.ThrowIfNegative(index);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
 
 #if NET8_0_OR_GREATER
@@ -92,11 +92,11 @@ public static partial class EnhancedLinqMemoryImmediate
         public T ElementAt(int index)
         {
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(source.Length);
-            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(index);
 
             ReadOnlyMemory<T> items = ElementsAt(source, index, 1);
 
             return First(items);
+            ArgumentOutOfRangeException.ThrowIfNegative(index);
         }
 
         /// <summary>
@@ -218,11 +218,10 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <exception cref="IndexOutOfRangeException">Thrown if the specified index is out of bounds of the source span.</exception>
         public T? ElementAtOrDefault(int index)
         {
+            ArgumentOutOfRangeException.ThrowIfNegative(index);
+
             try
             {
-                InvalidOperationException.ThrowIfSpanIsEmpty(source);
-                ArgumentOutOfRangeException.ThrowIfNegativeOrZero(index);
-
                 return source[index];
             }
             catch (ArgumentOutOfRangeException)
@@ -248,7 +247,7 @@ public static partial class EnhancedLinqMemoryImmediate
         {
             InvalidOperationException.ThrowIfSpanIsEmpty(source);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(source.Length);
-            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(index);
+            ArgumentOutOfRangeException.ThrowIfNegative(index);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
 
 #if NET8_0_OR_GREATER
