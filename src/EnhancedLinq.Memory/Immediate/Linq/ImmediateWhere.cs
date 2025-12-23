@@ -7,6 +7,8 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
+using System.Buffers;
+
 namespace EnhancedLinq.Memory.Immediate;
 
 public static partial class EnhancedLinqMemoryImmediate
@@ -25,22 +27,23 @@ public static partial class EnhancedLinqMemoryImmediate
             ArgumentNullException.ThrowIfNull(predicate);
             InvalidOperationException.ThrowIfSpanIsEmpty(target);
             
-            List<T> list;
-
-            if (target.Length <= 100)
-                list = new(capacity: target.Length);
-            else
-                list = new();
+            T[] array = ArrayPool<T>.Shared.Rent(target.Length);
+            
+            int index = 0;
         
             foreach (T item in target)
             {
                 if (predicate.Invoke(item))
                 {
-                    list.Add(item);
+                    array[index] = item;
+                    index++;
                 }
             }
         
-            return new(list.ToArray());
+            Span<T> output = array.AsSpan(0, index);
+            ArrayPool<T>.Shared.Return(array);
+            
+            return output;
         }
     }
     
@@ -58,22 +61,23 @@ public static partial class EnhancedLinqMemoryImmediate
             ArgumentNullException.ThrowIfNull(predicate);
             InvalidOperationException.ThrowIfSpanIsEmpty(target);
 
-            List<T> list;
+            T[] array = ArrayPool<T>.Shared.Rent(target.Length);
 
-            if (target.Length <= 100)
-                list = new(capacity: target.Length);
-            else
-                list = new();
+            int index = 0;
         
             foreach (T item in target)
             {
                 if (predicate.Invoke(item))
                 {
-                    list.Add(item);
+                    array[index] = item;
+                    index++;
                 }
             }
         
-            return new(list.ToArray());
+            Span<T> output = array.AsSpan(0, index);
+            ArrayPool<T>.Shared.Return(array);
+            
+            return output;
         }
     }
 }
