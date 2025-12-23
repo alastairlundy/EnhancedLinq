@@ -53,8 +53,7 @@ public static partial class EnhancedLinqMemoryImmediate
             }
         }
     }
-
-
+    
     /// <param name="target">The memory to apply the action to.</param>
     /// <typeparam name="T">The type of items in the Memory.</typeparam>
     extension<T>(ref Memory<T> target)
