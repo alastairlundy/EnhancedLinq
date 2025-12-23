@@ -14,7 +14,7 @@ public static partial class EnhancedLinqMemoryImmediate
     /// <param name="span">The span to split.</param>
     /// <typeparam name="T">The type of elements within the span.</typeparam>
     extension<T>(Span<T> span)
-    where T : notnull
+        where T : notnull
     {
         /// <summary>
         /// Splits a span into an <see cref="IList{T}"/> of arrays based on the specified item count per array.
@@ -67,7 +67,7 @@ public static partial class EnhancedLinqMemoryImmediate
         /// </summary>
         /// <returns>An <see cref="IList{T}"/> of arrays, where the span is split by the number of processors available.</returns>
         public IList<T[]> SplitByProcessorCount()
-            => SplitByItemCount(span, Environment.ProcessorCount);
+            => span.SplitByItemCount(Environment.ProcessorCount);
 
         /// <summary>
         /// Splits a span into an <see cref="IList{T}"/> of arrays based on a specified maximum number of arrays.
@@ -93,7 +93,7 @@ public static partial class EnhancedLinqMemoryImmediate
                 maxItemCount = Convert.ToInt32(maxItems);
             }
         
-            return SplitByItemCount(span, maxItemCount);
+            return span.SplitByItemCount(maxItemCount);
         }
 
         /// <summary>
@@ -101,12 +101,7 @@ public static partial class EnhancedLinqMemoryImmediate
         /// </summary>
         /// <param name="separator">The separator to split by.</param>
         /// <returns>A list of spans, each containing the elements before the separator was found.</returns>
-        public IList<T[]> SplitBy(T separator)
-        {
-            InvalidOperationException.ThrowIfSpanIsEmpty(span);
-
-            return SplitBy(span, x => x.Equals(separator));
-        }
+        public IList<T[]> SplitBy(T separator) => span.SplitBy(x => x.Equals(separator));
 
         /// <summary>
         /// Splits a span into an <see cref="IList{T}"/> of arrays based on the provided predicate.
