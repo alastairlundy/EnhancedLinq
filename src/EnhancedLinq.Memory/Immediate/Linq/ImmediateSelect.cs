@@ -7,6 +7,8 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
+using System.Buffers;
+
 namespace EnhancedLinq.Memory.Immediate;
 
 public static partial class EnhancedLinqMemoryImmediate
@@ -26,7 +28,7 @@ public static partial class EnhancedLinqMemoryImmediate
             InvalidOperationException.ThrowIfSpanIsEmpty(source);
             ArgumentNullException.ThrowIfNull(predicate);
             
-            TResult[] array = new  TResult[source.Length];
+            TResult[] array = ArrayPool<TResult>.Shared.Rent(source.Length);
         
             int index = 0;
         
@@ -35,8 +37,11 @@ public static partial class EnhancedLinqMemoryImmediate
                 array[index] = predicate.Invoke(x);
                 index++;
             });
-
-            return new(array);
+            
+            Span<TResult> output = array.AsSpan(0, source.Length);
+            ArrayPool<TResult>.Shared.Return(array);
+            
+            return output;
         }
     }
 
@@ -55,7 +60,7 @@ public static partial class EnhancedLinqMemoryImmediate
             InvalidOperationException.ThrowIfSpanIsEmpty(source);
             ArgumentNullException.ThrowIfNull(predicate);
             
-            TResult[] array = new  TResult[source.Length];
+            TResult[] array = ArrayPool<TResult>.Shared.Rent(source.Length);
         
             int index = 0;
 
@@ -65,7 +70,10 @@ public static partial class EnhancedLinqMemoryImmediate
                 index++;
             }
 
-            return new Span<TResult>(array);
+            Span<TResult> output = array.AsSpan(0, source.Length);
+            ArrayPool<TResult>.Shared.Return(array);
+            
+            return output;
         }
     }
 }
