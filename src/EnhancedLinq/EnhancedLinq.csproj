@@ -12,13 +12,8 @@
         <RepositoryUrl>https://github.com/alastairlundy/Enhancedlinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageReleaseNotes>## Changes since 1.0.0 Alpha 1
-
-### Main package
-* Added Argument Exception polyfilling in Async extensions
-* Added Global usings
-* Moved Async code to Async package
-* Updated to DotExtensions 9.2.0 Preview 2 from 9.1.1</PackageReleaseNotes>
+        <PackageReleaseNotes>* Updated DotExtensions from 9.2.0 Preview 2 to 9.3.0
+* Updated internal Polyfill version from 9.3.1 to 9.4.1</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <Description>Additional LINQ style Deferred and Immediate enumeration mode extension methods for .NET . </Description>
@@ -27,7 +22,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>1.0.0-alpha.2</Version>
+        <Version>1.0.0-alpha.3</Version>
         <PackageId>EnhancedLinq</PackageId>
         <PolyArgumentExceptions>true</PolyArgumentExceptions>
         <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
