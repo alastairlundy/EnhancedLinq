@@ -106,7 +106,7 @@ public static partial class EnhancedLinqMemoryImmediate
         /// </summary>
         /// <param name="keyPredicate">A function to extract the key for each element.</param>
         /// <returns>A <see cref="Memory{T}"/> of groups, each containing a key and the elements that share that key.</returns>
-        public Memory<IGrouping<TKey, TElement>> GroupBy(Func<TElement, TKey> keyPredicate)
+        public IEnumerable<IGrouping<TKey, TElement>> GroupBy(Func<TElement, TKey> keyPredicate)
         {
             InvalidOperationException.ThrowIfMemoryIsEmpty(source);
             ArgumentNullException.ThrowIfNull(keyPredicate);
@@ -130,8 +130,47 @@ public static partial class EnhancedLinqMemoryImmediate
 
             IEnumerable<IGrouping<TKey, TElement>> groups = (from kvp in dictionary
                 select new GroupingEnumerable<TKey, TElement>(kvp.Key, kvp.Value));
+
+            return groups;
+        }
+    }
+    
+    /// <param name="source">The source <see cref="Memory{T}"/> to group elements from.</param>
+    /// <typeparam name="TKey">The type of the key returned by the key predicate function.</typeparam>
+    /// <typeparam name="TElement">The type of elements in the source <see cref="Memory{T}"/>.</typeparam>
+    extension<TKey, TElement>(ReadOnlyMemory<TElement> source) where TKey : notnull
+    {
+        /// <summary>
+        /// Groups the elements of the source <see cref="Memory{T}"/> by a specified key predicate function.
+        /// </summary>
+        /// <param name="keyPredicate">A function to extract the key for each element.</param>
+        /// <returns>A <see cref="Memory{T}"/> of groups, each containing a key and the elements that share that key.</returns>
+        public IEnumerable<IGrouping<TKey, TElement>> GroupBy(Func<TElement, TKey> keyPredicate)
+        {
+            InvalidOperationException.ThrowIfMemoryIsEmpty(source);
+            ArgumentNullException.ThrowIfNull(keyPredicate);
         
-            return new(groups.ToArray());
+            Dictionary<TKey, List<TElement>> dictionary = new();
+
+            foreach (TElement item in source.AsEnumerable())
+            {
+                TKey key = keyPredicate.Invoke(item);
+            
+                if (dictionary.ContainsKey(key))
+                {
+                    dictionary[key].Add(item);
+                }
+                else
+                {
+                    dictionary.Add(key, new());
+                    dictionary[key].Add(item);
+                }
+            }
+
+            IEnumerable<IGrouping<TKey, TElement>> groups = (from kvp in dictionary
+                select new GroupingEnumerable<TKey, TElement>(kvp.Key, kvp.Value));
+
+            return groups;
         }
     }
 }
