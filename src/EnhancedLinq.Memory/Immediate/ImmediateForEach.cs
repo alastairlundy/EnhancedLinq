@@ -14,37 +14,43 @@ namespace EnhancedLinq.Memory.Immediate;
 
 public static partial class EnhancedLinqMemoryImmediate
 {
-    /// <summary>
-    /// Applies the given action to each element of this Span.
-    /// </summary>
-    /// <param name="action">The action to apply to each element in the span.</param>
     /// <param name="target">The span to apply the action to.</param>
     /// <typeparam name="T">The type of items in the Span.</typeparam>
-    public static void ForEach<T>(this ref Span<T> target, Action<T> action)
+    extension<T>(ref Span<T> target)
     {
-        InvalidOperationException.ThrowIfSpanIsEmpty(target);
-        ArgumentNullException.ThrowIfNull(action);
-
-        for (int index = 0; index < target.Length; index++)
+        /// <summary>
+        /// Applies the given action to each element of this Span.
+        /// </summary>
+        /// <param name="action">The action to apply to each element in the span.</param>
+        public void ForEach(Action<T> action)
         {
-            action.Invoke(target[index]);
+            InvalidOperationException.ThrowIfSpanIsEmpty(target);
+            ArgumentNullException.ThrowIfNull(action);
+
+            for (int index = 0; index < target.Length; index++)
+            {
+                action.Invoke(target[index]);
+            }
         }
     }
 
-    /// <summary>
-    /// Applies the given func to each element of this Span.
-    /// </summary>
     /// <param name="target">The span to apply the action to.</param>
-    /// <param name="action">The func to apply to each element in the span.</param>
     /// <typeparam name="T">The type of items in the Span.</typeparam>
-    public static void ForEach<T>(this Span<T> target, Func<T, T> action)
+    extension<T>(Span<T> target)
     {
-        InvalidOperationException.ThrowIfSpanIsEmpty(target);
-        ArgumentNullException.ThrowIfNull(action);
-        
-        for (int i = 0; i < target.Length; i++)
+        /// <summary>
+        /// Applies the given func to each element of this Span.
+        /// </summary>
+        /// <param name="action">The func to apply to each element in the span.</param>
+        public void ForEach(Func<T, T> action)
         {
-            target[i] = action.Invoke(target[i]);
+            InvalidOperationException.ThrowIfSpanIsEmpty(target);
+            ArgumentNullException.ThrowIfNull(action);
+        
+            for (int i = 0; i < target.Length; i++)
+            {
+                target[i] = action.Invoke(target[i]);
+            }
         }
     }
 
