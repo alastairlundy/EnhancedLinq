@@ -59,7 +59,8 @@ public static partial class EnhancedLinqDeferred
         /// <returns>A sequence containing the generated numeric values,
         /// incremented by the incrementor amount from the starting point.</returns>
         public IEnumerable<TNumber> GenerateNumberRange(TNumber count, TNumber incrementor,
-            IEnumerable<TNumber> numbersToSkip) => GenerateNumberRange(start, count, incrementor)
+            IEnumerable<TNumber> numbersToSkip) =>
+            start.GenerateNumberRange(count, incrementor)
             .SkipWhile(x => numbersToSkip.Contains(x));
     }
 
@@ -100,7 +101,8 @@ public static partial class EnhancedLinqDeferred
         /// incremented by the incrementor amount from the starting point.</returns>
         public IEnumerable<int> GenerateNumberRange(int count, int incrementor,
             IEnumerable<int> numbersToSkip)
-            => GenerateNumberRange(start, count, incrementor)
+            =>
+                start.GenerateNumberRange(count, incrementor)
                 .SkipWhile(x => numbersToSkip.Contains(x));
     }
 

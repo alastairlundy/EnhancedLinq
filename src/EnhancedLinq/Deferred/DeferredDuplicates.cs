@@ -19,8 +19,7 @@ public static partial class EnhancedLinqDeferred
     /// <param name="source">The sequence to find duplicates in.</param>
     /// <typeparam name="TSource">The type of elements in the source sequence.</typeparam>
     /// <returns>A sequence that contains only duplicate elements from the source sequence.</returns>
-    public static IEnumerable<TSource> FindDuplicates<TSource>(this IEnumerable<TSource> source) where TSource : IEquatable<TSource> =>
-        FindDuplicates(source, EqualityComparer<TSource>.Default);
+    public static IEnumerable<TSource> FindDuplicates<TSource>(this IEnumerable<TSource> source) where TSource : IEquatable<TSource> => source.FindDuplicates(EqualityComparer<TSource>.Default);
 
     /// <param name="source">The sequence to find duplicates in.</param>
     /// <typeparam name="TSource">The type of elements in the source sequence.</typeparam>

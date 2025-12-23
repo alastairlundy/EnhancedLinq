@@ -60,7 +60,7 @@ public static partial class EnhancedLinqDeferred
         {
             ArgumentNullException.ThrowIfNull(source);
 
-            return SplitBy(source, x => x.Equals(separator));
+            return source.SplitBy(x => x.Equals(separator));
         }
 
         /// <summary>

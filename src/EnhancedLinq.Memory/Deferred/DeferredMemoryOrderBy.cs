@@ -25,7 +25,8 @@ public static partial class EnhancedLinqMemoryDeferred
         /// <typeparam name="TKey"></typeparam>
         /// <returns></returns>
         public IOrderedEnumerable<TSource> OrderBy<TKey>(Func<TSource, TKey> predicate)
-            => OrderBy(source, predicate, Comparer<TKey>.Default);
+            =>
+                source.OrderBy(predicate, Comparer<TKey>.Default);
 
         /// <summary>
         /// 
@@ -49,7 +50,8 @@ public static partial class EnhancedLinqMemoryDeferred
         /// <param name="predicate">A function that extracts the key for each element.</param>
         /// <returns>An <see cref="IOrderedEnumerable{TElement}"/> whose elements are sorted in descending order according to the specified key.</returns>
         public IOrderedEnumerable<TSource> OrderByDescending<TKey>(Func<TSource, TKey> predicate)
-            => OrderByDescending(source, predicate, Comparer<TKey>.Default);
+            =>
+                source.OrderByDescending(predicate, Comparer<TKey>.Default);
 
         /// <summary>
         /// 

@@ -79,7 +79,7 @@ public static partial class EnhancedLinqImmediateConcurrentRange
         /// </summary>
         /// <param name="range">A <see cref="Range"/> object that specifies the start and end indexes of the range to retrieve.</param>
         /// <returns>A new <see cref="IProducerConsumerCollection{T}"/> containing the specified range of elements.</returns>
-        public IProducerConsumerCollection<T> GetRange(Range range) => GetRange(collection, range.Start.Value, range.End.Value);
+        public IProducerConsumerCollection<T> GetRange(Range range) => collection.GetRange(range.Start.Value, range.End.Value);
     }
 #endif
 }

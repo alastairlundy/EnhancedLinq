@@ -20,7 +20,7 @@ public static partial class EnhancedLinqImmediate
         /// </summary>
         /// <returns>True if the <see cref="IEnumerable{T}"/> contains duplicate objects; false otherwise.</returns>
         public bool ContainsDuplicates()
-            => ContainsDuplicates(source, EqualityComparer<T>.Default);
+            => source.ContainsDuplicates(EqualityComparer<T>.Default);
 
         /// <summary>
         /// Determines whether an <see cref="IEnumerable{T}"/> contains duplicate instances of an object.

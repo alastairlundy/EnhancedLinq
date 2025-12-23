@@ -50,7 +50,8 @@ public static partial class EnhancedLinqDeferred
         /// <param name="range">The range of indices to retrieve, where each index corresponds to an element in the source.</param>
         /// <returns>A new sequence containing the elements at the specified indexes from the original source.</returns>
         public IEnumerable<TSource> ElementsAt(Range range)
-            => ElementsAt(source, range.Start.Value, Math.Abs(range.Start.Value - range.End.Value));
+            =>
+                source.ElementsAt(range.Start.Value, Math.Abs(range.Start.Value - range.End.Value));
 #endif
         
         /// <summary>
@@ -71,7 +72,7 @@ public static partial class EnhancedLinqDeferred
         
             IEnumerable<int> sequence = startIndex.GenerateNumberRange(count, 1);
        
-            return ElementsAt(source, sequence);
+            return source.ElementsAt(sequence);
         }
     }
 }

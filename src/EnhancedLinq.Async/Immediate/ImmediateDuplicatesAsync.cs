@@ -20,7 +20,7 @@ public static partial class EnhancedLinqAsyncImmediate
         /// </summary>
         /// <returns>True if the <see cref="IEnumerable{T}"/> contains duplicate objects; false otherwise.</returns>
         public async Task<bool> ContainsDuplicates()
-            => await ContainsDuplicates(source, EqualityComparer<T>.Default);
+            => await source.ContainsDuplicates(EqualityComparer<T>.Default);
 
         /// <summary>
         /// Determines whether an <see cref="IAsyncEnumerable{T}"/> contains duplicate instances of an object.

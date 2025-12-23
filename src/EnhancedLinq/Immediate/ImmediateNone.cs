@@ -26,7 +26,7 @@ public static partial class EnhancedLinqImmediate
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(predicate);
             
-            return CountAtMost(source, predicate, 0);
+            return source.CountAtMost(predicate, 0);
         }
     }
 

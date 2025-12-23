@@ -20,7 +20,7 @@ public static partial class EnhancedLinqImmediate
     /// <param name="source">The <see cref="IEnumerable{T}"/> to be searched.</param>
     /// <typeparam name="T">The type of elements in the sequence.</typeparam>
     extension<T>(IEnumerable<T> source)
-    where T : notnull
+        where T : notnull
     {
         /// <summary>
         /// Gets the first index of the first element that matches the predicate condition.

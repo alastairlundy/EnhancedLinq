@@ -27,7 +27,8 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <exception cref="InvalidOperationException">Thrown when the source span is empty.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the key selector is null.</exception>
         public Span<TSource> DistinctBy<TKey>(Func<TSource, TKey> keySelector)
-            => DistinctBy(source, keySelector, EqualityComparer<TKey>.Default);
+            =>
+                source.DistinctBy(keySelector, EqualityComparer<TKey>.Default);
 
         /// <summary>
         /// Returns a new span containing only the distinct elements from the source span, determined by a specified key selector.
@@ -79,7 +80,8 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <exception cref="InvalidOperationException">Thrown when the source <see cref="ReadOnlySpan{T}"/> is empty.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the key selector is null.</exception>
         public ReadOnlySpan<TSource> DistinctBy<TKey>(Func<TSource, TKey> keySelector)
-            => DistinctBy(source, keySelector, EqualityComparer<TKey>.Default);
+            =>
+                source.DistinctBy(keySelector, EqualityComparer<TKey>.Default);
 
         /// <summary>
         /// Returns a new <see cref="ReadOnlySpan{T}"/> containing only the distinct elements from the source <see cref="ReadOnlySpan{T}"/>, determined by a specified key selector and an optional equality comparer.
@@ -131,7 +133,8 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <exception cref="InvalidOperationException">Thrown when the source memory is empty.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the key selector is null.</exception>
         public Memory<TSource> DistinctBy<TKey>(Func<TSource, TKey> keySelector)
-            => DistinctBy(source, keySelector, EqualityComparer<TKey>.Default);
+            =>
+                source.DistinctBy(keySelector, EqualityComparer<TKey>.Default);
 
         /// <summary>
         /// Returns a new memory segment containing only the distinct elements from the source memory, determined by a specified key selector and an optional equality comparer.
@@ -183,7 +186,8 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <exception cref="InvalidOperationException">Thrown when the source <see cref="ReadOnlyMemory{T}"/> block is empty.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the key selector is null.</exception>
         public ReadOnlyMemory<TSource> DistinctBy<TKey>(Func<TSource, TKey> keySelector)
-            => DistinctBy(source, keySelector, EqualityComparer<TKey>.Default);
+            =>
+                source.DistinctBy(keySelector, EqualityComparer<TKey>.Default);
 
         /// <summary>
         /// Returns a new <see cref="ReadOnlyMemory{T}"/> containing only the distinct elements from the source <see cref="ReadOnlyMemory{T}"/>, determined by a specified key selector and optional equality comparer.

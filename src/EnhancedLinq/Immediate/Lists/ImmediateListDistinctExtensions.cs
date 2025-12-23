@@ -23,7 +23,8 @@ public static partial class EnhancedLinqImmediate
         /// </summary>
         /// <returns>The new list with distinct elements from the source list.</returns>
         public List<T> Distinct()
-            => Distinct(source, EqualityComparer<T>.Default);
+            =>
+                source.Distinct(EqualityComparer<T>.Default);
         
         /// <summary>
         /// Creates a new <see cref="List{T}"/> with distinct elements from the source list.
@@ -65,7 +66,8 @@ public static partial class EnhancedLinqImmediate
         /// </summary>
         /// <returns>The new array with distinct elements from the source array.</returns>
         public T[] Distinct()
-            => Distinct(source, EqualityComparer<T>.Default);
+            =>
+                source.Distinct(EqualityComparer<T>.Default);
         
         /// <summary>
         /// Creates a new array with distinct elements from the source array.

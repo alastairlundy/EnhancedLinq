@@ -25,6 +25,6 @@ public static partial class EnhancedLinqAsyncImmediate
         /// <returns>True if none of the elements matched the predicate, false otherwise.</returns>
         /// <exception cref="ArgumentNullException">Thrown if the source sequence or predicate are null.</exception>
         public async Task<bool> NoneAsync(Func<TSource, bool> predicate)
-            => await CountAtMostAsync(source, predicate, 0);
+            => await source.CountAtMostAsync(predicate, 0);
     }
 }

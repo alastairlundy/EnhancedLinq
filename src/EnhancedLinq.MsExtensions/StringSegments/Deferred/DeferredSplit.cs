@@ -28,7 +28,7 @@ public static partial class EnhancedLinqSegmentDeferred
             if (source.Contains(separator) == false)
                 return [source];
 
-            return SplitBy(source, x => x == separator);
+            return source.SplitBy(x => x == separator);
         }
 
         /// <summary>

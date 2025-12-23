@@ -67,7 +67,7 @@ public static partial class EnhancedLinqMemoryImmediateMaths
         /// Calculates the sum of a memory of numbers.
         /// </summary>
         /// <returns>The sum of all the number in the memory.</returns>
-        public TNumber Sum() => Sum(source.Span);
+        public TNumber Sum() => source.Span.Sum();
     }
     
     /// <param name="source">The <see cref="ReadOnlyMemory{T}"/> to be summed.</param>
@@ -78,7 +78,7 @@ public static partial class EnhancedLinqMemoryImmediateMaths
         /// Calculates the sum of a <see cref="ReadOnlyMemory{T}"/> of numbers.
         /// </summary>
         /// <returns>The sum of all the number in the <see cref="ReadOnlyMemory{T}"/>.</returns>
-        public TNumber Sum() => Sum(source.Span);
+        public TNumber Sum() => source.Span.Sum();
     }
 }
 #endif

@@ -38,7 +38,7 @@ public static partial class EnhancedLinqImmediate
             
             if (source is ICollection<T> collection)
             {
-                return LastIndexOf(collection, predicate);
+                return collection.LastIndexOf(predicate);
             }
         
             bool foundItem = false;
