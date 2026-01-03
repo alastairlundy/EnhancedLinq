@@ -19,20 +19,17 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>1.0.0-alpha.3</Version>
+        <Version>1.0.0-alpha.4</Version>
         <PackageId>EnhancedLinq.Async</PackageId>
         <PolyArgumentExceptions>true</PolyArgumentExceptions>
         <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
         <TrimmerSingleWarn>false</TrimmerSingleWarn>
-        <PackageReleaseNotes>* Updated DotExtensions from 9.2.0 Preview 2 to 9.3.0
-* Updated internal Polyfill version from 9.3.1 to 9.4.1
-* Updated Microsoft.Bcl.AsyncInterfaces from 10.0.0 to 10.0.1
-* Updated System.Linq.AsyncEnumerable from 10.0.0 to 10.0.1</PackageReleaseNotes>
+        <PackageReleaseNotes>* Updated internal Polyfill version from 9.4.1 to 9.6.0</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="DotExtensions" Version="9.3.0" />
-        <PackageReference Include="Polyfill" Version="9.5.0" PrivateAssets="all"
+        <PackageReference Include="Polyfill" Version="9.6.0" PrivateAssets="all"
                           Condition="'$(TargetFramework)' == 'netstandard2.0'"/>
         <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="10.0.1"
                           Condition="'$(TargetFramework)' == 'netstandard2.0'" />

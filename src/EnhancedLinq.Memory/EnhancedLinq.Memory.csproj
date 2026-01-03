@@ -13,23 +13,8 @@
         <RepositoryUrl>https://github.com/alastairlundy/EnhancedLinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>linq, enhanced-linq, enhanced, extensions, memory, extensions</PackageTags>
-        <PackageReleaseNotes>* Updated DotExtensions from 9.2.0 Preview 2 to 9.3.0
-* Updated DotExtensions.Memory from 9.2.0 Preview 2 to 9.3.0
-* Updated DotPrimitives from 4.0.0 to 4.1.0
-* Updated internal Polyfill version from 9.3.1 to 9.4.1
-* Reworked Span&lt;T&gt; and ReadOnlySpan&lt;T&gt; ``Index`` method to mirror LINQ's Index method
-* Added Memory&lt;T&gt; and ReadOnlyMemory&lt;T&gt; deferred execution mode ``Index`` method
-* Added Memory&lt;T&gt; and ReadOnlyMemory&lt;T&gt; ``AsEnumerable`` deferred enumeration method
-* Added Span&lt;T&gt; and ReadOnlySpan&lt;T&gt; immediate mode ``OrderBy(Func&lt;TSource, TKey&gt;)`` and ``OrderBy(Func&lt;TSource, TKey&gt;, IComparer&lt;TKey&gt;?)`` 
-* Added Memory&lt;T&gt; and ReadOnlyMemory&lt;T&gt; deferred execution mode ``OrderBy(Func&lt;TSource, TKey&gt;)`` and ``OrderBy(Func&lt;TSource, TKey&gt;, IComparer&lt;TKey&gt;?)`` 
-* Replaced Memory&lt;T&gt; and ReadOnlyMemory&lt;T&gt; immediate mode ``Select`` method with deferred execution ``Select`` method
-* Added ReadOnlySpan&lt;T&gt; immediate mode ``IndicesOf(T)`` and ``IndicesOf(Func&lt;T, bool&gt;)`` methods
-* Added ReadOnlyMemory&lt;T&gt; immediate mode ``LastIndex`` method
-* Added Memory&lt;T&gt; and ReadOnlyMemory&lt;T&gt; ``CountAtLeast(int)`` and ``CountAtLeast(Func&lt;T, bool&gt;, int)`` methods
-* Added Memory&lt;T&gt; and ReadOnlyMemory&lt;T&gt; ``CountAtMost(int)`` and ``CountAtMost(Func&lt;T, bool&gt;, int)`` methods
-* Converted ``LastIndex`` extension block methods to extension block properties
-* Improved Span&lt;T&gt;, ReadOnlySpan&lt;T&gt;, Memory&lt;T&gt;, and ReadOnlyMemory&lt;T&gt; ``Last`` and ``LastOrDefault`` method performance through avoiding Span and Memory reversal
-* Fixed a bug where ElementAt and ElementsAt methods would throw an exception if index was 0.</PackageReleaseNotes>
+        <PackageReleaseNotes>* Updated internal Polyfill version from 9.4.1 to 9.6.0
+* Added .NET Standard 2.0 support for OrderBy and OrderByDescending</PackageReleaseNotes>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -37,7 +22,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>1.0.0-alpha.3</Version>
+        <Version>1.0.0-alpha.4</Version>
         <PackageId>EnhancedLinq.Memory</PackageId>
         <PolyArgumentExceptions>true</PolyArgumentExceptions>
         <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
@@ -48,7 +33,7 @@
         <PackageReference Include="DotExtensions" Version="9.3.0" />
         <PackageReference Include="DotExtensions.Memory" Version="9.3.0" />
         <PackageReference Include="DotPrimitives.Collections" Version="4.1.0" />
-        <PackageReference Include="Polyfill" Version="9.5.0" PrivateAssets="all"
+        <PackageReference Include="Polyfill" Version="9.6.0" PrivateAssets="all"
                           Condition="'$(TargetFramework)' == 'netstandard2.0'"/>
     </ItemGroup>
     

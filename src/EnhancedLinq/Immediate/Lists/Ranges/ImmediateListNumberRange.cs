@@ -48,7 +48,6 @@ public static partial class EnhancedLinqImmediateRange
             {
                 output[index] = i;
                 index++;
-
             }
         
             return output;
