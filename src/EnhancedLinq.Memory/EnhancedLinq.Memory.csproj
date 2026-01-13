@@ -9,7 +9,7 @@
         <Title>EnhancedLinq.Memory</Title>
         <Authors>Alastair Lundy</Authors>
         <Description>LINQ style Immediate enumeration mode extension methods for Spans and Memory. </Description>
-        <Copyright>Copyright (c) 2025 Alastair Lundy</Copyright>
+        <Copyright>Copyright (c) 2026 Alastair Lundy</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/EnhancedLinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>linq, enhanced-linq, enhanced, extensions, memory, extensions</PackageTags>
