@@ -25,7 +25,6 @@ public static partial class EnhancedLinqImmediate
         /// Applies the given action for each element of this sequence.
         /// </summary>
         /// <param name="action">The action to apply to each element in the sequence.</param>
-
         public void ForEach(Action<T> action)
         {
             ArgumentNullException.ThrowIfNull(target);

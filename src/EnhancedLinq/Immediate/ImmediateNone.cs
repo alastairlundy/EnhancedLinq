@@ -29,5 +29,4 @@ public static partial class EnhancedLinqImmediate
             return source.CountAtMost(predicate, 0);
         }
     }
-
 }
