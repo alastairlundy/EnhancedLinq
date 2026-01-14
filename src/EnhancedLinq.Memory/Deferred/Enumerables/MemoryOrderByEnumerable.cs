@@ -41,7 +41,7 @@ internal class MemoryOrderByEnumerable<TSource, TKey1> : IOrderedEnumerable<TSou
     {
         comparer ??= Comparer<TKey>.Default;
         
-        return new MemoryOrderByEnumerable<TSource, TKey>(_memory,  keySelector, comparer, _descending);
+        return new MemoryOrderByEnumerable<TSource, TKey>(_memory,  keySelector, comparer, descending);
     }
 
     public IEnumerator<TSource> GetEnumerator() => 

@@ -11,8 +11,6 @@ namespace EnhancedLinq.Memory.Immediate;
 
 public static partial class EnhancedLinqMemoryImmediate
 {
-#if NET8_0_OR_GREATER
-    
     /// <param name="source">The <see cref="Span{T}"/> to order.</param>
     /// <typeparam name="TSource">The type of the elements of the source Span.</typeparam>
     extension<TSource>(Span<TSource> source)
@@ -84,5 +82,4 @@ public static partial class EnhancedLinqMemoryImmediate
             return keyItemPairs.Select(p => p.Item);
         }
     }
-#endif
 }

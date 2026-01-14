@@ -76,8 +76,6 @@ internal class MemoryOrderByEnumerator<TSource, TKey> : IEnumerator<TSource>
                 Current = _enumerator.Current;
                 return true;
             }
-            
-            _state = -1;
         }
 
         Dispose();
