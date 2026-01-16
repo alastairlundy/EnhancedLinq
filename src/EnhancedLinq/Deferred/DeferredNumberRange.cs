@@ -61,7 +61,7 @@ public static partial class EnhancedLinqDeferred
         public IEnumerable<TNumber> GenerateNumberRange(TNumber count, TNumber incrementor,
             IEnumerable<TNumber> numbersToSkip) =>
             start.GenerateNumberRange(count, incrementor)
-            .SkipWhile(x => numbersToSkip.Contains(x));
+                .SkipWhile(x => numbersToSkip.Contains(x));
     }
 
 #else
