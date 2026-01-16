@@ -7,9 +7,9 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-
 using System.Numerics;
 using DotExtensions.Numbers;
+
 #if NET8_0_OR_GREATER
 #endif
 
