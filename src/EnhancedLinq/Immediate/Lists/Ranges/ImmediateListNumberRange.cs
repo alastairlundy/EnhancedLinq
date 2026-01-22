@@ -12,9 +12,6 @@ using System.Numerics;
 using DotExtensions.Numbers;
 #endif
 
-#if NET8_0_OR_GREATER
-#endif
-
 namespace EnhancedLinq.Immediate.Ranges;
 
 public static partial class EnhancedLinqImmediateRange

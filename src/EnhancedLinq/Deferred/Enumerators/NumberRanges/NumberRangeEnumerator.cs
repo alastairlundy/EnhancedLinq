@@ -8,7 +8,6 @@
     */
 
 #if NET8_0_OR_GREATER
-
 using System.Collections;
 using System.Numerics;
 
@@ -16,8 +15,7 @@ namespace EnhancedLinq.Deferred.Enumerators.NumberRanges;
 
 internal class NumberRangeEnumerator<TNumber> : IEnumerator<TNumber> where TNumber : INumber<TNumber>
 {
-    private readonly IEnumerable<TNumber> _source;   
-    private IEnumerator<TNumber> _enumerator;
+    private readonly IEnumerator<TNumber> _enumerator;
     
     private TNumber _current;
 
@@ -25,10 +23,9 @@ internal class NumberRangeEnumerator<TNumber> : IEnumerator<TNumber> where TNumb
 
     internal NumberRangeEnumerator(IEnumerable<TNumber> source)
     {
-        _source = source;
         _current = TNumber.Zero;
         _state = 0;
-        _enumerator = _source.GetEnumerator();
+        _enumerator = source.GetEnumerator();
     }
     
     public bool MoveNext()
@@ -65,7 +62,7 @@ internal class NumberRangeEnumerator<TNumber> : IEnumerator<TNumber> where TNumb
 
     TNumber IEnumerator<TNumber>.Current => _current;
 
-    object? IEnumerator.Current => _current;
+    object IEnumerator.Current => _current;
 
     public void Dispose()
     {
