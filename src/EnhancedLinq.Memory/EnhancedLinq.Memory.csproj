@@ -33,7 +33,7 @@
         <PackageReference Include="DotExtensions.Memory" Version="9.4.0" />
         <PackageReference Include="DotExtensions" Version="9.4.0" />
         <PackageReference Include="DotPrimitives.Collections" Version="4.1.0" />
-        <PackageReference Include="Polyfill" Version="9.7.4" PrivateAssets="all"
+        <PackageReference Include="Polyfill" Version="9.7.5" PrivateAssets="all"
                           Condition="'$(TargetFramework)' == 'netstandard2.0'"/>
     </ItemGroup>
     
