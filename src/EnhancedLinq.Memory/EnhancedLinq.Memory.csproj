@@ -13,8 +13,10 @@
         <RepositoryUrl>https://github.com/alastairlundy/EnhancedLinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>linq, enhanced-linq, enhanced, extensions, memory, extensions</PackageTags>
-        <PackageReleaseNotes>* Updated internal Polyfill version from 9.4.1 to 9.6.0
-* Added .NET Standard 2.0 support for OrderBy and OrderByDescending</PackageReleaseNotes>
+        <PackageReleaseNotes>* Updated internal Polyfill version from 9.6.0 to 9.7.2
+* Updated DotExtensions.Memory from 9.3.0 to 9.4.1
+* Add immediate mode ``Skip``, ``SkipLast``, and ``SkipWhile`` for ``ReadOnlySpan&lt;T&gt;``
+* Add immediate mode ``Exclude`` extensions for ``Span&lt;T&gt;``</PackageReleaseNotes>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -22,7 +24,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>1.0.0-alpha.4</Version>
+        <Version>1.0.0-alpha.5</Version>
         <PackageId>EnhancedLinq.Memory</PackageId>
         <PolyArgumentExceptions>true</PolyArgumentExceptions>
         <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
