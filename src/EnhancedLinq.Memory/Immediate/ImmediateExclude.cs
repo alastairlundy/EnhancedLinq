@@ -18,6 +18,15 @@ public static partial class EnhancedLinqMemoryImmediate
     /// </summary>
     extension<TSource>(Span<TSource> source) where TSource : notnull
     {
+        /// <summary>
+        /// Returns a new <see cref="Span{TSource}"/> containing the elements of <paramref name="span"/>
+        /// that do not satisfy the given predicate.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the elements in the input span.</typeparam>
+        /// <param name="span">The span of items to exclude from the input.</param>
+        /// <returns>A new <see cref="Span{TSource}"/> containing the elements that do not satisfy the predicate.</returns>
+        /// <exception cref="ArgumentNullException">Thrown if the provided predicate is null.</exception>
+        /// <exception cref="InvalidOperationException">Thrown if the input span is empty.</exception>
         public Span<TSource> Exclude(Span<TSource> span)
         {
             InvalidOperationException.ThrowIfSpanIsEmpty(source);
