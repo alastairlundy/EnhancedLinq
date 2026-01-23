@@ -40,7 +40,7 @@ public static partial class EnhancedLinqMemoryImmediate
                     result.Add(item);
             }
 
-            return result.AsSpan;
+            return result.ToArray();
         }
 
         /// <summary>
