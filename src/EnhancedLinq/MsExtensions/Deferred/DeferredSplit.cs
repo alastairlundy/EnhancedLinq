@@ -8,6 +8,8 @@
     */
 
 
+using DotExtensions.MsExtensions.StringSegments;
+
 namespace EnhancedLinq.MsExtensions.Deferred;
 
 public static partial class EnhancedLinqSegmentDeferred

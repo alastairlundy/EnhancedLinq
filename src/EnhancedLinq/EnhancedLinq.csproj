@@ -47,6 +47,9 @@
 
     <ItemGroup>
         <PackageReference Include="DotExtensions" Version="9.4.1" />
+        <PackageReference Include="DotExtensions.MsExtensions" Version="9.4.2" />
+        <PackageReference Include="DotPrimitives.Collections" Version="4.3.0" />
+        <PackageReference Include="Microsoft.Extensions.Primitives" Version="10.0.2" />
         <PackageReference Include="Polyfill" Version="9.7.7" PrivateAssets="all"
                           Condition="'$(TargetFramework)' == 'netstandard2.0'"/>
     </ItemGroup>
@@ -56,10 +59,6 @@
         <Link>README.md</Link>
           <PackagePath>README.md</PackagePath>
       </Content>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Internals\Infra\" />
     </ItemGroup>
 
     <ItemGroup>

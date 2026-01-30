@@ -21,7 +21,6 @@ public static partial class EnhancedLinqSegmentImmediate
         /// <returns>True if none of the characters matched the predicate, false otherwise.</returns>
         /// <exception cref="ArgumentNullException">Thrown if the source <see cref="StringSegment"/> or predicate are null.</exception>
         public bool None(Func<char, bool> predicate)
-            =>
-                segment.CountAtMost(predicate, 0);
+            => segment.CountAtMost(predicate, 0);
     }
 }
