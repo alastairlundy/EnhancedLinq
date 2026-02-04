@@ -8,7 +8,6 @@
     */
 
 using System.Collections;
-using EnhancedLinq.MsExtensions.Immediate;
 
 namespace EnhancedLinq.MsExtensions.Deferred;
 
@@ -32,7 +31,7 @@ internal class SegmentIndicesEnumerable : IEnumerable<int>
     public IEnumerator<int> GetEnumerator()
     {
         if(_segment.Length == 1)
-            return new SegmentIndicesCharEnumerator(_source, _segment.First());
+            return new SegmentIndicesCharEnumerator(_source, _segment[0]);
         else
             return new SegmentIndicesOfEnumerator(_source, _segment);
     }

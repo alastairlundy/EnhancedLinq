@@ -14,7 +14,7 @@ namespace EnhancedLinq.Deferred.Pairs.KeyValuePairs;
 /// <summary>
 /// This static class contains Deferred Execution extension methods for sequences that store <see cref="KeyValuePair{TKey,TValue}"/>.
 /// </summary>
-public static partial class EnhancedLinqDeferredPairs
+public static class EnhancedLinqDeferredPairs
 {
     /// <param name="source">The IEnumerable of key-value pairs.</param>
     /// <typeparam name="TKey">The type of Key in the KeyValuePair.</typeparam>

@@ -8,11 +8,11 @@
     */
 
 using System.Linq;
-using EnhancedLinq.Immediate.Linq;
+using EnhancedLinq.Immediate.Lists.Linq;
 
-namespace EnhancedLinq.Immediate;
+namespace EnhancedLinq.Immediate.Lists;
 
-public static partial class EnhancedLinqImmediate
+public static partial class EnhancedLinqListImmediate
 {
     /// <summary>
     /// Provides extension methods for performing immediate operations on a list.

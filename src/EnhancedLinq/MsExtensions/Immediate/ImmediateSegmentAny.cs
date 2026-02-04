@@ -18,6 +18,13 @@ public static partial class EnhancedLinqSegmentImmediate
     extension(StringSegment target)
     {
         /// <summary>
+        /// Returns whether a StringSegment has any chars.
+        /// </summary>
+        /// <returns>True if any char exists in the StringSegment; false otherwise.</returns>
+        public bool Any()
+            => target.Length > 0;
+
+        /// <summary>
         /// Returns whether any char in a StringSegment matches the predicate condition.
         /// </summary>
         /// <param name="predicate">The predicate func to be invoked on each char in the StringSegment.</param>
@@ -25,6 +32,7 @@ public static partial class EnhancedLinqSegmentImmediate
         public bool Any(Func<char, bool> predicate)
         {
             ArgumentException.ThrowIfNullOrWhitespace(target);
+            ArgumentNullException.ThrowIfNull(predicate);
 
             IEnumerable<bool> groups = target.GroupBy(predicate)
                 .Select(g => g.Any());

@@ -7,9 +7,9 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-namespace EnhancedLinq.Immediate.Ranges;
+namespace EnhancedLinq.Immediate.Lists.Ranges;
 
-public static partial class EnhancedLinqImmediateRange
+public static partial class EnhancedLinqListImmediateRange
 {
     /// <summary>
     /// 

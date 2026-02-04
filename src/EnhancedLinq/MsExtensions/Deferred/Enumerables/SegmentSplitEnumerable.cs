@@ -8,7 +8,6 @@
     */
 
 using System.Collections;
-using EnhancedLinq.MsExtensions.Immediate;
 
 namespace EnhancedLinq.MsExtensions.Deferred;
 
@@ -26,7 +25,7 @@ internal class SegmentSplitEnumerable : IEnumerable<StringSegment>
     public IEnumerator<StringSegment> GetEnumerator()
     {
         if(_separator.Length == 1)
-            return new SegmentSplitCharEnumerator(_segment, _separator.First());
+            return new SegmentSplitCharEnumerator(_segment, _separator[0]);
         else
             return new SegmentSplitEnumerator(_segment, _separator);
     }

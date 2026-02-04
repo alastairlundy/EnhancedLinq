@@ -7,9 +7,9 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-namespace EnhancedLinq.Immediate;
+namespace EnhancedLinq.Immediate.Lists;
 
-public static partial class EnhancedLinqImmediate
+public static partial class EnhancedLinqListImmediate
 {
     /// <param name="list">The list to reverse.</param>
     /// <typeparam name="T">The type of elements in the array.</typeparam>

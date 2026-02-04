@@ -7,14 +7,14 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-using EnhancedLinq.Immediate.Linq;
+using EnhancedLinq.Immediate.Lists.Linq;
 
-namespace EnhancedLinq.Immediate.Ranges;
+namespace EnhancedLinq.Immediate.Lists.Ranges;
 
 /// <summary>
 /// Provides functionality to work with immediate insertion of ranges of items into collections and lists.
 /// </summary>
-public static partial class EnhancedLinqImmediateRange
+public static partial class EnhancedLinqListImmediateRange
 {
     /// <param name="source">The collection from which to remove elements.</param>
     /// <typeparam name="T">The type of elements in this collection.</typeparam>
@@ -84,7 +84,7 @@ public static partial class EnhancedLinqImmediateRange
             if (list.IsReadOnly || list is T[])
                 throw new NotSupportedException();
             
-            if ((list.Count < startIndex + count) == false)
+            if (!(list.Count < startIndex + count))
                 throw new ArgumentException();
         
             int limit = startIndex + count;

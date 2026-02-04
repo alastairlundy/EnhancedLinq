@@ -9,9 +9,9 @@
 
 using EnhancedLinq.Deferred;
 
-namespace EnhancedLinq.Immediate;
+namespace EnhancedLinq.Immediate.Lists;
 
-public static partial class EnhancedLinqImmediate
+public static partial class EnhancedLinqListImmediate
 {
     /// <param name="source">The IList to be modified.</param>
     /// <typeparam name="T">The type of value.</typeparam>

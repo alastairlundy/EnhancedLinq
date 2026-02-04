@@ -7,9 +7,9 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-namespace EnhancedLinq.Immediate;
+namespace EnhancedLinq.Immediate.Lists;
 
-public static partial class EnhancedLinqImmediate
+public static partial class EnhancedLinqListImmediate
 {
     /// <param name="source">The List from which to retrieve elements.</param>
     /// <typeparam name="T">The type of the elements in the source and returned List.</typeparam>

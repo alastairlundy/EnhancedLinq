@@ -17,7 +17,7 @@ namespace EnhancedLinq.Immediate.Concurrent;
 /// within the System.Collections.Concurrent namespace.
 /// These methods are designed to enhance LINQ operability for concurrent collections.
 /// </summary>
-public static partial class EnhancedLinqImmediateConcurrent
+public static class EnhancedLinqImmediateConcurrent
 {
     /// <param name="concurrentBag">The concurrent bag to remove objects from.</param>
     /// <typeparam name="T">The type of elements contained within the concurrent bag.</typeparam>

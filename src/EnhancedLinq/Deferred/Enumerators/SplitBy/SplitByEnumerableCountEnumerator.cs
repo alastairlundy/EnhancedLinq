@@ -37,7 +37,7 @@ internal class SplitByEnumerableCountEnumerator<T> : IEnumerator<IEnumerable<T>>
     
     public bool MoveNext()
     {
-       return _enumerator.MoveNext();
+        return _enumerator.MoveNext();
     }
 
     public void Reset()
@@ -45,12 +45,12 @@ internal class SplitByEnumerableCountEnumerator<T> : IEnumerator<IEnumerable<T>>
         throw new NotSupportedException();
     }
 
-    IEnumerable<T> IEnumerator<IEnumerable<T>>.Current => _enumerator.Current;
+    public IEnumerable<T> Current => _enumerator.Current;
 
-    object? IEnumerator.Current => _enumerator.Current;
+    object IEnumerator.Current => Current;
 
     public void Dispose()
     {
-        _enumerator?.Dispose();
+        _enumerator.Dispose();
     }
 }

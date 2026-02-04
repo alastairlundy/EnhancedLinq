@@ -7,7 +7,7 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-namespace EnhancedLinq.Immediate.Linq;
+namespace EnhancedLinq.Immediate.Lists.Linq;
 
 public static partial class EnhancedLinqImmediateList
 {

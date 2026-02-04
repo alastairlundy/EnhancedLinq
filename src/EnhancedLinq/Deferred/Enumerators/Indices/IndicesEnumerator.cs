@@ -48,13 +48,9 @@ internal class IndicesEnumerator<T> : IEnumerator<int>
                     _index++;
                 }
             }
-            catch
-            {
-                Dispose();
-                throw;
-            }
             finally
             {
+                Dispose();
                 _state = -1;
             }
         }
@@ -64,7 +60,7 @@ internal class IndicesEnumerator<T> : IEnumerator<int>
     }
 
     public void Reset()
-    {
+    {   
         throw new NotSupportedException();
     }
 
