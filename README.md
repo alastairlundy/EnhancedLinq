@@ -20,7 +20,6 @@ __Note__: EnhancedLinq.MsExtensions has now been merged into the base EnhancedLi
 - **`EnhancedLinq`**: The core package that enhances your LINQ experience.
 - **`EnhancedLinq.Async`**: The IAsyncEnumerable supporting version of EnhancedLinq.
 - **`EnhancedLinq.Memory`**: This package is specifically for `Span<T>` and `Memory<T>`, providing helpful immediate mode extensions.
-- **`EnhancedLinq.MsExtensions`**: Focused on `StringSegment` from `Microsoft.Extensions.Primitives`, with plans to potentially expand support for other Microsoft.Extensions packages.
 
 ### 🛠️ Installing EnhancedLinq
 
