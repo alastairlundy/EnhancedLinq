@@ -7,9 +7,6 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-using System.Linq;
-using EnhancedLinq.MsExtensions.Deferred;
-
 namespace EnhancedLinq.MsExtensions.Immediate;
 
 public static partial class EnhancedLinqSegmentImmediate
@@ -26,17 +23,16 @@ public static partial class EnhancedLinqSegmentImmediate
         {
             if (@this.Length < segment.Length || segment.Length == 0)
                 return -1;
-        
-            IEnumerable<int> indexes = @this.IndicesOf(segment[0])
-                .Where(x  => x != -1);
 
-            foreach (int index in indexes)
+            for (int i = 0; i <= @this.Length - segment.Length; i++)
             {
-                StringSegment indexSegment = @this.Subsegment(index, segment.Length);
-
-                if (indexSegment.Equals(segment))
+                if (@this[i] == segment[0])
                 {
-                    return index;
+                    StringSegment candidate = @this.Subsegment(i, segment.Length);
+                    if (candidate.Equals(segment))
+                    {
+                        return i;
+                    }
                 }
             }
 
@@ -55,18 +51,16 @@ public static partial class EnhancedLinqSegmentImmediate
         public int IndexOf(StringSegment segment)
         {
             ArgumentException.ThrowIfNullOrEmpty(str);
-            ArgumentException.ThrowIfNullOrEmpty(segment);
-            
-            if (str.Length < segment.Length)
+
+            if (segment.Length == 0 || str.Length < segment.Length)
                 return -1;
-        
-            for (int i = 0; i < str.Length; i++)
+
+            for (int i = 0; i <= str.Length - segment.Length; i++)
             {
                 if (str[i] == segment[0])
                 {
-                    StringSegment indexSegment = str.Substring(i, segment.Length);
-
-                    if (indexSegment.Equals(segment))
+                    StringSegment candidate = new(str, i, segment.Length);
+                    if (candidate.Equals(segment))
                     {
                         return i;
                     }
