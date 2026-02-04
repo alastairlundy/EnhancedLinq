@@ -19,11 +19,13 @@ public static partial class EnhancedLinqAsyncDeferred
     extension<TSource>(IAsyncEnumerable<TSource> source)
     {
         /// <summary>
-        /// 
+        /// Finds the first N indices of a specified target value within an async sequence.
         /// </summary>
-        /// <param name="target"></param>
-        /// <param name="count"></param>
-        /// <returns></returns>
+        /// <param name="target">The target value to search for in the source async sequence.</param>
+        /// <param name="count">The number of first indices to return.</param>
+        /// <returns>An asynchronous sequence of the first N indices where the elements in the source async sequence match the specified target value.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="count"/> is negative or zero.</exception>
         public IAsyncEnumerable<int> FirstNIndicesOf(TSource target, int count)
         {
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
@@ -31,12 +33,12 @@ public static partial class EnhancedLinqAsyncDeferred
             
             return source.IndicesOfAsync(target).Take(count);
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="selector"></param>
-        /// <param name="count"></param>
+        /// <param name="count">The number of first indices to return.</param>
         /// <returns></returns>
         public IAsyncEnumerable<int> FirstNIndicesOf(Func<TSource, bool> selector, int count)
         {
@@ -49,11 +51,13 @@ public static partial class EnhancedLinqAsyncDeferred
         }
 
         /// <summary>
-        /// 
+        /// Finds the last N indices of a specified target value within an async sequence.
         /// </summary>
-        /// <param name="target"></param>
-        /// <param name="count"></param>
-        /// <returns></returns>
+        /// <param name="target">The target value to search for in the source async sequence.</param>
+        /// <param name="count">The number of last indices to return.</param>
+        /// <returns>An asynchronous sequence of the last N indices where the elements in the source async sequence match the specified target value.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="count"/> is negative or zero.</exception>
         public IAsyncEnumerable<int> LastNIndicesOf(TSource target, int count)
         {
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
@@ -66,7 +70,7 @@ public static partial class EnhancedLinqAsyncDeferred
         /// 
         /// </summary>
         /// <param name="selector"></param>
-        /// <param name="count"></param>
+        /// <param name="count">The number of last indices to return.</param>
         /// <returns></returns>
         public IAsyncEnumerable<int> LastNIndicesOf(Func<TSource, bool> selector, int count)
         {
