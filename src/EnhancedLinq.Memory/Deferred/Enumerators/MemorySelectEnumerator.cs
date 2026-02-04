@@ -6,7 +6,7 @@
     License, v. 2.0. If a copy of the MPL was not distributed with this
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
 */
-
+#nullable disable
 namespace EnhancedLinq.Memory.Deferred.Enumerators;
 
 internal class MemorySelectEnumerator<TSource, TResult> : IEnumerator<TResult>
@@ -59,13 +59,13 @@ internal class MemorySelectEnumerator<TSource, TResult> : IEnumerator<TResult>
             throw new NotSupportedException();
         }
     }
-
+    
     public TResult Current { get; private set; }
 
-    object? IEnumerator.Current => Current;
+    object IEnumerator.Current => Current;
 
     public void Dispose()
     {
-        _enumerator?.Dispose();
+        _enumerator.Dispose();
     }
 }

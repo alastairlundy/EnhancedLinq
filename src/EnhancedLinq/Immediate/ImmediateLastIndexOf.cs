@@ -65,12 +65,11 @@ public static partial class EnhancedLinqImmediate
         /// Gets the last index of an element in a sequence.
         /// </summary>
         /// <remarks>
-        /// This method is a computationally expensive as the number of items in the sequence is needed, to obtain the index
+        /// This method is computationally expensive as the number of items in the sequence is needed to obtain the index
         /// of the last element that satisfies the selector.
         /// </remarks>
         /// <param name="obj">The element to get the last index of.</param>
         /// <returns>The last index of an element in a sequence, if the sequence contains the element, returns -1 otherwise.</returns>
-
         public int LastIndexOf(T obj)
         {
             ArgumentNullException.ThrowIfNull(source);
@@ -133,7 +132,6 @@ public static partial class EnhancedLinqImmediate
         /// </summary>
         /// <param name="obj">The element to get the index of.</param>
         /// <returns>The index of an element in a collection, if the collection contains the element, returns -1 otherwise.</returns>
-
         public int LastIndexOf(T obj)
         {
 #if NET8_0_OR_GREATER

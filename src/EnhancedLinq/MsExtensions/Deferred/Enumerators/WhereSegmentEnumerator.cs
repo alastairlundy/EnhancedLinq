@@ -61,7 +61,7 @@ internal class WhereSegmentEnumerator : IEnumerator<char>
 
     public char Current { get; private set; }
 
-    object? IEnumerator.Current => Current;
+    object IEnumerator.Current => Current;
 
     public void Dispose()
     {

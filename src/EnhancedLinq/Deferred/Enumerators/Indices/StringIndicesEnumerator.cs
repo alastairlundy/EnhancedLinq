@@ -15,9 +15,7 @@ internal class StringIndicesEnumerator : IEnumerator<int>
 {
     private readonly string _str;
     private readonly string _substring;
-    
-    private readonly IEnumerable<int> _indices;
-    
+
     private readonly IEnumerator<int> _indicesEnumerator;
     
     private int _index;
@@ -31,8 +29,8 @@ internal class StringIndicesEnumerator : IEnumerator<int>
         _substring = substring;
         _index = 0;
 
-        _indices = str.IndicesOf(substring[0]);
-        _indicesEnumerator = _indices.GetEnumerator();
+        IEnumerable<int> indices = str.IndicesOf(substring[0]);
+        _indicesEnumerator = indices.GetEnumerator();
     }
 
     public bool MoveNext()
@@ -77,7 +75,7 @@ internal class StringIndicesEnumerator : IEnumerator<int>
 
     int IEnumerator<int>.Current => _current;
 
-    object? IEnumerator.Current => _current;
+    object IEnumerator.Current => _current;
 
     public void Dispose()
     {

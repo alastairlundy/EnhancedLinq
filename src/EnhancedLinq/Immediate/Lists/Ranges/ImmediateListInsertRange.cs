@@ -37,7 +37,7 @@ public static partial class EnhancedLinqImmediateRange
 
             ICollection<T> itemsToRemove = source.Take(numberToRemove);
         
-            source.RemoveRange(index, numberToRemove);;
+            source.RemoveRange(index, numberToRemove);
        
             source.AddRange(values);
             source.AddRange(itemsToRemove);

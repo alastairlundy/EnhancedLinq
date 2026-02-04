@@ -73,7 +73,7 @@ internal class SplitByPredicateEnumerator<T> : IEnumerator<IEnumerable<T>>
 
     public IEnumerable<T> Current { get; private set; }
 
-    object? IEnumerator.Current => Current;
+    object IEnumerator.Current => Current;
 
     public void Dispose()
     {

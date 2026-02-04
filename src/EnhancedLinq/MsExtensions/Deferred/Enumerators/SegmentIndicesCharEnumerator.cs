@@ -56,7 +56,7 @@ internal class SegmentIndicesCharEnumerator : IEnumerator<int>
 
     public int Current { get; private set; }
 
-    object? IEnumerator.Current => Current;
+    object IEnumerator.Current => Current;
 
     public void Dispose()
     {

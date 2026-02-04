@@ -66,7 +66,7 @@ internal class SegmentIndicesOfEnumerator : IEnumerator<int>
 
     public int Current { get; private set; }
 
-    object? IEnumerator.Current => Current;
+    object IEnumerator.Current => Current;
 
     public void Dispose()
     {
