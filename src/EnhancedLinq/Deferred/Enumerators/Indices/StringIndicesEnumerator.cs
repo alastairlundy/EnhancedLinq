@@ -79,6 +79,6 @@ internal class StringIndicesEnumerator : IEnumerator<int>
 
     public void Dispose()
     {
-      _indicesEnumerator.Dispose();
+        _indicesEnumerator.Dispose();
     }
 }

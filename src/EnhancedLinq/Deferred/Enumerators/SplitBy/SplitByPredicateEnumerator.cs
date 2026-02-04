@@ -68,7 +68,7 @@ internal class SplitByPredicateEnumerator<T> : IEnumerator<IEnumerable<T>>
 
     public void Reset()
     {
-       throw new NotSupportedException();
+        throw new NotSupportedException();
     }
 
     public IEnumerable<T> Current { get; private set; }

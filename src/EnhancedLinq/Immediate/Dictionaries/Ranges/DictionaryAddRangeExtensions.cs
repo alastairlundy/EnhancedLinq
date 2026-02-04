@@ -24,7 +24,6 @@ public static class EnhancedLinqImmediateDictionary
   extension<TKey, TValue>(IDictionary<TKey, TValue> source)
       where TKey : notnull
   {
-      
       #region Normal AddRange
       /// <summary>
       /// Adds a sequence of KeyValuePair items to a Dictionary.
@@ -80,64 +79,64 @@ public static class EnhancedLinqImmediateDictionary
       
       #endregion
 
-    #region  Try AddRange
+      #region  Try AddRange
     
-    /// <summary>
-    /// Attempts to add a sequence of KeyValuePair items to a Dictionary.
-    /// </summary>
-    /// <param name="pairsToAdd">The items to be added.</param>
-    /// <exception cref="OverflowException">Thrown if the dictionary is unable to store all the Key Value Pairs to be added.</exception>
-    /// <exception cref="InvalidOperationException">Thrown if the source dictionary is read-only.</exception>
-    public void TryAddRange(
-        IEnumerable<KeyValuePair<TKey, TValue>> pairsToAdd)
-    {
-        ArgumentNullException.ThrowIfNull(source);
-        ArgumentNullException.ThrowIfNull(pairsToAdd);
+      /// <summary>
+      /// Attempts to add a sequence of KeyValuePair items to a Dictionary.
+      /// </summary>
+      /// <param name="pairsToAdd">The items to be added.</param>
+      /// <exception cref="OverflowException">Thrown if the dictionary is unable to store all the Key Value Pairs to be added.</exception>
+      /// <exception cref="InvalidOperationException">Thrown if the source dictionary is read-only.</exception>
+      public void TryAddRange(
+          IEnumerable<KeyValuePair<TKey, TValue>> pairsToAdd)
+      {
+          ArgumentNullException.ThrowIfNull(source);
+          ArgumentNullException.ThrowIfNull(pairsToAdd);
         
-        if(source.IsReadOnly)
-            throw new InvalidOperationException($"{nameof(source)} is read-only.");
+          if(source.IsReadOnly)
+              throw new InvalidOperationException($"{nameof(source)} is read-only.");
 
-        if (source.Count == int.MaxValue)
-            throw new OverflowException($"{nameof(source)} contains the maximum size of {int.MaxValue} and cannot be added to.");
+          if (source.Count == int.MaxValue)
+              throw new OverflowException($"{nameof(source)} contains the maximum size of {int.MaxValue} and cannot be added to.");
         
-        foreach (KeyValuePair<TKey, TValue> pair in pairsToAdd)
-        {
-            if (source.Count == int.MaxValue)
-                throw new OverflowException($"{nameof(source)} contains the maximum size of {int.MaxValue} and cannot be added to.");
+          foreach (KeyValuePair<TKey, TValue> pair in pairsToAdd)
+          {
+              if (source.Count == int.MaxValue)
+                  throw new OverflowException($"{nameof(source)} contains the maximum size of {int.MaxValue} and cannot be added to.");
             
-            source.TryAdd(pair.Key, pair.Value);
-        }
-    }
+              source.TryAdd(pair.Key, pair.Value);
+          }
+      }
 
-    /// <summary>
-    /// Attempts to append the contents of one Dictionary to the current dictionary.
-    /// </summary>
-    /// <param name="dictionaryToAdd">The dictionary to attempt to be added to the existing dictionary.</param>
-    /// <exception cref="OverflowException">Thrown if the dictionary is unable to store all the dictionary values to be added.</exception>
-    /// <exception cref="InvalidOperationException">Thrown if the source dictionary is read-only.</exception>
-    public void TryAddRange(IDictionary<TKey, TValue> dictionaryToAdd) 
-    {
-        ArgumentNullException.ThrowIfNull(source);
-        ArgumentNullException.ThrowIfNull(dictionaryToAdd);
+      /// <summary>
+      /// Attempts to append the contents of one Dictionary to the current dictionary.
+      /// </summary>
+      /// <param name="dictionaryToAdd">The dictionary to attempt to be added to the existing dictionary.</param>
+      /// <exception cref="OverflowException">Thrown if the dictionary is unable to store all the dictionary values to be added.</exception>
+      /// <exception cref="InvalidOperationException">Thrown if the source dictionary is read-only.</exception>
+      public void TryAddRange(IDictionary<TKey, TValue> dictionaryToAdd) 
+      {
+          ArgumentNullException.ThrowIfNull(source);
+          ArgumentNullException.ThrowIfNull(dictionaryToAdd);
         
-        if(source.IsReadOnly)
-            throw new InvalidOperationException($"{nameof(source)} is read-only.");
+          if(source.IsReadOnly)
+              throw new InvalidOperationException($"{nameof(source)} is read-only.");
 
-        if (source.Count == int.MaxValue)
-            throw new OverflowException(
-                $"{nameof(source)} contains the maximum size of {int.MaxValue} and cannot be added to.");
-        else if (dictionaryToAdd.Count == int.MaxValue)
-            throw new OverflowException($"{nameof(dictionaryToAdd)} contains the maximum size of {int.MaxValue} and cannot be added to {nameof(source)}.");
+          if (source.Count == int.MaxValue)
+              throw new OverflowException(
+                  $"{nameof(source)} contains the maximum size of {int.MaxValue} and cannot be added to.");
+          else if (dictionaryToAdd.Count == int.MaxValue)
+              throw new OverflowException($"{nameof(dictionaryToAdd)} contains the maximum size of {int.MaxValue} and cannot be added to {nameof(source)}.");
 
-        foreach (KeyValuePair<TKey, TValue> pair in dictionaryToAdd)
-        {
-            if (source.Count == int.MaxValue)
-                throw new OverflowException($"{nameof(source)} contains the maximum size of {int.MaxValue} and cannot be added to.");
+          foreach (KeyValuePair<TKey, TValue> pair in dictionaryToAdd)
+          {
+              if (source.Count == int.MaxValue)
+                  throw new OverflowException($"{nameof(source)} contains the maximum size of {int.MaxValue} and cannot be added to.");
             
-            source.TryAdd(pair.Key, pair.Value);
-        }
-    }
+              source.TryAdd(pair.Key, pair.Value);
+          }
+      }
 
-    #endregion
+      #endregion
   }
 }

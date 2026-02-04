@@ -70,6 +70,6 @@ internal class SegmentIndicesOfEnumerator : IEnumerator<int>
 
     public void Dispose()
     {
-       _segmentIndicesEnumerator.Dispose();
+        _segmentIndicesEnumerator.Dispose();
     }
 }
