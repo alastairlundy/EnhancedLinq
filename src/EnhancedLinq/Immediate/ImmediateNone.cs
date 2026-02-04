@@ -20,7 +20,7 @@ public static partial class EnhancedLinqImmediate
         /// </summary>
         /// <param name="predicate">The predicate to check elements against.</param>
         /// <returns>True if none of the elements matched the predicate, false otherwise.</returns>
-        /// <exception cref="ArgumentNullException">Thrown if the source sequence or predicate is null.</exception>
+        /// <exception cref="ArgumentNullException">Thrown if the source sequence or predicate are null.</exception>
         public bool None(Func<TSource, bool> predicate)
         {
             ArgumentNullException.ThrowIfNull(source);

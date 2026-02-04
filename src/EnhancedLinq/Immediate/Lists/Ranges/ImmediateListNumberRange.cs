@@ -12,9 +12,9 @@ using System.Numerics;
 using DotExtensions.Numbers;
 #endif
 
-namespace EnhancedLinq.Immediate.Ranges;
+namespace EnhancedLinq.Immediate.Lists.Ranges;
 
-public static partial class EnhancedLinqImmediateRange
+public static partial class EnhancedLinqListImmediateRange
 {
 #if NET8_0_OR_GREATER
     /// <param name="startIndex">The starting value of the array.</param>

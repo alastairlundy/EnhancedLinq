@@ -7,13 +7,13 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-namespace EnhancedLinq.Immediate.Ranges;
+namespace EnhancedLinq.Immediate.Lists.Ranges;
 
 /// <summary>
 /// Provides extended functionality for working with ranges of elements in lists,
 /// including retrieving specified ranges of elements by indices or by count.
 /// </summary>
-public static partial class EnhancedLinqImmediateRange
+public static partial class EnhancedLinqListImmediateRange
 {
     /// <param name="list">The source list from which to extract the range.</param>
     /// <typeparam name="T">The type of elements in this list and the returned list.</typeparam>

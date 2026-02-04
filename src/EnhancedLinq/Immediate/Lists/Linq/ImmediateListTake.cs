@@ -7,7 +7,7 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-namespace EnhancedLinq.Immediate.Linq;
+namespace EnhancedLinq.Immediate.Lists.Linq;
 
 /// <summary>
 /// A class that represents a collection of methods to extend LINQ capabilities for immediate list/array operations.
