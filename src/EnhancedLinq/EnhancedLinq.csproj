@@ -12,9 +12,12 @@
         <RepositoryUrl>https://github.com/alastairlundy/Enhancedlinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageReleaseNotes>* Updated internal Polyfill version from 9.6.0 to 9.7.5
-* Updated DotExtensions from 9.3.0 to 9.4.1
-* Add immediate mode ``Exclude`` extensions</PackageReleaseNotes>
+        <PackageReleaseNotes>* Updated internal Polyfill version from 9.7.2 to 9.8.1
+* Updated DotExtensions from 9.4.1 to 9.5.1
+* Merged EnhancedLinq.MsExtensions code into EnhancedLinq package under the ``MsExtensions`` subnamespace
+* Added StringSegment ``Any`` immediate mode method
+* Reduced reliance on StringSegment Deferred execution code for some StringSegment Immediate mode methods
+* Improved reliability and performance</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <Description>Additional LINQ style Deferred and Immediate enumeration mode extension methods for .NET . </Description>
@@ -23,7 +26,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>1.0.0-alpha.5</Version>
+        <Version>1.0.0-alpha.6</Version>
         <PackageId>EnhancedLinq</PackageId>
         <PolyArgumentExceptions>true</PolyArgumentExceptions>
         <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
