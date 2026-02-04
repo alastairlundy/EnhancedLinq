@@ -14,7 +14,7 @@ namespace EnhancedLinq.Deferred.Dictionaries;
 /// <summary>
 /// Provides a set of static methods for working with dictionaries in a Linq style deferred manner.
 /// </summary>
-public static partial class EnhancedLinqDeferredDictionary
+public static class EnhancedLinqDeferredDictionary
 {
     /// <param name="dictionary">The Dictionary to be searched.</param>
     /// <typeparam name="TKey">The type of Key in the Dictionary.</typeparam>

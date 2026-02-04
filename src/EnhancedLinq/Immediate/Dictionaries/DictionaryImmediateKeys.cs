@@ -14,7 +14,7 @@ namespace EnhancedLinq.Immediate.Dictionaries;
 /// <summary>
 /// Provides a collection of extension methods for performing enhanced LINQ operations on dictionaries.
 /// </summary>
-public static partial class EnhancedLinqImmediateDictionary
+public static class EnhancedLinqImmediateDictionary
 {
     /// <param name="dictionary">The Dictionary to be searched.</param>
     /// <typeparam name="TKey">The type of Key in the Dictionary.</typeparam>

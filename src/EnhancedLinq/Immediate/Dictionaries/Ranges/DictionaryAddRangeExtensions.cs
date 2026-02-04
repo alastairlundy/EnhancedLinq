@@ -13,7 +13,7 @@ namespace EnhancedLinq.Immediate.Dictionaries.Ranges;
 /// <summary>
 /// Provides extension methods for adding multiple items to dictionaries.
 /// </summary>
-public static partial class EnhancedLinqImmediateDictionary
+public static class EnhancedLinqImmediateDictionary
 {
   /// <summary>
   /// 
