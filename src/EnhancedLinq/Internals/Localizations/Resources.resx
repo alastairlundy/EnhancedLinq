@@ -30,4 +30,7 @@
     <data name="Exceptions.EnumerableSplit.Empty" xml:space="preserve">
         <value>Cannot split an empty enumerable.</value>
     </data>
+    <data name="Exceptions.Segments.InvalidOperation.EmptySequence" xml:space="preserve">
+        <value>The enumeration of elements yielded zero items. The sequence was empty. </value>
+    </data>
 </root>

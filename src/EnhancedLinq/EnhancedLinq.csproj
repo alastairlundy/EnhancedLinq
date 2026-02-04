@@ -8,11 +8,13 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>EnhancedLinq</Title>
         <Authors>Alastair Lundy</Authors>
-        <Copyright>Copyright (c) 2025 Alastair Lundy</Copyright>
+        <Copyright>Copyright (c) 2025-2026 Alastair Lundy</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/Enhancedlinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageReleaseNotes>* Updated internal Polyfill version from 9.4.1 to 9.6.0</PackageReleaseNotes>
+        <PackageReleaseNotes>* Updated internal Polyfill version from 9.6.0 to 9.7.5
+* Updated DotExtensions from 9.3.0 to 9.4.1
+* Add immediate mode ``Exclude`` extensions</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <Description>Additional LINQ style Deferred and Immediate enumeration mode extension methods for .NET . </Description>
@@ -21,7 +23,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>1.0.0-alpha.4</Version>
+        <Version>1.0.0-alpha.5</Version>
         <PackageId>EnhancedLinq</PackageId>
         <PolyArgumentExceptions>true</PolyArgumentExceptions>
         <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
@@ -44,8 +46,11 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="DotExtensions" Version="9.3.1" />
-        <PackageReference Include="Polyfill" Version="9.7.3" PrivateAssets="all"
+        <PackageReference Include="DotExtensions" Version="9.5.1" />
+        <PackageReference Include="DotExtensions.MsExtensions" Version="9.5.0" />
+        <PackageReference Include="DotPrimitives.Collections" Version="4.3.0" />
+        <PackageReference Include="Microsoft.Extensions.Primitives" Version="10.0.2" />
+        <PackageReference Include="Polyfill" Version="9.8.1" PrivateAssets="all"
                           Condition="'$(TargetFramework)' == 'netstandard2.0'"/>
     </ItemGroup>
 
@@ -54,10 +59,6 @@
         <Link>README.md</Link>
           <PackagePath>README.md</PackagePath>
       </Content>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Internals\Infra\" />
     </ItemGroup>
 
     <ItemGroup>

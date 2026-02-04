@@ -1,6 +1,6 @@
 /*
     EnhancedLinq 
-    Copyright (c) 2025 Alastair Lundy
+    Copyright (c) 2025-2026 Alastair Lundy
     
     This Source Code Form is subject to the terms of the Mozilla Public
     License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -21,7 +21,6 @@ public static partial class EnhancedLinqSegmentImmediate
         /// <returns>True if none of the characters matched the predicate, false otherwise.</returns>
         /// <exception cref="ArgumentNullException">Thrown if the source <see cref="StringSegment"/> or predicate are null.</exception>
         public bool None(Func<char, bool> predicate)
-            =>
-                segment.CountAtMost(predicate, 0);
+            => segment.CountAtMost(predicate, 0);
     }
 }

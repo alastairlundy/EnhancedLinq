@@ -1,6 +1,6 @@
 /*
     EnhancedLinq 
-    Copyright (c) 2025 Alastair Lundy
+    Copyright (c) 2025-2026 Alastair Lundy
     
     This Source Code Form is subject to the terms of the Mozilla Public
     License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -15,7 +15,7 @@ public static partial class EnhancedLinqSegmentImmediate
     extension(StringSegment source)
     {
         /// <summary>
-        /// Determines whether there are at most a maximum number elements in the source <see cref="StringSegment"/>.
+        /// Determines whether there is at most a maximum number elements in the source <see cref="StringSegment"/>.
         /// </summary>
         /// <param name="countToLookFor">The maximum number of elements that can meet the condition.</param>
         /// <returns>True if there are at most <paramref name="countToLookFor"/> number of elements, false otherwise.</returns>

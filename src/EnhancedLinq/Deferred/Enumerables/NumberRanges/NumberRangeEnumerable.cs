@@ -1,6 +1,6 @@
 /*
     EnhancedLinq 
-    Copyright (c) 2025 Alastair Lundy
+    Copyright (c) 2025-2026 Alastair Lundy
     
     This Source Code Form is subject to the terms of the Mozilla Public
     License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -34,14 +34,8 @@ internal class NumberRangeEnumerable<TNumber> : IEnumerable<TNumber> where TNumb
         }
     }
     
-    public IEnumerator<TNumber> GetEnumerator()
-    {
-        return new NumberRangeEnumerator<TNumber>(_source);
-    }
+    public IEnumerator<TNumber> GetEnumerator() => new NumberRangeEnumerator<TNumber>(_source);
 
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
-    }
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }
 #endif
