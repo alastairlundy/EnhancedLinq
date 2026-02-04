@@ -92,6 +92,6 @@ internal class GroupStringSegmentEnumerator<TKey> : IEnumerator<IGrouping<TKey, 
 
     public void Dispose()
     {
-        _enumerator?.Dispose();
+        _enumerator.Dispose();
     }
 }

@@ -72,7 +72,7 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <summary>
         /// Returns a new read-only span with all the elements of the original span except the specified first number of elements.
         /// </summary>
-        /// <param name="count">The number of items to skip from the beginning of the span.</param
+        /// <param name="count">The number of items to skip from the beginning of the span.</param>
         public ReadOnlySpan<T> Skip(int count)
         {
             InvalidOperationException.ThrowIfSpanIsEmpty(target);

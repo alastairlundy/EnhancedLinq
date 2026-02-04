@@ -7,6 +7,7 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
 */
 
+#nullable disable
 namespace EnhancedLinq.Memory.Deferred.Enumerators;
 
 internal class MemorySelectEnumerator<TSource, TResult> : IEnumerator<TResult>

@@ -61,6 +61,6 @@ internal class DuplicatesEnumerator<TSource> : IEnumerator<TSource>
 
     public void Dispose()
     {
-        _enumerator?.Dispose();
+        _enumerator.Dispose();
     }
 }

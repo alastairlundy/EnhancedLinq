@@ -70,7 +70,7 @@ internal class IndicesEnumerator<T> : IEnumerator<int>
 
     int IEnumerator<int>.Current => _current;
 
-    object? IEnumerator.Current => _current;
+    object IEnumerator.Current => _current;
 
     public void Dispose()
     {

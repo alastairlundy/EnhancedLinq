@@ -7,6 +7,7 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
+#nullable disable
 using System.Collections;
 
 namespace EnhancedLinq.Deferred.Enumerators;
@@ -17,7 +18,7 @@ internal class SplitByEnumerableCountEnumerator<T> : IEnumerator<IEnumerable<T>>
     
     public SplitByEnumerableCountEnumerator(IEnumerable<T> source, int maxEnumerableCount)
     {
-       List<T> list = new List<T>(source);
+        List<T> list = new List<T>(source);
        
         double maxItems = Convert.ToDouble(list.Count / maxEnumerableCount);
         int maxItemCount;
@@ -50,6 +51,6 @@ internal class SplitByEnumerableCountEnumerator<T> : IEnumerator<IEnumerable<T>>
 
     public void Dispose()
     {
-       _enumerator?.Dispose();
+        _enumerator?.Dispose();
     }
 }
