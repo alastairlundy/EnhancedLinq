@@ -8,7 +8,6 @@
     */
 
 using System.Linq;
-using EnhancedLinq.Memory.Deferred;
 
 namespace EnhancedLinq.Memory.Immediate;
 

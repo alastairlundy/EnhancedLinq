@@ -14,8 +14,6 @@ using System.Numerics;
 using EnhancedLinq.Deferred.Enumerables.NumberRanges;
 #endif
 
-// ReSharper disable ConvertClosureToMethodGroup
-
 namespace EnhancedLinq.Deferred;
 
 public static partial class EnhancedLinqDeferred
@@ -33,8 +31,8 @@ public static partial class EnhancedLinqDeferred
         /// <param name="incrementor">The amount to increment each number by.</param>
         /// <returns>A sequence containing the generated numeric values,
         /// incremented by the incrementor amount from the starting point.</returns>
-        /// <exception cref="ArgumentException">Thrown if the start number or count are NaN.</exception>
-        /// <exception cref="NotFiniteNumberException">Thrown if the start number or count are infinity.</exception>
+        /// <exception cref="ArgumentException">Thrown if the start number or count is NaN.</exception>
+        /// <exception cref="NotFiniteNumberException">Thrown if the start number or count is infinity.</exception>
         public IEnumerable<TNumber> GenerateNumberRange(TNumber count, TNumber incrementor)
         {
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
@@ -76,8 +74,8 @@ public static partial class EnhancedLinqDeferred
         /// <param name="incrementor">The amount to increment each number by.</param>
         /// <returns>A sequence containing the generated numeric values,
         /// incremented by the incrementor amount from the starting point.</returns>
-        /// <exception cref="ArgumentException">Thrown if the start number or count are NaN.</exception>
-        /// <exception cref="NotFiniteNumberException">Thrown if the start number or count are infinity.</exception>
+        /// <exception cref="ArgumentException">Thrown if the start number or count is NaN.</exception>
+        /// <exception cref="NotFiniteNumberException">Thrown if the start number or count is infinity.</exception>
         public IEnumerable<int> GenerateNumberRange(int count, int incrementor)
         {
             ArgumentOutOfRangeException.ThrowIfZero(incrementor);
@@ -101,8 +99,7 @@ public static partial class EnhancedLinqDeferred
         /// incremented by the incrementor amount from the starting point.</returns>
         public IEnumerable<int> GenerateNumberRange(int count, int incrementor,
             IEnumerable<int> numbersToSkip)
-            =>
-                start.GenerateNumberRange(count, incrementor)
+            => start.GenerateNumberRange(count, incrementor)
                 .SkipWhile(x => numbersToSkip.Contains(x));
     }
 
