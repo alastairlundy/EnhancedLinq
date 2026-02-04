@@ -8,7 +8,6 @@
     */
 
 using System.Linq;
-using EnhancedLinq.Deferred.Enumerators.Indices;
 
 namespace EnhancedLinq.Deferred;
 
@@ -30,9 +29,7 @@ public static partial class EnhancedLinqDeferred
             ArgumentNullException.ThrowIfNull(source);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
         
-            return new CustomEnumeratorEnumerable<int>(new IndicesEnumerator<T>(source,
-                    x => x.Equals(target)))
-                .Take(count);
+            return source.IndicesOf(target).Take(count);
         }
         
         /// <summary>
@@ -50,10 +47,9 @@ public static partial class EnhancedLinqDeferred
             ArgumentNullException.ThrowIfNull(predicate);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
         
-            return new CustomEnumeratorEnumerable<int>(new IndicesEnumerator<T>(source, predicate))
-                .Take(count);
+            return source.IndicesOf(predicate).Take(count);
         }
-        
+
         /// <summary>
         /// Gets the last <paramref name="count"/> indices of the specified item within a sequence.
         /// </summary>
@@ -61,9 +57,13 @@ public static partial class EnhancedLinqDeferred
         /// <param name="count">The maximum number of indices to return.</param>
         /// <returns>A sequence of the last <paramref name="count"/> indices if the object is found;
         /// an empty sequence otherwise.</returns>
-        public IEnumerable<int> LastNIndicesOf(T target, int count) 
-            =>
-                source.Reverse().FirstNIndicesOf(target, count);
+        public IEnumerable<int> LastNIndicesOf(T target, int count)
+        {
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
+            
+            return source.IndicesOf(target).TakeLast(count);
+        }
 
         /// <summary>
         ///  Gets the last <paramref name="count"/> indices of the elements that match the predicate within a sequence.
@@ -73,8 +73,7 @@ public static partial class EnhancedLinqDeferred
         /// <returns>A sequence of the last <paramref name="count"/> indices if one or more elements
         /// matching the predicate are found; an empty sequence otherwise.</returns>
         public IEnumerable<int> LastNIndicesOf(Func<T, bool> selector, int count) 
-            =>
-                source.Reverse().FirstNIndicesOf(selector, count);
+            => source.Reverse().FirstNIndicesOf(selector, count);
     }
 
     /// <param name="str">The input string.</param>
@@ -95,9 +94,7 @@ public static partial class EnhancedLinqDeferred
             ArgumentNullException.ThrowIfNull(str);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
         
-            return new CustomEnumeratorEnumerable<int>(new IndicesEnumerator<char>(str, 
-                    x => x.Equals(c)))
-                .Take(count);
+            return str.IndicesOf(c).Take(count);
         }
 
         /// <summary>
@@ -114,10 +111,9 @@ public static partial class EnhancedLinqDeferred
             ArgumentException.ThrowIfNullOrEmpty(substring);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
         
-            return new CustomEnumeratorEnumerable<int>(new StringIndicesEnumerator(str, substring))
-                .Take(count);
+            return str.IndicesOf(substring).Take(count);
         }
-        
+
         /// <summary>
         /// Finds the last <paramref name="count"/> occurrences of a specified char within a string,
         /// starting from the beginning of the string.
@@ -129,8 +125,12 @@ public static partial class EnhancedLinqDeferred
         /// an empty sequence if the character could not be found.
         /// </returns>
         public IEnumerable<int> LastNIndicesOf(char c, int count)
-            =>
-                str.Reverse().FirstNIndicesOf(c, count);
+        {
+            ArgumentNullException.ThrowIfNull(str);
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
+            
+            return str.IndicesOf(c).TakeLast(count);
+        }
 
         /// <summary>
         /// Finds the last <paramref name="count"/> occurrences of a specified substring within a string, starting from the beginning of the string.
@@ -140,7 +140,12 @@ public static partial class EnhancedLinqDeferred
         /// <returns>A sequence of the last <paramref name="count"/> indices where the character is found;
         /// an empty sequence if the character could not be found.</returns>
         public IEnumerable<int> LastNIndicesOf(string substring, int count)
-            =>
-                string.Join("", str.Reverse()).FirstNIndicesOf(substring, count);
+        {
+            ArgumentNullException.ThrowIfNull(str);
+            ArgumentNullException.ThrowIfNull(substring);
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
+            
+            return str.IndicesOf(substring).TakeLast(count);
+        }
     }
 }
