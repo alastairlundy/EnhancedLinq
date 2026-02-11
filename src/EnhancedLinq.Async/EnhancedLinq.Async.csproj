@@ -34,7 +34,7 @@
         <PackageReference Include="DotExtensions" Version="9.5.1" />
         <PackageReference Include="Polyfill" Version="9.8.1" PrivateAssets="all"
                           Condition="'$(TargetFramework)' == 'netstandard2.0'"/>
-        <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="10.0.2"
+        <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="10.0.3"
                           Condition="'$(TargetFramework)' == 'netstandard2.0'" />
         <PackageReference Include="System.Linq.AsyncEnumerable" Version="10.0.2"
                           Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'net8.0' OR '$(TargetFramework)' == 'net9.0'"/>
