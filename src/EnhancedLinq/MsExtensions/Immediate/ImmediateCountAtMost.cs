@@ -49,7 +49,7 @@ public static partial class EnhancedLinqSegmentImmediate
                 if (predicate(c))
                     currentCount += 1;
             
-                if(currentCount >= countToLookFor)
+                if(currentCount > countToLookFor)
                     return false;
             }
 

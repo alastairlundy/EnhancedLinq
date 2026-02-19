@@ -64,7 +64,7 @@ public static partial class EnhancedLinqImmediate
                 if (predicate(obj))
                     currentCount += 1;
             
-                if(currentCount >= countToLookFor)
+                if(currentCount > countToLookFor)
                     return false;
             }
 
