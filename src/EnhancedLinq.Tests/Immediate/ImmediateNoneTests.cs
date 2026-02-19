@@ -1,4 +1,13 @@
-﻿using System.Collections.Generic;
+﻿/*
+    EnhancedLinq
+    Copyright (c) 2025-2026 Alastair Lundy
+    
+    This Source Code Form is subject to the terms of the Mozilla Public
+    License, v. 2.0. If a copy of the MPL was not distributed with this
+    file, You can obtain one at https://mozilla.org/MPL/2.0/. 
+*/
+
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ExtendedLinq.Tests.Immediate;
@@ -15,7 +24,7 @@ public class ImmediateNoneTests
     }
 
     [Test]
-    public async Task None_numerable_NoMatches_ReturnsTrue()
+    public async Task None_Enumerable_NoMatches_ReturnsTrue()
     {
         IList<string> source = _faker.Make(Random.Shared.Next(1, 10), _ => _faker.Lorem.Word());
 
