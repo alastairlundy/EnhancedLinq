@@ -33,4 +33,7 @@
     <data name="Exceptions.Segments.InvalidOperation.EmptySequence" xml:space="preserve">
         <value>The enumeration of elements yielded zero items. The sequence was empty. </value>
     </data>
+    <data name="Exceptions.Enumerable.InvalidWhenEmpty" xml:space="preserve">
+        <value>Operation is invalid for an empty sequence.</value>
+    </data>
 </root>

@@ -69,6 +69,15 @@ namespace EnhancedLinq.Internals.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Operation is invalid for an empty sequence..
+        /// </summary>
+        internal static string Exceptions_Enumerable_InvalidWhenEmpty {
+            get {
+                return ResourceManager.GetString("Exceptions.Enumerable.InvalidWhenEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot split an empty enumerable..
         /// </summary>
         internal static string Exceptions_EnumerableSplit_Empty {
