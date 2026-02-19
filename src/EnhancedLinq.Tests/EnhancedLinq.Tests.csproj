@@ -11,6 +11,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Bogus" Version="35.6.5" />
         <PackageReference Include="TUnit" Version="1.16.4"/>
     </ItemGroup>
 
@@ -21,7 +22,6 @@
     <ItemGroup>
       <Folder Include="Async\" />
       <Folder Include="Deferred\" />
-      <Folder Include="Immediate\" />
       <Folder Include="Memory\" />
       <Folder Include="MsExtensions\" />
     </ItemGroup>
