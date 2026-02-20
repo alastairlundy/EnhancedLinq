@@ -19,15 +19,13 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>1.0.0-alpha.6</Version>
+        <Version>1.0.0-beta.1</Version>
         <PackageId>EnhancedLinq.Async</PackageId>
         <PolyArgumentExceptions>true</PolyArgumentExceptions>
         <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
         <TrimmerSingleWarn>false</TrimmerSingleWarn>
-        <PackageReleaseNotes>* Updated internal Polyfill version from 9.7.2 to 9.8.1
-* Updated DotExtensions from 9.4.1 to 9.5.1
-* Added ``IndicesOf`` Deferred execution async methods
-* Added ``NIndicesOf`` Deferred execution async methods</PackageReleaseNotes>
+        <PackageReleaseNotes>* Updated internal Polyfill version from 9.8.1 to 9.9.0
+* Updated DotExtensions from 9.5.1 to 9.6.2</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>

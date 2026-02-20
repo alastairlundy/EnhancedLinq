@@ -12,12 +12,10 @@
         <RepositoryUrl>https://github.com/alastairlundy/Enhancedlinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageReleaseNotes>* Updated internal Polyfill version from 9.7.2 to 9.8.1
-* Updated DotExtensions from 9.4.1 to 9.5.1
-* Merged EnhancedLinq.MsExtensions code into EnhancedLinq package under the ``MsExtensions`` subnamespace
-* Added StringSegment ``Any`` immediate mode method
-* Reduced reliance on StringSegment Deferred execution code for some StringSegment Immediate mode methods
-* Improved reliability and performance</PackageReleaseNotes>
+        <PackageReleaseNotes>* Fixed a logic bug in Immediate mode ``None(Func&lt;T, bool&gt;)`` and  ``CountAtMost(int, Func&lt;T, bool&gt;)`` extension methods
+* Updated internal Polyfill version from 9.8.1 to 9.9.0
+* Updated DotExtensions from 9.5.1 to 9.6.2
+* Updated DotExtensions.MsExtensions from 9.5.1 to 9.6.2</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <Description>Additional LINQ style Deferred and Immediate enumeration mode extension methods for .NET . </Description>
@@ -26,7 +24,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>1.0.0-alpha.6</Version>
+        <Version>1.0.0-beta.1</Version>
         <PackageId>EnhancedLinq</PackageId>
         <PolyArgumentExceptions>true</PolyArgumentExceptions>
         <EnableTrimAnalyzer>true</EnableTrimAnalyzer>

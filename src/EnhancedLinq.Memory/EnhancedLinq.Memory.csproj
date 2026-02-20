@@ -13,8 +13,10 @@
         <RepositoryUrl>https://github.com/alastairlundy/EnhancedLinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>linq, enhanced-linq, enhanced, extensions, memory, extensions</PackageTags>
-        <PackageReleaseNotes>* Updated internal Polyfill version from 9.7.2 to 9.8.1
-* Updated DotExtensions.Memory from 9.4.1 to 9.5.1</PackageReleaseNotes>
+        <PackageReleaseNotes>* Updated internal Polyfill version from 9.8.1 to 9.9.0
+* Updated DotExtensions from 9.5.1 to 9.6.2
+* Updated DotExtensions.Memory from 9.5.1 to 9.6.3
+* Removed ``Span&lt;TSource&gt;`` immediate mode Order By extension methods</PackageReleaseNotes>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -22,7 +24,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>1.0.0-alpha.6</Version>
+        <Version>1.0.0-beta.1</Version>
         <PackageId>EnhancedLinq.Memory</PackageId>
         <PolyArgumentExceptions>true</PolyArgumentExceptions>
         <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
