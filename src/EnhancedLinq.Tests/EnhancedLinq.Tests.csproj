@@ -2,6 +2,7 @@
 
     <PropertyGroup>
         <ProjectType>Exe</ProjectType>
+        <OutputType>Exe</OutputType>
         <LangVersion>13</LangVersion>
         <TargetFrameworks>net8.0;net9.0;net10.0;</TargetFrameworks>
         <ImplicitUsings>disable</ImplicitUsings>
