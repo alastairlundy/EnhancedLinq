@@ -13,9 +13,6 @@ namespace EnhancedLinq.Deferred;
 
 public static partial class EnhancedLinqDeferred
 {
-    /// <summary>
-    /// 
-    /// </summary>
     /// <param name="source">The sequence to be searched.</param>
     /// <typeparam name="T">The type of the elements in the source sequence.</typeparam>
     extension<T>(IEnumerable<T> source)
