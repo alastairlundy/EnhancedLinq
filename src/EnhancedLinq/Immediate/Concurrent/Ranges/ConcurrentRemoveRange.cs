@@ -58,16 +58,16 @@ public static partial class EnhancedLinqImmediateConcurrentRange
 
             if (limit > concurrentBag.Count)
             {
-                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
+                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero, nameof(count));
             }
 
             if (startIndex >= concurrentBag.Count && startIndex != 0 ||
                 startIndex > concurrentBag.Count)
             {
-                throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
+                throw new ArgumentException(Resources.Exceptions_IndexOutOfRange
                     .Replace("{x}", $"{startIndex}")
                     .Replace("{y}", $"0")
-                    .Replace("{z}", $"{limit}"));
+                    .Replace("{z}", $"{limit}"), nameof(startIndex));
             }
             
             int actualIndex = 0;
@@ -123,7 +123,7 @@ public static partial class EnhancedLinqImmediateConcurrentRange
             int limit = startIndex + count;
 
             if (limit > collection.Count)
-                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
+                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero, nameof(count));
 
             if (startIndex >= collection.Count && startIndex != 0 ||
                 startIndex > collection.Count)

@@ -34,10 +34,10 @@ public static partial class EnhancedLinqListImmediateRange
             
             if (list.Count >= startIndex + count)
             {
-                throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
+                throw new ArgumentException(Resources.Exceptions_IndexOutOfRange
                     .Replace("{x}", $"{count}")
                     .Replace("{y}", "0")
-                    .Replace("{z}", $"{list.Count}"));
+                    .Replace("{z}", $"{list.Count}"), nameof(count));
             }
         
             List<T> output = new List<T>();

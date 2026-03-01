@@ -22,16 +22,15 @@ public static partial class EnhancedLinqListImmediate
         /// Creates a new <see cref="List{T}"/> with distinct elements from the source list.
         /// </summary>
         /// <returns>The new list with distinct elements from the source list.</returns>
-        public List<T> Distinct()
-            =>
-                source.Distinct(EqualityComparer<T>.Default);
+        public IList<T> Distinct()
+            => source.Distinct(EqualityComparer<T>.Default);
         
         /// <summary>
         /// Creates a new <see cref="List{T}"/> with distinct elements from the source list.
         /// </summary>
         /// <param name="equalityComparer">The equality comparer to use.</param>
         /// <returns>The new list with distinct elements from the source list.</returns>
-        public List<T> Distinct(IEqualityComparer<T> equalityComparer)
+        public IList<T> Distinct(IEqualityComparer<T> equalityComparer)
         {
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(equalityComparer);

@@ -23,7 +23,7 @@ public static partial class EnhancedLinqListImmediate
         /// but the order within the returned List is based on the provided indexes.</remarks>
         /// <param name="indices">A sequence of indices, where each index corresponds to an element in the source.</param>
         /// <returns>A new List containing the elements at the specified indexes from the original source.</returns>
-        public List<T> ElementsAt(List<int> indices)
+        public IList<T> ElementsAt(IList<int> indices)
         {
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(indices);

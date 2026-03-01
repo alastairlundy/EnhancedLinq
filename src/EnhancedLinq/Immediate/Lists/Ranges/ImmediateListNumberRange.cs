@@ -35,7 +35,7 @@ public static partial class EnhancedLinqListImmediateRange
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
             
             if (startIndex + count >= TNumber.MaxValue)
-                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
+                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero, nameof(count));
 
             int arrayCount = count.ToDestinationNumber<TNumber, int>() + 1;
         
@@ -60,12 +60,12 @@ public static partial class EnhancedLinqListImmediateRange
         /// <returns>A <see cref="List{INumber}"/> containing the generated range of <see cref="INumber{TSelf}"/> values,
         /// incremented by 1 from the starting point.</returns>
         /// <exception cref="ArgumentException">Thrown if the count is less than zero.</exception>
-        public List<TNumber> GenerateNumberRangeAsList(TNumber count)
+        public IList<TNumber> GenerateNumberRangeAsList(TNumber count)
         {
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
 
             if (startIndex + count > TNumber.MaxValue)
-                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
+                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero, nameof(count));
         
             List<TNumber> output = new List<TNumber>(count.ToDestinationNumber<TNumber, int>() + 1);
         

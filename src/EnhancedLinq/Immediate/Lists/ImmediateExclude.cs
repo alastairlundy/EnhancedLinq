@@ -28,7 +28,7 @@ public static partial class EnhancedLinqListImmediate
         /// <param name="collection">The collection of elements to be excluded from the list.</param>
         /// <param name="predicate">The predicate that determines whether an element should be excluded.</param>
         /// <returns>A new list that contains the elements of the original list minus the ones that are both in the specified collection and satisfy the predicate.</returns>
-        public List<TSource> Exclude(ICollection<TSource> collection, Func<TSource, bool> predicate)
+        public IList<TSource> Exclude(ICollection<TSource> collection, Func<TSource, bool> predicate)
         {
             ArgumentNullException.ThrowIfNull(collection);
             ArgumentNullException.ThrowIfNull(predicate);
@@ -54,7 +54,7 @@ public static partial class EnhancedLinqListImmediate
         /// <typeparam name="TSource">The type of the elements in the list and collection.</typeparam>
         /// <param name="collection">The collection of elements to be excluded from the list.</param>
         /// <returns>A new list that contains the elements of the original list minus the ones that are both in the specified collection and satisfy the predicate.</returns>
-        public List<TSource> Exclude(ICollection<TSource> collection)
+        public IList<TSource> Exclude(ICollection<TSource> collection)
         {
             ArgumentNullException.ThrowIfNull(collection);
 
