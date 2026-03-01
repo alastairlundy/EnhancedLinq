@@ -29,8 +29,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="DotExtensions" Version="10.0.0-alpha.3" />
-        <PackageReference Include="Polyfill" Version="9.12.0" PrivateAssets="all"
+        <PackageReference Include="DotExtensions" Version="10.0.0-alpha.4" />
+        <PackageReference Include="Polyfill" Version="9.13.0" PrivateAssets="all"
                           Condition="'$(TargetFramework)' == 'netstandard2.0'"/>
         <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="10.0.3"
                           Condition="'$(TargetFramework)' == 'netstandard2.0'" />

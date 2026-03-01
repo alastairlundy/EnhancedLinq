@@ -8,7 +8,7 @@
     */
 
 
-using DotExtensions.MsExtensions.StringSegments;
+using DotExtensions.MsExtensions.Primitives;
 
 namespace EnhancedLinq.MsExtensions.Deferred;
 
