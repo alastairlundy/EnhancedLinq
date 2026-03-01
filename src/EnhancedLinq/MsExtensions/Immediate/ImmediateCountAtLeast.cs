@@ -7,8 +7,6 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-
-
 namespace EnhancedLinq.MsExtensions.Immediate;
 
 public static partial class EnhancedLinqSegmentImmediate
@@ -20,7 +18,7 @@ public static partial class EnhancedLinqSegmentImmediate
         /// Determines whether there are at least a specified number of elements in the <see cref="StringSegment"/>./>.
         /// </summary>
         /// <param name="countToLookFor">The minimum count to look for.</param>
-        /// <returns><c>true</c> if there are at least the specified number of elements in the <see cref="StringSegment"/>; otherwise, <c>false</c>.</returns>
+        /// <returns><c>true</c> if there is at least the specified number of elements in the <see cref="StringSegment"/>; otherwise, <c>false</c>.</returns>
         public bool CountAtLeast(int countToLookFor)
         {
             ArgumentException.ThrowIfNullOrWhitespace(source);

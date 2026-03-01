@@ -29,7 +29,7 @@ public static partial class EnhancedLinqSegmentImmediate
                 if (@this[i] == segment[0])
                 {
                     StringSegment candidate = @this.Subsegment(i, segment.Length);
-                    if (candidate.Equals(segment))
+                    if (candidate.Equals(segment, StringComparison.CurrentCulture))
                     {
                         return i;
                     }
@@ -60,7 +60,7 @@ public static partial class EnhancedLinqSegmentImmediate
                 if (str[i] == segment[0])
                 {
                     StringSegment candidate = new(str, i, segment.Length);
-                    if (candidate.Equals(segment))
+                    if (candidate.Equals(segment,  StringComparison.CurrentCulture))
                     {
                         return i;
                     }

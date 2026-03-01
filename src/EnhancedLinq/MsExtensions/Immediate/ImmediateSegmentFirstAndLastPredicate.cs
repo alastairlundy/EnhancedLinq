@@ -31,7 +31,7 @@ public static partial class EnhancedLinqSegmentImmediate
                     return target[index];
             }
         
-            throw new ArgumentException(Resources.Exceptions_Segments_InvalidOperation_EmptySequence);
+            throw new ArgumentException(Resources.Exceptions_Segments_InvalidOperation_EmptySequence, nameof(predicate));
         }
 
         /// <summary>

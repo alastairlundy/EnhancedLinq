@@ -22,7 +22,7 @@ public static partial class EnhancedLinqSegmentImmediate
         /// Splits a StringSegment into StringSegment subsegments using a specified <see cref="char"/> separator.
         /// </summary>
         /// <param name="separator">The separator to delimit the char in the source StringSegment.</param>
-        /// <returns>An array of StringSegment subsegments from the source StringSegment that is delimited by the separator, if the separator character is found.</returns>
+        /// <returns>An array of StringSegment subsegments from the source StringSegment that is delimited by the separator if the separator character is found.</returns>
         public StringSegment[] Split(char separator)
         {
             if (StringSegment.IsNullOrEmpty(source))
