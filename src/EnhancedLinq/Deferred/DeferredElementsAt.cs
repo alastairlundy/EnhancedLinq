@@ -16,9 +16,6 @@ namespace EnhancedLinq.Deferred;
 /// </summary>
 public static partial class EnhancedLinqDeferred
 {
-    /// <summary>
-    /// 
-    /// </summary>
     /// <param name="source">The <see cref="IEnumerable{T}"/> from which to retrieve elements.</param>
     /// <typeparam name="TSource">The type of the elements in the source and returned <see cref="IEnumerable{T}"/>.</typeparam>
     extension<TSource>(IEnumerable<TSource> source)
