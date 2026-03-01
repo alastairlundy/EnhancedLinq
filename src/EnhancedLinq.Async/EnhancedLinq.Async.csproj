@@ -19,13 +19,13 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>1.0.0-beta.1</Version>
+        <Version>1.0.0-beta.2</Version>
         <PackageId>EnhancedLinq.Async</PackageId>
         <PolyArgumentExceptions>true</PolyArgumentExceptions>
         <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
         <TrimmerSingleWarn>false</TrimmerSingleWarn>
-        <PackageReleaseNotes>* Updated internal Polyfill version from 9.8.1 to 9.9.0
-* Updated DotExtensions from 9.5.1 to 9.6.2</PackageReleaseNotes>
+        <PackageReleaseNotes>* Updated internal Polyfill version from 9.9.0 to 9.13.0
+* Updated DotExtensions from 9.6.2 to 10.0.0 Alpha 4</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
