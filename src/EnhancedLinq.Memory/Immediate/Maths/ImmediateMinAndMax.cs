@@ -7,7 +7,6 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-
 #if NET8_0_OR_GREATER
 namespace EnhancedLinq.Memory.Immediate.Maths;
 

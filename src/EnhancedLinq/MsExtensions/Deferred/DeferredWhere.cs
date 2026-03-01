@@ -10,7 +10,7 @@
 namespace EnhancedLinq.MsExtensions.Deferred;
 
 /// <summary>
-/// 
+/// This static partial class contains Deferred Execution extension methods for the <see cref="StringSegment"/>.
 /// </summary>
 public static partial class EnhancedLinqSegmentDeferred
 {
