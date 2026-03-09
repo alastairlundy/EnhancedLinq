@@ -45,7 +45,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="DotExtensions" Version="10.0.0-alpha.4" />
+        <PackageReference Include="DotExtensions" Version="10.0.0-alpha.5" />
         <PackageReference Include="DotPrimitives.Collections" Version="4.3.0" />
         <PackageReference Include="Meziantou.Analyzer" Version="3.0.19">
           <PrivateAssets>all</PrivateAssets>
