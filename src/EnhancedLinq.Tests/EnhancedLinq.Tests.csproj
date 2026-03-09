@@ -10,10 +10,9 @@
         <IsPackable>false</IsPackable>
         <RootNamespace>ExtendedLinq.Tests</RootNamespace>
     </PropertyGroup>
-
     <ItemGroup>
-        <PackageReference Include="Bogus" Version="35.6.5" />
-        <PackageReference Include="TUnit" Version="1.19.16"/>
+        <PackageReference Include="Bogus" />
+        <PackageReference Include="TUnit"/>
     </ItemGroup>
 
     <ItemGroup>

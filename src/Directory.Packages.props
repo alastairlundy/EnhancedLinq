@@ -1,0 +1,25 @@
+<Project>
+  <PropertyGroup>
+    <!-- Enable central package management, https://learn.microsoft.com/en-us/nuget/consume-packages/Central-Package-Management -->
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageVersion Include="DotExtensions" Version="10.0.0-alpha.5"/>
+    <PackageVersion Include="DotExtensions.Memory" Version="10.0.0-alpha.5"/>
+    <PackageVersion Include="Microsoft.Extensions.Primitives" Version="10.0.3" />
+    <PackageVersion Include="DotPrimitives.Collections" Version="4.3.0"/>
+    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.21">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageVersion>
+    <PackageVersion Include="Polyfill" Version="9.18.0" PrivateAssets="all"/>
+    <PackageVersion Include="Microsoft.Bcl.AsyncInterfaces" Version="10.0.3"
+                      Condition="'$(TargetFramework)' == 'netstandard2.0'" />
+    <PackageVersion Include="System.Linq.AsyncEnumerable" Version="10.0.3"
+                      Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'net8.0' OR '$(TargetFramework)' == 'net9.0'"/>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageVersion Include="Bogus" Version="35.6.5" />
+    <PackageVersion Include="TUnit" Version="1.19.16"/>
+  </ItemGroup>
+</Project>

@@ -11,6 +11,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnhancedLinq.Async", "EnhancedLinq.Async\EnhancedLinq.Async.csproj", "{24FE67DB-76E4-4D74-9362-93AFEA93E341}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{91624D5E-B053-4122-92CA-2B30F24811C0}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Packages.props = Directory.Packages.props
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnhancedLinq.Shared.Infra", "EnhancedLinq.Shared.Infra\EnhancedLinq.Shared.Infra.csproj", "{11398612-6A02-4465-BCB9-23B87D88B3F3}"
 EndProject

@@ -31,11 +31,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="DotExtensions.Memory" Version="10.0.0-alpha.5" />
-        <PackageReference Include="DotExtensions" Version="10.0.0-alpha.5" />
-        <PackageReference Include="DotPrimitives.Collections" Version="4.3.0" />
-        <PackageReference Include="Polyfill" Version="9.18.0" PrivateAssets="all"
-                          Condition="'$(TargetFramework)' == 'netstandard2.0'"/>
+        <PackageReference Include="DotExtensions.Memory" />
+        <PackageReference Include="DotExtensions" />
+        <PackageReference Include="DotPrimitives.Collections" />
+        <PackageReference Include="Polyfill" PrivateAssets="all"/>
     </ItemGroup>
     
     <ItemGroup>
