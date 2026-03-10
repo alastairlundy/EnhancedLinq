@@ -9,7 +9,6 @@ For a comprehensive list of included methods, check out the following resources:
 - [EnhancedLinq Methods](./docs/Methods/EnhancedLinq.md) [![NuGet](https://img.shields.io/nuget/v/EnhancedLinq.svg)](https://www.nuget.org/packages/EnhancedLinq/)  [![NuGet](https://img.shields.io/nuget/dt/EnhancedLinq.svg)](https://www.nuget.org/packages/EnhancedLinq/)
 - [EnhancedLinqAsync Methods](./docs/Methods/EnhancedLinq.md) [![NuGet](https://img.shields.io/nuget/v/EnhancedLinq.Async.svg)](https://www.nuget.org/packages/EnhancedLinq.Async/)  [![NuGet](https://img.shields.io/nuget/dt/EnhancedLinq.Async.svg)](https://www.nuget.org/packages/EnhancedLinq.Async/)
 - [EnhancedLinq.Memory Methods](./docs/Methods/EnhancedLinq.Memory.md) [![NuGet](https://img.shields.io/nuget/v/EnhancedLinq.Memory.svg)](https://www.nuget.org/packages/EnhancedLinq.Memory/)  [![NuGet](https://img.shields.io/nuget/dt/EnhancedLinq.Memory.svg)](https://www.nuget.org/packages/EnhancedLinq.Memory/)
-- [EnhancedLinq.MsExtensions Methods](./docs/Methods/EnhancedLinq.MsExtensions.md)
   
 __Note__: EnhancedLinq.MsExtensions has now been merged into the base EnhancedLinq package. To use EnhancedLinq.MsExtensions, install the EnhancedLinq main package.
 
@@ -17,7 +16,7 @@ __Note__: EnhancedLinq.MsExtensions has now been merged into the base EnhancedLi
 
 **EnhancedLinq** comes with several packages tailored to your needs:
 
-- **`EnhancedLinq`**: The core package that enhances your LINQ experience.
+- **`EnhancedLinq`**: The core package that enhances your LINQ experience. Also includes ``MsExtensions`` sub-namespace for LINQ style methods targetting ``Microsoft.Extensions.Primitives`` types.
 - **`EnhancedLinq.Async`**: The IAsyncEnumerable supporting version of EnhancedLinq.
 - **`EnhancedLinq.Memory`**: This package is specifically for `Span<T>` and `Memory<T>`, providing helpful immediate mode extensions.
 
@@ -27,7 +26,7 @@ Getting started with **EnhancedLinq** is easy! You can install the packages usin
 
 | Package Id                | NuGet Link                                                                              | .NET SDK CLI Command                           |
 |---------------------------|-----------------------------------------------------------------------------------------|------------------------------------------------|
-| EnhancedLinq              | [EnhancedLinq NuGet](https://nuget.org/packages/EnhancedLinq)                           | `dotnet add package EnhancedLinq.`             |
+| EnhancedLinq              | [EnhancedLinq NuGet](https://nuget.org/packages/EnhancedLinq)                           | `dotnet add package EnhancedLinq`             |
 | EnhancedLinq.Async        | [EnhancedLinq NuGet](https://nuget.org/packages/EnhancedLinq.Async)                     | `dotnet add package EnhancedLinq.Async`        |
 | EnhancedLinq.Memory       | [EnhancedLinq.Memory NuGet](https://nuget.org/packages/EnhancedLinq.Memory)             | `dotnet add package EnhancedLinq.Memory`       |
 
