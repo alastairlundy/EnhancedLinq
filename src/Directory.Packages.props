@@ -4,7 +4,7 @@
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="DotExtensions" Version="10.0.0-alpha.5"/>
+    <PackageVersion Include="DotExtensions" Version="10.0.0-alpha.6"/>
     <PackageVersion Include="DotExtensions.Memory" Version="10.0.0-alpha.6"/>
     <PackageVersion Include="Microsoft.Extensions.Primitives" Version="10.0.4" />
     <PackageVersion Include="DotPrimitives.Collections" Version="4.3.0"/>
