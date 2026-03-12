@@ -57,6 +57,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="Microsoft.Bcl.Memory" />
       <Folder Include="Deferred\Enumerables\" />
     </ItemGroup>
 
