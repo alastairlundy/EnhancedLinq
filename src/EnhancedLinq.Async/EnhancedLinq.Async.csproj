@@ -19,13 +19,14 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>1.0.0-beta.2</Version>
+        <Version>1.0.0-beta.3</Version>
         <PackageId>EnhancedLinq.Async</PackageId>
         <PolyArgumentExceptions>true</PolyArgumentExceptions>
         <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
         <TrimmerSingleWarn>false</TrimmerSingleWarn>
-        <PackageReleaseNotes>* Updated internal Polyfill version from 9.9.0 to 9.13.0
-* Updated DotExtensions from 9.6.2 to 10.0.0 Alpha 4</PackageReleaseNotes>
+        <PackageReleaseNotes>* Updated Polyfill version from 9.13.0 to 9.18.0
+* Updated DotExtensions version from 10.0.0 Alpha 4 to 10.0.0 Alpha 6
+* Updated ``System.Linq.AsyncEnumerable`` version from 10.0.3 to 10.0.4 - This nuget package update updates one of its own dependencies, Microsoft.Bcl.Memory, from version 10.0.3 to 10.0.4, which fixes a critical .NET Denial of Service security vulnerability [CVE-2026-26127](https://github.com/advisories/GHSA-73j8-2gch-69rq)</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
