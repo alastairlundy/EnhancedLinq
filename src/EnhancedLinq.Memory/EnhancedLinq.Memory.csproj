@@ -13,9 +13,9 @@
         <RepositoryUrl>https://github.com/alastairlundy/EnhancedLinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>linq, enhanced-linq, enhanced, extensions, memory, extensions</PackageTags>
-        <PackageReleaseNotes>* Updated internal Polyfill version from 9.9.0 to 9.13.0
-* Updated DotExtensions from 9.6.2 to 10.0.0 Alpha 4
-* Updated DotExtensions.Memory from 9.6.3 to 10.0.0 Alpha 4</PackageReleaseNotes>
+        <PackageReleaseNotes>* Updated Polyfill version from 9.13.0 to 9.18.0
+* Updated DotExtensions version from 10.0.0 Alpha 4 to 10.0.0 Alpha 6
+* Updated DotExtensions.Memory version from 10.0.0 Alpha 4 to 10.0.0 Alpha 6</PackageReleaseNotes>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -23,7 +23,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>1.0.0-beta.2</Version>
+        <Version>1.0.0-beta.3</Version>
         <PackageId>EnhancedLinq.Memory</PackageId>
         <PolyArgumentExceptions>true</PolyArgumentExceptions>
         <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
