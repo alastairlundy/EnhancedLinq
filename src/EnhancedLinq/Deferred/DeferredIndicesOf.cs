@@ -63,7 +63,7 @@ public static partial class EnhancedLinqDeferred
             ArgumentNullException.ThrowIfNull(str);
         
             return new CustomEnumeratorEnumerable<int>(
-                new IndicesEnumerator<char>(str, x => x.Equals(c)));
+                new IndicesEnumerator<char>(str, x => x.Equals(c, StringComparison.Ordinal)));
         }
         
         /// <summary>

@@ -49,7 +49,7 @@ internal class SegmentSplitEnumerator : IEnumerator<StringSegment>
                 
                 StringSegment comparison = _segment.Subsegment(currentSeparatorIndex, _separator.Length);
 
-                if (_index == _separatorIndicesEnumerator.Current && comparison.Equals(_segment))
+                if (_index == _separatorIndicesEnumerator.Current && comparison.Equals(_segment, StringComparison.Ordinal))
                 {
                     Current = new StringSegment(string.Join("", _currentChars));
             

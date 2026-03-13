@@ -46,7 +46,7 @@ internal class SegmentIndicesOfEnumerator : IEnumerator<int>
 
                 ++_segmentIndex;
                     
-                if (indexSegment.Equals(_segment))
+                if (indexSegment.Equals(_segment, StringComparison.Ordinal))
                 {
                    Current = _segmentIndex;
                    return true;

@@ -8,7 +8,6 @@
     */
 
 #if NET8_0_OR_GREATER
-
 using System.Collections;
 using System.Numerics;
 using EnhancedLinq.Deferred.Enumerators.NumberRanges;
