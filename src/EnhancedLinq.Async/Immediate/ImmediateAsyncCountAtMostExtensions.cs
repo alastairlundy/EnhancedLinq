@@ -9,6 +9,9 @@
 
 namespace EnhancedLinq.Async.Immediate;
 
+/// <summary>
+/// 
+/// </summary>
 public static class ImmediateAsyncCountAtMostExtensions
 {
     /// <param name="source">The asynchronous enumerable source.</param>
