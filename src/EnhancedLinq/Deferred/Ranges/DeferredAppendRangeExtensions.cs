@@ -1,0 +1,39 @@
+/*
+    EnhancedLinq 
+    Copyright (c) 2025-2026 Alastair Lundy
+    
+    This Source Code Form is subject to the terms of the Mozilla Public
+    License, v. 2.0. If a copy of the MPL was not distributed with this
+    file, You can obtain one at https://mozilla.org/MPL/2.0/. 
+    */
+
+using EnhancedLinq.Deferred.Enumerables;
+
+namespace EnhancedLinq.Deferred.Ranges;
+
+/// <summary>
+/// 
+/// </summary>
+public static class DeferredAppendRangeExtensions
+{
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="source">The sequence to append items to.</param>
+    /// <typeparam name="TSource">The type of element in the sequence and elements being appended.</typeparam>
+    extension<TSource>(IEnumerable<TSource> source)
+    {
+        /// <summary>
+        /// Appends one sequence of elements to the end of another specified sequence.
+        /// </summary>
+        /// <param name="toBeAppended">The elements to append to the sequence.</param>
+        /// <returns>A new sequence made up of the source sequence and the appended sequence.</returns>
+        public IEnumerable<TSource> AppendRange(IEnumerable<TSource> toBeAppended)
+        { 
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(toBeAppended);
+        
+            return new AppendRangeEnumerable<TSource>(source, toBeAppended);
+        }
+    }
+}

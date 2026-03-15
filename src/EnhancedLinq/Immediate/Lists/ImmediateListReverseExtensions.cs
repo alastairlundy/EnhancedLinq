@@ -9,7 +9,10 @@
 
 namespace EnhancedLinq.Immediate.Lists;
 
-public static partial class EnhancedLinqListImmediate
+/// <summary>
+/// 
+/// </summary>
+public static class ImmediateListReverseExtensions
 {
     /// <param name="list">The list to reverse.</param>
     /// <typeparam name="T">The type of elements in the array.</typeparam>
