@@ -9,6 +9,9 @@
 
 namespace EnhancedLinq.Memory.Immediate;
 
+/// <summary>
+/// 
+/// </summary>
 public static class ImmediateMemoryFirstAndLastPredicateExtensions
 {
     /// <param name="target">The span to search for the first element.</param>

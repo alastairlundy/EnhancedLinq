@@ -13,6 +13,9 @@ using System.Linq;
 
 namespace EnhancedLinq.Memory.Immediate.Ranges;
 
+/// <summary>
+/// 
+/// </summary>
 public static class ImmediateMemoryRemoveRangeExtensions
 {
     /// <param name="target">The span to remove a range of items from.</param>

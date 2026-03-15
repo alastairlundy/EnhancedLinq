@@ -9,7 +9,10 @@
 
 namespace EnhancedLinq.Memory.Immediate;
 
-public static partial class EnhancedLinqMemoryImmediate
+/// <summary>
+/// 
+/// </summary>
+public static class ImmediateMemoryNoMatchesExtensions
 {
     /// <param name="span">The span to be searched.</param>
     /// <typeparam name="TSource">The type of elements in the span.</typeparam>
@@ -22,7 +25,7 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <returns>True if none of the elements matched the predicate, false otherwise.</returns>
         /// <exception cref="ArgumentNullException">Thrown if the predicate is null.</exception>
         /// <exception cref="ArgumentException">Thrown if the <see cref="Span{T}"/> is empty.</exception>
-        public bool None(Func<TSource, bool> predicate)
+        public bool HasNoMatches(Func<TSource, bool> predicate)
             => span.CountAtMost(predicate, 0);
     }
 
@@ -37,7 +40,7 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <returns>True if none of the elements matched the predicate, false otherwise.</returns>
         /// <exception cref="ArgumentNullException">Thrown if the predicate is null.</exception>
         /// <exception cref="ArgumentException">Thrown if the <see cref="ReadOnlySpan{T}"/> is empty.</exception>
-        public bool None(Func<TSource, bool> predicate)
+        public bool HasNoMatches(Func<TSource, bool> predicate)
             => span.CountAtMost(predicate, 0);
     }
 
@@ -53,7 +56,7 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <returns>True if none of the elements matched the predicate, false otherwise.</returns>
         /// <exception cref="ArgumentNullException">Thrown if the predicate is null.</exception>
         /// <exception cref="ArgumentException">Thrown if the <see cref="Memory{T}"/> is empty.</exception>
-        public bool None(Func<TSource, bool> predicate)
+        public bool HasNoMatches(Func<TSource, bool> predicate)
             => memory.CountAtMost(predicate, 0);
     }
 
@@ -68,7 +71,7 @@ public static partial class EnhancedLinqMemoryImmediate
         /// <returns>True if none of the elements matched the predicate, false otherwise.</returns>
         /// <exception cref="ArgumentNullException">Thrown if the predicate is null.</exception>
         /// <exception cref="ArgumentException">Thrown if the <see cref="ReadOnlyMemory{T}"/> is empty.</exception>
-        public bool None(Func<TSource, bool> predicate)
+        public bool HasNoMatches(Func<TSource, bool> predicate)
             => memory.CountAtMost(predicate, 0);
     }
 }

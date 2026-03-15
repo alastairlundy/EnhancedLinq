@@ -12,7 +12,7 @@ namespace EnhancedLinq.Immediate;
 /// <summary>
 /// 
 /// </summary>
-public static class ImmediateMatchesNoneExtensions
+public static class ImmediateNoMatchesExtensions
 {
     /// <param name="source">The sequence to be searched.</param>
     /// <typeparam name="TSource">The type of elements in the sequence.</typeparam>
@@ -24,7 +24,7 @@ public static class ImmediateMatchesNoneExtensions
         /// <param name="predicate">The predicate to check elements against.</param>
         /// <returns>True if none of the elements matched the predicate, false otherwise.</returns>
         /// <exception cref="ArgumentNullException">Thrown if the source sequence or predicate are null.</exception>
-        public bool MatchesNone(Func<TSource, bool> predicate)
+        public bool HasNoMatches(Func<TSource, bool> predicate)
         {
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(predicate);

@@ -120,6 +120,7 @@ public static class ImmediateConcurrentRemoveRangeExtensions
             ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
             ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(count, collection.Count);
+            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(startIndex, collection.Count);
             
             ConcurrentBag<T> output = new ConcurrentBag<T>();
 
@@ -127,15 +128,6 @@ public static class ImmediateConcurrentRemoveRangeExtensions
 
             if (limit > collection.Count)
                 throw new ArgumentException(Resources.Exceptions_Count_LessThanZero, nameof(count));
-
-            if (startIndex >= collection.Count && startIndex != 0 ||
-                startIndex > collection.Count)
-            {
-                throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
-                    .Replace("{x}", $"{startIndex}")
-                    .Replace("{y}", $"0")
-                    .Replace("{z}", $"{limit}"));
-            }
             
             int actualIndex = 0;
             foreach (T item in collection)
