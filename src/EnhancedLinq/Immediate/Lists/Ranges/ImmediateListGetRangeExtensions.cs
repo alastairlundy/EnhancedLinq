@@ -7,13 +7,14 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
+using System.Linq;
+
 namespace EnhancedLinq.Immediate.Lists.Ranges;
 
 /// <summary>
-/// Provides extended functionality for working with ranges of elements in lists,
-/// including retrieving specified ranges of elements by indices or by count.
+/// 
 /// </summary>
-public static partial class EnhancedLinqListImmediateRange
+public static class ImmediateListGetRangeExtensions
 {
     /// <param name="list">The source list from which to extract the range.</param>
     /// <typeparam name="T">The type of elements in this list and the returned list.</typeparam>
@@ -39,11 +40,12 @@ public static partial class EnhancedLinqListImmediateRange
                     .Replace("{y}", "0")
                     .Replace("{z}", $"{list.Count}"), nameof(count));
             }
-        
-            List<T> output = new List<T>();
-        
+            
             int limit = startIndex + count;
 
+            List<T> output = new List<T>(capacity: limit);
+
+            
             for (int index = startIndex; index < limit; index++)
             {
                 output.Add(list[index]);
@@ -59,20 +61,15 @@ public static partial class EnhancedLinqListImmediateRange
         /// </summary>
         /// <param name="indices">A collection of 0-based indices specifying the range of elements to retrieve.</param>
         /// <returns>A list containing the specified range of elements.</returns>
-        /// <exception cref="IndexOutOfRangeException">Thrown if any index is out of range
-        /// (less than 0 or greater than or equal to Count).</exception>
         public IList<T> GetRange(ICollection<int> indices)
         {
             ArgumentNullException.ThrowIfNull(list);
             ArgumentNullException.ThrowIfNull(indices);
 
-            List<T> output = new();
+            List<T> output = new(capacity: indices.Count);
 
-            foreach (int index in indices)
+            foreach (int index in indices.Where(i => i >= 0 && i < list.Count))
             {
-                ArgumentOutOfRangeException.ThrowIfNegative(index);
-                ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(index, list.Count);
-
                 output.Add(list[index]);
             }
 
