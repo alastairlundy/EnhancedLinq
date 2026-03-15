@@ -1,0 +1,78 @@
+/*
+    EnhancedLinq.Memory
+    Copyright (c) 2025-2026 Alastair Lundy
+    
+    This Source Code Form is subject to the terms of the Mozilla Public
+    License, v. 2.0. If a copy of the MPL was not distributed with this
+    file, You can obtain one at https://mozilla.org/MPL/2.0/. 
+    */
+
+#if NET8_0_OR_GREATER
+using DotExtensions.Numbers;
+
+namespace EnhancedLinq.Memory.Immediate.Maths;
+
+/// <summary>
+/// 
+/// </summary>
+public static class ImmediateMemoryAverageExtensions
+{
+    /// <param name="source">The span to be averaged.</param>
+    /// <typeparam name="TNumber">The numeric type that represents the type of numbers in the span.</typeparam>
+    extension<TNumber>(Span<TNumber> source) where TNumber : INumber<TNumber>
+    {
+        /// <summary>
+        /// Calculates the arithmetic average of a span of numbers.
+        /// </summary>
+        /// <returns>The arithmetic average of the specified numbers.</returns>
+        public TNumber Average()
+        {
+            InvalidOperationException.ThrowIfSpanIsEmpty(source);
+
+            TNumber sum = source.Sum();
+
+            return sum / source.Length.ToNumber<TNumber>();
+        }
+    }
+    
+    /// <param name="source">The <see cref="ReadOnlySpan{T}"/> to be averaged.</param>
+    /// <typeparam name="TNumber">The numeric type that represents the type of numbers in the <see cref="ReadOnlySpan{T}"/>.</typeparam>
+    extension<TNumber>(ReadOnlySpan<TNumber> source) where TNumber : INumber<TNumber>
+    {
+        /// <summary>
+        /// Calculates the arithmetic average of a <see cref="ReadOnlySpan{T}"/> of numbers.
+        /// </summary>
+        /// <returns>The arithmetic average of the specified numbers.</returns>
+        public TNumber Average()
+        {
+            InvalidOperationException.ThrowIfSpanIsEmpty(source);
+
+            TNumber sum = source.Sum();
+
+            return sum / source.Length.ToNumber<TNumber>();
+        }
+    }
+
+    /// <param name="source">The <see cref="Memory{T}"/> to be averaged.</param>
+    /// <typeparam name="TNumber">The numeric type that represents the type of numbers in the <see cref="Memory{T}"/>.</typeparam>
+    extension<TNumber>(Memory<TNumber> source) where TNumber : INumber<TNumber>
+    {
+        /// <summary>
+        /// Calculates the arithmetic average of a Memory.
+        /// </summary>
+        /// <returns>The arithmetic average of the specified numbers.</returns>
+        public TNumber Average() => source.Span.Average();
+    }
+    
+    /// <param name="source">The <see cref="ReadOnlyMemory{T}"/> to be averaged.</param>
+    /// <typeparam name="TNumber">The numeric type that represents the type of numbers in the <see cref="ReadOnlyMemory{T}"/>.</typeparam>
+    extension<TNumber>(ReadOnlyMemory<TNumber> source) where TNumber : INumber<TNumber>
+    {
+        /// <summary>
+        /// Calculates the arithmetic average of a <see cref="ReadOnlyMemory{T}"/>.
+        /// </summary>
+        /// <returns>The arithmetic average of the specified numbers.</returns>
+        public TNumber Average() => source.Span.Average();
+    }
+}
+#endif
