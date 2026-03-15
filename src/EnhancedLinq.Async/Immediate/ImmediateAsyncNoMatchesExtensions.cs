@@ -10,9 +10,9 @@
 namespace EnhancedLinq.Async.Immediate;
 
 /// <summary>
-/// Provides immediate mode asynchronous operations using Async methods.
+/// An extension method for asynchronous operations that checks if a specific condition is met within an immediate sequence of elements.
 /// </summary>
-public static partial class EnhancedLinqAsyncImmediate
+public static class ImmediateAsyncNoMatchesExtensions
 {
     /// <param name="source">The <see cref="IAsyncEnumerable{T}"/> to be searched.</param>
     /// <typeparam name="TSource">The type of elements in the sequence.</typeparam>

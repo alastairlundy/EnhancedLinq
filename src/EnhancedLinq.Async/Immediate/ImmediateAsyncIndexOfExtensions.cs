@@ -9,7 +9,10 @@
 
 namespace EnhancedLinq.Async.Immediate;
 
-public static partial class EnhancedLinqAsyncImmediate
+/// <summary>
+/// 
+/// </summary>
+public static class ImmediateAsyncIndexOfExtensions
 {
     /// <summary>
     /// 

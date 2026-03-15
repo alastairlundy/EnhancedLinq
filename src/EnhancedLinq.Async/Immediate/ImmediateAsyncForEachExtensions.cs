@@ -9,7 +9,10 @@
 
 namespace EnhancedLinq.Async.Immediate;
 
-public static partial class EnhancedLinqAsyncImmediate
+/// <summary>
+/// 
+/// </summary>
+public static class ImmediateAsyncForEachExtensions
 {
     /// <summary>
     /// 
@@ -22,7 +25,6 @@ public static partial class EnhancedLinqAsyncImmediate
         /// Applies the given action for each element of this sequence.
         /// </summary>
         /// <param name="action">The action to apply to each element in the sequence.</param>
-
         public async Task ForEachAsync(Action<T> action)
         {
             ArgumentNullException.ThrowIfNull(target);

@@ -12,9 +12,9 @@ using EnhancedLinq.Async.Deferred.Enumerators;
 namespace EnhancedLinq.Async.Deferred;
 
 /// <summary>
-/// Provides deferred execution mode asynchronous operations using Async methods.
+/// 
 /// </summary>
-public static partial class EnhancedLinqAsyncDeferred
+public static class DeferredAsyncIndicesOfExtensions
 {
     extension<TSource>(IAsyncEnumerable<TSource> source)
     {

@@ -9,7 +9,10 @@
 
 namespace EnhancedLinq.Async.Immediate;
 
-public static partial class EnhancedLinqAsyncImmediate
+/// <summary>
+/// 
+/// </summary>
+public static class ImmediateAsyncElementAtExtensions
 {
     /// <param name="source">The sequence to retrieve the element from.</param>
     /// <typeparam name="T">The type of elements in the sequence.</typeparam>

@@ -9,7 +9,7 @@
 
 namespace EnhancedLinq.Async.Immediate;
 
-public static partial class EnhancedLinqAsyncImmediate
+public static class ImmediateAsyncCountAtMostExtensions
 {
     /// <param name="source">The asynchronous enumerable source.</param>
     extension<T>(IAsyncEnumerable<T> source)

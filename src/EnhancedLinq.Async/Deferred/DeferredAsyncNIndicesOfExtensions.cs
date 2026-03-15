@@ -11,7 +11,10 @@ using System.Linq;
 
 namespace EnhancedLinq.Async.Deferred;
 
-public static partial class EnhancedLinqAsyncDeferred
+/// <summary>
+/// 
+/// </summary>
+public static class DeferredAsyncNIndicesOfExtensions
 {
     /// <summary>
     /// Extension methods for deferred asynchronous operations on <see cref="IAsyncEnumerable{T}"/>.

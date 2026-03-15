@@ -9,7 +9,10 @@
 
 namespace EnhancedLinq.Async.Immediate;
 
-public static partial class EnhancedLinqAsyncImmediate
+/// <summary>
+/// 
+/// </summary>
+public static class ImmediateAsyncDuplicatesExtensions
 {
     /// <param name="source">The <see cref="IEnumerable{T}"/> to be searched.</param>
     /// <typeparam name="T">The type of objects in the <see cref="IEnumerable{T}"/>.</typeparam>

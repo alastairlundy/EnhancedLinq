@@ -9,7 +9,10 @@
 
 namespace EnhancedLinq.Async.Immediate;
 
-public static partial class EnhancedLinqAsyncImmediate
+/// <summary>
+/// 
+/// </summary>
+public static class ImmediateAsyncCountAtLeastExtensions
 {
     /// <param name="source">The asynchronous enumerable sequence to search.</param>
     /// <typeparam name="T">The type of elements in the source sequence.</typeparam>
