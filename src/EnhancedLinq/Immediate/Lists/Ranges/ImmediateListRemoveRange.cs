@@ -7,6 +7,7 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
+using System.Linq;
 using EnhancedLinq.Immediate.Lists.Linq;
 
 namespace EnhancedLinq.Immediate.Lists.Ranges;
@@ -111,11 +112,8 @@ public static partial class EnhancedLinqListImmediateRange
             if (list.IsReadOnly || list is T[])
                 throw new NotSupportedException();
         
-            foreach (int index in indices)
+            foreach (int index in indices.Where(i => i >= 0 && i < list.Count))
             {
-                ArgumentOutOfRangeException.ThrowIfNegative(index);
-                ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(index, list.Count);
-
                 list.RemoveAt(index);
             }
         }
