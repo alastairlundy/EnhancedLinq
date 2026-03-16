@@ -12,7 +12,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
-    <PackageVersion Include="Polyfill" Version="9.18.0" PrivateAssets="all" />
+    <PackageVersion Include="Polyfill" Version="9.22.0" PrivateAssets="all" />
     <PackageVersion Include="Microsoft.Bcl.AsyncInterfaces" Version="10.0.5" Condition="'$(TargetFramework)' == 'netstandard2.0'" />
     <PackageVersion Include="System.Linq.AsyncEnumerable" Version="10.0.5" Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'net8.0' OR '$(TargetFramework)' == 'net9.0'" />
   </ItemGroup>
