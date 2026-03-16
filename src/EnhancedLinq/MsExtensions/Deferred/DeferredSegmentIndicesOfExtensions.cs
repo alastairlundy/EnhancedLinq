@@ -9,7 +9,10 @@
 
 namespace EnhancedLinq.MsExtensions.Deferred;
 
-public static partial class EnhancedLinqSegmentDeferred
+/// <summary>
+/// 
+/// </summary>
+public static class DeferredSegmentIndicesOfExtensions
 {
     /// <param name="source">The <see cref="StringSegment"/> to be searched.</param>
     extension(StringSegment source)

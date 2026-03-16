@@ -34,6 +34,10 @@
         <PackageReference Include="DotExtensions.Memory" />
         <PackageReference Include="DotExtensions" />
         <PackageReference Include="DotPrimitives.Collections" />
+        <PackageReference Include="Meziantou.Analyzer">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="Polyfill" PrivateAssets="all"/>
     </ItemGroup>
     

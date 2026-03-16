@@ -9,7 +9,10 @@
 
 namespace EnhancedLinq.MsExtensions.Immediate;
 
-public static partial class EnhancedLinqSegmentImmediate
+/// <summary>
+/// 
+/// </summary>
+public static class ImmediateSegmentCountAtLeastExtensions
 {
     /// <param name="source">The source <see cref="StringSegment"/>.</param>
     extension(StringSegment source)

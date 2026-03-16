@@ -48,8 +48,8 @@ internal class SegmentIndicesOfEnumerator : IEnumerator<int>
                     
                 if (indexSegment.Equals(_segment, StringComparison.Ordinal))
                 {
-                   Current = _segmentIndex;
-                   return true;
+                    Current = _segmentIndex;
+                    return true;
                 }
             }
             _state = -1;

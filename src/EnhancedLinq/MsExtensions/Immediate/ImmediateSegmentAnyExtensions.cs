@@ -7,12 +7,12 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-using System.Linq;
-using EnhancedLinq.MsExtensions.Deferred;
-
 namespace EnhancedLinq.MsExtensions.Immediate;
 
-public static partial class EnhancedLinqSegmentImmediate
+/// <summary>
+/// 
+/// </summary>
+public static class ImmediateSegmentAnyExtensions
 {
     /// <param name="target">The StringSegment to be searched.</param>
     extension(StringSegment target)
@@ -34,12 +34,15 @@ public static partial class EnhancedLinqSegmentImmediate
             ArgumentException.ThrowIfNullOrWhitespace(target);
             ArgumentNullException.ThrowIfNull(predicate);
 
-            IEnumerable<bool> groups = target.GroupBy(predicate)
-                .Select(g => g.Any());
+            for (int i = 0; i < target.Length; i++)
+            {
+                bool isMatch = predicate(target[i]);
+                
+                if (isMatch)
+                    return true;
+            }
 
-            bool? result = groups.FirstOrDefault();
-
-            return result ?? false;
+            return false;
         }
     }
 }

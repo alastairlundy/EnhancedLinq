@@ -12,7 +12,7 @@ namespace EnhancedLinq.MsExtensions.Immediate;
 /// <summary>
 /// 
 /// </summary>
-public static partial class EnhancedLinqSegmentImmediate
+public static class ImmediateSegmentForEachExtensions
 {
     /// <param name="target">The <see cref="StringSegment"/> to have the action applied for.</param>
     extension(ref StringSegment target)

@@ -11,7 +11,10 @@ using System.Linq;
 
 namespace EnhancedLinq.MsExtensions.Deferred;
 
-public static partial class EnhancedLinqSegmentDeferred
+/// <summary>
+/// 
+/// </summary>
+public static class DeferredSegmentGroupExtensions
 {
     /// <param name="target">The <see cref="StringSegment"/> whose characters to group.</param>
     extension(StringSegment target)

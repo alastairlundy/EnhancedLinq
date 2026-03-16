@@ -9,7 +9,10 @@
 
 namespace EnhancedLinq.MsExtensions.Immediate;
 
-public static partial class EnhancedLinqSegmentImmediate
+/// <summary>
+/// 
+/// </summary>
+public static class ImmediateSegmentNoMatchesExtensions
 {
     /// <param name="segment">The <see cref="StringSegment"/> to be searched.</param>
     extension(StringSegment segment)

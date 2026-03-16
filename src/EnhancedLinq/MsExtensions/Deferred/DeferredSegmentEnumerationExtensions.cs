@@ -9,7 +9,10 @@
 
 namespace EnhancedLinq.MsExtensions.Deferred;
 
-public static partial class EnhancedLinqSegmentDeferred
+/// <summary>
+/// 
+/// </summary>
+public static class DeferredSegmentEnumerationExtensions
 {
     /// <param name="segment">The string segment to enumerate.</param>
     extension(StringSegment segment)

@@ -12,7 +12,10 @@ using EnhancedLinq.MsExtensions.Deferred;
 
 namespace EnhancedLinq.MsExtensions.Immediate;
 
-public static partial class EnhancedLinqSegmentImmediate
+/// <summary>
+/// 
+/// </summary>
+public static class ImmediateSegmentAllExtensions
 {
     /// <param name="target">The StringSegment to be searched.</param>
     extension(StringSegment target)

@@ -12,7 +12,10 @@ using DotExtensions.MsExtensions.Primitives;
 
 namespace EnhancedLinq.MsExtensions.Deferred;
 
-public static partial class EnhancedLinqSegmentDeferred
+/// <summary>
+/// 
+/// </summary>
+public static class DeferredSegmentSplitExtensions
 {
     /// <param name="source">The <see cref="StringSegment"/> to split.</param>
     extension(StringSegment source)

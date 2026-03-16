@@ -9,27 +9,30 @@
 
 namespace EnhancedLinq.MsExtensions.Immediate;
 
-public static partial class EnhancedLinqSegmentImmediate
+/// <summary>
+/// 
+/// </summary>
+public static class ImmediateSegmentIndexOfExtensions
 {
-    /// <param name="this">The StringSegment to be searched.</param>
-    extension(StringSegment @this)
+    /// <param name="segment">The StringSegment to be searched.</param>
+    extension(StringSegment segment)
     {
         /// <summary>
         /// Finds the index of a specified StringSegment within another StringSegment.
         /// </summary>
-        /// <param name="segment">The StringSegment to search for.</param>
+        /// <param name="other">The StringSegment to search for.</param>
         /// <returns>The index at which the specified StringSegment can be found, or -1 if not found.</returns>
-        public int IndexOf(StringSegment segment)
+        public int IndexOf(StringSegment other)
         {
-            if (@this.Length < segment.Length || segment.Length == 0)
+            if (segment.Length < other.Length || other.Length == 0)
                 return -1;
 
-            for (int i = 0; i <= @this.Length - segment.Length; i++)
+            for (int i = 0; i <= segment.Length - other.Length; i++)
             {
-                if (@this[i] == segment[0])
+                if (segment[i] == other[0])
                 {
-                    StringSegment candidate = @this.Subsegment(i, segment.Length);
-                    if (candidate.Equals(segment, StringComparison.CurrentCulture))
+                    StringSegment candidate = segment.Subsegment(i, other.Length);
+                    if (candidate.Equals(other, StringComparison.CurrentCulture))
                     {
                         return i;
                     }

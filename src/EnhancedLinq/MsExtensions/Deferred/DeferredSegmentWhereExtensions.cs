@@ -7,32 +7,27 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-namespace EnhancedLinq.MsExtensions.Immediate;
+namespace EnhancedLinq.MsExtensions.Deferred;
 
-public static partial class EnhancedLinqSegmentImmediate
+/// <summary>
+/// 
+/// </summary>
+public static class DeferredSegmentWhereExtensions
 {
     /// <param name="target">The StringSegment to search.</param>
     extension(StringSegment target)
     {
         /// <summary>
-        /// Counts the number of chars in the StringSegment that match the predicate.
+        /// Returns an IEnumerable of chars that match the predicate. 
         /// </summary>
         /// <param name="predicate">The predicate to check each char against.</param>
-        /// <returns>The number of chars matching the predicate condition as an integer.</returns>
-        public int Count(Func<char, bool> predicate)
+        /// <returns>An IEnumerable of chars that matches the predicate.</returns>
+        public IEnumerable<char> Where(Func<char, bool> predicate)
         {
             ArgumentException.ThrowIfNullOrWhitespace(target);
             ArgumentNullException.ThrowIfNull(predicate);
-            
-            int output = 0;
 
-            for (int i =  0; i < target.Length; i++)
-            {
-                if (predicate(target[i])) 
-                    output++;
-            }
-            
-            return output;
+            return new CustomEnumeratorEnumerable<char>(new WhereSegmentEnumerator(target, predicate));
         }
     }
 }

@@ -7,27 +7,35 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-namespace EnhancedLinq.MsExtensions.Deferred;
+namespace EnhancedLinq.MsExtensions.Immediate;
 
 /// <summary>
-/// This static partial class contains Deferred Execution extension methods for the <see cref="StringSegment"/>.
+/// 
 /// </summary>
-public static partial class EnhancedLinqSegmentDeferred
+public static class ImmediateSegmentCountExtensions
 {
     /// <param name="target">The StringSegment to search.</param>
     extension(StringSegment target)
     {
         /// <summary>
-        /// Returns an IEnumerable of chars that match the predicate. 
+        /// Counts the number of chars in the StringSegment that match the predicate.
         /// </summary>
         /// <param name="predicate">The predicate to check each char against.</param>
-        /// <returns>An IEnumerable of chars that matches the predicate.</returns>
-        public IEnumerable<char> Where(Func<char, bool> predicate)
+        /// <returns>The number of chars matching the predicate condition as an integer.</returns>
+        public int Count(Func<char, bool> predicate)
         {
             ArgumentException.ThrowIfNullOrWhitespace(target);
             ArgumentNullException.ThrowIfNull(predicate);
+            
+            int output = 0;
 
-            return new CustomEnumeratorEnumerable<char>(new WhereSegmentEnumerator(target, predicate));
+            for (int i =  0; i < target.Length; i++)
+            {
+                if (predicate(target[i])) 
+                    output++;
+            }
+            
+            return output;
         }
     }
 }

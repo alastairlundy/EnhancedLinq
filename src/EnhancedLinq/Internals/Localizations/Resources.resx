@@ -36,4 +36,7 @@
     <data name="Exceptions.Enumerable.InvalidWhenEmpty" xml:space="preserve">
         <value>Operation is invalid for an empty sequence.</value>
     </data>
+    <data name="Exceptions.Segment.NoCharMatchesPredicate" xml:space="preserve">
+        <value>No characters in StringSegment match predicate condition.</value>
+    </data>
 </root>

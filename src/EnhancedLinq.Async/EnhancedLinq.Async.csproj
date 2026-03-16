@@ -31,6 +31,10 @@
 
     <ItemGroup>
         <PackageReference Include="DotExtensions"/>
+        <PackageReference Include="Meziantou.Analyzer">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="Polyfill" PrivateAssets="all"/>
         <PackageReference Include="Microsoft.Bcl.AsyncInterfaces"
                           Condition="'$(TargetFramework)' == 'netstandard2.0'" />

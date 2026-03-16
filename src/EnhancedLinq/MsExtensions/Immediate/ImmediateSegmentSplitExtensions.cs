@@ -13,7 +13,10 @@ using EnhancedLinq.MsExtensions.Deferred;
 
 namespace EnhancedLinq.MsExtensions.Immediate;
 
-public static partial class EnhancedLinqSegmentImmediate
+/// <summary>
+/// 
+/// </summary>
+public static class ImmediateSegmentSplitExtensions
 {
     /// <param name="source">The source StringSegment.</param>
     extension(StringSegment source)

@@ -96,6 +96,15 @@ namespace EnhancedLinq.Internals.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No characters in StringSegment match predicate condition..
+        /// </summary>
+        internal static string Exceptions_Segment_NoCharMatchesPredicate {
+            get {
+                return ResourceManager.GetString("Exceptions.Segment.NoCharMatchesPredicate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The enumeration of elements yielded zero items. The sequence was empty. .
         /// </summary>
         internal static string Exceptions_Segments_InvalidOperation_EmptySequence {
