@@ -9,7 +9,6 @@
 
 using System.Linq;
 using System.Text;
-using EnhancedLinq.MsExtensions.Deferred;
 
 namespace EnhancedLinq.MsExtensions.Immediate;
 
