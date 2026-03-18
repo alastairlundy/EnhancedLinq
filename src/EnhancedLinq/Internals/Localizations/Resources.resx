@@ -39,4 +39,7 @@
     <data name="Exceptions.Segment.NoCharMatchesPredicate" xml:space="preserve">
         <value>No characters in StringSegment match predicate condition.</value>
     </data>
+    <data name="Exceptions.Numbers.ParameterIsNotANumber" xml:space="preserve">
+        <value>Parameter {0} is not a valid number.</value>
+    </data>
 </root>

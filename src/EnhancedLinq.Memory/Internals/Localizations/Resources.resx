@@ -33,4 +33,7 @@
     <data name="Exceptions.InvalidOperation.EmptyMemory" xml:space="preserve">
         <value>Memory must not be empty for this operation to be performed successfully.</value>
     </data>
+    <data name="Exceptions.Predicate.NoMatches" xml:space="preserve">
+        <value>No item matching the predicate was found.</value>
+    </data>
 </root>

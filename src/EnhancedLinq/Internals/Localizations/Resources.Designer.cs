@@ -96,6 +96,15 @@ namespace EnhancedLinq.Internals.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Parameter {0} is not a valid number..
+        /// </summary>
+        internal static string Exceptions_Numbers_ParameterIsNotANumber {
+            get {
+                return ResourceManager.GetString("Exceptions.Numbers.ParameterIsNotANumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No characters in StringSegment match predicate condition..
         /// </summary>
         internal static string Exceptions_Segment_NoCharMatchesPredicate {
