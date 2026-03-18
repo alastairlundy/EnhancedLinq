@@ -8,7 +8,7 @@
     <PackageVersion Include="DotExtensions.Memory" Version="10.0.0" />
     <PackageVersion Include="Microsoft.Extensions.Primitives" Version="10.0.5" />
     <PackageVersion Include="DotPrimitives.Collections" Version="4.3.0"/>
-    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.24">
+    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.25">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
