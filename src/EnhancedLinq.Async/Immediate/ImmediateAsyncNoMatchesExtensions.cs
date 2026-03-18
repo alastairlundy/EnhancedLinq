@@ -10,7 +10,7 @@
 namespace EnhancedLinq.Async.Immediate;
 
 /// <summary>
-/// An extension method for asynchronous operations that checks if a specific condition is met within an immediate sequence of elements.
+/// Extension method(s) for asynchronous operations that checks if a specific condition is met within an immediate sequence of elements.
 /// </summary>
 public static class ImmediateAsyncNoMatchesExtensions
 {
@@ -23,7 +23,7 @@ public static class ImmediateAsyncNoMatchesExtensions
         /// </summary>
         /// <param name="predicate">The predicate to check elements against.</param>
         /// <returns>True if none of the elements matched the predicate, false otherwise.</returns>
-        /// <exception cref="ArgumentNullException">Thrown if the source sequence or predicate are null.</exception>
+        /// <exception cref="ArgumentNullException">Thrown if the source sequence or predicate is null.</exception>
         public async Task<bool> HasNoMatchesAsync(Func<TSource, bool> predicate)
             => await source.CountAtMostAsync(predicate, 0).ConfigureAwait(false);
     }

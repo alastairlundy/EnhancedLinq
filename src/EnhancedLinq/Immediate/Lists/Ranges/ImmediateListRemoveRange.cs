@@ -12,10 +12,11 @@ using EnhancedLinq.Immediate.Lists.Linq;
 
 namespace EnhancedLinq.Immediate.Lists.Ranges;
 
+
 /// <summary>
-/// Provides functionality to work with immediate insertion of ranges of items into collections and lists.
+/// 
 /// </summary>
-public static partial class EnhancedLinqListImmediateRange
+public static class ImmediateListRemoveRange
 {
     /// <param name="source">The collection from which to remove elements.</param>
     /// <typeparam name="T">The type of elements in this collection.</typeparam>

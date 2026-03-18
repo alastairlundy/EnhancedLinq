@@ -12,7 +12,7 @@ using System.Linq;
 namespace EnhancedLinq.Async.Immediate;
 
 /// <summary>
-/// 
+/// Extension methods for asynchronous operations to find the last index of an element in a sequence.
 /// </summary>
 public static class ImmediateAsyncLastIndexOfExtensions
 {
