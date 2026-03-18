@@ -79,10 +79,12 @@ public static class ImmediateMemoryGetRangeExtensions
 
             if(indices is ICollection<int> collection)
                 return target.GetRange(collection);
-        
-            List<T> output = new();
-        
-            foreach (int index in indices)
+
+            List<T> output = [];
+            
+            int targetLength = target.Length;
+            
+            foreach (int index in indices.Where(i => i >= 0 && i < targetLength))
             {
                 output.Add(target[index]);
             }
@@ -109,8 +111,10 @@ public static class ImmediateMemoryGetRangeExtensions
             T[] array = new T[indices.Count];
         
             int newIndex = 0;
-        
-            foreach (int index in indices)
+            
+            int targetLength = target.Length;
+            
+            foreach (int index in indices.Where(i => i >= 0 && i < targetLength))
             {
                 target[newIndex] = target[index];
                 newIndex++;
