@@ -44,7 +44,7 @@ public static class ImmediateAsyncLastIndexOfExtensions
 
             int count = 0;
 
-            await foreach (T item in source.Reverse())
+            await foreach (T item in source.Reverse().ConfigureAwait(false))
             {
                 if (predicate(item) && !foundItem)
                 {
@@ -77,7 +77,7 @@ public static class ImmediateAsyncLastIndexOfExtensions
             int reverseIndex = 0;
             int count = 0;
 
-            await foreach (T item in source.Reverse())
+            await foreach (T item in source.Reverse().ConfigureAwait(false))
             {
                 if (item is not null && item.Equals(obj) && !foundItem)
                 {

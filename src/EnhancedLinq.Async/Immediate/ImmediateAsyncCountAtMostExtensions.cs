@@ -28,7 +28,7 @@ public static class ImmediateAsyncCountAtMostExtensions
             
             int count = 0;
 
-            await foreach (T unused in source)
+            await foreach (T unused in source.ConfigureAwait(false))
             {
                 count++;
 
@@ -55,7 +55,7 @@ public static class ImmediateAsyncCountAtMostExtensions
             
             int count = 0;
 
-            await foreach (T obj in source)
+            await foreach (T obj in source.ConfigureAwait(false))
             {
                 if (predicate(obj))
                     count++;

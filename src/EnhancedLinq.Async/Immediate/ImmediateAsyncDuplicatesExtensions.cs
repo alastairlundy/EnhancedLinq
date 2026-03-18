@@ -23,7 +23,7 @@ public static class ImmediateAsyncDuplicatesExtensions
         /// </summary>
         /// <returns>True if the <see cref="IEnumerable{T}"/> contains duplicate objects; false otherwise.</returns>
         public async Task<bool> ContainsDuplicates()
-            => await source.ContainsDuplicates(EqualityComparer<T>.Default);
+            => await source.ContainsDuplicates(EqualityComparer<T>.Default).ConfigureAwait(false);
 
         /// <summary>
         /// Determines whether an <see cref="IAsyncEnumerable{T}"/> contains duplicate instances of an object.
@@ -37,7 +37,7 @@ public static class ImmediateAsyncDuplicatesExtensions
             
             HashSet<T> hash = new(comparer: comparer);
         
-            await foreach (T item in source)
+            await foreach (T item in source.ConfigureAwait(false))
             {
                 bool result = hash.Add(item);
 

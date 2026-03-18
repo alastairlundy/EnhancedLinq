@@ -35,7 +35,7 @@ public static class ImmediateAsyncIndexOfExtensions
         
             int index = 0;
 
-            await foreach (T item in source)
+            await foreach (T item in source.ConfigureAwait(false))
             {
                 if (predicate(item))
                     return index;
@@ -57,7 +57,7 @@ public static class ImmediateAsyncIndexOfExtensions
         
             int index = 0;
                 
-            await foreach (T item in source)
+            await foreach (T item in source.ConfigureAwait(false))
             {
                 if (item is not null && item.Equals(obj))
                 {

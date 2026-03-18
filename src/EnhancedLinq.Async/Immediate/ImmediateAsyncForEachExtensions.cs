@@ -31,7 +31,7 @@ public static class ImmediateAsyncForEachExtensions
             ArgumentNullException.ThrowIfNull(action);
 
             
-            await foreach (T item in target)
+            await foreach (T item in target.ConfigureAwait(false))
             {
                 action.Invoke(item);
             }

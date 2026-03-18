@@ -30,7 +30,7 @@ public static class ImmediateAsyncCountAtLeastExtensions
             
             int count = 0;
 
-            await foreach (T unused in source)
+            await foreach (T unused in source.ConfigureAwait(false))
             {
                 count++;
 
@@ -58,7 +58,7 @@ public static class ImmediateAsyncCountAtLeastExtensions
             
             int count = 0;
 
-            await foreach (T item in source)
+            await foreach (T item in source.ConfigureAwait(false))
             {
                 if (predicate(item))
                     count++;

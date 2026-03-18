@@ -31,7 +31,7 @@ public static class ImmediateAsyncElementAtExtensions
             
             int i = 0;
 
-            await foreach (T item in source)
+            await foreach (T item in source.ConfigureAwait(false))
             {
                 if (i == index)
                 {

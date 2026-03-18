@@ -37,7 +37,7 @@ internal class GenericIndicesAsyncEnumerator<TSource> : IAsyncEnumerator<int>
         {
             try
             {
-                while (await _enumerator.MoveNextAsync())
+                while (await _enumerator.MoveNextAsync().ConfigureAwait(false))
                 {
                     if (_predicate(_enumerator.Current))
                     {
@@ -50,12 +50,12 @@ internal class GenericIndicesAsyncEnumerator<TSource> : IAsyncEnumerator<int>
             }
             finally
             {
-                await DisposeAsync();
+                await DisposeAsync().ConfigureAwait(false);
                 _state = -1;
             }
         }
         
-        await DisposeAsync();
+        await DisposeAsync().ConfigureAwait(false);
         return false;
     }
 

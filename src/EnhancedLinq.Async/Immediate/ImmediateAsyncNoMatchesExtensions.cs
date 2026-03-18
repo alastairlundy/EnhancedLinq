@@ -25,6 +25,6 @@ public static class ImmediateAsyncNoMatchesExtensions
         /// <returns>True if none of the elements matched the predicate, false otherwise.</returns>
         /// <exception cref="ArgumentNullException">Thrown if the source sequence or predicate are null.</exception>
         public async Task<bool> HasNoMatchesAsync(Func<TSource, bool> predicate)
-            => await source.CountAtMostAsync(predicate, 0);
+            => await source.CountAtMostAsync(predicate, 0).ConfigureAwait(false);
     }
 }

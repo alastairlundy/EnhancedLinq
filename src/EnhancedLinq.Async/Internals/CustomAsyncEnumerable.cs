@@ -18,6 +18,6 @@ internal class CustomAsyncEnumerable<TSource> : IAsyncEnumerable<TSource>, IAsyn
 
     public async ValueTask DisposeAsync()
     {
-        await _enumerator.DisposeAsync();
+        await _enumerator.DisposeAsync().ConfigureAwait(false);
     }
 }
