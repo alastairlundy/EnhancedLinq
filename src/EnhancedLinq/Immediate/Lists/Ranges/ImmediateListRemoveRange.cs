@@ -12,7 +12,6 @@ using EnhancedLinq.Immediate.Lists.Linq;
 
 namespace EnhancedLinq.Immediate.Lists.Ranges;
 
-
 /// <summary>
 /// 
 /// </summary>
