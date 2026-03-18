@@ -37,8 +37,6 @@ public static class ImmediateMemorySelectManyExtensions
 
             foreach (ICollection<TResult> collection in newCollections)
             {
-                ArgumentNullException.ThrowIfNull(collection);
-            
                 foreach (TResult obj in collection)
                 {
                     if (results.Count == int.MaxValue || collection.Count + results.Count >= int.MaxValue)

@@ -84,9 +84,6 @@ public static class ImmediateMemoryGetRangeExtensions
         
             foreach (int index in indices)
             {
-                ArgumentOutOfRangeException.ThrowIfNegative(index);
-                ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(index, target.Length);
-                
                 output.Add(target[index]);
             }
             
@@ -115,9 +112,6 @@ public static class ImmediateMemoryGetRangeExtensions
         
             foreach (int index in indices)
             {
-                ArgumentOutOfRangeException.ThrowIfNegative(index);
-                ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(index, target.Length);
-
                 target[newIndex] = target[index];
                 newIndex++;
             }
