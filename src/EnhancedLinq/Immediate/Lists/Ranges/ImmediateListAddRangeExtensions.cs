@@ -9,7 +9,10 @@
 
 namespace EnhancedLinq.Immediate.Lists.Ranges;
 
-public static partial class EnhancedLinqListImmediateRange
+/// <summary>
+/// 
+/// </summary>
+public static class ImmediateListAddRangeExtensions
 {
     /// <summary>
     /// 

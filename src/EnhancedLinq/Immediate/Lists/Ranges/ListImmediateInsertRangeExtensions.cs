@@ -14,7 +14,7 @@ namespace EnhancedLinq.Immediate.Lists.Ranges;
 /// <summary>
 /// Provides functionality to work with immediate insertion of ranges of items into collections and lists.
 /// </summary>
-public static partial class EnhancedLinqListImmediateRange
+public static class ListImmediateInsertRangeExtensions
 {
     /// <param name="source">The collection into which to insert the new elements.</param>
     /// <typeparam name="T">The type of elements in the value sequence and the collection.</typeparam>
