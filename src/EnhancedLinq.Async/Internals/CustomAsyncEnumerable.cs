@@ -11,9 +11,15 @@ internal class CustomAsyncEnumerable<TSource> : IAsyncEnumerable<TSource>, IAsyn
         _enumerator = enumerator;
     }
     
-    public IAsyncEnumerator<TSource> GetAsyncEnumerator(CancellationToken cancellationToken = new CancellationToken())
+    public async IAsyncEnumerator<TSource> GetAsyncEnumerator(CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        while (await _enumerator.MoveNextAsync().ConfigureAwait(false))
+        {
+            if (cancellationToken.IsCancellationRequested)
+                yield break;
+            
+            yield return _enumerator.Current;
+        }
     }
 
     public async ValueTask DisposeAsync()
