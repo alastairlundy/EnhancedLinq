@@ -13,12 +13,11 @@ using DotExtensions.Numbers;
 namespace EnhancedLinq.Memory.Immediate.Ranges;
 
 /// <summary>
-/// 
+/// Extension methods for retrieving a range of items from an immediate memory span.
 /// </summary>
 public static class ImmediateMemoryGetRangeExtensions
 {
 #if NET8_0_OR_GREATER
-
     /// <param name="target">The original span to extract the range of items from.</param>
     /// <typeparam name="T">The type of elements in the span.</typeparam>
     extension<T>(Span<T> target)

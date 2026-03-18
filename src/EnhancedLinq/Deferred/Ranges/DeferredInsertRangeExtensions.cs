@@ -47,6 +47,4 @@ public static class DeferredInsertRangeExtensions
                 new InsertRangeEnumerator<TSource>(source, indexToInsertAt, toBeInserted));
         }
     }
-    
-
 }

@@ -11,7 +11,7 @@
 namespace EnhancedLinq.Memory.Immediate.Maths;
 
 /// <summary>
-/// 
+/// Provides extension methods for finding minimum and maximum values within an immediate memory span of numbers.
 /// </summary>
 public static class ImmediateMemoryMinAndMaxExtensions
 {

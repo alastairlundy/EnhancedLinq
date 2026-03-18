@@ -12,7 +12,7 @@ using EnhancedLinq.Memory.Deferred;
 namespace EnhancedLinq.Memory.Immediate;
 
 /// <summary>
-/// 
+/// Provides extension methods for counting elements in an <see cref="Span{T}"/> with a minimum count requirement.
 /// </summary>
 public static class ImmediateMemoryCountAtLeastExtensions
 {

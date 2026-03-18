@@ -13,7 +13,7 @@ using DotExtensions.MsExtensions.Primitives;
 namespace EnhancedLinq.MsExtensions.Deferred;
 
 /// <summary>
-/// 
+/// Provides extension methods for splitting <see cref="StringSegment"/> instances using deferred execution.
 /// </summary>
 public static class DeferredSegmentSplitExtensions
 {

@@ -13,7 +13,7 @@ using System.Linq;
 namespace EnhancedLinq.Immediate.Concurrent.Ranges;
 
 /// <summary>
-/// 
+/// Provides extension methods for removing a range of elements from an <see cref="ConcurrentBag{T}"/> concurrently.
 /// </summary>
 public static class ImmediateConcurrentRemoveRangeExtensions
 {

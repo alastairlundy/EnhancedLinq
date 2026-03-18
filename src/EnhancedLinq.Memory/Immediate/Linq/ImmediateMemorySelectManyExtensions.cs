@@ -10,7 +10,7 @@
 namespace EnhancedLinq.Memory.Immediate;
 
 /// <summary>
-/// 
+/// Extension methods for performing immediate memory-based selection and flattening operations on sequences.
 /// </summary>
 public static class ImmediateMemorySelectManyExtensions
 {

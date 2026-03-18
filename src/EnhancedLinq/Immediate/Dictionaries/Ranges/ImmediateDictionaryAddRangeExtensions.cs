@@ -11,7 +11,7 @@
 namespace EnhancedLinq.Immediate.Dictionaries.Ranges;
 
 /// <summary>
-/// Provides extension methods for adding multiple items to dictionaries.
+/// Provides extension methods for adding ranges of key-value pairs to a dictionary.
 /// </summary>
 public static class ImmediateDictionaryAddRangeExtensions
 {

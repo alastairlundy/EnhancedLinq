@@ -10,7 +10,7 @@
 namespace EnhancedLinq.Memory.Immediate;
 
 /// <summary>
-/// 
+/// Extension methods for splitting memory using immediate memory operations.
 /// </summary>
 public static class ImmediateMemorySplitExtensions
 {

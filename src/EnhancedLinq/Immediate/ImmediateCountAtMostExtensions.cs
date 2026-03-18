@@ -14,9 +14,6 @@ namespace EnhancedLinq.Immediate;
 /// </summary>
 public static class ImmediateCountAtMostExtensions
 {
-    /// <summary>
-    /// 
-    /// </summary>
     /// <param name="source">The source sequence to search through.</param>
     /// <typeparam name="T">The element type of the source sequence.</typeparam>
     extension<T>(IEnumerable<T> source)

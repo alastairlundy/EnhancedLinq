@@ -10,7 +10,7 @@
 namespace EnhancedLinq.Memory.Immediate;
 
 /// <summary>
-/// 
+/// Provides extension methods for working with immediate memory spans in EnhancedLinq.Memory.Immediate.
 /// </summary>
 public static class ImmediateMemorySkipExtensions
 {

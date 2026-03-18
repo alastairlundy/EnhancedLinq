@@ -10,7 +10,7 @@
 namespace EnhancedLinq.Memory.Immediate;
 
 /// <summary>
-/// 
+/// Provides extension methods for working with immediate memory no matches scenarios.
 /// </summary>
 public static class ImmediateMemoryNoMatchesExtensions
 {
