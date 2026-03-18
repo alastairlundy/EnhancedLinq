@@ -41,8 +41,15 @@ public static class DeferredNumberRangeExtensions
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
             ArgumentOutOfRangeException.ThrowIfZero(incrementor);
             
-            if (TNumber.IsNaN(start) || TNumber.IsNaN(count) || TNumber.IsNaN(incrementor))
-                throw new ArgumentException();
+            
+            if (TNumber.IsNaN(start))
+                throw new ArgumentException(Resources.Exceptions_Numbers_ParameterIsNotANumber, nameof(start));
+                    
+            if(TNumber.IsNaN(count))
+                throw new ArgumentException(Resources.Exceptions_Numbers_ParameterIsNotANumber, nameof(count));
+
+            if(TNumber.IsNaN(incrementor))
+                throw new ArgumentException(Resources.Exceptions_Numbers_ParameterIsNotANumber, nameof(incrementor));
 
             if (TNumber.IsInfinity(start) || TNumber.IsInfinity(count))
                 throw new NotFiniteNumberException();

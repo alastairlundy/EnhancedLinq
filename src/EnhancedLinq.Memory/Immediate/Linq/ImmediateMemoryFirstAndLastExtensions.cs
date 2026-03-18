@@ -55,7 +55,7 @@ public static class ImmediateMemoryFirstAndLastExtensions
                     return item;
             }
 
-            throw new ArgumentException();
+            throw new ArgumentException(Resources.Exceptions_Predicate_NoMatches, nameof(predicate));
         }
 
         /// <summary>
@@ -129,7 +129,7 @@ public static class ImmediateMemoryFirstAndLastExtensions
                     return item;
             }
 
-            throw new ArgumentException();
+            throw new ArgumentException(Resources.Exceptions_Predicate_NoMatches, nameof(predicate));
         }
 
         /// <summary>
@@ -191,7 +191,7 @@ public static class ImmediateMemoryFirstAndLastExtensions
                     return item;
             }
 
-            throw new ArgumentException();
+            throw new ArgumentException(Resources.Exceptions_Predicate_NoMatches, nameof(predicate));
         }
 
         /// <summary>
@@ -261,7 +261,7 @@ public static class ImmediateMemoryFirstAndLastExtensions
                     return item;
             }
 
-            throw new ArgumentException();
+            throw new ArgumentException(Resources.Exceptions_Predicate_NoMatches, nameof(predicate));
         }
 
         /// <summary>
@@ -299,7 +299,7 @@ public static class ImmediateMemoryFirstAndLastExtensions
                 return item;
             }
 
-            throw new ArgumentException();
+            throw new ArgumentException(Resources.Exceptions_InvalidOperation_EmptyMemory, nameof(source));
         }
 
         /// <summary>
@@ -317,7 +317,7 @@ public static class ImmediateMemoryFirstAndLastExtensions
                     return item;
             }
 
-            throw new ArgumentException();
+            throw new ArgumentException(Resources.Exceptions_Predicate_NoMatches, nameof(predicate));
         }
 
         /// <summary>
@@ -387,7 +387,7 @@ public static class ImmediateMemoryFirstAndLastExtensions
                 }
             }
 
-            throw new ArgumentException();
+            throw new ArgumentException(Resources.Exceptions_Predicate_NoMatches, nameof(predicate));
         }
 
         /// <summary>
@@ -427,7 +427,7 @@ public static class ImmediateMemoryFirstAndLastExtensions
                 return item;
             }
 
-            throw new ArgumentException();
+            throw new ArgumentException(Resources.Exceptions_InvalidOperation_EmptyMemory, nameof(source));
         }
         
         /// <summary>
@@ -462,7 +462,7 @@ public static class ImmediateMemoryFirstAndLastExtensions
                     return item;
             }
 
-            throw new ArgumentException();
+            throw new ArgumentException(Resources.Exceptions_Predicate_NoMatches, nameof(predicate));
         }
         
         /// <summary>
@@ -518,7 +518,7 @@ public static class ImmediateMemoryFirstAndLastExtensions
                 }
             }
 
-            throw new ArgumentException();
+            throw new ArgumentException(Resources.Exceptions_Predicate_NoMatches, nameof(predicate));
         }
 
         /// <summary>
