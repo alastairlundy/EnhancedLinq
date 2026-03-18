@@ -42,7 +42,7 @@ public static class ImmediateAsyncElementAtExtensions
             }
 
             throw new ArgumentException(Resources.Exceptions_ValueNotFound_AtIndex.Replace("{y}", nameof(source))
-                .Replace("{x}",$"{index}"));
+                .Replace("{x}",$"{index}"), nameof(index));
         }
     }
 }

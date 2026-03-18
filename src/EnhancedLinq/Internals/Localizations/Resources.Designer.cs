@@ -105,6 +105,15 @@ namespace EnhancedLinq.Internals.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot remove more items than exist in a collection..
+        /// </summary>
+        internal static string Exceptions_Remove_CountTooLarge {
+            get {
+                return ResourceManager.GetString("Exceptions.Remove.CountTooLarge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No characters in StringSegment match predicate condition..
         /// </summary>
         internal static string Exceptions_Segment_NoCharMatchesPredicate {
@@ -128,6 +137,15 @@ namespace EnhancedLinq.Internals.Localizations {
         internal static string Exceptions_ValueNotFound_AtIndex {
             get {
                 return ResourceManager.GetString("Exceptions.ValueNotFound.AtIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Exceptions_ValueNotInitialized {
+            get {
+                return ResourceManager.GetString("Exceptions.ValueNotInitialized", resourceCulture);
             }
         }
     }

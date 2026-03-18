@@ -112,5 +112,14 @@ namespace EnhancedLinq.Memory.Internals.Localizations {
                 return ResourceManager.GetString("Exceptions.SkipCount.TooLarge", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The value was not initialized..
+        /// </summary>
+        internal static string Exceptions_ValueNotInitialized {
+            get {
+                return ResourceManager.GetString("Exceptions.ValueNotInitialized", resourceCulture);
+            }
+        }
     }
 }

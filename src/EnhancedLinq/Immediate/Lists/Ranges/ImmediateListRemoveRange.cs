@@ -42,7 +42,7 @@ public static class ImmediateListRemoveRange
                 throw new NotSupportedException();
             
             if (!(source.Count < startIndex + count))
-                throw new ArgumentException();
+                throw new ArgumentException(Resources.Exceptions_Remove_CountTooLarge, nameof(count));
         
             if (startIndex > 0)
             {
@@ -87,7 +87,7 @@ public static class ImmediateListRemoveRange
                 throw new NotSupportedException();
             
             if (!(list.Count < startIndex + count))
-                throw new ArgumentException();
+                throw new ArgumentException(Resources.Exceptions_Remove_CountTooLarge, nameof(count));
         
             int limit = startIndex + count;
         

@@ -68,7 +68,7 @@ internal class MemoryEnumerator<TSource> : IEnumerator<TSource>
 
     public TSource Current
     {
-        get => field ?? throw new ArgumentNullException(nameof(_memory));
+        get => field ?? throw new Exception(Resources.Exceptions_ValueNotInitialized);
         private set
         {
             if (value is not null)
