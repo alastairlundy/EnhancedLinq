@@ -24,7 +24,7 @@ public static class ImmediateSegmentIndicesExtensions
         /// <returns>A list containing the zero-based index positions where the specified character was found in the segment.</returns>
         public IList<int> IndicesOf(char c)
         {
-            List<int> output = new();
+            List<int> output = [];
 
             for (int i = 0; i < segment.Length; i++)
             {
@@ -42,7 +42,7 @@ public static class ImmediateSegmentIndicesExtensions
         /// <returns>A list containing the zero-based index positions where the specified <see cref="StringSegment"/> was found in the <see cref="StringSegment"/>.</returns>
         public IList<int> IndicesOf(StringSegment other)
         {
-            List<int> output = new List<int>();
+            List<int> output = [];
 
             IList<int> firstLetterIndices = segment.IndicesOf(other.First());
 
