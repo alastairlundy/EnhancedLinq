@@ -9,9 +9,15 @@ updates:
     directory: "src" # Location of package manifests
     schedule:
       interval: daily
+    cooldown:
+      default-days: 2
+      exclude: "*"
+      include: ["TUnit"]
+      
 
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: daily
-
+    cooldown:
+      default-days: 2
