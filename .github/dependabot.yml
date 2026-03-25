@@ -15,6 +15,7 @@ updates:
         - "*"
       include: 
         - "TUnit"
+        - "Meziantou.Analyzer"
       
 
   - package-ecosystem: github-actions
