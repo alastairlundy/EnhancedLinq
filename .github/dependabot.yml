@@ -12,7 +12,7 @@ updates:
     cooldown:
       default-days: 2
       exclude: "*"
-      include: ["TUnit"]
+      include: "TUnit"
       
 
   - package-ecosystem: github-actions
