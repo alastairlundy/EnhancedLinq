@@ -14,7 +14,7 @@ namespace EnhancedLinq.Immediate;
 /// <summary>
 /// 
 /// </summary>
-public static class ImmediateLastIndexExtensions
+public static class ImmediateLastIndexOfExtensions
 {
     /// <summary>
     /// 
