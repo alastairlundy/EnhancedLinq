@@ -15,7 +15,7 @@ namespace EnhancedLinq.Immediate;
 /// <summary>
 /// 
 /// </summary>
-public static class ImmediateIndexExtensions
+public static class ImmediateIndexOfExtensions
 {
     /// <summary>
     /// 
@@ -100,6 +100,9 @@ public static class ImmediateIndexExtensions
 
             foreach (int index in indices)
             {
+                if (index == -1)
+                    break;
+                
                 string indexValue = value.Substring(index, value.Length);
 
                 if (indexValue.Equals(str))
