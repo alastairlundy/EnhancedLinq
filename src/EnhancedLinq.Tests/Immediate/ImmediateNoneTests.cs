@@ -28,20 +28,21 @@ public class ImmediateNoneTests
     {
         IList<string> source = _faker.Make(Random.Shared.Next(1, 10), _ => _faker.Lorem.Word());
 
-        bool expected = source.HasNoMatches(s => s.Length == 0);
+        bool actual = source.HasNoMatches(s => s.Length == 0);
         
-        await Assert.That(expected)
+        await Assert.That(actual)
             .IsTrue();
     }
 
     [Test]
     public async Task None_Enumerable_Matches_ReturnsFalse()
     {
-        IEnumerable<DateTime> source = _faker.MakeLazy(Random.Shared.Next(1, 10), _ => _faker.Date.Between(DateTime.Today.AddDays(1), DateTime.Today.AddDays(1000)));
+        IEnumerable<DateTime> source = _faker.MakeLazy(Random.Shared.Next(1, 10),
+            _ => _faker.Date.Between(DateTime.Today.AddDays(1), DateTime.Today.AddDays(1000)));
 
-        bool expected = source.HasNoMatches(d => d.Date > DateTime.Today.Date);
+        bool actual = source.HasNoMatches(d => d.Date > DateTime.Today.Date);
         
-        await Assert.That(expected)
+        await Assert.That(actual)
             .IsFalse();
     }
 }
