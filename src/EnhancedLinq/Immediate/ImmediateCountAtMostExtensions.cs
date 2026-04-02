@@ -59,8 +59,8 @@ public static class ImmediateCountAtMostExtensions
 
             if (source is ICollection<T> collection)
             {
-                if(collection.Count == 0)
-                    throw new InvalidOperationException(Resources.Exceptions_Enumerable_InvalidWhenEmpty);
+                // No special handling needed for empty collections in CountAtMost
+                // An empty collection simply has 0 elements, which is valid for any count >= 0
             }
             
             int currentCount = 0;

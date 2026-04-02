@@ -25,7 +25,6 @@ public static class ImmediateMemoryExcludeExtensions
         /// Returns a new <see cref="Span{TSource}"/> containing the elements of <paramref name="span"/>
         /// that do not satisfy the given predicate.
         /// </summary>
-        /// <typeparam name="TSource">The type of the elements in the input span.</typeparam>
         /// <param name="span">The span of items to exclude from the input.</param>
         /// <returns>A new <see cref="Span{TSource}"/> containing the elements that do not satisfy the predicate.</returns>
         /// <exception cref="ArgumentNullException">Thrown if the provided predicate is null.</exception>
@@ -59,7 +58,6 @@ public static class ImmediateMemoryExcludeExtensions
         /// Returns a new <see cref="Span{TSource}"/> containing the elements of the input span
         /// that do not satisfy the given predicate.
         /// </summary>
-        /// <typeparam name="TSource">The type of the elements in the input span.</typeparam>
         /// <param name="predicate">The predicate function to determine which elements to exclude.</param>
         /// <returns>A new <see cref="Span{TSource}"/> containing the elements that do not satisfy the predicate.</returns>
         /// <exception cref="ArgumentNullException">Thrown if the provided predicate is null.</exception>
@@ -83,7 +81,6 @@ public static class ImmediateMemoryExcludeExtensions
         /// Returns a new <see cref="ReadOnlySpan{TSource}"/> containing the elements of the input span
         /// that do not satisfy the given predicate.
         /// </summary>
-        /// <typeparam name="TSource">The type of the elements in the input span.</typeparam>
         /// <param name="predicate">The predicate function to determine which elements to exclude.</param>
         /// <returns>A new <see cref="ReadOnlySpan{TSource}"/> containing elements that do not satisfy the predicate.</returns>
         /// <exception cref="ArgumentNullException">Thrown if the provided predicate is null.</exception>

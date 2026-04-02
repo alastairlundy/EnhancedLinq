@@ -67,9 +67,9 @@ internal class MemoryOrderByEnumerator<TSource, TKey> : IEnumerator<TSource>
             _enumerator = (IEnumerator<TSource>?)enumerable.GetEnumerator();
             _state = 1;
         }
-        if (_state == 1)
+        if (_state == 1 && _enumerator != null)
         {
-            bool moveNext = (bool)_enumerator?.MoveNext();
+            bool moveNext = _enumerator.MoveNext();
 
             if (moveNext)
             {

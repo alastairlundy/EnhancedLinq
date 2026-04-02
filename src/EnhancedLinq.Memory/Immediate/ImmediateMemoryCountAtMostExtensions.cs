@@ -44,9 +44,6 @@ public static class ImmediateMemoryCountAtMostExtensions
         public bool CountAtMost(Func<T, bool> predicate,
             int countToLookFor)
         {
-            if(countToLookFor != 0)
-                InvalidOperationException.ThrowIfSpanIsEmpty(source);
-
             ArgumentNullException.ThrowIfNull(predicate);
             ArgumentOutOfRangeException.ThrowIfNegative(countToLookFor);
 
@@ -94,11 +91,8 @@ public static class ImmediateMemoryCountAtMostExtensions
         public bool CountAtMost(Func<T, bool> predicate,
             int countToLookFor)
         {
-            if(countToLookFor != 0)
-                InvalidOperationException.ThrowIfSpanIsEmpty(source);
-            
             ArgumentOutOfRangeException.ThrowIfNegative(countToLookFor);
-        
+         
             int currentCount = 0;
 
             foreach (T obj in source)
@@ -125,9 +119,6 @@ public static class ImmediateMemoryCountAtMostExtensions
         /// <returns>True if there are at most <paramref name="countToLookFor"/> number of elements in the <see cref="Memory{T}"/>, false otherwise.</returns>
         public bool CountAtMost(int countToLookFor)
         {
-            if(countToLookFor != 0)
-                InvalidOperationException.ThrowIfMemoryIsEmpty(source);
-            
             ArgumentOutOfRangeException.ThrowIfNegative(countToLookFor);
             
             return source.Length <= countToLookFor;

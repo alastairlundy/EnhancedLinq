@@ -20,14 +20,12 @@ public static class ImmediateListExcludeExtensions
     /// <summary>
     /// Provides extension methods for performing immediate operations on a list.
     /// </summary>
-    /// <typeparam name="TSource">The type of elements in the list.</typeparam>
     /// <param name="list">The source list on which the operations are performed.</param>
     extension<TSource>(List<TSource> list)
     {
         /// <summary>
         /// Removes elements from the list that exist in the specified collection and satisfy a given predicate.
         /// </summary>
-        /// <typeparam name="TSource">The type of the elements in the list and collection.</typeparam>
         /// <param name="collection">The collection of elements to be excluded from the list.</param>
         /// <param name="predicate">The predicate that determines whether an element should be excluded.</param>
         /// <returns>A new list that contains the elements of the original list minus the ones that are both in the specified collection and satisfy the predicate.</returns>
@@ -54,7 +52,6 @@ public static class ImmediateListExcludeExtensions
         /// <summary>
         /// Removes elements from the list that exist in the specified collection and satisfy a given predicate.
         /// </summary>
-        /// <typeparam name="TSource">The type of the elements in the list and collection.</typeparam>
         /// <param name="collection">The collection of elements to be excluded from the list.</param>
         /// <returns>A new list that contains the elements of the original list minus the ones that are both in the specified collection and satisfy the predicate.</returns>
         public IList<TSource> Exclude(ICollection<TSource> collection)
@@ -84,7 +81,6 @@ public static class ImmediateListExcludeExtensions
         /// <summary>
         /// Removes elements from the array that exist in the specified collection.
         /// </summary>
-        /// <typeparam name="TSource">The type of elements in the array and the collection.</typeparam>
         /// <param name="collection">The collection of elements to be excluded from the array.</param>
         /// <returns>A new array that contains the elements of the original array minus the ones present in the specified collection.</returns>
         public TSource[] Exclude(ICollection<TSource> collection)
@@ -113,7 +109,6 @@ public static class ImmediateListExcludeExtensions
         /// <summary>
         /// Removes elements from the current array that exist in the specified collection and satisfy the given predicate.
         /// </summary>
-        /// <typeparam name="TSource">The type of the elements in the array and collection.</typeparam>
         /// <param name="collection">The collection of elements to be excluded from the array.</param>
         /// <param name="predicate">The predicate that determines whether an element should be excluded.</param>
         /// <returns>A new array that contains the elements of the original array minus the ones that are both in the specified collection and satisfy the predicate.</returns>
