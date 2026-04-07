@@ -10,7 +10,7 @@ updates:
     schedule:
       interval: "daily"
     cooldown:
-      default-days: 3
+      default-days: 7
       include: 
         - "TUnit"
         - "Meziantou.Analyzer"
