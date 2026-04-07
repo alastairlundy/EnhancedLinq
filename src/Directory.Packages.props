@@ -8,7 +8,7 @@
    <PackageVersion Include="DotExtensions" Version="10.1.1" />
     <PackageVersion Include="Microsoft.Extensions.Primitives" Version="10.0.5" />
     <PackageVersion Include="DotPrimitives.Collections" Version="4.3.0"/>
-    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.39">
+    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.44">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
@@ -18,6 +18,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageVersion Include="Bogus" Version="35.6.5" />
-    <PackageVersion Include="TUnit" Version="1.24.0" />
+    <PackageVersion Include="TUnit" Version="1.28.0" />
   </ItemGroup>
 </Project>
