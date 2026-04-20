@@ -25,11 +25,6 @@ internal class GenericIndicesAsyncEnumerator<TSource> : IAsyncEnumerator<int>
         _state = 1;
         _index = 0;
     }
-    
-    public void Reset()
-    {
-        throw new NotSupportedException();
-    }
 
     public async ValueTask<bool> MoveNextAsync()
     {

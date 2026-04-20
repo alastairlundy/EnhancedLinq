@@ -12,7 +12,7 @@ using System.Linq;
 namespace EnhancedLinq.Async.Deferred;
 
 /// <summary>
-/// 
+/// Provides extension methods for deferred asynchronous operations involving the computation of indices in collections or sequences.
 /// </summary>
 public static class DeferredAsyncNIndicesOfExtensions
 {
@@ -48,7 +48,6 @@ public static class DeferredAsyncNIndicesOfExtensions
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(selector);
-
             
             return source.IndicesOfAsync(selector).Take(count);
         }

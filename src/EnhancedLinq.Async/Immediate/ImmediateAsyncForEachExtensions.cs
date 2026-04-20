@@ -22,18 +22,36 @@ public static class ImmediateAsyncForEachExtensions
     extension<T>(IAsyncEnumerable<T> target)
     {
         /// <summary>
-        /// Applies the given action for each element of this sequence.
+        /// 
         /// </summary>
-        /// <param name="action">The action to apply to each element in the sequence.</param>
-        public async Task ForEachAsync(Action<T> action)
+        /// <param name="selector"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public async IAsyncEnumerable<T> ForEachAsync(Func<T, Task<T>> selector)
         {
-            ArgumentNullException.ThrowIfNull(target);
-            ArgumentNullException.ThrowIfNull(action);
-
+            ArgumentNullException.ThrowIfNull(selector);
             
             await foreach (T item in target.ConfigureAwait(false))
             {
-                action.Invoke(item);
+                T result = await selector.Invoke(item).ConfigureAwait(false);
+               
+                yield return result;
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="selector"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public async IAsyncEnumerable<TResult> ForEachAsync<TResult>(Func<T, Task<TResult>> selector)
+        {
+            ArgumentNullException.ThrowIfNull(selector);
+            
+            await foreach (T item in target.ConfigureAwait(false))
+            {
+                TResult result = await selector.Invoke(item).ConfigureAwait(false);
+                
+                yield return result;
             }
         }
     }
