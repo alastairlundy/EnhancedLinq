@@ -29,20 +29,20 @@ public static class ImmediateDuplicatesExtensions
         
             comparer ??= EqualityComparer<T>.Default;
 
+#if NET8_0_OR_GREATER
             HashSet<T> hash;
-
+            
             if (source is ICollection<T> collection)
             {
-#if NET8_0_OR_GREATER
                 hash = new HashSet<T>(collection.Count, comparer);
-#else
-                hash = new HashSet<T>(comparer);
-#endif
             }
             else
             {
                 hash =  new HashSet<T>(comparer: comparer);
             }
+#else
+            HashSet<T> hash = new HashSet<T>(comparer);
+#endif
         
             foreach (T item in source)
             {

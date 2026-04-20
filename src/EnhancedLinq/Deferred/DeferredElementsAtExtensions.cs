@@ -37,7 +37,6 @@ public static class DeferredElementsAtExtensions
                 new ElementsAtEnumerator<TSource>(source, indices));
         }
         
-#if NET8_0_OR_GREATER || NETSTANDARD2_1
         /// <summary>
         /// Returns a sequence of elements from the specified source, 
         /// where the index of each element in the returned sequence corresponds to an index in the provided indices.
@@ -47,9 +46,7 @@ public static class DeferredElementsAtExtensions
         /// <param name="range">The range of indices to retrieve, where each index corresponds to an element in the source.</param>
         /// <returns>A new sequence containing the elements at the specified indexes from the original source.</returns>
         public IEnumerable<TSource> ElementsAt(Range range)
-            =>
-                source.ElementsAt(range.Start.Value, Math.Abs(range.Start.Value - range.End.Value));
-#endif
+            =>source.ElementsAt(range.Start.Value, Math.Abs(range.Start.Value - range.End.Value));
         
         /// <summary>
         /// Returns a sequence of elements from the specified source, 
