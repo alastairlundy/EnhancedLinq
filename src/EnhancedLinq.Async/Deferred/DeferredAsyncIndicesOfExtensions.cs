@@ -12,7 +12,8 @@ using EnhancedLinq.Async.Deferred.Enumerators;
 namespace EnhancedLinq.Async.Deferred;
 
 /// <summary>
-/// 
+/// Provides a set of extension methods for asynchronously retrieving the indices
+/// of elements in a sequence that match specified conditions.
 /// </summary>
 public static class DeferredAsyncIndicesOfExtensions
 {
@@ -30,12 +31,12 @@ public static class DeferredAsyncIndicesOfExtensions
             return new CustomAsyncEnumerable<int>(
                 new GenericIndicesAsyncEnumerator<TSource>(source, x => x is not null && x.Equals(target)));
         }
-        
+
         /// <summary>
-        /// 
+        /// Returns an asynchronous sequence of indices where the elements in the source async sequence match the specified predicate.
         /// </summary>
-        /// <param name="selector"></param>
-        /// <returns></returns>
+        /// <param name="selector">A function to test each element for a condition.</param>
+        /// <returns>An asynchronous sequence of indices where the elements in the source async sequence match the specified predicate.</returns>
         public IAsyncEnumerable<int> IndicesOfAsync(Func<TSource, bool> selector)
         {
             ArgumentNullException.ThrowIfNull(source);
