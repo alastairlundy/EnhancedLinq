@@ -10,7 +10,7 @@
 namespace EnhancedLinq.Immediate;
 
 /// <summary>
-/// 
+/// Extension methods for detecting duplicates in immediate sequences.
 /// </summary>
 public static class ImmediateDuplicatesExtensions
 {
@@ -21,30 +21,35 @@ public static class ImmediateDuplicatesExtensions
         /// <summary>
         /// Determines whether an <see cref="IEnumerable{T}"/> contains duplicate instances of an object.
         /// </summary>
-        /// <returns>True if the <see cref="IEnumerable{T}"/> contains duplicate objects; false otherwise.</returns>
-        public bool ContainsDuplicates()
-            => source.ContainsDuplicates(EqualityComparer<T>.Default);
-
-        /// <summary>
-        /// Determines whether an <see cref="IEnumerable{T}"/> contains duplicate instances of an object.
-        /// </summary>
         /// <param name="comparer">The <see cref="IEqualityComparer{T}"/> to be used to check for duplicates, or the default equality comparer if null.</param>
         /// <returns>True if the <see cref="IEnumerable{T}"/> contains duplicate objects; false otherwise.</returns>
-        public bool ContainsDuplicates(IEqualityComparer<T>? comparer)
-        {
-            comparer ??= EqualityComparer<T>.Default;
+        public bool ContainsDuplicates(IEqualityComparer<T>? comparer = null)
+        { 
             ArgumentNullException.ThrowIfNull(source);
-            
-            HashSet<T> hash = new(comparer: comparer);
+        
+            comparer ??= EqualityComparer<T>.Default;
+
+            HashSet<T> hash;
+
+            if (source is ICollection<T> collection)
+            {
+#if NET8_0_OR_GREATER
+                hash = new HashSet<T>(collection.Count, comparer);
+#else
+                hash = new HashSet<T>(comparer);
+#endif
+            }
+            else
+            {
+                hash =  new HashSet<T>(comparer: comparer);
+            }
         
             foreach (T item in source)
             {
-                bool result = hash.Add(item);
-
-                if (!result)
+                if (!hash.Add(item))
                     return true;
             }
-
+        
             return false;
         }
     }
