@@ -10,9 +10,9 @@
 namespace EnhancedLinq.Immediate.Lists;
 
 /// <summary>
-/// 
+/// Provides extension methods for performing immediate distinct operations on lists.
 /// </summary>
-public static class ImmediateListDistincExtensions
+public static class ImmediateListDistinctExtensions
 {
     /// <param name="source">The list to deduplicate.</param>
     /// <typeparam name="T">The type of elements in the list.</typeparam>
@@ -47,7 +47,7 @@ public static class ImmediateListDistincExtensions
                 T item = source[index];
                 bool result = hash.Add(item);
 
-                if (result == false)
+                if (!result)
                     output.Add(item);
             }
 
@@ -56,7 +56,7 @@ public static class ImmediateListDistincExtensions
     }
 
 
-    /// <param name="source">The array to de-duplicate.</param>
+    /// <param name="source">The array to deduplicate.</param>
     /// <typeparam name="T">The type of elements in the array.</typeparam>
     extension<T>(T[] source)
     {
