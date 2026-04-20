@@ -52,7 +52,7 @@
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Microsoft.Extensions.Primitives"/>
-        <PackageReference Include="Polyfill"/>
+        <PackageReference Include="Polyfill" PrivateAssets="all"/>
     </ItemGroup>
 
     <ItemGroup>
