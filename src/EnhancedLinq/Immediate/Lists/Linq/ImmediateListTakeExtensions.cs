@@ -42,57 +42,63 @@ public static class ImmediateListTakeExtensions
         }
     }
 
-    /// <summary>
-    /// Takes the first 'count' elements from the specified source.
-    /// </summary>
     /// <param name="source">The source <see cref="IList{T}"/> to extract elements from.</param>
-    /// <param name="count">The number of elements to take.</param>
     /// <typeparam name="T">The type of elements in the source collection.</typeparam>
-    /// <returns>A new <see cref="IList{T}"/> containing the first 'count' elements from the source.</returns>
-    /// <exception cref="ArgumentException">Thrown when the count is less than zero or greater than the length/size of the source.</exception>
-    public static IList<T> Take<T>(this IList<T> source, int count)
+    extension<T>(IList<T> source)
     {
-        ArgumentNullException.ThrowIfNull(source);
-        ArgumentOutOfRangeException.ThrowIfNegative(count);
-        ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(count, source.Count);
-
-        List<T> output = new(capacity: count);
-
-        for (int index = 0; index < count; index++)
+        /// <summary>
+        /// Takes the first 'count' elements from the specified source.
+        /// </summary>
+        /// <param name="count">The number of elements to take.</param>
+        /// <returns>A new <see cref="IList{T}"/> containing the first 'count' elements from the source.</returns>
+        /// <exception cref="ArgumentException">Thrown when the count is less than zero or greater than the length/size of the source.</exception>
+        public IList<T> Take(int count)
         {
-            output.Add(source[index]);
-        }
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentOutOfRangeException.ThrowIfNegative(count);
+            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(count, source.Count);
 
-        return output;
-    }
+            List<T> output = new(capacity: count);
 
-    /// <summary>
-    /// Takes the first 'count' elements from the specified source.
-    /// </summary>
-    /// <param name="source">The source <see cref="ICollection{T}"/> to extract elements from.</param>
-    /// <param name="count">The number of elements to take.</param>
-    /// <typeparam name="T">The type of elements in the source collection.</typeparam>
-    /// <returns>A new <see cref="ICollection{T}"/> containing the first 'count' elements from the source.</returns>
-    /// <exception cref="ArgumentException">Thrown when the count is less than zero or greater than the length/size of the source.</exception>
-    public static ICollection<T> Take<T>(this ICollection<T> source, int count)
-    {
-        ArgumentNullException.ThrowIfNull(source);
-        ArgumentOutOfRangeException.ThrowIfNegative(count);
-        ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(count, source.Count);
-
-        List<T> output = new(capacity: count);
-
-        int index = 0;
-        foreach (T item in source)
-        {
-            if (index <= count)
+            for (int index = 0; index < count; index++)
             {
-                output.Add(item);
+                output.Add(source[index]);
             }
 
-            index++;
+            return output;
         }
+    }
 
-        return output;
+    /// <param name="source">The source <see cref="ICollection{T}"/> to extract elements from.</param>
+    /// <typeparam name="T">The type of elements in the source collection.</typeparam>
+    extension<T>(ICollection<T> source)
+    {
+        /// <summary>
+        /// Takes the first 'count' elements from the specified source.
+        /// </summary>
+        /// <param name="count">The number of elements to take.</param>
+        /// <returns>A new <see cref="ICollection{T}"/> containing the first 'count' elements from the source.</returns>
+        /// <exception cref="ArgumentException">Thrown when the count is less than zero or greater than the length/size of the source.</exception>
+        public ICollection<T> Take(int count)
+        {
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentOutOfRangeException.ThrowIfNegative(count);
+            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(count, source.Count);
+
+            List<T> output = new(capacity: count);
+
+            int index = 0;
+            foreach (T item in source)
+            {
+                if (index <= count)
+                {
+                    output.Add(item);
+                }
+
+                index++;
+            }
+
+            return output;
+        }
     }
 }
