@@ -7,6 +7,8 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
 */
 
+using System.Linq;
+
 namespace EnhancedLinq.Immediate.Lists;
 
 /// <summary>
@@ -31,30 +33,8 @@ public static class ImmediateListDistinctExtensions
         /// <param name="equalityComparer">The equality comparer to use.</param>
         /// <returns>The new list with distinct elements from the source list.</returns>
         public IList<T> Distinct(IEqualityComparer<T> equalityComparer)
-        {
-            ArgumentNullException.ThrowIfNull(source);
-            ArgumentNullException.ThrowIfNull(equalityComparer);
-
-#if NET8_0_OR_GREATER
-            HashSet<T> hash = new(capacity: source.Count / 10, comparer: equalityComparer);
-#else
-            HashSet<T> hash = new(comparer: equalityComparer);
-#endif
-            List<T> output = new(capacity: source.Count / 10);
-
-            for (int index = 0; index < source.Count; index++)
-            {
-                T item = source[index];
-                bool result = hash.Add(item);
-
-                if (!result)
-                    output.Add(item);
-            }
-
-            return output;
-        }
+            => DistinctShared(source, equalityComparer);
     }
-
 
     /// <param name="source">The array to deduplicate.</param>
     /// <typeparam name="T">The type of elements in the array.</typeparam>
@@ -65,45 +45,38 @@ public static class ImmediateListDistinctExtensions
         /// </summary>
         /// <returns>The new array with distinct elements from the source array.</returns>
         public T[] Distinct()
-            =>
-                source.Distinct(EqualityComparer<T>.Default);
-        
+            => source.Distinct(EqualityComparer<T>.Default);
+
         /// <summary>
         /// Creates a new array with distinct elements from the source array.
         /// </summary>
         /// <param name="equalityComparer">The equality comparer to use.</param>
         /// <returns>The new array with distinct elements from the source array.</returns>
         public T[] Distinct(IEqualityComparer<T> equalityComparer)
-        {
-            ArgumentNullException.ThrowIfNull(source);
-            ArgumentNullException.ThrowIfNull(equalityComparer);
+            => DistinctShared(source, equalityComparer).ToArray();
+    }
 
+    private static IList<T> DistinctShared<T>(IList<T> source, IEqualityComparer<T> equalityComparer)
+    {
+        ArgumentNullException.ThrowIfNull(source);
+        ArgumentNullException.ThrowIfNull(equalityComparer);
+        
 #if NET8_0_OR_GREATER
-            HashSet<T> hash = new(capacity: source.Length / 10, comparer: equalityComparer);
+            HashSet<T> hash = new(capacity: source.Count, comparer: equalityComparer);
 #else
-            HashSet<T> hash = new(comparer: equalityComparer);
+        HashSet<T> hash = new(comparer: equalityComparer);
 #endif
-        
-            T[] output = new T[source.Length];
+        List<T> output = new(source.Count);
 
-            int count = 0;
+        for (int index = 0; index < source.Count; index++)
+        {
+            T item = source[index];
+            bool result = hash.Add(item);
 
-            for (int index = 0; index < source.Length; index++)
-            {
-                T item = source[index];
-            
-                bool result = hash.Add(item);
-
-                if (result == false)
-                {
-                    output[count] = source[index];
-                    count++;
-                }
-            }
-        
-            Array.Resize(ref output, count);
-        
-            return output;
+            if (!result)
+                output.Add(item);
         }
+
+        return output;
     }
 }
