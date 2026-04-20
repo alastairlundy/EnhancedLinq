@@ -13,9 +13,17 @@
         <RepositoryUrl>https://github.com/alastairlundy/EnhancedLinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>linq, enhanced-linq, enhanced, extensions, memory, extensions</PackageTags>
-        <PackageReleaseNotes>* Updated Polyfill version from 9.13.0 to 9.18.0
-* Updated DotExtensions version from 10.0.0 Alpha 4 to 10.0.0 Alpha 6
-* Updated DotExtensions.Memory version from 10.0.0 Alpha 4 to 10.0.0 Alpha 6</PackageReleaseNotes>
+        <PackageReleaseNotes>* Updated Polyfill version from 9.18.0 to 10.3.0
+* Updated DotExtensions version from 10.0.0 Alpha 6 to 10.2.1
+* Fixed Polyfill showing as a public dependency
+* Updated DotExtensions.Memory version from 10.0.0 Alpha 6 to 10.2.1
+- Fixed `ImmediateMemoryCountAtMostExtensions` implementation
+- Fixed `ImmediateMemoryExcludeExtensions` implementation
+- Fixed `DeferredMemoryWhereExtensions` implementation
+- Safeguarded `ImmediateMemoryGetRangeExtensions` methods against invalid indexes
+- Removed inappropriate `ArgumentException` throw usage in `ImmediateMemorySelectManyExtensions` and `ImmediateMemoryGetRangeExtensions`
+- Fixed XML documentation comments in `ImmediateMemoryFirstAndLastExtensions`
+- Improved helpfulness of argument exception messages in `ImmediateMemoryFirstAndLastExtensions`</PackageReleaseNotes>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -23,7 +31,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>1.0.0-beta.3</Version>
+        <Version>1.0.0-beta.4</Version>
         <PackageId>EnhancedLinq.Memory</PackageId>
         <PolyArgumentExceptions>true</PolyArgumentExceptions>
         <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
