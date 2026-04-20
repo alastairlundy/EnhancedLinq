@@ -39,7 +39,7 @@ public class ImmediateForEachTests
         // Should not throw
         source.ForEach(x => {});
 
-        await Assert.That(source).IsEqualTo(Enumerable.Empty<int>());
+        await Assert.That(source).IsEqualTo([]);
     }
 
     [Test]
