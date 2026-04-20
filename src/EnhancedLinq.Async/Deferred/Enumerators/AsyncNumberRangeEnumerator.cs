@@ -1,0 +1,66 @@
+/*
+    EnhancedLinq.Async
+    Copyright (c) 2025-2026 Alastair Lundy
+    
+    This Source Code Form is subject to the terms of the Mozilla Public
+    License, v. 2.0. If a copy of the MPL was not distributed with this
+    file, You can obtain one at https://mozilla.org/MPL/2.0/. 
+    */
+
+#if NET8_0_OR_GREATER
+using System.Numerics;
+
+namespace EnhancedLinq.Async.Deferred.Enumerators;
+
+internal class AsyncNumberRangeEnumerator<TNumber> : IAsyncEnumerator<TNumber> where TNumber : INumber<TNumber>
+{
+    private readonly IAsyncEnumerator<TNumber> _enumerator;
+    
+    private int _state;
+
+    internal AsyncNumberRangeEnumerator(IAsyncEnumerable<TNumber> source)
+    {
+        Current = TNumber.Zero;
+        _state = 0;
+        _enumerator = source.GetAsyncEnumerator();
+    }
+    
+    public async ValueTask<bool> MoveNextAsync()
+    {
+        if (_state == 1)
+        {
+            try
+            {
+                while (await _enumerator.MoveNextAsync()
+                           .ConfigureAwait(false))
+                {
+                    Current = _enumerator.Current;
+                    return true;
+                }
+            }
+            catch
+            {
+                await DisposeAsync().ConfigureAwait(false);
+                throw;
+            }
+            finally
+            {
+                _state = -1;
+            }
+        }
+
+        await DisposeAsync().ConfigureAwait(false);
+        return false;
+    }
+
+    public TNumber Current { get; private set; }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_enumerator is IAsyncDisposable enumeratorAsyncDisposable)
+            await enumeratorAsyncDisposable.DisposeAsync().ConfigureAwait(false);
+        else
+            await _enumerator.DisposeAsync().ConfigureAwait(false);
+    }
+}
+#endif

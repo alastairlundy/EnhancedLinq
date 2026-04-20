@@ -24,4 +24,7 @@
     <data name="Exceptions.ValueNotFound.AtIndex" xml:space="preserve">
         <value>Value not found at index {x} within collection {y}.</value>
     </data>
+    <data name="Exceptions.Numbers.ParameterIsNotANumber" xml:space="preserve">
+        <value>Parameter {0} is not a valid number.</value>
+    </data>
 </root>
