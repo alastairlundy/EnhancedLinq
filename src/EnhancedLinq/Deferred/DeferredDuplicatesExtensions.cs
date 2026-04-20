@@ -25,12 +25,7 @@ public static class DeferredDuplicatesExtensions
         /// </summary>
         /// <returns>A sequence that contains only duplicate elements from the source sequence.</returns>
         public IEnumerable<TSource> FindDuplicates() => source.FindDuplicates(EqualityComparer<TSource>.Default);
-    }
-
-    /// <param name="source">The sequence to find duplicates in.</param>
-    /// <typeparam name="TSource">The type of elements in the source sequence.</typeparam>
-    extension<TSource>(IEnumerable<TSource> source) where TSource : IEquatable<TSource>
-    {
+        
         /// <summary>
         /// Returns a sequence of duplicate elements from the source sequence using the specified equality comparer.
         /// </summary>
@@ -45,6 +40,4 @@ public static class DeferredDuplicatesExtensions
                 new DuplicatesEnumerator<TSource>(source, comparer));
         }
     }
-
-
 }

@@ -21,7 +21,7 @@ public static class ImmediateSegmentCountAtLeastExtensions
         /// Determines whether there are at least a specified number of elements in the <see cref="StringSegment"/>./>.
         /// </summary>
         /// <param name="countToLookFor">The minimum count to look for.</param>
-        /// <returns><c>true</c> if there is at least the specified number of elements in the <see cref="StringSegment"/>; otherwise, <c>false</c>.</returns>
+        /// <returns><see langword="true"/> if there is at least the specified number of elements in the <see cref="StringSegment"/>; otherwise, <see langword="false"/>.</returns>
         public bool CountAtLeast(int countToLookFor)
         {
             ArgumentException.ThrowIfNullOrWhitespace(source);
@@ -35,7 +35,7 @@ public static class ImmediateSegmentCountAtLeastExtensions
         /// </summary>
         /// <param name="predicate">The predicate condition to check elements against.</param>
         /// <param name="countToLookFor">The minimum count to look for.</param>
-        /// <returns><c>true</c> if there are at least the specified number of elements that meet the condition; otherwise, <c>false</c>.</returns>
+        /// <returns><see langword="true"/> if there is at least the specified number of elements that meet the condition; otherwise, <see langword="false"/>.</returns>
         public bool CountAtLeast(Func<char, bool> predicate,
             int countToLookFor)
         {
