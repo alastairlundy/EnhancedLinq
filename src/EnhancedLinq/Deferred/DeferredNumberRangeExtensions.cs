@@ -17,7 +17,7 @@ using EnhancedLinq.Deferred.Enumerables.NumberRanges;
 namespace EnhancedLinq.Deferred;
 
 /// <summary>
-/// 
+/// Provides extension methods for working with deferred number ranges.
 /// </summary>
 public static class DeferredNumberRangeExtensions
 {
