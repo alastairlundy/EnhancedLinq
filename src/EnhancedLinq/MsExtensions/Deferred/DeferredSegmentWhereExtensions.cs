@@ -10,7 +10,7 @@
 namespace EnhancedLinq.MsExtensions.Deferred;
 
 /// <summary>
-/// 
+/// Provides extension methods for performing deferred filtering operations on StringSegment collections.
 /// </summary>
 public static class DeferredSegmentWhereExtensions
 {

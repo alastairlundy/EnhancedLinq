@@ -12,7 +12,7 @@ using EnhancedLinq.Deferred.Enumerators;
 namespace EnhancedLinq.Deferred;
 
 /// <summary>
-/// 
+/// Provides a set of extension methods aimed at identifying and processing duplicate elements in a sequence.
 /// </summary>
 public static class DeferredDuplicatesExtensions
 {

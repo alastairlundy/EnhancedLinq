@@ -12,7 +12,8 @@ using System.Linq;
 namespace EnhancedLinq.Deferred;
 
 /// <summary>
-/// 
+/// Provides extension methods for working with deferred evaluations of sequences
+/// that involve indices and positional computations.
 /// </summary>
 public static class DeferredNIndicesExtensions
 {

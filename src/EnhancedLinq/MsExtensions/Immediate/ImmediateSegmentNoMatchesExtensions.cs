@@ -10,7 +10,7 @@
 namespace EnhancedLinq.MsExtensions.Immediate;
 
 /// <summary>
-/// 
+/// Provides extension methods for handling scenarios where immediate evaluation of segments with no matches is required.
 /// </summary>
 public static class ImmediateSegmentNoMatchesExtensions
 {

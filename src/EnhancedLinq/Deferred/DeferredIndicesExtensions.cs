@@ -12,7 +12,7 @@ using EnhancedLinq.Deferred.Enumerators.Indices;
 namespace EnhancedLinq.Deferred;
 
 /// <summary>
-/// 
+/// Provides extension methods for deferred operations related to indices within a sequence.
 /// </summary>
 public static class DeferredIndicesExtensions
 {

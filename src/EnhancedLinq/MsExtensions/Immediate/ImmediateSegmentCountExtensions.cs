@@ -10,7 +10,8 @@
 namespace EnhancedLinq.MsExtensions.Immediate;
 
 /// <summary>
-/// 
+/// Provides extension methods for working with immediate segment counting operations
+/// on string segments.
 /// </summary>
 public static class ImmediateSegmentCountExtensions
 {

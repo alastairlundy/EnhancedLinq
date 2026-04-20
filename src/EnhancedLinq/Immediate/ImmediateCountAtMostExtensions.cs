@@ -10,7 +10,7 @@
 namespace EnhancedLinq.Immediate;
 
 /// <summary>
-/// 
+/// Provides extension methods for evaluating whether a sequence contains at most a specified number of elements.
 /// </summary>
 public static class ImmediateCountAtMostExtensions
 {

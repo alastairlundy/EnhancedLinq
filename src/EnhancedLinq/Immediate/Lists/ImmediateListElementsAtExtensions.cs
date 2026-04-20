@@ -10,7 +10,8 @@
 namespace EnhancedLinq.Immediate.Lists;
 
 /// <summary>
-/// 
+/// Provides extension methods for immediate list-based operations
+/// that retrieve elements at specific indexes.
 /// </summary>
 public static class ImmediateListElementsAtExtensions
 {

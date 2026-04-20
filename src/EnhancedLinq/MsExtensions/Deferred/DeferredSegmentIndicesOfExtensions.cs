@@ -10,7 +10,7 @@
 namespace EnhancedLinq.MsExtensions.Deferred;
 
 /// <summary>
-/// 
+/// Provides a set of extension methods for deferred evaluation of segment indices.
 /// </summary>
 public static class DeferredSegmentIndicesOfExtensions
 {

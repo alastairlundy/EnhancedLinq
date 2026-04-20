@@ -12,7 +12,8 @@ using System.Linq;
 namespace EnhancedLinq.Immediate;
 
 /// <summary>
-/// 
+/// Provides extension methods for improved functionality related to determining the last index
+/// of elements in a collection with immediate evaluation.
 /// </summary>
 public static class ImmediateLastIndexOfExtensions
 {

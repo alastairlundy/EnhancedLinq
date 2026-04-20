@@ -9,9 +9,9 @@
 
 namespace EnhancedLinq.Immediate.Lists.Linq;
 
-
 /// <summary>
-/// 
+/// Provides a set of static methods for performing immediate operations
+/// on lists, specifically tailored for efficient "take"-based operations.
 /// </summary>
 public static class ImmediateListTakeExtensions
 {

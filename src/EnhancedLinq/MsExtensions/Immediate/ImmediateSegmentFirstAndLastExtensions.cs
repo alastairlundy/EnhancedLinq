@@ -10,7 +10,7 @@
 namespace EnhancedLinq.MsExtensions.Immediate;
 
 /// <summary>
-/// 
+/// Provides extension methods for working with string segments, specifically to retrieve the first and last elements efficiently.
 /// </summary>
 public static class ImmediateSegmentFirstAndLastExtensions
 {

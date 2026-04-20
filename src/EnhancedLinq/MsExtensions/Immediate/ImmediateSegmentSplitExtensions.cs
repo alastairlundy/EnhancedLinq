@@ -13,7 +13,7 @@ using System.Text;
 namespace EnhancedLinq.MsExtensions.Immediate;
 
 /// <summary>
-/// 
+/// Provides extension methods for performing immediate splitting operations on StringSegment objects.
 /// </summary>
 public static class ImmediateSegmentSplitExtensions
 {
@@ -30,7 +30,7 @@ public static class ImmediateSegmentSplitExtensions
             if (StringSegment.IsNullOrEmpty(source))
                 return [];
 
-            List<StringSegment> segments = new();
+            List<StringSegment> segments = [];
         
             StringBuilder current = new StringBuilder();
         
@@ -63,7 +63,7 @@ public static class ImmediateSegmentSplitExtensions
             IEnumerable<int> indices = source.IndicesOf(separator)
                 .Where(x => x != -1);
 
-            List<StringSegment> output = new();
+            List<StringSegment> output = [];
 
             int start = 0;
 

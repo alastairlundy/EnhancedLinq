@@ -10,7 +10,7 @@
 namespace EnhancedLinq.MsExtensions.Immediate;
 
 /// <summary>
-/// 
+/// Provides extension methods for performing immediate index-based operations on StringSegment instances.
 /// </summary>
 public static class ImmediateSegmentIndexOfExtensions
 {

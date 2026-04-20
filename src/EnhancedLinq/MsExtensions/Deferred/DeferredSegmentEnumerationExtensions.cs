@@ -10,7 +10,7 @@
 namespace EnhancedLinq.MsExtensions.Deferred;
 
 /// <summary>
-/// 
+/// Provides extension methods for deferred enumeration of string segments.
 /// </summary>
 public static class DeferredSegmentEnumerationExtensions
 {

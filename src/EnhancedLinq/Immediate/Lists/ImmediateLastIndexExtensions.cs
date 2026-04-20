@@ -10,7 +10,9 @@
 namespace EnhancedLinq.Immediate.Lists;
 
 /// <summary>
-/// 
+/// Provides extension methods to determine the last index of an element in a collection
+/// with immediate execution. These methods are designed to enable efficient retrieval
+/// of the last index in scenarios where deferred execution is not appropriate or desired.
 /// </summary>
 public static class ImmediateLastIndexExtensions
 {

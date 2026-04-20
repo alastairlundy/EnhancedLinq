@@ -10,7 +10,8 @@
 namespace EnhancedLinq.Immediate;
 
 /// <summary>
-/// 
+/// Provides extension methods for sequences to determine whether no elements match specified conditions
+/// or for other related operations where matches are checked immediately.
 /// </summary>
 public static class ImmediateNoMatchesExtensions
 {
@@ -23,7 +24,7 @@ public static class ImmediateNoMatchesExtensions
         /// </summary>
         /// <param name="predicate">The predicate to check elements against.</param>
         /// <returns>True if none of the elements matched the predicate, false otherwise.</returns>
-        /// <exception cref="ArgumentNullException">Thrown if the source sequence or predicate are null.</exception>
+        /// <exception cref="ArgumentNullException">Thrown if the source sequence or predicate is null.</exception>
         public bool HasNoMatches(Func<TSource, bool> predicate)
         {
             ArgumentNullException.ThrowIfNull(source);

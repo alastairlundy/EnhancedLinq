@@ -12,7 +12,8 @@ using System.Linq;
 namespace EnhancedLinq.MsExtensions.Deferred;
 
 /// <summary>
-/// 
+/// Provides extension methods for working with deferred segment grouping
+/// in <see cref="StringSegment"/> manipulation scenarios.
 /// </summary>
 public static class DeferredSegmentGroupExtensions
 {

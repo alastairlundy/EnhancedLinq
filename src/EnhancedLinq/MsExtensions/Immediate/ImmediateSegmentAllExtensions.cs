@@ -13,7 +13,7 @@ using EnhancedLinq.MsExtensions.Deferred;
 namespace EnhancedLinq.MsExtensions.Immediate;
 
 /// <summary>
-/// 
+/// Provides a set of extension methods for immediate segment processing in LINQ operations.
 /// </summary>
 public static class ImmediateSegmentAllExtensions
 {

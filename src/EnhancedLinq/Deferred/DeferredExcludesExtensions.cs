@@ -12,7 +12,7 @@ using System.Linq;
 namespace EnhancedLinq.Deferred;
 
 /// <summary>
-/// 
+/// Provides extension methods for deferred exclusion operations on sequences.
 /// </summary>
 public static class DeferredExcludesExtensions
 {

@@ -10,7 +10,7 @@
 namespace EnhancedLinq.Immediate;
 
 /// <summary>
-/// 
+/// Provides extension methods for efficiently determining whether a sequence contains at least a specified number of elements.
 /// </summary>
 public static class ImmediateCountAtLeastExtensions
 {

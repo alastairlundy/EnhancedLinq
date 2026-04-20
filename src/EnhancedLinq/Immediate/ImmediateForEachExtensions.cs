@@ -10,7 +10,7 @@
 namespace EnhancedLinq.Immediate;
 
 /// <summary>
-/// 
+/// Provides extension methods for applying immediate actions on sequences.
 /// </summary>
 public static class ImmediateForEachExtensions
 {

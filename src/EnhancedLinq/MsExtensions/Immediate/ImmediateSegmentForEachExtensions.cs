@@ -10,7 +10,7 @@
 namespace EnhancedLinq.MsExtensions.Immediate;
 
 /// <summary>
-/// 
+/// Provides extension methods for executing immediate actions on <see cref="StringSegment"/>.
 /// </summary>
 public static class ImmediateSegmentForEachExtensions
 {

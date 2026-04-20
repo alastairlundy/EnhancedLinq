@@ -10,7 +10,8 @@
 namespace EnhancedLinq.MsExtensions.Immediate;
 
 /// <summary>
-/// 
+/// Provides extension methods for performing immediate operations on segments
+/// with specialized support for certain conditions related to LINQ queries.
 /// </summary>
 public static class ImmediateSegmentAnyExtensions
 {

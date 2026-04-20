@@ -10,7 +10,8 @@
 namespace EnhancedLinq.Immediate.Lists.Linq;
 
 /// <summary>
-/// 
+/// Provides extension methods for operating on lists with immediate evaluation,
+/// specifically for taking a specified number of elements from the end of the list.
 /// </summary>
 public static class ImmediateListTakeLastExtensions
 {

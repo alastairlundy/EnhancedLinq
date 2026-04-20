@@ -12,7 +12,7 @@ using EnhancedLinq.Deferred.Enumerators;
 namespace EnhancedLinq.Deferred;
 
 /// <summary>
-/// 
+/// Provides extension methods for deferred splitting of collections.
 /// </summary>
 public static class DeferredSplitExtensions
 {
