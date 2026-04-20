@@ -60,12 +60,6 @@ public static class ImmediateCountAtLeastExtensions
             ArgumentNullException.ThrowIfNull(predicate);
             ArgumentOutOfRangeException.ThrowIfNegative(countToLookFor);
             
-            if (source is ICollection<T> collection)
-            {
-                if(collection.Count == 0)
-                    throw new InvalidOperationException(Resources.Exceptions_Enumerable_InvalidWhenEmpty);
-            }
-            
             int currentCount = 0;
 
             foreach (T obj in source)

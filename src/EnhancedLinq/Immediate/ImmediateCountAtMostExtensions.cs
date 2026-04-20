@@ -56,12 +56,6 @@ public static class ImmediateCountAtMostExtensions
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(predicate);
             ArgumentOutOfRangeException.ThrowIfNegative(countToLookFor);
-
-            if (source is ICollection<T> collection)
-            {
-                // No special handling needed for empty collections in CountAtMost
-                // An empty collection simply has 0 elements, which is valid for any count >= 0
-            }
             
             int currentCount = 0;
 
