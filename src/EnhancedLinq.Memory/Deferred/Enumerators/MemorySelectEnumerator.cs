@@ -38,7 +38,7 @@ internal class MemorySelectEnumerator<TSource, TResult> : IEnumerator<TResult>
             if (moveNext)
             {
                 Current = _predicate(_enumerator.Current);
-                return moveNext;
+                return true;
             }
             
             _state = -1;
