@@ -5,8 +5,8 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="DotExtensions.Memory" Version="10.2.1" />
-    <PackageVersion Include="DotExtensions" Version="10.2.1" />
     <PackageVersion Include="Microsoft.Extensions.Primitives" Version="10.0.7" />
+    <PackageVersion Include="DotExtensions" Version="10.3.0" />
     <PackageVersion Include="DotPrimitives.Collections" Version="4.3.0" />
     <PackageVersion Include="Meziantou.Analyzer" Version="3.0.50">
       <PrivateAssets>all</PrivateAssets>
