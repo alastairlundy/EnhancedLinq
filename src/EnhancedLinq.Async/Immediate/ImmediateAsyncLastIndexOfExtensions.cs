@@ -55,8 +55,9 @@ public static class ImmediateAsyncLastIndexOfExtensions
                 count++;
             }
 
-
-            return foundItem ? Math.Abs(count - reverseIndex) : -1;
+            int effectiveIndex = (count - 1) - reverseIndex;
+        
+            return foundItem && effectiveIndex >= 0 ? effectiveIndex : -1;
         }
 
         /// <summary>
@@ -88,7 +89,9 @@ public static class ImmediateAsyncLastIndexOfExtensions
                 count++;
             }
 
-            return foundItem ? Math.Abs(count - reverseIndex) : -1;
+            int effectiveIndex = (count - 1) - reverseIndex;
+        
+            return foundItem && effectiveIndex >= 0 ? effectiveIndex : -1;
         }
     }
 }
