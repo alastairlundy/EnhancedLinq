@@ -39,17 +39,17 @@ public static class ImmediateLastIndexOfExtensions
         {
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(predicate);
-            
+
             if (source is ICollection<T> collection)
             {
                 return collection.LastIndexOf(predicate);
             }
-        
+
             bool foundItem = false;
             int reverseIndex = 0;
-        
+
             int count = 0;
-        
+
             foreach (T item in source.Reverse())
             {
                 if (predicate(item) && !foundItem)
@@ -61,10 +61,12 @@ public static class ImmediateLastIndexOfExtensions
                 count++;
             }
 
-        
-            return foundItem ? Math.Abs(count - reverseIndex) : -1;
+
+            int effectiveIndex = (count - 1) - reverseIndex;
+
+            return foundItem && effectiveIndex >= 0 ? effectiveIndex : -1;
         }
-        
+
         /// <summary>
         /// Gets the last index of an element in a sequence.
         /// </summary>
@@ -90,11 +92,13 @@ public static class ImmediateLastIndexOfExtensions
                     foundItem = true;
                     reverseIndex = count;
                 }
-                    
+                
                 count++;
             }
+            
+            int effectiveIndex = (count - 1) - reverseIndex;
         
-            return foundItem ? Math.Abs(count - reverseIndex) : -1;
+            return foundItem && effectiveIndex >= 0 ? effectiveIndex : -1;
         }
     }
 
