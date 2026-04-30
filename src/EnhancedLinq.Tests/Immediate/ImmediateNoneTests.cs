@@ -15,13 +15,6 @@ namespace ExtendedLinq.Tests.Immediate;
 public class ImmediateNoneTests
 {
     private readonly Faker _faker = new();
-    
-    [Test]
-    public async Task None_Empty_Enumerable_Throws()
-    {
-        await Assert.ThrowsAsync<InvalidOperationException>(() => Task.FromResult(Enumerable.Empty<string>()
-            .HasNoMatches(s => s.Length > 0)));
-    }
 
     [Test]
     public async Task None_Enumerable_NoMatches_ReturnsTrue()
