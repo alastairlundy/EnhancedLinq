@@ -5,3 +5,4 @@ global using System.Collections.Generic;
 global using System.Threading.Tasks;
 global using EnhancedLinq.Async.Internals;
 global using EnhancedLinq.Async.Internals.Localizations;
+global using EnhancedLinq.Shared.Infra;

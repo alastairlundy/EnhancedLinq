@@ -49,6 +49,10 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Compile Include="..\EnhancedLinq.Shared.Infra\CustomEnumeratorEnumerable.cs" Link="Internals\Shared\CustomEnumeratorEnumerable.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
       <EmbeddedResource Update="Internals\Localizations\Resources.resx">
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -64,7 +68,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\EnhancedLinq.Shared.Infra\EnhancedLinq.Shared.Infra.csproj" PrivateAssets="all" />
     </ItemGroup>
 
 </Project>
