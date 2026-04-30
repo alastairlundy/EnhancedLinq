@@ -39,7 +39,7 @@ public class ImmediateForEachTests
         // Should not throw
         source.ForEach(x => {});
 
-        await Assert.That(source).IsEqualTo([]);
+        await Assert.That(source).IsEquivalentTo(Enumerable.Empty<int>());
     }
 
     [Test]
@@ -55,6 +55,6 @@ public class ImmediateForEachTests
         
         IList<int> expected = source.Select(i => i * 2).ToList();
         
-        await Assert.That(results).IsEqualTo(expected);
+        await Assert.That(results).IsEquivalentTo(expected);
     }
 }

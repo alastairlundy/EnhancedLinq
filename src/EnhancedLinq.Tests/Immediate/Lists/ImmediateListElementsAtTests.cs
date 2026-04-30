@@ -46,7 +46,7 @@ public class ImmediateListElementsAtTests
         
         IList<int> result = source.ElementsAt(indices);
         
-        await Assert.That(result).IsEqualTo([30]);
+        await Assert.That(result).IsEquivalentTo([30]);
     }
 
     [Test]
@@ -57,7 +57,7 @@ public class ImmediateListElementsAtTests
         
         IList<int> result = source.ElementsAt(indices);
         
-        await Assert.That(result).IsEqualTo([10, 30, 50]);
+        await Assert.That(result).IsEquivalentTo([10, 30, 50]);
     }
 
     [Test]
@@ -68,7 +68,7 @@ public class ImmediateListElementsAtTests
         
         IList<int> result = source.ElementsAt(indices);
         
-        await Assert.That(result).IsEqualTo([10, 30, 50]); // Only valid indices
+        await Assert.That(result).IsEquivalentTo([10, 30, 50]); // Only valid indices
     }
 
     [Test]
@@ -79,7 +79,7 @@ public class ImmediateListElementsAtTests
         
         IList<int> result = source.ElementsAt(indices);
         
-        await Assert.That(result).IsEqualTo([20, 20, 40, 40]); // Duplicates preserved
+        await Assert.That(result).IsEquivalentTo([20, 20, 40, 40]); // Duplicates preserved
     }
 
     [Test]
@@ -90,7 +90,7 @@ public class ImmediateListElementsAtTests
         
         IList<string> result = source.ElementsAt(indices);
         
-        await Assert.That(result).IsEqualTo(["apple", "cherry"]);
+        await Assert.That(result).IsEquivalentTo(["apple", "cherry"]);
     }
 
     [Test]
@@ -101,7 +101,7 @@ public class ImmediateListElementsAtTests
         
         int[] result = source.ElementsAt(indices);
         
-        await Assert.That(result).IsEqualTo([10, 30, 50]);
+        await Assert.That(result).IsEquivalentTo([10, 30, 50]);
     }
 
     [Test]
@@ -112,6 +112,6 @@ public class ImmediateListElementsAtTests
         
         int[] result = source.ElementsAt(indices);
         
-        await Assert.That(result).IsEqualTo([10, 30, 50]); // Only valid indices
+        await Assert.That(result).IsEquivalentTo([10, 30, 50]); // Only valid indices
     }
 }
