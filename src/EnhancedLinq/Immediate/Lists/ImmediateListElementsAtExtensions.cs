@@ -72,11 +72,17 @@ public static class ImmediateListElementsAtExtensions
             {
                 int index = indices[i];
 
+                if (index == -1)
+                    continue;
+                
                 if (index >= 0 && index < source.Length)
                 {
                     output[count] = source[index];
+                    count++;
                 }
             }
+            
+            Array.Resize(ref output, count);
             
             return output;
         }
