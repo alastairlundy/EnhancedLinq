@@ -18,7 +18,7 @@ internal class SplitByEnumerableCountEnumerator<T> : IEnumerator<IEnumerable<T>>
     
     public SplitByEnumerableCountEnumerator(IEnumerable<T> source, int maxEnumerableCount)
     {
-        List<T> list = new List<T>(source);
+        List<T> list = [..source];
        
         double maxItems = Convert.ToDouble(list.Count / maxEnumerableCount);
         int maxItemCount;

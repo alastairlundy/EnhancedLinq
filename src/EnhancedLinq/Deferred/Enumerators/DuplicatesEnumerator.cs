@@ -22,7 +22,7 @@ internal class DuplicatesEnumerator<TSource> : IEnumerator<TSource>
     internal DuplicatesEnumerator(IEnumerable<TSource> source, IEqualityComparer<TSource> comparer)
     {
         _hashSet = new HashSet<TSource>(comparer);
-        _state = 0;
+        _state = 1;
         
         _enumerator = source.GetEnumerator();
         Current = _enumerator.Current;
@@ -30,7 +30,7 @@ internal class DuplicatesEnumerator<TSource> : IEnumerator<TSource>
     
     public bool MoveNext()
     {
-        if (_state == 0)
+        if (_state == 1)
         {
             while(_enumerator.MoveNext())
             {
