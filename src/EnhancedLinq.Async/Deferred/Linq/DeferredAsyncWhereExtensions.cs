@@ -49,7 +49,7 @@ public static class DeferredAsyncWhereExtensions
             }
         }
 
-        /// <summary>
+        /*/// <summary>
         /// Filters the elements of an asynchronous sequence based on an asynchronous predicate.
         /// </summary>
         /// <typeparam name="T">The type of the elements in the source sequence.</typeparam>
@@ -78,6 +78,6 @@ public static class DeferredAsyncWhereExtensions
                         yield return item;
                 }
             }
-        }
+        }*/
     }
 }
