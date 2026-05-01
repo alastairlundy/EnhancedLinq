@@ -18,7 +18,7 @@ namespace EnhancedLinq.Async.Deferred;
 /// <summary>
 /// Provides extension methods for working with deferred number ranges.
 /// </summary>
-public static class DeferredNumberRangeExtensions
+public static class DeferredAsyncNumberRangeExtensions
 {
     /// <param name="start">The starting value of the sequence.</param>
     /// <typeparam name="TNumber">The numeric type used to represent the numbers.</typeparam>
