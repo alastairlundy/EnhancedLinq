@@ -30,7 +30,7 @@ internal class DuplicatesEnumerator<TSource> : IEnumerator<TSource>
     
     public bool MoveNext()
     {
-        if (_state == 1)
+        if (_state == 0)
         {
             while(_enumerator.MoveNext())
             {
