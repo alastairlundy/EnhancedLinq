@@ -13,17 +13,21 @@
         <RepositoryUrl>https://github.com/alastairlundy/EnhancedLinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>linq, enhanced-linq, enhanced, extensions, memory, extensions</PackageTags>
-        <PackageReleaseNotes>* Updated Polyfill version from 9.18.0 to 10.3.0
-* Updated DotExtensions version from 10.0.0 Alpha 6 to 10.2.1
-* Fixed Polyfill showing as a public dependency
-* Updated DotExtensions.Memory version from 10.0.0 Alpha 6 to 10.2.1
-- Fixed `ImmediateMemoryCountAtMostExtensions` implementation
-- Fixed `ImmediateMemoryExcludeExtensions` implementation
-- Fixed `DeferredMemoryWhereExtensions` implementation
-- Safeguarded `ImmediateMemoryGetRangeExtensions` methods against invalid indexes
-- Removed inappropriate `ArgumentException` throw usage in `ImmediateMemorySelectManyExtensions` and `ImmediateMemoryGetRangeExtensions`
-- Fixed XML documentation comments in `ImmediateMemoryFirstAndLastExtensions`
-- Improved helpfulness of argument exception messages in `ImmediateMemoryFirstAndLastExtensions`</PackageReleaseNotes>
+        <PackageReleaseNotes>### Infrastructure &amp; Dependencies
+
+#### Added
+- Added `AGENTS.md` with project overview.
+
+#### Fixed
+- Fixed an issue where `EnhancedLinq.Shared.Infra` could not be found by consuming projects.
+
+#### Changed
+- Bumped `DotExtensions` from 10.2.1 to 10.3.0
+- Bumped , `Microsoft.Extensions.Primitives` from 10.0.6 to 10.0.7
+- Updated GitHub Actions: `step-security/harden-runner` to v2.19.0 and `NuGet/login` to v1.2.0
+
+### EnhancedLinq.Memory
+* Updated `DotExtensions.Memory` from 10.2.1 to 10.3.0</PackageReleaseNotes>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -31,7 +35,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>1.0.0-beta.4</Version>
+        <Version>1.0.0-beta.5</Version>
         <PackageId>EnhancedLinq.Memory</PackageId>
         <PolyArgumentExceptions>true</PolyArgumentExceptions>
         <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
@@ -40,7 +44,7 @@
 
     <ItemGroup>
         <PackageReference Include="DotExtensions.Memory" />
-        <PackageReference Include="DotExtensions" />
+        <PackageReference Include="DotExtensions"/>
         <PackageReference Include="DotPrimitives.Collections" />
         <PackageReference Include="Meziantou.Analyzer">
           <PrivateAssets>all</PrivateAssets>

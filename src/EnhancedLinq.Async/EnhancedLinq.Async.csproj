@@ -19,19 +19,28 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>1.0.0-beta.4</Version>
+        <Version>1.0.0-beta.5</Version>
         <PackageId>EnhancedLinq.Async</PackageId>
         <PolyArgumentExceptions>true</PolyArgumentExceptions>
         <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
         <TrimmerSingleWarn>false</TrimmerSingleWarn>
-        <PackageReleaseNotes>* Updated Polyfill version from 9.18.0 to 10.3.0
-* Updated DotExtensions version from 10.0.0 Alpha 6 to 10.2.1
-* Fixed Polyfill showing as a public dependency
-* Updated ``System.Linq.AsyncEnumerable`` version from 10.0.4 to 10.0.6
-- **New:** Added `DeferredAsyncWhereExtensions` for deferred async where operations
-- **New:** Added `DeferredNumberRangeExtensions` for async number range operations
-- Fixed XML documentation comments in async extensions
-- Added missing localization phrases</PackageReleaseNotes>
+        <PackageReleaseNotes>### Infrastructure &amp; Dependencies
+
+#### Added
+- Added `AGENTS.md` with project overview.
+
+#### Fixed
+- Fixed an issue where `EnhancedLinq.Shared.Infra` could not be found by consuming projects.
+
+#### Changed
+- Bumped `DotExtensions` from 10.2.1 to 10.3.0
+- Bumped , `Microsoft.Extensions.Primitives` from 10.0.6 to 10.0.7
+- Updated GitHub Actions: `step-security/harden-runner` to v2.19.0 and `NuGet/login` to v1.2.0
+
+### EnhancedLinq.Async
+- Fixed off-by-one error in `ImmediateAsyncLastIndexOfExtensions`
+- Updated `System.Linq.AsyncEnumerable` from 10.0.6 to 10.0.7
+- Updated `Microsoft.Bcl.AsyncInterfaces` from 10.0.6 to 10.0.7</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>

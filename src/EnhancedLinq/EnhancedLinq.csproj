@@ -12,17 +12,22 @@
         <RepositoryUrl>https://github.com/alastairlundy/Enhancedlinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageReleaseNotes>* Updated Polyfill version from 9.18.0 to 10.3.0
-* Updated DotExtensions version from 10.0.0 Alpha 6 to 10.2.1
-* Fixed Polyfill showing as a public dependency
-* Updated ``Microsoft.Extensions.Primitives`` version from 10.0.4 to 10.0.6
-- Updated `ImmediateListTakeExtensions` to use extension block
-- Fixed `ImmediateIndexOfExtensions` to check indices for -1
-- Removed unneeded code from `ImmediateCountAtLeastExtensions` and `ImmediateCountAtMostExtensions`
-- Enhanced `ImmediateDuplicatesExtensions` with shared Distinct logic
-- Added XML documentation comments to various extensions
-- Used collection expressions in `ImmediateSegmentIndicesExtensions`
-- Renamed `ImmediateListDistincExtensions` class (fixed typo from "Distinc" to "Distinct")</PackageReleaseNotes>
+        <PackageReleaseNotes>### Infrastructure &amp; Dependencies
+
+#### Added
+- Added `AGENTS.md` with project overview.
+
+#### Fixed
+- Fixed an issue where `EnhancedLinq.Shared.Infra` could not be found by consuming projects.
+
+#### Changed
+- Bumped `DotExtensions` from 10.2.1 to 10.3.0
+- Bumped , `Microsoft.Extensions.Primitives` from 10.0.6 to 10.0.7
+- Updated GitHub Actions: `step-security/harden-runner` to v2.19.0 and `NuGet/login` to v1.2.0
+
+### EnhancedLinq
+- Fixed off-by-one error in `ImmediateLastIndexOfExtensions`
+- Fixed an issue where `ElementsAt` did not correctly ignore out-of-range elements.</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <Description>Additional LINQ style Deferred and Immediate enumeration mode extension methods for .NET . </Description>
@@ -31,7 +36,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>1.0.0-beta.4</Version>
+        <Version>1.0.0-beta.5</Version>
         <PackageId>EnhancedLinq</PackageId>
         <PolyArgumentExceptions>true</PolyArgumentExceptions>
         <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
