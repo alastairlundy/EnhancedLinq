@@ -7,7 +7,6 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/.
     */
 
-
 #if NET8_0_OR_GREATER
 using System.Linq;
 using System.Numerics;
@@ -16,7 +15,7 @@ using System.Numerics;
 namespace EnhancedLinq.Async.Deferred;
 
 /// <summary>
-/// Provides extension methods for working with deferred number ranges.
+/// Provides deferred asynchronous number range extensions for numeric sequences.
 /// </summary>
 public static class DeferredAsyncNumberRangeExtensions
 {
@@ -27,15 +26,14 @@ public static class DeferredAsyncNumberRangeExtensions
     extension<TNumber>(TNumber start) where TNumber : INumber<TNumber>
     {
         /// <summary>
-        /// Generates a sequence of numeric values starting from a specified value and continuing for a specified count,
-        /// with each value incremented by 1 from the starting point.
+        /// 
         /// </summary>
-        /// <param name="count">The number of values to generate in the sequence.</param>
-        /// <param name="incrementor">The amount to increment each number by.</param>
-        /// <returns>A sequence containing the generated numeric values,
-        /// incremented by the incrementor amount from the starting point.</returns>
-        /// <exception cref="ArgumentException">Thrown if the start number or count is NaN.</exception>
-        /// <exception cref="NotFiniteNumberException">Thrown if the start number or count is infinity.</exception>
+        /// <param name="count"></param>
+        /// <param name="incrementor"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="NotFiniteNumberException"></exception>
         public IAsyncEnumerable<TNumber> GenerateNumberRange(TNumber count, TNumber incrementor)
         {
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
@@ -57,14 +55,12 @@ public static class DeferredAsyncNumberRangeExtensions
         }
 
         /// <summary>
-        /// Generates a sequence of numeric values starting from a specified value and continuing for a specified count, skipping, 
-        /// with each value incremented by 1 from the starting point.
+        /// 
         /// </summary>
-        /// <param name="count">The number of values to generate in the sequence.</param>
-        /// <param name="incrementor">The amount to increment each number by.</param>
-        /// <param name="numbersToSkip">The numbers to skip when generating the range of numbers.</param>
-        /// <returns>A sequence containing the generated numeric values,
-        /// incremented by the incrementor amount from the starting point.</returns>
+        /// <param name="count"></param>
+        /// <param name="incrementor"></param>
+        /// <param name="numbersToSkip"></param>
+        /// <returns></returns>
         public async IAsyncEnumerable<TNumber> GenerateNumberRange(TNumber count, TNumber incrementor,
             IAsyncEnumerable<TNumber> numbersToSkip)
         {
