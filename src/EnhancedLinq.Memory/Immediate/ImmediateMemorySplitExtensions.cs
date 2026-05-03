@@ -25,10 +25,8 @@ public static class ImmediateMemorySplitExtensions
         /// <param name="count">The maximum number of items in each array.</param>
         /// <returns>An <see cref="IList{T}" /> of arrays, where each array contains a maximum of count elements.</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when the count is less than or equal to zero.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the input span is empty.</exception>
         public IList<T[]> SplitByItemCount(int count)
         {
-            InvalidOperationException.ThrowIfSpanIsEmpty(span);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
             ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(count, span.Length);
 
@@ -74,10 +72,8 @@ public static class ImmediateMemorySplitExtensions
         /// <param name="maximumNumberOfArrays">The maximum number of arrays to divide the span into.</param>
         /// <returns>An <see cref="IList{T}" /> of arrays, where the span is divided into at most the maximum number the arrays.</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when the maximum number of arrays is less than or equal to zero.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the input span is empty.</exception>
         public IList<T[]> SplitByArrayCount(int maximumNumberOfArrays)
         {
-            InvalidOperationException.ThrowIfSpanIsEmpty(span);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(maximumNumberOfArrays);
 
             double maxItems = Convert.ToDouble(span.Length / maximumNumberOfArrays);
@@ -109,7 +105,6 @@ public static class ImmediateMemorySplitExtensions
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public IList<T[]> SplitBy(Func<T, bool> predicate)
         {
-            InvalidOperationException.ThrowIfSpanIsEmpty(span);
             ArgumentNullException.ThrowIfNull(predicate);
 
             List<T[]> list = new();

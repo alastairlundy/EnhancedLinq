@@ -112,7 +112,6 @@ public static class ImmediateMemorySkipExtensions
         /// <param name="predicate">The predicate function to apply to each element to determine if it should be skipped.</param>
         /// <returns>A new <see cref="ReadOnlySpan{T}" /> starting from the first element for which the predicate returns false.</returns>
         /// <exception cref="ArgumentNullException">Thrown when the provided predicate is null.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the target span is empty.</exception>
         public ReadOnlySpan<T> SkipWhile(Func<T, bool> predicate)
         {
             ArgumentNullException.ThrowIfNull(predicate);

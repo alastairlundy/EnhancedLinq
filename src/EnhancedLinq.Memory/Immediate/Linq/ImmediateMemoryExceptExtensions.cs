@@ -27,9 +27,6 @@ public static class ImmediateMemoryExceptExtensions
         /// <returns>A new Span with all the elements of Span One and Span Two that were not in the other Span.</returns>
         public Span<T> Except(Span<T> second)
         {
-            InvalidOperationException.ThrowIfSpanIsEmpty(first);
-            InvalidOperationException.ThrowIfSpanIsEmpty(second);
-
             T[] array = ArrayPool<T>.Shared.Rent(first.Length + second.Length);
             int index = 0;
 
@@ -70,9 +67,6 @@ public static class ImmediateMemoryExceptExtensions
         /// </returns>
         public ReadOnlySpan<T> Except(ReadOnlySpan<T> second)
         {
-            InvalidOperationException.ThrowIfSpanIsEmpty(first);
-            InvalidOperationException.ThrowIfSpanIsEmpty(second);
-
             T[] array = ArrayPool<T>.Shared.Rent(first.Length + second.Length);
             int index = 0;
 

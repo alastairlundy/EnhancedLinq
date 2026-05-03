@@ -26,12 +26,9 @@ public static class ImmediateMemoryDistinctByExtensions
         /// <typeparam name="TKey">The type of the key extracted from each element.</typeparam>
         /// <param name="keySelector">A function to extract a key from an element.</param>
         /// <returns>A span that contains only the distinct elements from the source span, determined by the key selector.</returns>
-        /// <exception cref="InvalidOperationException">Thrown when the source span is empty.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the key selector is null.</exception>
-        public Span<TSource> DistinctBy<TKey>(Func<TSource, TKey> keySelector)
-        {
-            return source.DistinctBy(keySelector, EqualityComparer<TKey>.Default);
-        }
+        public Span<TSource> DistinctBy<TKey>(Func<TSource, TKey> keySelector) 
+            => source.DistinctBy(keySelector, EqualityComparer<TKey>.Default);
 
         /// <summary>
         ///     Returns a new span containing only the distinct elements from the source span, determined by a specified key
@@ -44,13 +41,11 @@ public static class ImmediateMemoryDistinctByExtensions
         ///     used.
         /// </param>
         /// <returns>A span that contains only the distinct elements from the source span, determined by the key selector.</returns>
-        /// <exception cref="InvalidOperationException">Thrown when the source span is empty.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the key selector is null.</exception>
         public Span<TSource> DistinctBy<TKey>(Func<TSource, TKey> keySelector, IEqualityComparer<TKey>? comparer)
         {
             comparer ??= EqualityComparer<TKey>.Default;
-
-
+            
             ArgumentNullException.ThrowIfNull(keySelector);
 
             List<TSource> allowedItems = new();
@@ -84,12 +79,9 @@ public static class ImmediateMemoryDistinctByExtensions
         ///     A <see cref="ReadOnlySpan{T}" /> that contains only the distinct elements from the source
         ///     <see cref="ReadOnlySpan{T}" />, determined by the key selector.
         /// </returns>
-        /// <exception cref="InvalidOperationException">Thrown when the source <see cref="ReadOnlySpan{T}" /> is empty.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the key selector is null.</exception>
-        public ReadOnlySpan<TSource> DistinctBy<TKey>(Func<TSource, TKey> keySelector)
-        {
-            return source.DistinctBy(keySelector, EqualityComparer<TKey>.Default);
-        }
+        public ReadOnlySpan<TSource> DistinctBy<TKey>(Func<TSource, TKey> keySelector) 
+            => source.DistinctBy(keySelector, EqualityComparer<TKey>.Default);
 
         /// <summary>
         ///     Returns a new <see cref="ReadOnlySpan{T}" /> containing only the distinct elements from the source
@@ -102,13 +94,11 @@ public static class ImmediateMemoryDistinctByExtensions
         ///     A <see cref="ReadOnlySpan{T}" /> that contains only the distinct elements from the source
         ///     <see cref="ReadOnlySpan{T}" />, determined by the key selector and equality comparer.
         /// </returns>
-        /// <exception cref="InvalidOperationException">Thrown when the source <see cref="ReadOnlySpan{T}" /> is empty.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the key selector is null.</exception>
         public ReadOnlySpan<TSource> DistinctBy<TKey>(Func<TSource, TKey> keySelector,
             IEqualityComparer<TKey>? comparer)
         {
             comparer ??= EqualityComparer<TKey>.Default;
-
 
             ArgumentNullException.ThrowIfNull(keySelector);
 
@@ -142,12 +132,9 @@ public static class ImmediateMemoryDistinctByExtensions
         ///     A memory segment that contains only the distinct elements from the source memory, determined by the key
         ///     selector.
         /// </returns>
-        /// <exception cref="InvalidOperationException">Thrown when the source memory is empty.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the key selector is null.</exception>
-        public Memory<TSource> DistinctBy<TKey>(Func<TSource, TKey> keySelector)
-        {
-            return source.DistinctBy(keySelector, EqualityComparer<TKey>.Default);
-        }
+        public Memory<TSource> DistinctBy<TKey>(Func<TSource, TKey> keySelector) 
+            => source.DistinctBy(keySelector, EqualityComparer<TKey>.Default);
 
         /// <summary>
         ///     Returns a new memory segment containing only the distinct elements from the source memory, determined by a
@@ -163,13 +150,11 @@ public static class ImmediateMemoryDistinctByExtensions
         ///     A memory segment containing only the distinct elements from the source memory, determined by the key selector
         ///     and comparer.
         /// </returns>
-        /// <exception cref="InvalidOperationException">Thrown when the source memory is empty.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the key selector is null.</exception>
         public Memory<TSource> DistinctBy<TKey>(Func<TSource, TKey> keySelector,
             IEqualityComparer<TKey>? comparer)
         {
             comparer ??= EqualityComparer<TKey>.Default;
-
 
             ArgumentNullException.ThrowIfNull(keySelector);
 
@@ -203,12 +188,9 @@ public static class ImmediateMemoryDistinctByExtensions
         ///     A <see cref="ReadOnlyMemory{T}" /> block that contains only the distinct elements from the source
         ///     <see cref="ReadOnlyMemory{T}" /> block, determined by the key selector.
         /// </returns>
-        /// <exception cref="InvalidOperationException">Thrown when the source <see cref="ReadOnlyMemory{T}" /> block is empty.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the key selector is null.</exception>
-        public ReadOnlyMemory<TSource> DistinctBy<TKey>(Func<TSource, TKey> keySelector)
-        {
-            return source.DistinctBy(keySelector, EqualityComparer<TKey>.Default);
-        }
+        public ReadOnlyMemory<TSource> DistinctBy<TKey>(Func<TSource, TKey> keySelector) 
+            => source.DistinctBy(keySelector, EqualityComparer<TKey>.Default);
 
         /// <summary>
         ///     Returns a new <see cref="ReadOnlyMemory{T}" /> containing only the distinct elements from the source
@@ -224,14 +206,12 @@ public static class ImmediateMemoryDistinctByExtensions
         ///     A <see cref="ReadOnlyMemory{T}" /> that contains only the distinct elements from the source
         ///     <see cref="ReadOnlyMemory{T}" />, determined by the key selector.
         /// </returns>
-        /// <exception cref="InvalidOperationException">Thrown when the source <see cref="ReadOnlyMemory{T}" /> is empty.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the key selector is null.</exception>
         public ReadOnlyMemory<TSource> DistinctBy<TKey>(Func<TSource, TKey> keySelector,
             IEqualityComparer<TKey>? comparer)
         {
             comparer ??= EqualityComparer<TKey>.Default;
-
-
+            
             ArgumentNullException.ThrowIfNull(keySelector);
 
             List<TSource> allowedItems = new();

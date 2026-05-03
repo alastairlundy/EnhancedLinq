@@ -41,8 +41,6 @@ public static class ImmediateMemoryFirstAndLastExtensions
         /// </returns>
         public T? FirstOrDefault()
         {
-            InvalidOperationException.ThrowIfSpanIsEmpty(target);
-
             return !target.IsEmpty ? target[0] : default;
         }
 

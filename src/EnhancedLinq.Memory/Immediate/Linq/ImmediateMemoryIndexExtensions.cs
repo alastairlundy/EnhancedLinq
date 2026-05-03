@@ -21,11 +21,8 @@ public static class ImmediateMemoryIndexExtensions
         ///     Returns a collection of indices of all elements within the given span, starting from an initial index of zero.
         /// </summary>
         /// <returns>A collection of integers representing the indices of the elements in the span starting from index zero.</returns>
-        /// <exception cref="InvalidOperationException">Thrown when the span is empty.</exception>
         public ICollection<(int Index, TSource Item)> Index()
         {
-            InvalidOperationException.ThrowIfSpanIsEmpty(span);
-
             (int, TSource)[] output = new (int, TSource)[span.Length];
 
             for (int i = 0; i < span.Length; i++) output[i] = (i, span[i]);
@@ -46,11 +43,8 @@ public static class ImmediateMemoryIndexExtensions
         ///     A collection of integers representing the indices of the elements in the <see cref="ReadOnlySpan{T}" />
         ///     starting from index zero.
         /// </returns>
-        /// <exception cref="InvalidOperationException">Thrown when the <see cref="ReadOnlySpan{T}" /> is empty.</exception>
         public ICollection<(int Index, TSource Item)> Index()
         {
-            InvalidOperationException.ThrowIfSpanIsEmpty(span);
-
             (int, TSource)[] output = new (int, TSource)[span.Length];
 
             for (int i = 0; i < span.Length; i++) output[i] = (i, span[i]);

@@ -27,10 +27,10 @@ public static class ImmediateMemoryExcludeExtensions
         /// <param name="span">The span of items to exclude from the input.</param>
         /// <returns>A new <see cref="Span{TSource}" /> containing the elements that do not satisfy the predicate.</returns>
         /// <exception cref="ArgumentNullException">Thrown if the provided predicate is null.</exception>
-        /// <exception cref="InvalidOperationException">Thrown if the input span is empty.</exception>
+        
         public Span<TSource> Exclude(Span<TSource> span)
         {
-            List<int> indices = new();
+            List<int> indices = [];
 
             foreach (TSource item in span) indices.AddRange(source.IndicesOf(item));
 
@@ -53,7 +53,7 @@ public static class ImmediateMemoryExcludeExtensions
         /// <param name="predicate">The predicate function to determine which elements to exclude.</param>
         /// <returns>A new <see cref="Span{TSource}" /> containing the elements that do not satisfy the predicate.</returns>
         /// <exception cref="ArgumentNullException">Thrown if the provided predicate is null.</exception>
-        /// <exception cref="InvalidOperationException">Thrown if the input span is empty.</exception>
+        
         public Span<TSource> Exclude(Func<TSource, bool> predicate)
         {
             ArgumentNullException.ThrowIfNull(predicate);
@@ -74,7 +74,7 @@ public static class ImmediateMemoryExcludeExtensions
         /// <param name="predicate">The predicate function to determine which elements to exclude.</param>
         /// <returns>A new <see cref="ReadOnlySpan{TSource}" /> containing elements that do not satisfy the predicate.</returns>
         /// <exception cref="ArgumentNullException">Thrown if the provided predicate is null.</exception>
-        /// <exception cref="InvalidOperationException">Thrown if the input span is empty.</exception>
+        
         public ReadOnlySpan<TSource> Exclude(Func<TSource, bool> predicate)
         {
             ArgumentNullException.ThrowIfNull(predicate);
