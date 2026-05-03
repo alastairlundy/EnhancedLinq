@@ -67,7 +67,7 @@ public static class DeferredAsyncNumberRangeExtensions
             IAsyncEnumerable<TNumber> numbers = start.GenerateNumberRange(count, incrementor)
                 .WhereAsync(async n => await numbersToSkip.ContainsAsync(n).ConfigureAwait(false));
 
-            await foreach (var number in numbers.ConfigureAwait(false))
+            await foreach (TNumber number in numbers.ConfigureAwait(false))
             {
                 yield return number;
             }

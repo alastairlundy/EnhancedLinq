@@ -1,10 +1,10 @@
 /*
     EnhancedLinq.Memory
     Copyright (c) 2025-2026 Alastair Lundy
-    
+
     This Source Code Form is subject to the terms of the Mozilla Public
     License, v. 2.0. If a copy of the MPL was not distributed with this
-    file, You can obtain one at https://mozilla.org/MPL/2.0/. 
+    file, You can obtain one at https://mozilla.org/MPL/2.0/.
 */
 
 using EnhancedLinq.Memory.Immediate;
@@ -15,30 +15,30 @@ internal class MemoryEnumerator<TSource> : IEnumerator<TSource>
 {
     private readonly ReadOnlyMemory<TSource> _memory;
 
+    private int _currentIndex;
+
     private int _state;
 
-    private int _currentIndex;
-    
     internal MemoryEnumerator(Memory<TSource> memory)
     {
         _memory = memory;
         _state = 0;
         _currentIndex = 0;
-        
-        if(_memory.Length > 0)
+
+        if (_memory.Length > 0)
             Current = _memory.First();
     }
-    
+
     internal MemoryEnumerator(ReadOnlyMemory<TSource> memory)
     {
         _memory = memory;
         _state = 0;
         _currentIndex = 0;
-        
-        if(_memory.Length > 0)
+
+        if (_memory.Length > 0)
             Current = _memory.First();
     }
-    
+
     public bool MoveNext()
     {
         if (_state == 0)
@@ -52,7 +52,7 @@ internal class MemoryEnumerator<TSource> : IEnumerator<TSource>
 
                 return true;
             }
-            
+
             _state = -1;
         }
 
@@ -71,10 +71,7 @@ internal class MemoryEnumerator<TSource> : IEnumerator<TSource>
         get => field ?? throw new Exception(Resources.Exceptions_ValueNotInitialized);
         private set
         {
-            if (value is not null)
-            {
-                field = value;
-            }
+            if (value is not null) field = value;
         }
     }
 

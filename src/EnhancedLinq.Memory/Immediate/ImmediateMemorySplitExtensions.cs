@@ -1,16 +1,16 @@
 /*
     EnhancedLinq.Memory
     Copyright (c) 2025-2026 Alastair Lundy
-    
+
     This Source Code Form is subject to the terms of the Mozilla Public
     License, v. 2.0. If a copy of the MPL was not distributed with this
-    file, You can obtain one at https://mozilla.org/MPL/2.0/. 
+    file, You can obtain one at https://mozilla.org/MPL/2.0/.
     */
 
 namespace EnhancedLinq.Memory.Immediate;
 
 /// <summary>
-/// Extension methods for splitting memory using immediate memory operations.
+///     Extension methods for splitting memory using immediate memory operations.
 /// </summary>
 public static class ImmediateMemorySplitExtensions
 {
@@ -20,10 +20,10 @@ public static class ImmediateMemorySplitExtensions
         where T : notnull
     {
         /// <summary>
-        /// Splits a span into an <see cref="IList{T}"/> of arrays based on the specified item count per array.
+        ///     Splits a span into an <see cref="IList{T}" /> of arrays based on the specified item count per array.
         /// </summary>
         /// <param name="count">The maximum number of items in each array.</param>
-        /// <returns>An <see cref="IList{T}"/> of arrays, where each array contains a maximum of count elements.</returns>
+        /// <returns>An <see cref="IList{T}" /> of arrays, where each array contains a maximum of count elements.</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when the count is less than or equal to zero.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the input span is empty.</exception>
         public IList<T[]> SplitByItemCount(int count)
@@ -31,24 +31,18 @@ public static class ImmediateMemorySplitExtensions
             InvalidOperationException.ThrowIfSpanIsEmpty(span);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
             ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(count, span.Length);
-            
+
             List<T[]> list = new();
 
-            if (!(span.Length > count))
-            {
-                return [span.ToArray()];
-            }
+            if (!(span.Length > count)) return [span.ToArray()];
 
             int start = 0;
             int nextSplit = 0;
 
             for (int i = 0; i < span.Length; i++)
             {
-                if (start == -1)
-                {
-                    start = i;
-                }
-            
+                if (start == -1) start = i;
+
                 nextSplit += 1;
 
                 if (nextSplit - start == count)
@@ -61,22 +55,24 @@ public static class ImmediateMemorySplitExtensions
                     list.Add(span.Slice(start, span.Length - start).ToArray());
                 }
             }
-        
+
             return list;
         }
 
         /// <summary>
-        /// Splits a span into an <see cref="IList{T}"/> of arrays based on the number of processors available.
+        ///     Splits a span into an <see cref="IList{T}" /> of arrays based on the number of processors available.
         /// </summary>
-        /// <returns>An <see cref="IList{T}"/> of arrays, where the span is split by the number of processors available.</returns>
+        /// <returns>An <see cref="IList{T}" /> of arrays, where the span is split by the number of processors available.</returns>
         public IList<T[]> SplitByProcessorCount()
-            => span.SplitByItemCount(Environment.ProcessorCount);
+        {
+            return span.SplitByItemCount(Environment.ProcessorCount);
+        }
 
         /// <summary>
-        /// Splits a span into an <see cref="IList{T}"/> of arrays based on a specified maximum number of arrays.
+        ///     Splits a span into an <see cref="IList{T}" /> of arrays based on a specified maximum number of arrays.
         /// </summary>
         /// <param name="maximumNumberOfArrays">The maximum number of arrays to divide the span into.</param>
-        /// <returns>An <see cref="IList{T}"/> of arrays, where the span is divided into at most the maximum number the arrays.</returns>
+        /// <returns>An <see cref="IList{T}" /> of arrays, where the span is divided into at most the maximum number the arrays.</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when the maximum number of arrays is less than or equal to zero.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the input span is empty.</exception>
         public IList<T[]> SplitByArrayCount(int maximumNumberOfArrays)
@@ -86,28 +82,27 @@ public static class ImmediateMemorySplitExtensions
 
             double maxItems = Convert.ToDouble(span.Length / maximumNumberOfArrays);
             int maxItemCount;
-        
+
             if (maxItems % 1 != 0)
-            {
                 maxItemCount = Convert.ToInt32(maxItems) + 1;
-            }
             else
-            {
                 maxItemCount = Convert.ToInt32(maxItems);
-            }
-        
+
             return span.SplitByItemCount(maxItemCount);
         }
 
         /// <summary>
-        /// Splits a span by a separator, into a list of spans.
+        ///     Splits a span by a separator, into a list of spans.
         /// </summary>
         /// <param name="separator">The separator to split by.</param>
         /// <returns>A list of spans, each containing the elements before the separator was found.</returns>
-        public IList<T[]> SplitBy(T separator) => span.SplitBy(x => x.Equals(separator));
+        public IList<T[]> SplitBy(T separator)
+        {
+            return span.SplitBy(x => x.Equals(separator));
+        }
 
         /// <summary>
-        /// Splits a span into an <see cref="IList{T}"/> of arrays based on the provided predicate.
+        ///     Splits a span into an <see cref="IList{T}" /> of arrays based on the provided predicate.
         /// </summary>
         /// <param name="predicate">A function that returns true or false indicating if an element should start a new array.</param>
         /// <returns></returns>
@@ -124,13 +119,10 @@ public static class ImmediateMemorySplitExtensions
 
             for (int i = 0; i < span.Length; i++)
             {
-                if (start == -1)
-                {
-                    start = i;
-                }
-            
+                if (start == -1) start = i;
+
                 nextSplit += 1;
-            
+
                 if (predicate(span[i]))
                 {
                     list.Add(span.Slice(start, Math.Abs(nextSplit - start)).ToArray());
@@ -141,7 +133,7 @@ public static class ImmediateMemorySplitExtensions
                     list.Add(span.Slice(start, span.Length - start).ToArray());
                 }
             }
-        
+
             return list;
         }
     }
