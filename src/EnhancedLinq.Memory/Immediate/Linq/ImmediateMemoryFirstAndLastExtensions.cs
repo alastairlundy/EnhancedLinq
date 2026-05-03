@@ -26,6 +26,8 @@ public static class ImmediateMemoryFirstAndLastExtensions
         /// <exception cref="InvalidOperationException">Thrown if the <see cref="Span{T}" /> contains zero items.</exception>
         public T First()
         {
+            InvalidOperationException.ThrowIfSpanIsEmpty(target);
+            
             return target[0];
         }
 
@@ -39,6 +41,8 @@ public static class ImmediateMemoryFirstAndLastExtensions
         /// </returns>
         public T? FirstOrDefault()
         {
+            InvalidOperationException.ThrowIfSpanIsEmpty(target);
+
             return !target.IsEmpty ? target[0] : default;
         }
 
@@ -107,6 +111,8 @@ public static class ImmediateMemoryFirstAndLastExtensions
         /// <exception cref="InvalidOperationException">Thrown if the Span contains zero items.</exception>
         public T Last()
         {
+            InvalidOperationException.ThrowIfSpanIsEmpty(target);
+
 #if NET8_0_OR_GREATER
             return target[^1];
 #else
@@ -171,8 +177,7 @@ public static class ImmediateMemoryFirstAndLastExtensions
         /// <exception cref="InvalidOperationException">Thrown if the <see cref="ReadOnlySpan{T}" /> contains zero items.</exception>
         public T First()
         {
-            if (target.IsEmpty)
-                throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptySpan);
+            InvalidOperationException.ThrowIfSpanIsEmpty(target);
 
             return target[0];
         }
@@ -248,6 +253,8 @@ public static class ImmediateMemoryFirstAndLastExtensions
         /// <exception cref="InvalidOperationException">Thrown if the <see cref="ReadOnlySpan{T}" /> contains zero items.</exception>
         public T Last()
         {
+            InvalidOperationException.ThrowIfSpanIsEmpty(target);
+            
 #if NET8_0_OR_GREATER
             return target[^1];
 #else
@@ -296,9 +303,9 @@ public static class ImmediateMemoryFirstAndLastExtensions
         }
     }
 
-    /// <param name="source">The source Memory sequence.</param>
+    /// <param name="target">The target Memory sequence.</param>
     /// <typeparam name="T">The type of elements in the Memory sequence.</typeparam>
-    extension<T>(Memory<T> source)
+    extension<T>(Memory<T> target)
     {
         /// <summary>
         ///     Returns the first element of a Memory sequence.
@@ -306,9 +313,12 @@ public static class ImmediateMemoryFirstAndLastExtensions
         /// <returns>The first element of the Memory sequence.</returns>
         public T First()
         {
-            foreach (T item in source.AsEnumerable()) return item;
+            InvalidOperationException.ThrowIfMemoryIsEmpty(target);
 
-            throw new ArgumentException(Resources.Exceptions_InvalidOperation_EmptyMemory, nameof(source));
+            foreach (T item in target.AsEnumerable())
+                return item;
+
+            throw new ArgumentException(Resources.Exceptions_InvalidOperation_EmptyMemory, nameof(target));
         }
 
         /// <summary>
@@ -319,9 +329,9 @@ public static class ImmediateMemoryFirstAndLastExtensions
         /// <exception cref="ArgumentException">Thrown when no element satisfies the condition.</exception>
         public T First(Func<T, bool> predicate)
         {
-            for (int index = 0; index < source.Length; index++)
+            for (int index = 0; index < target.Length; index++)
             {
-                T item = source.ElementAt(index);
+                T item = target.ElementAt(index);
                 if (predicate.Invoke(item))
                     return item;
             }
@@ -344,9 +354,9 @@ public static class ImmediateMemoryFirstAndLastExtensions
         /// </exception>
         public T? FirstOrDefault(Func<T, bool> predicate)
         {
-            for (int index = 0; index < source.Length; index++)
+            for (int index = 0; index < target.Length; index++)
             {
-                T item = source.ElementAt(index);
+                T item = target.ElementAt(index);
                 if (predicate.Invoke(item))
                     return item;
             }
@@ -360,9 +370,9 @@ public static class ImmediateMemoryFirstAndLastExtensions
         /// <returns>The last element of the Memory sequence.</returns>
         public T Last()
         {
-            return source.IsEmpty
-                ? source.ElementAt(source.LastIndex)
-                : throw new InvalidOperationException("The source Memory is empty.");
+            InvalidOperationException.ThrowIfMemoryIsEmpty(target);
+            
+            return target.ElementAt(target.LastIndex);
         }
 
         /// <summary>
@@ -371,10 +381,10 @@ public static class ImmediateMemoryFirstAndLastExtensions
         /// <returns>The first element of the Memory or default if no elements were found.</returns>
         public T? FirstOrDefault()
         {
-            if (source.IsEmpty)
+            if (target.IsEmpty)
                 return default;
 
-            foreach (T item in source.AsEnumerable()) return item;
+            foreach (T item in target.AsEnumerable()) return item;
 
             return default;
         }
@@ -385,7 +395,7 @@ public static class ImmediateMemoryFirstAndLastExtensions
         /// <returns>The last element of the Memory or default if no elements were found.</returns>
         public T? LastOrDefault()
         {
-            return source.IsEmpty ? default : source.ElementAt(source.LastIndex);
+            return target.IsEmpty ? default : target.ElementAt(target.LastIndex);
         }
 
         /// <summary>
@@ -396,9 +406,9 @@ public static class ImmediateMemoryFirstAndLastExtensions
         /// <exception cref="ArgumentException">Thrown when no element satisfies the condition.</exception>
         public T Last(Func<T, bool> predicate)
         {
-            for (int index = 0; index < source.Length; index++)
+            for (int index = 0; index < target.Length; index++)
             {
-                T item = source.ElementAt(source.LastIndex - index);
+                T item = target.ElementAt(target.LastIndex - index);
                 if (predicate.Invoke(item)) return item;
             }
 
@@ -416,9 +426,9 @@ public static class ImmediateMemoryFirstAndLastExtensions
         /// </returns>
         public T? LastOrDefault(Func<T, bool> predicate)
         {
-            for (int index = 0; index < source.Length; index++)
+            for (int index = 0; index < target.Length; index++)
             {
-                T item = source.ElementAt(source.LastIndex - index);
+                T item = target.ElementAt(target.LastIndex - index);
                 if (predicate.Invoke(item)) return item;
             }
 
@@ -426,9 +436,9 @@ public static class ImmediateMemoryFirstAndLastExtensions
         }
     }
 
-    /// <param name="source">The source Memory sequence.</param>
+    /// <param name="target">The target Memory sequence.</param>
     /// <typeparam name="T">The type of elements in the Memory sequence.</typeparam>
-    extension<T>(ReadOnlyMemory<T> source)
+    extension<T>(ReadOnlyMemory<T> target)
     {
         /// <summary>
         ///     Returns the first element of a <see cref="ReadOnlyMemory{T}" /> sequence.
@@ -436,9 +446,12 @@ public static class ImmediateMemoryFirstAndLastExtensions
         /// <returns>The first element of the <see cref="ReadOnlyMemory{T}" />  sequence.</returns>
         public T First()
         {
-            foreach (T item in source.AsEnumerable()) return item;
+            InvalidOperationException.ThrowIfMemoryIsEmpty(target);
 
-            throw new ArgumentException(Resources.Exceptions_InvalidOperation_EmptyMemory, nameof(source));
+            foreach (T item in target.AsEnumerable()) 
+                return item;
+
+            throw new ArgumentException(Resources.Exceptions_InvalidOperation_EmptyMemory, nameof(target));
         }
 
         /// <summary>
@@ -447,10 +460,10 @@ public static class ImmediateMemoryFirstAndLastExtensions
         /// <returns>The first element of the <see cref="ReadOnlyMemory{T}" />  or default if no elements were found.</returns>
         public T? FirstOrDefault()
         {
-            if (source.IsEmpty)
+            if (target.IsEmpty)
                 return default;
 
-            foreach (T item in source.AsEnumerable()) return item;
+            foreach (T item in target.AsEnumerable()) return item;
 
             return default;
         }
@@ -463,9 +476,9 @@ public static class ImmediateMemoryFirstAndLastExtensions
         /// <exception cref="ArgumentException">Thrown when no element satisfies the condition.</exception>
         public T First(Func<T, bool> predicate)
         {
-            for (int index = 0; index < source.Length; index++)
+            for (int index = 0; index < target.Length; index++)
             {
-                T item = source.ElementAt(index);
+                T item = target.ElementAt(index);
                 if (predicate.Invoke(item))
                     return item;
             }
@@ -488,9 +501,9 @@ public static class ImmediateMemoryFirstAndLastExtensions
         /// </exception>
         public T? FirstOrDefault(Func<T, bool> predicate)
         {
-            for (int index = 0; index < source.Length; index++)
+            for (int index = 0; index < target.Length; index++)
             {
-                T item = source.ElementAt(index);
+                T item = target.ElementAt(index);
                 if (predicate.Invoke(item))
                     return item;
             }
@@ -504,7 +517,9 @@ public static class ImmediateMemoryFirstAndLastExtensions
         /// <returns>The last element of the <see cref="ReadOnlyMemory{T}" />  sequence.</returns>
         public T Last()
         {
-            return source.ElementAt(source.LastIndex);
+            InvalidOperationException.ThrowIfMemoryIsEmpty(target);
+            
+            return target.ElementAt(target.LastIndex);
         }
 
         /// <summary>
@@ -513,7 +528,7 @@ public static class ImmediateMemoryFirstAndLastExtensions
         /// <returns>The last element of the <see cref="ReadOnlyMemory{T}" />  or default if no elements were found.</returns>
         public T? LastOrDefault()
         {
-            return source.IsEmpty ? default : source.ElementAt(source.LastIndex);
+            return target.IsEmpty ? default : target.ElementAt(target.LastIndex);
         }
 
         /// <summary>
@@ -524,9 +539,9 @@ public static class ImmediateMemoryFirstAndLastExtensions
         /// <exception cref="ArgumentException">Thrown when no element satisfies the condition.</exception>
         public T Last(Func<T, bool> predicate)
         {
-            for (int index = 0; index < source.Length; index++)
+            for (int index = 0; index < target.Length; index++)
             {
-                T item = source.ElementAt(source.LastIndex - index);
+                T item = target.ElementAt(target.LastIndex - index);
                 if (predicate.Invoke(item)) return item;
             }
 
@@ -544,9 +559,9 @@ public static class ImmediateMemoryFirstAndLastExtensions
         /// </returns>
         public T? LastOrDefault(Func<T, bool> predicate)
         {
-            for (int index = 0; index < source.Length; index++)
+            for (int index = 0; index < target.Length; index++)
             {
-                T item = source.ElementAt(source.LastIndex - index);
+                T item = target.ElementAt(target.LastIndex - index);
                 if (predicate.Invoke(item)) return item;
             }
 
