@@ -10,7 +10,8 @@
 namespace EnhancedLinq.Async.Immediate;
 
 /// <summary>
-/// 
+/// Provides static extension methods that limit asynchronous sequences to a specified number
+/// of items while preserving order and handling cancellation.
 /// </summary>
 public static class ImmediateAsyncCountAtMostExtensions
 {

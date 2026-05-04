@@ -21,13 +21,10 @@ public static class DeferredAsyncWhereExtensions
         /// <summary>
         /// Filters the elements of an asynchronous sequence based on an asynchronous predicate.
         /// </summary>
-        /// <typeparam name="T">The type of the elements in the source sequence.</typeparam>
-        /// <param name="selector">
-        /// A function that represents the asynchronous predicate to test each element for a condition.
+        /// <param name="selector"> A function that represents the asynchronous predicate to test each element for a condition.
         /// </param>
-        /// <returns>
-        /// An asynchronous sequence that contains elements from the input sequence that satisfy the condition specified by the predicate.
-        /// </returns>
+        /// <returns> An asynchronous sequence that contains elements from the input sequence that satisfy the condition
+        /// specified by the predicate. </returns>
         /// <exception cref="ArgumentNullException">
         /// Thrown when the <paramref name="selector"/> argument is null.
         /// </exception>
@@ -48,36 +45,5 @@ public static class DeferredAsyncWhereExtensions
                 }
             }
         }
-
-        /*/// <summary>
-        /// Filters the elements of an asynchronous sequence based on an asynchronous predicate.
-        /// </summary>
-        /// <typeparam name="T">The type of the elements in the source sequence.</typeparam>
-        /// <param name="selector">
-        /// A function that represents the asynchronous predicate to test each element for a condition.
-        /// </param>
-        /// <returns>
-        /// An asynchronous sequence that contains elements from the input sequence that satisfy the condition specified by the predicate.
-        /// </returns>
-        /// <exception cref="ArgumentNullException">
-        /// Thrown when the <paramref name="selector"/> argument is null.
-        /// </exception>
-        public IAsyncEnumerable<T> WhereAsync(Func<T, ValueTask<bool>> selector)
-        {
-            ArgumentNullException.ThrowIfNull(selector);
-
-            return WhereInternalAsync(selector);
-
-            async IAsyncEnumerable<T> WhereInternalAsync(Func<T, ValueTask<bool>> selectorInternal)
-            {
-                await foreach (T item in source.ConfigureAwait(false))
-                {
-                    bool result = await selectorInternal(item).ConfigureAwait(false);
-
-                    if (result)
-                        yield return item;
-                }
-            }
-        }*/
     }
 }
