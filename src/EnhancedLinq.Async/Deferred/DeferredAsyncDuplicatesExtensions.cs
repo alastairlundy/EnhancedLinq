@@ -12,7 +12,8 @@ using EnhancedLinq.Async.Deferred.Enumerators;
 namespace EnhancedLinq.Async.Deferred;
 
 /// <summary>
-/// 
+/// Provides extension methods for processing asynchronous sequences
+/// to identify and manage duplicate elements in a deferred manner.
 /// </summary>
 public static class DeferredAsyncDuplicatesExtensions
 {
@@ -21,17 +22,23 @@ public static class DeferredAsyncDuplicatesExtensions
     extension<TSource>(IAsyncEnumerable<TSource> source) where TSource : IEquatable<TSource>
     {
         /// <summary>
-        /// 
+        /// Identifies duplicate elements in an asynchronous sequence and returns them
+        /// as an asynchronous sequence.
         /// </summary>
-        /// <returns></returns>
+        /// <returns> An asynchronous sequence containing duplicate elements from the source sequence. </returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown if the <paramref name="source"/> is <see langword="null"/>.</exception>
         public IAsyncEnumerable<TSource> FindDuplicates() => source.FindDuplicates(EqualityComparer<TSource>.Default);
-        
+
         /// <summary>
-        /// 
+        /// Identifies duplicate elements in an asynchronous sequence and returns them
+        /// as an asynchronous sequence, using the specified equality comparer.
         /// </summary>
-        /// <param name="comparer"></param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentNullException"></exception>
+        /// <param name="comparer">The equality comparer to use for comparing elements.</param>
+        /// <returns>An asynchronous sequence containing duplicate elements from the source sequence.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown if the <paramref name="source"/> or <paramref name="comparer"/> is <see langword="null"/>.
+        /// </exception>
         public IAsyncEnumerable<TSource> FindDuplicates(IEqualityComparer<TSource> comparer)
         {
             ArgumentNullException.ThrowIfNull(source);

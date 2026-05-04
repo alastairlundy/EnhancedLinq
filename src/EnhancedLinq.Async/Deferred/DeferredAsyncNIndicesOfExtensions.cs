@@ -38,11 +38,13 @@ public static class DeferredAsyncNIndicesOfExtensions
         }
 
         /// <summary>
-        /// 
+        /// Returns an asynchronous sequence of the first N indices where the elements in the source async sequence match the specified condition.
         /// </summary>
-        /// <param name="selector"></param>
+        /// <param name="selector">A function that determines if a source element matches.</param>
         /// <param name="count">The number of first indices to return.</param>
-        /// <returns></returns>
+        /// <returns>An asynchronous sequence of up to count indices where the elements in the source async sequence match the specified condition.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="count"/> is negative or zero.</exception>
         public IAsyncEnumerable<int> FirstNIndicesOf(Func<TSource, bool> selector, int count)
         {
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
@@ -68,13 +70,20 @@ public static class DeferredAsyncNIndicesOfExtensions
             return source.IndicesOfAsync(target).TakeLast(count);
         }
 
-
+        /// <summary>
+        /// Returns the last N indices of elements that satisfy a given predicate within an async sequence.
+        /// </summary>
+        /// <param name="selector">A lambda that returns true for elements that should be included in the result.</param>
+        /// <param name="count">The number of last matching indices to return; must be positive.</param>
+        /// <returns>An asynchronous sequence containing the last N positions where the predicate is true.</returns>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="count"/> is negative or zero.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="selector"/> is null.</exception>
         public IAsyncEnumerable<int> LastNIndicesOf(Func<TSource, bool> selector, int count)
         {
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
             ArgumentNullException.ThrowIfNull(selector);
             ArgumentNullException.ThrowIfNull(source);
-            
+
             return source.IndicesOfAsync(selector).TakeLast(count);
         }
     }

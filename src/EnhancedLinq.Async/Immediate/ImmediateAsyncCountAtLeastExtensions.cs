@@ -10,7 +10,7 @@
 namespace EnhancedLinq.Async.Immediate;
 
 /// <summary>
-/// 
+/// Provides extension methods that asynchronously count the elements of a sequence to ensure at least a specified minimum is reached immediately.
 /// </summary>
 public static class ImmediateAsyncCountAtLeastExtensions
 {

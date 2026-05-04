@@ -12,7 +12,7 @@ using EnhancedLinq.Async.Deferred.Enumerators;
 namespace EnhancedLinq.Async.Deferred;
 
 /// <summary>
-/// 
+/// Provides extension methods for deferred retrieval of elements at specified positions in asynchronous sequences.
 /// </summary>
 public static class DeferredAsyncElementsAtExtensions
 {
@@ -20,12 +20,9 @@ public static class DeferredAsyncElementsAtExtensions
     /// <typeparam name="TSource">The type of the elements in the source and returned <see cref="IAsyncEnumerable{T}"/>.</typeparam>
     extension<TSource>(IAsyncEnumerable<TSource> source)
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="indices"></param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentNullException"></exception>
+        /// <summary>Retrieves elements from the source at the given indices.</summary>
+        /// <returns>An async enumerable containing the elements at the specified positions.</returns>
+        /// <param name="indices">The sequence of zero‑based indices to retrieve elements.</param>
         public IAsyncEnumerable<TSource> ElementsAt(IAsyncEnumerable<int> indices)
         {
             ArgumentNullException.ThrowIfNull(source);
@@ -34,28 +31,27 @@ public static class DeferredAsyncElementsAtExtensions
             return new CustomAsyncEnumerable<TSource>(
                 new AsyncElementsAtEnumerator<TSource>(source, indices));
         }
-        
+
         /// <summary>
-        /// 
+        /// Retrieves elements from the source at the given range of indices.
         /// </summary>
-        /// <param name="range"></param>
-        /// <returns></returns>
+        /// <param name="range">The <see cref="Range"/> from which to retrieve elements.</param>
+        /// <typeparam name="TSource">The type of the elements in the source and returned <see cref="IAsyncEnumerable{T}"/>.</typeparam>
+        /// <returns>An async enumerable containing the elements at the specified positions.</returns>
         public IAsyncEnumerable<TSource> ElementsAt(Range range)
-            =>source.ElementsAt(range.Start.Value, Math.Abs(range.Start.Value - range.End.Value));
-        
+            => source.ElementsAt(range.Start.Value, Math.Abs(range.Start.Value - range.End.Value));
+
         /// <summary>
-        /// 
+        /// Retrieves elements from the source at the specified indices.
         /// </summary>
-        /// <param name="startIndex"></param>
-        /// <param name="count"></param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentNullException"></exception>
-        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <param name="startIndex">The zero-based start index to retrieve elements from</param>
+        /// <param name="count">The number of elements to retrieve</param>
+        /// <returns>An asynchronous sequence containing the elements at the specified positions.</returns>
         public IAsyncEnumerable<TSource> ElementsAt(int startIndex, int count)
         {
             ArgumentNullException.ThrowIfNull(source);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
-        
+
             IAsyncEnumerable<int> sequence = startIndex.GenerateNumberRange(count, 1);
        
             return source.ElementsAt(sequence);

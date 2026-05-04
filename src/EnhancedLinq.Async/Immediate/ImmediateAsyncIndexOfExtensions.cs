@@ -9,14 +9,10 @@
 
 namespace EnhancedLinq.Async.Immediate;
 
-/// <summary>
-/// 
-/// </summary>
+/// <summary>Provides extension methods that retrieve the index of a target value in an asynchronous sequence immediately,
+/// without awaiting the full stream.</summary>
 public static class ImmediateAsyncIndexOfExtensions
 {
-    /// <summary>
-    /// 
-    /// </summary>
     /// <param name="source">The <see cref="IAsyncEnumerable{T}"/> to be searched.</param>
     /// <typeparam name="T">The type of elements in the sequence.</typeparam>
     extension<T>(IAsyncEnumerable<T> source)
@@ -25,8 +21,8 @@ public static class ImmediateAsyncIndexOfExtensions
         /// Gets the first index of the first element that matches the predicate condition.
         /// </summary>
         /// <param name="predicate">The predicate condition to check elements of the sequence against.</param>
-        /// <returns>The first index of the first element in the sequence to match the predicate condition,
-        /// if the sequence contains any elements that match the predicate condition, returns -1 otherwise.
+        /// <returns>The first index of the first element in the asynchronous sequence to match the predicate condition,
+        /// if the asynchronous sequence contains any elements that match the predicate condition, returns -1 otherwise.
         /// </returns>
         public async Task<int> IndexOfAsync(Func<T, bool> predicate)
         {
@@ -47,10 +43,10 @@ public static class ImmediateAsyncIndexOfExtensions
         }
         
         /// <summary>
-        /// Gets the first index of an element in a sequence.
+        /// Gets the first index of an element in an asynchronous sequence.
         /// </summary>
         /// <param name="obj">The element to get the index of.</param>
-        /// <returns>The first index of an element in a sequence, if the sequence contains the element, returns -1 otherwise.</returns>
+        /// <returns>The first index of an element in an asynchronous sequence, if the asynchronous sequence contains the element, returns -1 otherwise.</returns>
         public async Task<int> IndexOfAsync(T obj)
         {
             ArgumentNullException.ThrowIfNull(source);

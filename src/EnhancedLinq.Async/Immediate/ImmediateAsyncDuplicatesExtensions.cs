@@ -10,7 +10,7 @@
 namespace EnhancedLinq.Async.Immediate;
 
 /// <summary>
-/// 
+/// Provides extension methods for determining if an asynchronous sequence contains duplicate elements.
 /// </summary>
 public static class ImmediateAsyncDuplicatesExtensions
 {

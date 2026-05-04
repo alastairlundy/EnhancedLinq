@@ -13,13 +13,11 @@ using EnhancedLinq.Deferred;
 namespace EnhancedLinq.Immediate;
 
 /// <summary>
-/// 
+/// Provides extension methods for locating the zero‑based position of a value within an IEnumerable,
+/// performing an immediate (non‑lazy) search instead of the generic LINQ IndexOf overloads.
 /// </summary>
 public static class ImmediateIndexOfExtensions
 {
-    /// <summary>
-    /// 
-    /// </summary>
     /// <param name="source">The <see cref="IEnumerable{T}"/> to be searched.</param>
     /// <typeparam name="T">The type of elements in the sequence.</typeparam>
     extension<T>(IEnumerable<T> source)
