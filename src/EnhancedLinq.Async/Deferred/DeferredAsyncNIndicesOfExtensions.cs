@@ -67,13 +67,8 @@ public static class DeferredAsyncNIndicesOfExtensions
             
             return source.IndicesOfAsync(target).TakeLast(count);
         }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="selector"></param>
-        /// <param name="count">The number of last indices to return.</param>
-        /// <returns></returns>
+
+
         public IAsyncEnumerable<int> LastNIndicesOf(Func<TSource, bool> selector, int count)
         {
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);

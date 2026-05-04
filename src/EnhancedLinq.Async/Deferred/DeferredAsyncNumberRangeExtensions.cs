@@ -8,32 +8,32 @@
     */
 
 #if NET8_0_OR_GREATER
-
 using System.Linq;
 using System.Numerics;
-using EnhancedLinq.Async.Deferred.Enumerables;
+#endif
 
 namespace EnhancedLinq.Async.Deferred;
 
 /// <summary>
-/// Provides extension methods for working with deferred number ranges.
+/// Provides deferred asynchronous number range extensions for numeric sequences.
 /// </summary>
 public static class DeferredAsyncNumberRangeExtensions
 {
+#if NET8_0_OR_GREATER
+
     /// <param name="start">The starting value of the sequence.</param>
     /// <typeparam name="TNumber">The numeric type used to represent the numbers.</typeparam>
     extension<TNumber>(TNumber start) where TNumber : INumber<TNumber>
     {
         /// <summary>
-        /// Generates a sequence of numeric values starting from a specified value and continuing for a specified count,
-        /// with each value incremented by 1 from the starting point.
+        /// 
         /// </summary>
-        /// <param name="count">The number of values to generate in the sequence.</param>
-        /// <param name="incrementor">The amount to increment each number by.</param>
-        /// <returns>A sequence containing the generated numeric values,
-        /// incremented by the incrementor amount from the starting point.</returns>
-        /// <exception cref="ArgumentException">Thrown if the start number or count is NaN.</exception>
-        /// <exception cref="NotFiniteNumberException">Thrown if the start number or count is infinity.</exception>
+        /// <param name="count"></param>
+        /// <param name="incrementor"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="NotFiniteNumberException"></exception>
         public IAsyncEnumerable<TNumber> GenerateNumberRange(TNumber count, TNumber incrementor)
         {
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
@@ -55,25 +55,57 @@ public static class DeferredAsyncNumberRangeExtensions
         }
 
         /// <summary>
-        /// Generates a sequence of numeric values starting from a specified value and continuing for a specified count, skipping, 
-        /// with each value incremented by 1 from the starting point.
+        /// 
         /// </summary>
-        /// <param name="count">The number of values to generate in the sequence.</param>
-        /// <param name="incrementor">The amount to increment each number by.</param>
-        /// <param name="numbersToSkip">The numbers to skip when generating the range of numbers.</param>
-        /// <returns>A sequence containing the generated numeric values,
-        /// incremented by the incrementor amount from the starting point.</returns>
+        /// <param name="count"></param>
+        /// <param name="incrementor"></param>
+        /// <param name="numbersToSkip"></param>
+        /// <returns></returns>
         public async IAsyncEnumerable<TNumber> GenerateNumberRange(TNumber count, TNumber incrementor,
             IAsyncEnumerable<TNumber> numbersToSkip)
         {
             IAsyncEnumerable<TNumber> numbers = start.GenerateNumberRange(count, incrementor)
-                .WhereAsync(n => numbersToSkip.ContainsAsync(n));
+                .WhereAsync(async n => await numbersToSkip.ContainsAsync(n).ConfigureAwait(false));
 
-            await foreach (var number in numbers.ConfigureAwait(false))
+            await foreach (TNumber number in numbers.ConfigureAwait(false))
             {
                 yield return number;
             }
         }
     }
-}
+
+#else
+    extension(int start)
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="count"></param>
+        /// <param name="incrementor"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        public IAsyncEnumerable<int> GenerateNumberRange(int count, int incrementor)
+        {
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
+            ArgumentOutOfRangeException.ThrowIfZero(incrementor);
+
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(count, int.MaxValue);
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(incrementor, int.MaxValue);
+        
+            /*if (int.IsNaN(start))
+                throw new ArgumentException(Resources.Exceptions_Numbers_ParameterIsNotANumber, nameof(start));
+
+            if (int.IsNaN(count))
+                throw new ArgumentException(Resources.Exceptions_Numbers_ParameterIsNotANumber, nameof(count));
+
+            if (int.IsNaN(incrementor))
+                throw new ArgumentException(Resources.Exceptions_Numbers_ParameterIsNotANumber, nameof(incrementor));
+
+            if (int.IsInfinity(start) || int.IsInfinity(count))
+                throw new NotFiniteNumberException();*/
+
+            return new AsyncNumberRangeNetStandardEnumerable(start, count, incrementor);
+        }
+    }
 #endif
+}

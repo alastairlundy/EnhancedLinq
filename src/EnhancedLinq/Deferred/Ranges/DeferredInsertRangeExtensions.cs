@@ -12,7 +12,7 @@ using EnhancedLinq.Deferred.Enumerators.Ranges;
 namespace EnhancedLinq.Deferred.Ranges;
 
 /// <summary>
-/// 
+/// Sequence extension methods that support deferred insertion of elements into ranges.
 /// </summary>
 public static class DeferredInsertRangeExtensions
 {
@@ -28,8 +28,7 @@ public static class DeferredInsertRangeExtensions
         /// <returns>A new sequence with the elements of the original sequence, and the specified element inserted at the specified index. </returns>
         public IEnumerable<TSource> Insert(int indexToInsertAt,
             TSource toBeInserted)
-            =>
-                source.InsertRange(indexToInsertAt, [toBeInserted]);
+            => source.InsertRange(indexToInsertAt, [toBeInserted]);
         
         /// <summary>
         /// Inserts a sequence of elements into a sequence at a specified index.
