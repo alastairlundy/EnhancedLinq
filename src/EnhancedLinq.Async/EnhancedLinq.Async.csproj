@@ -12,6 +12,7 @@
         <RepositoryUrl>https://github.com/alastairlundy/Enhancedlinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <Description>Additional LINQ style Deferred and Immediate enumeration mode extension methods for .NET . </Description>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageTags>linq, enhancedlinq, enhanced, deferred-execution,extensions</PackageTags>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
@@ -78,6 +79,9 @@
 
     <ItemGroup>
       <Folder Include="Deferred\Ranges\" />
+      <Content Include="README.md">
+        <PackagePath>README.md</PackagePath>
+      </Content>
     </ItemGroup>
 
 </Project>

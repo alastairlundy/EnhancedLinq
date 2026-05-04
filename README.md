@@ -7,7 +7,7 @@ EnhancedLinq requires consuming projects to use C# language version 14 or newer 
 For a comprehensive list of included methods, check out the following resources:
 
 - [EnhancedLinq Methods](./docs/Methods/EnhancedLinq.md) [![NuGet](https://img.shields.io/nuget/v/EnhancedLinq.svg)](https://www.nuget.org/packages/EnhancedLinq/)  [![NuGet](https://img.shields.io/nuget/dt/EnhancedLinq.svg)](https://www.nuget.org/packages/EnhancedLinq/)
-- [EnhancedLinqAsync Methods](./docs/Methods/EnhancedLinq.md) [![NuGet](https://img.shields.io/nuget/v/EnhancedLinq.Async.svg)](https://www.nuget.org/packages/EnhancedLinq.Async/)  [![NuGet](https://img.shields.io/nuget/dt/EnhancedLinq.Async.svg)](https://www.nuget.org/packages/EnhancedLinq.Async/)
+- [EnhancedLinqAsync Methods](./docs/Methods/EnhancedLinqAsync.md) [![NuGet](https://img.shields.io/nuget/v/EnhancedLinq.Async.svg)](https://www.nuget.org/packages/EnhancedLinq.Async/)  [![NuGet](https://img.shields.io/nuget/dt/EnhancedLinq.Async.svg)](https://www.nuget.org/packages/EnhancedLinq.Async/)
 - [EnhancedLinq.Memory Methods](./docs/Methods/EnhancedLinq.Memory.md) [![NuGet](https://img.shields.io/nuget/v/EnhancedLinq.Memory.svg)](https://www.nuget.org/packages/EnhancedLinq.Memory/)  [![NuGet](https://img.shields.io/nuget/dt/EnhancedLinq.Memory.svg)](https://www.nuget.org/packages/EnhancedLinq.Memory/)
   
 __Note__: The ``EnhancedLinq.MsExtensions`` package has been merged into the base ``EnhancedLinq`` package. To use ``EnhancedLinq.MsExtensions``, install the main ``EnhancedLinq`` package.
