@@ -12,22 +12,13 @@
         <RepositoryUrl>https://github.com/alastairlundy/Enhancedlinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageReleaseNotes>### Infrastructure &amp; Dependencies
-
-#### Added
-- Added `AGENTS.md` with project overview.
-
-#### Fixed
-- Fixed an issue where `EnhancedLinq.Shared.Infra` could not be found by consuming projects.
-
-#### Changed
-- Bumped `DotExtensions` from 10.2.1 to 10.3.0
-- Bumped , `Microsoft.Extensions.Primitives` from 10.0.6 to 10.0.7
-- Updated GitHub Actions: `step-security/harden-runner` to v2.19.0 and `NuGet/login` to v1.2.0
-
-### EnhancedLinq
-- Fixed off-by-one error in `ImmediateLastIndexOfExtensions`
-- Fixed an issue where `ElementsAt` did not correctly ignore out-of-range elements.</PackageReleaseNotes>
+        <PackageReleaseNotes>- Removed unnecessary exception documentation.
+- Updated method documentation files
+- General improvements to formatting and exception throwing logic.
+- Fixed issues with `DuplicatorsEnumerator` state.
+- Fixed enumerator state and adjusted `SplitBy` list initialization.
+- Updated `First` and `Last` methods to correctly throw exceptions.
+- Removed `throw` when dictionary is read-only - The dictionary implementation will throw if necessary instead.</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <Description>Additional LINQ style Deferred and Immediate enumeration mode extension methods for .NET . </Description>
@@ -36,7 +27,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>1.0.0-beta.5</Version>
+        <Version>1.0.0-rc.1</Version>
         <PackageId>EnhancedLinq</PackageId>
         <PolyArgumentExceptions>true</PolyArgumentExceptions>
         <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
