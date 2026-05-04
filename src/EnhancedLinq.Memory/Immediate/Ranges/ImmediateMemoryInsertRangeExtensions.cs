@@ -1,10 +1,10 @@
 /*
     EnhancedLinq.Memory
     Copyright (c) 2025-2026 Alastair Lundy
-    
+
     This Source Code Form is subject to the terms of the Mozilla Public
     License, v. 2.0. If a copy of the MPL was not distributed with this
-    file, You can obtain one at https://mozilla.org/MPL/2.0/. 
+    file, You can obtain one at https://mozilla.org/MPL/2.0/.
     */
 
 using DotExtensions.Memory.Spans;
@@ -12,7 +12,6 @@ using DotExtensions.Memory.Spans;
 namespace EnhancedLinq.Memory.Immediate.Ranges;
 
 /// <summary>
-/// 
 /// </summary>
 public static class ImmediateMemoryInsertRangeExtensions
 {
@@ -21,7 +20,7 @@ public static class ImmediateMemoryInsertRangeExtensions
     extension<T>(ref Span<T> span)
     {
         /// <summary>
-        /// Inserts a collection of elements at the specified start index into the span.
+        ///     Inserts a collection of elements at the specified start index into the span.
         /// </summary>
         /// <param name="elements">The collection of elements to be inserted.</param>
         /// <param name="startIndex">The zero-based starting index of the insertion.</param>
@@ -30,17 +29,17 @@ public static class ImmediateMemoryInsertRangeExtensions
         {
             ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
             ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex, span.Length);
-        
+
             int newLength = span.Length + elements.Count;
-        
+
             span.Resize(newLength);
-        
+
             int i = startIndex;
-        
+
             foreach (T element in elements)
             {
                 span[i] = element;
-            
+
                 i++;
             }
         }

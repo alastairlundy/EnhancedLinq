@@ -1,10 +1,10 @@
 /*
     EnhancedLinq.Memory
     Copyright (c) 2025-2026 Alastair Lundy
-    
+
     This Source Code Form is subject to the terms of the Mozilla Public
     License, v. 2.0. If a copy of the MPL was not distributed with this
-    file, You can obtain one at https://mozilla.org/MPL/2.0/. 
+    file, You can obtain one at https://mozilla.org/MPL/2.0/.
     */
 
 using System.Linq;
@@ -13,7 +13,7 @@ using DotExtensions.Numbers;
 namespace EnhancedLinq.Memory.Immediate.Ranges;
 
 /// <summary>
-/// Extension methods for retrieving a range of items from an immediate memory span.
+///     Extension methods for retrieving a range of items from an immediate memory span.
 /// </summary>
 public static class ImmediateMemoryGetRangeExtensions
 {
@@ -23,13 +23,15 @@ public static class ImmediateMemoryGetRangeExtensions
     extension<T>(Span<T> target)
     {
         /// <summary>
-        /// Returns a new Span with the specified range of elements,
-        /// starting from the given start index and ending at the given end index.
+        ///     Returns a new Span with the specified range of elements,
+        ///     starting from the given start index and ending at the given end index.
         /// </summary>
-        /// <param name="range">The <see cref="Range"/> containing the start and end indices.</param>
+        /// <param name="range">The <see cref="Range" /> containing the start and end indices.</param>
         /// <returns>A new span containing the specified range of elements.</returns>
         public Span<T> GetRange(Range range)
-            => target.GetRange(range.Start.Value, range.End.Value);
+        {
+            return target.GetRange(range.Start.Value, range.End.Value);
+        }
     }
 #endif
 
@@ -38,35 +40,37 @@ public static class ImmediateMemoryGetRangeExtensions
     extension<T>(Span<T> target)
     {
         /// <summary>
-        /// Returns a new Span with the specified range of elements,
-        /// starting from the given start index and ending at the given end index.
+        ///     Returns a new Span with the specified range of elements,
+        ///     starting from the given start index and ending at the given end index.
         /// </summary>
         /// <param name="start">The zero-based starting index of the range.</param>
         /// <param name="end">The one-based ending index of the range (inclusive).</param>
         /// <returns>A new span containing the specified range of elements.</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown if the start or end indices are out of range for the span.</exception>
-        /// <exception cref="IndexOutOfRangeException">Thrown if the start index is greater than the length of the span, or if the end index exceeds the span's capacity.</exception>
+        /// <exception cref="IndexOutOfRangeException">
+        ///     Thrown if the start index is greater than the length of the span, or if the
+        ///     end index exceeds the span's capacity.
+        /// </exception>
         public Span<T> GetRange(int start, int end)
         {
-            InvalidOperationException.ThrowIfSpanIsEmpty(target);
-
             ArgumentOutOfRangeException.ThrowIfNegative(start);
             ArgumentOutOfRangeException.ThrowIfNegative(end);
             ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(start, target.Length);
             ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(end, target.Length);
-            
-            if ((end - start) > target.Length)
+
+            if (end - start > target.Length)
                 throw new ArgumentOutOfRangeException(
                     Resources.Exceptions_SkipCount_TooLarge);
-        
+
             return target.Slice(start, end - start);
         }
-        
+
         /// <summary>
-        /// Retrieves a range of elements within the specified span.
+        ///     Retrieves a range of elements within the specified span.
         /// </summary>
-        /// <remarks>This method is more computationally expensive than the <see cref="ICollection{T}"/> overload for this method.
-        /// Please use that overload instead if possible.
+        /// <remarks>
+        ///     This method is more computationally expensive than the <see cref="ICollection{T}" /> overload for this method.
+        ///     Please use that overload instead if possible.
         /// </remarks>
         /// <param name="indices">A sequence of indices specifying the positions of interest in the span.</param>
         /// <returns>A new Span containing only the elements at the specified indices.</returns>
@@ -74,26 +78,22 @@ public static class ImmediateMemoryGetRangeExtensions
         /// <exception cref="IndexOutOfRangeException">Thrown if any index in indices is out of range for the target span.</exception>
         public Span<T> GetRange(IEnumerable<int> indices)
         {
-            InvalidOperationException.ThrowIfSpanIsEmpty(target);
             ArgumentNullException.ThrowIfNull(indices);
 
-            if(indices is ICollection<int> collection)
+            if (indices is ICollection<int> collection)
                 return target.GetRange(collection);
 
             List<T> output = [];
-            
+
             int targetLength = target.Length;
-            
-            foreach (int index in indices.Where(i => i >= 0 && i < targetLength))
-            {
-                output.Add(target[index]);
-            }
-            
-            return new(output.ToArray());
+
+            foreach (int index in indices.Where(i => i >= 0 && i < targetLength)) output.Add(target[index]);
+
+            return new Span<T>(output.ToArray());
         }
-        
+
         /// <summary>
-        /// Retrieves a range of elements within the specified span.
+        ///     Retrieves a range of elements within the specified span.
         /// </summary>
         /// <param name="indices">A collection of indices specifying the positions of interest in the span.</param>
         /// <returns>A new Span containing only the elements at the specified indices.</returns>
@@ -101,26 +101,24 @@ public static class ImmediateMemoryGetRangeExtensions
         /// <exception cref="IndexOutOfRangeException">Thrown if any index in indices is out of range for the target span.</exception>
         public Span<T> GetRange(ICollection<int> indices)
         {
-            InvalidOperationException.ThrowIfSpanIsEmpty(target);
-
             ArgumentNullException.ThrowIfNull(indices);
-            
-            if(indices.IsIncrementedNumberRange(1))
+
+            if (indices.IsIncrementedNumberRange(1))
                 return target.GetRange(indices.Min(), indices.Max());
-        
+
             T[] array = new T[indices.Count];
-        
+
             int newIndex = 0;
-            
+
             int targetLength = target.Length;
-            
+
             foreach (int index in indices.Where(i => i >= 0 && i < targetLength))
             {
                 target[newIndex] = target[index];
                 newIndex++;
             }
-            
-            return new(array);
+
+            return new Span<T>(array);
         }
     }
 }

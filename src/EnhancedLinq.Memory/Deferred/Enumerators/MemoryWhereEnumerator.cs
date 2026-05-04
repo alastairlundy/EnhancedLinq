@@ -1,10 +1,10 @@
 /*
     EnhancedLinq.Memory
     Copyright (c) 2025-2026 Alastair Lundy
-    
+
     This Source Code Form is subject to the terms of the Mozilla Public
     License, v. 2.0. If a copy of the MPL was not distributed with this
-    file, You can obtain one at https://mozilla.org/MPL/2.0/. 
+    file, You can obtain one at https://mozilla.org/MPL/2.0/.
 */
 
 using EnhancedLinq.Memory.Immediate;
@@ -13,11 +13,11 @@ namespace EnhancedLinq.Memory.Deferred.Enumerators;
 
 internal class MemoryWhereEnumerator<T> : IEnumerator<T>
 {
+    private readonly IEnumerator<T> _enumerator;
     private readonly Func<T, bool> _predicate;
     private T _current;
 
     private int _state;
-    private readonly IEnumerator<T> _enumerator;
 
     internal MemoryWhereEnumerator(Memory<T> source, Func<T, bool> predicate)
     {
@@ -26,7 +26,7 @@ internal class MemoryWhereEnumerator<T> : IEnumerator<T>
         _state = 0;
         _current = source.First();
     }
-    
+
     internal MemoryWhereEnumerator(ReadOnlyMemory<T> source, Func<T, bool> predicate)
     {
         _enumerator = source.AsEnumerable().GetEnumerator();
@@ -34,23 +34,21 @@ internal class MemoryWhereEnumerator<T> : IEnumerator<T>
         _state = 0;
         _current = source.First();
     }
-    
+
     public bool MoveNext()
     {
         if (_state == 0)
         {
             while (_enumerator.MoveNext())
-            {
                 if (_predicate(_enumerator.Current))
                 {
                     _current = _enumerator.Current;
                     return true;
                 }
-            }
 
             _state = -1;
         }
-        
+
         Dispose();
         return false;
     }

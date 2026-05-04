@@ -30,12 +30,8 @@ public static class ImmediateDictionaryAddRangeExtensions
         /// </summary>
         /// <param name="pairsToAdd">The items to be added.</param>
         /// <exception cref="OverflowException">Thrown if the dictionary is unable to store all the Key Value Pairs to be added.</exception>
-        /// <exception cref="InvalidOperationException">Thrown if the source dictionary is read-only.</exception>
         public void AddRange(IEnumerable<KeyValuePair<TKey, TValue>> pairsToAdd)
         {
-            if(source.IsReadOnly)
-                throw new InvalidOperationException($"{nameof(source)} is read-only.");
-
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(pairsToAdd);
         
@@ -53,21 +49,17 @@ public static class ImmediateDictionaryAddRangeExtensions
         /// </summary>
         /// <param name="dictionaryToAdd">The dictionary to be added to the existing dictionary.</param>
         /// <exception cref="OverflowException">Thrown if the dictionary is unable to store all the dictionary values to be added.</exception>
-        /// <exception cref="InvalidOperationException">Thrown if the source dictionary is read-only.</exception>
         public void AddRange(IDictionary<TKey, TValue> dictionaryToAdd)
         {
-            if(source.IsReadOnly)
-                throw new InvalidOperationException($"{nameof(source)} is read-only.");
-        
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(dictionaryToAdd);
 
             if (source.Count == int.MaxValue)
                 throw new OverflowException(
                     $"{nameof(source)} contains the maximum size of {int.MaxValue} and cannot be added to.");
-            else if (dictionaryToAdd.Count == int.MaxValue)
+            if (dictionaryToAdd.Count == int.MaxValue)
                 throw new OverflowException($"{nameof(dictionaryToAdd)} contains the maximum size of {int.MaxValue} and cannot be added to {nameof(source)}.");
-         
+
             foreach (KeyValuePair<TKey, TValue> pair in dictionaryToAdd)
             {
                 if (source.Count == int.MaxValue)
@@ -86,16 +78,12 @@ public static class ImmediateDictionaryAddRangeExtensions
         /// </summary>
         /// <param name="pairsToAdd">The items to be added.</param>
         /// <exception cref="OverflowException">Thrown if the dictionary is unable to store all the Key Value Pairs to be added.</exception>
-        /// <exception cref="InvalidOperationException">Thrown if the source dictionary is read-only.</exception>
         public void TryAddRange(
             IEnumerable<KeyValuePair<TKey, TValue>> pairsToAdd)
         {
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(pairsToAdd);
-        
-            if(source.IsReadOnly)
-                throw new InvalidOperationException($"{nameof(source)} is read-only.");
-
+            
             if (source.Count == int.MaxValue)
                 throw new OverflowException($"{nameof(source)} contains the maximum size of {int.MaxValue} and cannot be added to.");
         
@@ -113,19 +101,15 @@ public static class ImmediateDictionaryAddRangeExtensions
         /// </summary>
         /// <param name="dictionaryToAdd">The dictionary to attempt to be added to the existing dictionary.</param>
         /// <exception cref="OverflowException">Thrown if the dictionary is unable to store all the dictionary values to be added.</exception>
-        /// <exception cref="InvalidOperationException">Thrown if the source dictionary is read-only.</exception>
         public void TryAddRange(IDictionary<TKey, TValue> dictionaryToAdd) 
         {
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(dictionaryToAdd);
-        
-            if(source.IsReadOnly)
-                throw new InvalidOperationException($"{nameof(source)} is read-only.");
-
+            
             if (source.Count == int.MaxValue)
                 throw new OverflowException(
                     $"{nameof(source)} contains the maximum size of {int.MaxValue} and cannot be added to.");
-            else if (dictionaryToAdd.Count == int.MaxValue)
+            if (dictionaryToAdd.Count == int.MaxValue)
                 throw new OverflowException($"{nameof(dictionaryToAdd)} contains the maximum size of {int.MaxValue} and cannot be added to {nameof(source)}.");
 
             foreach (KeyValuePair<TKey, TValue> pair in dictionaryToAdd)

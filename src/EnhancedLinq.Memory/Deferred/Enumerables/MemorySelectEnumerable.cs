@@ -1,10 +1,10 @@
 /*
     EnhancedLinq.Memory
     Copyright (c) 2025-2026 Alastair Lundy
-    
+
     This Source Code Form is subject to the terms of the Mozilla Public
     License, v. 2.0. If a copy of the MPL was not distributed with this
-    file, You can obtain one at https://mozilla.org/MPL/2.0/. 
+    file, You can obtain one at https://mozilla.org/MPL/2.0/.
 */
 
 using EnhancedLinq.Memory.Deferred.Enumerators;
@@ -21,12 +21,13 @@ internal class MemorySelectEnumerable<TSource, TResult> : IEnumerable<TResult>
         _predicate = predicate;
         _source = source;
     }
+
     internal MemorySelectEnumerable(ReadOnlyMemory<TSource> source, Func<TSource, TResult> predicate)
     {
         _predicate = predicate;
         _source = source;
     }
-    
+
     public IEnumerator<TResult> GetEnumerator()
     {
         return new MemorySelectEnumerator<TSource, TResult>(_source, _predicate);
