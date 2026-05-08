@@ -50,10 +50,10 @@ public class ImmediateSegmentAnyAllExtensionsTests
     }
 
     [Test]
-    public async Task All_WithMixed_ReturnsTrue_ButThisIsUnexpected()
+    public async Task All_WithMixed_ReturnsFalse()
     {
         StringSegment source = new("a1b");
         
-        await Assert.That(source.All(char.IsLetter)).IsFalse();
+        await Assert.That(source.All(c => char.IsLetter(c))).IsFalse();
     }
 }
