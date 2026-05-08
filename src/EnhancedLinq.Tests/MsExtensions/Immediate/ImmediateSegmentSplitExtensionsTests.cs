@@ -18,7 +18,8 @@ public class ImmediateSegmentSplitExtensionsTests
 
         var parts = source.Split(',');
 
-        await Assert.That(parts.Select(p => p.ToString())).IsEquivalentTo(["a", "b", "c"]);
+        await Assert.That(parts.Select(p => p.ToString()))
+            .IsEquivalentTo(["a", "b", "c"]);
     }
 
     [Test]
