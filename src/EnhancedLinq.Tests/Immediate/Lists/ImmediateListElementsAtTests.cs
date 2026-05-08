@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using EnhancedLinq.Immediate.Lists;
 
 namespace ExtendedLinq.Tests.Immediate.Lists;
