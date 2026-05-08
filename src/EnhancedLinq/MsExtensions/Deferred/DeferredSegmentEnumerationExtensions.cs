@@ -24,6 +24,7 @@ public static class DeferredSegmentEnumerationExtensions
         /// <exception cref="ArgumentException">Thrown if the StringSegment is null or empty.</exception>
         public IEnumerable<char> AsEnumerable()
         {
+            ArgumentException.ThrowIfNullOrEmpty(segment);
             ArgumentException.ThrowIfNullOrWhitespace(segment);
 
             return new CustomEnumeratorEnumerable<char>(new SegmentEnumerator(segment));
