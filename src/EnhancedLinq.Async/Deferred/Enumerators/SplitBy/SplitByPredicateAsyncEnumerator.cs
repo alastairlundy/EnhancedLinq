@@ -25,6 +25,8 @@ internal class SplitByPredicateAsyncEnumerator<T> : IAsyncEnumerator<IAsyncEnume
         _predicate = predicate;
         _state = 1;
         _enumerator =  source.GetAsyncEnumerator();
+
+        _current = new List<T>().ToAsyncEnumerable();
     }
 
     public void Reset()
@@ -38,7 +40,7 @@ internal class SplitByPredicateAsyncEnumerator<T> : IAsyncEnumerator<IAsyncEnume
         {
             try
             {
-                List<T> tempList = new List<T>();
+                List<T> tempList = [];
 
                 while (await _enumerator.MoveNextAsync().ConfigureAwait(false))
                 {
