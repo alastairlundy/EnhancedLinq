@@ -25,7 +25,7 @@ public static class DeferredSegmentIndicesOfExtensions
         /// <exception cref="ArgumentException">Thrown if the source is null or empty.</exception>
         public IEnumerable<int> IndicesOf(char c)
         {
-            ArgumentException.ThrowIfNullOrWhitespace(source);
+            ArgumentException.ThrowIfNullOrEmpty(source);
 
             return new SegmentIndicesEnumerable(source, c);
         }
@@ -38,8 +38,7 @@ public static class DeferredSegmentIndicesOfExtensions
         /// <exception cref="ArgumentException">Thrown if the source is null or empty.</exception>
         public IEnumerable<int> IndicesOf(StringSegment segment)
         {
-            ArgumentException.ThrowIfNullOrWhitespace(source);
-            ArgumentException.ThrowIfNullOrWhitespace(segment);
+            ArgumentException.ThrowIfNullOrEmpty(source);
 
             return new SegmentIndicesEnumerable(source, segment);
         }

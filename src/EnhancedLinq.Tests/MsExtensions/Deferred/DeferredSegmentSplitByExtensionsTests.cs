@@ -17,7 +17,7 @@ public class DeferredSegmentSplitByExtensionsTests
 
         var parts = source.SplitBy(',').Select(p => p.ToString()).ToList();
 
-        await Assert.That(parts).IsEquivalentTo(new[] { "a", "b", "c" });
+        await Assert.That(parts).IsEquivalentTo(["a", "b", "c"]);
     }
 
     [Test]
@@ -28,7 +28,7 @@ public class DeferredSegmentSplitByExtensionsTests
 
         var parts = source.SplitBy(sep).Select(p => p.ToString()).ToList();
 
-        await Assert.That(parts).IsEquivalentTo(new[] { "a", "b", "c" });
+        await Assert.That(parts).IsEquivalentTo(["a", "b", "c"]);
     }
 
     [Test]
@@ -38,7 +38,7 @@ public class DeferredSegmentSplitByExtensionsTests
 
         var parts = source.SplitBy(',').Select(p => p.ToString()).ToList();
 
-        await Assert.That(parts).IsEquivalentTo(new[] { "abc" });
+        await Assert.That(parts).IsEquivalentTo(["abc"]);
     }
 
     [Test]
