@@ -55,7 +55,6 @@
 
     <ItemGroup>
         <PackageReference Include="DotExtensions"/>
-        <PackageReference Include="DotPrimitives.Collections"/>
         <PackageReference Include="Meziantou.Analyzer">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -69,9 +68,6 @@
         <Link>README.md</Link>
           <PackagePath>README.md</PackagePath>
       </Content>
-    </ItemGroup>
-
-    <ItemGroup>
     </ItemGroup>
 
 </Project>
