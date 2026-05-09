@@ -53,7 +53,7 @@ public static class ImmediateMemoryDistinctByExtensions
 
             foreach (TSource element in source)
             {
-                TKey? key = keySelector(element);
+                TKey key = keySelector(element);
 
                 if (allowedKeys.Add(key)) allowedItems.Add(element);
             }
@@ -107,7 +107,7 @@ public static class ImmediateMemoryDistinctByExtensions
 
             foreach (TSource element in source)
             {
-                TKey? key = keySelector(element);
+                TKey key = keySelector(element);
 
                 if (allowedKeys.Add(key)) allowedItems.Add(element);
             }
@@ -163,7 +163,7 @@ public static class ImmediateMemoryDistinctByExtensions
 
             foreach (TSource element in source.Span)
             {
-                TKey? key = keySelector(element);
+                TKey key = keySelector(element);
 
                 if (allowedKeys.Add(key)) allowedItems.Add(element);
             }
@@ -219,7 +219,7 @@ public static class ImmediateMemoryDistinctByExtensions
 
             foreach (TSource element in source.Span)
             {
-                TKey? key = keySelector(element);
+                TKey key = keySelector(element);
 
                 if (allowedKeys.Add(key)) allowedItems.Add(element);
             }
