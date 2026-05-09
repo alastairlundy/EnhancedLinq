@@ -8,7 +8,6 @@
     */
 
 using System.Linq;
-using DotPrimitives.Collections.Groupings;
 
 namespace EnhancedLinq.Memory.Immediate;
 
