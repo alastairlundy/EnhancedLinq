@@ -42,21 +42,15 @@ public static class ImmediateSegmentIndicesExtensions
         /// <returns>A list containing the zero-based index positions where the specified <see cref="StringSegment"/> was found in the <see cref="StringSegment"/>.</returns>
         public IList<int> IndicesOf(StringSegment other)
         {
-            List<int> output = [];
+            ArgumentException.ThrowIfNullOrEmpty(segment);
 
-            IList<int> firstLetterIndices = segment.IndicesOf(other.First());
+            List<int> output = new(segment.Length);
 
-            foreach (int index in firstLetterIndices)
+            for (int i = 0; i <= segment.Length - other.Length; i++)
             {
-                if (index == -1)
-                    continue;
-                
-                if (index + other.Length < segment.Length)
+                if (segment.Subsegment(i, other.Length).Equals(other, StringComparison.CurrentCulture))
                 {
-                    StringSegment slice = segment.Subsegment(index, other.Length);
-                
-                    if(slice.Equals(other, StringComparison.CurrentCulture))
-                        output.Add(index);
+                    output.Add(i);
                 }
             }
             
