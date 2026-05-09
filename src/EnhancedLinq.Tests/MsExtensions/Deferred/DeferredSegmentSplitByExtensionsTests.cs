@@ -15,7 +15,7 @@ public class DeferredSegmentSplitByExtensionsTests
     {
         StringSegment source = new("a,b,c");
 
-        var parts = source.SplitBy(',').Select(p => p.ToString()).ToList();
+        List<string> parts = source.SplitBy(',').Select(p => p.ToString()).ToList();
 
         await Assert.That(parts).IsEquivalentTo(["a", "b", "c"]);
     }
@@ -26,7 +26,7 @@ public class DeferredSegmentSplitByExtensionsTests
         StringSegment source = new("a<>b<>c");
         StringSegment sep = new("<>");
 
-        var parts = source.SplitBy(sep).Select(p => p.ToString()).ToList();
+        List<string> parts = source.SplitBy(sep).Select(p => p.ToString()).ToList();
 
         await Assert.That(parts).IsEquivalentTo(["a", "b", "c"]);
     }
@@ -36,7 +36,7 @@ public class DeferredSegmentSplitByExtensionsTests
     {
         StringSegment source = new("abc");
 
-        var parts = source.SplitBy(',').Select(p => p.ToString()).ToList();
+        List<string> parts = source.SplitBy(',').Select(p => p.ToString()).ToList();
 
         await Assert.That(parts).IsEquivalentTo(["abc"]);
     }

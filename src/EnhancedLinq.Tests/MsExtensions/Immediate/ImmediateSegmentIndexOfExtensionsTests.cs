@@ -24,7 +24,7 @@ public class ImmediateSegmentIndexOfExtensionsTests
     public async Task IndexOf_FindsSubstringInString_ReturnsIndex()
     {
         string s = "hello world";
-        var seg = new StringSegment("world");
+        StringSegment seg = new StringSegment("world");
 
         int actual = s.IndexOf(seg);
 

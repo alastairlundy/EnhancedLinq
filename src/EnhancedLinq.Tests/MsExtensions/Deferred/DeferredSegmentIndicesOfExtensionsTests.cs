@@ -16,7 +16,7 @@ public class DeferredSegmentIndicesOfExtensionsTests
     {
         StringSegment source = new("ababa");
 
-        var indices = source.IndicesOf('a').ToList();
+        List<int> indices = source.IndicesOf('a').ToList();
 
         await Assert.That(indices).IsEquivalentTo(new List<int> { 0, 2, 4 });
     }

@@ -16,7 +16,7 @@ public class ImmediateSegmentSplitExtensionsTests
     {
         StringSegment source = new("a,b,c");
 
-        var parts = source.Split(',');
+        StringSegment[] parts = source.Split(',');
 
         await Assert.That(parts.Select(p => p.ToString()))
             .IsEquivalentTo(["a", "b", "c"]);
@@ -28,7 +28,7 @@ public class ImmediateSegmentSplitExtensionsTests
         StringSegment source = new("a<>b<>c");
         StringSegment sep = new("<>");
 
-        var parts = source.Split(sep);
+        StringSegment[] parts = source.Split(sep);
 
         await Assert.That(parts.Select(p => p.ToString())).IsEquivalentTo(["a", "b", "c"]);
     }
@@ -38,7 +38,7 @@ public class ImmediateSegmentSplitExtensionsTests
     {
         StringSegment source = new("");
 
-        var parts = source.Split(',');
+        StringSegment[] parts = source.Split(',');
 
         await Assert.That(parts).IsEquivalentTo(Array.Empty<StringSegment>());
     }

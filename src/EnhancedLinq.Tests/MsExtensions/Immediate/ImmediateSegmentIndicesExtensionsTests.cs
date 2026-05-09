@@ -16,7 +16,7 @@ public class ImmediateSegmentIndicesExtensionsTests
     {
         StringSegment source = new("ababa");
 
-        var indices = source.IndicesOf('a');
+        IList<int> indices = source.IndicesOf('a');
 
         await Assert.That(indices).IsEquivalentTo(new List<int> { 0, 2, 4 });
     }
@@ -27,7 +27,7 @@ public class ImmediateSegmentIndicesExtensionsTests
         StringSegment source = new("ababa");
         StringSegment other = new("aba");
 
-        var indices = source.IndicesOf(other);
+        IList<int> indices = source.IndicesOf(other);
 
         await Assert.That(indices).IsEquivalentTo(new List<int> { 0, 2 });
     }
@@ -37,7 +37,7 @@ public class ImmediateSegmentIndicesExtensionsTests
     {
         StringSegment source = new("");
 
-        var indices = source.IndicesOf('x');
+        IList<int> indices = source.IndicesOf('x');
 
         await Assert.That(indices).IsEquivalentTo(new List<int>());
     }

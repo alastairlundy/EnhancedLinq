@@ -16,7 +16,7 @@ public class DeferredSegmentWhereExtensionsTests
     {
         StringSegment source = new("a1b2c");
 
-        var result = source.Where(char.IsLetter).ToList();
+        List<char> result = source.Where(char.IsLetter).ToList();
 
         await Assert.That(result).IsEquivalentTo(new List<char> { 'a', 'b', 'c' });
     }

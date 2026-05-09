@@ -16,7 +16,7 @@ public class DeferredSegmentGroupExtensionsTests
     {
         StringSegment source = new("aa11bb2");
 
-        var groups = source.GroupBy(char.IsDigit).ToList();
+        List<IGrouping<bool, char>> groups = source.GroupBy(char.IsDigit).ToList();
 
         await Assert.That(groups.Count).IsEqualTo(3);
 

@@ -15,7 +15,7 @@ public class DeferredSegmentAsEnumerableExtensionsTests
     {
         StringSegment source = new("abc");
 
-        var result = source.AsEnumerable().ToList();
+        List<char> result = source.AsEnumerable().ToList();
 
         await Assert.That(result).IsEquivalentTo(new List<char> { 'a', 'b', 'c' });
     }
