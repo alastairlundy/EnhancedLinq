@@ -28,7 +28,9 @@ public class DeferredSegmentWhereExtensionsTests
 
         await Assert.ThrowsAsync<ArgumentNullException>(() =>
         {
-            source.Where(null!);
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
+            source.Where(null);
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
             return Task.CompletedTask;
         });
     }

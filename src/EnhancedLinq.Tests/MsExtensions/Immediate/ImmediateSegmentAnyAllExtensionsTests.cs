@@ -6,7 +6,6 @@ using EnhancedLinq.MsExtensions.Immediate;
 
 namespace ExtendedLinq.Tests.MsExtensions.Immediate;
 
-using System.Linq;
 using Microsoft.Extensions.Primitives;
 
 public class ImmediateSegmentAnyAllExtensionsTests
@@ -36,7 +35,9 @@ public class ImmediateSegmentAnyAllExtensionsTests
 
         await Assert.ThrowsAsync<ArgumentNullException>(() =>
         {
-            source.Any(null!);
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
+            source.Any(null);
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
             return Task.CompletedTask;
         });
     }

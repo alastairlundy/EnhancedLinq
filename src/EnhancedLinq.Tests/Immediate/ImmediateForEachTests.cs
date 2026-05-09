@@ -13,7 +13,9 @@ public class ImmediateForEachTests
         
         await Assert.ThrowsAsync<ArgumentNullException>(() => 
         {
-            source!.ForEach(x => {});
+#pragma warning disable CS8604 // Possible null reference argument.
+            source.ForEach(_ => {});
+#pragma warning restore CS8604 // Possible null reference argument.
             return Task.CompletedTask;
         });
     }
@@ -25,7 +27,9 @@ public class ImmediateForEachTests
         
         await Assert.ThrowsAsync<ArgumentNullException>(() => 
         {
-            source.ForEach(null!);
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
+            source.ForEach(null);
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
             return Task.CompletedTask;
         });
     }
@@ -36,18 +40,16 @@ public class ImmediateForEachTests
         IEnumerable<int> source = Enumerable.Empty<int>();
         
         // Should not throw
-        source.ForEach(x => {});
+        int[] enumerable = source as int[] ?? source.ToArray();
+        enumerable.ForEach(x => {});
 
-        await Assert.That(source).IsEquivalentTo(Enumerable.Empty<int>());
+        await Assert.That(enumerable).IsEquivalentTo(Enumerable.Empty<int>());
     }
 
     [Test]
     public async Task ForEach_PerformsActionOnEachElement()
     {
-        IList<int> source = _faker.Make(Random.Shared.Next(1, 10), () =>
-        {
-            return Random.Shared.Next(1, 1000);
-        });
+        IList<int> source = _faker.Make(Random.Shared.Next(1, 10), () => Random.Shared.Next(1, 1000));
         List<int> results = [];
         
         source.ForEach(x => results.Add(x * 2));

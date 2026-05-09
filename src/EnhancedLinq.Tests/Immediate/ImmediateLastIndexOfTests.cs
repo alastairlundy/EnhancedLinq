@@ -12,7 +12,9 @@ public class ImmediateLastIndexOfTests
         IEnumerable<int>? source = null;
         
         await Assert.ThrowsAsync<ArgumentNullException>(() => 
-            Task.FromResult(source!.LastIndexOf(5)));
+#pragma warning disable CS8604 // Possible null reference argument.
+            Task.FromResult(source.LastIndexOf(5)));
+#pragma warning restore CS8604 // Possible null reference argument.
     }
 
     [Test]

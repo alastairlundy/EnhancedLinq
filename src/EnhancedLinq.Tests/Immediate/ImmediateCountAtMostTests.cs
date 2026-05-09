@@ -4,8 +4,6 @@ namespace ExtendedLinq.Tests.Immediate;
 
 public class ImmediateCountAtMostTests
 {
-    private readonly Faker _faker = new();
-
     [Test]
     public async Task CountAtMost_WithNegativeCount_Throws()
     {
@@ -81,7 +79,9 @@ public class ImmediateCountAtMostTests
         IEnumerable<int>? source = null;
         
         await Assert.ThrowsAsync<ArgumentNullException>(() => 
-            Task.FromResult(source!.CountAtMost(1)));
+#pragma warning disable CS8604 // Possible null reference argument.
+            Task.FromResult(source.CountAtMost(1)));
+#pragma warning restore CS8604 // Possible null reference argument.
     }
 
     [Test]

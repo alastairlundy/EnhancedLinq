@@ -7,7 +7,6 @@ using EnhancedLinq.MsExtensions.Immediate;
 namespace ExtendedLinq.Tests.MsExtensions.Immediate;
 
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Extensions.Primitives;
 
 public class ImmediateSegmentIndicesExtensionsTests

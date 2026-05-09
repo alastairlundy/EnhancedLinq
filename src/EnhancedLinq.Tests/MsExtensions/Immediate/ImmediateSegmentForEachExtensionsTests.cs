@@ -10,8 +10,6 @@ using Microsoft.Extensions.Primitives;
 
 public class ImmediateSegmentForEachExtensionsTests
 {
-    private readonly Faker _faker = new();
-
     [Test]
     public async Task ForEach_WithNullAction_Throws()
     {
@@ -19,7 +17,11 @@ public class ImmediateSegmentForEachExtensionsTests
 
         await Assert.ThrowsAsync<NullReferenceException>(() => 
         {
-            source.ForEach((Action<char>)null!);
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
+            source.ForEach((Action<char>)null);
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
             return Task.CompletedTask;
         });
     }

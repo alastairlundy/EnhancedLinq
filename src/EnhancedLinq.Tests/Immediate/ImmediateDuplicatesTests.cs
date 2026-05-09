@@ -12,7 +12,9 @@ public class ImmediateDuplicatesTests
         IEnumerable<int>? source = null;
         
         await Assert.ThrowsAsync<ArgumentNullException>(() => 
-            Task.FromResult(source!.ContainsDuplicates()));
+#pragma warning disable CS8604 // Possible null reference argument.
+            Task.FromResult(source.ContainsDuplicates()));
+#pragma warning restore CS8604 // Possible null reference argument.
     }
 
     [Test]
@@ -21,7 +23,9 @@ public class ImmediateDuplicatesTests
         IEnumerable<int>? source = null;
         
         await Assert.ThrowsAsync<ArgumentNullException>(() => 
-            Task.FromResult(source!.ContainsDuplicates(EqualityComparer<int>.Default)));
+#pragma warning disable CS8604 // Possible null reference argument.
+            Task.FromResult(source.ContainsDuplicates(EqualityComparer<int>.Default)));
+#pragma warning restore CS8604 // Possible null reference argument.
     }
 
     [Test]

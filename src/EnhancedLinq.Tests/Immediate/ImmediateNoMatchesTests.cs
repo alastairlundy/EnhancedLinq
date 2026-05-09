@@ -10,7 +10,9 @@ public class ImmediateNoMatchesTests
     public async Task None_Empty_Enumerable_Throws()
     {
         await Assert.ThrowsAsync<ArgumentNullException>(() => Task.FromResult(
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
             ((IEnumerable<string>?)null).HasNoMatches(s => s.Length > 0)));
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
     }
 
     [Test]
@@ -48,6 +50,8 @@ public class ImmediateNoMatchesTests
         IEnumerable<string> source = ["a", "b", "c"];
         
         await Assert.ThrowsAsync<ArgumentNullException>(() => Task.FromResult(
-            source.HasNoMatches(null!)));
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
+            source.HasNoMatches(null)));
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
     }
 }

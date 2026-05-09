@@ -6,7 +6,6 @@ using EnhancedLinq.MsExtensions.Immediate;
 
 namespace ExtendedLinq.Tests.MsExtensions.Immediate;
 
-using System.Linq;
 using Microsoft.Extensions.Primitives;
 
 public class ImmediateCountAtLeastAtMostExtensionsTests
@@ -17,7 +16,7 @@ public class ImmediateCountAtLeastAtMostExtensionsTests
         StringSegment source = new("abcd");
 
         await Assert.That(source.CountAtLeast(3)).IsTrue();
-        await Assert.That(source.CountAtLeast(5)).IsEqualTo(false);
+        await Assert.That(source.CountAtLeast(5)).IsFalse();
     }
 
     [Test]
