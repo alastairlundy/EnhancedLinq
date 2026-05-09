@@ -9,7 +9,6 @@
 
 using System.Linq;
 using DotPrimitives.Collections.Groupings;
-using EnhancedLinq.Memory.Deferred;
 
 namespace EnhancedLinq.Memory.Immediate;
 
@@ -81,7 +80,7 @@ public static class ImmediateMemoryGroupByExtensions
                 }
                 else
                 {
-                    dictionary.Add(key, new List<TElement>());
+                    dictionary.Add(key, []);
                     dictionary[key].Add(item);
                 }
             }
@@ -109,7 +108,7 @@ public static class ImmediateMemoryGroupByExtensions
 
             Dictionary<TKey, List<TElement>> dictionary = new();
 
-            foreach (TElement item in source.AsEnumerable())
+            foreach (TElement item in source.Span)
             {
                 TKey key = keyPredicate.Invoke(item);
 
@@ -119,7 +118,7 @@ public static class ImmediateMemoryGroupByExtensions
                 }
                 else
                 {
-                    dictionary.Add(key, new List<TElement>());
+                    dictionary.Add(key, []);
                     dictionary[key].Add(item);
                 }
             }
@@ -147,7 +146,7 @@ public static class ImmediateMemoryGroupByExtensions
 
             Dictionary<TKey, List<TElement>> dictionary = new();
 
-            foreach (TElement item in source.AsEnumerable())
+            foreach (TElement item in source.Span)
             {
                 TKey key = keyPredicate.Invoke(item);
 
@@ -157,7 +156,7 @@ public static class ImmediateMemoryGroupByExtensions
                 }
                 else
                 {
-                    dictionary.Add(key, new List<TElement>());
+                    dictionary.Add(key, []);
                     dictionary[key].Add(item);
                 }
             }
