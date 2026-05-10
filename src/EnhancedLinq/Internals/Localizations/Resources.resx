@@ -48,4 +48,7 @@
     <data name="Exceptions.Remove.CountTooLarge" xml:space="preserve">
         <value>Cannot remove more items than exist in a collection.</value>
     </data>
+    <data name="Exceptions.StringSegment.Empty" xml:space="preserve">
+        <value>Source StringSegment cannot be null or empty.</value>
+    </data>
 </root>

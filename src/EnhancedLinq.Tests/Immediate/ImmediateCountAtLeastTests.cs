@@ -1,12 +1,9 @@
-using System.Collections.Generic;
 using System.Linq;
 
 namespace ExtendedLinq.Tests.Immediate;
 
 public class ImmediateCountAtLeastTests
 {
-    private readonly Faker _faker = new();
-
     [Test]
     public async Task CountAtLeast_WithNegativeCount_Throws()
     {
@@ -82,7 +79,9 @@ public class ImmediateCountAtLeastTests
         IEnumerable<int>? source = null;
         
         await Assert.ThrowsAsync<ArgumentNullException>(() => 
-            Task.FromResult(source!.CountAtLeast(1)));
+#pragma warning disable CS8604 // Possible null reference argument.
+            Task.FromResult(source.CountAtLeast(1)));
+#pragma warning restore CS8604 // Possible null reference argument.
     }
 
     [Test]

@@ -47,7 +47,8 @@ internal class CustomEnumeratorEnumerable<T> : IEnumerable<T>, IDisposable
     /// <summary>
     /// Retrieves the wrapped custom enumerator.
     /// </summary>
-    /// <remarks>Tries to reset the enumerator if it has already been materialized and if supported. If the enumerator doesn't support resetting, it returns the enumerator in its current state.</remarks>
+    /// <remarks>Tries to reset the enumerator if it has already been materialised and if supported.
+    /// If the enumerator doesn't support resetting, it returns the enumerator in its current state.</remarks>
     /// <returns>The wrapped custom enumerator.</returns>
     public IEnumerator<T> GetEnumerator()
     {
@@ -57,7 +58,8 @@ internal class CustomEnumeratorEnumerable<T> : IEnumerable<T>, IDisposable
     /// <summary>
     /// Retrieves the wrapped custom enumerator.
     /// </summary>
-    /// <remarks>Tries to reset the enumerator if it has already been materialized and if supported. If the enumerator doesn't support resetting, it returns the enumerator in its current state.</remarks>
+    /// <remarks>Tries to reset the enumerator if it has already been materialised and if supported.
+    /// If the enumerator doesn't support resetting, it returns the enumerator in its current state.</remarks>
     /// <returns>The wrapped custom enumerator.</returns>
     IEnumerator IEnumerable.GetEnumerator()
     {

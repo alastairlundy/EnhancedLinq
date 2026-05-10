@@ -1,12 +1,9 @@
-using System.Collections.Generic;
 using EnhancedLinq.Immediate.Lists;
 
 namespace ExtendedLinq.Tests.Immediate.Lists;
 
 public class ImmediateListElementsAtTests
 {
-    private readonly Faker _faker = new();
-
     [Test]
     public async Task ElementsAt_WithNullSource_Throws()
     {
@@ -14,7 +11,9 @@ public class ImmediateListElementsAtTests
         IList<int> indices = [0, 1, 2];
         
         await Assert.ThrowsAsync<ArgumentNullException>(() => 
-            Task.FromResult(source!.ElementsAt(indices)));
+#pragma warning disable CS8604 // Possible null reference argument.
+            Task.FromResult(source.ElementsAt(indices)));
+#pragma warning restore CS8604 // Possible null reference argument.
     }
 
     [Test]
@@ -24,7 +23,9 @@ public class ImmediateListElementsAtTests
         IList<int>? indices = null;
         
         await Assert.ThrowsAsync<ArgumentNullException>(() => 
-            Task.FromResult(source.ElementsAt(indices!)));
+#pragma warning disable CS8604 // Possible null reference argument.
+            Task.FromResult(source.ElementsAt(indices)));
+#pragma warning restore CS8604 // Possible null reference argument.
     }
 
     [Test]

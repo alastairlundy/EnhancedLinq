@@ -7,9 +7,6 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-using System.Linq;
-using System.Text;
-
 namespace EnhancedLinq.MsExtensions.Immediate;
 
 /// <summary>
@@ -31,25 +28,19 @@ public static class ImmediateSegmentSplitExtensions
                 return [];
 
             List<StringSegment> segments = [];
-        
-            StringBuilder current = new StringBuilder();
-        
+            int start = 0;
+
             for (int index = 0; index < source.Length; index++)
             {
                 if (source[index] == separator)
                 {
-                    if (current.Length > 0)
-                    {
-                        segments.Add(new StringSegment(current.ToString()));
-                        current.Clear();
-                    }
-                }
-                else
-                {
-                    current.Append(source[index]);
+                    segments.Add(source.Subsegment(start, index - start));
+                    start = index + 1;
                 }
             }
-        
+
+            segments.Add(source.Subsegment(start, source.Length - start));
+
             return segments.ToArray();
         }
 
@@ -60,23 +51,24 @@ public static class ImmediateSegmentSplitExtensions
         /// <returns>An array of StringSegment subsegments from the source StringSegment that is delimited by the separator.</returns>
         public StringSegment[] Split(StringSegment separator)
         {
-            IEnumerable<int> indices = source.IndicesOf(separator)
-                .Where(x => x != -1);
+            ArgumentException.ThrowIfNullOrEmpty(separator);
+
+            IList<int> indices = source.IndicesOf(separator);
 
             List<StringSegment> output = [];
 
             int start = 0;
 
-            foreach(int index in indices)
+            for (int i = 0; i < indices.Count; i++)
             {
-                int end = index > 0 ? index - 1 : 0;
-
-                StringSegment newSegment = source.Subsegment(start, Math.Abs(end - start));
-
-                output.Add(newSegment);
-                start = index;
+                int index = indices[i];
+                int length = index - start;
+                output.Add(source.Subsegment(start, length));
+                start = index + separator.Length;
             }
-        
+
+            output.Add(source.Subsegment(start, source.Length - start));
+
             return output.ToArray();
         }
     }

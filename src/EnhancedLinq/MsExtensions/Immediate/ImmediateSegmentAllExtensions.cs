@@ -7,9 +7,6 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-using System.Linq;
-using EnhancedLinq.MsExtensions.Deferred;
-
 namespace EnhancedLinq.MsExtensions.Immediate;
 
 /// <summary>
@@ -27,12 +24,22 @@ public static class ImmediateSegmentAllExtensions
         /// <returns>True if all chars in the StringSegment match the predicate; false otherwise.</returns>
         public bool All(Func<char, bool> predicate)
         {
+            bool previousValue = predicate(target.First());
+            
+            ArgumentNullException.ThrowIfNull(predicate);
             ArgumentException.ThrowIfNullOrWhitespace(target);
-        
-            IEnumerable<bool> groups = target.GroupBy(predicate)
-                .Select(g => g.Any());
-      
-            return groups.Distinct().Count() == 1;
+
+            for (int index = 0; index < target.Length; index++)
+            {
+                char current = target[index];
+                
+                bool result = predicate(current);
+                
+                if(previousValue != result)
+                    return false;
+            }
+
+            return true;
         }
     }
 }

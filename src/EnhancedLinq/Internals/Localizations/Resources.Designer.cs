@@ -132,6 +132,15 @@ namespace EnhancedLinq.Internals.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Source StringSegment cannot be null or empty..
+        /// </summary>
+        internal static string Exceptions_StringSegment_Empty {
+            get {
+                return ResourceManager.GetString("Exceptions.StringSegment.Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Value not found at index {x} within collection {y}..
         /// </summary>
         internal static string Exceptions_ValueNotFound_AtIndex {

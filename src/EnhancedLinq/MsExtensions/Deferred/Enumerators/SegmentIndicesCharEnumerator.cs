@@ -31,18 +31,31 @@ internal class SegmentIndicesCharEnumerator : IEnumerator<int>
     {
         if (_state == 1)
         {
-            while (_index < _segment.Length)
+            try
             {
-                if (_segment[_index] == _c)
+                while (_index < _segment.Length)
                 {
-                    Current = _index;
-                    return true;
+                    if (_segment[_index] == _c)
+                    {
+                        Current = _index;
+                        _index++; // Move forward to avoid infinite loop on same index
+                        return true;
+                    }
+
+                    _index++;
                 }
 
-                _index++;
+                _state = -1;
             }
-
-            _state = -1;
+            catch
+            {
+                Dispose();
+                throw;
+            }
+            finally
+            {
+                _state = -1;
+            }
         }
         
         Dispose();

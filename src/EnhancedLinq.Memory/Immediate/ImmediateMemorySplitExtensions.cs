@@ -30,7 +30,7 @@ public static class ImmediateMemorySplitExtensions
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
             ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(count, span.Length);
 
-            List<T[]> list = new();
+            List<T[]> list = [];
 
             if (!(span.Length > count)) return [span.ToArray()];
 
@@ -92,10 +92,8 @@ public static class ImmediateMemorySplitExtensions
         /// </summary>
         /// <param name="separator">The separator to split by.</param>
         /// <returns>A list of spans, each containing the elements before the separator was found.</returns>
-        public IList<T[]> SplitBy(T separator)
-        {
-            return span.SplitBy(x => x.Equals(separator));
-        }
+        public IList<T[]> SplitBy(T separator) 
+            => span.SplitBy(x => x.Equals(separator));
 
         /// <summary>
         ///     Splits a span into an <see cref="IList{T}" /> of arrays based on the provided predicate.
@@ -107,7 +105,7 @@ public static class ImmediateMemorySplitExtensions
         {
             ArgumentNullException.ThrowIfNull(predicate);
 
-            List<T[]> list = new();
+            List<T[]> list = [];
 
             int start = 0;
             int nextSplit = 0;
