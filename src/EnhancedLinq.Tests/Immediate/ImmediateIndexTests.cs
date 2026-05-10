@@ -102,7 +102,9 @@ public class ImmediateIndexTests
     {
         IEnumerable<string?> source = ["apple", null, "cherry"];
         
+#pragma warning disable CS8714 // The type cannot be used as type parameter in the generic type or method. Nullability of type argument doesn't match 'notnull' constraint.
         int actual = source.IndexOf((string?)null);
+#pragma warning restore CS8714 // The type cannot be used as type parameter in the generic type or method. Nullability of type argument doesn't match 'notnull' constraint.
         
         await Assert.That(actual).IsEqualTo(1);
     }

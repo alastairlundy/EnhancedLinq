@@ -41,7 +41,7 @@ public class ImmediateForEachTests
         
         // Should not throw
         int[] enumerable = source as int[] ?? source.ToArray();
-        enumerable.ForEach(x => {});
+        enumerable.ForEach(_ => {});
 
         await Assert.That(enumerable).IsEquivalentTo(Enumerable.Empty<int>());
     }

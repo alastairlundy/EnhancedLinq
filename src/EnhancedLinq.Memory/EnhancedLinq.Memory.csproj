@@ -45,6 +45,15 @@
         </PackageReference>
         <PackageReference Include="Polyfill" PrivateAssets="all"/>
     </ItemGroup>
+
+    <ItemGroup Condition="'$(UsePublishedPackages)'=='false'">
+        <ProjectReference Include="..\EnhancedLinq\EnhancedLinq.csproj" />
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(UsePublishedPackages)'=='true'">
+        <!-- set CliInvokeCoreVersion in the workflow -->
+        <PackageReference Include="EnhancedLinq"/>
+    </ItemGroup>
     
     <ItemGroup>
       <EmbeddedResource Update="Internals\Localizations\Resources.resx">
@@ -66,9 +75,5 @@
             <Link>README.md</Link>
             <PackagePath>README.md</PackagePath>
         </Content>
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\EnhancedLinq\EnhancedLinq.csproj" />
     </ItemGroup>
 </Project>

@@ -90,6 +90,8 @@ public class ImmediateCountAtMostTests
         IEnumerable<int> source = [1, 2, 3];
         
         await Assert.ThrowsAsync<ArgumentNullException>(() => 
-            Task.FromResult(source.CountAtMost(null!, 1)));
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
+            Task.FromResult(source.CountAtMost(null, 1)));
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
     }
 }
