@@ -15,9 +15,7 @@ internal class SegmentSplitEnumerator : IEnumerator<StringSegment>
 {
     private readonly StringSegment _segment;
     private readonly StringSegment _separator;
-
-    private readonly List<char> _currentChars;
-
+    
     private int _index;
     private int _state;
 
@@ -27,7 +25,6 @@ internal class SegmentSplitEnumerator : IEnumerator<StringSegment>
     {
         _segment = segment;
         _separator = separator;
-        _currentChars = new List<char>();
 
         _index = 0;
         _state = 1;
@@ -40,30 +37,49 @@ internal class SegmentSplitEnumerator : IEnumerator<StringSegment>
     {
         if (_state == 1)
         {
-            while (_index < _segment.Length)
+            try
             {
-                int currentSeparatorIndex = _separatorIndicesEnumerator.Current;
-
-                if (currentSeparatorIndex == -1)
-                    break;
-                
-                StringSegment comparison = _segment.Subsegment(currentSeparatorIndex, _separator.Length);
-
-                if (_index == _separatorIndicesEnumerator.Current && comparison.Equals(_segment, StringComparison.Ordinal))
+                while (_index < _segment.Length)
                 {
-                    Current = new StringSegment(string.Join("", _currentChars));
-            
-                    _currentChars.Clear();
-                    ++_index;
+                    if (!_separatorIndicesEnumerator.MoveNext())
+                    {
+                        Current = _segment.Subsegment(_index);
+                        _index = _segment.Length;
+                        _state = -1;
+                        return true;
+                    }
+
+                    int separatorIndex = _separatorIndicesEnumerator.Current;
+
+                    if (separatorIndex >= _index)
+                    {
+                        if (separatorIndex + _separator.Length <= _segment.Length &&
+                            _segment.Subsegment(separatorIndex, _separator.Length)
+                                .Equals(_separator, StringComparison.Ordinal))
+                        {
+                            Current = _segment.Subsegment(_index, separatorIndex - _index);
+                            _index = separatorIndex + _separator.Length;
+                            return true;
+                        }
+                    }
+                }
+
+                if (_index == _segment.Length)
+                {
+                    Current = new StringSegment(string.Empty);
+                    _state = -1;
                     return true;
                 }
-                else
-                {
-                    _currentChars.Add(_segment[_index]);
-                }
             }
-            
-            _state = -1;
+            catch
+            {
+                Dispose();
+                throw;
+            }
+            finally
+            {
+                _state = -1;
+            }
         }
 
         Dispose();
@@ -81,7 +97,6 @@ internal class SegmentSplitEnumerator : IEnumerator<StringSegment>
 
     public void Dispose()
     {
-        _currentChars.Clear();
         _separatorIndicesEnumerator.Dispose();
     }
 }

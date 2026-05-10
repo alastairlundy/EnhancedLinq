@@ -29,9 +29,6 @@ public static class DeferredSegmentSplitExtensions
         {
             ArgumentException.ThrowIfNullOrWhitespace(source);
             
-            if (source.Contains(separator) == false)
-                return [source];
-
             return source.SplitBy(x => x == separator);
         }
 

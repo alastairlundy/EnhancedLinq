@@ -18,20 +18,22 @@ internal class GroupStringSegmentEnumerator<TKey> : IEnumerator<IGrouping<TKey, 
 
     private readonly IEnumerator<char> _enumerator;
     
-    private TKey? _currentKey;
+    private TKey _currentKey;
     
     private int _state;
 
-    private readonly GroupingCollection<TKey, char>  _groupingCollection;
+    private GroupingCollection<TKey, char>  _groupingCollection;
 
     internal GroupStringSegmentEnumerator(StringSegment source, Func<char, TKey> selector)
     {
         _selector = selector;
         _state = 1;
         _enumerator = new SegmentEnumerator(source);
+        
+        // Set default values for compiler
         _currentKey = _selector(_enumerator.Current);
-        Current = new GroupingCollection<TKey, char>(_currentKey);
         _groupingCollection = new GroupingCollection<TKey, char>(_currentKey);
+        Current = new GroupingCollection<TKey, char>(_currentKey);
     }
 
     public bool MoveNext()
@@ -40,42 +42,56 @@ internal class GroupStringSegmentEnumerator<TKey> : IEnumerator<IGrouping<TKey, 
         {
             try
             {
-                while(_enumerator.MoveNext())
+                if (!_enumerator.MoveNext())
                 {
-                    if (_currentKey is not null && _currentKey.Equals(default(TKey)) ||
-                        _currentKey is null)
-                    {
-                        _currentKey = _selector(_enumerator.Current);
-                    }
-                    
-                    TKey key = _selector(_enumerator.Current);
-                    
-                    if (key is not null && key.Equals(_currentKey))
-                    {
-                        _groupingCollection.Add(_enumerator.Current);
-                    }
-                    else
-                    {
-                        Current = new GroupingCollection<TKey, char>
-                            (_currentKey, _groupingCollection);
-                        
-                        _groupingCollection.Clear();
-
-                        _currentKey = default(TKey);
-                        
-                        return true;
-                    }
+                    _state = -1;
+                    return false;
                 }
+
+                TKey key = _selector(_enumerator.Current);
+                _currentKey = key;
+                _groupingCollection = new GroupingCollection<TKey, char>(_currentKey) { _enumerator.Current };
+                Current = _groupingCollection;
+                _state = 2;
+                return true;
             }
             catch
             {
                 Dispose();
                 throw;
             }
-
-            _state = -1;
         }
-
+        
+        if (_state == 2)
+        {
+            try
+            {
+                while (_enumerator.MoveNext())
+                {
+                    TKey key = _selector(_enumerator.Current);
+                    if (EqualityComparer<TKey>.Default.Equals(key, _currentKey))
+                    {
+                        _groupingCollection.Add(_enumerator.Current);
+                    }
+                    else
+                    {
+                        _currentKey = key;
+                        _groupingCollection = new GroupingCollection<TKey, char>(_currentKey) { _enumerator.Current };
+                        Current = _groupingCollection;
+                        return true;
+                    }
+                }
+                
+                _state = -1;
+                return false;
+            }
+            catch
+            {
+                Dispose();
+                throw;
+            }
+        }
+        
         Dispose();
         return false;
     }

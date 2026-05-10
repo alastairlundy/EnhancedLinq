@@ -35,24 +35,35 @@ internal class SegmentIndicesOfEnumerator : IEnumerator<int>
     {
         if (_state == 1)
         {
-            while (_segmentIndicesEnumerator.MoveNext())
+            try
             {
-                _segmentIndex = _segmentIndicesEnumerator.Current;
-
-                if (_segmentIndex == -1)
-                    continue;
-                    
-                StringSegment indexSegment = _source.Subsegment(_segmentIndex, _segment.Length);
-
-                ++_segmentIndex;
-                    
-                if (indexSegment.Equals(_segment, StringComparison.Ordinal))
+                while (_segmentIndicesEnumerator.MoveNext())
                 {
-                    Current = _segmentIndex;
-                    return true;
+                    _segmentIndex = _segmentIndicesEnumerator.Current;
+
+                    if (_segmentIndex == -1)
+                        continue;
+
+                    StringSegment indexSegment = _source.Subsegment(_segmentIndex, _segment.Length);
+
+                    ++_segmentIndex;
+
+                    if (indexSegment.Equals(_segment, StringComparison.Ordinal))
+                    {
+                        Current = _segmentIndex;
+                        return true;
+                    }
                 }
             }
-            _state = -1;
+            catch
+            {
+                Dispose();
+                throw;
+            }
+            finally
+            {
+                _state = -1;
+            }
         }
 
         Dispose();

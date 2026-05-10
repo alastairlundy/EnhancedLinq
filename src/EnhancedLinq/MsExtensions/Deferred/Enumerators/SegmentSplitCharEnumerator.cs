@@ -36,24 +36,31 @@ internal class SegmentSplitCharEnumerator : IEnumerator<StringSegment>
     {
         if (_state == 1)
         {
-            while (_index < _segment.Length)
+            try
             {
-                ++_index;
-                
-                if (_segment[_index] != _separator)
+                while (_index < _segment.Length)
                 {
-                    _currentChars.Add(_segment[_index]);
-                }
-                else
-                {
-                    Current = new StringSegment(string.Join("",  _currentChars));
-                    _currentChars.Clear();
+                    if (_segment[_index] == _separator)
+                    {
+                        Current = _segment.Subsegment(_index - _currentChars.Count, _currentChars.Count);
+                        _currentChars.Clear();
+                        _index++;
+                        return true;
+                    }
 
-                    return true;
+                    _currentChars.Add(_segment[_index]);
+                    _index++;
                 }
             }
-            
-            _state = -1;
+            catch
+            {
+                Dispose();
+                throw;
+            }
+            finally
+            {
+                _state = -1;
+            }
         }
 
         Dispose();

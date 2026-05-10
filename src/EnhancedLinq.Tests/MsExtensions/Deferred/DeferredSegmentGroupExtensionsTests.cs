@@ -18,7 +18,7 @@ public class DeferredSegmentGroupExtensionsTests
 
         List<IGrouping<bool, char>> groups = source.GroupBy(char.IsDigit).ToList();
 
-        await Assert.That(groups.Count).IsEqualTo(3);
+        await Assert.That(groups.Count).IsEqualTo(4);
 
         await Assert.That(groups[0].Key).IsFalse();
         await Assert.That(groups[0].ToList()).IsEquivalentTo(new List<char> { 'a', 'a' });

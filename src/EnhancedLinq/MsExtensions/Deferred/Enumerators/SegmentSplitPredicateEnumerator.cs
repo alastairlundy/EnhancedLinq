@@ -32,36 +32,51 @@ internal class SegmentSplitPredicateEnumerator : IEnumerator<StringSegment>
     {
         if (_state == 1)
         {
-            _currentStart = -1;
-            
-            _state = 2;
-        }
-        if (_state == 2)
-        {
-            while (_index < _source.Length)
+            try
             {
-                bool separate = _predicate(_source[_index]);
-
-                if (_currentStart == -1) 
-                    _currentStart = _index;
-
-                if (separate)
+                while (_index < _source.Length)
                 {
-                    Current = _source.Subsegment(_currentStart, _index - _currentStart);
+                    bool separate = _predicate(_source[_index]);
+
+                    if (_currentStart == -1) 
+                        _currentStart = _index;
+
+                    if (separate)
+                    {
+                        Current = _source.Subsegment(_currentStart, _index - _currentStart);
+                        _currentStart = -1;
+                        _index++;
+                        return true;
+                    }
+                    else
+                    {
+                        _index++;
+                    }
+                }
+                
+                if (_currentStart != -1)
+                {
+                    Current = _source.Subsegment(_currentStart);
                     _currentStart = -1;
-                    _index++;
+                    _state = -1;
                     return true;
                 }
-                else
+            }
+            catch
+            {
+                Dispose();
+                throw;
+            }
+            finally
+            {
+                // Only mark as finished if we didn't find a segment to return
+                if (_currentStart == -1 && _index >= _source.Length)
                 {
-                    _index++;
+                    _state = -1;
                 }
             }
-            
-            _state = -1;
         }
 
-        _state = -1;
         Dispose();
         return false;
     }

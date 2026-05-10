@@ -35,21 +35,23 @@ public static class ImmediateMemoryGroupByExtensions
             {
                 TKey key = keyPredicate.Invoke(item);
 
-                if (dictionary.ContainsKey(key))
+                if (dictionary.TryGetValue(key, out List<TElement>? list))
                 {
-                    dictionary[key].Add(item);
+                    list.Add(item);
                 }
                 else
                 {
-                    dictionary.Add(key, new List<TElement>());
-                    dictionary[key].Add(item);
+                    list = [];
+                    list.Add(item);
+                    dictionary.Add(key, list);
                 }
             }
 
-            IEnumerable<IGrouping<TKey, TElement>> groups = from kvp in dictionary
-                select new GroupingEnumerable<TKey, TElement>(kvp.Key, kvp.Value);
+            IGrouping<TKey, TElement>[] groups = dictionary
+                .Select(kvp => new GroupingEnumerable<TKey, TElement>(kvp.Key, kvp.Value))
+                .ToArray();
 
-            return new Span<IGrouping<TKey, TElement>>(groups.ToArray());
+            return new Span<IGrouping<TKey, TElement>>(groups);
         }
     }
 
