@@ -13,14 +13,15 @@
         <RepositoryUrl>https://github.com/alastairlundy/EnhancedLinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>linq, enhanced-linq, enhanced, extensions, memory, extensions</PackageTags>
-        <PackageReleaseNotes>### Infrastructure &amp; Dependencies
-
-#### Added
-- Added `AGENTS.md` with project overview.
-- Removed unnecessary exception documentation.
-- Updated method documentation files
-- General improvements to formatting and exception throwing logic.
-- Improved exception throwing logic to throw less often.</PackageReleaseNotes>
+        <PackageReleaseNotes>* Updated internal Polyfill version from 10.3.0 to 10.5.1
+* Updated DotExtensions version from 10.3.0 to 10.3.1
+* Added ``global.json`` file
+* Added ``AGENTS.md`` file
+- Fixed group by and split extensions
+- Fixed issues with GroupBy extensions and reduced unnecessary AsEnumerable usage
+- Fixed issues with DistincyBy extensions
+- Updated global usings
+- Code formatting improvements</PackageReleaseNotes>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -28,7 +29,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>1.0.0-rc.1</Version>
+        <Version>1.0.0-rc.2</Version>
         <PackageId>EnhancedLinq.Memory</PackageId>
         <PolyArgumentExceptions>true</PolyArgumentExceptions>
         <EnableTrimAnalyzer>true</EnableTrimAnalyzer>

@@ -12,13 +12,17 @@
         <RepositoryUrl>https://github.com/alastairlundy/Enhancedlinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageReleaseNotes>- Removed unnecessary exception documentation.
-- Updated method documentation files
-- General improvements to formatting and exception throwing logic.
-- Fixed issues with `DuplicatorsEnumerator` state.
-- Fixed enumerator state and adjusted `SplitBy` list initialization.
-- Updated `First` and `Last` methods to correctly throw exceptions.
-- Removed `throw` when dictionary is read-only - The dictionary implementation will throw if necessary instead.</PackageReleaseNotes>
+        <PackageReleaseNotes>* Updated internal Polyfill version from 10.3.0 to 10.5.1
+* Updated DotExtensions version from 10.3.0 to 10.3.1
+* Added ``global.json`` file
+* Added ``AGENTS.md`` file
+- Fixed group by and split extensions
+- Fixed empty Segment enumeration not throwing
+- Fixed Immediate Segment All predicate extension wrongly returning true when false
+- Fixed Immediate Segment Split and Indices extension method issues
+- Removed reliance on DotPrimitives.Collections
+- Updated global usings
+- Various formatting improvements</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <Description>Additional LINQ style Deferred and Immediate enumeration mode extension methods for .NET . </Description>
@@ -27,7 +31,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>1.0.0-rc.1</Version>
+        <Version>1.0.0-rc.2</Version>
         <PackageId>EnhancedLinq</PackageId>
         <PolyArgumentExceptions>true</PolyArgumentExceptions>
         <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
