@@ -2,6 +2,10 @@ name: Publish to Nuget
 
 on:
   workflow_dispatch:
+     inputs:
+      enhancedlinq-version:
+         type: string
+         required: true
 
 permissions:
   contents: read
@@ -30,8 +34,26 @@ jobs:
       - name: Create packages
         run: dotnet build -c Release
         working-directory: src
-        
-          # Get a short-lived NuGet API key
+
+      - name: Create local nupkg output dir
+        run: mkdir -p ./nupkgs
+
+      # Build EnhancedLinq
+      - name: Build EnhancedLinq
+        run: dotnet build src/EnhancedLinq -c Release
+
+      # Pack EnhancedLinq into ./nupkgs
+      - name: Pack EnhancedLinq to local feed
+        run: dotnet pack src/EnhancedLinq -c Release -o ./nupkgs
+
+      # Use local feed for EnhancedLinq.Memory
+      - name: Restore EnhancedLinq from local feed + NuGet.org
+        run: dotnet restore src/EnhancedLinq.Memory -s ./nupkgs -s https://api.nuget.org/v3/index.json
+
+      - name: Build Memory (resolves EnhancedLinq from local feed)
+        run: dotnet build src/EnhancedLinq.Memory -c Release -p:EnhancedLinqVersion=${{ inputs.enhancedlinq-version }}
+
+      # Get a short-lived NuGet API key
       - name: NuGet login (OIDC → temp API key)
         uses: NuGet/login@8d196754b4036150537f80ac539e15c2f1028841 # v1.2.0
         id: login
@@ -44,7 +66,6 @@ jobs:
 
       - name: NuGet push
         run: dotnet nuget push src/EnhancedLinq.Async/bin/Release/*.nupkg --api-key ${{steps.login.outputs.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
-           
            
         # Push the Memory package
       - name: NuGet push
