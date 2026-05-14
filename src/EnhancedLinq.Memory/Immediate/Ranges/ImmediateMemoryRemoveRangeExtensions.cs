@@ -32,6 +32,7 @@ public static class ImmediateMemoryRemoveRangeExtensions
 
             IEnumerable<int> newIndices = target.Index()
                 .OrderByDescending(x => x.Index)
+                .SkipWhile(x => x.Index == -1)
                 .SkipWhile(x => indices.Contains(x.Index))
                 .Select(i => i.Index);
 

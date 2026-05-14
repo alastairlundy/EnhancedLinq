@@ -33,8 +33,8 @@ public static class ImmediateListRemoveRange
         public void RemoveRange(int startIndex, int count)
         {
             ArgumentNullException.ThrowIfNull(source);
-            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
             ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
             ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(startIndex, source.Count);
             
             if (source.IsReadOnly || source is T[])
@@ -95,10 +95,9 @@ public static class ImmediateListRemoveRange
             if (list.IsReadOnly || list is T[])
                 throw new NotSupportedException();
 
-            foreach (int index in indices.OrderDescending().Distinct())
+            foreach (int index in indices.OrderDescending()
+                         .SkipWhile(i => i == -1).Distinct())
             {
-                ArgumentOutOfRangeException.ThrowIfNegative(index);
-
                 list.RemoveAt(index);
             }
         }

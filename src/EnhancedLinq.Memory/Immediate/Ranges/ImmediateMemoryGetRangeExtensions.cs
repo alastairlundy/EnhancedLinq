@@ -28,10 +28,8 @@ public static class ImmediateMemoryGetRangeExtensions
         /// </summary>
         /// <param name="range">The <see cref="Range" /> containing the start and end indices.</param>
         /// <returns>A new span containing the specified range of elements.</returns>
-        public Span<T> GetRange(Range range)
-        {
-            return target.GetRange(range.Start.Value, range.End.Value);
-        }
+        public Span<T> GetRange(Range range) 
+            => target.GetRange(range.Start.Value, range.End.Value);
     }
 #endif
 
@@ -87,7 +85,8 @@ public static class ImmediateMemoryGetRangeExtensions
 
             int targetLength = target.Length;
 
-            foreach (int index in indices.Where(i => i >= 0 && i < targetLength)) output.Add(target[index]);
+            foreach (int index in indices.Where(i => i >= 0 && i < targetLength)) 
+                output.Add(target[index]);
 
             return new Span<T>(output.ToArray());
         }
