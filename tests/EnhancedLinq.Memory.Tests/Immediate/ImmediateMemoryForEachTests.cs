@@ -19,10 +19,11 @@ public class ImmediateMemoryForEachTests
         int[] arr = [3,4,5];
         Memory<int> mem = arr.AsMemory();
 
-        mem.ForEach(x => x - 1);
+        Memory<int> result = mem.ForEach(x => x - 1);
 
         // Memory.ForEach(Func) replaces memory with result array
-        await Assert.That(mem.ToArray()).IsEquivalentTo([2,3,4]);
+        await Assert.That(result).IsEquivalentTo([2,3,4]);
+        await Assert.That(mem).IsEquivalentTo([3,4,5]);
     }
 
     [Test]
