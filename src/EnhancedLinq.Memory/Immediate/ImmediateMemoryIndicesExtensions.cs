@@ -27,8 +27,10 @@ public static class ImmediateMemoryIndicesExtensions
             List<int> indices = [];
 
             for (int index = 0; index < source.Length; index++)
+            {
                 if (item is not null && item.Equals(source[index]))
                     indices.Add(index);
+            }
 
             return indices;
         }
@@ -45,8 +47,10 @@ public static class ImmediateMemoryIndicesExtensions
             List<int> indices = [];
 
             for (int index = 0; index < source.Length; index++)
+            {
                 if (predicate(source[index]))
                     indices.Add(index);
+            }
 
             return indices;
         }
@@ -66,8 +70,10 @@ public static class ImmediateMemoryIndicesExtensions
             List<int> indices = [];
 
             for (int index = 0; index < source.Length; index++)
+            {
                 if (item is not null && item.Equals(source[index]))
                     indices.Add(index);
+            }
 
             return indices;
         }
@@ -88,8 +94,10 @@ public static class ImmediateMemoryIndicesExtensions
             List<int> indices = [];
 
             for (int index = 0; index < source.Length; index++)
+            {
                 if (predicate(source[index]))
                     indices.Add(index);
+            }
 
             return indices;
         }
