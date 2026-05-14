@@ -54,11 +54,11 @@ public static class ImmediateMemoryCountAtMostExtensions
                 if (predicate(obj))
                     currentCount += 1;
 
-                if (currentCount >= countToLookFor)
+                if (currentCount > countToLookFor)
                     return false;
             }
 
-            return true;
+            return countToLookFor <= currentCount;
         }
     }
 
@@ -101,11 +101,11 @@ public static class ImmediateMemoryCountAtMostExtensions
                 if (predicate(obj))
                     currentCount += 1;
 
-                if (currentCount >= countToLookFor)
+                if (currentCount > countToLookFor)
                     return false;
             }
 
-            return true;
+            return countToLookFor <= currentCount;
         }
     }
 
@@ -151,11 +151,11 @@ public static class ImmediateMemoryCountAtMostExtensions
                 if (predicate(obj))
                     currentCount += 1;
 
-                if (currentCount >= countToLookFor)
+                if (currentCount > countToLookFor)
                     return false;
             }
 
-            return true;
+            return countToLookFor <= currentCount;
         }
     }
 
@@ -199,11 +199,11 @@ public static class ImmediateMemoryCountAtMostExtensions
                 if (predicate(obj))
                     currentCount += 1;
 
-                if (currentCount >= countToLookFor)
+                if (currentCount > countToLookFor)
                     return false;
             }
 
-            return true;
+            return countToLookFor <= currentCount;
         }
     }
 }

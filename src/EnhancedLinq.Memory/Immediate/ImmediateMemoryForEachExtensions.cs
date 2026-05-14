@@ -28,7 +28,8 @@ public static class ImmediateMemoryForEachExtensions
             InvalidOperationException.ThrowIfSpanIsEmpty(target);
             ArgumentNullException.ThrowIfNull(action);
 
-            for (int index = 0; index < target.Length; index++) action.Invoke(target[index]);
+            for (int index = 0; index < target.Length; index++)
+                action.Invoke(target[index]);
         }
     }
 
@@ -45,7 +46,8 @@ public static class ImmediateMemoryForEachExtensions
             InvalidOperationException.ThrowIfSpanIsEmpty(target);
             ArgumentNullException.ThrowIfNull(action);
 
-            for (int i = 0; i < target.Length; i++) target[i] = action.Invoke(target[i]);
+            for (int i = 0; i < target.Length; i++) 
+                target[i] = action.Invoke(target[i]);
         }
     }
 
