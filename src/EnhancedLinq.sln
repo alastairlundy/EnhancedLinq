@@ -2,11 +2,12 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnhancedLinq", "EnhancedLinq\EnhancedLinq.csproj", "{CE042576-7B6C-4963-BE27-9B97D0D1E27B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnhancedLinq.Tests", "EnhancedLinq.Tests\EnhancedLinq.Tests.csproj", "{26D20606-D549-43D5-8EBC-E01D324690B8}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnhancedLinq.Memory", "EnhancedLinq.Memory\EnhancedLinq.Memory.csproj", "{C65241BC-94BE-4ACE-9373-CF6BC4917F6E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{9E301A03-D941-4EE2-B7BA-BC0501258EFE}"
+	ProjectSection(SolutionItems) = preProject
+		..\tests\Directory.Packages.props = ..\tests\Directory.Packages.props
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnhancedLinq.Async", "EnhancedLinq.Async\EnhancedLinq.Async.csproj", "{24FE67DB-76E4-4D74-9362-93AFEA93E341}"
 EndProject
@@ -20,7 +21,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared Infra", "Shared Infr
 		EnhancedLinq.Shared.Infra\CustomEnumeratorEnumerable.cs = EnhancedLinq.Shared.Infra\CustomEnumeratorEnumerable.cs
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnhancedLinq.Memory.Tests", "EnhancedLinq.Memory.Tests\EnhancedLinq.Memory.Tests.csproj", "{01AA980A-E347-43E3-85BE-21B2A62F4A0B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnhancedLinq.Tests", "..\tests\EnhancedLinq.Tests\EnhancedLinq.Tests.csproj", "{398609F0-7C1E-4D88-86E6-A49450F800AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnhancedLinq.Memory.Tests", "..\tests\EnhancedLinq.Memory.Tests\EnhancedLinq.Memory.Tests.csproj", "{6AF5B453-D3C1-4744-864F-9EC11F0634F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,10 +35,6 @@ Global
 		{CE042576-7B6C-4963-BE27-9B97D0D1E27B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE042576-7B6C-4963-BE27-9B97D0D1E27B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE042576-7B6C-4963-BE27-9B97D0D1E27B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{26D20606-D549-43D5-8EBC-E01D324690B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{26D20606-D549-43D5-8EBC-E01D324690B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{26D20606-D549-43D5-8EBC-E01D324690B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{26D20606-D549-43D5-8EBC-E01D324690B8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C65241BC-94BE-4ACE-9373-CF6BC4917F6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C65241BC-94BE-4ACE-9373-CF6BC4917F6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C65241BC-94BE-4ACE-9373-CF6BC4917F6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -44,17 +43,21 @@ Global
 		{24FE67DB-76E4-4D74-9362-93AFEA93E341}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24FE67DB-76E4-4D74-9362-93AFEA93E341}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24FE67DB-76E4-4D74-9362-93AFEA93E341}.Release|Any CPU.Build.0 = Release|Any CPU
-		{01AA980A-E347-43E3-85BE-21B2A62F4A0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{01AA980A-E347-43E3-85BE-21B2A62F4A0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{01AA980A-E347-43E3-85BE-21B2A62F4A0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{01AA980A-E347-43E3-85BE-21B2A62F4A0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{398609F0-7C1E-4D88-86E6-A49450F800AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{398609F0-7C1E-4D88-86E6-A49450F800AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{398609F0-7C1E-4D88-86E6-A49450F800AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{398609F0-7C1E-4D88-86E6-A49450F800AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AF5B453-D3C1-4744-864F-9EC11F0634F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AF5B453-D3C1-4744-864F-9EC11F0634F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AF5B453-D3C1-4744-864F-9EC11F0634F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AF5B453-D3C1-4744-864F-9EC11F0634F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{26D20606-D549-43D5-8EBC-E01D324690B8} = {9E301A03-D941-4EE2-B7BA-BC0501258EFE}
 		{24FE67DB-76E4-4D74-9362-93AFEA93E341} = {91624D5E-B053-4122-92CA-2B30F24811C0}
 		{C65241BC-94BE-4ACE-9373-CF6BC4917F6E} = {91624D5E-B053-4122-92CA-2B30F24811C0}
 		{CE042576-7B6C-4963-BE27-9B97D0D1E27B} = {91624D5E-B053-4122-92CA-2B30F24811C0}
 		{7231438D-C034-4532-8495-C8074697F10E} = {91624D5E-B053-4122-92CA-2B30F24811C0}
-		{01AA980A-E347-43E3-85BE-21B2A62F4A0B} = {9E301A03-D941-4EE2-B7BA-BC0501258EFE}
+		{398609F0-7C1E-4D88-86E6-A49450F800AF} = {9E301A03-D941-4EE2-B7BA-BC0501258EFE}
+		{6AF5B453-D3C1-4744-864F-9EC11F0634F0} = {9E301A03-D941-4EE2-B7BA-BC0501258EFE}
 	EndGlobalSection
 EndGlobal

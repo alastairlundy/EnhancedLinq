@@ -56,6 +56,14 @@ public static class AsGroupingExtensions
         }
     }*/
 
+    /*extension<TKey, TElement>(GroupingEnumerable<TKey, TElement> grouping)
+    {
+        public IGrouping<TKey, TElement> AsGrouping()
+        {
+            return grouping;
+        }
+    }*/
+    
     /// <summary>
     /// 
     /// </summary>
@@ -67,8 +75,6 @@ public static class AsGroupingExtensions
         /// <summary>
         /// Creates a new grouping collection from a grouping.
         /// </summary>
-        /// <typeparam name="TKey">The type of the grouping keys.</typeparam>
-        /// <typeparam name="TElement">The type of the elements being grouped.</typeparam>
         /// <returns>A <see cref="IGroupingCollection{TKey,TElement}"/> collection of the elements grouped by a key.</returns>
         /// <exception cref="ArgumentNullException">Thrown if the source <see cref="IGrouping{TKey,TElement}"/> is null.</exception>
         public IGroupingCollection<TKey, TElement> AsGroupingCollection()

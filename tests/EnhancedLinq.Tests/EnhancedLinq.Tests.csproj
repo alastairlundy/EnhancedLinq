@@ -16,11 +16,11 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\EnhancedLinq\EnhancedLinq.csproj" />
+      <Folder Include="Deferred\" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Deferred\" />
+      <ProjectReference Include="..\..\src\EnhancedLinq\EnhancedLinq.csproj" />
     </ItemGroup>
 
 </Project>
