@@ -36,7 +36,7 @@ internal class MemoryEnumerator<TSource> : IEnumerator<TSource>
         _currentIndex = 0;
 
         if (_memory.Length > 0)
-            Current = _memory.First();
+            Current = _memory.Span[0];
     }
 
     public bool MoveNext()

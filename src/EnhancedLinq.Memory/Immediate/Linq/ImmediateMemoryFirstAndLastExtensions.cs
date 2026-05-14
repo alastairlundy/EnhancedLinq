@@ -313,7 +313,7 @@ public static class ImmediateMemoryFirstAndLastExtensions
         {
             InvalidOperationException.ThrowIfMemoryIsEmpty(target);
 
-            foreach (T item in target.AsEnumerable())
+            foreach (T item in target.Span)
                 return item;
 
             throw new ArgumentException(Resources.Exceptions_InvalidOperation_EmptyMemory, nameof(target));
@@ -382,7 +382,7 @@ public static class ImmediateMemoryFirstAndLastExtensions
             if (target.IsEmpty)
                 return default;
 
-            foreach (T item in target.AsEnumerable()) return item;
+            foreach (T item in target.Span) return item;
 
             return default;
         }
@@ -446,7 +446,7 @@ public static class ImmediateMemoryFirstAndLastExtensions
         {
             InvalidOperationException.ThrowIfMemoryIsEmpty(target);
 
-            foreach (T item in target.AsEnumerable()) 
+            foreach (T item in target.Span) 
                 return item;
 
             throw new ArgumentException(Resources.Exceptions_InvalidOperation_EmptyMemory, nameof(target));
@@ -461,7 +461,7 @@ public static class ImmediateMemoryFirstAndLastExtensions
             if (target.IsEmpty)
                 return default;
 
-            foreach (T item in target.AsEnumerable()) return item;
+            foreach (T item in target.Span) return item;
 
             return default;
         }
