@@ -26,10 +26,7 @@ public static class DeferredMemoryEnumerableExtensions
         ///     An <see cref="IEnumerable{TSource}" /> representation of the elements contained in the provided
         ///     <see cref="Memory{T}" />.
         /// </returns>
-        public IEnumerable<TSource> AsEnumerable()
-        {
-            return new MemoryEnumerable<TSource>(source);
-        }
+        public IEnumerable<TSource> AsEnumerable() => new MemoryEnumerable<TSource>(source);
     }
 
     /// <typeparam name="TSource">The type of the elements in the source memory.</typeparam>
@@ -43,9 +40,6 @@ public static class DeferredMemoryEnumerableExtensions
         ///     An <see cref="IEnumerable{TSource}" /> that represents the elements of the given
         ///     <see cref="ReadOnlyMemory{T}" />.
         /// </returns>
-        public IEnumerable<TSource> AsEnumerable()
-        {
-            return new MemoryEnumerable<TSource>(source);
-        }
+        public IEnumerable<TSource> AsEnumerable() => new MemoryEnumerable<TSource>(source);
     }
 }
