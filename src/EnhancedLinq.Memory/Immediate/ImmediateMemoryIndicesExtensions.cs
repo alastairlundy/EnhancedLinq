@@ -24,7 +24,7 @@ public static class ImmediateMemoryIndicesExtensions
         /// <returns>A collection of indices that represent the occurrences of item in <see cref="Span{T}" /></returns>
         public ICollection<int> IndicesOf(T item)
         {
-            List<int> indices = new();
+            List<int> indices = [];
 
             for (int index = 0; index < source.Length; index++)
                 if (item is not null && item.Equals(source[index]))
@@ -42,7 +42,7 @@ public static class ImmediateMemoryIndicesExtensions
         {
             ArgumentNullException.ThrowIfNull(predicate);
 
-            List<int> indices = new();
+            List<int> indices = [];
 
             for (int index = 0; index < source.Length; index++)
                 if (predicate(source[index]))
@@ -63,7 +63,7 @@ public static class ImmediateMemoryIndicesExtensions
         /// <returns>A collection of indices that represent the occurrences of item in <see cref="ReadOnlySpan{T}" />.</returns>
         public ICollection<int> IndicesOf(T item)
         {
-            List<int> indices = new();
+            List<int> indices = [];
 
             for (int index = 0; index < source.Length; index++)
                 if (item is not null && item.Equals(source[index]))
@@ -85,7 +85,7 @@ public static class ImmediateMemoryIndicesExtensions
         {
             ArgumentNullException.ThrowIfNull(predicate);
 
-            List<int> indices = new();
+            List<int> indices = [];
 
             for (int index = 0; index < source.Length; index++)
                 if (predicate(source[index]))
