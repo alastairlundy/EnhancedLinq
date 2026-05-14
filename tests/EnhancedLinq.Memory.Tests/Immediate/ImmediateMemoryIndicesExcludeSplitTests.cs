@@ -21,7 +21,7 @@ public class ImmediateMemoryIndicesExcludeSplitTests
     {
         int[] arr = [10, 20, 30, 40, 50];
         Span<int> span = arr;
-        Span<int> toRemove = new[] { 20, 40 };
+        Span<int> toRemove = [20, 40];
 
         Span<int> resultSpan = span.Exclude(toRemove);
         // Should exclude elements at indices of 20 and 40 so remaining [10,30,50]
