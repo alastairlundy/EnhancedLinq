@@ -41,16 +41,15 @@ public static class ImmediateMemoryGroupByExtensions
                 }
                 else
                 {
-                    list = [];
-                    list.Add(item);
+                    list = [item];
                     dictionary.Add(key, list);
                 }
             }
 
             IGrouping<TKey, TElement>[] groups = dictionary
-                .Select(kvp => new GroupingEnumerable<TKey, TElement>(kvp.Key, kvp.Value))
+                .Select(IGrouping<TKey, TElement> (kvp) => new GroupingEnumerable<TKey, TElement>(kvp.Key, kvp.Value))
                 .ToArray();
-
+            
             return new Span<IGrouping<TKey, TElement>>(groups);
         }
     }
