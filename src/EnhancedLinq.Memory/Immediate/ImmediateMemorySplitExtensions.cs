@@ -28,30 +28,15 @@ public static class ImmediateMemorySplitExtensions
         public IList<T[]> SplitByItemCount(int count)
         {
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
-            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(count, span.Length);
 
             List<T[]> list = [];
 
-            if (!(span.Length > count)) return [span.ToArray()];
+            if (span.Length == 0) return list;
 
-            int start = 0;
-            int nextSplit = 0;
-
-            for (int i = 0; i < span.Length; i++)
+            for (int i = 0; i < span.Length; i += count)
             {
-                if (start == -1) start = i;
-
-                nextSplit += 1;
-
-                if (nextSplit - start == count)
-                {
-                    list.Add(span.Slice(start, count).ToArray());
-                    start = -1;
-                }
-                else if (i == span.Length - 1 && start != -1)
-                {
-                    list.Add(span.Slice(start, span.Length - start).ToArray());
-                }
+                int length = Math.Min(count, span.Length - i);
+                list.Add(span.Slice(i, length).ToArray());
             }
 
             return list;
@@ -76,13 +61,9 @@ public static class ImmediateMemorySplitExtensions
         {
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(maximumNumberOfArrays);
 
-            double maxItems = Convert.ToDouble(span.Length / maximumNumberOfArrays);
-            int maxItemCount;
+            if (span.Length == 0) return [];
 
-            if (maxItems % 1 != 0)
-                maxItemCount = Convert.ToInt32(maxItems) + 1;
-            else
-                maxItemCount = Convert.ToInt32(maxItems);
+            int maxItemCount = (int)Math.Ceiling((double)span.Length / maximumNumberOfArrays);
 
             return span.SplitByItemCount(maxItemCount);
         }
@@ -108,23 +89,27 @@ public static class ImmediateMemorySplitExtensions
             List<T[]> list = [];
 
             int start = 0;
-            int nextSplit = 0;
 
             for (int i = 0; i < span.Length; i++)
             {
-                if (start == -1) start = i;
-
-                nextSplit += 1;
-
                 if (predicate(span[i]))
                 {
-                    list.Add(span.Slice(start, Math.Abs(nextSplit - start)).ToArray());
-                    start = -1;
+                    list.Add(span.Slice(start, i - start).ToArray());
+                    start = i + 1;
                 }
-                else if (i == span.Length - 1 && start != -1)
-                {
-                    list.Add(span.Slice(start, span.Length - start).ToArray());
-                }
+            }
+
+            if (start < span.Length)
+            {
+                list.Add(span.Slice(start, span.Length - start).ToArray());
+            }
+            else if (start == span.Length)
+            {
+                // If the last element was a separator, we should add an empty array for the trailing part
+                // depending on the desired behavior. Standard string.Split usually does this.
+                // Given the original code's logic, let's see if it intended to omit trailing empty.
+                // The original logic was: else if (i == span.Length - 1 && start != -1) 
+                // which adds the last a fragment if it's not empty.
             }
 
             return list;
