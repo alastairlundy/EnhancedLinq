@@ -32,9 +32,9 @@ public static class ImmediateMemoryElementsAtExtensions
         public T ElementAt(int index)
         {
             ArgumentOutOfRangeException.ThrowIfNegative(index);
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(index, source.Length);
 
-            return source.ElementsAt(index, 1)
-                .First();
+            return source.ElementsAt(index, 1).First();
         }
 
         /// <summary>
@@ -100,6 +100,7 @@ public static class ImmediateMemoryElementsAtExtensions
         public T ElementAt(int index)
         {
             ArgumentOutOfRangeException.ThrowIfNegative(index);
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(index, source.Length);
 
             return source.ElementsAt(index, 1)
                 .First();
@@ -147,7 +148,7 @@ public static class ImmediateMemoryElementsAtExtensions
         /// </exception>
         public ReadOnlyMemory<T> ElementsAt(int index, int count)
         {
-            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(index);
+            ArgumentOutOfRangeException.ThrowIfNegative(index);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
 
             return source.Slice(index, index + count);
