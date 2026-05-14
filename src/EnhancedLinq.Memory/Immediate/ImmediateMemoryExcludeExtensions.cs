@@ -8,6 +8,7 @@
     */
 
 using System.Linq;
+using EnhancedLinq.Immediate.Lists.Ranges;
 
 namespace EnhancedLinq.Memory.Immediate;
 
@@ -29,19 +30,16 @@ public static class ImmediateMemoryExcludeExtensions
         /// <exception cref="ArgumentNullException">Thrown if the provided predicate is null.</exception>
         public Span<TSource> Exclude(Span<TSource> span)
         {
-            List<int> indices = [];
+            HashSet<TSource> exclude = new(span.ToArray());
 
-            foreach (TSource item in span) indices.AddRange(source.IndicesOf(item));
+            List<TSource> result = new();
 
-            indices = indices.Distinct().ToList();
-
-            List<TSource> result = new List<TSource>(indices.Count);
-
-            int index = 0;
             foreach (TSource item in source)
-                if (!indices.Contains(index))
+            {
+                if (!exclude.Contains(item))
                     result.Add(item);
-
+            }
+            
             return result.ToArray();
         }
 
