@@ -30,8 +30,10 @@ public static class ImmediateMemoryRemoveRangeExtensions
         {
             ArgumentNullException.ThrowIfNull(indices);
 
-            IEnumerable<int> newIndices = target.Index().Select(i => i.Index)
-                .SkipWhile(x => indices.Contains(x));
+            IEnumerable<int> newIndices = target.Index()
+                .OrderByDescending(x => x.Index)
+                .SkipWhile(x => indices.Contains(x.Index))
+                .Select(i => i.Index);
 
             return target.GetRange(newIndices);
         }

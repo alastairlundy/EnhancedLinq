@@ -45,7 +45,8 @@ public static class ImmediateListRemoveRange
         
             if (startIndex > 0)
             {
-                ICollection<T> newCollection = source.Take(startIndex - 1);
+                ICollection<T> newCollection = source.Skip(startIndex - 1)
+                    .Take(count).ToList();
                 
                 source.Clear();
                 source.AddRange(newCollection);
@@ -76,25 +77,7 @@ public static class ImmediateListRemoveRange
         /// <exception cref="IndexOutOfRangeException">Thrown if the start index is out of range for this list or if the count exceeds available elements from that index.</exception>
         /// <exception cref="ArgumentException">Thrown if the start index is negative.</exception>
         public void RemoveRange(int startIndex, int count)
-        {
-            ArgumentNullException.ThrowIfNull(list);
-            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
-            ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
-            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(startIndex, list.Count);
-
-            if (list.IsReadOnly || list is T[])
-                throw new NotSupportedException();
-            
-            if (!(list.Count < startIndex + count))
-                throw new ArgumentException(Resources.Exceptions_Remove_CountTooLarge, nameof(count));
-        
-            int limit = startIndex + count;
-        
-            for (int index = startIndex; index < limit; index++)
-            {
-                list.RemoveAt(index);
-            }
-        }
+            => list.RemoveRange(Enumerable.Range(startIndex, count).ToList());
 
         ///  <summary>Removes a range of elements from the specified list.
         /// 
@@ -111,9 +94,11 @@ public static class ImmediateListRemoveRange
             
             if (list.IsReadOnly || list is T[])
                 throw new NotSupportedException();
-        
-            foreach (int index in indices.Where(i => i >= 0 && i < list.Count))
+
+            foreach (int index in indices.OrderDescending().Distinct())
             {
+                ArgumentOutOfRangeException.ThrowIfNegative(index);
+
                 list.RemoveAt(index);
             }
         }
