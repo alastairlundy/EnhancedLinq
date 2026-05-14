@@ -7,8 +7,6 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/.
     */
 
-using EnhancedLinq.Memory.Deferred;
-
 namespace EnhancedLinq.Memory.Immediate;
 
 /// <summary>
