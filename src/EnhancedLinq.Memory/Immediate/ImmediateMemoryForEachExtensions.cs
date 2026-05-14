@@ -59,7 +59,7 @@ public static class ImmediateMemoryForEachExtensions
         ///     Applies the given action to each element of this Memory.
         /// </summary>
         /// <param name="action">The action to apply to each element in the memory.</param>
-        public void ForEach(Action<T> action)
+        public Memory<T> ForEach(Action<T> action)
         {
             InvalidOperationException.ThrowIfMemoryIsEmpty(target);
             ArgumentNullException.ThrowIfNull(action);
@@ -68,20 +68,20 @@ public static class ImmediateMemoryForEachExtensions
 
             for (int index = 0; index < target.Length; index++)
             {
-                T item = target.ElementAt(index);
+                T item = target.Span[index];
 
                 action.Invoke(item);
                 array[index] = item;
             }
 
-            target = new Memory<T>(array);
+            return new Memory<T>(array);
         }
 
         /// <summary>
         ///     Applies the given action to each element of this Memory.
         /// </summary>
         /// <param name="action">The action to apply to each element in the memory.</param>
-        public void ForEach(Func<T, T> action)
+        public Memory<T> ForEach(Func<T, T> action)
         {
             InvalidOperationException.ThrowIfMemoryIsEmpty(target);
             ArgumentNullException.ThrowIfNull(action);
@@ -90,12 +90,12 @@ public static class ImmediateMemoryForEachExtensions
 
             for (int index = 0; index < target.Length; index++)
             {
-                T item = target.ElementAt(index);
+                T item = target.Span[index];
 
                 array[index] = action.Invoke(item);
             }
 
-            target = new Memory<T>(array);
+            return new Memory<T>(array);
         }
     }
 }
