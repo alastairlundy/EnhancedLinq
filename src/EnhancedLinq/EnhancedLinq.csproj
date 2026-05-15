@@ -12,17 +12,11 @@
         <RepositoryUrl>https://github.com/alastairlundy/Enhancedlinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageReleaseNotes>* Updated internal Polyfill version from 10.3.0 to 10.5.1
-* Updated DotExtensions version from 10.3.0 to 10.3.1
-* Added ``global.json`` file
-* Added ``AGENTS.md`` file
-- Fixed group by and split extensions
-- Fixed empty Segment enumeration not throwing
-- Fixed Immediate Segment All predicate extension wrongly returning true when false
-- Fixed Immediate Segment Split and Indices extension method issues
-- Removed reliance on DotPrimitives.Collections
-- Updated global usings
-- Various formatting improvements</PackageReleaseNotes>
+        <PackageReleaseNotes>- Fixed enumerator state issues in Segment Split enumerators ([5efafdb](https://github.com/alastairlundy/EnhancedLinq/commit/5efafdbd88c08deb3fb6429a74e384e3ca94e714))
+- Simplified internal Segment Indices Enumerable code ([43fe19a](https://github.com/alastairlundy/EnhancedLinq/commit/43fe19a007298f4be4ac3faadaf56c60c0cf880d))
+- Fixed Segment indices enumeration issues ([ac9ca3d](https://github.com/alastairlundy/EnhancedLinq/commit/ac9ca3dfca1f7068c970f72dc5a11fefc307a2d6))
+- Increased robustness of range removal methods ([ad8065f](https://github.com/alastairlundy/EnhancedLinq/commit/ad8065f35b6d248e94d408d2bcd82d44a64c967f))
+- Fixed remove range extension issues ([5341697](https://github.com/alastairlundy/EnhancedLinq/commit/5341697ff1a48eabdb268ba1c41445d8e34b2d64))</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <Description>Additional LINQ style Deferred and Immediate enumeration mode extension methods for .NET . </Description>
@@ -31,7 +25,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>1.0.0-rc.2</Version>
+        <Version>1.0.0</Version>
         <PackageId>EnhancedLinq</PackageId>
         <PolyArgumentExceptions>true</PolyArgumentExceptions>
         <EnableTrimAnalyzer>true</EnableTrimAnalyzer>

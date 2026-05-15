@@ -13,15 +13,16 @@
         <RepositoryUrl>https://github.com/alastairlundy/EnhancedLinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>linq, enhanced-linq, enhanced, extensions, memory, extensions</PackageTags>
-        <PackageReleaseNotes>* Updated internal Polyfill version from 10.3.0 to 10.5.1
-* Updated DotExtensions version from 10.3.0 to 10.3.1
-* Added ``global.json`` file
-* Added ``AGENTS.md`` file
-- Fixed group by and split extensions
-- Fixed issues with GroupBy extensions and reduced unnecessary AsEnumerable usage
-- Fixed issues with DistincyBy extensions
-- Updated global usings
-- Code formatting improvements</PackageReleaseNotes>
+        <PackageReleaseNotes>- Increased robustness of range removal methods ([ad8065f](https://github.com/alastairlundy/EnhancedLinq/commit/ad8065f35b6d248e94d408d2bcd82d44a64c967f))
+- Fixed remove range extension issues ([5341697](https://github.com/alastairlundy/EnhancedLinq/commit/5341697ff1a48eabdb268ba1c41445d8e34b2d64))
+- Fixed an issue with memory exclude extensions ([39cd300](https://github.com/alastairlundy/EnhancedLinq/commit/39cd3004ec7addc04c8aee9f4357038560e9e1e9))
+- Fixed an issue where memory split was not correctly splitting ([bbc9881](https://github.com/alastairlundy/EnhancedLinq/commit/bbc9881c2f973fc5f90e83356f00bd0517238b45))
+- Fixed a potential isssue where ElementAt would iinadvertent throw an exception ([368b8d7](https://github.com/alastairlundy/EnhancedLinq/commit/368b8d7080aa07bdf78dd93e50d749e473a20230))
+- Reworked Memory ForEach ([12d259f](https://github.com/alastairlundy/EnhancedLinq/commit/12d259f73fe60500415e72bb52a1c1cf73500116))
+- Fixed issues with CountAtMost extensions ([c95b3c2](https://github.com/alastairlundy/EnhancedLinq/commit/c95b3c2757d0925b200928a4e9ad509c486cb01c))
+- Addressed a type conversion issue ([bb61a07](https://github.com/alastairlundy/EnhancedLinq/commit/bb61a076359d4fbf4463d69bce06a359e643a3be))
+- Simplified Memory LastIndex extensions ([34aa115](https://github.com/alastairlundy/EnhancedLinq/commit/34aa115abc9dcaf995dcf45287fb7621996bbc74))
+- Fixed a bug that would cause an infinite loop in Memory&lt;T&gt; ``AsEnumerable`` extension ([3b404d1](https://github.com/alastairlundy/EnhancedLinq/commit/3b404d11f01885c7da5c52b1085bab6b639b9ebe))</PackageReleaseNotes>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -29,7 +30,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>1.0.0-rc.2</Version>
+        <Version>1.0.0</Version>
         <PackageId>EnhancedLinq.Memory</PackageId>
         <PolyArgumentExceptions>true</PolyArgumentExceptions>
         <EnableTrimAnalyzer>true</EnableTrimAnalyzer>

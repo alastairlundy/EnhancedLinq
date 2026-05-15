@@ -20,16 +20,12 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>1.0.0-rc.2</Version>
+        <Version>1.0.0</Version>
         <PackageId>EnhancedLinq.Async</PackageId>
         <PolyArgumentExceptions>true</PolyArgumentExceptions>
         <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
         <TrimmerSingleWarn>false</TrimmerSingleWarn>
-        <PackageReleaseNotes>* Updated internal Polyfill version from 10.3.0 to 10.5.1
-* Updated DotExtensions version from 10.3.0 to 10.3.1
-* Added ``global.json`` file
-* Added ``AGENTS.md`` file
-- Fixed an issue with ``SplitBy`` predicate async methods</PackageReleaseNotes>
+        <PackageReleaseNotes>No changes since 1.0.0 rc 2</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
