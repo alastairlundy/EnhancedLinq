@@ -12,11 +12,8 @@
         <RepositoryUrl>https://github.com/alastairlundy/Enhancedlinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageReleaseNotes>- Fixed enumerator state issues in Segment Split enumerators ([5efafdb](https://github.com/alastairlundy/EnhancedLinq/commit/5efafdbd88c08deb3fb6429a74e384e3ca94e714))
-- Simplified internal Segment Indices Enumerable code ([43fe19a](https://github.com/alastairlundy/EnhancedLinq/commit/43fe19a007298f4be4ac3faadaf56c60c0cf880d))
-- Fixed Segment indices enumeration issues ([ac9ca3d](https://github.com/alastairlundy/EnhancedLinq/commit/ac9ca3dfca1f7068c970f72dc5a11fefc307a2d6))
-- Increased robustness of range removal methods ([ad8065f](https://github.com/alastairlundy/EnhancedLinq/commit/ad8065f35b6d248e94d408d2bcd82d44a64c967f))
-- Fixed remove range extension issues ([5341697](https://github.com/alastairlundy/EnhancedLinq/commit/5341697ff1a48eabdb268ba1c41445d8e34b2d64))</PackageReleaseNotes>
+        <PackageReleaseNotes>* Updated Microsoft.Extensions.Primitives version from 10.0.7 to 10.0.8
+* Updated DotExtensions version from 10.3.1 to 10.3.2</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <Description>Additional LINQ style Deferred and Immediate enumeration mode extension methods for .NET . </Description>
@@ -25,7 +22,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>1.0.0</Version>
+        <Version>1.0.1</Version>
         <PackageId>EnhancedLinq</PackageId>
         <PolyArgumentExceptions>true</PolyArgumentExceptions>
         <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
