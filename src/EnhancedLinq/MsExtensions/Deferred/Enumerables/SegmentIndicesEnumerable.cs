@@ -16,24 +16,28 @@ internal class SegmentIndicesEnumerable : IEnumerable<int>
     private readonly StringSegment _source;
     private readonly StringSegment _segment;
 
+    private readonly bool useCharEnumerator;
+
     internal SegmentIndicesEnumerable(StringSegment source, char c)
     {
         _source = source;
         _segment = new  StringSegment($"{c}");
+        useCharEnumerator = true;
     }
     
     internal SegmentIndicesEnumerable(StringSegment source, StringSegment segment)
     {
         _source = source;
         _segment = segment;
+        useCharEnumerator = false;
     }
 
     public IEnumerator<int> GetEnumerator()
     {
-        if(_segment.Length == 1)
+        if(useCharEnumerator)
             return new SegmentIndicesCharEnumerator(_source, _segment[0]);
-        else
-            return new SegmentIndicesOfEnumerator(_source, _segment);
+        
+        return new SegmentIndicesOfEnumerator(_source, _segment);
     }
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
