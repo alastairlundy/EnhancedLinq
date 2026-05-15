@@ -18,7 +18,6 @@ internal class SegmentSplitPredicateEnumerator : IEnumerator<StringSegment>
 
     private int _index;
     private int _state;
-
     private int _currentStart;
 
     internal SegmentSplitPredicateEnumerator(StringSegment source, Func<char, bool> predicate)
@@ -26,23 +25,34 @@ internal class SegmentSplitPredicateEnumerator : IEnumerator<StringSegment>
         _source = source;
         _predicate = predicate;
         _state = 1;
+        _currentStart = -1;
     }
-    
+
     public bool MoveNext()
     {
         if (_state == 1)
         {
+            // Handle empty source case
+            if (_source.Length == 0)
+            {
+                Current = _source.Subsegment(0, 0);
+                _state = -1;
+                return true;
+            }
+
             try
             {
                 while (_index < _source.Length)
                 {
                     bool separate = _predicate(_source[_index]);
 
-                    if (_currentStart == -1) 
+                    // Initialize start index of current segment if not already set
+                    if (_currentStart == -1)
                         _currentStart = _index;
 
                     if (separate)
                     {
+                        // Return segment up to current index
                         Current = _source.Subsegment(_currentStart, _index - _currentStart);
                         _currentStart = -1;
                         _index++;
@@ -53,7 +63,8 @@ internal class SegmentSplitPredicateEnumerator : IEnumerator<StringSegment>
                         _index++;
                     }
                 }
-                
+
+                // End of string: if there's a pending segment, return it
                 if (_currentStart != -1)
                 {
                     Current = _source.Subsegment(_currentStart);
@@ -67,14 +78,10 @@ internal class SegmentSplitPredicateEnumerator : IEnumerator<StringSegment>
                 Dispose();
                 throw;
             }
-            finally
-            {
-                // Only mark as finished if we didn't find a segment to return
-                if (_currentStart == -1 && _index >= _source.Length)
-                {
-                    _state = -1;
-                }
-            }
+
+            // If we exhausted all characters without returning a segment,
+            // mark as completed
+            _state = -1;
         }
 
         Dispose();
