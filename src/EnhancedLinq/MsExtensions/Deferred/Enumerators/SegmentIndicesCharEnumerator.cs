@@ -44,20 +44,18 @@ internal class SegmentIndicesCharEnumerator : IEnumerator<int>
 
                     _index++;
                 }
-
-                _state = -1;
             }
             catch
             {
                 Dispose();
+                _state = -1;
                 throw;
             }
-            finally
-            {
-                _state = -1;
-            }
+
+            _state = -1;
         }
-        
+
+        _state = -1;
         Dispose();
         return false;
     }

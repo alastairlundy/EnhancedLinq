@@ -58,12 +58,10 @@ internal class SegmentIndicesOfEnumerator : IEnumerator<int>
             catch
             {
                 Dispose();
+                _state = -1;
                 throw;
             }
-            finally
-            {
-                _state = -1;
-            }
+            _state = -1;
         }
 
         Dispose();
