@@ -101,7 +101,7 @@ public static class ImmediateMemorySplitExtensions
 
             if (start < span.Length)
             {
-                list.Add(span.Slice(start, span.Length - start).ToArray());
+                list.Add(span[start..].ToArray());
             }
 
             return list;
