@@ -103,13 +103,7 @@ public static class ImmediateMemorySplitExtensions
             {
                 list.Add(span.Slice(start, span.Length - start).ToArray());
             }
-            else if (start == span.Length)
             {
-                // If the last element was a separator, we should add an empty array for the trailing part
-                // depending on the desired behavior. Standard string.Split usually does this.
-                // Given the original code's logic, let's see if it intended to omit trailing empty.
-                // The original logic was: else if (i == span.Length - 1 && start != -1) 
-                // which adds the last a fragment if it's not empty.
             }
 
             return list;
