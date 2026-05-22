@@ -103,6 +103,10 @@ public static class ImmediateMemorySplitExtensions
             {
                 list.Add(span.Slice(start, span.Length - start).ToArray());
             }
+
+            return list;
+        }
+    }
             {
             }
 
