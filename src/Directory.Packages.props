@@ -11,11 +11,11 @@
     <PackageVersion Include="Microsoft.Extensions.Primitives" Version="10.0.9" />
     <PackageVersion Include="DotExtensions.Memory" Version="10.3.3" />
     <PackageVersion Include="DotExtensions" Version="10.3.3" />
-    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.103">
+    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.115">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
-    <PackageVersion Include="Polyfill" Version="10.10.0" PrivateAssets="all" />
+    <PackageVersion Include="Polyfill" Version="10.11.2" PrivateAssets="all" />
     <PackageVersion Include="System.Linq.AsyncEnumerable" Version="10.0.9" Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'net8.0' OR '$(TargetFramework)' == 'net9.0'" />
     <PackageVersion Include="Microsoft.Bcl.AsyncInterfaces" Version="10.0.9" Condition="'$(TargetFramework)' == 'netstandard2.0'" />
   </ItemGroup>
