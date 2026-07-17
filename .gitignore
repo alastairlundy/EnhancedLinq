@@ -418,3 +418,4 @@ FodyWeavers.xsd
 *.msp
 /ExtendedLinq/.idea
 /src/.idea
+skills-lock.json
