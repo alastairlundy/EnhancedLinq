@@ -24,7 +24,8 @@ public static class ImmediateMemoryFirstAndLastExtensions
         /// <exception cref="InvalidOperationException">Thrown if the <see cref="Span{T}" /> contains zero items.</exception>
         public T First()
         {
-            InvalidOperationException.ThrowIfSpanIsEmpty(target);
+            if (target.IsEmpty)
+                throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptySpan);
             
             return target[0];
         }
@@ -107,7 +108,8 @@ public static class ImmediateMemoryFirstAndLastExtensions
         /// <exception cref="InvalidOperationException">Thrown if the Span contains zero items.</exception>
         public T Last()
         {
-            InvalidOperationException.ThrowIfSpanIsEmpty(target);
+            if (target.IsEmpty)
+                throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptySpan);
 
 #if NET8_0_OR_GREATER
             return target[^1];
@@ -173,7 +175,8 @@ public static class ImmediateMemoryFirstAndLastExtensions
         /// <exception cref="InvalidOperationException">Thrown if the <see cref="ReadOnlySpan{T}" /> contains zero items.</exception>
         public T First()
         {
-            InvalidOperationException.ThrowIfSpanIsEmpty(target);
+            if (target.IsEmpty)
+                throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptySpan);
 
             return target[0];
         }
@@ -249,7 +252,8 @@ public static class ImmediateMemoryFirstAndLastExtensions
         /// <exception cref="InvalidOperationException">Thrown if the <see cref="ReadOnlySpan{T}" /> contains zero items.</exception>
         public T Last()
         {
-            InvalidOperationException.ThrowIfSpanIsEmpty(target);
+            if (target.IsEmpty)
+                throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptySpan);
             
 #if NET8_0_OR_GREATER
             return target[^1];
@@ -309,7 +313,8 @@ public static class ImmediateMemoryFirstAndLastExtensions
         /// <returns>The first element of the Memory sequence.</returns>
         public T First()
         {
-            InvalidOperationException.ThrowIfMemoryIsEmpty(target);
+            if (target.IsEmpty)
+                throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptyMemory);
 
             foreach (T item in target.Span)
                 return item;
@@ -366,7 +371,8 @@ public static class ImmediateMemoryFirstAndLastExtensions
         /// <returns>The last element of the Memory sequence.</returns>
         public T Last()
         {
-            InvalidOperationException.ThrowIfMemoryIsEmpty(target);
+            if (target.IsEmpty)
+                throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptyMemory);
             
             return target.ElementAt(target.LastIndex);
         }
@@ -442,7 +448,8 @@ public static class ImmediateMemoryFirstAndLastExtensions
         /// <returns>The first element of the <see cref="ReadOnlyMemory{T}" />  sequence.</returns>
         public T First()
         {
-            InvalidOperationException.ThrowIfMemoryIsEmpty(target);
+            if (target.IsEmpty)
+                throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptyMemory);
 
             foreach (T item in target.Span) 
                 return item;
@@ -513,7 +520,8 @@ public static class ImmediateMemoryFirstAndLastExtensions
         /// <returns>The last element of the <see cref="ReadOnlyMemory{T}" />  sequence.</returns>
         public T Last()
         {
-            InvalidOperationException.ThrowIfMemoryIsEmpty(target);
+            if (target.IsEmpty)
+                throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptyMemory);
             
             return target.ElementAt(target.LastIndex);
         }

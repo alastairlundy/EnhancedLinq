@@ -7,6 +7,8 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
+using EnhancedLinq.MsExtensions.Internals;
+
 namespace EnhancedLinq.MsExtensions.Immediate;
 
 /// <summary>
@@ -23,7 +25,7 @@ public static class ImmediateSegmentForEachExtensions
         /// <param name="action">The action to apply to each <see cref="char"/> in the <see cref="StringSegment"/>.</param>
         public void ForEach(Action<char> action)
         {
-            ArgumentException.ThrowIfNullOrWhitespace(target);
+            StringSegmentGuard.ThrowIfNullOrWhitespace(target);
 
             for (int index = 0; index < target.Length; index++)
             {
@@ -37,7 +39,7 @@ public static class ImmediateSegmentForEachExtensions
         /// <param name="action">The func to apply to each element in the <see cref="StringSegment"/>.</param>
         public void ForEach(Func<char, char> action)
         {
-            ArgumentException.ThrowIfNullOrWhitespace(target);
+            StringSegmentGuard.ThrowIfNullOrWhitespace(target);
             ArgumentNullException.ThrowIfNull(action);
             
             char[] output = new char[target.Length];

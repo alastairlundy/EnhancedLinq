@@ -30,7 +30,8 @@ public static class DeferredMemoryIndexExtensions
         /// <exception cref="InvalidOperationException">Thrown when the <see cref="Memory{T}" /> is empty.</exception>
         public IEnumerable<(int Index, TSource Item)> Index()
         {
-            InvalidOperationException.ThrowIfMemoryIsEmpty(memory);
+            if (memory.IsEmpty)
+                throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptyMemory);
 
             int index = 0;
 
@@ -60,7 +61,8 @@ public static class DeferredMemoryIndexExtensions
         /// <exception cref="InvalidOperationException">Thrown when the <see cref="ReadOnlyMemory{T}" /> is empty.</exception>
         public IEnumerable<(int Index, TSource Item)> Index()
         {
-            InvalidOperationException.ThrowIfMemoryIsEmpty(memory);
+            if (memory.IsEmpty)
+                throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptyMemory);
 
             int index = 0;
 

@@ -7,6 +7,8 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
+using EnhancedLinq.MsExtensions.Internals;
+
 namespace EnhancedLinq.MsExtensions.Immediate;
 
 /// <summary>
@@ -27,7 +29,7 @@ public static class ImmediateSegmentAllExtensions
             bool previousValue = predicate(target.First());
             
             ArgumentNullException.ThrowIfNull(predicate);
-            ArgumentException.ThrowIfNullOrWhitespace(target);
+            StringSegmentGuard.ThrowIfNullOrWhitespace(target);
 
             for (int index = 0; index < target.Length; index++)
             {

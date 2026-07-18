@@ -141,6 +141,15 @@ namespace EnhancedLinq.Internals.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Source StringSegment cannot be null or whitespace..
+        /// </summary>
+        internal static string Exceptions_StringSegment_NullOrWhitespace {
+            get {
+                return ResourceManager.GetString("Exceptions.StringSegment.NullOrWhitespace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Value not found at index {x} within collection {y}..
         /// </summary>
         internal static string Exceptions_ValueNotFound_AtIndex {

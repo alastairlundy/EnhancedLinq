@@ -7,6 +7,8 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
+using EnhancedLinq.MsExtensions.Internals;
+
 namespace EnhancedLinq.MsExtensions.Immediate;
 
 /// <summary>
@@ -51,7 +53,7 @@ public static class ImmediateSegmentSplitExtensions
         /// <returns>An array of StringSegment subsegments from the source StringSegment that is delimited by the separator.</returns>
         public StringSegment[] Split(StringSegment separator)
         {
-            ArgumentException.ThrowIfNullOrEmpty(separator);
+            StringSegmentGuard.ThrowIfNullOrEmpty(separator);
 
             IList<int> indices = source.IndicesOf(separator);
 

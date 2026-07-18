@@ -7,6 +7,8 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
+using EnhancedLinq.MsExtensions.Internals;
+
 namespace EnhancedLinq.MsExtensions.Immediate;
 
 /// <summary>
@@ -24,7 +26,7 @@ public static class ImmediateSegmentCountAtLeastExtensions
         /// <returns><see langword="true"/> if there is at least the specified number of elements in the <see cref="StringSegment"/>; otherwise, <see langword="false"/>.</returns>
         public bool CountAtLeast(int countToLookFor)
         {
-            ArgumentException.ThrowIfNullOrWhitespace(source);
+            StringSegmentGuard.ThrowIfNullOrWhitespace(source);
             ArgumentOutOfRangeException.ThrowIfNegative(countToLookFor);
             
             return source.Length >= countToLookFor;
@@ -39,7 +41,7 @@ public static class ImmediateSegmentCountAtLeastExtensions
         public bool CountAtLeast(Func<char, bool> predicate,
             int countToLookFor)
         {
-            ArgumentException.ThrowIfNullOrWhitespace(source);
+            StringSegmentGuard.ThrowIfNullOrWhitespace(source);
             ArgumentNullException.ThrowIfNull(predicate);
             ArgumentOutOfRangeException.ThrowIfNegative(countToLookFor);
         

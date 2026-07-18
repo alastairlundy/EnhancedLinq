@@ -25,7 +25,8 @@ public static class ImmediateMemoryForEachExtensions
         /// <param name="action">The action to apply to each element in the span.</param>
         public void ForEach(Action<T> action)
         {
-            InvalidOperationException.ThrowIfSpanIsEmpty(target);
+            if (target.IsEmpty)
+                throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptySpan);
             ArgumentNullException.ThrowIfNull(action);
 
             for (int index = 0; index < target.Length; index++)
@@ -43,7 +44,8 @@ public static class ImmediateMemoryForEachExtensions
         /// <param name="action">The func to apply to each element in the span.</param>
         public void ForEach(Func<T, T> action)
         {
-            InvalidOperationException.ThrowIfSpanIsEmpty(target);
+            if (target.IsEmpty)
+                throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptySpan);
             ArgumentNullException.ThrowIfNull(action);
 
             for (int i = 0; i < target.Length; i++) 
@@ -61,7 +63,8 @@ public static class ImmediateMemoryForEachExtensions
         /// <param name="action">The action to apply to each element in the memory.</param>
         public Memory<T> ForEach(Action<T> action)
         {
-            InvalidOperationException.ThrowIfMemoryIsEmpty(target);
+            if (target.IsEmpty)
+                throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptyMemory);
             ArgumentNullException.ThrowIfNull(action);
 
             T[] array = new T[target.Length];
@@ -83,7 +86,8 @@ public static class ImmediateMemoryForEachExtensions
         /// <param name="action">The action to apply to each element in the memory.</param>
         public Memory<T> ForEach(Func<T, T> action)
         {
-            InvalidOperationException.ThrowIfMemoryIsEmpty(target);
+            if (target.IsEmpty)
+                throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptyMemory);
             ArgumentNullException.ThrowIfNull(action);
 
             T[] array = new T[target.Length];
