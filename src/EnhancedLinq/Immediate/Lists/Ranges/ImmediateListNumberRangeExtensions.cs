@@ -9,7 +9,6 @@
 
 #if NET8_0_OR_GREATER
 using System.Numerics;
-using DotExtensions.Numbers;
 #endif
 
 namespace EnhancedLinq.Immediate.Lists.Ranges;
@@ -40,7 +39,7 @@ public static class ImmediateListNumberRangeExtensions
             if (startIndex + count >= TNumber.MaxValue)
                 throw new ArgumentException(Resources.Exceptions_Count_LessThanZero, nameof(count));
 
-            int arrayCount = count.ToDestinationNumber<TNumber, int>() + 1;
+            int arrayCount = int.CreateTruncating(count) + 1;
         
             TNumber[] output = new TNumber[arrayCount];
 
@@ -69,8 +68,8 @@ public static class ImmediateListNumberRangeExtensions
 
             if (startIndex + count > TNumber.MaxValue)
                 throw new ArgumentException(Resources.Exceptions_Count_LessThanZero, nameof(count));
-        
-            List<TNumber> output = new List<TNumber>(count.ToDestinationNumber<TNumber, int>() + 1);
+
+            List<TNumber> output = new List<TNumber>(int.CreateTruncating(count) + 1);
         
             for (TNumber i = startIndex; i < count; i++)
             {
