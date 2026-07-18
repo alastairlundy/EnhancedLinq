@@ -9,6 +9,8 @@
 
 using System.Linq;
 
+using EnhancedLinq.MsExtensions.Internals;
+
 namespace EnhancedLinq.MsExtensions.Deferred;
 
 /// <summary>
@@ -29,7 +31,7 @@ public static class DeferredSegmentGroupExtensions
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="target"/> is null or empty.</exception>
         public IEnumerable<IGrouping<TKey, char>> GroupBy<TKey>(Func<char, TKey> predicate)
         {
-            ArgumentException.ThrowIfNullOrWhitespace(target);
+            StringSegmentGuard.ThrowIfNullOrWhitespace(target);
             ArgumentNullException.ThrowIfNull(predicate);
         
             return new CustomEnumeratorEnumerable<IGrouping<TKey, char>>(

@@ -8,7 +8,6 @@
     */
 
 using System.Linq;
-using DotExtensions.Numbers;
 
 namespace EnhancedLinq.Memory.Immediate.Ranges;
 
@@ -102,7 +101,7 @@ public static class ImmediateMemoryGetRangeExtensions
         {
             ArgumentNullException.ThrowIfNull(indices);
 
-            if (indices.IsIncrementedNumberRange(1))
+            if (IsIncrementedNumberRange(indices, 1))
                 return target.GetRange(indices.Min(), indices.Max());
 
             T[] array = new T[indices.Count];
@@ -119,5 +118,31 @@ public static class ImmediateMemoryGetRangeExtensions
 
             return new Span<T>(array);
         }
+    }
+
+    private static bool IsIncrementedNumberRange(ICollection<int> indices, int step)
+    {
+        if (indices.Count < 2)
+            return true;
+
+        int previous = -1;
+        bool isFirst = true;
+
+        foreach (int index in indices)
+        {
+            if (isFirst)
+            {
+                previous = index;
+                isFirst = false;
+                continue;
+            }
+
+            if (index - previous != step)
+                return false;
+
+            previous = index;
+        }
+
+        return true;
     }
 }

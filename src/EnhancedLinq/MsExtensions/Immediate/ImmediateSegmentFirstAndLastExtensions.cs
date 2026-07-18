@@ -7,6 +7,8 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
+using EnhancedLinq.MsExtensions.Internals;
+
 namespace EnhancedLinq.MsExtensions.Immediate;
 
 /// <summary>
@@ -24,7 +26,7 @@ public static class ImmediateSegmentFirstAndLastExtensions
         /// <exception cref="InvalidOperationException">Thrown if the StringSegment contains zero chars.</exception>
         public char First()
         {
-            ArgumentException.ThrowIfNullOrEmpty(target);
+            StringSegmentGuard.ThrowIfNullOrEmpty(target);
 
             return target[0];
         }
@@ -44,7 +46,7 @@ public static class ImmediateSegmentFirstAndLastExtensions
         /// <exception cref="ArgumentException">Thrown if no characters in the StringSegment meet the predicate condition.</exception>
         public char First(Func<char, bool> predicate)
         {
-            ArgumentException.ThrowIfNullOrEmpty(target);
+            StringSegmentGuard.ThrowIfNullOrEmpty(target);
             ArgumentNullException.ThrowIfNull(predicate);
             
             for (int index = 0; index < target.Length; index++)
@@ -85,7 +87,7 @@ public static class ImmediateSegmentFirstAndLastExtensions
         /// <exception cref="InvalidOperationException">Thrown if the StringSegment contains zero chars.</exception>
         public char Last()
         {
-            ArgumentException.ThrowIfNullOrEmpty(target);
+            StringSegmentGuard.ThrowIfNullOrEmpty(target);
 
             return target[^1];
         }
@@ -109,7 +111,7 @@ public static class ImmediateSegmentFirstAndLastExtensions
         /// <exception cref="ArgumentException">Thrown if no characters in the StringSegment meet the predicate condition.</exception>
         public char Last(Func<char, bool> predicate)
         {
-            ArgumentException.ThrowIfNullOrEmpty(target);
+            StringSegmentGuard.ThrowIfNullOrEmpty(target);
             ArgumentNullException.ThrowIfNull(predicate);
         
             for (int i = target.Length - 1; i >= 0; i--)
