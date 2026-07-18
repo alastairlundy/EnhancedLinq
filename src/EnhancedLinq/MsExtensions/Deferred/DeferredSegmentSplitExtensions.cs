@@ -8,7 +8,7 @@
     */
 
 
-using DotExtensions.MsExtensions.Primitives;
+using EnhancedLinq.MsExtensions.Internals;
 
 namespace EnhancedLinq.MsExtensions.Deferred;
 
@@ -27,7 +27,7 @@ public static class DeferredSegmentSplitExtensions
         /// <returns>An <see cref="IEnumerable{StringSegment}"/> containing the split segments. Returns an empty sequence if the separator is not found.</returns>
         public IEnumerable<StringSegment> SplitBy(char separator)
         {
-            ArgumentException.ThrowIfNullOrWhitespace(source);
+            StringSegmentGuard.ThrowIfNullOrWhitespace(source);
             
             return source.SplitBy(x => x == separator);
         }
@@ -40,10 +40,10 @@ public static class DeferredSegmentSplitExtensions
         /// <exception cref="ArgumentException">Thrown if the separator or the source is null or empty.</exception>
         public IEnumerable<StringSegment> SplitBy(StringSegment separator)
         {
-            ArgumentException.ThrowIfNullOrWhitespace(source);
-            ArgumentException.ThrowIfNullOrWhitespace(separator);
+            StringSegmentGuard.ThrowIfNullOrWhitespace(source);
+            StringSegmentGuard.ThrowIfNullOrWhitespace(separator);
             
-            if (!source.Contains(separator))
+            if (source.AsSpan().IndexOf(separator.AsSpan()) < 0)
                 return [source];
         
             return new SegmentSplitEnumerable(source, separator);
@@ -56,7 +56,7 @@ public static class DeferredSegmentSplitExtensions
         /// <returns>An <see cref="IEnumerable{StringSegment}"/> containing the split segments.</returns>
         public IEnumerable<StringSegment> SplitBy(Func<char, bool> predicate)
         {
-            ArgumentException.ThrowIfNullOrWhitespace(source);
+            StringSegmentGuard.ThrowIfNullOrWhitespace(source);
             ArgumentNullException.ThrowIfNull(predicate);
 
             return new CustomEnumeratorEnumerable<StringSegment>

@@ -7,6 +7,8 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
+using EnhancedLinq.MsExtensions.Internals;
+
 namespace EnhancedLinq.MsExtensions.Immediate;
 
 /// <summary>
@@ -42,7 +44,7 @@ public static class ImmediateSegmentIndicesExtensions
         /// <returns>A list containing the zero-based index positions where the specified <see cref="StringSegment"/> was found in the <see cref="StringSegment"/>.</returns>
         public IList<int> IndicesOf(StringSegment other)
         {
-            ArgumentException.ThrowIfNullOrEmpty(segment);
+            StringSegmentGuard.ThrowIfNullOrEmpty(segment);
 
             List<int> output = new(segment.Length);
 

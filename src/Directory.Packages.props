@@ -9,8 +9,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="Microsoft.Extensions.Primitives" Version="10.0.10" />
-    <PackageVersion Include="DotExtensions.Memory" Version="10.3.3" />
-    <PackageVersion Include="DotExtensions" Version="10.3.3" />
     <PackageVersion Include="Meziantou.Analyzer" Version="3.0.119">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

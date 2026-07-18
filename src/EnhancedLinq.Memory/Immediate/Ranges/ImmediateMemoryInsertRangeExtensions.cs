@@ -7,8 +7,6 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/.
     */
 
-using DotExtensions.Memory.Spans;
-
 namespace EnhancedLinq.Memory.Immediate.Ranges;
 
 /// <summary>
@@ -32,7 +30,9 @@ public static class ImmediateMemoryInsertRangeExtensions
 
             int newLength = span.Length + elements.Count;
 
-            span.Resize(newLength);
+            T[] newArray = new T[newLength];
+            span.CopyTo(newArray);
+            span = new Span<T>(newArray);
 
             int i = startIndex;
 
