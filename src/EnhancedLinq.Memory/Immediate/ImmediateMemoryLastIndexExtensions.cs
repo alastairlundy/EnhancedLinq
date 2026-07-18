@@ -27,7 +27,8 @@ public static class ImmediateMemoryLastIndexExtensions
         {
             get
             {
-                InvalidOperationException.ThrowIfSpanIsEmpty(span);
+                if (span.IsEmpty)
+                    throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptySpan);
                 return span.Length - 1;
             }
         }
@@ -46,7 +47,8 @@ public static class ImmediateMemoryLastIndexExtensions
         {
             get
             {
-                InvalidOperationException.ThrowIfSpanIsEmpty(span);
+                if (span.IsEmpty)
+                    throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptySpan);
                 return span.Length - 1;
             }
         }
@@ -65,7 +67,8 @@ public static class ImmediateMemoryLastIndexExtensions
         {
             get
             {
-                InvalidOperationException.ThrowIfMemoryIsEmpty(memory);
+                if (memory.IsEmpty)
+                    throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptyMemory);
                 return memory.Length - 1;
             }
         }
@@ -84,7 +87,8 @@ public static class ImmediateMemoryLastIndexExtensions
         {
             get
             {
-                InvalidOperationException.ThrowIfMemoryIsEmpty(memory);
+                if (memory.IsEmpty)
+                    throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptyMemory);
                 return memory.Length - 1;
             }
         }

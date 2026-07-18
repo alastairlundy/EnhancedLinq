@@ -7,6 +7,8 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
+using EnhancedLinq.MsExtensions.Internals;
+
 namespace EnhancedLinq.MsExtensions.Immediate;
 
 /// <summary>
@@ -32,7 +34,7 @@ public static class ImmediateSegmentAnyExtensions
         /// <returns>True if any char in the StringSegment matches the predicate; false otherwise.</returns>
         public bool Any(Func<char, bool> predicate)
         {
-            ArgumentException.ThrowIfNullOrWhitespace(target);
+            StringSegmentGuard.ThrowIfNullOrWhitespace(target);
             ArgumentNullException.ThrowIfNull(predicate);
 
             for (int i = 0; i < target.Length; i++)

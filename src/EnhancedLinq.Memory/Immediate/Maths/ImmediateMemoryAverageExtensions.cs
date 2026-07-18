@@ -8,8 +8,6 @@
     */
 
 #if NET8_0_OR_GREATER
-using DotExtensions.Numbers;
-
 namespace EnhancedLinq.Memory.Immediate.Maths;
 
 /// <summary>
@@ -28,7 +26,7 @@ public static class ImmediateMemoryAverageExtensions
         {
             TNumber sum = source.Sum();
 
-            return sum / source.Length.ToNumber<TNumber>();
+            return sum / TNumber.CreateTruncating(source.Length);
         }
     }
 
@@ -44,7 +42,7 @@ public static class ImmediateMemoryAverageExtensions
         {
             TNumber sum = source.Sum();
 
-            return sum / source.Length.ToNumber<TNumber>();
+            return sum / TNumber.CreateTruncating(source.Length);
         }
     }
 

@@ -7,6 +7,8 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
+using EnhancedLinq.MsExtensions.Internals;
+
 namespace EnhancedLinq.MsExtensions.Deferred;
 
 /// <summary>
@@ -24,8 +26,7 @@ public static class DeferredSegmentEnumerationExtensions
         /// <exception cref="ArgumentException">Thrown if the StringSegment is null or empty.</exception>
         public IEnumerable<char> AsEnumerable()
         {
-            ArgumentException.ThrowIfNullOrEmpty(segment);
-            ArgumentException.ThrowIfNullOrWhitespace(segment);
+            StringSegmentGuard.ThrowIfNullOrWhitespace(segment);
 
             return new CustomEnumeratorEnumerable<char>(new SegmentEnumerator(segment));
         }

@@ -7,6 +7,8 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
+using EnhancedLinq.MsExtensions.Internals;
+
 namespace EnhancedLinq.MsExtensions.Deferred;
 
 /// <summary>
@@ -25,7 +27,7 @@ public static class DeferredSegmentIndicesOfExtensions
         /// <exception cref="ArgumentException">Thrown if the source is null or empty.</exception>
         public IEnumerable<int> IndicesOf(char c)
         {
-            ArgumentException.ThrowIfNullOrEmpty(source);
+            StringSegmentGuard.ThrowIfNullOrEmpty(source);
 
             return new SegmentIndicesEnumerable(source, c);
         }
@@ -38,7 +40,7 @@ public static class DeferredSegmentIndicesOfExtensions
         /// <exception cref="ArgumentException">Thrown if the source is null or empty.</exception>
         public IEnumerable<int> IndicesOf(StringSegment segment)
         {
-            ArgumentException.ThrowIfNullOrEmpty(source);
+            StringSegmentGuard.ThrowIfNullOrEmpty(source);
 
             return new SegmentIndicesEnumerable(source, segment);
         }

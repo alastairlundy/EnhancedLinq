@@ -51,4 +51,7 @@
     <data name="Exceptions.StringSegment.Empty" xml:space="preserve">
         <value>Source StringSegment cannot be null or empty.</value>
     </data>
+    <data name="Exceptions.StringSegment.NullOrWhitespace" xml:space="preserve">
+        <value>Source StringSegment cannot be null or whitespace.</value>
+    </data>
 </root>
