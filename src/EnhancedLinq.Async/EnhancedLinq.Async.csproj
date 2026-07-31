@@ -20,13 +20,17 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>1.0.1</Version>
+        <Version>1.1.0</Version>
         <PackageId>EnhancedLinq.Async</PackageId>
         <PolyArgumentExceptions>true</PolyArgumentExceptions>
         <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
         <TrimmerSingleWarn>false</TrimmerSingleWarn>
-        <PackageReleaseNotes>* Updated System.Linq.AsyncEnumerable version from 10.0.7 to 10.0.8
-* Updated Microsoft.Bcl.AsyncInterfaces version from 10.0.7 to 10.0.8</PackageReleaseNotes>
+        <PackageReleaseNotes>- Removed the `DotExtensions` package reference; replaced any call sites in `DeferredElementsAtExtensions` with BCL equivalents.
+- Bumped **Polyfill** to `11.0.1` (from `10.5.1`).
+- Bumped **Microsoft.Bcl.AsyncInterfaces** to `10.0.10` (from `10.0.8`).
+- Bumped **System.Linq.AsyncEnumerable** to `10.0.10` (from `10.0.8`).</PackageReleaseNotes>
+        <AssemblyVersion>1.1.0</AssemblyVersion>
+        <FileVersion>1.1.0</FileVersion>
     </PropertyGroup>
 
     <ItemGroup>

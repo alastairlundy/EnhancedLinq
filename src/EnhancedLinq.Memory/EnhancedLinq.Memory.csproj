@@ -13,8 +13,13 @@
         <RepositoryUrl>https://github.com/alastairlundy/EnhancedLinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>linq, enhanced-linq, enhanced, extensions, memory, extensions</PackageTags>
-        <PackageReleaseNotes>* Updated DotExtensions version from 10.3.1 to 10.3.2
-* Updated DotExtensions.Memory version from 10.3.1 to 10.3.2</PackageReleaseNotes>
+        <PackageReleaseNotes>#### 🆕 Additions
+- Added `ImmediateMemorySplitExtensions`, providing immediate-mode `Split`/`SplitBy` overloads for `ReadOnlySpan&lt;T&gt;`.
+
+#### ⚙️ Modifications
+- Cleaned up the new Immediate Memory `Split`/`SplitBy` implementation, including an additional `ReadOnlyMemory&lt;T&gt;` overload of the deferred split extension.
+- Removed the `DotExtensions.Memory` package reference; replaced call sites in `ImmediateMemoryForEachExtensions`, `ImmediateMemoryLastIndexExtensions`, `ImmediateMemoryFirstAndLastExtensions`, `ImmediateMemoryAverageExtensions`, `ImmediateMemoryGetRangeExtensions`, and `ImmediateMemoryInsertRangeExtensions` with inline implementations.
+- Bumped **Polyfill** to `11.0.1` (from `10.5.1`).</PackageReleaseNotes>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -22,11 +27,13 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>1.0.1</Version>
+        <Version>1.1.0</Version>
         <PackageId>EnhancedLinq.Memory</PackageId>
         <PolyArgumentExceptions>true</PolyArgumentExceptions>
         <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
         <TrimmerSingleWarn>false</TrimmerSingleWarn>
+        <AssemblyVersion>1.1.0</AssemblyVersion>
+        <FileVersion>1.1.0</FileVersion>
     </PropertyGroup>
 
     <ItemGroup>
