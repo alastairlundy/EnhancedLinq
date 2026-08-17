@@ -13,9 +13,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
-    <PackageVersion Include="Polyfill" Version="11.0.2" PrivateAssets="all" />
+    <PackageVersion Include="Polyfill" Version="11.2.0" PrivateAssets="all" />
     <PackageVersion Include="System.Linq.AsyncEnumerable" Version="10.0.11" Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'net8.0' OR '$(TargetFramework)' == 'net9.0'" />
-    <PackageVersion Include="Microsoft.Bcl.AsyncInterfaces" Version="10.0.11" Condition="'$(TargetFramework)' == 'netstandard2.0'" />
   </ItemGroup>
   <ItemGroup>
     <PackageVersion Include="Bogus" Version="35.6.5" />
