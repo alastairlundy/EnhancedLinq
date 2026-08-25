@@ -9,10 +9,10 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="Meziantou.Analyzer" Version="3.0.140">
-    <PackageVersion Include="Microsoft.Extensions.Primitives" Version="10.0.11" />
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
+    <PackageVersion Include="Microsoft.Extensions.Primitives" Version="10.0.11" />
     <PackageVersion Include="Polyfill" Version="11.2.0" PrivateAssets="all" />
     <PackageVersion Include="System.Linq.AsyncEnumerable" Version="10.0.11" Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'net8.0' OR '$(TargetFramework)' == 'net9.0'" />
   </ItemGroup>
