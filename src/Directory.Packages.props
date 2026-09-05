@@ -8,7 +8,7 @@
     <UsePublishedPackages Condition="'$(UsePublishedPackages)'==''">false</UsePublishedPackages>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.177">
+    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.191">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
