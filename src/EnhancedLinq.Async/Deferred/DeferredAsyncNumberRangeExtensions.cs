@@ -10,6 +10,8 @@
 #if NET8_0_OR_GREATER
 using System.Linq;
 using System.Numerics;
+using System.Runtime.CompilerServices;
+using System.Threading;
 #endif
 
 namespace EnhancedLinq.Async.Deferred;
@@ -47,7 +49,7 @@ public static class DeferredAsyncNumberRangeExtensions
             if (TNumber.IsNaN(incrementor))
                 throw new ArgumentException(Resources.Exceptions_Numbers_ParameterIsNotANumber, nameof(incrementor));
 
-            if (TNumber.IsInfinity(start) || TNumber.IsInfinity(count))
+            if (TNumber.IsInfinity(start) || TNumber.IsInfinity(count) || TNumber.IsInfinity(incrementor))
                 throw new NotFiniteNumberException();
 
             return new AsyncNumberRangeEnumerable<TNumber>(start, count, incrementor);
@@ -65,12 +67,15 @@ public static class DeferredAsyncNumberRangeExtensions
         /// <exception cref="NotFiniteNumberException">Thrown if start, count, or incrementor are infinite numbers.</exception>
         /// <exception cref="ArgumentException">Thrown if any parameter is NaN.</exception>
         public async IAsyncEnumerable<TNumber> GenerateNumberRange(TNumber count, TNumber incrementor,
-            IAsyncEnumerable<TNumber> numbersToSkip)
+            IAsyncEnumerable<TNumber> numbersToSkip,
+            [EnumeratorCancellation] CancellationToken cancellationToken = default)
         {
-            IAsyncEnumerable<TNumber> numbers = start.GenerateNumberRange(count, incrementor)
-                .WhereAsync(async n => await numbersToSkip.ContainsAsync(n).ConfigureAwait(false));
+            ArgumentNullException.ThrowIfNull(numbersToSkip);
 
-            await foreach (TNumber number in numbers.ConfigureAwait(false))
+            IAsyncEnumerable<TNumber> numbers = start.GenerateNumberRange(count, incrementor)
+                .WhereAsync(async n => !await numbersToSkip.ContainsAsync(n).ConfigureAwait(false));
+
+            await foreach (TNumber number in numbers.WithCancellation(cancellationToken).ConfigureAwait(false))
             {
                 yield return number;
             }

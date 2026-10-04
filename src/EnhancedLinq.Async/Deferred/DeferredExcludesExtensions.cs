@@ -30,7 +30,7 @@ public static class DeferredExcludesExtensions
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(exclude);
 
-            return source.WhereAsync(async item => await exclude.ContainsAsync(item).ConfigureAwait(false));
+            return source.WhereAsync(async item => !await exclude.ContainsAsync(item).ConfigureAwait(false));
         }
         
         /// <summary>

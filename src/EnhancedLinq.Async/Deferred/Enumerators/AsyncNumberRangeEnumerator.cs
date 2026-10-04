@@ -1,63 +1,47 @@
-/*
-    EnhancedLinq.Async
-    Copyright (c) 2025-2026 Alastair Lundy
-    
-    This Source Code Form is subject to the terms of the Mozilla Public
-    License, v. 2.0. If a copy of the MPL was not distributed with this
-    file, You can obtain one at https://mozilla.org/MPL/2.0/. 
-    */
-
 #if NET8_0_OR_GREATER
 using System.Numerics;
+using System.Threading;
 
 namespace EnhancedLinq.Async.Deferred.Enumerators;
 
 internal class AsyncNumberRangeEnumerator<TNumber> : IAsyncEnumerator<TNumber> where TNumber : INumber<TNumber>
 {
-    private readonly IAsyncEnumerator<TNumber> _enumerator;
-    
-    private int _state;
+    private readonly TNumber _incrementor;
+    private readonly CancellationToken _cancellationToken;
 
-    internal AsyncNumberRangeEnumerator(IAsyncEnumerable<TNumber> source)
+    private TNumber _next;
+    private TNumber _remaining;
+
+    internal AsyncNumberRangeEnumerator(TNumber start, TNumber count, TNumber incrementor, CancellationToken cancellationToken = default)
     {
+        _incrementor = incrementor;
+        _cancellationToken = cancellationToken;
+        _next = start;
+        _remaining = count;
         Current = TNumber.Zero;
-        _state = 1;
-        _enumerator = source.GetAsyncEnumerator();
     }
-    
-    public async ValueTask<bool> MoveNextAsync()
+
+    public ValueTask<bool> MoveNextAsync()
     {
-        if (_state != 1)
+        _cancellationToken.ThrowIfCancellationRequested();
+
+        if (_remaining <= TNumber.Zero)
         {
-            return false;
+            return new ValueTask<bool>(false);
         }
 
-        try
-        {
-            while (await _enumerator.MoveNextAsync()
-                       .ConfigureAwait(false))
-            {
-                Current = _enumerator.Current;
-                return true;
-            }
-        }
-        catch
-        {
-            await DisposeAsync().ConfigureAwait(false);
-            _state = -1;
-            throw;
-        }
-
-        await DisposeAsync().ConfigureAwait(false);
-        _state = -1;
-        return false;
+        Current = _next;
+        _next += _incrementor;
+        _remaining -= TNumber.One;
+        return new ValueTask<bool>(true);
     }
 
     public TNumber Current { get; private set; }
 
-    public async ValueTask DisposeAsync()
+    public ValueTask DisposeAsync()
     {
-        await _enumerator.DisposeAsync().ConfigureAwait(false);
+        _remaining = TNumber.Zero;
+        return ValueTask.CompletedTask;
     }
 }
 #endif

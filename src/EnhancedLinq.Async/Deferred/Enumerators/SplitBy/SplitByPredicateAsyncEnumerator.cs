@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Threading;
 
 namespace EnhancedLinq.Async.Deferred.Enumerators.SplitBy;
 
@@ -11,11 +12,11 @@ internal class SplitByPredicateAsyncEnumerator<T> : IAsyncEnumerator<IAsyncEnume
     private int _state;
     private IAsyncEnumerable<T> _current;
 
-    internal SplitByPredicateAsyncEnumerator(IAsyncEnumerable<T> source, Func<T, bool> predicate)
+    internal SplitByPredicateAsyncEnumerator(IAsyncEnumerable<T> source, Func<T, bool> predicate, CancellationToken cancellationToken = default)
     {
         _predicate = predicate;
         _state = 1;
-        _enumerator =  source.GetAsyncEnumerator();
+        _enumerator =  source.GetAsyncEnumerator(cancellationToken);
 
         _current = new List<T>().ToAsyncEnumerable();
     }

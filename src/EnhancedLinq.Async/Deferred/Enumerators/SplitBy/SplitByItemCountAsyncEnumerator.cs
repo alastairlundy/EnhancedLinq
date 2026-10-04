@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Threading;
 
 namespace EnhancedLinq.Async.Deferred.Enumerators.SplitBy;
 
@@ -15,7 +16,7 @@ internal class SplitByItemCountAsyncEnumerator<T> : IAsyncEnumerator<IAsyncEnume
     
     private int _state;
     
-    internal SplitByItemCountAsyncEnumerator(IAsyncEnumerable<T> source, int maximumItemCount)
+    internal SplitByItemCountAsyncEnumerator(IAsyncEnumerable<T> source, int maximumItemCount, CancellationToken cancellationToken = default)
     {
         _maximumItemCount = maximumItemCount;
         
@@ -26,11 +27,11 @@ internal class SplitByItemCountAsyncEnumerator<T> : IAsyncEnumerator<IAsyncEnume
 
         _maxEnumerableCount = -1;
         
-        _enumerator = source.GetAsyncEnumerator();
+        _enumerator = source.GetAsyncEnumerator(cancellationToken);
         _current = [];
     }
     
-    internal SplitByItemCountAsyncEnumerator(IAsyncEnumerable<T> source, int maximumItemCount, int maxEnumerableCount)
+    internal SplitByItemCountAsyncEnumerator(IAsyncEnumerable<T> source, int maximumItemCount, int maxEnumerableCount, CancellationToken cancellationToken = default)
     {
         _maximumItemCount = maximumItemCount;
         
@@ -44,7 +45,7 @@ internal class SplitByItemCountAsyncEnumerator<T> : IAsyncEnumerator<IAsyncEnume
         else
             _maxEnumerableCount = -1;
         
-        _enumerator = source.GetAsyncEnumerator();
+        _enumerator = source.GetAsyncEnumerator(cancellationToken);
         _current = [];
     }
 

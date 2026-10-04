@@ -1,4 +1,6 @@
-﻿namespace EnhancedLinq.Async.Deferred.Enumerators;
+﻿using System.Threading;
+
+namespace EnhancedLinq.Async.Deferred.Enumerators;
 
 internal class GenericIndicesAsyncEnumerator<TSource> : IAsyncEnumerator<int>
 {
@@ -9,10 +11,10 @@ internal class GenericIndicesAsyncEnumerator<TSource> : IAsyncEnumerator<int>
     private int _state;
     private int _index;
     
-    internal GenericIndicesAsyncEnumerator(IAsyncEnumerable<TSource> source, Func<TSource, bool> predicate)
+    internal GenericIndicesAsyncEnumerator(IAsyncEnumerable<TSource> source, Func<TSource, bool> predicate, CancellationToken cancellationToken = default)
     {
         _predicate = predicate;
-        _enumerator = source.GetAsyncEnumerator();
+        _enumerator = source.GetAsyncEnumerator(cancellationToken);
         _state = 1;
         _index = 0;
     }

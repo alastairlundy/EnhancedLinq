@@ -31,7 +31,7 @@ public static class DeferredAsyncSplitExtensions
             ArgumentNullException.ThrowIfNull(source);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(maximumCount);
 
-            return new CustomAsyncEnumerable<IAsyncEnumerable<TSource>>(() => new SplitByItemCountAsyncEnumerator<TSource>(source, maximumCount));
+            return new CustomAsyncEnumerable<IAsyncEnumerable<TSource>>(ct => new SplitByItemCountAsyncEnumerator<TSource>(source, maximumCount, ct));
         }
 
         /// <summary>Asynchronously splits the source into inner sequences, yielding each chunk according to processor‑based counting logic.</summary>
@@ -40,7 +40,7 @@ public static class DeferredAsyncSplitExtensions
         {
             ArgumentNullException.ThrowIfNull(source);
 
-            return new CustomAsyncEnumerable<IAsyncEnumerable<TSource>>(() => new SplitByEnumerableCountAsyncEnumerator<TSource>(source, Environment.ProcessorCount));
+            return new CustomAsyncEnumerable<IAsyncEnumerable<TSource>>(ct => new SplitByEnumerableCountAsyncEnumerator<TSource>(source, Environment.ProcessorCount, ct));
         }
 
         /// <summary>Returns an asynchronous split of the sequence based on whether each element equals the specified separator.</summary>
@@ -63,7 +63,7 @@ public static class DeferredAsyncSplitExtensions
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(predicate);
 
-            return new CustomAsyncEnumerable<IAsyncEnumerable<TSource>>(() => new SplitByPredicateAsyncEnumerator<TSource>(source, predicate));
+            return new CustomAsyncEnumerable<IAsyncEnumerable<TSource>>(ct => new SplitByPredicateAsyncEnumerator<TSource>(source, predicate, ct));
         }
     }
 }

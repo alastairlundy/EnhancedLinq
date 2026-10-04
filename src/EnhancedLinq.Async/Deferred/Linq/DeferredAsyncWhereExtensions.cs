@@ -1,11 +1,5 @@
-﻿/*
-    EnhancedLinq.Async
-    Copyright (c) 2025-2026 Alastair Lundy
-    
-    This Source Code Form is subject to the terms of the Mozilla Public
-    License, v. 2.0. If a copy of the MPL was not distributed with this
-    file, You can obtain one at https://mozilla.org/MPL/2.0/. 
-    */
+﻿using System.Runtime.CompilerServices;
+using System.Threading;
 
 namespace EnhancedLinq.Async.Deferred;
 
@@ -34,10 +28,13 @@ public static class DeferredAsyncWhereExtensions
 
             return WhereInternalAsync(selector);
 
-            async IAsyncEnumerable<T> WhereInternalAsync(Func<T, Task<bool>> selectorInternal)
+            async IAsyncEnumerable<T> WhereInternalAsync(Func<T, Task<bool>> selectorInternal,
+                [EnumeratorCancellation] CancellationToken cancellationToken = default)
             {
-                await foreach (T item in source.ConfigureAwait(false))
+                await foreach (T item in source.WithCancellation(cancellationToken).ConfigureAwait(false))
                 {
+                    cancellationToken.ThrowIfCancellationRequested();
+
                     bool result = await selectorInternal(item).ConfigureAwait(false);
 
                     if (result)

@@ -1,11 +1,5 @@
-/*
-    EnhancedLinq.Async
-    Copyright (c) 2025-2026 Alastair Lundy
-    
-    This Source Code Form is subject to the terms of the Mozilla Public
-    License, v. 2.0. If a copy of the MPL was not distributed with this
-    file, You can obtain one at https://mozilla.org/MPL/2.0/. 
-    */
+using System.Runtime.CompilerServices;
+using System.Threading;
 
 namespace EnhancedLinq.Async.Immediate;
 
@@ -24,14 +18,17 @@ public static class ImmediateAsyncForEachExtensions
         /// <param name="selector">A function that processes each item and returns a Task.</param>
         /// <returns>An asynchronous enumerable yielding the results of the selector applied to each item.</returns>
         /// <exception cref="ArgumentNullException">Thrown if the selector is null.</exception>
-        public async IAsyncEnumerable<T> ForEachAsync(Func<T, Task<T>> selector)
+        public async IAsyncEnumerable<T> ForEachAsync(Func<T, Task<T>> selector,
+            [EnumeratorCancellation] CancellationToken cancellationToken = default)
         {
             ArgumentNullException.ThrowIfNull(selector);
 
-            await foreach (T item in target.ConfigureAwait(false))
+            await foreach (T item in target.WithCancellation(cancellationToken).ConfigureAwait(false))
             {
+                cancellationToken.ThrowIfCancellationRequested();
+
                 T result = await selector.Invoke(item).ConfigureAwait(false);
-               
+
                 yield return result;
             }
         }
@@ -42,14 +39,17 @@ public static class ImmediateAsyncForEachExtensions
         /// <param name="selector">A function that processes each item and returns a task.</param>
         /// <returns>An asynchronous enumerable yielding the results of the selector applied to each item.</returns>
         /// <exception cref="ArgumentNullException">Thrown if the selector is null.</exception>
-        public async IAsyncEnumerable<TResult> ForEachAsync<TResult>(Func<T, Task<TResult>> selector)
+        public async IAsyncEnumerable<TResult> ForEachAsync<TResult>(Func<T, Task<TResult>> selector,
+            [EnumeratorCancellation] CancellationToken cancellationToken = default)
         {
             ArgumentNullException.ThrowIfNull(selector);
-            
-            await foreach (T item in target.ConfigureAwait(false))
+
+            await foreach (T item in target.WithCancellation(cancellationToken).ConfigureAwait(false))
             {
+                cancellationToken.ThrowIfCancellationRequested();
+
                 TResult result = await selector.Invoke(item).ConfigureAwait(false);
-                
+
                 yield return result;
             }
         }

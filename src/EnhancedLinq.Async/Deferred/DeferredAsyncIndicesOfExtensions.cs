@@ -28,7 +28,7 @@ public static class DeferredAsyncIndicesOfExtensions
         {
             ArgumentNullException.ThrowIfNull(source);
             
-            return new CustomAsyncEnumerable<int>(() => new GenericIndicesAsyncEnumerator<TSource>(source, x => x is not null && x.Equals(target)));
+            return new CustomAsyncEnumerable<int>(ct => new GenericIndicesAsyncEnumerator<TSource>(source, x => x is not null && x.Equals(target), ct));
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ public static class DeferredAsyncIndicesOfExtensions
         {
             ArgumentNullException.ThrowIfNull(source);
             
-            return new CustomAsyncEnumerable<int>(() => new GenericIndicesAsyncEnumerator<TSource>(source, selector));
+            return new CustomAsyncEnumerable<int>(ct => new GenericIndicesAsyncEnumerator<TSource>(source, selector, ct));
         }
     }
 }

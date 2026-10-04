@@ -44,7 +44,7 @@ public static class DeferredAsyncDuplicatesExtensions
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(comparer);
         
-            return new CustomAsyncEnumerable<TSource>(() => new AsyncDuplicatesEnumerator<TSource>(source, comparer));
+            return new CustomAsyncEnumerable<TSource>(ct => new AsyncDuplicatesEnumerator<TSource>(source, comparer, ct));
         }
     }
 }

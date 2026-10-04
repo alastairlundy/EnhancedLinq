@@ -1,4 +1,6 @@
-﻿namespace EnhancedLinq.Async.Deferred.Enumerators;
+﻿using System.Threading;
+
+namespace EnhancedLinq.Async.Deferred.Enumerators;
 
 internal class AsyncDuplicatesEnumerator<TSource> : IAsyncEnumerator<TSource>
 {
@@ -8,11 +10,11 @@ internal class AsyncDuplicatesEnumerator<TSource> : IAsyncEnumerator<TSource>
 
     private readonly HashSet<TSource> _hashSet;
 
-    internal AsyncDuplicatesEnumerator(IAsyncEnumerable<TSource> source, IEqualityComparer<TSource> comparer)
+    internal AsyncDuplicatesEnumerator(IAsyncEnumerable<TSource> source, IEqualityComparer<TSource> comparer, CancellationToken cancellationToken = default)
     {
         _hashSet = new HashSet<TSource>(comparer);
         
-        _enumerator = source.GetAsyncEnumerator();
+        _enumerator = source.GetAsyncEnumerator(cancellationToken);
     }
     
     public async ValueTask DisposeAsync()
