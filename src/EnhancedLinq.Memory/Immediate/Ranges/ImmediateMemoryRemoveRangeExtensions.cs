@@ -30,13 +30,25 @@ public static class ImmediateMemoryRemoveRangeExtensions
         {
             ArgumentNullException.ThrowIfNull(indices);
 
-            IEnumerable<int> newIndices = target.Index()
-                .OrderByDescending(x => x.Index)
-                .SkipWhile(x => x.Index == -1)
-                .SkipWhile(x => indices.Contains(x.Index))
-                .Select(i => i.Index);
+            int targetLength = target.Length;
+            HashSet<int> toRemove = new(indices.Where(i => i >= 0 && i < targetLength));
 
-            return target.GetRange(newIndices);
+            T[] buffer = new T[targetLength - toRemove.Count > 0 ? targetLength - toRemove.Count : 0];
+            int newIndex = 0;
+
+            for (int i = 0; i < target.Length; i++)
+            {
+                if (!toRemove.Contains(i))
+                {
+                    buffer[newIndex] = target[i];
+                    newIndex++;
+                }
+            }
+
+            if (newIndex != buffer.Length)
+                Array.Resize(ref buffer, newIndex);
+
+            return new Span<T>(buffer);
         }
 
         /// <summary>
@@ -47,9 +59,12 @@ public static class ImmediateMemoryRemoveRangeExtensions
         /// <returns>A new Span with all items of the original Span minus the items to be removed.</returns>
         public Span<T> RemoveRange(int startIndex, int count)
         {
-            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
             ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
-            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(count, target.Length);
+            ArgumentOutOfRangeException.ThrowIfNegative(count);
+
+            if (startIndex + count > target.Length)
+                throw new ArgumentOutOfRangeException(nameof(count),
+                    Resources.Exceptions_SkipCount_TooLarge);
 
             return target.RemoveRange(Enumerable.Range(startIndex, count));
         }
@@ -67,7 +82,8 @@ public static class ImmediateMemoryRemoveRangeExtensions
         /// <returns>A new Span with all items of the original Span minus the items to be removed.</returns>
         public Span<T> RemoveRange(Range range)
         {
-            return target.RemoveRange(range.Start.Value, range.End.Value - range.Start.Value);
+            (int offset, int length) = range.GetOffsetAndLength(target.Length);
+            return target.RemoveRange(offset, length);
         }
     }
 #endif

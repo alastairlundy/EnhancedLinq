@@ -58,7 +58,7 @@ public static class ImmediateMemoryCountAtMostExtensions
                     return false;
             }
 
-            return countToLookFor <= currentCount;
+            return true;
         }
     }
 
@@ -92,6 +92,7 @@ public static class ImmediateMemoryCountAtMostExtensions
         public bool CountAtMost(Func<T, bool> predicate,
             int countToLookFor)
         {
+            ArgumentNullException.ThrowIfNull(predicate);
             ArgumentOutOfRangeException.ThrowIfNegative(countToLookFor);
 
             int currentCount = 0;
@@ -105,7 +106,7 @@ public static class ImmediateMemoryCountAtMostExtensions
                     return false;
             }
 
-            return countToLookFor <= currentCount;
+            return true;
         }
     }
 
@@ -155,7 +156,7 @@ public static class ImmediateMemoryCountAtMostExtensions
                     return false;
             }
 
-            return countToLookFor <= currentCount;
+            return true;
         }
     }
 
@@ -203,7 +204,7 @@ public static class ImmediateMemoryCountAtMostExtensions
                     return false;
             }
 
-            return countToLookFor <= currentCount;
+            return true;
         }
     }
 }

@@ -25,23 +25,27 @@ public static class ImmediateMemoryInsertRangeExtensions
         /// <exception cref="ArgumentOutOfRangeException">Thrown if the start or end indices are out of range for the span.</exception>
         public void InsertRange(ICollection<T> elements, int startIndex)
         {
+            ArgumentNullException.ThrowIfNull(elements);
             ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
             ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex, span.Length);
 
             int newLength = span.Length + elements.Count;
 
             T[] newArray = new T[newLength];
-            span.CopyTo(newArray);
-            span = new Span<T>(newArray);
+            span.CopyTo(newArray.AsSpan(0, span.Length));
 
             int i = startIndex;
 
             foreach (T element in elements)
             {
-                span[i] = element;
+                newArray[i] = element;
 
                 i++;
             }
+
+            span.Slice(startIndex).CopyTo(newArray.AsSpan(startIndex + elements.Count));
+
+            span = new Span<T>(newArray);
         }
     }
 }

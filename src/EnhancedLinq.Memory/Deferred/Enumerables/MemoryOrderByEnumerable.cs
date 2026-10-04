@@ -8,6 +8,7 @@
 */
 
 using System.Linq;
+using EnhancedLinq.Memory.Deferred;
 using EnhancedLinq.Memory.Deferred.Enumerators;
 
 namespace EnhancedLinq.Memory.Deferred.Enumerables;
@@ -42,7 +43,13 @@ internal class MemoryOrderByEnumerable<TSource, TKey1> : IOrderedEnumerable<TSou
     {
         comparer ??= Comparer<TKey>.Default;
 
-        return new MemoryOrderByEnumerable<TSource, TKey>(_memory, keySelector, comparer, descending);
+        IOrderedEnumerable<TSource> primary = _descending
+            ? _memory.AsEnumerable().OrderByDescending(_predicate, _comparer)
+            : _memory.AsEnumerable().OrderBy(_predicate, _comparer);
+
+        return descending
+            ? primary.ThenByDescending(keySelector, comparer)
+            : primary.ThenBy(keySelector, comparer);
     }
 
     public IEnumerator<TSource> GetEnumerator()

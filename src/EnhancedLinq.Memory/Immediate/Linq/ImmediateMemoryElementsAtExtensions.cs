@@ -32,7 +32,7 @@ public static class ImmediateMemoryElementsAtExtensions
         public T ElementAt(int index)
         {
             ArgumentOutOfRangeException.ThrowIfNegative(index);
-            ArgumentOutOfRangeException.ThrowIfGreaterThan(index, source.Length);
+            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(index, source.Length);
 
             return source.ElementsAt(index, 1).First();
         }
@@ -77,7 +77,7 @@ public static class ImmediateMemoryElementsAtExtensions
             ArgumentOutOfRangeException.ThrowIfNegative(index);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
 
-            return source.Slice(index, index + count);
+            return source.Slice(index, count);
         }
     }
 
@@ -100,7 +100,7 @@ public static class ImmediateMemoryElementsAtExtensions
         public T ElementAt(int index)
         {
             ArgumentOutOfRangeException.ThrowIfNegative(index);
-            ArgumentOutOfRangeException.ThrowIfGreaterThan(index, source.Length);
+            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(index, source.Length);
 
             return source.ElementsAt(index, 1)
                 .First();
@@ -151,7 +151,7 @@ public static class ImmediateMemoryElementsAtExtensions
             ArgumentOutOfRangeException.ThrowIfNegative(index);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
 
-            return source.Slice(index, index + count);
+            return source.Slice(index, count);
         }
     }
 
@@ -173,16 +173,10 @@ public static class ImmediateMemoryElementsAtExtensions
         /// </returns>
         public T? ElementAtOrDefault(int index)
         {
-            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(index);
-
-            try
-            {
-                return source[index];
-            }
-            catch
-            {
+            if (index < 0 || index >= source.Length)
                 return default;
-            }
+
+            return source[index];
         }
 
         /// <summary>
@@ -198,13 +192,13 @@ public static class ImmediateMemoryElementsAtExtensions
         /// </exception>
         public Span<T> ElementsAt(int index, int count)
         {
-            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(index);
+            ArgumentOutOfRangeException.ThrowIfNegative(index);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
 
 #if NET8_0_OR_GREATER
             return source[new Range(index, index + count)];
 #else
-            return source.Slice(index, index + count);
+            return source.Slice(index, count);
 #endif
         }
     }
@@ -225,16 +219,10 @@ public static class ImmediateMemoryElementsAtExtensions
         /// <exception cref="IndexOutOfRangeException">Thrown if the specified index is out of bounds of the source span.</exception>
         public T? ElementAtOrDefault(int index)
         {
-            ArgumentOutOfRangeException.ThrowIfNegative(index);
-
-            try
-            {
-                return source[index];
-            }
-            catch
-            {
+            if (index < 0 || index >= source.Length)
                 return default;
-            }
+
+            return source[index];
         }
 
         /// <summary>
@@ -256,7 +244,7 @@ public static class ImmediateMemoryElementsAtExtensions
 #if NET8_0_OR_GREATER
             return source[new Range(index, index + count)];
 #else
-            return source.Slice(index, index + count);
+            return source.Slice(index, count);
 #endif
         }
     }

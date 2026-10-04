@@ -54,7 +54,7 @@ public static class ImmediateMemoryExcludeExtensions
         {
             ArgumentNullException.ThrowIfNull(predicate);
 
-            return source.SkipWhile(s => predicate(s));
+            return source.Where(s => !predicate(s));
         }
     }
 
@@ -74,7 +74,7 @@ public static class ImmediateMemoryExcludeExtensions
         {
             ArgumentNullException.ThrowIfNull(predicate);
 
-            return source.SkipWhile(s => predicate(s));
+            return source.Where(s => !predicate(s));
         }
     }
 }

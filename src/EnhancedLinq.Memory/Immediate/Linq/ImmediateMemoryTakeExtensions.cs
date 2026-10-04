@@ -43,29 +43,17 @@ public static class ImmediateMemoryTakeExtensions
         {
             ArgumentNullException.ThrowIfNull(predicate);
 
-            int end = 0;
-            int start = 0;
-
-            bool firstDetection = true;
+            int count = 0;
 
             for (int index = 0; index < source.Length; index++)
             {
-                bool result = predicate(source[index], index);
-
-                if (result && firstDetection)
-                {
-                    start = index;
-                    firstDetection = false;
-                }
-
-                if (!result && !firstDetection)
-                {
-                    end = index;
+                if (!predicate(source[index], index))
                     break;
-                }
+
+                count++;
             }
 
-            return source.Slice(start, end - 1);
+            return source.Slice(0, count);
         }
 
         /// <summary>
@@ -119,29 +107,17 @@ public static class ImmediateMemoryTakeExtensions
         {
             ArgumentNullException.ThrowIfNull(predicate);
 
-            int end = 0;
-            int start = 0;
-
-            bool firstDetection = true;
+            int count = 0;
 
             for (int index = 0; index < source.Length; index++)
             {
-                bool result = predicate(source[index], index);
-
-                if (result && firstDetection)
-                {
-                    firstDetection = false;
-                    start = index;
-                }
-
-                if (!result && !firstDetection)
-                {
-                    end = index;
+                if (!predicate(source[index], index))
                     break;
-                }
+
+                count++;
             }
 
-            return source.Slice(start, end - 1);
+            return source.Slice(0, count);
         }
 
         /// <summary>

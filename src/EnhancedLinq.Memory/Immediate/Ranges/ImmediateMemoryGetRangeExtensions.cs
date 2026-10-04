@@ -27,8 +27,11 @@ public static class ImmediateMemoryGetRangeExtensions
         /// </summary>
         /// <param name="range">The <see cref="Range" /> containing the start and end indices.</param>
         /// <returns>A new span containing the specified range of elements.</returns>
-        public Span<T> GetRange(Range range) 
-            => target.GetRange(range.Start.Value, range.End.Value);
+        public Span<T> GetRange(Range range)
+        {
+            (int offset, int length) = range.GetOffsetAndLength(target.Length);
+            return target.Slice(offset, length);
+        }
     }
 #endif
 
@@ -52,11 +55,11 @@ public static class ImmediateMemoryGetRangeExtensions
         {
             ArgumentOutOfRangeException.ThrowIfNegative(start);
             ArgumentOutOfRangeException.ThrowIfNegative(end);
-            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(start, target.Length);
-            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(end, target.Length);
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(start, target.Length);
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(end, target.Length);
 
-            if (end - start > target.Length)
-                throw new ArgumentOutOfRangeException(
+            if (end < start)
+                throw new ArgumentOutOfRangeException(nameof(end),
                     Resources.Exceptions_SkipCount_TooLarge);
 
             return target.Slice(start, end - start);
@@ -101,10 +104,16 @@ public static class ImmediateMemoryGetRangeExtensions
         {
             ArgumentNullException.ThrowIfNull(indices);
 
-            if (IsIncrementedNumberRange(indices, 1))
-                return target.GetRange(indices.Min(), indices.Max());
+            if (indices.Count == 0)
+                return Span<T>.Empty;
 
-            T[] array = new T[indices.Count];
+            if (IsIncrementedNumberRange(indices, 1))
+            {
+                int min = indices.Min();
+                return target.Slice(min, indices.Count);
+            }
+
+            T[] buffer = new T[indices.Count];
 
             int newIndex = 0;
 
@@ -112,11 +121,14 @@ public static class ImmediateMemoryGetRangeExtensions
 
             foreach (int index in indices.Where(i => i >= 0 && i < targetLength))
             {
-                target[newIndex] = target[index];
+                buffer[newIndex] = target[index];
                 newIndex++;
             }
 
-            return new Span<T>(array);
+            if (newIndex != indices.Count)
+                Array.Resize(ref buffer, newIndex);
+
+            return new Span<T>(buffer);
         }
     }
 

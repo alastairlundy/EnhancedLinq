@@ -53,9 +53,14 @@ public static class ImmediateMemorySkipExtensions
         /// <returns>A new Span with all the elements of the original Span that did not match the specified predicate func.</returns>
         public Span<T> SkipWhile(Func<T, bool> predicate)
         {
-            return from item in target
-                where !predicate.Invoke(item)
-                select item;
+            ArgumentNullException.ThrowIfNull(predicate);
+
+            int start = 0;
+
+            while (start < target.Length && predicate(target[start]))
+                start++;
+
+            return target.Slice(start);
         }
     }
 
@@ -116,9 +121,12 @@ public static class ImmediateMemorySkipExtensions
         {
             ArgumentNullException.ThrowIfNull(predicate);
 
-            return from item in target
-                where !predicate.Invoke(item)
-                select item;
+            int start = 0;
+
+            while (start < target.Length && predicate(target[start]))
+                start++;
+
+            return target.Slice(start);
         }
     }
 }

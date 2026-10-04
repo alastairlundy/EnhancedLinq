@@ -24,7 +24,7 @@ internal class MemoryWhereEnumerator<T> : IEnumerator<T>
         _predicate = predicate;
         _enumerator = source.AsEnumerable().GetEnumerator();
         _state = 0;
-        _current = source.First();
+        _current = default!;
     }
 
     internal MemoryWhereEnumerator(ReadOnlyMemory<T> source, Func<T, bool> predicate)
@@ -32,7 +32,7 @@ internal class MemoryWhereEnumerator<T> : IEnumerator<T>
         _enumerator = source.AsEnumerable().GetEnumerator();
         _predicate = predicate;
         _state = 0;
-        _current = source.First();
+        _current = default!;
     }
 
     public bool MoveNext()

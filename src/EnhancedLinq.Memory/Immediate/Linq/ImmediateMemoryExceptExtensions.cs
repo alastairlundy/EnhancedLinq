@@ -7,7 +7,6 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/.
     */
 
-using System.Buffers;
 using EnhancedLinq.Memory.Immediate.Ranges;
 
 namespace EnhancedLinq.Memory.Immediate;
@@ -27,26 +26,25 @@ public static class ImmediateMemoryExceptExtensions
         /// <returns>A new Span with all the elements of Span One and Span Two that were not in the other Span.</returns>
         public Span<T> Except(Span<T> second)
         {
-            T[] array = ArrayPool<T>.Shared.Rent(first.Length + second.Length);
+            T[] buffer = new T[first.Length + second.Length];
             int index = 0;
 
             foreach (T item in first)
                 if (!second.Contains(item))
                 {
-                    array[index] = item;
+                    buffer[index] = item;
                     index++;
                 }
 
             foreach (T item in second)
                 if (!first.Contains(item))
                 {
-                    array[index] = item;
+                    buffer[index] = item;
                     index++;
                 }
 
-            Span<T> output = array.GetRange(0, index);
-
-            ArrayPool<T>.Shared.Return(array);
+            T[] output = new T[index];
+            Array.Copy(buffer, output, index);
 
             return output;
         }
@@ -67,26 +65,25 @@ public static class ImmediateMemoryExceptExtensions
         /// </returns>
         public ReadOnlySpan<T> Except(ReadOnlySpan<T> second)
         {
-            T[] array = ArrayPool<T>.Shared.Rent(first.Length + second.Length);
+            T[] buffer = new T[first.Length + second.Length];
             int index = 0;
 
             foreach (T item in first)
                 if (!second.Contains(item))
                 {
-                    array[index] = item;
+                    buffer[index] = item;
                     index++;
                 }
 
             foreach (T item in second)
                 if (!first.Contains(item))
                 {
-                    array[index] = item;
+                    buffer[index] = item;
                     index++;
                 }
 
-            ReadOnlySpan<T> output = array.GetRange(0, index);
-
-            ArrayPool<T>.Shared.Return(array);
+            T[] output = new T[index];
+            Array.Copy(buffer, output, index);
 
             return output;
         }

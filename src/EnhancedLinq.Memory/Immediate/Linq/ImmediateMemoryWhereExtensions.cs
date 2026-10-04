@@ -7,8 +7,6 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/.
     */
 
-using System.Buffers;
-
 namespace EnhancedLinq.Memory.Immediate;
 
 /// <summary>
@@ -28,20 +26,19 @@ public static class ImmediateMemoryWhereExtensions
         {
             ArgumentNullException.ThrowIfNull(predicate);
 
-
-            T[] array = ArrayPool<T>.Shared.Rent(target.Length);
+            T[] buffer = new T[target.Length];
 
             int index = 0;
 
             foreach (T item in target)
                 if (predicate.Invoke(item))
                 {
-                    array[index] = item;
+                    buffer[index] = item;
                     index++;
                 }
 
-            Span<T> output = array.AsSpan(0, index);
-            ArrayPool<T>.Shared.Return(array);
+            T[] output = new T[index];
+            Array.Copy(buffer, output, index);
 
             return output;
         }
@@ -61,20 +58,19 @@ public static class ImmediateMemoryWhereExtensions
         {
             ArgumentNullException.ThrowIfNull(predicate);
 
-
-            T[] array = ArrayPool<T>.Shared.Rent(target.Length);
+            T[] buffer = new T[target.Length];
 
             int index = 0;
 
             foreach (T item in target)
                 if (predicate.Invoke(item))
                 {
-                    array[index] = item;
+                    buffer[index] = item;
                     index++;
                 }
 
-            Span<T> output = array.AsSpan(0, index);
-            ArrayPool<T>.Shared.Return(array);
+            T[] output = new T[index];
+            Array.Copy(buffer, output, index);
 
             return output;
         }

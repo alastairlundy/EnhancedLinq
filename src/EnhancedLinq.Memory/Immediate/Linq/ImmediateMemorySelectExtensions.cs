@@ -7,8 +7,6 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/.
     */
 
-using System.Buffers;
-
 namespace EnhancedLinq.Memory.Immediate;
 
 /// <summary>
@@ -29,7 +27,7 @@ public static class ImmediateMemorySelectExtensions
         {
             ArgumentNullException.ThrowIfNull(predicate);
 
-            TResult[] array = ArrayPool<TResult>.Shared.Rent(source.Length);
+            TResult[] array = new TResult[source.Length];
 
             int index = 0;
 
@@ -39,10 +37,7 @@ public static class ImmediateMemorySelectExtensions
                 index++;
             });
 
-            Span<TResult> output = array.AsSpan(0, source.Length);
-            ArrayPool<TResult>.Shared.Return(array);
-
-            return output;
+            return array;
         }
     }
 
@@ -60,7 +55,7 @@ public static class ImmediateMemorySelectExtensions
         {
             ArgumentNullException.ThrowIfNull(predicate);
 
-            TResult[] array = ArrayPool<TResult>.Shared.Rent(source.Length);
+            TResult[] array = new TResult[source.Length];
 
             int index = 0;
 
@@ -70,10 +65,7 @@ public static class ImmediateMemorySelectExtensions
                 index++;
             }
 
-            Span<TResult> output = array.AsSpan(0, source.Length);
-            ArrayPool<TResult>.Shared.Return(array);
-
-            return output;
+            return array;
         }
     }
 }

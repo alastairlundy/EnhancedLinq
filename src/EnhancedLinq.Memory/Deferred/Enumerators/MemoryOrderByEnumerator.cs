@@ -34,7 +34,7 @@ internal class MemoryOrderByEnumerator<TSource, TKey> : IEnumerator<TSource>
 
         _state = 0;
         // ReSharper disable once InvokeAsExtensionMethod
-        Current = source.First();
+        Current = default!;
         _enumerator = null;
     }
 

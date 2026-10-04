@@ -7,8 +7,6 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/.
     */
 
-using System.Linq;
-
 namespace EnhancedLinq.Memory.Immediate;
 
 /// <summary>
@@ -28,13 +26,11 @@ public static class ImmediateMemoryAllExtensions
         {
             ArgumentNullException.ThrowIfNull(predicate);
 
-            Span<bool> groups = from c in target
-                group c by predicate.Invoke(c)
-                into g
-                where g.Key
-                select g.Any();
+            foreach (T item in target)
+                if (!predicate.Invoke(item))
+                    return false;
 
-            return groups.Distinct().Length == 1;
+            return true;
         }
     }
 
@@ -51,13 +47,11 @@ public static class ImmediateMemoryAllExtensions
         {
             ArgumentNullException.ThrowIfNull(predicate);
 
-            ReadOnlySpan<bool> groups = from c in target
-                group c by predicate.Invoke(c)
-                into g
-                where g.Key
-                select g.Any();
+            foreach (T item in target)
+                if (!predicate.Invoke(item))
+                    return false;
 
-            return groups.Distinct().Length == 1;
+            return true;
         }
     }
 }

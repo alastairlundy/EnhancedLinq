@@ -7,8 +7,6 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/.
 */
 
-using System.Linq;
-
 namespace EnhancedLinq.Memory.Deferred;
 
 /// <summary>
@@ -33,16 +31,7 @@ public static class DeferredMemoryIndexExtensions
             if (memory.IsEmpty)
                 throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptyMemory);
 
-            int index = 0;
-
-            return memory.AsEnumerable()
-                .Select(x =>
-                {
-                    int tempIndex = index;
-                    index++;
-
-                    return (tempIndex, x);
-                });
+            return IndexImpl(memory);
         }
     }
 
@@ -64,16 +53,23 @@ public static class DeferredMemoryIndexExtensions
             if (memory.IsEmpty)
                 throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptyMemory);
 
-            int index = 0;
-
-            return memory.AsEnumerable()
-                .Select(x =>
-                {
-                    int tempIndex = index;
-                    index++;
-
-                    return (tempIndex, x);
-                });
+            return IndexImpl(memory);
         }
+    }
+
+    private static IEnumerable<(int Index, TSource Item)> IndexImpl<TSource>(Memory<TSource> source)
+    {
+        int index = 0;
+
+        foreach (TSource item in source.AsEnumerable())
+            yield return (index++, item);
+    }
+
+    private static IEnumerable<(int Index, TSource Item)> IndexImpl<TSource>(ReadOnlyMemory<TSource> source)
+    {
+        int index = 0;
+
+        foreach (TSource item in source.AsEnumerable())
+            yield return (index++, item);
     }
 }
