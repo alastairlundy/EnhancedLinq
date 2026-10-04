@@ -46,11 +46,14 @@ public static class ImmediateSegmentIndicesExtensions
         {
             StringSegmentGuard.ThrowIfNullOrEmpty(segment);
 
+            if (other.Length == 0 || other.Length > segment.Length)
+                return [];
+
             List<int> output = new(segment.Length);
 
             for (int i = 0; i <= segment.Length - other.Length; i++)
             {
-                if (segment.Subsegment(i, other.Length).Equals(other, StringComparison.CurrentCulture))
+                if (segment.Subsegment(i, other.Length).Equals(other, StringComparison.Ordinal))
                 {
                     output.Add(i);
                 }

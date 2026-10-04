@@ -26,18 +26,12 @@ public static class ImmediateSegmentAllExtensions
         /// <returns>True if all chars in the StringSegment match the predicate; false otherwise.</returns>
         public bool All(Func<char, bool> predicate)
         {
-            bool previousValue = predicate(target.First());
-            
             ArgumentNullException.ThrowIfNull(predicate);
             StringSegmentGuard.ThrowIfNullOrWhitespace(target);
 
             for (int index = 0; index < target.Length; index++)
             {
-                char current = target[index];
-                
-                bool result = predicate(current);
-                
-                if(previousValue != result)
+                if (!predicate(target[index]))
                     return false;
             }
 

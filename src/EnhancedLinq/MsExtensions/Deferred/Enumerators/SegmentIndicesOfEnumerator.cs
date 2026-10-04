@@ -39,18 +39,20 @@ internal class SegmentIndicesOfEnumerator : IEnumerator<int>
             {
                 while (_segmentIndicesEnumerator.MoveNext())
                 {
-                    _segmentIndex = _segmentIndicesEnumerator.Current;
+                    int matchIndex = _segmentIndicesEnumerator.Current;
 
-                    if (_segmentIndex == -1)
+                    if (matchIndex < 0)
                         continue;
 
-                    StringSegment indexSegment = _source.Subsegment(_segmentIndex, _segment.Length);
+                    if (matchIndex + _segment.Length > _source.Length)
+                        continue;
 
-                    ++_segmentIndex;
+                    StringSegment indexSegment = _source.Subsegment(matchIndex, _segment.Length);
 
                     if (indexSegment.Equals(_segment, StringComparison.Ordinal))
                     {
-                        Current = _segmentIndex;
+                        _segmentIndex = matchIndex;
+                        Current = matchIndex;
                         return true;
                     }
                 }

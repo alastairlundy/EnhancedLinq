@@ -98,9 +98,7 @@ public static class ImmediateSegmentFirstAndLastExtensions
         /// <returns>The last character of the segment if it contains any characters; otherwise, null.</returns>
         public char? LastOrDefault()
         {
-            char last = target[^1];
-
-            return StringSegment.IsNullOrEmpty(target) ? null : last;
+            return StringSegment.IsNullOrEmpty(target) ? null : target[^1];
         }
         
         /// <summary>

@@ -42,6 +42,9 @@ public static class DeferredSegmentIndicesOfExtensions
         {
             StringSegmentGuard.ThrowIfNullOrEmpty(source);
 
+            if (segment.Length == 0)
+                return [];
+
             return new SegmentIndicesEnumerable(source, segment);
         }
     }

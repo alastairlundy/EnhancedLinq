@@ -32,7 +32,7 @@ public static class ImmediateSegmentIndexOfExtensions
                 if (segment[i] == other[0])
                 {
                     StringSegment candidate = segment.Subsegment(i, other.Length);
-                    if (candidate.Equals(other, StringComparison.CurrentCulture))
+                    if (candidate.Equals(other, StringComparison.Ordinal))
                     {
                         return i;
                     }
@@ -63,7 +63,7 @@ public static class ImmediateSegmentIndexOfExtensions
                 if (str[i] == segment[0])
                 {
                     StringSegment candidate = new(str, i, segment.Length);
-                    if (candidate.Equals(segment,  StringComparison.CurrentCulture))
+                    if (candidate.Equals(segment,  StringComparison.Ordinal))
                     {
                         return i;
                     }

@@ -64,6 +64,10 @@ public static class ImmediateSegmentSplitExtensions
             for (int i = 0; i < indices.Count; i++)
             {
                 int index = indices[i];
+
+                if (index < start)
+                    continue;
+
                 int length = index - start;
                 output.Add(source.Subsegment(start, length));
                 start = index + separator.Length;

@@ -26,14 +26,15 @@ internal class GroupStringSegmentEnumerator<TKey> : IEnumerator<IGrouping<TKey, 
 
     internal GroupStringSegmentEnumerator(StringSegment source, Func<char, TKey> selector)
     {
+        ArgumentNullException.ThrowIfNull(selector);
         _selector = selector;
         _state = 1;
         _enumerator = new SegmentEnumerator(source);
-        
-        // Set default values for compiler
-        _currentKey = _selector(_enumerator.Current);
-        _groupingCollection = new GroupingCollection<TKey, char>(_currentKey);
-        Current = new GroupingCollection<TKey, char>(_currentKey);
+
+        // Current is undefined before the first MoveNext; use placeholders without invoking user code.
+        _currentKey = default!;
+        _groupingCollection = new GroupingCollection<TKey, char>(default!);
+        Current = _groupingCollection;
     }
 
     public bool MoveNext()
