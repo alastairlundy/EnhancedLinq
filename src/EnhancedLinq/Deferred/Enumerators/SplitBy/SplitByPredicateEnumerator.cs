@@ -29,40 +29,45 @@ internal class SplitByPredicateEnumerator<T> : IEnumerator<IEnumerable<T>>
     
     public bool MoveNext()
     {
-        if (_state == 1)
+        if (_state != 1)
         {
-            try
+            return false;
+        }
+
+        try
+        {
+            List<T> tempList = new List<T>();
+
+            while (_enumerator.MoveNext())
             {
-                List<T> tempList = new List<T>();
+                bool split = _predicate(_enumerator.Current);
 
-                while (_enumerator.MoveNext())
+                if (!split)
                 {
-                    bool split = _predicate(_enumerator.Current);
-
-                    if (!split)
-                    {
-                        tempList.Add(_enumerator.Current);
-                    }
-                    else
-                    {
-                        Current = new List<T>(tempList);
-                        tempList.Clear();
-                        return true;
-                    }
+                    tempList.Add(_enumerator.Current);
+                }
+                else
+                {
+                    Current = new List<T>(tempList);
+                    return true;
                 }
             }
-            catch
+
+            if (tempList.Count > 0)
             {
-                Dispose();
-                throw;
+                Current = new List<T>(tempList);
+                return true;
             }
-            finally
-            {
-                _state = -1;
-            }
+        }
+        catch
+        {
+            Dispose();
+            _state = -1;
+            throw;
         }
 
         Dispose();
+        _state = -1;
         return false;
     }
 

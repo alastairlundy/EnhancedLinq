@@ -29,7 +29,7 @@ public static class DeferredSegmentWhereExtensions
             StringSegmentGuard.ThrowIfNullOrWhitespace(target);
             ArgumentNullException.ThrowIfNull(predicate);
 
-            return new CustomEnumeratorEnumerable<char>(new WhereSegmentEnumerator(target, predicate));
+            return new CustomEnumeratorEnumerable<char>(() => new WhereSegmentEnumerator(target, predicate));
         }
     }
 }

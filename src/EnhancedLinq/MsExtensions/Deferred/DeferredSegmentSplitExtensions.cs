@@ -60,7 +60,7 @@ public static class DeferredSegmentSplitExtensions
             ArgumentNullException.ThrowIfNull(predicate);
 
             return new CustomEnumeratorEnumerable<StringSegment>
-                (new SegmentSplitPredicateEnumerator(source, predicate));
+                (() => new SegmentSplitPredicateEnumerator(source, predicate));
         }
     }
 }

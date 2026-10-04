@@ -34,8 +34,7 @@ public static class DeferredSegmentGroupExtensions
             StringSegmentGuard.ThrowIfNullOrWhitespace(target);
             ArgumentNullException.ThrowIfNull(predicate);
         
-            return new CustomEnumeratorEnumerable<IGrouping<TKey, char>>(
-                new GroupStringSegmentEnumerator<TKey>(target, predicate));
+            return new CustomEnumeratorEnumerable<IGrouping<TKey, char>>(() => new GroupStringSegmentEnumerator<TKey>(target, predicate));
         }
     }
 }

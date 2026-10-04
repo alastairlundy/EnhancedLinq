@@ -24,34 +24,34 @@ internal class NumberRangeEnumerator<TNumber> : IEnumerator<TNumber> where TNumb
     internal NumberRangeEnumerator(IEnumerable<TNumber> source)
     {
         _current = TNumber.Zero;
-        _state = 0;
+        _state = 1;
         _enumerator = source.GetEnumerator();
     }
     
     public bool MoveNext()
     {
-        if (_state == 1)
+        if (_state != 1)
         {
-            try
+            return false;
+        }
+
+        try
+        {
+            while (_enumerator.MoveNext())
             {
-                while (_enumerator.MoveNext())
-                {
-                    _current = _enumerator.Current;
-                    return true;
-                }
+                _current = _enumerator.Current;
+                return true;
             }
-            catch
-            {
-                Dispose();
-                throw;
-            }
-            finally
-            {
-                _state = -1;
-            }
+        }
+        catch
+        {
+            Dispose();
+            _state = -1;
+            throw;
         }
 
         Dispose();
+        _state = -1;
         return false;
     }
 

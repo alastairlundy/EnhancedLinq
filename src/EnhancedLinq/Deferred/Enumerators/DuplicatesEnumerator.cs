@@ -25,7 +25,6 @@ internal class DuplicatesEnumerator<TSource> : IEnumerator<TSource>
         _state = 1;
         
         _enumerator = source.GetEnumerator();
-        Current = _enumerator.Current;
     }
     
     public bool MoveNext()
@@ -34,9 +33,9 @@ internal class DuplicatesEnumerator<TSource> : IEnumerator<TSource>
         {
             while(_enumerator.MoveNext())
             {
-                bool isDuplicate =  _hashSet.Add(_enumerator.Current);
+                bool added = _hashSet.Add(_enumerator.Current);
 
-                if (isDuplicate)
+                if (!added)
                 {
                     Current = _enumerator.Current;
                     return true;
@@ -55,7 +54,7 @@ internal class DuplicatesEnumerator<TSource> : IEnumerator<TSource>
         throw new NotSupportedException();
     }
 
-    public TSource Current { get; private set; }
+    public TSource Current { get; private set; } = default!;
 
     object? IEnumerator.Current => Current;
 

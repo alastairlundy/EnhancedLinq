@@ -1,13 +1,4 @@
-﻿/*
-    EnhancedLinq.Async
-    Copyright (c) 2025-2026 Alastair Lundy
-    
-    This Source Code Form is subject to the terms of the Mozilla Public
-    License, v. 2.0. If a copy of the MPL was not distributed with this
-    file, You can obtain one at https://mozilla.org/MPL/2.0/.
-*/
-
-namespace EnhancedLinq.Async.Deferred.Enumerators;
+﻿namespace EnhancedLinq.Async.Deferred.Enumerators;
 
 internal class AsyncDuplicatesEnumerator<TSource> : IAsyncEnumerator<TSource>
 {
@@ -22,7 +13,6 @@ internal class AsyncDuplicatesEnumerator<TSource> : IAsyncEnumerator<TSource>
         _hashSet = new HashSet<TSource>(comparer);
         
         _enumerator = source.GetAsyncEnumerator();
-        Current = _enumerator.Current;
     }
     
     public async ValueTask DisposeAsync()
@@ -36,9 +26,9 @@ internal class AsyncDuplicatesEnumerator<TSource> : IAsyncEnumerator<TSource>
         {
             while (await _enumerator.MoveNextAsync().ConfigureAwait(false))
             {
-                bool isDuplicate = _hashSet.Add(_enumerator.Current);
+                bool added = _hashSet.Add(_enumerator.Current);
 
-                if (isDuplicate)
+                if (!added)
                 {
                     Current = _enumerator.Current;
                     return true;
@@ -52,5 +42,5 @@ internal class AsyncDuplicatesEnumerator<TSource> : IAsyncEnumerator<TSource>
         return false;
     }
 
-    public TSource Current { get; private set; }
+    public TSource Current { get; private set; } = default!;
 }

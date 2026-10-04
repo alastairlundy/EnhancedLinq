@@ -36,8 +36,7 @@ public static class DeferredDuplicatesExtensions
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(comparer);
         
-            return new CustomEnumeratorEnumerable<TSource>(
-                new DuplicatesEnumerator<TSource>(source, comparer));
+            return new CustomEnumeratorEnumerable<TSource>(() => new DuplicatesEnumerator<TSource>(source, comparer));
         }
     }
 }

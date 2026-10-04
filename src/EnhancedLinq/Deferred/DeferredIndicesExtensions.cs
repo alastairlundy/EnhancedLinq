@@ -30,8 +30,7 @@ public static class DeferredIndicesExtensions
         {
             ArgumentNullException.ThrowIfNull(source);
         
-            return new CustomEnumeratorEnumerable<int>(
-                new IndicesEnumerator<T>(source, x => x.Equals(target)));
+            return new CustomEnumeratorEnumerable<int>(() => new IndicesEnumerator<T>(source, x => x.Equals(target)));
         }
         
         /// <summary>
@@ -44,7 +43,7 @@ public static class DeferredIndicesExtensions
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(predicate);
         
-            return new CustomEnumeratorEnumerable<int>(new IndicesEnumerator<T>(source, predicate));
+            return new CustomEnumeratorEnumerable<int>(() => new IndicesEnumerator<T>(source, predicate));
         }
     }
     
@@ -62,8 +61,7 @@ public static class DeferredIndicesExtensions
         {
             ArgumentNullException.ThrowIfNull(str);
         
-            return new CustomEnumeratorEnumerable<int>(
-                new IndicesEnumerator<char>(str, x => x.Equals(c, StringComparison.Ordinal)));
+            return new CustomEnumeratorEnumerable<int>(() => new IndicesEnumerator<char>(str, x => x.Equals(c, StringComparison.Ordinal)));
         }
         
         /// <summary>
@@ -76,7 +74,7 @@ public static class DeferredIndicesExtensions
             ArgumentException.ThrowIfNullOrEmpty(str);
             ArgumentException.ThrowIfNullOrEmpty(substring);
         
-            return new CustomEnumeratorEnumerable<int>(new StringIndicesEnumerator(str, substring));
+            return new CustomEnumeratorEnumerable<int>(() => new StringIndicesEnumerator(str, substring));
         }
     }
 }

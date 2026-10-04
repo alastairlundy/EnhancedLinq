@@ -42,8 +42,7 @@ public static class DeferredInsertRangeExtensions
             ArgumentNullException.ThrowIfNull(toBeInserted);
             ArgumentOutOfRangeException.ThrowIfNegative(indexToInsertAt);
             
-            return new CustomEnumeratorEnumerable<TSource>(
-                new InsertRangeEnumerator<TSource>(source, indexToInsertAt, toBeInserted));
+            return new CustomEnumeratorEnumerable<TSource>(() => new InsertRangeEnumerator<TSource>(source, indexToInsertAt, toBeInserted));
         }
     }
 }

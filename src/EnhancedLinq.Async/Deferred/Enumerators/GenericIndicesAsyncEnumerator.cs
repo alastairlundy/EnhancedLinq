@@ -1,13 +1,4 @@
-﻿/*
-    EnhancedLinq.Async
-    Copyright (c) 2025-2026 Alastair Lundy
-    
-    This Source Code Form is subject to the terms of the Mozilla Public
-    License, v. 2.0. If a copy of the MPL was not distributed with this
-    file, You can obtain one at https://mozilla.org/MPL/2.0/.
-*/
-
-namespace EnhancedLinq.Async.Deferred.Enumerators;
+﻿namespace EnhancedLinq.Async.Deferred.Enumerators;
 
 internal class GenericIndicesAsyncEnumerator<TSource> : IAsyncEnumerator<int>
 {
@@ -28,29 +19,34 @@ internal class GenericIndicesAsyncEnumerator<TSource> : IAsyncEnumerator<int>
 
     public async ValueTask<bool> MoveNextAsync()
     {
-        if (_state == 1)
+        if (_state != 1)
         {
-            try
-            {
-                while (await _enumerator.MoveNextAsync().ConfigureAwait(false))
-                {
-                    if (_predicate(_enumerator.Current))
-                    {
-                        Current = _index;
-                        return true;
-                    }
+            return false;
+        }
 
-                    _index++;
+        try
+        {
+            while (await _enumerator.MoveNextAsync().ConfigureAwait(false))
+            {
+                int currentIndex = _index;
+                _index++;
+
+                if (_predicate(_enumerator.Current))
+                {
+                    Current = currentIndex;
+                    return true;
                 }
             }
-            finally
-            {
-                await DisposeAsync().ConfigureAwait(false);
-                _state = -1;
-            }
+        }
+        catch
+        {
+            await DisposeAsync().ConfigureAwait(false);
+            _state = -1;
+            throw;
         }
         
         await DisposeAsync().ConfigureAwait(false);
+        _state = -1;
         return false;
     }
 

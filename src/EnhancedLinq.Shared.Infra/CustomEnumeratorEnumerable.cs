@@ -27,50 +27,48 @@ using System.Collections;
 namespace EnhancedLinq.Shared.Infra;
 
 /// <summary>
-/// A sequence that wraps a custom enumerator.
+/// A sequence that wraps a custom enumerator factory.
 /// </summary>
-/// <remarks>The provided <see cref="IEnumerator{T}"/> should be a new Enumerator instance that has not been re-used.</remarks>
+/// <remarks>A new <see cref="IEnumerator{T}"/> is created for each enumeration,
+/// so the sequence can be enumerated multiple times.</remarks>
 /// <typeparam name="T">The type of element stored in the sequence.</typeparam>
 internal class CustomEnumeratorEnumerable<T> : IEnumerable<T>, IDisposable
 {
-    private readonly IEnumerator<T> _enumerator;
+    private readonly Func<IEnumerator<T>> _factory;
     
     /// <summary>
-    /// Instantiates the <see cref="CustomEnumeratorEnumerable{T}"/> with the custom <see cref="IEnumerator{T}"/> to wrap.
+    /// Instantiates the <see cref="CustomEnumeratorEnumerable{T}"/> with a factory
+    /// that creates a new <see cref="IEnumerator{T}"/> per enumeration.
     /// </summary>
-    /// <param name="enumerator">The enumerator to use when the sequence is enumerated.</param>
-    internal CustomEnumeratorEnumerable(IEnumerator<T> enumerator)
+    /// <param name="factory">A factory that creates a new enumerator that has not been used.</param>
+    internal CustomEnumeratorEnumerable(Func<IEnumerator<T>> factory)
     {
-        _enumerator = enumerator;
+        ArgumentNullException.ThrowIfNull(factory);
+        _factory = factory;
     }
     
     /// <summary>
-    /// Retrieves the wrapped custom enumerator.
+    /// Retrieves a new enumerator created by the factory.
     /// </summary>
-    /// <remarks>Tries to reset the enumerator if it has already been materialised and if supported.
-    /// If the enumerator doesn't support resetting, it returns the enumerator in its current state.</remarks>
-    /// <returns>The wrapped custom enumerator.</returns>
+    /// <returns>A new enumerator for the sequence.</returns>
     public IEnumerator<T> GetEnumerator()
     {
-        return _enumerator;
+        return _factory();
     }
 
     /// <summary>
-    /// Retrieves the wrapped custom enumerator.
+    /// Retrieves a new enumerator created by the factory.
     /// </summary>
-    /// <remarks>Tries to reset the enumerator if it has already been materialised and if supported.
-    /// If the enumerator doesn't support resetting, it returns the enumerator in its current state.</remarks>
-    /// <returns>The wrapped custom enumerator.</returns>
+    /// <returns>A new enumerator for the sequence.</returns>
     IEnumerator IEnumerable.GetEnumerator()
     {
         return GetEnumerator();
     }
     
     /// <summary>
-    /// Disposes of the internal enumerator once the sequence is to be disposed of.
+    /// No-op: individual enumerators are disposed by their consumers.
     /// </summary>
     public void Dispose()
     {
-        _enumerator.Dispose();
     }
 }

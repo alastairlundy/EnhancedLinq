@@ -33,29 +33,34 @@ internal class IndicesEnumerator<T> : IEnumerator<int>
 
     public bool MoveNext()
     {
-        if (_state == 1)
+        if (_state != 1)
         {
-            try
-            {
-                while (_enumerator.MoveNext())
-                {
-                    if (_predicate(_enumerator.Current))
-                    {
-                        _current = _index;
-                        return true;
-                    }
+            return false;
+        }
 
-                    _index++;
+        try
+        {
+            while (_enumerator.MoveNext())
+            {
+                int currentIndex = _index;
+                _index++;
+
+                if (_predicate(_enumerator.Current))
+                {
+                    _current = currentIndex;
+                    return true;
                 }
             }
-            finally
-            {
-                Dispose();
-                _state = -1;
-            }
         }
-        
+        catch
+        {
+            Dispose();
+            _state = -1;
+            throw;
+        }
+
         Dispose();
+        _state = -1;
         return false;
     }
 

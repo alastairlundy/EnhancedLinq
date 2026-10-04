@@ -28,7 +28,7 @@ public static class DeferredSegmentEnumerationExtensions
         {
             StringSegmentGuard.ThrowIfNullOrWhitespace(segment);
 
-            return new CustomEnumeratorEnumerable<char>(new SegmentEnumerator(segment));
+            return new CustomEnumeratorEnumerable<char>(() => new SegmentEnumerator(segment));
         }
     }
 }

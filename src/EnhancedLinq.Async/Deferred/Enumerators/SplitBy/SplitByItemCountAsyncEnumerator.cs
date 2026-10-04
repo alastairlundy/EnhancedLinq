@@ -1,12 +1,3 @@
-/*
-    EnhancedLinq.Async
-    Copyright (c) 2025-2026 Alastair Lundy
-    
-    This Source Code Form is subject to the terms of the Mozilla Public
-    License, v. 2.0. If a copy of the MPL was not distributed with this
-    file, You can obtain one at https://mozilla.org/MPL/2.0/. 
-*/
-
 using System.Linq;
 
 namespace EnhancedLinq.Async.Deferred.Enumerators.SplitBy;
@@ -21,7 +12,6 @@ internal class SplitByItemCountAsyncEnumerator<T> : IAsyncEnumerator<IAsyncEnume
     private List<T> _current;
 
     private int _currentEnumerableCount;
-    private int _currentItemCount;
     
     private int _state;
     
@@ -30,7 +20,6 @@ internal class SplitByItemCountAsyncEnumerator<T> : IAsyncEnumerator<IAsyncEnume
         _maximumItemCount = maximumItemCount;
         
         _state = 1;
-        _currentItemCount = 0;
 
         if (maximumItemCount <= 0)
             throw new ArgumentOutOfRangeException(nameof(maximumItemCount));
@@ -46,7 +35,6 @@ internal class SplitByItemCountAsyncEnumerator<T> : IAsyncEnumerator<IAsyncEnume
         _maximumItemCount = maximumItemCount;
         
         _state = 1;
-        _currentItemCount = 0;
 
         if (maximumItemCount <= 0)
             throw new ArgumentOutOfRangeException(nameof(maximumItemCount));
@@ -73,49 +61,51 @@ internal class SplitByItemCountAsyncEnumerator<T> : IAsyncEnumerator<IAsyncEnume
 
     public async ValueTask<bool> MoveNextAsync()
     {
-        if (_state == 1)
+        if (_state != 1)
         {
-            try
-            {
-                _currentEnumerableCount = 0;
-                List<T> tempList = new List<T>();
+            return false;
+        }
 
-                while (await _enumerator.MoveNextAsync()
-                           .ConfigureAwait(false))
+        if (_maxEnumerableCount != -1 && _currentEnumerableCount >= _maxEnumerableCount)
+        {
+            await DisposeAsync().ConfigureAwait(false);
+            _state = -1;
+            return false;
+        }
+
+        try
+        {
+            List<T> tempList = new List<T>();
+
+            while (await _enumerator.MoveNextAsync()
+                       .ConfigureAwait(false))
+            {
+                tempList.Add(_enumerator.Current);
+
+                if (tempList.Count >= _maximumItemCount)
                 {
-                    if (_currentItemCount < _maximumItemCount)
-                    {
-                        tempList.Add(_enumerator.Current);
-                        _currentItemCount++;
-                    }
-                    else if (_currentEnumerableCount < _maxEnumerableCount)
-                    {
-                        _current = new List<T>(tempList);
-                        _currentEnumerableCount++;
-                        tempList.Clear();
-                        return true;
-                    }
-                    else
-                    {
-                        _current = new List<T>(tempList);
-                        _currentEnumerableCount++;
-                        tempList.Clear();
-                        break;
-                    }
+                    _current = new List<T>(tempList);
+                    _currentEnumerableCount++;
+                    return true;
                 }
             }
-            catch
+
+            if (tempList.Count > 0)
             {
-                await DisposeAsync().ConfigureAwait(false);
-                throw;
+                _current = new List<T>(tempList);
+                _currentEnumerableCount++;
+                return true;
             }
-            finally
-            {
-                _state = -1;
-            }
+        }
+        catch
+        {
+            await DisposeAsync().ConfigureAwait(false);
+            _state = -1;
+            throw;
         }
         
         await DisposeAsync().ConfigureAwait(false);
+        _state = -1;
         return false;
     }
 

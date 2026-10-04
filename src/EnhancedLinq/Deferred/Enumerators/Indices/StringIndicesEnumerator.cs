@@ -18,7 +18,6 @@ internal class StringIndicesEnumerator : IEnumerator<int>
 
     private readonly IEnumerator<int> _indicesEnumerator;
     
-    private int _index;
     private int _current;
 
     private int _state;
@@ -27,7 +26,7 @@ internal class StringIndicesEnumerator : IEnumerator<int>
     {
         _str = str;
         _substring = substring;
-        _index = 0;
+        _state = 1;
 
         IEnumerable<int> indices = str.IndicesOf(substring[0]);
         _indicesEnumerator = indices.GetEnumerator();
@@ -35,36 +34,41 @@ internal class StringIndicesEnumerator : IEnumerator<int>
 
     public bool MoveNext()
     {
-        if (_state == 1)
+        if (_state != 1)
         {
-            try
+            return false;
+        }
+
+        try
+        {
+            while (_indicesEnumerator.MoveNext())
             {
-                while (_indicesEnumerator.MoveNext())
+                int candidateIndex = _indicesEnumerator.Current;
+
+                if (candidateIndex + _substring.Length > _str.Length)
                 {
-                    string compare = _str.Substring(_indicesEnumerator.Current,
-                        _substring.Length);
+                    continue;
+                }
 
-                    if (_substring.Equals(compare))
-                    {
-                        _current = _index;
-                        return true;
-                    }
+                string compare = _str.Substring(candidateIndex,
+                    _substring.Length);
 
-                    _index++;
+                if (_substring.Equals(compare))
+                {
+                    _current = candidateIndex;
+                    return true;
                 }
             }
-            catch
-            {
-                Dispose();
-                throw;
-            }
-            finally
-            {
-                _state = -1;
-            }
         }
-        
+        catch
+        {
+            Dispose();
+            _state = -1;
+            throw;
+        }
+
         Dispose();
+        _state = -1;
         return false;
     }
 

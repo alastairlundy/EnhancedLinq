@@ -36,8 +36,7 @@ public static class DeferredSplitExtensions
             ArgumentNullException.ThrowIfNull(source);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(maximumCount);
 
-            return new CustomEnumeratorEnumerable<IEnumerable<TSource>>(
-                new SplitByItemCountEnumerator<TSource>(source, maximumCount));
+            return new CustomEnumeratorEnumerable<IEnumerable<TSource>>(() => new SplitByItemCountEnumerator<TSource>(source, maximumCount));
         }
 
         /// <summary>
@@ -49,8 +48,7 @@ public static class DeferredSplitExtensions
         {
             ArgumentNullException.ThrowIfNull(source);
 
-            return new CustomEnumeratorEnumerable<IEnumerable<TSource>>(
-                new SplitByEnumerableCountEnumerator<TSource>(source, Environment.ProcessorCount));
+            return new CustomEnumeratorEnumerable<IEnumerable<TSource>>(() => new SplitByEnumerableCountEnumerator<TSource>(source, Environment.ProcessorCount));
         }
 
         /// <summary>
@@ -77,8 +75,7 @@ public static class DeferredSplitExtensions
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(predicate);
 
-            return new CustomEnumeratorEnumerable<IEnumerable<TSource>>(
-                new SplitByPredicateEnumerator<TSource>(source, predicate));
+            return new CustomEnumeratorEnumerable<IEnumerable<TSource>>(() => new SplitByPredicateEnumerator<TSource>(source, predicate));
         }
     }
 }

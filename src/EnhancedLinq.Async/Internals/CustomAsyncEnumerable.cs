@@ -4,26 +4,34 @@ namespace EnhancedLinq.Async.Internals;
 
 internal class CustomAsyncEnumerable<TSource> : IAsyncEnumerable<TSource>, IAsyncDisposable
 {
-    private readonly IAsyncEnumerator<TSource> _enumerator;
+    private readonly Func<IAsyncEnumerator<TSource>> _factory;
 
-    internal CustomAsyncEnumerable(IAsyncEnumerator<TSource> enumerator)
+    internal CustomAsyncEnumerable(Func<IAsyncEnumerator<TSource>> factory)
     {
-        _enumerator = enumerator;
+        ArgumentNullException.ThrowIfNull(factory);
+        _factory = factory;
     }
     
     public async IAsyncEnumerator<TSource> GetAsyncEnumerator(CancellationToken cancellationToken = default)
     {
-        while (await _enumerator.MoveNextAsync().ConfigureAwait(false))
+        IAsyncEnumerator<TSource> enumerator = _factory();
+
+        try
         {
-            if (cancellationToken.IsCancellationRequested)
-                yield break;
-            
-            yield return _enumerator.Current;
+            while (await enumerator.MoveNextAsync().ConfigureAwait(false))
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                yield return enumerator.Current;
+            }
+        }
+        finally
+        {
+            await enumerator.DisposeAsync().ConfigureAwait(false);
         }
     }
 
-    public async ValueTask DisposeAsync()
+    public ValueTask DisposeAsync()
     {
-        await _enumerator.DisposeAsync().ConfigureAwait(false);
+        return ValueTask.CompletedTask;
     }
 }

@@ -21,7 +21,6 @@ internal class SplitByItemCountEnumerator<T> : IEnumerator<IEnumerable<T>>
     private List<T> _current;
 
     private int _currentEnumerableCount;
-    private int _currentItemCount;
     
     private int _state;
     
@@ -30,7 +29,6 @@ internal class SplitByItemCountEnumerator<T> : IEnumerator<IEnumerable<T>>
         _maximumItemCount = maximumItemCount;
         
         _state = 1;
-        _currentItemCount = 0;
 
         if (maximumItemCount <= 0)
             throw new ArgumentOutOfRangeException(nameof(maximumItemCount));
@@ -46,7 +44,6 @@ internal class SplitByItemCountEnumerator<T> : IEnumerator<IEnumerable<T>>
         _maximumItemCount = maximumItemCount;
         
         _state = 1;
-        _currentItemCount = 0;
 
         if (maximumItemCount <= 0)
             throw new ArgumentOutOfRangeException(nameof(maximumItemCount));
@@ -62,48 +59,50 @@ internal class SplitByItemCountEnumerator<T> : IEnumerator<IEnumerable<T>>
 
     public bool MoveNext()
     {
-        if (_state == 1)
+        if (_state != 1)
         {
-            try
-            {
-                _currentEnumerableCount = 0;
-                List<T> tempList = new List<T>();
+            return false;
+        }
 
-                while (_enumerator.MoveNext())
+        if (_maxEnumerableCount != -1 && _currentEnumerableCount >= _maxEnumerableCount)
+        {
+            Dispose();
+            _state = -1;
+            return false;
+        }
+
+        try
+        {
+            List<T> tempList = new List<T>();
+
+            while (_enumerator.MoveNext())
+            {
+                tempList.Add(_enumerator.Current);
+
+                if (tempList.Count >= _maximumItemCount)
                 {
-                    if (_currentItemCount < _maximumItemCount)
-                    {
-                        tempList.Add(_enumerator.Current);
-                        _currentItemCount++;
-                    }
-                    else if (_currentEnumerableCount < _maxEnumerableCount)
-                    {
-                        _current = new List<T>(tempList);
-                        _currentEnumerableCount++;
-                        tempList.Clear();
-                        return true;
-                    }
-                    else
-                    {
-                        _current = new List<T>(tempList);
-                        _currentEnumerableCount++;
-                        tempList.Clear();
-                        break;
-                    }
+                    _current = new List<T>(tempList);
+                    _currentEnumerableCount++;
+                    return true;
                 }
             }
-            catch
+
+            if (tempList.Count > 0)
             {
-                Dispose();
-                throw;
+                _current = new List<T>(tempList);
+                _currentEnumerableCount++;
+                return true;
             }
-            finally
-            {
-                _state = -1;
-            }
+        }
+        catch
+        {
+            Dispose();
+            _state = -1;
+            throw;
         }
         
         Dispose();
+        _state = -1;
         return false;
     }
 

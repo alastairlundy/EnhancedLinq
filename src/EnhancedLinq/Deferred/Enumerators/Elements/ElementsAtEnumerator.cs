@@ -22,38 +22,35 @@ internal class ElementsAtEnumerator<TSource> : IEnumerator<TSource>
     {
         _state = 1;
 
-      IEnumerable<TSource> values = indices.Select(i => source.ElementAt(i));
+        IEnumerable<TSource> values = indices.Select(i => source.ElementAt(i));
 
-      _enumerator = values.GetEnumerator();
-      Current = _enumerator.Current;
+        _enumerator = values.GetEnumerator();
     }
 
     public bool MoveNext()
     {
-        if (_state == 1)
+        if (_state != 1)
         {
-            try
-            {
-                if (_enumerator.MoveNext())
-                {
-                    Current = _enumerator.Current;
-                    return true;
-                }
+            return false;
+        }
 
-                return false;
-            }
-            catch
+        try
+        {
+            if (_enumerator.MoveNext())
             {
-                Dispose();
-                throw;
-            }
-            finally
-            {
-                _state = -1;
+                Current = _enumerator.Current;
+                return true;
             }
         }
-        
+        catch
+        {
+            Dispose();
+            _state = -1;
+            throw;
+        }
+
         Dispose();
+        _state = -1;
         return false;
     }
 
@@ -62,7 +59,7 @@ internal class ElementsAtEnumerator<TSource> : IEnumerator<TSource>
         throw new NotSupportedException();
     }
 
-    public TSource Current { get; private set; }
+    public TSource Current { get; private set; } = default!;
 
     object? IEnumerator.Current => Current;
 

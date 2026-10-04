@@ -33,8 +33,7 @@ public static class DeferredElementsAtExtensions
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(indices);
         
-            return new CustomEnumeratorEnumerable<TSource>(
-                new ElementsAtEnumerator<TSource>(source, indices));
+            return new CustomEnumeratorEnumerable<TSource>(() => new ElementsAtEnumerator<TSource>(source, indices));
         }
         
 #if !NETSTANDARD2_0

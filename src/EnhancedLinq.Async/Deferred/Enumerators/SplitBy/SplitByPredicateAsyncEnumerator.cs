@@ -1,12 +1,3 @@
-/*
-    EnhancedLinq.Async
-    Copyright (c) 2025-2026 Alastair Lundy
-    
-    This Source Code Form is subject to the terms of the Mozilla Public
-    License, v. 2.0. If a copy of the MPL was not distributed with this
-    file, You can obtain one at https://mozilla.org/MPL/2.0/. 
-*/
-
 using System.Linq;
 
 namespace EnhancedLinq.Async.Deferred.Enumerators.SplitBy;
@@ -36,42 +27,47 @@ internal class SplitByPredicateAsyncEnumerator<T> : IAsyncEnumerator<IAsyncEnume
 
     public async ValueTask<bool> MoveNextAsync()
     {
-        if (_state == 1)
+        if (_state != 1)
         {
-            try
+            return false;
+        }
+
+        try
+        {
+            List<T> tempList = [];
+
+            while (await _enumerator.MoveNextAsync().ConfigureAwait(false))
             {
-                List<T> tempList = [];
+                bool split = _predicate(_enumerator.Current);
 
-                while (await _enumerator.MoveNextAsync().ConfigureAwait(false))
+                if (!split)
                 {
-                    bool split = _predicate(_enumerator.Current);
+                    tempList.Add(_enumerator.Current);
+                }
+                else
+                {
+                    List<T> list = new(tempList);
 
-                    if (!split)
-                    {
-                        tempList.Add(_enumerator.Current);
-                    }
-                    else
-                    {
-                        List<T> list = new(tempList);
-
-                        _current = list.ToAsyncEnumerable();
-                        tempList.Clear();
-                        return true;
-                    }
+                    _current = list.ToAsyncEnumerable();
+                    return true;
                 }
             }
-            catch
+
+            if (tempList.Count > 0)
             {
-                await DisposeAsync().ConfigureAwait(false);
-                throw;
+                _current = new List<T>(tempList).ToAsyncEnumerable();
+                return true;
             }
-            finally
-            {
-                _state = -1;
-            }
+        }
+        catch
+        {
+            await DisposeAsync().ConfigureAwait(false);
+            _state = -1;
+            throw;
         }
 
         await DisposeAsync().ConfigureAwait(false);
+        _state = -1;
         return false;
     }
 

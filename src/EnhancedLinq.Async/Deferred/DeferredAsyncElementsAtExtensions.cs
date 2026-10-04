@@ -28,8 +28,7 @@ public static class DeferredAsyncElementsAtExtensions
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(indices);
         
-            return new CustomAsyncEnumerable<TSource>(
-                new AsyncElementsAtEnumerator<TSource>(source, indices));
+            return new CustomAsyncEnumerable<TSource>(() => new AsyncElementsAtEnumerator<TSource>(source, indices));
         }
 
         /// <summary>

@@ -73,7 +73,7 @@ public static class ImmediateListDistinctExtensions
             T item = source[index];
             bool result = hash.Add(item);
 
-            if (!result)
+            if (result)
                 output.Add(item);
         }
 

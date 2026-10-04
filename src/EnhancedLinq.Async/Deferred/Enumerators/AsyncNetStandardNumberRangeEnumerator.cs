@@ -18,32 +18,31 @@ internal class AsyncNetStandardNumberRangeEnumerator : IAsyncEnumerator<int>
     internal AsyncNetStandardNumberRangeEnumerator(IAsyncEnumerable<int> source)
     {
         Current = 0;
-        _state = 0;
+        _state = 1;
         _enumerator = source.GetAsyncEnumerator();
     }
     
     public async ValueTask<bool> MoveNextAsync()
     {
-        if (_state == 1)
+        if (_state != 1)
         {
-            try
+            return false;
+        }
+
+        try
+        {
+            while (await _enumerator.MoveNextAsync()
+                       .ConfigureAwait(false))
             {
-                while (await _enumerator.MoveNextAsync()
-                           .ConfigureAwait(false))
-                {
-                    Current = _enumerator.Current;
-                    return true;
-                }
+                Current = _enumerator.Current;
+                return true;
             }
-            catch
-            {
-                await DisposeAsync().ConfigureAwait(false);
-                throw;
-            }
-            finally
-            {
-                _state = -1;
-            }
+        }
+        catch
+        {
+            await DisposeAsync().ConfigureAwait(false);
+            _state = -1;
+            throw;
         }
 
         await DisposeAsync().ConfigureAwait(false);
@@ -54,9 +53,6 @@ internal class AsyncNetStandardNumberRangeEnumerator : IAsyncEnumerator<int>
 
     public async ValueTask DisposeAsync()
     {
-        if (_enumerator is IAsyncDisposable enumeratorAsyncDisposable)
-            await enumeratorAsyncDisposable.DisposeAsync().ConfigureAwait(false);
-        else
-            await _enumerator.DisposeAsync().ConfigureAwait(false);
+        await _enumerator.DisposeAsync().ConfigureAwait(false);
     }
 }
