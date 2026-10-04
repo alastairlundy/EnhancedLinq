@@ -62,7 +62,7 @@ public class ImmediateDuplicatesTests
     public async Task ContainsDuplicates_AllSameElements_ReturnsTrue()
     {
         int randomNumber = _faker.Random.Int(1, 100);
-        IEnumerable<int> source = _faker.MakeLazy(Random.Shared.Next(1, 10), _ => randomNumber);
+        IEnumerable<int> source = _faker.MakeLazy(Random.Shared.Next(2, 10), _ => randomNumber);
         
         bool actual = source.ContainsDuplicates();
         
