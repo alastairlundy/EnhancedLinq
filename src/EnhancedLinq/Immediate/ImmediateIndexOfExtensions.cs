@@ -66,7 +66,7 @@ public static class ImmediateIndexOfExtensions
                 
             foreach (T item in source)
             {
-                if (item.Equals(obj))
+                if (EqualityComparer<T>.Default.Equals(item, obj))
                 {
                     return index;
                 }

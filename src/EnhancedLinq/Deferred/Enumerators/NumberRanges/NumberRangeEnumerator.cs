@@ -15,17 +15,23 @@ namespace EnhancedLinq.Deferred.Enumerators.NumberRanges;
 
 internal class NumberRangeEnumerator<TNumber> : IEnumerator<TNumber> where TNumber : INumber<TNumber>
 {
-    private readonly IEnumerator<TNumber> _enumerator;
-    
+    private readonly TNumber _start;
+    private readonly TNumber _count;
+    private readonly TNumber _incrementor;
+
     private TNumber _current;
+    private TNumber _emitted;
 
     private int _state;
 
-    internal NumberRangeEnumerator(IEnumerable<TNumber> source)
+    internal NumberRangeEnumerator(TNumber start, TNumber count, TNumber incrementor)
     {
-        _current = TNumber.Zero;
+        _start = start;
+        _count = count;
+        _incrementor = incrementor;
+        _current = default!;
+        _emitted = TNumber.Zero;
         _state = 1;
-        _enumerator = source.GetEnumerator();
     }
     
     public bool MoveNext()
@@ -37,11 +43,16 @@ internal class NumberRangeEnumerator<TNumber> : IEnumerator<TNumber> where TNumb
 
         try
         {
-            while (_enumerator.MoveNext())
+            if (_emitted >= _count)
             {
-                _current = _enumerator.Current;
-                return true;
+                Dispose();
+                _state = -1;
+                return false;
             }
+
+            _current = _emitted == TNumber.Zero ? _start : _current + _incrementor;
+            _emitted += TNumber.One;
+            return true;
         }
         catch
         {
@@ -49,10 +60,6 @@ internal class NumberRangeEnumerator<TNumber> : IEnumerator<TNumber> where TNumb
             _state = -1;
             throw;
         }
-
-        Dispose();
-        _state = -1;
-        return false;
     }
 
     public void Reset()
@@ -66,7 +73,6 @@ internal class NumberRangeEnumerator<TNumber> : IEnumerator<TNumber> where TNumb
 
     public void Dispose()
     {
-        _enumerator.Dispose();
     }
 }
 #endif

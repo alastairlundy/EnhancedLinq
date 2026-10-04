@@ -16,24 +16,18 @@ namespace EnhancedLinq.Deferred.Enumerables.NumberRanges;
 
 internal class NumberRangeEnumerable<TNumber> : IEnumerable<TNumber> where TNumber : INumber<TNumber>
 {
-    private readonly List<TNumber> _source;
+    private readonly TNumber _start;
+    private readonly TNumber _count;
+    private readonly TNumber _incrementor;
     
     internal NumberRangeEnumerable(TNumber start, TNumber count, TNumber incrementor)
     {
-        _source = new List<TNumber>();
-        
-        TNumber current = start;
-        TNumber end = start + count;
-        
-        while (current != end + TNumber.One)
-        {
-            _source.Add(current);
-            
-            current += incrementor;
-        }
+        _start = start;
+        _count = count;
+        _incrementor = incrementor;
     }
     
-    public IEnumerator<TNumber> GetEnumerator() => new NumberRangeEnumerator<TNumber>(_source);
+    public IEnumerator<TNumber> GetEnumerator() => new NumberRangeEnumerator<TNumber>(_start, _count, _incrementor);
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }

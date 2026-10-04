@@ -30,7 +30,7 @@ public static class DeferredIndicesExtensions
         {
             ArgumentNullException.ThrowIfNull(source);
         
-            return new CustomEnumeratorEnumerable<int>(() => new IndicesEnumerator<T>(source, x => x.Equals(target)));
+            return new CustomEnumeratorEnumerable<int>(() => new IndicesEnumerator<T>(source, x => EqualityComparer<T>.Default.Equals(x, target)));
         }
         
         /// <summary>

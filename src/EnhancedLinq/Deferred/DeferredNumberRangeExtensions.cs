@@ -67,9 +67,13 @@ public static class DeferredNumberRangeExtensions
         /// <returns>A sequence containing the generated numeric values,
         /// incremented by the incrementor amount from the starting point.</returns>
         public IEnumerable<TNumber> GenerateNumberRange(TNumber count, TNumber incrementor,
-            IEnumerable<TNumber> numbersToSkip) =>
-            start.GenerateNumberRange(count, incrementor)
-                .SkipWhile(x => numbersToSkip.Contains(x));
+            IEnumerable<TNumber> numbersToSkip)
+        {
+            ArgumentNullException.ThrowIfNull(numbersToSkip);
+
+            return start.GenerateNumberRange(count, incrementor)
+                .Where(x => !numbersToSkip.Contains(x));
+        }
     }
 
 #else
@@ -92,9 +96,11 @@ public static class DeferredNumberRangeExtensions
             ArgumentOutOfRangeException.ThrowIfEqual(incrementor,int.MaxValue);
             ArgumentOutOfRangeException.ThrowIfEqual(incrementor, int.MinValue);
             
-            for (int i = start; i < count; i += incrementor)
+            int current = start;
+            for (int emitted = 0; emitted < count; emitted++)
             {
-                yield return i;
+                yield return current;
+                current += incrementor;
             }
         }
 
@@ -109,8 +115,12 @@ public static class DeferredNumberRangeExtensions
         /// incremented by the incrementor amount from the starting point.</returns>
         public IEnumerable<int> GenerateNumberRange(int count, int incrementor,
             IEnumerable<int> numbersToSkip)
-            => start.GenerateNumberRange(count, incrementor)
-                .SkipWhile(x => numbersToSkip.Contains(x));
+        {
+            ArgumentNullException.ThrowIfNull(numbersToSkip);
+
+            return start.GenerateNumberRange(count, incrementor)
+                .Where(x => !numbersToSkip.Contains(x));
+        }
     }
 
 #endif
