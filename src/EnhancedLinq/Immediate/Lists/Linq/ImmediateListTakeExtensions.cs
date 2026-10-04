@@ -29,7 +29,7 @@ public static class ImmediateListTakeExtensions
         {
             ArgumentNullException.ThrowIfNull(source);
             ArgumentOutOfRangeException.ThrowIfNegative(count);
-            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(count, source.Length);
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(count, source.Length);
             
             T[] output = new T[count];
 
@@ -56,7 +56,7 @@ public static class ImmediateListTakeExtensions
         {
             ArgumentNullException.ThrowIfNull(source);
             ArgumentOutOfRangeException.ThrowIfNegative(count);
-            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(count, source.Count);
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(count, source.Count);
 
             List<T> output = new(capacity: count);
 
@@ -83,16 +83,20 @@ public static class ImmediateListTakeExtensions
         {
             ArgumentNullException.ThrowIfNull(source);
             ArgumentOutOfRangeException.ThrowIfNegative(count);
-            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(count, source.Count);
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(count, source.Count);
 
             List<T> output = new(capacity: count);
 
             int index = 0;
             foreach (T item in source)
             {
-                if (index <= count)
+                if (index < count)
                 {
                     output.Add(item);
+                }
+                else
+                {
+                    break;
                 }
 
                 index++;

@@ -7,8 +7,6 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/.
 */
 
-using EnhancedLinq.Deferred;
-
 namespace EnhancedLinq.Immediate.Lists;
 
 /// <summary>
@@ -30,12 +28,16 @@ public static class ImmediateListReplaceExtensions
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(oldValue);
             ArgumentNullException.ThrowIfNull(newValue);
-            
-            IEnumerable<int> indices = source.IndicesOf(oldValue);
 
-            foreach (int index in indices)
+            EqualityComparer<T> comparer = EqualityComparer<T>.Default;
+
+            for (int index = 0; index < source.Count; index++)
             {
-                source[index] = newValue;
+                T? current = source[index];
+                if (comparer.Equals(current, oldValue))
+                {
+                    source[index] = newValue;
+                }
             }
         }
     }

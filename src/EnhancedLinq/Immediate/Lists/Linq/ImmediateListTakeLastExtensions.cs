@@ -29,13 +29,13 @@ public static class ImmediateListTakeLastExtensions
         {
             ArgumentNullException.ThrowIfNull(source);
             ArgumentOutOfRangeException.ThrowIfNegative(count);
-            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(count, source.Length);
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(count, source.Length);
 
             T[] output = new T[count];
         
-            for (int index = source.Length - 1; index > count; index--)
+            for (int index = 0; index < count; index++)
             {
-                output[index] = source[index];
+                output[index] = source[source.Length - count + index];
             }
 
             return output;
@@ -56,11 +56,11 @@ public static class ImmediateListTakeLastExtensions
         {
             ArgumentNullException.ThrowIfNull(source);
             ArgumentOutOfRangeException.ThrowIfNegative(count);
-            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(count, source.Count);
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(count, source.Count);
             
             List<T> output = new List<T>(capacity: count);
 
-            for (int index = source.Count - 1; index > count; index++)
+            for (int index = source.Count - count; index < source.Count; index++)
             {
                 output.Add(source[index]);
             }
@@ -84,14 +84,15 @@ public static class ImmediateListTakeLastExtensions
         {
             ArgumentNullException.ThrowIfNull(source);
             ArgumentOutOfRangeException.ThrowIfNegative(count);
-            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(count, source.Count);
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(count, source.Count);
             
             List<T> output = new List<T>(capacity: count);
-            
+
+            int skip = source.Count - count;
             int index = 0;
-            foreach (T item in source.Reverse())
+            foreach (T item in source)
             {
-                if (index <= count)
+                if (index >= skip)
                 {
                     output.Add(item);
                 }

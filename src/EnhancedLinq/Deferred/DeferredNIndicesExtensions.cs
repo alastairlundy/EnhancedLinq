@@ -77,7 +77,13 @@ public static class DeferredNIndicesExtensions
         /// <returns>A sequence of the last <paramref name="count"/> indices if one or more elements
         /// matching the predicate are found; an empty sequence otherwise.</returns>
         public IEnumerable<int> LastNIndicesOf(Func<T, bool> selector, int count) 
-            => source.Reverse().FirstNIndicesOf(selector, count);
+        {
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(selector);
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
+
+            return source.IndicesOf(selector).TakeLast(count);
+        }
     }
 
     /// <param name="str">The input string.</param>

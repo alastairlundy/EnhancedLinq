@@ -87,21 +87,23 @@ public static class ImmediateListExcludeExtensions
         {
             ArgumentNullException.ThrowIfNull(array);
             ArgumentNullException.ThrowIfNull(collection);
-            
+
             TSource[] output = new TSource[array.Length];
 
             int currentIndex = 0;
-            for (int index = 0; index < collection.Count; index++)
+            for (int index = 0; index < array.Length; index++)
             {
-                if (collection.IndexOf(collection.ElementAt(index)) == -1)
+                if (!collection.Contains(array[index]))
                 {
-                    output[currentIndex] = collection.First(x => x.Equals(output[index]));
+                    output[currentIndex] = array[index];
                     currentIndex++;
                 }
             }
 
             if (currentIndex < array.Length)
-                return output.Take(currentIndex);
+            {
+                Array.Resize(ref output, currentIndex);
+            }
 
             return output;
         }

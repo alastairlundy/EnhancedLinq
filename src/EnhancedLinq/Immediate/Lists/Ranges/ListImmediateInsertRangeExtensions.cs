@@ -7,6 +7,7 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
+using System.Linq;
 using EnhancedLinq.Immediate.Lists.Linq;
 
 namespace EnhancedLinq.Immediate.Lists.Ranges;
@@ -31,16 +32,26 @@ public static class ListImmediateInsertRangeExtensions
             ArgumentOutOfRangeException.ThrowIfNegative(index);
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(values);
-            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(index, source.Count);
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(index, source.Count);
 
-            int numberToRemove = source.LastIndex() - index;
+            if (source.IsReadOnly)
+                throw new NotSupportedException();
 
-            ICollection<T> itemsToRemove = source.Take(numberToRemove);
-        
-            source.RemoveRange(index, numberToRemove);
-       
-            source.AddRange(values);
-            source.AddRange(itemsToRemove);
+            List<T> valuesList = new(values);
+            List<T> snapshot = new(source);
+
+            List<T> tail = snapshot.Skip(index).ToList();
+
+            source.Clear();
+
+            for (int i = 0; i < index; i++)
+                source.Add(snapshot[i]);
+
+            foreach (T value in valuesList)
+                source.Add(value);
+
+            foreach (T item in tail)
+                source.Add(item);
         }
     }
 
@@ -60,7 +71,7 @@ public static class ListImmediateInsertRangeExtensions
             ArgumentOutOfRangeException.ThrowIfNegative(index);
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(values);
-            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(index, source.Count);
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(index, source.Count);
             
             int newIndex = index;
 

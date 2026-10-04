@@ -30,36 +30,34 @@ public static class ImmediateConcurrentGetRangeExtensions
         {
             ArgumentNullException.ThrowIfNull(collection);
             ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
-            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
-            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(count, collection.Count);
+            ArgumentOutOfRangeException.ThrowIfNegative(count);
 
-            ConcurrentBag<T> output = new ConcurrentBag<T>();
+            if (startIndex > collection.Count)
+            {
+                throw new ArgumentException(Resources.Exceptions_IndexOutOfRange
+                    .Replace("{x}", $"{startIndex}")
+                    .Replace("{y}", $"0")
+                    .Replace("{z}", $"{startIndex + count}"), nameof(startIndex));
+            }
 
             int limit = startIndex + count;
 
             if (limit > collection.Count)
                 throw new ArgumentException(Resources.Exceptions_Count_LessThanZero, nameof(count));
 
-            if (startIndex >= collection.Count && startIndex != 0 ||
-                startIndex > collection.Count)
-            {
-                throw new ArgumentException(Resources.Exceptions_IndexOutOfRange
-                    .Replace("{x}", $"{startIndex}")
-                    .Replace("{y}", $"0")
-                    .Replace("{z}", $"{limit}"), nameof(startIndex));
-            }
-            
+            ConcurrentBag<T> output = new ConcurrentBag<T>();
+
             int actualIndex = 0;
             foreach (T item in collection)
             {
-                if (actualIndex >= startIndex || actualIndex <= limit)
-                {
-                    output.Add(item);
-                }
-
-                if (actualIndex == limit)
+                if (actualIndex >= limit)
                 {
                     break;
+                }
+
+                if (actualIndex >= startIndex)
+                {
+                    output.Add(item);
                 }
 
                 actualIndex++;
@@ -79,7 +77,13 @@ public static class ImmediateConcurrentGetRangeExtensions
         /// </summary>
         /// <param name="range">A <see cref="Range"/> object that specifies the start and end indexes of the range to retrieve.</param>
         /// <returns>A new <see cref="IProducerConsumerCollection{T}"/> containing the specified range of elements.</returns>
-        public IProducerConsumerCollection<T> GetRange(Range range) => collection.GetRange(range.Start.Value, range.End.Value);
+        public IProducerConsumerCollection<T> GetRange(Range range)
+        {
+            ArgumentNullException.ThrowIfNull(collection);
+
+            (int offset, int length) = range.GetOffsetAndLength(collection.Count);
+            return collection.GetRange(offset, length);
+        }
     }
 #endif
 }

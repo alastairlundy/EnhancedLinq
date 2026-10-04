@@ -7,6 +7,7 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
+using System.Linq;
 using EnhancedLinq.Deferred.Enumerators;
 
 namespace EnhancedLinq.Deferred;
@@ -46,7 +47,13 @@ public static class DeferredElementsAtExtensions
         /// <param name="range">The range of indices to retrieve, where each index corresponds to an element in the source.</param>
         /// <returns>A new sequence containing the elements at the specified indexes from the original source.</returns>
         public IEnumerable<TSource> ElementsAt(Range range)
-            =>source.ElementsAt(range.Start.Value, Math.Abs(range.Start.Value - range.End.Value));
+        {
+            ArgumentNullException.ThrowIfNull(source);
+
+            List<TSource> list = source.ToList();
+            (int offset, int length) = range.GetOffsetAndLength(list.Count);
+            return list.Skip(offset).Take(length);
+        }
 #endif
         
         /// <summary>

@@ -28,7 +28,7 @@ public static class ImmediateListReverseExtensions
             
             List<T> output = new List<T>(list.Count);
 
-            for (int i = 0; i < output.Count; i++)
+            for (int i = 0; i < list.Count; i++)
             {
                 if(list.Count -1 - i >= 0)
                     output.Add(list[list.Count - 1 - i]);
@@ -85,6 +85,8 @@ public static class ImmediateListReverseExtensions
             {
                 if(source.Count - 1 - index >= 0)
                     newArray[source.Count - 1 - index] = item;
+
+                index++;
             }
         
             return newArray;
@@ -111,6 +113,8 @@ public static class ImmediateListReverseExtensions
             {
                 if(source.Count - 1 - index >= 0)
                     newArray[source.Count - 1 - index] = item;
+
+                index++;
             }
         
             return newArray;

@@ -30,6 +30,9 @@ public static class ImmediateCountAtLeastExtensions
         {
             ArgumentNullException.ThrowIfNull(source);
             ArgumentOutOfRangeException.ThrowIfNegative(countToLookFor);
+
+            if (countToLookFor == 0)
+                return true;
             
             if (source is ICollection<T> collection)
                 return collection.Count >= countToLookFor;
@@ -38,10 +41,10 @@ public static class ImmediateCountAtLeastExtensions
 
             foreach (T unused in source)
             {
+                currentCount += 1;
+
                 if(currentCount >= countToLookFor)
                     return true;
-
-                currentCount += 1;
             }
 
             return false;
@@ -59,6 +62,9 @@ public static class ImmediateCountAtLeastExtensions
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(predicate);
             ArgumentOutOfRangeException.ThrowIfNegative(countToLookFor);
+
+            if (countToLookFor == 0)
+                return true;
             
             int currentCount = 0;
 
