@@ -12,10 +12,11 @@
         <RepositoryUrl>https://github.com/alastairlundy/Enhancedlinq</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageReleaseNotes>#### Runtime Dependencies
-- Bumped **Polyfill** to `11.0.1` (from `10.5.1`).
-- Bumped **Microsoft.Extensions.Primitives** to `10.0.10` (from `10.0.8`).
-- `MsExtensions` and the `EnhancedLinq` core: removed the implicit dependency on `DotExtensions` by inlining or replacing every call site (`DeferredMemoryIndexExtensions`, `ImmediateCountAtMostExtensions`, the various `ImmediateSegment*` and `DeferredSegment*` extensions, `ImmediateListNumberRangeExtensions`, etc.). Behavior is unchanged.</PackageReleaseNotes>
+        <PackageReleaseNotes>* Updated dependencies
+- Fix deferred single-yield state machines, shared enumerator reuse, and inverted duplicate/distinct checks (`Duplicates`, `Distinct`, `SplitBy`, `IndicesOf`, `ElementsAt`, `InsertRange`, StringSegment enumerators)
+- Fix deferred `GenerateNumberRange`, `InsertRange`, and null-safe index lookup
+- Fix bugs in: `Exclude`, `Take`/`TakeLast`, `Reverse`, `InsertRange`, `ElementsAt` with `Range`, `CountAtLeast`, `LastNIndicesOf`, `Replace`
+- Fix MsExtensions `StringSegment` bug in: `All`, `First`/`Last`, `IndexOf`/`IndicesOf`, `Split`, `GroupBy`, deferred enumeration</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <Description>Additional LINQ style Deferred and Immediate enumeration mode extension methods for .NET . </Description>
@@ -24,13 +25,13 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>1.1.0</Version>
+        <Version>1.1.1</Version>
         <PackageId>EnhancedLinq</PackageId>
         <PolyArgumentExceptions>true</PolyArgumentExceptions>
         <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
         <TrimmerSingleWarn>false</TrimmerSingleWarn>
-        <AssemblyVersion>1.1.0</AssemblyVersion>
-        <FileVersion>1.1.0</FileVersion>
+        <AssemblyVersion>1.1.1</AssemblyVersion>
+        <FileVersion>1.1.1</FileVersion>
     </PropertyGroup>
 
     <ItemGroup>
