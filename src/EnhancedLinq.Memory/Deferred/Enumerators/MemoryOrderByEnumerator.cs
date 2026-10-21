@@ -51,7 +51,7 @@ internal class MemoryOrderByEnumerator<TSource, TKey> : IEnumerator<TSource>
             }
             else
             {
-#if NET8_0_OR_GREATER
+#if NET10_0_OR_GREATER
                 (TSource item, TKey key)[] tempArray = _pairs.ToArray();
 
                 tempArray.Sort((left, right)

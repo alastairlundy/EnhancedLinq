@@ -19,7 +19,7 @@
 <!-- Confirm that you have followed the validation steps required for this project. -->
 
 ### Build & Analysis
-- [ ] Ran `dotnet build src/EnhancedLinq.sln` and verified no breaking changes across all Target Frameworks (`net10.0`, `net9.0`, `net8.0`, `netstandard2.0`).
+- [ ] Ran `dotnet build src/EnhancedLinq.sln` and verified no breaking changes across all Target Frameworks (`net10.0`, `netstandard2.0`).
 - [ ] Addressed all `Meziantou.Analyzer` warnings.
 
 ### Test Suites

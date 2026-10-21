@@ -118,7 +118,7 @@ public static class ImmediateLastIndexOfExtensions
         /// </returns>
         public int LastIndexOf(Func<T, bool> predicate)
         {
-#if NET8_0_OR_GREATER
+#if NET10_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(source);
 #endif
         
@@ -142,7 +142,7 @@ public static class ImmediateLastIndexOfExtensions
         /// <returns>The index of an element in a collection, if the collection contains the element, returns -1 otherwise.</returns>
         public int LastIndexOf(T obj)
         {
-#if NET8_0_OR_GREATER
+#if NET10_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(source);
 #endif
         

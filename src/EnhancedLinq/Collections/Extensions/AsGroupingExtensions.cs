@@ -48,7 +48,7 @@ public static class AsGroupingExtensions
         public IGrouping<TKey, TElement> AsGrouping<TKey>
             (TKey key)
         {
-#if NET8_0_OR_GREATER
+#if NET10_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(source);
 #endif
             

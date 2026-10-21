@@ -16,7 +16,7 @@ namespace EnhancedLinq.Memory.Immediate.Ranges;
 /// </summary>
 public static class ImmediateMemoryGetRangeExtensions
 {
-#if NET8_0_OR_GREATER
+#if NET10_0_OR_GREATER
     /// <param name="target">The original span to extract the range of items from.</param>
     /// <typeparam name="T">The type of elements in the span.</typeparam>
     extension<T>(Span<T> target)
