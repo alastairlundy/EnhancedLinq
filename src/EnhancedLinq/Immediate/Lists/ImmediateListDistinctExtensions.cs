@@ -61,7 +61,7 @@ public static class ImmediateListDistinctExtensions
         ArgumentNullException.ThrowIfNull(source);
         ArgumentNullException.ThrowIfNull(equalityComparer);
         
-#if NET8_0_OR_GREATER
+#if NET10_0_OR_GREATER
         HashSet<T> hash = new(capacity: source.Count, comparer: equalityComparer);
 #else
         HashSet<T> hash = new(comparer: equalityComparer);

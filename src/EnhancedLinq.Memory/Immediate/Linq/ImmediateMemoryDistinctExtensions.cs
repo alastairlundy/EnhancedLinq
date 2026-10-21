@@ -18,7 +18,7 @@ public static class ImmediateMemoryDistinctExtensions
         comparer ??= EqualityComparer<T>.Default;
 
 
-#if NET8_0_OR_GREATER
+#if NET10_0_OR_GREATER
         HashSet<T> set = new(source.Length, comparer);
 #else
         HashSet<T> set = new(comparer: comparer);
@@ -49,7 +49,7 @@ public static class ImmediateMemoryDistinctExtensions
         comparer ??= EqualityComparer<T>.Default;
 
 
-#if NET8_0_OR_GREATER
+#if NET10_0_OR_GREATER
         HashSet<T> set = new(source.Length, comparer);
 #else
         HashSet<T> set = new(comparer: comparer);

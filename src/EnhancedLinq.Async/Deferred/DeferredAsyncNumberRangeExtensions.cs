@@ -7,7 +7,7 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/.
     */
 
-#if NET8_0_OR_GREATER
+#if NET10_0_OR_GREATER
 using System.Linq;
 using System.Numerics;
 using System.Runtime.CompilerServices;
@@ -21,7 +21,7 @@ namespace EnhancedLinq.Async.Deferred;
 /// </summary>
 public static class DeferredAsyncNumberRangeExtensions
 {
-#if NET8_0_OR_GREATER
+#if NET10_0_OR_GREATER
     /// <param name="start">The starting value of the sequence.</param>
     /// <typeparam name="TNumber">The numeric type used to represent the numbers.</typeparam>
     extension<TNumber>(TNumber start) where TNumber : INumber<TNumber>

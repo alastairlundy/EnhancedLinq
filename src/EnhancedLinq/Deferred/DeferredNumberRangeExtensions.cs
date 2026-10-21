@@ -9,7 +9,7 @@
 
 using System.Linq; 
 
-#if NET8_0_OR_GREATER
+#if NET10_0_OR_GREATER
 using System.Numerics;
 using EnhancedLinq.Deferred.Enumerables.NumberRanges;
 #endif
@@ -21,7 +21,7 @@ namespace EnhancedLinq.Deferred;
 /// </summary>
 public static class DeferredNumberRangeExtensions
 {
-#if NET8_0_OR_GREATER
+#if NET10_0_OR_GREATER
     /// <param name="start">The starting value of the sequence.</param>
     /// <typeparam name="TNumber">The numeric type used to represent the numbers.</typeparam>
     extension<TNumber>(TNumber start) where TNumber : INumber<TNumber>

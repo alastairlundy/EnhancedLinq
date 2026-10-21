@@ -7,7 +7,7 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/. 
     */
 
-#if NET8_0_OR_GREATER
+#if NET10_0_OR_GREATER
 using System.Numerics;
 #endif
 
@@ -18,7 +18,7 @@ namespace EnhancedLinq.Immediate.Lists.Ranges;
 /// </summary>
 public static class ImmediateListNumberRangeExtensions
 {
-#if NET8_0_OR_GREATER
+#if NET10_0_OR_GREATER
     /// <param name="startIndex">The starting value of the array.</param>
     /// <typeparam name="TNumber"></typeparam>
     extension<TNumber>(TNumber startIndex)
