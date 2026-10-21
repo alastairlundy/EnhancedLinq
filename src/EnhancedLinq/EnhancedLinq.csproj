@@ -60,6 +60,7 @@
         </PackageReference>
         <PackageReference Include="Microsoft.Extensions.Primitives"/>
         <PackageReference Include="Polyfill" PrivateAssets="all"/>
+        <PackageReference Include="Squash" PrivateAssets="all"/>
     </ItemGroup>
 
     <ItemGroup>

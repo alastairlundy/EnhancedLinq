@@ -37,6 +37,7 @@
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Polyfill" PrivateAssets="all"/>
+        <PackageReference Include="Squash" PrivateAssets="all"/>
     </ItemGroup>
 
     <ItemGroup Condition="'$(UsePublishedPackages)'=='false'">
