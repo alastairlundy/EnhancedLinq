@@ -5,7 +5,7 @@ EnhancedLinq is a suite of .NET libraries providing deferred and immediate enume
 
 ## Key Facts
 - **Language**: Requires C# 14 (`<LangVersion>14</LangVersion>`).
-- **Target Frameworks**: Multi-targeted for `net10.0`, `net9.0`, `net8.0`, and `netstandard2.0`.
+- **Target Frameworks**: Multi-targeted for `net10.0` and `netstandard2.0`.
 - **Trim/AOT**: `EnableTrimAnalyzer` is enabled; prioritize trim-compatible implementations.
 - **Dependencies**: Heavily relies on `DotExtensions` and `Polyfill`.
 

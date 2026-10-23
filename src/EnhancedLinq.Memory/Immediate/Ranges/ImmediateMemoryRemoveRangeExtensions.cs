@@ -70,7 +70,7 @@ public static class ImmediateMemoryRemoveRangeExtensions
         }
     }
 
-#if NET8_0_OR_GREATER
+#if NET10_0_OR_GREATER
     /// <param name="target">The span to remove a range of items from.</param>
     /// <typeparam name="T">The type of elements in the span.</typeparam>
     extension<T>(Span<T> target) where T : IEquatable<T>?

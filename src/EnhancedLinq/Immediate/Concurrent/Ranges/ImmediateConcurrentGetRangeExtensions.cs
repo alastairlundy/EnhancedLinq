@@ -67,7 +67,7 @@ public static class ImmediateConcurrentGetRangeExtensions
         }
     }
 
-#if NET8_0_OR_GREATER
+#if NET10_0_OR_GREATER
     /// <param name="collection">The producer-consumer collection to retrieve elements from.</param>
     /// <typeparam name="T">The type of elements contained within the collection.</typeparam>
     extension<T>(IProducerConsumerCollection<T> collection)

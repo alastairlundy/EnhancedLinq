@@ -195,7 +195,7 @@ public static class ImmediateMemoryElementsAtExtensions
             ArgumentOutOfRangeException.ThrowIfNegative(index);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
 
-#if NET8_0_OR_GREATER
+#if NET10_0_OR_GREATER
             return source[new Range(index, index + count)];
 #else
             return source.Slice(index, count);
@@ -241,7 +241,7 @@ public static class ImmediateMemoryElementsAtExtensions
             ArgumentOutOfRangeException.ThrowIfNegative(index);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
 
-#if NET8_0_OR_GREATER
+#if NET10_0_OR_GREATER
             return source[new Range(index, index + count)];
 #else
             return source.Slice(index, count);
