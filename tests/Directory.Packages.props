@@ -19,6 +19,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageVersion Include="Bogus" Version="35.6.5" />
-    <PackageVersion Include="TUnit" Version="1.71.0" />
+    <PackageVersion Include="TUnit" Version="1.74.0" />
   </ItemGroup>
 </Project>
