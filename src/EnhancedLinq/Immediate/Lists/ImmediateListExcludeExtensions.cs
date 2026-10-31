@@ -33,19 +33,25 @@ public static class ImmediateListExcludeExtensions
         {
             ArgumentNullException.ThrowIfNull(collection);
             ArgumentNullException.ThrowIfNull(predicate);
-            
-            List<TSource> output = new(list.Count);
-            output.AddRange(list);
+
+            HashSet<TSource> excluded = new();
 
             foreach (TSource item in collection)
             {
                 if (predicate(item))
                 {
-                    if(output.Contains(item))
-                        output.Remove(item);
+                    excluded.Add(item);
                 }
             }
-            
+
+            List<TSource> output = new(list.Count);
+
+            foreach (TSource item in list)
+            {
+                if (!excluded.Contains(item))
+                    output.Add(item);
+            }
+
             return output;
         }
 
@@ -58,15 +64,16 @@ public static class ImmediateListExcludeExtensions
         {
             ArgumentNullException.ThrowIfNull(collection);
 
-            List<TSource> output = new(capacity: list.Count);
-            output.AddRange(list);
+            HashSet<TSource> excluded = new(collection);
 
-            foreach (TSource item in collection)
+            List<TSource> output = new(capacity: list.Count);
+
+            foreach (TSource item in list)
             {
-                if(output.Contains(item))
-                    output.Remove(item);
+                if (!excluded.Contains(item))
+                    output.Add(item);
             }
-            
+
             return output;
         }
     }
@@ -90,10 +97,12 @@ public static class ImmediateListExcludeExtensions
 
             TSource[] output = new TSource[array.Length];
 
+            HashSet<TSource> excluded = new(collection);
+
             int currentIndex = 0;
             for (int index = 0; index < array.Length; index++)
             {
-                if (!collection.Contains(array[index]))
+                if (!excluded.Contains(array[index]))
                 {
                     output[currentIndex] = array[index];
                     currentIndex++;
@@ -118,17 +127,23 @@ public static class ImmediateListExcludeExtensions
         {
             ArgumentNullException.ThrowIfNull(collection);
             ArgumentNullException.ThrowIfNull(predicate);
-            
-            List<TSource> output = new(collection.Count);
-            output.AddRange(array);
-            
+
+            HashSet<TSource> excluded = new();
+
             foreach (TSource item in collection)
             {
                 if (predicate(item))
                 {
-                    if(output.Contains(item))
-                        output.Remove(item);
+                    excluded.Add(item);
                 }
+            }
+
+            List<TSource> output = new(array.Length);
+
+            foreach (TSource item in array)
+            {
+                if (!excluded.Contains(item))
+                    output.Add(item);
             }
 
             return output.ToArray();

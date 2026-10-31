@@ -43,10 +43,7 @@ public static class ImmediateMemoryExceptExtensions
                     index++;
                 }
 
-            T[] output = new T[index];
-            Array.Copy(buffer, output, index);
-
-            return output;
+            return buffer.AsSpan(0, index);
         }
     }
 
@@ -82,10 +79,7 @@ public static class ImmediateMemoryExceptExtensions
                     index++;
                 }
 
-            T[] output = new T[index];
-            Array.Copy(buffer, output, index);
-
-            return output;
+            return buffer.AsSpan(0, index);
         }
     }
 }

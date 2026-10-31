@@ -48,14 +48,14 @@ internal class SplitByPredicateEnumerator<T> : IEnumerator<IEnumerable<T>>
                 }
                 else
                 {
-                    Current = new List<T>(tempList);
+                    Current = tempList;
                     return true;
                 }
             }
 
             if (tempList.Count > 0)
             {
-                Current = new List<T>(tempList);
+                Current = tempList;
                 return true;
             }
         }

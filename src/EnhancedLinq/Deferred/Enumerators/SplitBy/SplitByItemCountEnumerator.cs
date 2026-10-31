@@ -73,7 +73,7 @@ internal class SplitByItemCountEnumerator<T> : IEnumerator<IEnumerable<T>>
 
         try
         {
-            List<T> tempList = new List<T>();
+            List<T> tempList = new List<T>(capacity: _maximumItemCount);
 
             while (_enumerator.MoveNext())
             {
@@ -81,7 +81,7 @@ internal class SplitByItemCountEnumerator<T> : IEnumerator<IEnumerable<T>>
 
                 if (tempList.Count >= _maximumItemCount)
                 {
-                    _current = new List<T>(tempList);
+                    _current = tempList;
                     _currentEnumerableCount++;
                     return true;
                 }
@@ -89,7 +89,7 @@ internal class SplitByItemCountEnumerator<T> : IEnumerator<IEnumerable<T>>
 
             if (tempList.Count > 0)
             {
-                _current = new List<T>(tempList);
+                _current = tempList;
                 _currentEnumerableCount++;
                 return true;
             }

@@ -7,7 +7,6 @@
     file, You can obtain one at https://mozilla.org/MPL/2.0/.
     */
 
-using System.Linq;
 using EnhancedLinq.Immediate.Lists.Ranges;
 
 namespace EnhancedLinq.Memory.Immediate;
@@ -32,15 +31,17 @@ public static class ImmediateMemoryExcludeExtensions
         {
             HashSet<TSource> exclude = new(span.ToArray());
 
-            List<TSource> result = new();
+            TSource[] output = new TSource[source.Length];
+
+            int count = 0;
 
             foreach (TSource item in source)
             {
                 if (!exclude.Contains(item))
-                    result.Add(item);
+                    output[count++] = item;
             }
-            
-            return result.ToArray();
+
+            return output.AsSpan(0, count);
         }
 
         /// <summary>
@@ -54,7 +55,17 @@ public static class ImmediateMemoryExcludeExtensions
         {
             ArgumentNullException.ThrowIfNull(predicate);
 
-            return source.Where(s => !predicate(s));
+            TSource[] output = new TSource[source.Length];
+
+            int count = 0;
+
+            for (int i = 0; i < source.Length; i++)
+            {
+                if (!predicate(source[i]))
+                    output[count++] = source[i];
+            }
+
+            return output.AsSpan(0, count);
         }
     }
 
@@ -74,7 +85,17 @@ public static class ImmediateMemoryExcludeExtensions
         {
             ArgumentNullException.ThrowIfNull(predicate);
 
-            return source.Where(s => !predicate(s));
+            TSource[] output = new TSource[source.Length];
+
+            int count = 0;
+
+            for (int i = 0; i < source.Length; i++)
+            {
+                if (!predicate(source[i]))
+                    output[count++] = source[i];
+            }
+
+            return output.AsSpan(0, count);
         }
     }
 }

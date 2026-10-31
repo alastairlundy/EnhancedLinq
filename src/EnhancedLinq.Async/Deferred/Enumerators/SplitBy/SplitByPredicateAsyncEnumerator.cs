@@ -47,16 +47,14 @@ internal class SplitByPredicateAsyncEnumerator<T> : IAsyncEnumerator<IAsyncEnume
                 }
                 else
                 {
-                    List<T> list = new(tempList);
-
-                    _current = list.ToAsyncEnumerable();
+                    _current = tempList.ToAsyncEnumerable();
                     return true;
                 }
             }
 
             if (tempList.Count > 0)
             {
-                _current = new List<T>(tempList).ToAsyncEnumerable();
+                _current = tempList.ToAsyncEnumerable();
                 return true;
             }
         }

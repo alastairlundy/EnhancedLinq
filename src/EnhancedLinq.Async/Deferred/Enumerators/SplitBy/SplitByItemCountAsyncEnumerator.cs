@@ -76,7 +76,7 @@ internal class SplitByItemCountAsyncEnumerator<T> : IAsyncEnumerator<IAsyncEnume
 
         try
         {
-            List<T> tempList = new List<T>();
+            List<T> tempList = new List<T>(capacity: _maximumItemCount);
 
             while (await _enumerator.MoveNextAsync()
                        .ConfigureAwait(false))
@@ -85,7 +85,7 @@ internal class SplitByItemCountAsyncEnumerator<T> : IAsyncEnumerator<IAsyncEnume
 
                 if (tempList.Count >= _maximumItemCount)
                 {
-                    _current = new List<T>(tempList);
+                    _current = tempList;
                     _currentEnumerableCount++;
                     return true;
                 }
@@ -93,7 +93,7 @@ internal class SplitByItemCountAsyncEnumerator<T> : IAsyncEnumerator<IAsyncEnume
 
             if (tempList.Count > 0)
             {
-                _current = new List<T>(tempList);
+                _current = tempList;
                 _currentEnumerableCount++;
                 return true;
             }

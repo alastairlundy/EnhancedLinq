@@ -8,13 +8,18 @@
     */
 
 using System.Collections;
-using System.Linq;
 
 namespace EnhancedLinq.Deferred.Enumerators;
 
 internal class ElementsAtEnumerator<TSource> : IEnumerator<TSource>
 {
-    private readonly IEnumerator<TSource> _enumerator;
+    private readonly IEnumerable<TSource> _source;
+
+    private readonly IEnumerable<int> _indices;
+
+    private IEnumerator<int>? _indicesEnumerator;
+
+    private IList<TSource>? _items;
 
     private int _state;
 
@@ -22,9 +27,8 @@ internal class ElementsAtEnumerator<TSource> : IEnumerator<TSource>
     {
         _state = 1;
 
-        IEnumerable<TSource> values = indices.Select(i => source.ElementAt(i));
-
-        _enumerator = values.GetEnumerator();
+        _source = source;
+        _indices = indices;
     }
 
     public bool MoveNext()
@@ -36,9 +40,17 @@ internal class ElementsAtEnumerator<TSource> : IEnumerator<TSource>
 
         try
         {
-            if (_enumerator.MoveNext())
+            _items ??= _source as IList<TSource> ?? new List<TSource>(_source);
+            _indicesEnumerator ??= _indices.GetEnumerator();
+
+            if (_indicesEnumerator.MoveNext())
             {
-                Current = _enumerator.Current;
+                int index = _indicesEnumerator.Current;
+
+                ArgumentOutOfRangeException.ThrowIfNegative(index);
+                ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(index, _items.Count);
+
+                Current = _items[index];
                 return true;
             }
         }
@@ -65,6 +77,6 @@ internal class ElementsAtEnumerator<TSource> : IEnumerator<TSource>
 
     public void Dispose()
     {
-        _enumerator.Dispose();
+        _indicesEnumerator?.Dispose();
     }
 }

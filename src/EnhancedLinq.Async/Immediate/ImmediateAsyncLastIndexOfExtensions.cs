@@ -27,8 +27,8 @@ public static class ImmediateAsyncLastIndexOfExtensions
         /// Gets the index of the last element that matches the predicate condition.
         /// </summary>
         /// <remarks>
-        /// This method is computationally expensive as the number of items in the sequence is needed to get the index
-        /// of the last element that satisfies the predicate.
+        /// This method performs a single forward pass over the sequence, tracking the index of the most recent element
+        /// that satisfies the predicate, without buffering the sequence.
         /// </remarks>
         /// <param name="predicate">The predicate condition to check elements of the <see cref="IAsyncEnumerable{T}"/> against.</param>
         /// <returns>The index of the last element in the sequence to match the predicate condition,
@@ -39,33 +39,28 @@ public static class ImmediateAsyncLastIndexOfExtensions
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(predicate);
 
-            bool foundItem = false;
-            int reverseIndex = 0;
+            int index = 0;
+            int matchIndex = -1;
 
-            int count = 0;
-
-            await foreach (T item in source.Reverse().ConfigureAwait(false))
+            await foreach (T item in source.ConfigureAwait(false))
             {
-                if (predicate(item) && !foundItem)
+                if (predicate(item))
                 {
-                    foundItem = true;
-                    reverseIndex = count;
+                    matchIndex = index;
                 }
 
-                count++;
+                index++;
             }
 
-            int effectiveIndex = (count - 1) - reverseIndex;
-        
-            return foundItem && effectiveIndex >= 0 ? effectiveIndex : -1;
+            return matchIndex;
         }
 
         /// <summary>
         /// Gets the last index of an element in a <see cref="IAsyncEnumerable{T}"/>.
         /// </summary>
         /// <remarks>
-        /// This method is computationally expensive as the number of items in the <see cref="IAsyncEnumerable{T}"/> is needed to get the index
-        /// of the last element that satisfies the selector.
+        /// This method performs a single forward pass over the <see cref="IAsyncEnumerable{T}"/>, tracking the index of the most recent element
+        /// that equals obj, without buffering the sequence.
         /// </remarks>
         /// <param name="obj">The element to get the last index of.</param>
         /// <returns>The last index of an element in a <see cref="IAsyncEnumerable{T}"/>, if the sequence contains the element, returns -1 otherwise.</returns>
@@ -74,24 +69,20 @@ public static class ImmediateAsyncLastIndexOfExtensions
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(obj);
 
-            bool foundItem = false;
-            int reverseIndex = 0;
-            int count = 0;
+            int index = 0;
+            int matchIndex = -1;
 
-            await foreach (T item in source.Reverse().ConfigureAwait(false))
+            await foreach (T item in source.ConfigureAwait(false))
             {
-                if (item is not null && item.Equals(obj) && !foundItem)
+                if (item is not null && item.Equals(obj))
                 {
-                    foundItem = true;
-                    reverseIndex = count;
+                    matchIndex = index;
                 }
 
-                count++;
+                index++;
             }
 
-            int effectiveIndex = (count - 1) - reverseIndex;
-        
-            return foundItem && effectiveIndex >= 0 ? effectiveIndex : -1;
+            return matchIndex;
         }
     }
 }

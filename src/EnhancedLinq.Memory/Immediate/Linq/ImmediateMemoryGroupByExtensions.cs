@@ -46,10 +46,13 @@ public static class ImmediateMemoryGroupByExtensions
                 }
             }
 
-            IGrouping<TKey, TElement>[] groups = dictionary
-                .Select(IGrouping<TKey, TElement> (kvp) => new GroupingEnumerable<TKey, TElement>(kvp.Key, kvp.Value))
-                .ToArray();
-            
+            IGrouping<TKey, TElement>[] groups = new IGrouping<TKey, TElement>[dictionary.Count];
+            int i = 0;
+            foreach (KeyValuePair<TKey, List<TElement>> kvp in dictionary)
+            {
+                groups[i++] = new GroupingEnumerable<TKey, TElement>(kvp.Key, kvp.Value);
+            }
+
             return new Span<IGrouping<TKey, TElement>>(groups);
         }
     }
@@ -74,21 +77,26 @@ public static class ImmediateMemoryGroupByExtensions
             {
                 TKey key = keyPredicate.Invoke(item);
 
-                if (dictionary.ContainsKey(key))
+                if (dictionary.TryGetValue(key, out List<TElement>? list))
                 {
-                    dictionary[key].Add(item);
+                    list.Add(item);
                 }
                 else
                 {
-                    dictionary.Add(key, []);
-                    dictionary[key].Add(item);
+                    list = [];
+                    dictionary.Add(key, list);
+                    list.Add(item);
                 }
             }
 
-            IEnumerable<IGrouping<TKey, TElement>> groups = from kvp in dictionary
-                select new GroupingEnumerable<TKey, TElement>(kvp.Key, kvp.Value);
+            IGrouping<TKey, TElement>[] groups = new IGrouping<TKey, TElement>[dictionary.Count];
+            int i = 0;
+            foreach (KeyValuePair<TKey, List<TElement>> kvp in dictionary)
+            {
+                groups[i++] = new GroupingEnumerable<TKey, TElement>(kvp.Key, kvp.Value);
+            }
 
-            return new ReadOnlySpan<IGrouping<TKey, TElement>>(groups.ToArray());
+            return new ReadOnlySpan<IGrouping<TKey, TElement>>(groups);
         }
     }
 
@@ -112,19 +120,24 @@ public static class ImmediateMemoryGroupByExtensions
             {
                 TKey key = keyPredicate.Invoke(item);
 
-                if (dictionary.ContainsKey(key))
+                if (dictionary.TryGetValue(key, out List<TElement>? list))
                 {
-                    dictionary[key].Add(item);
+                    list.Add(item);
                 }
                 else
                 {
-                    dictionary.Add(key, []);
-                    dictionary[key].Add(item);
+                    list = [];
+                    dictionary.Add(key, list);
+                    list.Add(item);
                 }
             }
 
-            IEnumerable<IGrouping<TKey, TElement>> groups = from kvp in dictionary
-                select new GroupingEnumerable<TKey, TElement>(kvp.Key, kvp.Value);
+            IGrouping<TKey, TElement>[] groups = new IGrouping<TKey, TElement>[dictionary.Count];
+            int i = 0;
+            foreach (KeyValuePair<TKey, List<TElement>> kvp in dictionary)
+            {
+                groups[i++] = new GroupingEnumerable<TKey, TElement>(kvp.Key, kvp.Value);
+            }
 
             return groups;
         }
@@ -150,19 +163,24 @@ public static class ImmediateMemoryGroupByExtensions
             {
                 TKey key = keyPredicate.Invoke(item);
 
-                if (dictionary.ContainsKey(key))
+                if (dictionary.TryGetValue(key, out List<TElement>? list))
                 {
-                    dictionary[key].Add(item);
+                    list.Add(item);
                 }
                 else
                 {
-                    dictionary.Add(key, []);
-                    dictionary[key].Add(item);
+                    list = [];
+                    dictionary.Add(key, list);
+                    list.Add(item);
                 }
             }
 
-            IEnumerable<IGrouping<TKey, TElement>> groups = from kvp in dictionary
-                select new GroupingEnumerable<TKey, TElement>(kvp.Key, kvp.Value);
+            IGrouping<TKey, TElement>[] groups = new IGrouping<TKey, TElement>[dictionary.Count];
+            int i = 0;
+            foreach (KeyValuePair<TKey, List<TElement>> kvp in dictionary)
+            {
+                groups[i++] = new GroupingEnumerable<TKey, TElement>(kvp.Key, kvp.Value);
+            }
 
             return groups;
         }

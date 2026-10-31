@@ -50,10 +50,7 @@ internal class StringIndicesEnumerator : IEnumerator<int>
                     continue;
                 }
 
-                string compare = _str.Substring(candidateIndex,
-                    _substring.Length);
-
-                if (_substring.Equals(compare))
+                if (string.CompareOrdinal(_str, candidateIndex, _substring, 0, _substring.Length) == 0)
                 {
                     _current = candidateIndex;
                     return true;
