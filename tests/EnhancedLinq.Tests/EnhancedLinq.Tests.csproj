@@ -21,6 +21,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\src\EnhancedLinq\EnhancedLinq.csproj" />
+      <ProjectReference Include="..\..\src\EnhancedLinq.Async\EnhancedLinq.Async.csproj" />
     </ItemGroup>
 
 </Project>

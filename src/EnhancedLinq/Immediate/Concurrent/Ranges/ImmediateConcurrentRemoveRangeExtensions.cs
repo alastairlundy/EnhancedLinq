@@ -31,8 +31,10 @@ public static class ImmediateConcurrentRemoveRangeExtensions
             ArgumentNullException.ThrowIfNull(concurrentBag);
             ArgumentNullException.ThrowIfNull(itemsToRemove);
             
+            HashSet<T> itemsToRemoveSet = new(itemsToRemove);
+
             IEnumerable<T> newCollection = from item in concurrentBag
-                where !itemsToRemove.Contains(item)
+                where !itemsToRemoveSet.Contains(item)
                 select item;
             
             return new ConcurrentBag<T>(newCollection);
@@ -76,7 +78,7 @@ public static class ImmediateConcurrentRemoveRangeExtensions
             int actualIndex = 0;
             foreach (T item in concurrentBag)
             {
-                if (actualIndex < startIndex || actualIndex > limit)
+                if (actualIndex < startIndex || actualIndex >= limit)
                 {
                     output.Add(item);
                 }
@@ -101,8 +103,10 @@ public static class ImmediateConcurrentRemoveRangeExtensions
             ArgumentNullException.ThrowIfNull(collection);
             ArgumentNullException.ThrowIfNull(itemsToRemove);
 
+            HashSet<T> itemsToRemoveSet = new(itemsToRemove);
+
             IEnumerable<T> newCollection = from item in collection
-                where itemsToRemove.Contains(item) == false
+                where !itemsToRemoveSet.Contains(item)
                 select item;
             
             return new ConcurrentBag<T>(newCollection);
@@ -132,7 +136,7 @@ public static class ImmediateConcurrentRemoveRangeExtensions
             int actualIndex = 0;
             foreach (T item in collection)
             {
-                if (actualIndex < startIndex || actualIndex > limit)
+                if (actualIndex < startIndex || actualIndex >= limit)
                 {
                     output.Add(item);
                 }

@@ -29,9 +29,11 @@ public static class DeferredRemoveRangeExtensions
         {
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(itemsToBeRemoved);
-            
+
+            HashSet<TSource> itemsToBeRemovedSet = new(itemsToBeRemoved);
+
             return from item in source
-                where itemsToBeRemoved.Contains(item) == false
+                where !itemsToBeRemovedSet.Contains(item)
                 select item;
         }
     }

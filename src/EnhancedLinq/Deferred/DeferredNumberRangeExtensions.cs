@@ -71,8 +71,10 @@ public static class DeferredNumberRangeExtensions
         {
             ArgumentNullException.ThrowIfNull(numbersToSkip);
 
+            HashSet<TNumber> numbersToSkipSet = new(numbersToSkip);
+
             return start.GenerateNumberRange(count, incrementor)
-                .Where(x => !numbersToSkip.Contains(x));
+                .Where(x => !numbersToSkipSet.Contains(x));
         }
     }
 
@@ -118,8 +120,10 @@ public static class DeferredNumberRangeExtensions
         {
             ArgumentNullException.ThrowIfNull(numbersToSkip);
 
+            HashSet<int> numbersToSkipSet = new(numbersToSkip);
+
             return start.GenerateNumberRange(count, incrementor)
-                .Where(x => !numbersToSkip.Contains(x));
+                .Where(x => !numbersToSkipSet.Contains(x));
         }
     }
 

@@ -91,19 +91,17 @@ public static class ImmediateIndexOfExtensions
             ArgumentException.ThrowIfNullOrEmpty(str);
             ArgumentException.ThrowIfNullOrEmpty(value);
             
-            if (str.Length < value.Length || value.Length == 0)
+            if (str.Length < value.Length)
                 return -1;
 
             IEnumerable<int> indices = str.IndicesOf(value.First());
 
             foreach (int index in indices)
             {
-                if (index == -1)
-                    break;
+                if (index + value.Length > str.Length)
+                    continue;
                 
-                string indexValue = value.Substring(index, value.Length);
-
-                if (indexValue.Equals(str))
+                if (string.CompareOrdinal(str, index, value, 0, value.Length) == 0)
                 {
                     return index;
                 }

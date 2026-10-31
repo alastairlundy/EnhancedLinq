@@ -8,6 +8,8 @@
     */
 
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Threading;
 
 namespace EnhancedLinq.Async.Deferred;
 
@@ -30,7 +32,26 @@ public static class DeferredExcludesExtensions
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(exclude);
 
-            return source.WhereAsync(async item => !await exclude.ContainsAsync(item).ConfigureAwait(false));
+            return ExcludeInternalAsync(exclude);
+
+            async IAsyncEnumerable<TSource> ExcludeInternalAsync(IAsyncEnumerable<TSource> excludeInner,
+                [EnumeratorCancellation] CancellationToken cancellationToken = default)
+            {
+                HashSet<TSource> excludeSet = [];
+
+                await foreach (TSource item in excludeInner.WithCancellation(cancellationToken)
+                    .ConfigureAwait(false))
+                {
+                    excludeSet.Add(item);
+                }
+
+                await foreach (TSource sourceItem in source.WithCancellation(cancellationToken)
+                    .ConfigureAwait(false))
+                {
+                    if (!excludeSet.Contains(sourceItem))
+                        yield return sourceItem;
+                }
+            }
         }
         
         /// <summary>

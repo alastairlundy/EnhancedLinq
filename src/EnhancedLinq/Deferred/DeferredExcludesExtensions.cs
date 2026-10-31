@@ -30,7 +30,9 @@ public static class DeferredExcludesExtensions
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(exclude);
         
-            return (from item in source where !exclude.Contains(item)
+            HashSet<TSource> excludeSet = new(exclude);
+        
+            return (from item in source where !excludeSet.Contains(item)
                 select item);
         }
         

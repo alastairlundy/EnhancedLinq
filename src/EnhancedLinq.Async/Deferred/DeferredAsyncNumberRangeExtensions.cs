@@ -72,12 +72,18 @@ public static class DeferredAsyncNumberRangeExtensions
         {
             ArgumentNullException.ThrowIfNull(numbersToSkip);
 
-            IAsyncEnumerable<TNumber> numbers = start.GenerateNumberRange(count, incrementor)
-                .WhereAsync(async n => !await numbersToSkip.ContainsAsync(n).ConfigureAwait(false));
+            HashSet<TNumber> numbersToSkipSet = [];
 
-            await foreach (TNumber number in numbers.WithCancellation(cancellationToken).ConfigureAwait(false))
+            await foreach (TNumber skip in numbersToSkip.WithCancellation(cancellationToken).ConfigureAwait(false))
             {
-                yield return number;
+                numbersToSkipSet.Add(skip);
+            }
+
+            await foreach (TNumber number in start.GenerateNumberRange(count, incrementor)
+                .WithCancellation(cancellationToken).ConfigureAwait(false))
+            {
+                if (!numbersToSkipSet.Contains(number))
+                    yield return number;
             }
         }
     }
