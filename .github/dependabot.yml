@@ -1,5 +1,5 @@
 # Dependabot configuration.
-# Version updates run weekly (Mondays) with a 14-day cooldown so fast-moving
+# Version updates run weekly (Mondays) with a 3-day cooldown so fast-moving
 # packages (TUnit, Polyfill, Meziantou.Analyzer, GitHub Actions) don't open a
 # PR per release. Cooldowns only apply to version updates; Dependabot security
 # updates are unaffected and still open immediately.
@@ -13,7 +13,7 @@ updates:
       interval: weekly
       day: monday
     cooldown:
-      default-days: 14
+      default-days: 3
 
   - package-ecosystem: github-actions
     directory: /
@@ -21,4 +21,4 @@ updates:
       interval: weekly
       day: monday
     cooldown:
-      default-days: 14
+      default-days: 3
